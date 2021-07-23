@@ -28,7 +28,7 @@ add_action( 'admin_enqueue_scripts', 'wpc_enqueue_pointer_script_style' );
 
 function wpc_pointer_print_scripts() {
 
-	$pointer_content  = "<h3>WP Cloudy</h3>";
+	$pointer_content  = "<h3>WP Cloudy 2</h3>";
 	$pointer_content .= '<p>'.__('<strong>Before starting:</strong> enter your own OpenWeatherMap API key in','wp-cloudy').' <a href="'.admin_url('options-general.php?page=wpc-settings-admin#tab_advanced').'">'. __('Advanced Settings!','wp-cloudy').'</a></p>';
 	?>
 	

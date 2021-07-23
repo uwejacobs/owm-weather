@@ -18,7 +18,6 @@ function sun() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="sunFillClip">
             <path
@@ -87,7 +86,6 @@ function sunFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-sunFill">
             <g class="climacon_componentWrap climacon_componentWrap-sun">
@@ -157,7 +155,6 @@ function moon() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="moonFillClip">
             <path d="M15,15v70h70V15H15z M50,57.999c-4.418,0-7.999-3.582-7.999-7.999c0-3.803,2.655-6.979,6.211-7.792c0.903,4.854,4.726,8.676,9.579,9.58C56.979,55.344,53.802,57.999,50,57.999z"/>
@@ -185,7 +182,6 @@ function moonFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-moonFill">
             <g class="climacon_componentWrap climacon_componentWrap-moon">
@@ -213,7 +209,6 @@ function snowflake() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="snowflakeFillClip">
             <path
@@ -241,7 +236,6 @@ function snowflakeFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-snowflakeFill">
             <g class="climacon_componentWrap climacon_componentWrap-snowflake">
@@ -271,7 +265,6 @@ function wind() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-wind">
             <g class="climacon_wrapperComponent climacon_componentWrap-wind">
@@ -298,7 +291,6 @@ function tornado() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-tornado">
             <g class="climacon_componentWrap climacon_componentWrap-tornado">
@@ -334,7 +326,6 @@ function cloud() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -361,7 +352,6 @@ function cloudFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloud">
             <g class="climacon_componentWrap climacon_componentWrap_cloud">
@@ -389,7 +379,6 @@ function cloudSun() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path
@@ -458,7 +447,6 @@ function cloudSunFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_cloudSunFill-iconWrap">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -528,7 +516,6 @@ function cloudMoon() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path
@@ -567,7 +554,6 @@ function cloudMoonFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudMoonFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -604,7 +590,6 @@ function cloudDrizzle() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzle">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-drizzle">
@@ -639,7 +624,6 @@ function cloudDrizzleFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-drizzle">
@@ -679,7 +663,6 @@ function cloudDrizzleSun() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -763,7 +746,6 @@ function cloudDrizzleSunFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleSunFill">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -843,7 +825,6 @@ function cloudDrizzleMoon() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -892,7 +873,6 @@ function cloudDrizzleMoonFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleMoonFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -940,7 +920,6 @@ function cloudDrizzleAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleAlt">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-drizzle">
@@ -976,7 +955,6 @@ function cloudDrizzleFillAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleFillAlt">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-drizzle">
@@ -1016,7 +994,6 @@ function cloudDrizzleSunAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="sunCloudFillClip">
             <path
@@ -1097,7 +1074,6 @@ function cloudDrizzleSunFillAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleSunFillAlt">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -1177,7 +1153,6 @@ function cloudDrizzleMoonAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1227,7 +1202,6 @@ function cloudDrizzleMoonFillAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleMoonFillAlt">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -1276,7 +1250,6 @@ function cloudRain() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1323,7 +1296,6 @@ function cloudRainFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudRainFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-rain">
@@ -1371,7 +1343,6 @@ function cloudRainSun() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1464,7 +1435,6 @@ function cloudRainSunFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudRainSunFill">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -1553,7 +1523,6 @@ function cloudRainMoon() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1611,7 +1580,6 @@ function cloudRainMoonFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudRainMoonFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -1668,7 +1636,6 @@ function cloudRainAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1703,7 +1670,6 @@ function cloudRainAltFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudRainAltFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-rain climacon_wrapperComponent-rain_alt">
@@ -1739,7 +1705,6 @@ function cloudSunRainAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1820,7 +1785,6 @@ function cloudSunRainAltFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudRainSunAltFill">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -1896,7 +1860,6 @@ function cloudMoonRainAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1942,7 +1905,6 @@ function cloudMoonRainAltFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudRainSunAlt">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -1988,7 +1950,6 @@ function cloudHailAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudHailAlt">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-hailAlt">
@@ -2032,7 +1993,6 @@ function cloudHailAltFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudHailAltFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-hailAlt">
@@ -2080,7 +2040,6 @@ function cloudHailAltSun() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -2172,7 +2131,6 @@ function cloudHailAltSunFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudHailAltSun">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -2260,7 +2218,6 @@ function cloudHailAltMoon() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -2322,7 +2279,6 @@ function cloudHailAltMoonFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudHailAltMoon">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -2379,7 +2335,6 @@ function cloudSnow() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
 
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnow">
@@ -2421,7 +2376,6 @@ function cloudSnowFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnowFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-snow">
@@ -2466,7 +2420,6 @@ function cloudSnowSun() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -2555,7 +2508,6 @@ function cloudSnowSunFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnowSunFill">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -2640,7 +2592,6 @@ function cloudSnowMoon() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -2695,7 +2646,6 @@ function cloudSnowMoonFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnowMoonFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -2749,7 +2699,6 @@ function cloudSnowAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="snowFillClip">
             <path d="M15,15v70h70V15H15z M50,65.641c-1.104,0-2-0.896-2-2c0-1.104,0.896-2,2-2c1.104,0,2,0.896,2,2S51.104,65.641,50,65.641z"/>
@@ -2783,7 +2732,6 @@ function cloudSnowAltFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnowAltFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-snowAlt">
@@ -2824,7 +2772,6 @@ function cloudSnowSunAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -2906,7 +2853,6 @@ function cloudSnowSunAltFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnowSunAltFill">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -2987,7 +2933,6 @@ function cloudSnowAlt2() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -3035,7 +2980,6 @@ function cloudSnowAltFill2() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnowAltFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -3085,7 +3029,6 @@ function cloudFog() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudFog">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-Fog">
@@ -3120,7 +3063,6 @@ function cloudFogFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudFog">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-Fog">
@@ -3162,7 +3104,6 @@ function cloudFogSun() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -3246,7 +3187,6 @@ function cloudFogSunFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -3341,7 +3281,6 @@ function cloudFogMoon() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -3390,7 +3329,6 @@ function cloudFogMoonFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -3447,7 +3385,6 @@ function cloudFogAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudFogAlt">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-Fog">
@@ -3492,7 +3429,6 @@ function cloudFogAltFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudFogAltFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-Fog">
@@ -3544,7 +3480,6 @@ function cloudFogSunAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -3637,7 +3572,6 @@ function cloudFogSunAltFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudSunFillClip">
             <path
@@ -3734,7 +3668,6 @@ function cloudFogMoonAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -3793,7 +3726,6 @@ function cloudFogMoonAltFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="newMoonCloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,65.638c-2.775,0-12.801,0-15.998,0c-8.836,0-15.998-7.162-15.998-15.998c0-8.835,7.162-15.998,15.998-15.998c6.004,0,11.229,3.312,13.965,8.203c0.664-0.113,1.338-0.205,2.033-0.205c6.627,0,11.998,5.373,11.998,12C71.941,60.265,66.57,65.638,59.943,65.638z"/>
@@ -3860,7 +3792,6 @@ function cloudLightning() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudLightning">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-lightning">
@@ -3889,7 +3820,6 @@ function cloudLightningFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudLightningFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-lightning">
@@ -3922,7 +3852,6 @@ function cloudLightningSun() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -3999,7 +3928,6 @@ function cloudLightningSunFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
 
         <g class="climacon_iconWrap climacon_iconWrap-cloudLightning">
@@ -4076,7 +4004,6 @@ function cloudLightningMoon() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -4120,7 +4047,6 @@ function cloudLightningMoonFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudLightningMoonFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -4151,7 +4077,7 @@ function cloudLightningMoonFill() {
 	';
 }
 
-function sunrise() {
+/*function sunrise() {
 	return '
 		<svg
         version="1.1"
@@ -4162,7 +4088,6 @@ function sunrise() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-sunrise">
             <g class="climacon_componentWrap climacon_componentWrap-sunrise">
@@ -4211,6 +4136,7 @@ function sunrise() {
     </svg><!-- sunrise -->
 	';
 }
+*/
 
 function sunriseFill() {
 	return '
@@ -4223,7 +4149,6 @@ function sunriseFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-sunriseFill">
             <g class="climacon_componentWrap climacon_componentWrap-sunrise">
@@ -4281,6 +4206,7 @@ function sunriseFill() {
 	';
 }
 
+/*
 function sunset() {
 	return '
 		<svg
@@ -4292,7 +4218,6 @@ function sunset() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-sunset">
             <g class="climacon_componentWrap climacon_componentWrap-sunset">
@@ -4341,6 +4266,7 @@ function sunset() {
     </svg><!-- sunset -->
 	';
 }
+*/
 
 function sunsetFill() {
 	return '
@@ -4353,7 +4279,6 @@ function sunsetFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-sunsetFill">
             <g class="climacon_componentWrap climacon_componentWrap-sunsetFill">
@@ -4423,7 +4348,6 @@ function sunriseAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="sunriseClip">
             <rect
@@ -4488,7 +4412,6 @@ function sunriseAltFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="sunriseFillClip">
             <rect x="15" y="15" width="70" height="48.999"/>
@@ -4558,7 +4481,6 @@ function sunsetAlt() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="sunriseClip">
             <rect
@@ -4623,7 +4545,6 @@ function sunsetAltFill() {
         x="0px"
         y="0px"
         viewBox="15 15 70 70"
-        enable-background="new 15 15 70 70"
         xml:space="preserve">
         <clipPath id="sunriseFillClip">
             <rect x="15" y="15" width="70" height="48.999"/>
@@ -4679,6 +4600,76 @@ function sunsetAltFill() {
         </g>
     </svg><!-- sunsetAltFill-->
 	';
+}
+
+function moonrise($color) {
+	return
+'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="climacon climacon_moonrise" x="0px" y="0px" viewBox="0 0 1000 1000" style="height:32px;fill:' . (!empty($color) ? $color : 'currentColor') . ';" xml:space="preserve">
+<metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+<g><g><g><path d="M316.3,683.7l40.8-35.8c-71.5-40.8-117.4-112.3-117.4-199c0-101.9,66.4-183.8,153.1-214.2c0,5.1,0,10.1,0,10.1c0,153.1,127.5,280.7,280.7,280.7c5.1,0,10.1,0,10.1,0c-15.2,40.8-40.8,76.6-71.5,101.9l40.8,35.8c45.9-35.8,76.6-86.7,91.8-148.1c5.1-20.5,5.1-35.8,10.1-56c-30.7,10.1-56,15.2-81.6,15.2c-127.5,0-229.7-101.9-229.7-229.7c0-25.6,5.1-51,15.2-76.6c-20.3,0-35.8,5.1-56,10.1c-122.5,30.7-214.3,142.7-214.3,270.5C188.8,546,239.7,632.7,316.3,683.7z"/><path d="M954.2,780.8H673.6L495.1,627.7L316.6,780.8h-281C20.4,780.8,10,791,10,806.4c0,15.5,10.1,25.6,25.6,25.6H347l61.1-51l91.8-76.6l91.8,76.6l61.4,51h311.4c15.2,0,25.6-10.1,25.6-25.6C979.6,791,969.5,780.8,954.2,780.8z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g>
+</svg>';
+}
+
+function moonset($color) {
+	return
+'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="climacon climacon_moonset" x="0px" y="0px" viewBox="0 0 1000 1000" style="height:32px;fill:' . (!empty($color) ? $color : 'currentColor') . ';" xml:space="preserve">
+<metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+<g><g><g><path d="M964.4,731.8H649.7l-62,51.5l-92.8,77.4l-82.5-77.1l-61.8-51.5H35.9c-15.4,0-25.9,10.2-25.9,25.9c0,15.6,10.2,25.9,25.9,25.9h283.7L500,938.6l180.4-154.8h283.7c15.4,0,25.9-10.3,25.9-25.9C990,742.3,979.8,731.8,964.4,731.8z"/><path d="M474.4,628.8c134,0,242.4-92.8,273.4-216.6c5.1-20.5,5.1-36.1,10.3-56.6c-25.9,10.2-51.5,15.4-77.4,15.4c-128.9,0-232.2-103-232.2-232.2c0-25.9,5.1-51.5,15.4-77.4c-20.5,0-36.1,5.1-56.6,10.2c-123.8,31-216.5,144.3-216.5,273.4C190.7,499.9,319.6,628.8,474.4,628.8z M397,123.4c0,5.1,0,10.2,0,10.2c0,154.8,128.9,283.7,283.7,283.7c5.1,0,10.2,0,10.2,0c-31,92.8-118.7,154.8-216.5,154.8c-128.9,0-232.2-103-232.2-232.2C242.2,241.8,309.3,159.3,397,123.4z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g>
+</svg>';
+}
+
+function sunrise($color) {
+	return
+'<svg class="climacon climacon_sunrise" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="height:32px;fill:' . (!empty($color) ? $color : 'currentColor') . ';" xml:space="preserve">
+<g>
+	<path d="M0,316c0-5.2,2.1-10,6.3-14.4c4.6-4,9.6-6.1,14.6-6.1h48.7c5.6,0,10.2,2.1,14,6.1s5.6,9,5.6,14.4c0,6.1-1.9,11.1-5.6,15
+		s-8.6,6.1-14,6.1H20.9c-5.6,0-10.4-2.1-14.6-6.3C2.1,326.4,0,321.4,0,316z M69.6,149.2c0-5.6,1.9-10.4,5.4-14.2
+		c4.8-4.2,9.6-6.3,14.8-6.3c5.4,0,10.2,2.1,14.2,6.1l34.3,34.5c4,4.6,5.8,9.4,5.8,14.4c0,5.8-1.9,10.9-5.6,14.6
+		c-3.8,3.8-8.4,5.8-13.8,5.8c-5,0-10-2.1-14.6-6.1L75,164.5C71.5,160.1,69.6,154.9,69.6,149.2z M111.4,431.3
+		c0-5.9,2.1-10.7,6.1-14.2c3.8-3.6,8.4-5.4,14.2-5.4h55l65-61c2.1-1.7,4.4-1.7,7.1,0l66,61h57.9c5.6,0,10.4,1.9,14.4,5.8
+		c4,3.8,6.1,8.6,6.1,14c0,5.6-2.1,10.4-6.1,14.4c-4,4-8.8,6.1-14.4,6.1H312c-2.1,0-4.2-0.4-6.1-1.5l-50.4-47.4l-49.9,47.4
+		c-1.7,1-3.6,1.5-5.8,1.5h-68.1c-5.6,0-10.4-2.1-14.4-6.1C113.3,441.8,111.4,437,111.4,431.3z M130.6,316c0,20.3,4.4,38.7,13,55.2
+		c0.4,2.5,2.3,3.8,5.2,3.8h39.3l3.1-1.7l-0.4-4c-13.4-16.1-20.1-33.9-20.1-53.3c0-23.4,8.4-43.5,25.1-60
+		c16.7-16.5,36.8-24.7,60.4-24.7c23.4,0,43.3,8.2,59.8,24.7c16.5,16.5,24.9,36.4,24.9,60c0,19.6-6.7,37.4-19.9,53.3l-0.6,4l3.1,1.7
+		h39.7c2.7,0,4.4-1.3,4.8-3.8c9.2-16.1,13.4-34.5,13.4-55.2c0-16.9-3.3-33.2-10-48.5c-6.7-15.5-15.7-28.6-26.7-39.9
+		c-11.1-11.1-24.5-20.1-39.9-26.8c-15.5-6.7-31.6-9.8-48.5-9.8c-16.9,0-33.2,3.3-48.7,9.8c-15.5,6.7-28.8,15.5-40.1,26.8
+		c-11.3,11.1-20.3,24.4-26.9,39.9C134,282.7,130.6,298.8,130.6,316z M235.7,128.7V80.7c0-6.1,1.9-10.9,5.9-14.8s9-5.8,14.8-5.8
+		c5.8,0,10.7,1.9,14.6,5.8c4,4,5.8,9.2,5.8,15.1v48.1c0,6.1-1.9,10.9-5.8,14.8c-3.8,3.8-8.8,5.9-14.6,5.9c-6.1,0-10.9-1.9-14.8-5.9
+		S235.7,134.8,235.7,128.7z M368.4,183.9c0-5.2,1.9-10,5.6-14.4l33.9-34.5c4-4,9-6.1,14.6-6.1s10.7,2.1,14.4,6.1
+		c4,4,5.8,8.8,5.8,14.4c0,6.1-1.9,11.1-5.4,15.3l-35.1,33.7c-4.4,4-9.4,6.1-14.6,6.1c-5.6,0-10.2-1.9-13.8-5.8
+		S368.4,189.8,368.4,183.9z M423,316c0-5.6,1.9-10.4,5.6-14.4c3.8-4,8.4-6.1,13.8-6.1h49.1c5.6,0,10.4,2.1,14.4,6.1s6.1,9,6.1,14.4
+		c0,5.8-2.1,10.7-6.1,14.8c-4,4.2-8.8,6.3-14.4,6.3h-49.1c-5.6,0-10.2-2.1-14-6.1C424.9,326.8,423,321.8,423,316z"/>
+</g>
+</svg>';
+}
+
+
+function sunset($color) {
+	return
+'<svg class="climacon climacon_sunset" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" color="#fff" style="height:32px;fill:' . (!empty($color) ? $color : 'currentColor') . ';" xml:space="preserve">
+<g>
+	<path d="M0,285.8c0-5.9,2.1-10.6,6.3-14.4c3.6-3.8,8.5-5.5,14.4-5.5h48.8c5.7,0,10.3,1.9,14.1,5.7c3.6,3.8,5.5,8.4,5.5,14.1
+		c0,5.9-1.9,11-5.7,15c-3.8,4-8.5,6.1-13.9,6.1H20.9c-5.7,0-10.6-2.1-14.6-6.3C2.1,296.4,0,291.5,0,285.8z M69.5,119.8
+		c0-5.9,1.7-10.8,5.3-14.4c4.2-4.2,9.1-6.3,14.8-6.3c6.1,0,10.8,2.1,14.4,6.3l34.2,34.4c9.7,9.3,9.7,18.8,0,28.5
+		c-4,4-8.4,5.9-13.7,5.9c-4.6,0-9.3-1.9-14.4-5.9l-35.1-34.2C71.4,130.4,69.5,125.5,69.5,119.8z M111.1,400.2
+		c0-5.5,2.1-10.3,6.3-14.6c3.8-3.8,8.7-5.7,14.4-5.7h68c2.3,0,4.2,0.4,5.9,1.7l49.6,46.9l50.5-47.1c1.5-1.1,3.6-1.7,6.1-1.7h69.7
+		c5.7,0,10.6,1.9,14.6,5.9c4,4,6.1,8.9,6.1,14.4c0,5.7-2.1,10.6-6.1,14.6c-4,4-8.9,6.1-14.6,6.1h-56.6l-66.3,60
+		c-2.5,1.9-4.9,1.9-7,0l-65-60h-54.9c-5.7,0-10.6-2.1-14.6-6.1C113.2,410.8,111.1,405.9,111.1,400.2z M130.9,285.8
+		c0,20.9,4,39.5,12.2,55.3c1.3,2.3,3.2,3.4,5.7,3.4h39.5l3.2-1.5l-1.5-3.8c-12.5-15.6-18.8-33.6-18.8-53.4
+		c0-23.2,8.2-43.1,24.9-59.3s36.7-24.5,60.2-24.5c23.2,0,43.1,8.2,59.8,24.5c16.5,16.5,24.9,36.1,24.9,59.1
+		c0,19.8-6.3,37.8-18.8,53.4l-1.5,3.8l3.2,1.5h39.7c2.7,0,4.4-1.1,5.1-3.4c8.7-16.5,13.1-35,13.1-55.3c0-16.7-3.4-32.9-9.9-48.4
+		c-6.5-15.4-15.6-28.9-26.8-40.1c-11.2-11.2-24.5-20.1-39.9-26.8c-15.4-6.8-31.7-9.9-48.6-9.9c-16.9,0-33.1,3.4-48.6,9.9
+		c-15.4,6.8-28.7,15.6-39.9,26.8c-11.2,11.2-20.1,24.5-26.8,40.1C134.5,252.9,130.9,269.1,130.9,285.8z M235.6,99.8V50.6
+		c0-5.7,2.1-10.6,6.1-14.6c4-4,8.9-6.1,14.6-6.1c5.7,0,10.6,2.1,14.6,6.1s6.1,8.9,6.1,14.6v49c0,5.7-2.1,10.6-6.1,14.6
+		c-4,4-8.9,6.1-14.6,6.1c-5.7,0-10.6-2.1-14.6-6.1C237.5,110.1,235.6,105.5,235.6,99.8z M368,154.3c0-5.9,1.9-10.8,5.5-14.1
+		l34.4-34.4c3.4-4.2,8.2-6.3,14.4-6.3c5.7,0,10.6,2.1,14.4,6.1c3.8,4,5.7,8.9,5.7,14.6c0,5.9-1.7,10.8-5.3,14.4L402,168.8
+		c-4.9,4-9.7,5.9-14.6,5.9c-5.5,0-10.1-1.9-13.9-5.9C369.9,164.8,368,160,368,154.3z M422.7,285.8c0-5.7,1.9-10.3,5.5-14.1
+		c3.6-3.8,8.5-5.7,14.2-5.7h49c5.7,0,10.6,1.9,14.6,5.7c4,3.8,6.1,8.4,6.1,14.1s-2.1,10.6-6.1,14.8c-4,4.2-8.9,6.3-14.6,6.3h-49
+		c-5.5,0-10.1-2.1-13.9-6.1C424.6,296.8,422.7,291.7,422.7,285.8z"/>
+</g>
+</svg>';
 }
 
 ?>

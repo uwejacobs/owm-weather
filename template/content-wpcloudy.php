@@ -1,88 +1,82 @@
 <?php
+/****************************************************************************/
+/* DO NOT CHANGE THIS TEMPLATE DIRECTLY. IT WILL BE OVERWRITTEN BY UPDATES. */
+/****************************************************************************/
 /**
  * The WP Cloudy default template
  *
  */
 ?>
-<div class="wpc-loading-spinner" style="display:none">
-	<img src="<?php echo plugins_url( 'img/ajax-loader.gif', dirname(__FILE__)); ?>" alt="loader"/>
-</div>
-
 <!-- Start #wpc-weather -->
-<?php echo $wpc_html_container_start; ?>
-	<!-- Geolocation Add-on -->
-	<?php echo $wpc_html_geolocation; ?>
-	
+<?php echo $wpc_html["container"]["start"]; ?>
 	<!-- Current weather -->
-	<?php echo $wpc_html_now_start; ?>
-		<?php echo $wpc_html_now_location_name; ?>
-		<?php echo $wpc_html_display_now_time_symbol; ?>
-		<?php echo $wpc_html_display_now_time_temperature; ?>
-	<?php echo $wpc_html_now_end; ?>
-	
-	<?php echo $wpc_html_weather; ?>
+	<?php echo $wpc_html["now"]["start"]; ?>
+		<?php echo $wpc_html["now"]["location_name"]; ?>
+		<?php echo $wpc_html["now"]["time_symbol"]; ?>
+		<?php echo $wpc_html["now"]["time_temperature"]; ?>
+		<?php echo $wpc_html["now"]["weather_description"]; ?>
+	<?php echo $wpc_html["now"]["end"]; ?>
+
+	<!-- Alert button -->
+	<?php echo $wpc_html["alert_button"]; ?>
 
 	<!-- Today -->
-	<?php echo $wpc_html_today_temp_start; ?>
-		<?php echo $wpc_html_today_temp_day; ?>
-		<?php echo $wpc_html_today_sun; ?>
-	<?php echo $wpc_html_today_temp_end; ?>
+	<?php echo $wpc_html["today"]["start"]; ?>
+		<?php echo $wpc_html["today"]["day"]; ?>
+		<?php echo $wpc_html["today"]["sun"]; ?>
+		<?php echo $wpc_html["today"]["moon"]; ?>
+	<?php echo $wpc_html["today"]["end"]; ?>
 	
 	<!-- Current infos: wind, humidity, pressure, cloudiness, precipitation -->
-	<?php echo $wpc_html_infos_start; ?>
-		<?php echo $wpc_html_infos_wind; ?>
-		<?php echo $wpc_html_infos_humidity; ?>
-		<?php echo $wpc_html_infos_pressure; ?>
-		<?php echo $wpc_html_infos_cloudiness; ?>
-		<?php echo $wpc_html_infos_precipitation; ?>
-	<?php echo $wpc_html_infos_end; ?>
+	<?php echo $wpc_html["info"]["start"]; ?>
+		<?php echo $wpc_html["info"]["wind"]; ?>
+		<?php echo $wpc_html["info"]["humidity"]; ?>
+		<?php echo $wpc_html["info"]["pressure"]; ?>
+		<?php echo $wpc_html["info"]["cloudiness"]; ?>
+		<?php echo $wpc_html["info"]["precipitation"]; ?>
+	<?php echo $wpc_html["info"]["end"]; ?>
 
 
-	<?php if ($wpc_html_hour) { ?>
+	<?php if ($wpc_opt["hours_forecast_no"] > 0) { ?>
 		<!-- Hourly Forecast -->
-		<?php echo $wpc_html_hour_start; ?>
+		<?php echo $wpc_html["hour"]["start"]; ?>
 		<?php
-			if( $wpcloudy_hour_forecast && $wpcloudy_hour_forecast_nd) {
-				
-				echo $display_hours_0;
-				
-				for ($i = 0; $i < $wpcloudy_hour_forecast_nd -1; $i++) {
-					echo $wpc_html_hour[$i];
-				};
-				
+			for ($i = 0; $i < $wpc_opt["hours_forecast_no"]; $i++) {
+			    if (isset($wpc_html["hour"]["info"][$i])) {
+    				echo $wpc_html["hour"]["info"][$i];
+    			    }
 			}
 		?>
-		<?php echo $wpc_html_hour_end; ?>
+		<?php echo $wpc_html["hour"]["end"]; ?>
 	<?php } ?>
-	<?php if ($wpc_html_forecast) { ?>	
+
+	<?php if ($wpc_opt["days_forecast_no"] > 0) { ?>	
 		<!-- Daily Forecast -->
-		<?php echo $wpc_html_forecast_start; ?>
+		<?php echo $wpc_html["forecast"]["start"]; ?>
 			<?php
-				if( $wpcloudy_forecast && $wpcloudy_forecast_nd) {
-					
-					for ($i = 0; $i < $wpcloudy_forecast_nd; $i++) {
-						echo $wpc_html_forecast[$i];
-					};
-					
-				}
+				for ($i = 0; $i < $wpc_opt["days_forecast_no"]; $i++) {
+					echo $wpc_html["forecast"]["info"][$i];
+				};
 			?>	
-		<?php echo $wpc_html_forecast_end; ?>
+		<?php echo $wpc_html["forecast"]["end"]; ?>
 	<?php } ?>
 	
 	<!-- Weather Map -->
-	<?php echo $wpc_html_map; ?>
+	<?php echo $wpc_html["map"]; ?>
 	
 	<!-- OWM Link -->
-	<?php echo $wpc_html_owm_link; ?>
+	<?php echo $wpc_html["owm_link"]; ?>
 	
 	<!-- OWM Last Update -->
-	<?php echo $wpc_html_last_update; ?>
+	<?php echo $wpc_html["last_update"]; ?>
 
-	<!-- CSS -->
-	<?php echo $wpc_html_custom_css; ?>
-	<?php echo $wpc_html_css3_anims; ?>
-	<?php echo $wpc_html_temp_unit_metric; ?>
-	<?php echo $wpc_html_temp_unit_imperial; ?>
+	<!-- Alert Modals -->
+	<?php echo $wpc_html["alert_modal"]; ?>
+
+	<!-- CSS/Scripts -->
+	<?php echo $wpc_html["custom_css"]; ?>
+	<?php echo $wpc_html["temperature_unit"]; ?>
+	<?php echo $wpc_html["gtag"]; ?>
 
 <!-- End #wpc-weather -->
-<?php echo $wpc_html_container_end; ?>
+<?php echo $wpc_html["container"]["end"]; ?>

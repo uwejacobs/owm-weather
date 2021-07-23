@@ -4,138 +4,144 @@
  *
  */
 ?>
-<div class="wpc-loading-spinner" style="display:none">
-	<img src="<?php echo plugins_url( 'img/ajax-loader.gif', dirname(__FILE__)); ?>" alt="loader"/>
-</div>
-
+<style>
+    div[class^="wpc-flexslider"] {
+        background-color: inherit !important;
+        border: none !important;
+    }
+div[id^="wpc-weather"] .infos .wind,
+div[id^="wpc-weather"] .infos .humidity,
+div[id^="wpc-weather"] .infos .pressure,
+div[id^="wpc-weather"] .infos .cloudiness,
+div[id^="wpc-weather"] .infos .precipitation {
+    width: 100%;
+}
+</style>
 <!-- Start #wpc-weather -->
-<?php echo $wpc_html_container_start; ?>
-
-	<div class="top">
-		<!-- Geolocation Add-on -->
-		<?php echo $wpc_html_geolocation; ?>
-		<?php echo $wpc_html_today_temp_day; ?>
-		<?php echo $wpc_html_now_location_name; ?>
+<?php echo $wpc_html["container"]["start"]; ?>
+	<div class="custom-navigation d-none">
+  	<a href="#" class="flex-prev">Prev</a>
+  	<div class="custom-controls-container"></div>
+  	<a href="#" class="flex-next">Next</a>
 	</div>
-	
+
 	<!-- Current weather -->
-	<?php echo $wpc_html_now_start; ?>
-	
-		<?php echo $wpc_html_display_now_time_symbol; ?>
-		
-		<?php echo $wpc_html_display_now_time_temperature; ?>
-		<?php echo $wpc_html_weather; ?>
-		<?php if ($wpc_html_today_temp_day || $wpc_html_infos_wind || $wpc_html_infos_humidity || $wpc_html_infos_pressure || $wpc_html_infos_cloudiness || $wpc_html_today_sun ) { ?>
-			<button class="wpc-btn-toggle-infos">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			</button>
-		<?php } ?>
-	<?php echo $wpc_html_now_end; ?>
-	
+	<?php echo $wpc_html["now"]["start"]; ?>
+		<?php echo $wpc_html["now"]["location_name"]; ?>
+		<?php echo $wpc_html["now"]["time_symbol"]; ?>
+		<?php echo $wpc_html["now"]["time_temperature"]; ?>
+		<?php echo $wpc_html["now"]["weather_description"]; ?>
+	<?php echo $wpc_html["now"]["end"]; ?>
+
+	<!-- Alert button -->
+   	<?php echo $wpc_html["alert_button"]; ?>
+
 	<div class="wpc-toggle-infos">
+
 		<!-- Current infos: wind, humidity, pressure, cloudiness, precipitation -->
 		<div class="infos">
-			<div class="wpc-flexslider">
-				<ul class="wpc-slides">
-					<?php if ( $wpc_html_infos_wind || $wpc_html_infos_humidity || $wpc_html_infos_pressure || $wpc_html_infos_cloudiness ) { ?>
-					<li>
-						<?php echo $wpc_html_infos_wind; ?>
-						<?php echo $wpc_html_infos_humidity; ?>
-						<?php echo $wpc_html_infos_pressure; ?>
-						<?php echo $wpc_html_infos_cloudiness; ?>
-					</li>
-					<?php } ?>
-					<?php if ( $wpc_html_today_sun || $wpc_html_infos_precipitation ) { ?>
-					<li>
-						<?php echo $wpc_html_infos_precipitation; ?>
-						<?php echo $wpc_html_today_sun; ?>	
-					</li>
-					<?php } ?>
+			<div class="wpc-flexslider flexslider carousel">
+				<ul class="slides">
+					<li><?php echo $wpc_html["info"]["wind"]; ?></li>
+					<li><?php echo $wpc_html["info"]["humidity"]; ?></li>
+					<li><?php echo $wpc_html["info"]["pressure"]; ?></li>
+					<li><?php echo $wpc_html["info"]["cloudiness"]; ?></li>
+					<li><?php echo $wpc_html["info"]["precipitation"]; ?></li>
+					<li><?php echo $wpc_html["today"]["sun_hor"]; ?></li>
+					<li><?php echo $wpc_html["today"]["moon_hor"]; ?></li>
 				</ul>
 			</div>
 		</div>
-	
-		<?php if ($wpc_html_hour) { ?>
-			<!-- Hourly Forecast -->
-			<?php echo $wpc_html_hour_start; ?>
-			<?php
-				if( $wpcloudy_hour_forecast && $wpcloudy_hour_forecast_nd) {
-					
-					echo $display_hours_0;
-					
-					for ($i = 0; $i < $wpcloudy_hour_forecast_nd - 1; $i++) {
-						echo $wpc_html_hour[$i];
-					};
-					
-				}
-			?>
-			<?php echo $wpc_html_hour_end; ?>
-		<?php } ?>
-		<?php if ($wpc_html_forecast) { ?>	
+
+    	<?php if ($wpc_opt["hours_forecast_no"] > 0) { ?>
+	    	<!-- Hourly Forecast -->
+		    <?php echo $wpc_html["hour"]["start"]; ?>
+			<div class="wpc-flexslider-hours flexslider carousel">
+	    		<ul class="slides">
+    	    	<?php
+	    	    	for ($i = 0; $i < $wpc_opt["hours_forecast_no"]; $i++) {
+		    	        if (isset($wpc_html["hour"]["info"][$i])) {
+		    	            echo "<li>";
+    		    	    	echo $wpc_html["hour"]["info"][$i];
+		    	            echo "</li>";
+        			    }
+        			}
+    	    	?>
+		        <?php echo $wpc_html["hour"]["end"]; ?>
+            	<?php
+            	}
+            	?>
+        	    </ul>
+        	</div>
+
+		<?php if ($wpc_opt["days_forecast_no"] > 0) { ?>
 			<!-- Daily Forecast -->
-			<div class="wpc-flexslider-forecast">
-				<?php echo $wpc_html_forecast_start; ?>
+			<div class="wpc-flexslider-forecast flexslider carousel">
+				<?php echo $wpc_html["forecast"]["start"]; ?>
+				    <ul class="slides">
 					<?php
-					if( $wpcloudy_forecast && $wpcloudy_forecast_nd) {
-						
-						for ($i = 0; $i < $wpcloudy_forecast_nd; $i++) {
-							if ($i == 0 || $i == 3 || $i == 6 || $i == 9 || $i == 12 ) {
-								echo '<li>';
-							}
-							
-							echo $wpc_html_forecast[$i];
-						
-							if ( $i == 2 || $i == 5 || $i == 8 || $i == 11) {
-								echo '</li>';
-							}
-						};
-						
-					}
+					for ($i = 0; $i < $wpc_opt["days_forecast_no"]; $i++) {
+						if ($i % 3  == 0) {
+							echo '<li>';
+						}
+
+						echo $wpc_html["forecast"]["info"][$i];
+
+						if ($i % 3  == 2) {
+							echo '</li>';
+						}
+					};
 					?>
-				<?php echo $wpc_html_forecast_end; ?>
+					</ul>
+				<?php echo $wpc_html["forecast"]["end"]; ?>
 			</div>
 		<?php } ?>
-		
-		<!-- Weather Map -->
-		<?php echo $wpc_html_map; ?>
 	</div><!-- End .toggle-infos -->
-	<!-- CSS -->
-	<?php echo $wpc_html_custom_css; ?>
-	<?php echo $wpc_html_css3_anims; ?>
-	<?php echo $wpc_html_temp_unit_metric; ?>
-	<?php echo $wpc_html_temp_unit_imperial; ?>
-	
-	<!-- OWM Link -->
-	<?php echo $wpc_html_owm_link; ?>
-	
+
+	<!-- Weather Map -->
+	<?php echo $wpc_html["map"]; ?>
+
+    	<!-- OWM Link -->
+    	<?php echo $wpc_html["owm_link"]; ?>
+
 	<!-- OWM Last Update -->
-	<?php echo $wpc_html_last_update; ?>
+    	<?php echo $wpc_html["last_update"]; ?>
+
+
+	<!-- Alert Modals -->
+	<?php echo $wpc_html["alert_modal"]; ?>
+
+	<!-- CSS/Scripts -->
+	<?php echo $wpc_html["custom_css"]; ?>
+	<?php echo $wpc_html["temperature_unit"]; ?>
+	<?php echo $wpc_html["gtag"]; ?>
 
 <!-- End #wpc-weather -->
-<?php echo $wpc_html_container_end; ?>
+<?php echo $wpc_html["container"]["end"]; ?>
 
 <script type="text/javascript" charset="utf-8">
-	jQuery( ".wpc-btn-toggle-infos" ).click(function() {
-		jQuery( ".wpc-toggle-infos" ).toggleClass( "wpc-slide-down" );
-	});
 	jQuery(window).ready(function() {
-		jQuery('.wpc-flexslider').flexslider({
-			namespace: "wpc-",
-			selector: ".wpc-slides > li",
-			directionNav: false,
+		jQuery('#<?php echo $wpc_html["weather_id"] ?> .wpc-flexslider').flexslider({
+	        controlsContainer: jQuery("#<?php echo $wpc_html["weather_id"] ?> .custom-controls-container"),
+            customDirectionNav: jQuery("#<?php echo $wpc_html["weather_id"] ?> .custom-navigation a"),
+            animation: "slide",
+            animationLoop: true,
+            itemWidth: 250,
+            itemMargin: 5,
+            maxItems: 4
 		});
-		jQuery('.wpc-flexslider-forecast').flexslider({
-			namespace: "wpc-",
-			selector: " .forecast > li",
-			directionNav: false,
-			controlNav: true,
-			itemWidth: '100',
-			itemMargin: 0, 
-			minItems: 1, 
-			maxItems: 3,
-			touch: true,
+		jQuery('#<?php echo $wpc_html["weather_id"] ?> .wpc-flexslider-hours').flexslider({
+	        controlsContainer: jQuery("#<?php echo $wpc_html["weather_id"] ?> .custom-controls-container"),
+            customDirectionNav: jQuery("#<?php echo $wpc_html["weather_id"] ?> .custom-navigation a"),
+            animation: "slide",
+            animationLoop: true,
+            itemWidth: 50,
+            itemMargin: 5,
+            maxItems: 8
+    	});
+		jQuery('#<?php echo $wpc_html["weather_id"] ?> .wpc-flexslider-forecast').flexslider({
+	        controlsContainer: jQuery("#<?php echo $wpc_html["weather_id"] ?> .custom-controls-container"),
+            customDirectionNav: jQuery("#<?php echo $wpc_html["weather_id"] ?> .custom-navigation a"),
 		});
 	});
 </script>

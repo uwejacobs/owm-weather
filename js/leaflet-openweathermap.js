@@ -1,18 +1,18 @@
 /**
- * A JavaScript library for using OpenWeatherMap's layers and OWM's city/station data for leaflet based maps without hassle.
- * License: CC0 (Creative Commons Zero), see http://creativecommons.org/publicdomain/zero/1.0/
+ * A JavaScript library for using OpenWeatherMap's layers and OWM's city data for leaflet based maps without hassle.
+ * License: CC0 (Creative Commons Zero), see https://creativecommons.org/publicdomain/zero/1.0/
  * Project page: https://github.com/buche/leaflet-openweathermap/
  */
 
 L.OWM = L.TileLayer.extend({
 	options: {
-		appId: 'GET_YOUR_OWN_APPID', /* pass your own AppId as parameter when creating the layer. Get your own AppId at http://www.openweathermap.org/appid */
-		baseUrl: "http://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png",
+		appId: 'GET_YOUR_OWN_APPID', /* pass your own AppId as parameter when creating the layer. Get your own AppId at https://www.openweathermap.org/appid */
+		baseUrl: "https://{s}.tile.openweathermap.org/map/{layername}/{z}/{x}/{y}.png",
 		maxZoom: 18,
 		showLegend: true,
 		legendImagePath: null,
 		legendPosition: 'bottomleft',
-		attribution: 'Weather from <a href="http://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>'
+		attribution: 'Weather from <a href="https://openweathermap.org/" alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>'
 	},
 
 	initialize: function (options) {
@@ -68,7 +68,7 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.precipitationClassic = function (options) {
 		var layer = new L.OWM.PrecipitationClassic(options);
 		if (layer.options.legendImagePath == null) {
-			layer.options.legendImagePath = 'http://openweathermap.org/img/a/PR.png';
+			layer.options.legendImagePath = 'https://openweathermap.org/img/a/PR.png';
 		}
 		return layer;
 	};
@@ -84,7 +84,7 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.rainClassic = function (options) {
 		var layer = new L.OWM.RainClassic(options);
 		if (layer.options.legendImagePath == null) {
-			layer.options.legendImagePath = 'http://openweathermap.org/img/a/RN.png';
+			layer.options.legendImagePath = 'https://openweathermap.org/img/a/RN.png';
 		}
 		return layer;
 	};
@@ -95,7 +95,7 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.snow = function (options) {
 		var layer = new L.OWM.Snow(options);
 		if (layer.options.legendImagePath == null) {
-			layer.options.legendImagePath = 'http://openweathermap.org/img/a/SN.png';
+			layer.options.legendImagePath = 'https://openweathermap.org/img/a/SN.png';
 		}
 		return layer;
 	};
@@ -111,7 +111,7 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.cloudsClassic = function (options) {
 		var layer = new L.OWM.CloudsClassic(options);
 		if (layer.options.legendImagePath == null) {
-			layer.options.legendImagePath = 'http://openweathermap.org/img/a/NT.png';
+			layer.options.legendImagePath = 'https://openweathermap.org/img/a/NT.png';
 		}
 		return layer;
 	};
@@ -122,7 +122,7 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.pressure = function (options) {
 		var layer = new L.OWM.Pressure(options);
 		if (layer.options.legendImagePath == null) {
-			layer.options.legendImagePath = 'http://openweathermap.org/img/a/PN.png';
+			layer.options.legendImagePath = 'https://openweathermap.org/img/a/PN.png';
 		}
 		return layer;
 	};
@@ -138,7 +138,7 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.temperature = function (options) {
 		var layer = new L.OWM.Temperature(options);
 		if (layer.options.legendImagePath == null) {
-			layer.options.legendImagePath = 'http://openweathermap.org/img/a/TT.png';
+			layer.options.legendImagePath = 'https://openweathermap.org/img/a/TT.png';
 		}
 		return layer;
 	};
@@ -149,7 +149,7 @@ L.OWM = L.TileLayer.extend({
 	L.OWM.wind = function (options) {
 		var layer = new L.OWM.Wind(options);
 		if (layer.options.legendImagePath == null) {
-			layer.options.legendImagePath = 'http://openweathermap.org/img/a/UV.png';
+			layer.options.legendImagePath = 'https://openweathermap.org/img/a/UV.png';
 		}
 		return layer;
 	};
@@ -220,24 +220,22 @@ L.OWM.LegendControl = L.Control.extend({
 });
 
 /**
- * Layer for current weather (cities and stations).
+ * Layer for current weather of cities.
  */
-L.OWM.Current = L.Class.extend({
-
-	includes: L.Mixin.Events,
+L.OWM.Current = L.Layer.extend({
 
 	options: {
 		appId: null, // get your free Application ID at www.openweathermap.org
-		type: 'city', // available types: 'city', 'station'
+		type: 'city', // available types: 'city'. 'station' is not supported any more
 		lang: 'en', // available: 'en', 'de', 'ru', 'fr', 'nl', 'es', 'ca' (not every language is finished yet)
 		minZoom: 7,
-		interval: 0, // interval for rereading city/station data in minutes
+		interval: 0, // interval for rereading city data in minutes
 		progressControl: true, // available: true, false
-		imageLoadingUrl: '../img/owmloading.gif', // URL of loading image relative to HTML document
+		imageLoadingUrl: 'data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=', // empty pixel
 		imageLoadingBgUrl: null, // URL of background image for progress control
-		temperatureUnit: 'C', // available: 'K' (Kelvin), 'C' (Celsius), 'F' (Fahrenheit)
-		temperatureDigits: 1,
-		speedUnit: 'ms', // available: 'ms' (m/s), 'kmh' (km/h), 'mph' (mph)
+		temperatureUnit: 'F', // available: 'K' (Kelvin), 'C' (Celsius), 'F' (Fahrenheit)
+		temperatureDigits: 0,
+		speedUnit: 'mph', // available: 'ms' (m/s), 'kmh' (km/h), 'mph' (mph)
 		speedDigits: 0,
 		popup: true, // available: true, false
 		keepPopup: true, // available: true, false
@@ -248,13 +246,13 @@ L.OWM.Current = L.Class.extend({
 		showTempMinMax: true, // available: true, false
 		useLocalTime: true, // available: true, false
 		clusterSize: 150,
-		imageUrlCity: 'http://openweathermap.org/img/w/{icon}.png',
+		imageUrlCity: 'https://openweathermap.org/img/w/{icon}.png',
 		imageWidth: 50,
 		imageHeight: 50,
-		imageUrlStation: 'http://openweathermap.org/img/s/istation.png',
+		imageUrlStation: 'https://openweathermap.org/img/s/istation.png',
 		imageWidthStation: 25,
 		imageHeightStation: 25,
-		imageUrlPlane: 'http://openweathermap.org/img/s/iplane.png',
+		imageUrlPlane: 'https://openweathermap.org/img/s/iplane.png',
 		imageWidthPlane: 25,
 		imageHeightPlane: 25,
 		markerFunction: null, // user defined function for marker creation
@@ -272,7 +270,7 @@ L.OWM.Current = L.Class.extend({
 		this._markers = new Array();
 		this._markedMarker = null;
 		this._map = null;
-		this._urlTemplate = 'http://api.openweathermap.org/data/2.5/box/{type}?{appId}cnt=300&format=json&units=metric&bbox={minlon},{minlat},{maxlon},{maxlat},10';
+		this._urlTemplate = 'https://api.openweathermap.org/data/2.5/box/{type}?{appId}cnt=300&format=json&units=metric&bbox={minlon},{minlat},{maxlon},{maxlat},10';
 		this._directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N'];
 		this._msbft = [0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7, 37.0, 41.5, 46.2, 51.0, 56.1, 61.3]; // Beaufort scala
 		this._tempUnits = { K: 'K', C: '°C', F: 'F'};
@@ -327,7 +325,7 @@ L.OWM.Current = L.Class.extend({
 	},
 
 	getAttribution: function() {
-		return 'Weather from <a href="http://openweathermap.org/" '
+		return 'Weather from <a href="https://openweathermap.org/" '
 			+ 'alt="World Map and worldwide Weather Forecast online">OpenWeatherMap</a>';
 	},
 
@@ -398,14 +396,14 @@ L.OWM.Current = L.Class.extend({
 
 	_processRequestedData: function(_this, data) {
 
-		// read all stations/cities
+		// read all cities
 		var stations = {};
 		for (var i in data) {
 			var stat = data[i];
 			if (!_this._map) { // maybe layer is gone while we are looping here
 				return;
 			}
-			// only use stations/cities having a minimum distance of some pixels on the map
+			// only use cities having a minimum distance of some pixels on the map
 			var pt = _this._map.latLngToLayerPoint(new L.LatLng(stat.coord.Lat, stat.coord.Lon));
 			var key = '' + (Math.round(pt.x/_this.options.clusterSize)) + "_" + (Math.round(pt.y/_this.options.clusterSize));
 			if (!stations[key] || parseInt(stations[key].rang) < parseInt(stat.rang)) {
@@ -423,7 +421,7 @@ L.OWM.Current = L.Class.extend({
 		}
 		_this._layer.clearLayers();
 
-		// add the stations/cities as markers to the LayerGroup
+		// add the cities as markers to the LayerGroup
 		_this._markers = new Array();
 		for (var key in stations) {
 			var marker;
@@ -477,7 +475,7 @@ L.OWM.Current = L.Class.extend({
 			if (typeof station.weather != 'undefined') {
 				typ = 'city';
 			}
-			txt += '<a href="http://openweathermap.org/' + typ + '/' + station.id + '" target="_blank" title="'
+			txt += '<a href="https://openweathermap.org/' + typ + '/' + station.id + '" target="_blank" title="'
 				+ this.i18n('owmlinktitle', 'Details at OpenWeatherMap') + '">';
 		}
 		txt += station.name;
@@ -710,7 +708,6 @@ L.OWM.Current = L.Class.extend({
 L.OWM.current = function(options) { return new L.OWM.Current(options); };
 
 L.OWM.ProgressControl = L.Control.extend({
-	includes: L.Mixin.Events,
 
 	options: {
 		position: "topleft",
@@ -860,7 +857,7 @@ L.OWM.Utils = {
 			, humidity: 'Humidity'
 			, pressure: 'Pressure'
 
-		// weather conditions, see http://openweathermap.org/weather-conditions
+		// weather conditions, see https://openweathermap.org/weather-conditions
 			, id200: 'Thunderstorm with Light Rain'
 			, id201: 'Thunderstorm with Rain'
 			, id202: 'Thunderstorm with Heavy Rain'
@@ -918,7 +915,108 @@ L.OWM.Utils = {
 			, id905: 'Windy'
 			, id906: 'Hail'
 		},
+		
+		it: {
+			owmlinktitle: 'Dettagli su OpenWeatherMap'
+			, temperature: 'Temperatura'
+			, temp_minmax: 'Temp. min / max '
+			, wind: 'Vento'
+			, gust: 'Raffica'
+			, windforce: 'Forza del vento'
+			, direction: 'Direzione'
+			, rain_1h: 'Pioggia'
+			, humidity: 'Umidità'
+			, pressure: 'Pressione'
+		
+			// condizioni meteorologiche, consultare https://openweathermap.org/weather-conditions
+			// Temporale
+			, id200: 'Tempesta con pioggia debole'
+			, id201: 'Tempesta di pioggia'
+			, id202: 'Tempesta con forti piogge'
+			, id210: 'Tempesta debole'
+			, id211: 'Tempesta'
+			, id212: 'Tempesta forte'
+			, id221: 'Tempesta irregolare'
+			, id230: 'Tempesta con deboli acquerugi'
+			, id231: 'Tempesta con pioviggine'
+			, id232: 'Tempesta con forte pioviggine'
 
+			// Pioggerella
+			, id300: 'Debole pioviggine'
+			, id301: 'Pioggerella'
+			, id302: 'Forti acquerugi'
+			, id310: 'Pioggia / leggera pioggerellina'
+			, id311: 'Pioggia / pioviggine'
+			, id312: 'Pioggia / pioviggine forte'
+			, id321: 'Pioviggine intensa'
+	
+			// Pioggia
+			, id500: 'Debole pioggia'
+			, id501: 'Pioggia moderata'
+			, id502: 'Pioggia forte'
+			, id503: 'Pioggia molto forte'
+			, id504: 'Pioggia estrema'
+			, id511: 'Grandine'
+			, id520: 'Pioggia leggera'
+			, id521: 'Pioggia'
+			, id522: 'Pioggia forte'
+			, id531: 'pioggia irregolare'
+		
+			// neve
+			, id600: 'Neve Debole'
+			, id601: 'Neve'
+			, id602: 'Forte nevicata'
+			, id611: 'Nevischio'
+			, id612: 'Nevischio moderato'
+			, id615: 'Debole pioggia e neve'
+			, id616: 'Pioggia e neve'
+			, id620: 'Nevischio Leggero'
+			, id621: 'Neve moderata'
+			, id622: 'Forte nevicata'
+
+			// atmosfera
+			, id701: 'Bruma'
+			, id711: 'Fumo'
+			, id721: 'Foschia'
+			, id731: 'Vortici di sabbia/polvere'
+			, id741: 'Nebbia'
+			, id751: 'Sabbia'
+			, id761: 'Polvere'
+			, id762: 'Cenere vulcanica'
+			, id771: 'Tempesta'
+			, id781: 'Tornado'
+
+			// Nuvole
+			, id800: 'Cielo sereno'
+			, id801: 'Alcune nuvole'
+			, id802: 'Nuvole sparse'
+			, id803: 'Tempo nuvoloso'
+			, id804: 'Nuvoloso'
+
+			// Estremo
+			, id900: 'Tornado'
+			, id901: 'Tempesta tropicale'
+			, id902: 'Uragano'
+			, id903: 'Molto freddo'
+			, id904: 'Molto caldo'
+			, id905: 'Ventoso'
+			, id906: 'Forte grandine'
+
+			// aggiuntivo
+			, id951: 'Calmo'
+			, id952: 'Brezza leggera'
+			, id953: 'Brezza sostenuta'
+			, id954: 'Brezza moderata'
+			, id955: 'Brezza fresca'
+			, id956: 'Brezza forte'
+			, id957: 'Vento forte, vicino a burrasca'
+			, id958: 'Burrasca'
+			, id959: 'Forte burrasca'
+			, id960: 'Tempesta'
+			, id961: 'Tempesta violenta'
+			, id962: 'Uragano'
+		},
+		
 		de: {
 			owmlinktitle: 'Details bei OpenWeatherMap'
 			, temperature: 'Temperatur'
@@ -931,7 +1029,7 @@ L.OWM.Utils = {
 			, humidity: 'Luftfeuchtigkeit'
 			, pressure: 'Luftdruck'
 
-		// Wetterbedingungen, siehe http://openweathermap.org/weather-conditions
+		// Wetterbedingungen, siehe https://openweathermap.org/weather-conditions
 			, id200: 'Gewitter mit leichtem Regen' // 'Thunderstorm with Light Rain'
 			, id201: 'Gewitter mit Regen' // 'Thunderstorm with Rain'
 			, id202: 'Gewitter mit Starkregen' // 'Thunderstorm with Heavy Rain'
@@ -1004,7 +1102,7 @@ L.OWM.Utils = {
 			, humidity: 'Влажность'
 			, pressure: 'Давление'
 
-		// weather conditions, see http://openweathermap.org/weather-conditions
+		// weather conditions, see https://openweathermap.org/weather-conditions
 			, id200: 'Гроза с легким дождем' // 'Thunderstorm with Light Rain'
 			, id201: 'Гроза с дождем' // 'Thunderstorm with Rain'
 			, id202: 'Гроза с ливнем' // 'Thunderstorm with Heavy Rain'
@@ -1075,7 +1173,7 @@ L.OWM.Utils = {
 			, humidity: 'Humidité'
 			, pressure: 'Pression'
 
-		// Les conditions météorologiques, voir http://openweathermap.org/weather-conditions
+		// Les conditions météorologiques, voir https://openweathermap.org/weather-conditions
 			, id200: 'Orage avec pluie légère' // 'Thunderstorm with Light Rain'
 			, id201: 'Orage avec pluie' // 'Thunderstorm with Rain'
 			, id202: 'Orage avec fortes précipitations' // 'Thunderstorm with Heavy Rain'
@@ -1146,7 +1244,7 @@ L.OWM.Utils = {
 			, humidity: 'Luchtvochtigheid'
 			, pressure: 'Luchtdruk'
 
-		// weeercondities, see http://openweathermap.org/weather-conditions
+		// weeercondities, see https://openweathermap.org/weather-conditions
 			, id200: 'Onweer met lichte regen'
 			, id201: 'Onweer met met regen'
 			, id202: 'Onweer met hevige regen'
@@ -1217,7 +1315,7 @@ L.OWM.Utils = {
 			, humidity: 'Humedad'
 			, pressure: 'Presión'
 
-		// weather conditions, see http://openweathermap.org/weather-conditions
+		// weather conditions, see https://openweathermap.org/weather-conditions
 			// Thunderstorm
 			, id200: 'Tormenta con lluvia débil'
 			, id201: 'Tormenta con lluvia'
@@ -1318,7 +1416,7 @@ L.OWM.Utils = {
 			, humidity: 'Humitat'
 			, pressure: 'Pressió'
 
-		// weather conditions, see http://openweathermap.org/weather-conditions
+		// weather conditions, see https://openweathermap.org/weather-conditions
 			// Thunderstorm
 			, id200: 'Tempesta amb pluja feble'
 			, id201: 'Tempesta amb pluja'
@@ -1418,7 +1516,7 @@ L.OWM.Utils = {
 			, humidity: 'Umidade'
 			, pressure: 'Pressão'
 
-		// weather conditions, see http://openweathermap.org/weather-conditions
+		// weather conditions, see https://openweathermap.org/weather-conditions
 			, id200: 'Trovoadas com chuva fraca'
 			, id201: 'Trovoadas com chuva'
 			, id202: 'Trovoadas com chuva forte'
@@ -1478,3 +1576,4 @@ L.OWM.Utils = {
 		}
 	}
 };
+
