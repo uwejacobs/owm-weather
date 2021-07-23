@@ -737,7 +737,7 @@ function wpcloudy_basic($post){
 					<span class="dashicons dashicons-editor-help"></span><a href="'.admin_url('options-general.php').'" target="_blank">'.__('Make sure you have properly set the date of your site in WordPress settings.','wp-cloudy').'</a> or set a Custom timezone under Basic.
 				</p>
 				<p class="forecast">
-					'. __( '7-Day Forecast', 'wp-cloudy' ) .'
+					'. __( 'Daily Forecast', 'wp-cloudy' ) .'
 				</p>
 				<p>
 					<label for="wpcloudy_forecast_no_meta">'. __( 'How many days?', 'wp-cloudy' ) .'</label>

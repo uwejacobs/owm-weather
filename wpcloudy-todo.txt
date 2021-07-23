@@ -1,7 +1,6 @@
 Must:
-rearrange defaults
-charts
 admin wpc_version doesn't save
+charts
 
 Should:
 map new style (https://github.com/owm-inc/VANE-intro/tree/master/apps)
@@ -14,5 +13,5 @@ moon phase icons
 openweathermap keys
 background image
 weather-icons: wind-direction plus other icons
-graphs
-Translations:
+additional icon packs
+Translations

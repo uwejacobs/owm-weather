@@ -15,25 +15,15 @@ class wpc_options
     /**
      * Start up
      */
-    public function __construct()
-    {
+    public function __construct() {
         add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
         add_action( 'admin_init', array( $this, 'page_init' ) );
-    }
-
-	public function activate() {
-        update_option($this->wpc_options, $this->data);
-    }
-
-    public function deactivate() {
-        delete_option($this->wpc_options);
     }
 
     /**
      * Add options page
      */
-    public function add_plugin_page()
-    {
+    public function add_plugin_page() {
         // This page will be under "Settings"
     $wpc_help_tab = add_options_page(
             'Settings Admin',
@@ -51,8 +41,7 @@ class wpc_options
     /**
      * Options page callback
      */
-    public function create_admin_page()
-    {
+    public function create_admin_page() {
 
         // Set class property
         $this->options = get_option( 'wpc_option_name' );
@@ -247,11 +236,7 @@ class wpc_options
     /**
      * Register and add settings
      */
-
-
-
-    public function page_init()
-    {
+    public function page_init() {
         register_setting(
             'wpc_cloudy_option_group', // Option group
             'wpc_option_name', // Option name
@@ -264,14 +249,6 @@ class wpc_options
             __("Basic settings","wp-cloudy"), // Title
             array( $this, 'print_section_info_basic' ), // Callback
             'wpc-settings-admin-basic' // Page
-        );
-
-        add_settings_field(
-            'wpc_version', // ID
-            __("WP Cloudy 2 version","wp-cloudy"), // Title
-            array( $this, 'wpc_basic_version' ), // Callback
-            'wpc-settings-admin-basic', // Page
-            'wpc_setting_section_basic' // Section
         );
 
         add_settings_field(
@@ -444,7 +421,7 @@ class wpc_options
 
         add_settings_field(
             'wpc_hours_forecast_no', // ID
-            __("Number of range hours forecast?","wp-cloudy"), // Title
+            __("Number of hours forecast?","wp-cloudy"), // Title
             array( $this, 'wpc_display_hour_forecast_no_callback' ), // Callback
             'wpc-settings-admin-display', // Page
             'wpc_setting_section_display' // Section
@@ -874,6 +851,7 @@ class wpc_options
 	public function print_section_info_basic()
     {
         print __('Basic settings to bypass on all weather:', 'wp-cloudy');
+        echo '<input type="hidden" name="wpc_option_name[wpc_version]" value="' . WPCLOUDY_VERSION . '" />';
     }
 
 	public function print_section_info_display()
@@ -904,11 +882,6 @@ class wpc_options
     /**
      * Get the settings option array and print one of its values
      */
-
-	public function wpc_basic_version()
-    {
-        echo '<input type="text" name="wpc_option_name[wpc_version]" value="' . WPCLOUDY_VERSION . '" disabled="disabled" />';
-	}
 
 	public function wpc_basic_unit_callback()
     {
