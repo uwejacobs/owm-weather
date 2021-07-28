@@ -1767,6 +1767,10 @@
 	content: "\f017";
 }
 
+.wi-owm-613:before {
+	content: "\f017";
+}
+
 .wi-owm-615:before {
 	content: "\f017";
 }
@@ -1805,6 +1809,10 @@
 
 .wi-owm-741:before {
 	content: "\f014";
+}
+
+.wi-owm-751:before {
+	content: "\f063";
 }
 
 .wi-owm-761:before {
@@ -2011,6 +2019,10 @@
 	content: "\f006";
 }
 
+.wi-owm-day-613:before {
+	content: "\f006";
+}
+
 .wi-owm-day-615:before {
 	content: "\f006";
 }
@@ -2051,11 +2063,19 @@
 	content: "\f003";
 }
 
+.wi-owm-day-751:before {
+	content: "\f063";
+}
+
 .wi-owm-day-761:before {
 	content: "\f063";
 }
 
 .wi-owm-day-762:before {
+	content: "\f063";
+}
+
+.wi-owm-day-771:before {
 	content: "\f063";
 }
 
@@ -2087,6 +2107,10 @@
 	content: "\f056";
 }
 
+.wi-owm-day-901:before {
+	content: "\f01d";
+}
+
 .wi-owm-day-902:before {
 	content: "\f073";
 }
@@ -2097,6 +2121,10 @@
 
 .wi-owm-day-904:before {
 	content: "\f072";
+}
+
+.wi-owm-day-905:before {
+	content: "\f021";
 }
 
 .wi-owm-day-906:before {
@@ -2243,6 +2271,10 @@
 	content: "\f026";
 }
 
+.wi-owm-night-613:before {
+	content: "\f026";
+}
+
 .wi-owm-night-615:before {
 	content: "\f026";
 }
@@ -2283,11 +2315,19 @@
 	content: "\f04a";
 }
 
+.wi-owm-night-751:before {
+	content: "\f063";
+}
+
 .wi-owm-night-761:before {
 	content: "\f063";
 }
 
 .wi-owm-night-762:before {
+	content: "\f063";
+}
+
+.wi-owm-night-771:before {
 	content: "\f063";
 }
 
@@ -2319,6 +2359,10 @@
 	content: "\f056";
 }
 
+.wi-owm-night-901:before {
+	content: "\f01d";
+}
+
 .wi-owm-night-902:before {
 	content: "\f073";
 }
@@ -2329,6 +2373,10 @@
 
 .wi-owm-night-904:before {
 	content: "\f072";
+}
+
+.wi-owm-night-905:before {
+	content: "\f021";
 }
 
 .wi-owm-night-906:before {
@@ -2413,21 +2461,4 @@
 
 .wi-wu-unknown:before {
 	content: "\f00d";
-}
-
-div[id^="wpc-weather"] .hours .wi {
-	font-size: 24px;
-	font-family: weathericons;
-	padding-top: 5px;
-}
-
-div[id^="wpc-weather"] .forecast .wi {
-	font-size: 24px;
-	font-family: weathericons;
-	padding-top: 5px;
-}
-
-div[id^="wpc-weather"] .now .wi:before {
-	font-size: 24px;
-	font-family: weathericons;
 }

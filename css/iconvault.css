@@ -12,7 +12,6 @@
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
-	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 	display: inline-block;
 	text-decoration: inherit;
@@ -28,129 +27,220 @@ ul.iconvault {
 	padding-left: 0;
 }
 
-.icon-night:after {
-	content: "\f100";
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: 'iconvault';
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
 }
 
-.icon-sunny:after,.icon-day:after {
-	content: "\f101";
-}
+/* -----Full Cloud----- */
 
-.icon-frosty:before {
-	content: "\f102";
-}
+	.fullcloud:before  {
+	font-family: 'iconvault';
+	content: '\f106';
+	position:absolute;
+	color:rgb(204, 204, 204);
+	}
 
-.icon-windysnow:before {
-	content: "\f103";
-}
+/* -----BaseCloud----- */
 
-.icon-showers:before {
-	content: "\f104";
-}
+	.basecloud:before  {
+	font-family: 'iconvault';
+	content: '\f105';
+	position:absolute;
+	color:rgb(204, 204, 204);
+	}
 
-.icon-basecloud:before {
-	content: "\f105";
-}
+/* -----windyraincloud----- */
 
-.icon-cloud:before {
-	content: "\f106";
-}
+	.windyraincloud:before  {
+	font-family: 'iconvault';
+	content: '\f111';
+	position:absolute;
+	color:rgb(204, 204, 204);
+	}
 
-.icon-rainy:before {
-	content: "\f107";
-}
+/* -----Windysnowcloud----- */
 
-.icon-mist:before {
-	content: "\f108";
-}
+	.windysnowcloud:before  {
+	font-family: 'iconvault';
+	content: '\f109';
+	position:absolute;
+	color:rgb(204, 204, 204);
+	}
 
-.icon-windysnowcloud:before {
-	content: "\f109";
-}
+/* -----Basethundercloud----- */
 
-.icon-drizzle:before {
-	content: "\f10a";
-}
+	.basethundercloud:before  {
+	font-family: 'iconvault';
+	content: '\f105';
+	position:absolute;
+	color:#000;
 
-.icon-snowy:before {
-	content: "\f10b";
-}
+	}
 
-.icon-sleet:before {
-	content: "\f10c";
-}
+/* -----Thunder----- */
 
-.icon-moon:before {
-	content: "\f10d";
-}
-
-.icon-windyrain:before {
-	content: "\f10e";
-}
-
-.icon-hail:before {
-	content: "\f10f";
-}
-
-.icon-sunset:before {
-	content: "\f110";
-}
-
-.icon-windyraincloud:before {
-	content: "\f111";
-}
-
-.icon-sunrise:before {
-	content: "\f112";
-}
-
-.icon-sun:before {
-	content: "\f113";
-}
-
-.icon-thunder:before {
+	.icon-thunder::before  {
 	content: "\f114";
-}
+	position:absolute;
+	color:rgb(255, 165, 0);
+	}
 
-.icon-windy:before {
-	content: "\f115";
-}
+/* -----Sunny----- */
 
-.icon-night:after,.icon-sunny:after,.icon-day:after,.icon-frosty:before,.icon-windysnow:before,.icon-showers:before,.icon-basecloud:before,.icon-cloud:before,.icon-rainy:before,.icon-mist:before,.icon-windysnowcloud:before,.icon-drizzle:before,.icon-snowy:before,.icon-sleet:before,.icon-moon:before,.icon-windyrain:before,.icon-hail:before,.icon-windyraincloud:before,.icon-sun:before,.icon-thunder:before,.icon-windy:before {
+	.icon-sunny::after {
+	content: "\f101";
+	color:rgb(255, 165, 0);
 	position: absolute;
-	top: 0;
-	left: 0;
-}
+	}
 
-.icon-sunny:after,.icon-day:after,.icon-sun:before,.icon-thunder:before {
-	color: orange;
-}
 
-.icon-cloud:before,.icon-basecloud:before,.icon-windysnowcloud:before,.icon-windyraincloud:before {
-	color: #ccc;
-}
+/* -----Drizzle----- */
 
-.icon-showers:before,.icon-drizzle:before,.icon-frosty:before,.icon-windysnow:before,.icon-snowy:before,.icon-sleet:before {
+	.icon-drizzle::before  {
+	content: "\f10a";
 	color: #82b2e4;
+	position: absolute;
 }
 
-.icon-rainy:before,.icon-windyrain:before {
-	color: #1e2ce4;
+/* -----Hail----- */
+
+	.icon-hail::before {
+	content: "\f10f";
+	position:absolute;
+	color:rgb(204, 204, 204);}
+
+/* -----Showers----- */
+
+	.icon-showers::before  {
+	content: "\f104";
+	position:absolute;
+	color:#82b2e4;
 }
 
-div[id^='wpc-weather'] .hours .iconvault {
-	font-size: 32px;
-	font-family: 'iconvault';
-	padding-top: 5px;
-}
+/* -----Rainy----- */
 
-div[id^='wpc-weather'] .forecast .iconvault {
-	font-size: 32px;
-	font-family: 'iconvault';
-	padding-top: 5px;
-}
+	.icon-rainy::before {
+	content: "\f107";
+	position:absolute;
+	color:#4681c3;
+	}
 
-div[id^='wpc-weather'] .now .iconvault:before {
-	font-size: 32px;
-	font-family: 'iconvault';
+/* -----Snowy----- */
+
+	.icon-snowy::before  {
+	content: "\f10b";
+	position:absolute;
+	color:#acd3f3;
+	}
+
+/* -----Frosty----- */
+
+	.icon-frosty::before {
+	content: "\f102";
+	position:absolute;
+	color:#85d8f7;
+	}
+
+/* -----Windy----- */
+
+	.icon-windy::before  {
+	content: "\f115";
+	position:absolute;
+	color:rgb(204, 204, 204);
+	}
+
+/* -----WindyRain----- */
+
+	.icon-windyrain::before {
+	content: "\f10e";
+	position:absolute;
+	color:#acd3f3;
+	}
+
+/* -----WindySnow----- */
+
+	.icon-windysnow::before {
+	content: "\f103";
+	position:absolute;
+	color:#acd3f3;
+	}
+
+/* -----Sleet----- */
+
+	.icon-sleet::before  {
+	content: "\f10c";
+	position:absolute;
+	color:#acd3f3;
+	}
+
+/* -----Mist----- */
+
+	.icon-mist:before  {
+	content: '\f108';
+	color:rgb(204, 204, 204);
+	position: absolute;
+	}
+
+/* -----Moon----- */
+
+	.icon-moon::after {
+	content: "\f10d";
+	color:rgb(255, 165, 0);
+	position: absolute;
+	}
+
+/* -----Night----- */
+
+	.icon-night::after {
+	content: "\f100";
+	position:absolute;
+	color:rgb(255, 165, 0);
+	}
+
+
+/* -----Sun----- */
+
+	.icon-sun::after {
+	content: "\f113";
+	color:rgb(255, 165, 0);
+	position: absolute;
+	}
+
+/* -----Cloud----- */
+
+	.icon-cloud::after {
+	content: "\f106";
+	color:rgb(204, 204, 204);
+	position: absolute;
+	}
+
+.iconvault .icon-sunny::after,
+.iconvault .icon-moon::after,
+.iconvault .icon-night::after,
+.iconvault .icon-sun::after,
+.iconvault .icon-cloud::after,
+.iconvault .fullcloud:before,
+.iconvault .basecloud:before,
+.iconvault .windyraincloud:before,
+.iconvault .windysnowcloud:before,
+.iconvault .basethundercloud:before,
+.iconvault .icon-thunder::before,
+.iconvault .icon-drizzle::before,
+.iconvault .icon-hail::before,
+.iconvault .icon-showers::before,
+.iconvault .icon-rainy::before,
+.iconvault .icon-snowy::before,
+.iconvault .icon-frosty::before,
+.iconvault .icon-windy::before,
+.iconvault .icon-windyrain::before,
+.iconvault .icon-windysnow::before,
+.iconvault .icon-sleet::before,
+.iconvault .icon-mist:before {
+    top: 0;
+    left: 0;
 }

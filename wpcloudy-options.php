@@ -8,12 +8,19 @@ if ( !function_exists( 'add_action' ) ) {
 //WPC Options Panel
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function wpc_get_admin_bypass($setting) {
+    global $wpc_params;
+
 	static $options = [];
 
 	if (empty($options)) {
     	$options = get_option("wpc_option_name");
     }
-	return $options[$setting] ?? null;
+
+    if (!empty($wpc_params[substr($setting, 4)])) {
+        return($wpc_params[substr($setting, 4)]);
+    } else {
+    	return $options[$setting] ?? null;
+    }
 }
 
 //Get Bypass for Yes/No settings
@@ -23,7 +30,7 @@ function wpc_get_bypass_yn($bypass, $setting, $id = null) {
 	if ($bypass && $opt != 'nobypass') {
 		return $opt == 'yes' ? 'yes' : null;
 	} else {
-    	return get_post_meta($id ?? $_POST['wpc_param'], '_wpcloudy_' . $setting, true);
+    	return get_post_meta($id ?? $_POST['wpc_params']['id'], '_wpcloudy_' . $setting, true);
 	}
 }
 
@@ -34,7 +41,7 @@ function wpc_get_bypass($bypass, $setting, $id = null) {
 	if ($bypass && isset($opt) && $opt != 'nobypass') {
 		return $opt;
 	} else {
-    	return get_post_meta($id ?? $_POST['wpc_param'], '_wpcloudy_' . $setting, true);
+    	return get_post_meta($id ?? $_POST['wpc_params']['id'], '_wpcloudy_' . $setting, true);
 	}
 }
 

@@ -311,418 +311,366 @@
 	content: "\e049";
 }
 
-div[id^='wpc-weather'] .hours .climacon {
-	font-family: 'Climacons-Font';
-}
-
-div[id^='wpc-weather'] .forecast .climacon {
-	font-family: 'Climacons-Font';
-}
-
-div[id^='wpc-weather'] .now .climacon:before {
-	font-family: 'Climacons-Font';
-}
-
-div[id^='wpc-weather'] .climacon.w800.day:before {
+.climacon.w800.day:before {
 	content: "\e028";
 }
 
-div[id^='wpc-weather'] .climacon.w800.night:before {
+.climacon.w800.night:before {
 	content: "\e02d";
 }
 
-div[id^='wpc-weather'] .climacon.w801.day:before {
+.climacon.w801.day:before {
 	content: "\e001";
 }
 
-div[id^='wpc-weather'] .climacon.w801.night:before {
+.climacon.w801.night:before {
 	content: "\e002";
 }
 
-div[id^='wpc-weather'] .climacon.w802.day:before {
+.climacon.w802.day:before {
 	content: "\e001";
 }
 
-div[id^='wpc-weather'] .climacon.w802.night:before {
+.climacon.w802.night:before {
 	content: "\e002";
 }
 
-div[id^='wpc-weather'] .climacon.w803:before {
+.climacon.w803:before {
 	content: "\e000";
 }
 
-div[id^='wpc-weather'] .climacon.w804:before {
+.climacon.w804:before {
 	content: "\e000";
 }
 
-div[id^='wpc-weather'] .climacon.w500.day:before {
+.climacon.w500.day:before {
 	content: "\e004";
 }
 
-div[id^='wpc-weather'] .climacon.w500.night:before {
+.climacon.w500.night:before {
 	content: "\e005";
 }
 
-div[id^='wpc-weather'] .climacon.w501.day:before {
+.climacon.w501.day:before {
 	content: "\e004";
 }
 
-div[id^='wpc-weather'] .climacon.w501.night:before {
+.climacon.w501.night:before {
 	content: "\e005";
 }
 
-div[id^='wpc-weather'] .climacon.w502:before {
+.climacon.w502:before {
 	content: "\e003";
 }
 
-div[id^='wpc-weather'] .climacon.w503:before {
+.climacon.w503:before {
 	content: "\e009";
 }
 
-div[id^='wpc-weather'] .climacon.w504.day:before {
+.climacon.w504.day:before {
 	content: "\e00a";
 }
 
-div[id^='wpc-weather'] .climacon.w504.night:before {
+.climacon.w504.night:before {
 	content: "\e00b";
 }
 
-div[id^='wpc-weather'] .climacon.w511.day:before {
+.climacon.w511.day:before {
 	content: "\e004";
 }
 
-div[id^='wpc-weather'] .climacon.w511.night:before {
+.climacon.w511.night:before {
 	content: "\e005";
 }
 
-div[id^='wpc-weather'] .climacon.w520.day:before {
+.climacon.w520.day:before {
 	content: "\e004";
 }
 
-div[id^='wpc-weather'] .climacon.w520.night:before {
+.climacon.w520.night:before {
 	content: "\e005";
 }
 
-div[id^='wpc-weather'] .climacon.w521.day:before {
+.climacon.w521.day:before {
 	content: "\e004";
 }
 
-div[id^='wpc-weather'] .climacon.w521.night:before {
+.climacon.w521.night:before {
 	content: "\e005";
 }
 
-div[id^='wpc-weather'] .climacon.w522:before {
+.climacon.w522:before {
 	content: "\e003";
 }
 
-div[id^='wpc-weather'] .climacon.w531:before {
+.climacon.w531:before {
 	content: "\e003";
 }
 
-div[id^='wpc-weather'] .climacon.w300.day:before {
+.climacon.w300.day:before {
 	content: "\e00d";
 }
 
-div[id^='wpc-weather'] .climacon.w300.night:before {
+.climacon.w300.night:before {
 	content: "\e00e";
 }
 
-div[id^='wpc-weather'] .climacon.w301.day:before {
+.climacon.w301.day:before {
 	content: "\e00d";
 }
 
-div[id^='wpc-weather'] .climacon.w301.night:before {
+.climacon.w301.night:before {
 	content: "\e00e";
 }
 
-div[id^='wpc-weather'] .climacon.w302:before {
+.climacon.w302:before {
 	content: "\e009";
 }
 
-div[id^='wpc-weather'] .climacon.w310.day:before {
+.climacon.w310.day:before {
 	content: "\e00a";
 }
 
-div[id^='wpc-weather'] .climacon.w310.night:before {
+.climacon.w310.night:before {
 	content: "\e00b";
 }
 
-div[id^='wpc-weather'] .climacon.w311.day:before {
+.climacon.w311.day:before {
 	content: "\e00a";
 }
 
-div[id^='wpc-weather'] .climacon.w311.night:before {
+.climacon.w311.night:before {
 	content: "\e00b";
 }
 
-div[id^='wpc-weather'] .climacon.w312:before {
+.climacon.w312:before {
 	content: "\e009";
 }
 
-div[id^='wpc-weather'] .climacon.w313.day:before {
+.climacon.w313.day:before {
 	content: "\e00a";
 }
 
-div[id^='wpc-weather'] .climacon.w313.night:before {
+.climacon.w313.night:before {
 	content: "\e00b";
 }
 
-div[id^='wpc-weather'] .climacon.w314:before {
+.climacon.w314:before {
 	content: "\e009";
 }
 
-div[id^='wpc-weather'] .climacon.w321.day:before {
+.climacon.w321.day:before {
 	content: "\e00d";
 }
 
-div[id^='wpc-weather'] .climacon.w321.night:before {
+.climacon.w321.night:before {
 	content: "\e00e";
 }
 
-div[id^='wpc-weather'] .climacon.w600:before {
+.climacon.w600:before {
 	content: "\e016";
 }
 
-div[id^='wpc-weather'] .climacon.w601.day:before {
+.climacon.w601.day:before {
 	content: "\e016";
 }
 
-div[id^='wpc-weather'] .climacon.w601.night:before {
+.climacon.w601.night:before {
 	content: "\e017";
 }
 
-div[id^='wpc-weather'] .climacon.w602:before {
+.climacon.w602:before {
 	content: "\e018";
 }
 
-div[id^='wpc-weather'] .climacon.w611.day:before {
+.climacon.w611.day:before {
 	content: "\e010";
 }
 
-div[id^='wpc-weather'] .climacon.w611.night:before {
+.climacon.w611.night:before {
 	content: "\e011";
 }
 
-div[id^='wpc-weather'] .climacon.w612.day:before {
+.climacon.w612.day:before {
 	content: "\e010";
 }
 
-div[id^='wpc-weather'] .climacon.w612.night:before {
+.climacon.w612.night:before {
 	content: "\e011";
 }
 
-div[id^='wpc-weather'] .climacon.w613.day:before {
+.climacon.w613.day:before {
 	content: "\e010";
 }
 
-div[id^='wpc-weather'] .climacon.w613.night:before {
+.climacon.w613.night:before {
 	content: "\e011";
 }
 
-div[id^='wpc-weather'] .climacon.w615.day:before {
+.climacon.w615.day:before {
 	content: "\e016";
 }
 
-div[id^='wpc-weather'] .climacon.w615.night:before {
+.climacon.w615.night:before {
 	content: "\e017";
 }
 
-div[id^='wpc-weather'] .climacon.w616.day:before {
+.climacon.w616.day:before {
 	content: "\e019";
 }
 
-div[id^='wpc-weather'] .climacon.w616.night:before {
+.climacon.w616.night:before {
 	content: "\e01a";
 }
 
-div[id^='wpc-weather'] .climacon.w620.day:before {
+.climacon.w620.day:before {
 	content: "\e016";
 }
 
-div[id^='wpc-weather'] .climacon.w620.night:before {
+.climacon.w620.night:before {
 	content: "\e017";
 }
 
-div[id^='wpc-weather'] .climacon.w621.day:before {
+.climacon.w621.day:before {
 	content: "\e016";
 }
 
-div[id^='wpc-weather'] .climacon.w621.night:before {
+.climacon.w621.night:before {
 	content: "\e017";
 }
 
-div[id^='wpc-weather'] .climacon.w622:before {
+.climacon.w622:before {
 	content: "\e018";
 }
 
-div[id^='wpc-weather'] .climacon.w701:before {
+.climacon.w701:before {
 	content: "\e01f";
 }
 
-div[id^='wpc-weather'] .climacon.w711:before {
+.climacon.w711:before {
 	content: "\e01e";
 }
 
-div[id^='wpc-weather'] .climacon.w721:before {
+.climacon.w721:before {
 	content: "\e01e";
 }
 
-div[id^='wpc-weather'] .climacon.w731.day:before {
+.climacon.w731.day:before {
 	content: "\e01c";
 }
 
-div[id^='wpc-weather'] .climacon.w731.night:before {
+.climacon.w731.night:before {
 	content: "\e01d";
 }
 
-div[id^='wpc-weather'] .climacon.w741:before {
+.climacon.w741:before {
 	content: "\e01b";
 }
 
-div[id^='wpc-weather'] .climacon.w761.day:before {
+.climacon.w751.day:before {
 	content: "\e01c";
 }
 
-div[id^='wpc-weather'] .climacon.w761.night:before {
+.climacon.w751.night:before {
 	content: "\e01d";
 }
 
-div[id^='wpc-weather'] .climacon.w762.day:before {
+.climacon.w761.day:before {
 	content: "\e01c";
 }
 
-div[id^='wpc-weather'] .climacon.w762.night:before {
+.climacon.w761.night:before {
 	content: "\e01d";
 }
 
-div[id^='wpc-weather'] .climacon.w781:before {
+.climacon.w762.day:before {
+	content: "\e01c";
+}
+
+.climacon.w762.night:before {
+	content: "\e01d";
+}
+
+.climacon.w771.day:before {
+	content: "\e01c";
+}
+
+.climacon.w771.night:before {
+	content: "\e01d";
+}
+
+.climacon.w781:before {
 	content: "\e037";
 }
 
-div[id^='wpc-weather'] .climacon.w900:before {
+.climacon.w900:before {
 	content: "\e037";
 }
 
-div[id^='wpc-weather'] .climacon.w901:before {
+.climacon.w901:before {
 	content: "\e022";
 }
 
-div[id^='wpc-weather'] .climacon.w902:before {
+.climacon.w902:before {
 	content: "\e022";
 }
 
-div[id^='wpc-weather'] .climacon.w903:before {
+.climacon.w903:before {
 	content: "\e038";
 }
 
-div[id^='wpc-weather'] .climacon.w904:before {
+.climacon.w904:before {
 	content: "\e03d";
 }
 
-div[id^='wpc-weather'] .climacon.w905:before {
+.climacon.w905:before {
 	content: "\e021";
 }
 
-div[id^='wpc-weather'] .climacon.w906:before {
+.climacon.w906:before {
 	content: "\e012";
 }
 
-div[id^='wpc-weather'] .climacon.w200.day:before {
+.climacon.w200.day:before {
 	content: "\e026";
 }
 
-div[id^='wpc-weather'] .climacon.w200.night:before {
+.climacon.w200.night:before {
 	content: "\e027";
 }
 
-div[id^='wpc-weather'] .climacon.w201:before {
+.climacon.w201:before {
 	content: "\e025";
 }
 
-div[id^='wpc-weather'] .climacon.w202:before {
+.climacon.w202:before {
 	content: "\e025";
 }
 
-div[id^='wpc-weather'] .climacon.w210:before {
+.climacon.w210:before {
 	content: "\e026";
 }
 
-div[id^='wpc-weather'] .climacon.w211:before {
+.climacon.w211:before {
 	content: "\e025";
 }
 
-div[id^='wpc-weather'] .climacon.w212:before {
+.climacon.w212:before {
 	content: "\e025";
 }
 
-div[id^='wpc-weather'] .climacon.w221:before {
+.climacon.w221:before {
 	content: "\e025";
 }
 
-div[id^='wpc-weather'] .climacon.w230:before {
+.climacon.w230:before {
 	content: "\e025";
 }
 
-div[id^='wpc-weather'] .climacon.w231:before {
+.climacon.w231:before {
 	content: "\e025";
 }
 
-div[id^='wpc-weather'] .climacon.w232:before {
+.climacon.w232:before {
 	content: "\e025";
-}
-
-div[id^='wpc-weather'].small .now .climacon:before {
-	font-size: 60px;
-	line-height: 80px;
-	margin-bottom: 20px;
-}
-
-div[id^='wpc-weather'].medium .now .climacon:before {
-	font-size: 100px;
-	line-height: 100px;
-	margin-bottom: 20px;
-}
-
-div[id^='wpc-weather'].large .now .climacon:before {
-	font-size: 200px;
-}
-
-div[id^='wpc-weather'] .hours .climacon {
-	font-size: 30px;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	line-height: 1;
-	display: block;
-	text-align: center;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-div[id^='wpc-weather'] .forecast .climacon {
-	font-size: 30px;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	line-height: 1;
-	display: block;
-	text-align: center;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-div[id^='wpc-weather'] .now .climacon:before {
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	line-height: 1;
-	font-size: 200px;
-	display: block;
-	text-align: center;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-div[id^='wpc-weather'] .climacon_iconWrap-sun .climacon_component-stroke_sunSpoke,div[id^='wpc-weather'] .climacon_iconWrap-sunFill .climacon_component-stroke_sunSpoke,div[id^='wpc-weather'] .climacon_componentWrap-sunriseAlt,div[id^='wpc-weather'] .climacon_componentWrap-sunsetAlt,div[id^='wpc-weather'] .climacon_wrapperComponent-sunBody,div[id^='wpc-weather'] .climacon_iconWrap-cloudDrizzleSun,div[id^='wpc-weather'] .climacon_componentWrap-sun_cloud,div[id^='wpc-weather'] .climacon_iconWrap-cloudDrizzleSun g,div[id^='wpc-weather'] .climacon_iconWrap-cloudDrizzleSun g g {
-	-moz-animation-name: none !important;
 }

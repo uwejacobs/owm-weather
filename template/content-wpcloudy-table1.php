@@ -3,7 +3,7 @@
 /* DO NOT CHANGE THIS TEMPLATE DIRECTLY. IT WILL BE OVERWRITTEN BY UPDATES. */
 /****************************************************************************/
 /**
- * The WP Cloudy default template
+ * The WP Cloudy table1 template
  *
  */
 ?>
@@ -36,31 +36,9 @@
 		<?php echo $wpc_html["info"]["precipitation"]; ?>
 	<?php echo $wpc_html["info"]["end"]; ?>
 
+	<?php echo $wpc_html["table"]["hourly"]; ?>
+	<?php echo $wpc_html["table"]["daily"]; ?>
 
-	<?php if ($wpc_opt["hours_forecast_no"] > 0) { ?>
-		<!-- Hourly Forecast -->
-		<?php echo $wpc_html["hour"]["start"]; ?>
-		<?php
-			for ($i = 0; $i < $wpc_opt["hours_forecast_no"]; $i++) {
-			    if (isset($wpc_html["hour"]["info"][$i])) {
-    				echo $wpc_html["hour"]["info"][$i];
-    			    }
-			}
-		?>
-		<?php echo $wpc_html["hour"]["end"]; ?>
-	<?php } ?>
-
-	<?php if ($wpc_opt["days_forecast_no"] > 0) { ?>	
-		<!-- Daily Forecast -->
-		<?php echo $wpc_html["forecast"]["start"]; ?>
-			<?php
-				for ($i = 0; $i < $wpc_opt["days_forecast_no"]; $i++) {
-					echo $wpc_html["forecast"]["info"][$i];
-				};
-			?>	
-		<?php echo $wpc_html["forecast"]["end"]; ?>
-	<?php } ?>
-	
 	<!-- Weather Map -->
 	<?php echo $wpc_html["map"]; ?>
 	

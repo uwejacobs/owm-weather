@@ -1,17 +1,16 @@
 Must:
-admin wpc_version doesn't save
 charts
 
 Should:
+check if wpcloudy is activated
 map new style (https://github.com/owm-inc/VANE-intro/tree/master/apps)
 delete references to wpcloudy.com
 readme.txt section for wpcloudy upgrades
-check if page # at shortcode is a draft/published weather page
+
 
 Nice:
 moon phase icons
 openweathermap keys
 background image
 weather-icons: wind-direction plus other icons
-additional icon packs
 Translations

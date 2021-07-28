@@ -6,6 +6,7 @@ if ( !function_exists( 'add_action' ) ) {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //SVG Icon animation
+// original viewbox: "15 15 70 70"
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function sun() {
 	return '
@@ -17,7 +18,7 @@ function sun() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="sunFillClip">
             <path
@@ -71,8 +72,7 @@ function sun() {
             </g>
         </g>
     </svg>
-	<!-- sun -->
-	';
+	<!-- sun -->';
 }
 
 function sunFill() {
@@ -85,7 +85,7 @@ function sunFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-sunFill">
             <g class="climacon_componentWrap climacon_componentWrap-sun">
@@ -140,8 +140,7 @@ function sunFill() {
                 </g>
             </g>
         </g>
-    </svg><!-- sunFill -->
-	';
+    </svg><!-- sunFill -->';
 }
 
 function moon() {
@@ -154,7 +153,7 @@ function moon() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="moonFillClip">
             <path d="M15,15v70h70V15H15z M50,57.999c-4.418,0-7.999-3.582-7.999-7.999c0-3.803,2.655-6.979,6.211-7.792c0.903,4.854,4.726,8.676,9.579,9.58C56.979,55.344,53.802,57.999,50,57.999z"/>
@@ -166,8 +165,7 @@ function moon() {
                 d="M50,61.998c-6.627,0-11.999-5.372-11.999-11.998c0-6.627,5.372-11.999,11.999-11.999c0.755,0,1.491,0.078,2.207,0.212c-0.132,0.576-0.208,1.173-0.208,1.788c0,4.418,3.582,7.999,8,7.999c0.614,0,1.212-0.076,1.788-0.208c0.133,0.717,0.211,1.452,0.211,2.208C61.998,56.626,56.626,61.998,50,61.998z"/>
             </g>
         </g>
-    </svg><!-- moon -->
-	';
+    </svg><!-- moon --> ';
 
 }
 
@@ -181,7 +179,7 @@ function moonFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-moonFill">
             <g class="climacon_componentWrap climacon_componentWrap-moon">
@@ -194,8 +192,7 @@ function moonFill() {
                 d="M48.212,42.208c-3.556,0.813-6.211,3.989-6.211,7.792c0,4.417,3.581,7.999,7.999,7.999c3.802,0,6.979-2.655,7.791-6.211C52.938,50.884,49.115,47.062,48.212,42.208z"/>
             </g>
         </g>
-    </svg><!-- moonFill -->
-	';
+    </svg><!-- moonFill --> ';
 }
 
 function snowflake() {
@@ -208,7 +205,7 @@ function snowflake() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="snowflakeFillClip">
             <path
@@ -221,8 +218,7 @@ function snowflake() {
                 d="M59.659,46.733l-1.958,1.13c0.188,0.682,0.298,1.396,0.298,2.137c0,0.742-0.108,1.456-0.298,2.139l1.958,1.129c0.956,0.553,1.284,1.775,0.731,2.732c-0.553,0.956-1.774,1.284-2.731,0.73l-1.954-1.127c-1.003,1.02-2.277,1.766-3.705,2.133v2.263c0,1.104-0.896,2-2,2c-1.104,0-2-0.896-2-2v-2.263c-1.428-0.367-2.703-1.113-3.705-2.133l-1.954,1.127c-0.957,0.554-2.18,0.226-2.731-0.73c-0.553-0.957-0.225-2.18,0.731-2.732l1.958-1.129c-0.189-0.683-0.298-1.396-0.298-2.139c0-0.741,0.108-1.455,0.298-2.137l-1.958-1.13c-0.956-0.553-1.284-1.775-0.731-2.732c0.552-0.956,1.774-1.284,2.731-0.731l1.954,1.128c1.002-1.02,2.277-1.766,3.705-2.134v-2.262c0-1.104,0.896-2,2-2c1.104,0,2,0.896,2,2v2.262c1.428,0.368,2.702,1.114,3.705,2.134l1.954-1.128c0.957-0.553,2.18-0.225,2.731,0.731C60.943,44.958,60.615,46.181,59.659,46.733z"/>
             </g>
         </g>
-    </svg><!-- snowflake -->
-	';
+    </svg><!-- snowflake --> ';
 }
 
 function snowflakeFill() {
@@ -235,7 +231,7 @@ function snowflakeFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-snowflakeFill">
             <g class="climacon_componentWrap climacon_componentWrap-snowflake">
@@ -250,8 +246,7 @@ function snowflakeFill() {
                 r="4"/>
             </g>
         </g>
-    </svg><!-- snowflakeFill -->
-	';
+    </svg><!-- snowflakeFill --> ';
 }
 
 function wind() {
@@ -264,7 +259,7 @@ function wind() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-wind">
             <g class="climacon_wrapperComponent climacon_componentWrap-wind">
@@ -276,8 +271,7 @@ function wind() {
                 d="M55.999,48.001h-2h-6.998H34.002c-1.104,0-1.999,0.896-1.999,2c0,1.104,0.895,1.999,1.999,1.999h2h3.999h3h4h3h3.998h2c3.313,0,6,2.688,6,6c0,3.176-2.476,5.748-5.597,5.959C56.271,63.986,56.139,64,55.999,64c-1.104,0-2-0.896-2-2c0-1.105,0.896-2,2-2s2-0.896,2-2s-0.896-2-2-2h-2h-3.998h-3h-4h-3h-3.999h-2c-3.313,0-5.999-2.686-5.999-5.999c0-3.175,2.475-5.747,5.596-5.959c0.131-0.026,0.266-0.04,0.403-0.04l0,0h12.999h6.998h2c1.104,0,2-0.896,2-2s-0.896-2-2-2s-2-0.895-2-2c0-1.104,0.896-2,2-2c0.14,0,0.272,0.015,0.403,0.041c3.121,0.211,5.597,2.783,5.597,5.959C61.999,45.314,59.312,48.001,55.999,48.001z"/>
             </g>
         </g>
-    </svg><!-- wind -->
-	';
+    </svg><!-- wind --> ';
 }
 
 function tornado() {
@@ -290,7 +284,7 @@ function tornado() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-tornado">
             <g class="climacon_componentWrap climacon_componentWrap-tornado">
@@ -311,8 +305,7 @@ function tornado() {
                 d="M40.869,58.456c0-1.104,0.896-1.999,2-1.999h13.998c1.104,0,2,0.896,2,1.999c0,1.104-0.896,2-2,2H42.869C41.765,60.456,40.869,59.561,40.869,58.456z"/>
             </g>
         </g>
-    </svg><!-- tornado -->
-	';
+    </svg><!-- tornado --> ';
 }
 
 function cloud() {
@@ -325,7 +318,7 @@ function cloud() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -337,8 +330,7 @@ function cloud() {
                 d="M43.945,65.639c-8.835,0-15.998-7.162-15.998-15.998c0-8.836,7.163-15.998,15.998-15.998c6.004,0,11.229,3.312,13.965,8.203c0.664-0.113,1.338-0.205,2.033-0.205c6.627,0,11.998,5.373,11.998,12c0,6.625-5.371,11.998-11.998,11.998C57.168,65.639,47.143,65.639,43.945,65.639z"/>
             </g>
         </g>
-    </svg><!-- cloud -->
-	';
+    </svg><!-- cloud --> ';
 }
 
 function cloudFill() {
@@ -351,7 +343,7 @@ function cloudFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloud">
             <g class="climacon_componentWrap climacon_componentWrap_cloud">
@@ -364,8 +356,7 @@ function cloudFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudFill  -->
-	';
+    </svg><!-- cloudFill  --> ';
 }
 
 function cloudSun() {
@@ -378,7 +369,7 @@ function cloudSun() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path
@@ -432,8 +423,7 @@ function cloudSun() {
                 d="M44.033,65.641c-8.836,0-15.999-7.162-15.999-15.998c0-8.835,7.163-15.998,15.999-15.998c6.006,0,11.233,3.312,13.969,8.203c0.664-0.113,1.338-0.205,2.033-0.205c6.627,0,11.998,5.373,11.998,12c0,6.625-5.371,11.998-11.998,11.998C57.26,65.641,47.23,65.641,44.033,65.641z"/>
             </g>
         </g>
-    </svg><!-- cloudSun -->
-	';
+    </svg><!-- cloudSun --> ';
 }
 
 function cloudSunFill() {
@@ -446,7 +436,7 @@ function cloudSunFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_cloudSunFill-iconWrap">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -501,8 +491,7 @@ function cloudSunFill() {
                 d="M60.035,61.641c4.418,0,8-3.582,8-7.998c0-4.418-3.582-8-8-8c-1.6,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.976-9.29-11.668-9.29c-6.627,0-11.999,5.372-11.999,11.999c0,6.627,5.372,11.998,11.999,11.998C47.65,61.641,57.016,61.641,60.035,61.641z"/>
             </g>
         </g>
-    </svg><!-- cloudSunFill -->
-	';
+    </svg><!-- cloudSunFill --> ';
 }
 
 function cloudMoon() {
@@ -515,7 +504,7 @@ function cloudMoon() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path
@@ -539,8 +528,7 @@ function cloudMoon() {
                 d="M44.033,65.641c-8.836,0-15.999-7.162-15.999-15.998c0-8.835,7.163-15.998,15.999-15.998c6.006,0,11.233,3.312,13.969,8.203c0.664-0.113,1.338-0.205,2.033-0.205c6.627,0,11.998,5.373,11.998,12c0,6.625-5.371,11.998-11.998,11.998C57.26,65.641,47.23,65.641,44.033,65.641z"/>
             </g>
         </g>
-    </svg><!-- cloudMoon -->
-	';
+    </svg><!-- cloudMoon --> ';
 }
 
 function cloudMoonFill() {
@@ -553,7 +541,7 @@ function cloudMoonFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudMoonFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -575,8 +563,7 @@ function cloudMoonFill() {
                 d="M60.035,61.641c4.418,0,8-3.582,8-7.998c0-4.418-3.582-8-8-8c-1.6,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.976-9.29-11.668-9.29c-6.627,0-11.999,5.372-11.999,11.999c0,6.627,5.372,11.998,11.999,11.998C47.65,61.641,57.016,61.641,60.035,61.641z"/>
             </g>
         </g>
-    </svg><!-- cloudMoonFill -->
-	';
+    </svg><!-- cloudMoonFill --> ';
 }
 
 function cloudDrizzle() {
@@ -589,7 +576,7 @@ function cloudDrizzle() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzle">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-drizzle">
@@ -609,8 +596,7 @@ function cloudDrizzle() {
                 d="M63.999,64.944v-4.381c2.387-1.386,3.998-3.961,3.998-6.92c0-4.418-3.58-8-7.998-8c-1.603,0-3.084,0.481-4.334,1.291c-1.232-5.316-5.973-9.29-11.664-9.29c-6.628,0-11.999,5.372-11.999,12c0,3.549,1.55,6.729,3.998,8.926v4.914c-4.776-2.769-7.998-7.922-7.998-13.84c0-8.836,7.162-15.999,15.999-15.999c6.004,0,11.229,3.312,13.965,8.203c0.664-0.113,1.336-0.205,2.033-0.205c6.627,0,11.998,5.373,11.998,12C71.997,58.864,68.655,63.296,63.999,64.944z"/>
             </g>
         </g>
-    </svg><!-- cloudDrizzle -->
-	';
+    </svg><!-- cloudDrizzle --> ';
 }
 
 function cloudDrizzleFill() {
@@ -623,7 +609,7 @@ function cloudDrizzleFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-drizzle">
@@ -648,8 +634,7 @@ function cloudDrizzleFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudDrizzleFill -->
-	';
+    </svg><!-- cloudDrizzleFill --> ';
 }
 
 function cloudDrizzleSun() {
@@ -662,7 +647,7 @@ function cloudDrizzleSun() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -731,8 +716,7 @@ function cloudDrizzleSun() {
                 d="M63.999,64.944v-4.381c2.387-1.386,3.998-3.961,3.998-6.92c0-4.418-3.58-8-7.998-8c-1.603,0-3.084,0.481-4.334,1.291c-1.232-5.316-5.973-9.29-11.664-9.29c-6.628,0-11.999,5.372-11.999,12c0,3.549,1.55,6.729,3.998,8.926v4.914c-4.776-2.769-7.998-7.922-7.998-13.84c0-8.836,7.162-15.999,15.999-15.999c6.004,0,11.229,3.312,13.965,8.203c0.664-0.113,1.336-0.205,2.033-0.205c6.627,0,11.998,5.373,11.998,12C71.997,58.864,68.655,63.296,63.999,64.944z"/>
             </g>
         </g>
-    </svg><!-- cloudDrizzleSun -->
-	';
+    </svg><!-- cloudDrizzleSun --> ';
 }
 
 function cloudDrizzleSunFill() {
@@ -745,7 +729,7 @@ function cloudDrizzleSunFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleSunFill">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -810,8 +794,7 @@ function cloudDrizzleSunFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudDrizzleSunFill -->
-	';
+    </svg><!-- cloudDrizzleSunFill --> ';
 }
 
 function cloudDrizzleMoon() {
@@ -824,7 +807,7 @@ function cloudDrizzleMoon() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -858,8 +841,7 @@ function cloudDrizzleMoon() {
                 d="M63.999,64.944v-4.381c2.387-1.386,3.998-3.961,3.998-6.92c0-4.418-3.58-8-7.998-8c-1.603,0-3.084,0.481-4.334,1.291c-1.232-5.316-5.973-9.29-11.664-9.29c-6.628,0-11.999,5.372-11.999,12c0,3.549,1.55,6.729,3.998,8.926v4.914c-4.776-2.769-7.998-7.922-7.998-13.84c0-8.836,7.162-15.999,15.999-15.999c6.004,0,11.229,3.312,13.965,8.203c0.664-0.113,1.336-0.205,2.033-0.205c6.627,0,11.998,5.373,11.998,12C71.997,58.864,68.655,63.296,63.999,64.944z"/>
             </g>
         </g>
-    </svg><!-- cloudDrizzleMoon -->
-	';
+    </svg><!-- cloudDrizzleMoon --> ';
 }
 
 function cloudDrizzleMoonFill() {
@@ -872,7 +854,7 @@ function cloudDrizzleMoonFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleMoonFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -905,8 +887,7 @@ function cloudDrizzleMoonFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudDrizzleMoonFill -->
-	';
+    </svg><!-- cloudDrizzleMoonFill --> ';
 }
 
 function cloudDrizzleAlt() {
@@ -919,7 +900,7 @@ function cloudDrizzleAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleAlt">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-drizzle">
@@ -940,8 +921,7 @@ function cloudDrizzleAlt() {
                 d="M59.943,41.642c-0.696,0-1.369,0.092-2.033,0.205c-2.736-4.892-7.961-8.203-13.965-8.203c-8.835,0-15.998,7.162-15.998,15.997c0,5.992,3.3,11.207,8.177,13.947c0.276-1.262,0.892-2.465,1.873-3.445l0.057-0.057c-3.644-2.061-6.106-5.963-6.106-10.445c0-6.626,5.372-11.998,11.998-11.998c5.691,0,10.433,3.974,11.666,9.29c1.25-0.81,2.732-1.291,4.332-1.291c4.418,0,8,3.581,8,7.999c0,3.443-2.182,6.371-5.235,7.498c0.788,1.146,1.194,2.471,1.222,3.807c4.666-1.645,8.014-6.077,8.014-11.305C71.941,47.014,66.57,41.642,59.943,41.642z"/>
             </g>
         </g>
-    </svg><!-- cloudDrizzleAlt -->
-	';
+    </svg><!-- cloudDrizzleAlt --> ';
 }
 
 function cloudDrizzleFillAlt() {
@@ -954,7 +934,7 @@ function cloudDrizzleFillAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleFillAlt">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-drizzle">
@@ -979,8 +959,7 @@ function cloudDrizzleFillAlt() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudDrizzleFillAlt -->
-	';
+    </svg><!-- cloudDrizzleFillAlt --> ';
 }
 
 function cloudDrizzleSunAlt() {
@@ -993,7 +972,7 @@ function cloudDrizzleSunAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="sunCloudFillClip">
             <path
@@ -1059,8 +1038,7 @@ function cloudDrizzleSunAlt() {
                 d="M63.999,64.944v-4.381c2.387-1.386,3.998-3.961,3.998-6.92c0-4.418-3.58-8-7.998-8c-1.603,0-3.084,0.481-4.334,1.291c-1.232-5.316-5.973-9.29-11.664-9.29c-6.628,0-11.999,5.372-11.999,12c0,3.549,1.55,6.729,3.998,8.926v4.914c-4.776-2.769-7.998-7.922-7.998-13.84c0-8.836,7.162-15.999,15.999-15.999c6.004,0,11.229,3.312,13.965,8.203c0.664-0.113,1.336-0.205,2.033-0.205c6.627,0,11.998,5.373,11.998,12C71.997,58.864,68.655,63.296,63.999,64.944z"/>
             </g>
         </g>
-    </svg><!-- cloudDrizzleSunAlt -->
-	';
+    </svg><!-- cloudDrizzleSunAlt --> ';
 }
 
 function cloudDrizzleSunFillAlt() {
@@ -1073,7 +1051,7 @@ function cloudDrizzleSunFillAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleSunFillAlt">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -1138,8 +1116,7 @@ function cloudDrizzleSunFillAlt() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudDrizzleSunFillAlt -->
-	';
+    </svg><!-- cloudDrizzleSunFillAlt --> ';
 }
 
 function cloudDrizzleMoonAlt() {
@@ -1152,7 +1129,7 @@ function cloudDrizzleMoonAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1187,8 +1164,7 @@ function cloudDrizzleMoonAlt() {
                 d="M59.943,41.642c-0.696,0-1.369,0.092-2.033,0.205c-2.736-4.892-7.961-8.203-13.965-8.203c-8.835,0-15.998,7.162-15.998,15.997c0,5.992,3.3,11.207,8.177,13.947c0.276-1.262,0.892-2.465,1.873-3.445l0.057-0.057c-3.644-2.061-6.106-5.963-6.106-10.445c0-6.626,5.372-11.998,11.998-11.998c5.691,0,10.433,3.974,11.666,9.29c1.25-0.81,2.732-1.291,4.332-1.291c4.418,0,8,3.581,8,7.999c0,3.443-2.182,6.371-5.235,7.498c0.788,1.146,1.194,2.471,1.222,3.807c4.666-1.645,8.014-6.077,8.014-11.305C71.941,47.014,66.57,41.642,59.943,41.642z"/>
             </g>
         </g>
-    </svg><!-- cloudDrizzleMoonAlt -->
-	';
+    </svg><!-- cloudDrizzleMoonAlt --> ';
 }
 
 function cloudDrizzleMoonFillAlt() {
@@ -1201,7 +1177,7 @@ function cloudDrizzleMoonFillAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudDrizzleMoonFillAlt">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -1235,8 +1211,7 @@ function cloudDrizzleMoonFillAlt() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudDrizzleMoonFillAlt -->
-	';
+    </svg><!-- cloudDrizzleMoonFillAlt --> ';
 }
 
 function cloudRain() {
@@ -1249,7 +1224,7 @@ function cloudRain() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1281,8 +1256,7 @@ function cloudRain() {
                 d="M63.943,64.941v-4.381c2.389-1.384,4-3.961,4-6.92c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.48-4.334,1.291c-1.23-5.317-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.998c0,3.549,1.551,6.728,4,8.924v4.916c-4.777-2.768-8-7.922-8-13.84c0-8.835,7.163-15.997,15.998-15.997c6.004,0,11.229,3.311,13.965,8.203c0.664-0.113,1.338-0.205,2.033-0.205c6.627,0,11.998,5.372,11.998,12C71.941,58.863,68.602,63.293,63.943,64.941z"/>
             </g>
         </g>
-    </svg><!-- cloudRain -->
-	';
+    </svg><!-- cloudRain --> ';
 }
 
 function cloudRainFill() {
@@ -1295,7 +1269,7 @@ function cloudRainFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudRainFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-rain">
@@ -1328,8 +1302,7 @@ function cloudRainFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudRainFill -->
-	';
+    </svg><!-- cloudRainFill --> ';
 }
 
 function cloudRainSun() {
@@ -1342,7 +1315,7 @@ function cloudRainSun() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1420,8 +1393,7 @@ function cloudRainSun() {
                 d="M63.943,64.941v-4.381c2.389-1.384,4-3.961,4-6.92c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.48-4.334,1.291c-1.23-5.317-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.998c0,3.549,1.551,6.728,4,8.924v4.916c-4.777-2.768-8-7.922-8-13.84c0-8.835,7.163-15.997,15.998-15.997c6.004,0,11.229,3.311,13.965,8.203c0.664-0.113,1.338-0.205,2.033-0.205c6.627,0,11.998,5.372,11.998,12C71.941,58.863,68.602,63.293,63.943,64.941z"/>
             </g>
         </g>
-    </svg><!-- cloudRainSun -->
-	';
+    </svg><!-- cloudRainSun --> ';
 }
 
 function cloudRainSunFill() {
@@ -1434,7 +1406,7 @@ function cloudRainSunFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudRainSunFill">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -1508,8 +1480,7 @@ function cloudRainSunFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudRainSunFill -->
-	';
+    </svg><!-- cloudRainSunFill --> ';
 }
 
 function cloudRainMoon() {
@@ -1522,7 +1493,7 @@ function cloudRainMoon() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1565,8 +1536,7 @@ function cloudRainMoon() {
                 d="M59.943,41.642c-0.696,0-1.369,0.092-2.033,0.205c-2.736-4.892-7.961-8.203-13.965-8.203c-8.835,0-15.998,7.162-15.998,15.997c0,5.992,3.3,11.207,8.177,13.947c0.276-1.262,0.892-2.465,1.873-3.445l0.057-0.057c-3.644-2.061-6.106-5.963-6.106-10.445c0-6.626,5.372-11.998,11.998-11.998c5.691,0,10.433,3.974,11.666,9.29c1.25-0.81,2.732-1.291,4.332-1.291c4.418,0,8,3.581,8,7.999c0,3.443-2.182,6.371-5.235,7.498c0.788,1.146,1.194,2.471,1.222,3.807c4.666-1.645,8.014-6.077,8.014-11.305C71.941,47.014,66.57,41.642,59.943,41.642z"/>
             </g>
         </g>
-    </svg><!-- cloudRainMoon -->
-	';
+    </svg><!-- cloudRainMoon --> ';
 }
 
 function cloudRainMoonFill() {
@@ -1579,7 +1549,7 @@ function cloudRainMoonFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudRainMoonFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -1621,8 +1591,7 @@ function cloudRainMoonFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudRainMoonFill -->
-	';
+    </svg><!-- cloudRainMoonFill --> ';
 }
 
 function cloudRainAlt() {
@@ -1635,7 +1604,7 @@ function cloudRainAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1655,8 +1624,7 @@ function cloudRainAlt() {
                 d="M59.999,65.641c-0.267,0-0.614,0-1,0c0-1.373-0.319-2.742-0.942-4c0.776,0,1.45,0,1.942,0c4.418,0,7.999-3.58,7.999-7.998c0-4.418-3.581-8-7.999-8c-1.601,0-3.083,0.481-4.334,1.29c-1.231-5.316-5.973-9.289-11.664-9.289c-6.627,0-11.998,5.372-11.998,11.998c0,5.953,4.339,10.879,10.023,11.822c-0.637,1.218-0.969,2.55-1.012,3.888c-7.406-1.399-13.012-7.896-13.012-15.709c0-8.835,7.162-15.998,15.998-15.998c6.004,0,11.229,3.312,13.965,8.204c0.664-0.114,1.337-0.205,2.033-0.205c6.627,0,11.998,5.372,11.998,12C71.996,60.27,66.626,65.641,59.999,65.641z"/>
             </g>
         </g>
-    </svg><!-- cloudRainAlt -->
-	';
+    </svg><!-- cloudRainAlt --> ';
 }
 
 function cloudRainAltFill() {
@@ -1669,7 +1637,7 @@ function cloudRainAltFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudRainAltFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-rain climacon_wrapperComponent-rain_alt">
@@ -1690,8 +1658,7 @@ function cloudRainAltFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudRainAlt -->
-	';
+    </svg><!-- cloudRainAlt --> ';
 }
 
 function cloudSunRainAlt() {
@@ -1704,7 +1671,7 @@ function cloudSunRainAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1770,8 +1737,7 @@ function cloudSunRainAlt() {
                 d="M59.999,65.641c-0.267,0-0.614,0-1,0c0-1.373-0.319-2.742-0.942-4c0.776,0,1.45,0,1.942,0c4.418,0,7.999-3.58,7.999-7.998c0-4.418-3.581-8-7.999-8c-1.601,0-3.083,0.481-4.334,1.29c-1.231-5.316-5.973-9.289-11.664-9.289c-6.627,0-11.998,5.372-11.998,11.998c0,5.953,4.339,10.879,10.023,11.822c-0.637,1.218-0.969,2.55-1.012,3.888c-7.406-1.399-13.012-7.896-13.012-15.709c0-8.835,7.162-15.998,15.998-15.998c6.004,0,11.229,3.312,13.965,8.204c0.664-0.114,1.337-0.205,2.033-0.205c6.627,0,11.998,5.372,11.998,12C71.996,60.27,66.626,65.641,59.999,65.641z"/>
             </g>
         </g>
-    </svg><!-- cloudRainSunAlt -->
-	';
+    </svg><!-- cloudRainSunAlt --> ';
 }
 
 function cloudSunRainAltFill() {
@@ -1784,7 +1750,7 @@ function cloudSunRainAltFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudRainSunAltFill">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -1845,8 +1811,7 @@ function cloudSunRainAltFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudRainSunAltFill -->
-	';
+    </svg><!-- cloudRainSunAltFill --> ';
 }
 
 function cloudMoonRainAlt() {
@@ -1859,7 +1824,7 @@ function cloudMoonRainAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -1890,8 +1855,7 @@ function cloudMoonRainAlt() {
                 d="M59.999,65.641c-0.267,0-0.614,0-1,0c0-1.373-0.319-2.742-0.942-4c0.776,0,1.45,0,1.942,0c4.418,0,7.999-3.58,7.999-7.998c0-4.418-3.581-8-7.999-8c-1.601,0-3.083,0.481-4.334,1.29c-1.231-5.316-5.973-9.289-11.664-9.289c-6.627,0-11.998,5.372-11.998,11.998c0,5.953,4.339,10.879,10.023,11.822c-0.637,1.218-0.969,2.55-1.012,3.888c-7.406-1.399-13.012-7.896-13.012-15.709c0-8.835,7.162-15.998,15.998-15.998c6.004,0,11.229,3.312,13.965,8.204c0.664-0.114,1.337-0.205,2.033-0.205c6.627,0,11.998,5.372,11.998,12C71.996,60.27,66.626,65.641,59.999,65.641z"/>
             </g>
         </g>
-    </svg><!-- cloudRainMoonAlt -->
-	';
+    </svg><!-- cloudRainMoonAlt --> ';
 }
 
 function cloudMoonRainAltFill() {
@@ -1904,7 +1868,7 @@ function cloudMoonRainAltFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudRainSunAlt">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -1935,8 +1899,7 @@ function cloudMoonRainAltFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudRainMoonAltFill -->
-	';
+    </svg><!-- cloudRainMoonAltFill --> ';
 }
 
 function cloudHailAlt() {
@@ -1949,7 +1912,7 @@ function cloudHailAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudHailAlt">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-hailAlt">
@@ -1978,8 +1941,7 @@ function cloudHailAlt() {
                 d="M63.999,64.941v-4.381c2.39-1.384,3.999-3.961,3.999-6.92c0-4.417-3.581-8-7.998-8c-1.602,0-3.084,0.48-4.334,1.291c-1.23-5.317-5.974-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.998c0,3.549,1.55,6.728,3.999,8.924v4.916c-4.776-2.768-7.998-7.922-7.998-13.84c0-8.835,7.162-15.997,15.997-15.997c6.004,0,11.229,3.311,13.966,8.203c0.663-0.113,1.336-0.205,2.033-0.205c6.626,0,11.998,5.372,11.998,12C71.998,58.863,68.656,63.293,63.999,64.941z"/>
             </g>
         </g>
-    </svg><!-- cloudHailAlt -->
-	';
+    </svg><!-- cloudHailAlt --> ';
 }
 
 function cloudHailAltFill() {
@@ -1992,7 +1954,7 @@ function cloudHailAltFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudHailAltFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-hailAlt">
@@ -2025,8 +1987,7 @@ function cloudHailAltFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudHailAltFill -->
-	';
+    </svg><!-- cloudHailAltFill --> ';
 }
 
 function cloudHailAltSun() {
@@ -2039,7 +2000,7 @@ function cloudHailAltSun() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -2116,8 +2077,7 @@ function cloudHailAltSun() {
                 d="M63.999,64.941v-4.381c2.39-1.384,3.999-3.961,3.999-6.92c0-4.417-3.581-8-7.998-8c-1.602,0-3.084,0.48-4.334,1.291c-1.23-5.317-5.974-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.998c0,3.549,1.55,6.728,3.999,8.924v4.916c-4.776-2.768-7.998-7.922-7.998-13.84c0-8.835,7.162-15.997,15.997-15.997c6.004,0,11.229,3.311,13.966,8.203c0.663-0.113,1.336-0.205,2.033-0.205c6.626,0,11.998,5.372,11.998,12C71.998,58.863,68.656,63.293,63.999,64.941z"/>
             </g>
         </g>
-    </svg><!-- cloudHailAltSun -->
-	';
+    </svg><!-- cloudHailAltSun --> ';
 }
 
 function cloudHailAltSunFill() {
@@ -2130,7 +2090,7 @@ function cloudHailAltSunFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudHailAltSun">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -2203,8 +2163,7 @@ function cloudHailAltSunFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudHailAltSun -->
-	';
+    </svg><!-- cloudHailAltSun --> ';
 }
 
 function cloudHailAltMoon() {
@@ -2217,7 +2176,7 @@ function cloudHailAltMoon() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -2264,8 +2223,7 @@ function cloudHailAltMoon() {
                 d="M63.999,64.941v-4.381c2.39-1.384,3.999-3.961,3.999-6.92c0-4.417-3.581-8-7.998-8c-1.602,0-3.084,0.48-4.334,1.291c-1.23-5.317-5.974-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.998c0,3.549,1.55,6.728,3.999,8.924v4.916c-4.776-2.768-7.998-7.922-7.998-13.84c0-8.835,7.162-15.997,15.997-15.997c6.004,0,11.229,3.311,13.966,8.203c0.663-0.113,1.336-0.205,2.033-0.205c6.626,0,11.998,5.372,11.998,12C71.998,58.863,68.656,63.293,63.999,64.941z"/>
             </g>
         </g>
-    </svg><!-- cloudHailAltMoon -->
-	';
+    </svg><!-- cloudHailAltMoon --> ';
 }
 
 function cloudHailAltMoonFill() {
@@ -2278,7 +2236,7 @@ function cloudHailAltMoonFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudHailAltMoon">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -2320,8 +2278,7 @@ function cloudHailAltMoonFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudHailAltMoonFill -->
-	';
+    </svg><!-- cloudHailAltMoonFill --> ';
 }
 
 function cloudSnow() {
@@ -2334,7 +2291,7 @@ function cloudSnow() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
 
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnow">
@@ -2361,8 +2318,7 @@ function cloudSnow() {
                 d="M63.999,64.943v-4.381c2.39-1.386,3.999-3.963,3.999-6.922c0-4.417-3.581-7.999-7.999-7.999c-1.601,0-3.083,0.48-4.333,1.291c-1.23-5.317-5.974-9.291-11.665-9.291c-6.627,0-11.998,5.373-11.998,12c0,3.549,1.55,6.729,4,8.924v4.916c-4.777-2.769-8-7.922-8-13.84c0-8.836,7.163-15.999,15.998-15.999c6.004,0,11.229,3.312,13.965,8.204c0.664-0.113,1.337-0.205,2.033-0.205c6.627,0,11.999,5.373,11.999,11.999C71.998,58.863,68.654,63.293,63.999,64.943z"/>
             </g>
         </g>
-    </svg><!-- cloudSnow -->
-	';
+    </svg><!-- cloudSnow --> ';
 }
 
 function cloudSnowFill() {
@@ -2375,7 +2331,7 @@ function cloudSnowFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnowFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-snow">
@@ -2405,8 +2361,7 @@ function cloudSnowFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudSnowFill -->
-	';
+    </svg><!-- cloudSnowFill --> ';
 }
 
 function cloudSnowSun() {
@@ -2419,7 +2374,7 @@ function cloudSnowSun() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -2493,8 +2448,7 @@ function cloudSnowSun() {
                 d="M63.999,64.943v-4.381c2.39-1.386,3.999-3.963,3.999-6.922c0-4.417-3.581-7.999-7.999-7.999c-1.601,0-3.083,0.48-4.333,1.291c-1.23-5.317-5.974-9.291-11.665-9.291c-6.627,0-11.998,5.373-11.998,12c0,3.549,1.55,6.729,4,8.924v4.916c-4.777-2.769-8-7.922-8-13.84c0-8.836,7.163-15.999,15.998-15.999c6.004,0,11.229,3.312,13.965,8.204c0.664-0.113,1.337-0.205,2.033-0.205c6.627,0,11.999,5.373,11.999,11.999C71.998,58.863,68.654,63.293,63.999,64.943z"/>
             </g>
         </g>
-    </svg><!-- cloudSnowSun -->
-	';
+    </svg><!-- cloudSnowSun --> ';
 }
 
 function cloudSnowSunFill() {
@@ -2507,7 +2461,7 @@ function cloudSnowSunFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnowSunFill">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -2577,8 +2531,7 @@ function cloudSnowSunFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudSnowSunFill -->
-	';
+    </svg><!-- cloudSnowSunFill --> ';
 }
 
 function cloudSnowMoon() {
@@ -2591,7 +2544,7 @@ function cloudSnowMoon() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -2631,8 +2584,7 @@ function cloudSnowMoon() {
                 d="M63.999,64.943v-4.381c2.39-1.386,3.999-3.963,3.999-6.922c0-4.417-3.581-7.999-7.999-7.999c-1.601,0-3.083,0.48-4.333,1.291c-1.23-5.317-5.974-9.291-11.665-9.291c-6.627,0-11.998,5.373-11.998,12c0,3.549,1.55,6.729,4,8.924v4.916c-4.777-2.769-8-7.922-8-13.84c0-8.836,7.163-15.999,15.998-15.999c6.004,0,11.229,3.312,13.965,8.204c0.664-0.113,1.337-0.205,2.033-0.205c6.627,0,11.999,5.373,11.999,11.999C71.998,58.863,68.654,63.293,63.999,64.943z"/>
             </g>
         </g>
-    </svg><!-- cloudSnowMoon -->
-	';
+    </svg><!-- cloudSnowMoon --> ';
 }
 
 function cloudSnowMoonFill() {
@@ -2645,7 +2597,7 @@ function cloudSnowMoonFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnowMoonFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -2684,8 +2636,7 @@ function cloudSnowMoonFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudSnowMoonFill -->
-	';
+    </svg><!-- cloudSnowMoonFill --> ';
 }
 
 function cloudSnowAlt() {
@@ -2698,7 +2649,7 @@ function cloudSnowAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="snowFillClip">
             <path d="M15,15v70h70V15H15z M50,65.641c-1.104,0-2-0.896-2-2c0-1.104,0.896-2,2-2c1.104,0,2,0.896,2,2S51.104,65.641,50,65.641z"/>
@@ -2717,8 +2668,7 @@ function cloudSnowAlt() {
                 d="M61.998,65.461v-4.082c3.447-0.891,6-4.012,6-7.738c0-4.417-3.582-7.999-7.999-7.999c-1.601,0-3.084,0.48-4.334,1.291c-1.231-5.317-5.973-9.291-11.664-9.291c-6.627,0-11.999,5.373-11.999,12c0,4.438,2.417,8.305,5.999,10.379v4.444c-5.86-2.375-9.998-8.112-9.998-14.825c0-8.835,7.162-15.999,15.998-15.999c6.004,0,11.229,3.312,13.965,8.204c0.664-0.113,1.336-0.205,2.033-0.205c6.626,0,11.998,5.373,11.998,11.998C71.997,59.586,67.671,64.506,61.998,65.461z"/>
             </g>
         </g>
-    </svg><!-- cloudSnowAlt -->
-	';
+    </svg><!-- cloudSnowAlt --> ';
 }
 
 function cloudSnowAltFill() {
@@ -2731,7 +2681,7 @@ function cloudSnowAltFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnowAltFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-snowAlt">
@@ -2757,8 +2707,7 @@ function cloudSnowAltFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudSnowAltFill -->
-	';
+    </svg><!-- cloudSnowAltFill --> ';
 }
 
 function cloudSnowSunAlt() {
@@ -2771,7 +2720,7 @@ function cloudSnowSunAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -2838,8 +2787,7 @@ function cloudSnowSunAlt() {
                 d="M61.998,65.461v-4.082c3.447-0.891,6-4.012,6-7.738c0-4.417-3.582-7.999-7.999-7.999c-1.601,0-3.084,0.48-4.334,1.291c-1.231-5.317-5.973-9.291-11.664-9.291c-6.627,0-11.999,5.373-11.999,12c0,4.438,2.417,8.305,5.999,10.379v4.444c-5.86-2.375-9.998-8.112-9.998-14.825c0-8.835,7.162-15.999,15.998-15.999c6.004,0,11.229,3.312,13.965,8.204c0.664-0.113,1.336-0.205,2.033-0.205c6.626,0,11.998,5.373,11.998,11.998C71.997,59.586,67.671,64.506,61.998,65.461z"/>
             </g>
         </g>
-    </svg><!-- cloudSnowSunAlt -->
-	';
+    </svg><!-- cloudSnowSunAlt --> ';
 }
 
 function cloudSnowSunAltFill() {
@@ -2852,7 +2800,7 @@ function cloudSnowSunAltFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnowSunAltFill">
             <g class="climacon_componentWrap climacon_componentWrap-sun climacon_componentWrap-sun_cloud">
@@ -2918,8 +2866,7 @@ function cloudSnowSunAltFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudSnowSunAltFill -->
-	';
+    </svg><!-- cloudSnowSunAltFill --> ';
 }
 
 function cloudSnowAlt2() {
@@ -2932,7 +2879,7 @@ function cloudSnowAlt2() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -2965,8 +2912,7 @@ function cloudSnowAlt2() {
                 d="M61.998,65.461v-4.082c3.447-0.891,6-4.012,6-7.738c0-4.417-3.582-7.999-7.999-7.999c-1.601,0-3.084,0.48-4.334,1.291c-1.231-5.317-5.973-9.291-11.664-9.291c-6.627,0-11.999,5.373-11.999,12c0,4.438,2.417,8.305,5.999,10.379v4.444c-5.86-2.375-9.998-8.112-9.998-14.825c0-8.835,7.162-15.999,15.998-15.999c6.004,0,11.229,3.312,13.965,8.204c0.664-0.113,1.336-0.205,2.033-0.205c6.626,0,11.998,5.373,11.998,11.998C71.997,59.586,67.671,64.506,61.998,65.461z"/>
             </g>
         </g>
-    </svg><!-- cloudSnowMoonAlt -->
-	';
+    </svg><!-- cloudSnowMoonAlt --> ';
 }
 
 function cloudSnowAltFill2() {
@@ -2979,7 +2925,7 @@ function cloudSnowAltFill2() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudSnowAltFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -3014,8 +2960,7 @@ function cloudSnowAltFill2() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!-- cloudSnowMoonAltFill -->
-	';
+    </svg><!-- cloudSnowMoonAltFill --> ';
 }
 
 function cloudFog() {
@@ -3028,7 +2973,7 @@ function cloudFog() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudFog">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-Fog">
@@ -3048,8 +2993,7 @@ function cloudFog() {
                 d="M59.999,45.643c-1.601,0-3.083,0.48-4.333,1.291c-1.232-5.317-5.974-9.291-11.665-9.291c-6.626,0-11.998,5.373-11.998,12h-4c0-8.835,7.163-15.999,15.998-15.999c6.004,0,11.229,3.312,13.965,8.204c0.664-0.113,1.337-0.205,2.033-0.205c5.222,0,9.651,3.342,11.301,8h-4.381C65.535,47.253,62.958,45.643,59.999,45.643z"/>
             </g>
         </g>
-    </svg><!--cloudFog -->
-	';
+    </svg><!--cloudFog --> ';
 }
 
 function cloudFogFill() {
@@ -3062,7 +3006,7 @@ function cloudFogFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudFog">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-Fog">
@@ -3089,8 +3033,7 @@ function cloudFogFill() {
                 d="M66.897,49.376c-1.389-2.369-3.955-3.965-6.899-3.965c-1.602,0-3.082,0.48-4.334,1.291c-1.23-5.316-5.973-9.291-11.664-9.291c-6.615,0-11.977,5.354-11.996,11.965H66.897z"/>
             </g>
         </g>
-    </svg><!--cloudFogFill -->
-	';
+    </svg><!--cloudFogFill --> ';
 }
 
 function cloudFogSun() {
@@ -3103,7 +3046,7 @@ function cloudFogSun() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -3172,8 +3115,7 @@ function cloudFogSun() {
                 d="M59.999,45.643c-1.601,0-3.083,0.48-4.333,1.291c-1.232-5.317-5.974-9.291-11.665-9.291c-6.626,0-11.998,5.373-11.998,12h-4c0-8.835,7.163-15.999,15.998-15.999c6.004,0,11.229,3.312,13.965,8.204c0.664-0.113,1.337-0.205,2.033-0.205c5.222,0,9.651,3.342,11.301,8h-4.381C65.535,47.253,62.958,45.643,59.999,45.643z"/>
             </g>
         </g>
-    </svg><!--cloudFogSun -->
-	';
+    </svg><!--cloudFogSun --> ';
 }
 
 function cloudFogSunFill() {
@@ -3186,7 +3128,7 @@ function cloudFogSunFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -3266,8 +3208,7 @@ function cloudFogSunFill() {
                 d="M66.897,49.376c-1.389-2.369-3.955-3.965-6.899-3.965c-1.602,0-3.082,0.48-4.334,1.291c-1.23-5.316-5.973-9.291-11.664-9.291c-6.615,0-11.977,5.354-11.996,11.965H66.897z"/>
             </g>
         </g>
-    </svg><!-- cloudFogSunFill -->
-	';
+    </svg><!-- cloudFogSunFill --> ';
 }
 
 function cloudFogMoon() {
@@ -3280,7 +3221,7 @@ function cloudFogMoon() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -3314,8 +3255,7 @@ function cloudFogMoon() {
                 d="M59.999,45.643c-1.601,0-3.083,0.48-4.333,1.291c-1.232-5.317-5.974-9.291-11.665-9.291c-6.626,0-11.998,5.373-11.998,12h-4c0-8.835,7.163-15.999,15.998-15.999c6.004,0,11.229,3.312,13.965,8.204c0.664-0.113,1.337-0.205,2.033-0.205c5.222,0,9.651,3.342,11.301,8h-4.381C65.535,47.253,62.958,45.643,59.999,45.643z"/>
             </g>
         </g>
-    </svg><!-- cloudFogMoon -->
-	';
+    </svg><!-- cloudFogMoon --> ';
 }
 
 function cloudFogMoonFill() {
@@ -3328,7 +3268,7 @@ function cloudFogMoonFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -3370,8 +3310,7 @@ function cloudFogMoonFill() {
                 d="M66.897,49.376c-1.389-2.369-3.955-3.965-6.899-3.965c-1.602,0-3.082,0.48-4.334,1.291c-1.23-5.316-5.973-9.291-11.664-9.291c-6.615,0-11.977,5.354-11.996,11.965H66.897z"/>
             </g>
         </g>
-    </svg><!-- cloudFogMoonFill -->
-	';
+    </svg><!-- cloudFogMoonFill --> ';
 }
 
 function cloudFogAlt() {
@@ -3384,7 +3323,7 @@ function cloudFogAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudFogAlt">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-Fog">
@@ -3414,8 +3353,7 @@ function cloudFogAlt() {
                 d="M33.444,61.641h35.48c-0.68,0.758-1.447,1.435-2.299,2H36.263C35.247,63.078,34.309,62.4,33.444,61.641z"/>
             </g>
         </g>
-    </svg><!--cloudFogAlt -->
-	';
+    </svg><!--cloudFogAlt --> ';
 }
 
 function cloudFogAltFill() {
@@ -3428,7 +3366,7 @@ function cloudFogAltFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudFogAltFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-Fog">
@@ -3465,8 +3403,7 @@ function cloudFogAltFill() {
             </g>
 
         </g>
-    </svg><!--cloudFogAltFill -->
-	';
+    </svg><!--cloudFogAltFill --> ';
 }
 
 function cloudFogSunAlt() {
@@ -3479,7 +3416,7 @@ function cloudFogSunAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -3557,8 +3494,7 @@ function cloudFogSunAlt() {
                 d="M33.444,61.641h35.48c-0.68,0.758-1.447,1.435-2.299,2H36.263C35.247,63.078,34.309,62.4,33.444,61.641z"/>
             </g>
         </g>
-    </svg><!--cloudFogSunAlt -->
-	';
+    </svg><!--cloudFogSunAlt --> ';
 }
 
 function cloudFogSunAltFill() {
@@ -3571,7 +3507,7 @@ function cloudFogSunAltFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudSunFillClip">
             <path
@@ -3653,8 +3589,7 @@ function cloudFogSunAltFill() {
                 d="M33.444,61.641h35.48c-0.68,0.758-1.447,1.435-2.299,2H36.263C35.247,63.078,34.309,62.4,33.444,61.641z"/>
             </g>
         </g>
-    </svg><!--cloudFogSunAltFill -->
-	';
+    </svg><!--cloudFogSunAltFill --> ';
 }
 
 function cloudFogMoonAlt() {
@@ -3667,7 +3602,7 @@ function cloudFogMoonAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -3711,8 +3646,7 @@ function cloudFogMoonAlt() {
                 d="M33.444,61.641h35.48c-0.68,0.758-1.447,1.435-2.299,2H36.263C35.247,63.078,34.309,62.4,33.444,61.641z"/>
             </g>
         </g>
-    </svg><!--cloudFogMoonAlt -->
-	';
+    </svg><!--cloudFogMoonAlt --> ';
 }
 
 function cloudFogMoonAltFill() {
@@ -3725,7 +3659,7 @@ function cloudFogMoonAltFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="newMoonCloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,65.638c-2.775,0-12.801,0-15.998,0c-8.836,0-15.998-7.162-15.998-15.998c0-8.835,7.162-15.998,15.998-15.998c6.004,0,11.229,3.312,13.965,8.203c0.664-0.113,1.338-0.205,2.033-0.205c6.627,0,11.998,5.373,11.998,12C71.941,60.265,66.57,65.638,59.943,65.638z"/>
@@ -3777,8 +3711,7 @@ function cloudFogMoonAltFill() {
             </g>
         </g>
         </g>
-    </svg><!--cloudFogMoonAltFill -->
-	';
+    </svg><!--cloudFogMoonAltFill --> ';
 }
 
 function cloudLightning() {
@@ -3791,7 +3724,7 @@ function cloudLightning() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudLightning">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-lightning">
@@ -3805,8 +3738,7 @@ function cloudLightning() {
                 d="M59.999,65.641c-0.28,0-0.649,0-1.062,0l3.584-4.412c3.182-1.057,5.478-4.053,5.478-7.588c0-4.417-3.581-7.998-7.999-7.998c-1.602,0-3.083,0.48-4.333,1.29c-1.231-5.316-5.974-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,12c0,5.446,3.632,10.039,8.604,11.503l-1.349,3.777c-6.52-2.021-11.255-8.098-11.255-15.282c0-8.835,7.163-15.999,15.998-15.999c6.004,0,11.229,3.312,13.965,8.204c0.664-0.114,1.338-0.205,2.033-0.205c6.627,0,11.999,5.371,11.999,11.999C71.999,60.268,66.626,65.641,59.999,65.641z"/>
             </g>
         </g>
-    </svg><!--cloudLightning -->
-	';
+    </svg><!--cloudLightning --> ';
 }
 
 function cloudLightningFill() {
@@ -3819,7 +3751,7 @@ function cloudLightningFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudLightningFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-lightning">
@@ -3837,8 +3769,7 @@ function cloudLightningFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!--cloudLightningFill -->
-	';
+    </svg><!--cloudLightningFill --> ';
 }
 
 function cloudLightningSun() {
@@ -3851,7 +3782,7 @@ function cloudLightningSun() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="cloudFillClip">
             <path d="M15,15v70h70V15H15z M59.943,61.639c-3.02,0-12.381,0-15.999,0c-6.626,0-11.998-5.371-11.998-11.998c0-6.627,5.372-11.999,11.998-11.999c5.691,0,10.434,3.974,11.665,9.29c1.252-0.81,2.733-1.291,4.334-1.291c4.418,0,8,3.582,8,8C67.943,58.057,64.361,61.639,59.943,61.639z"/>
@@ -3913,8 +3844,7 @@ function cloudLightningSun() {
                 d="M59.999,65.641c-0.28,0-0.649,0-1.062,0l3.584-4.412c3.182-1.057,5.478-4.053,5.478-7.588c0-4.417-3.581-7.998-7.999-7.998c-1.602,0-3.083,0.48-4.333,1.29c-1.231-5.316-5.974-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,12c0,5.446,3.632,10.039,8.604,11.503l-1.349,3.777c-6.52-2.021-11.255-8.098-11.255-15.282c0-8.835,7.163-15.999,15.998-15.999c6.004,0,11.229,3.312,13.965,8.204c0.664-0.114,1.338-0.205,2.033-0.205c6.627,0,11.999,5.371,11.999,11.999C71.999,60.268,66.626,65.641,59.999,65.641z"/>
             </g>
         </g>
-    </svg><!--cloudLightningSun -->
-	';
+    </svg><!--cloudLightningSun --> ';
 }
 
 function cloudLightningSunFill() {
@@ -3927,7 +3857,7 @@ function cloudLightningSunFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
 
         <g class="climacon_iconWrap climacon_iconWrap-cloudLightning">
@@ -3989,8 +3919,7 @@ function cloudLightningSunFill() {
             </g>
 
         </g>
-    </svg><!--cloudLightningSunFill -->
-	';
+    </svg><!--cloudLightningSunFill --> ';
 }
 
 function cloudLightningMoon() {
@@ -4003,7 +3932,7 @@ function cloudLightningMoon() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="moonCloudFillClip">
             <path
@@ -4032,8 +3961,7 @@ function cloudLightningMoon() {
                 d="M59.999,65.641c-0.28,0-0.649,0-1.062,0l3.584-4.412c3.182-1.057,5.478-4.053,5.478-7.588c0-4.417-3.581-7.998-7.999-7.998c-1.602,0-3.083,0.48-4.333,1.29c-1.231-5.316-5.974-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,12c0,5.446,3.632,10.039,8.604,11.503l-1.349,3.777c-6.52-2.021-11.255-8.098-11.255-15.282c0-8.835,7.163-15.999,15.998-15.999c6.004,0,11.229,3.312,13.965,8.204c0.664-0.114,1.338-0.205,2.033-0.205c6.627,0,11.999,5.371,11.999,11.999C71.999,60.268,66.626,65.641,59.999,65.641z"/>
             </g>
         </g>
-    </svg><!--cloudLightningMoon -->
-	';
+    </svg><!--cloudLightningMoon --> ';
 }
 
 function cloudLightningMoonFill() {
@@ -4046,7 +3974,7 @@ function cloudLightningMoonFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-cloudLightningMoonFill">
             <g class="climacon_wrapperComponent climacon_wrapperComponent-moon climacon_componentWrap-moon_cloud">
@@ -4073,8 +4001,7 @@ function cloudLightningMoonFill() {
                 d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"/>
             </g>
         </g>
-    </svg><!--cloudLightningMoonFill -->
-	';
+    </svg><!--cloudLightningMoonFill --> ';
 }
 
 /*function sunrise() {
@@ -4087,7 +4014,7 @@ function cloudLightningMoonFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-sunrise">
             <g class="climacon_componentWrap climacon_componentWrap-sunrise">
@@ -4133,8 +4060,7 @@ function cloudLightningMoonFill() {
                 </g>
             </g>
         </g>
-    </svg><!-- sunrise -->
-	';
+    </svg><!-- sunrise --> ';
 }
 */
 
@@ -4148,7 +4074,7 @@ function sunriseFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-sunriseFill">
             <g class="climacon_componentWrap climacon_componentWrap-sunrise">
@@ -4202,8 +4128,7 @@ function sunriseFill() {
                 </g>
             </g>
         </g>
-    </svg><!-- sunriseFill -->
-	';
+    </svg><!-- sunriseFill --> ';
 }
 
 /*
@@ -4217,7 +4142,7 @@ function sunset() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-sunset">
             <g class="climacon_componentWrap climacon_componentWrap-sunset">
@@ -4263,8 +4188,7 @@ function sunset() {
                 </g>
             </g>
         </g>
-    </svg><!-- sunset -->
-	';
+    </svg><!-- sunset --> ';
 }
 */
 
@@ -4278,7 +4202,7 @@ function sunsetFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <g class="climacon_iconWrap climacon_iconWrap-sunsetFill">
             <g class="climacon_componentWrap climacon_componentWrap-sunsetFill">
@@ -4333,8 +4257,7 @@ function sunsetFill() {
                 </g>
             </g>
         </g>
-    </svg><!-- sunsetFill-->
-	';
+    </svg><!-- sunsetFill--> ';
 }
 
 function sunriseAlt() {
@@ -4347,7 +4270,7 @@ function sunriseAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="sunriseClip">
             <rect
@@ -4397,8 +4320,7 @@ function sunriseAlt() {
                 />
             </g>
         </g>
-    </svg><!-- sunriseAlt -->
-	';
+    </svg><!-- sunriseAlt --> ';
 }
 
 function sunriseAltFill() {
@@ -4411,7 +4333,7 @@ function sunriseAltFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="sunriseFillClip">
             <rect x="15" y="15" width="70" height="48.999"/>
@@ -4466,8 +4388,7 @@ function sunriseAltFill() {
                 />
             </g>
         </g>
-    </svg><!-- sunriseAltFill -->
-	';
+    </svg><!-- sunriseAltFill --> ';
 }
 
 function sunsetAlt() {
@@ -4480,7 +4401,7 @@ function sunsetAlt() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="sunriseClip">
             <rect
@@ -4530,8 +4451,7 @@ function sunsetAlt() {
                 />
             </g>
         </g>
-    </svg><!-- sunsetAlt -->
-	';
+    </svg><!-- sunsetAlt --> ';
 }
 
 function sunsetAltFill() {
@@ -4544,7 +4464,7 @@ function sunsetAltFill() {
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        viewBox="15 15 70 70"
+        viewBox="15 10 80 65"
         xml:space="preserve">
         <clipPath id="sunriseFillClip">
             <rect x="15" y="15" width="70" height="48.999"/>
@@ -4598,8 +4518,7 @@ function sunsetAltFill() {
                 />
             </g>
         </g>
-    </svg><!-- sunsetAltFill-->
-	';
+    </svg><!-- sunsetAltFill--> ';
 }
 
 function moonrise($color) {
@@ -4620,7 +4539,7 @@ function moonset($color) {
 
 function sunrise($color) {
 	return
-'<svg class="climacon climacon_sunrise" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+'<svg class="climacon climacon_sunrise" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 512 512" style="height:32px;fill:' . (!empty($color) ? $color : 'currentColor') . ';" xml:space="preserve">
 <g>
 	<path d="M0,316c0-5.2,2.1-10,6.3-14.4c4.6-4,9.6-6.1,14.6-6.1h48.7c5.6,0,10.2,2.1,14,6.1s5.6,9,5.6,14.4c0,6.1-1.9,11.1-5.6,15
@@ -4647,7 +4566,7 @@ function sunrise($color) {
 
 function sunset($color) {
 	return
-'<svg class="climacon climacon_sunset" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+'<svg class="climacon climacon_sunset" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 512 512" color="#fff" style="height:32px;fill:' . (!empty($color) ? $color : 'currentColor') . ';" xml:space="preserve">
 <g>
 	<path d="M0,285.8c0-5.9,2.1-10.6,6.3-14.4c3.6-3.8,8.5-5.5,14.4-5.5h48.8c5.7,0,10.3,1.9,14.1,5.7c3.6,3.8,5.5,8.4,5.5,14.1

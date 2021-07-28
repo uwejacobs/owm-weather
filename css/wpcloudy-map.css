@@ -1,43 +1,43 @@
-div[id^='wpc-weather'] div.olMap {
+.wpc-map div.olMap {
 	z-index: 0;
 	padding: 0 !important;
 	margin: 0 !important;
 	cursor: default;
 }
 
-div[id^='wpc-weather'] div.olMapViewport {
+.wpc-map div.olMapViewport {
 	text-align: left;
 	-ms-touch-action: none;
 }
 
-div[id^='wpc-weather'] div.olLayerDiv {
+.wpc-map div.olLayerDiv {
 	-moz-user-select: none;
 	-khtml-user-select: none;
 }
 
-div[id^='wpc-weather'] .olLayerGoogleCopyright {
+.wpc-map .olLayerGoogleCopyright {
 	left: 2px;
 	bottom: 2px;
 }
 
-div[id^='wpc-weather'] .olLayerGoogleV3.olLayerGoogleCopyright {
+.wpc-map .olLayerGoogleV3.olLayerGoogleCopyright {
 	right: auto !important;
 }
 
-div[id^='wpc-weather'] .olLayerGooglePoweredBy {
+.wpc-map .olLayerGooglePoweredBy {
 	left: 2px;
 	bottom: 15px;
 }
 
-div[id^='wpc-weather'] .olLayerGoogleV3.olLayerGooglePoweredBy {
+.wpc-map .olLayerGoogleV3.olLayerGooglePoweredBy {
 	bottom: 15px !important;
 }
 
-div[id^='wpc-weather'] .olForeignContainer {
+.wpc-map .olForeignContainer {
 	opacity: 1 !important;
 }
 
-div[id^='wpc-weather'] .olControlAttribution {
+.wpc-map .olControlAttribution {
 	font-size: smaller;
 	right: 3px;
 	bottom: 0;
@@ -45,7 +45,7 @@ div[id^='wpc-weather'] .olControlAttribution {
 	display: block;
 }
 
-div[id^='wpc-weather'] .olControlScale {
+.wpc-map .olControlScale {
 	right: 3px;
 	bottom: 3em;
 	display: block;
@@ -53,7 +53,7 @@ div[id^='wpc-weather'] .olControlScale {
 	font-size: smaller;
 }
 
-div[id^='wpc-weather'] .olControlScaleLine {
+.wpc-map .olControlScaleLine {
 	display: block;
 	position: absolute;
 	left: 10px;
@@ -61,20 +61,20 @@ div[id^='wpc-weather'] .olControlScaleLine {
 	font-size: xx-small;
 }
 
-div[id^='wpc-weather'] .olControlScaleLineBottom {
+.wpc-map .olControlScaleLineBottom {
 	border: solid 2px black;
 	border-bottom: 0;
 	margin-top: -2px;
 	text-align: center;
 }
 
-div[id^='wpc-weather'] .olControlScaleLineTop {
+.wpc-map .olControlScaleLineTop {
 	border: solid 2px black;
 	border-top: 0;
 	text-align: center;
 }
 
-div[id^='wpc-weather'] .olControlPermalink {
+.wpc-map .olControlPermalink {
 	right: 3px;
 	bottom: 1.5em;
 	display: block;
@@ -82,7 +82,7 @@ div[id^='wpc-weather'] .olControlPermalink {
 	font-size: smaller;
 }
 
-div[id^='wpc-weather'] div.olControlMousePosition {
+.wpc-map div.olControlMousePosition {
 	bottom: 0;
 	right: 3px;
 	display: block;
@@ -91,19 +91,19 @@ div[id^='wpc-weather'] div.olControlMousePosition {
 	font-size: smaller;
 }
 
-div[id^='wpc-weather'] .olControlOverviewMapContainer {
+.wpc-map .olControlOverviewMapContainer {
 	position: absolute;
 	bottom: 0;
 	right: 0;
 }
 
-div[id^='wpc-weather'] .olControlOverviewMapElement {
+.wpc-map .olControlOverviewMapElement {
 	padding: 10px 18px 10px 10px;
 	background-color: #00008b;
 	-moz-border-radius: 1em 0 0 0;
 }
 
-div[id^='wpc-weather'] .olControlOverviewMapMinimizeButton,div[id^='wpc-weather'] .olControlOverviewMapMaximizeButton {
+.wpc-map .olControlOverviewMapMinimizeButton,.wpc-map .olControlOverviewMapMaximizeButton {
 	height: 18px;
 	width: 18px;
 	right: 0;
@@ -111,14 +111,14 @@ div[id^='wpc-weather'] .olControlOverviewMapMinimizeButton,div[id^='wpc-weather'
 	cursor: pointer;
 }
 
-div[id^='wpc-weather'] .olControlOverviewMapExtentRectangle {
+.wpc-map .olControlOverviewMapExtentRectangle {
 	overflow: hidden;
 	background-image: url("img/blank.gif");
 	cursor: move;
 	border: 2px dotted red;
 }
 
-div[id^='wpc-weather'] .olControlOverviewMapRectReplacement {
+.wpc-map .olControlOverviewMapRectReplacement {
 	overflow: hidden;
 	cursor: move;
 	background-image: url("img/overview_replacement.gif");
@@ -126,14 +126,14 @@ div[id^='wpc-weather'] .olControlOverviewMapRectReplacement {
 	background-position: center;
 }
 
-div[id^='wpc-weather'] .olLayerGeoRSSDescription {
+.wpc-map .olLayerGeoRSSDescription {
 	float: left;
 	width: 100%;
 	overflow: auto;
 	font-size: 1.0;
 }
 
-div[id^='wpc-weather'] .olLayerGeoRSSClose {
+.wpc-map .olLayerGeoRSSClose {
 	float: right;
 	color: gray;
 	font-size: 1.2em;
@@ -141,52 +141,52 @@ div[id^='wpc-weather'] .olLayerGeoRSSClose {
 	font-family: sans-serif;
 }
 
-div[id^='wpc-weather'] .olLayerGeoRSSTitle {
+.wpc-map .olLayerGeoRSSTitle {
 	float: left;
 	font-size: 1.2em;
 }
 
-div[id^='wpc-weather'] .olPopupContent {
+.wpc-map .olPopupContent {
 	padding: 5px;
 	overflow: auto;
 }
 
-div[id^='wpc-weather'] .olControlNavigationHistory {
+.wpc-map .olControlNavigationHistory {
 	background-image: url("img/navigation_history.png");
 	background-repeat: no-repeat;
 	width: 24px;
 	height: 24px;
 }
 
-div[id^='wpc-weather'] .olControlNavigationHistoryPreviousItemActive {
+.wpc-map .olControlNavigationHistoryPreviousItemActive {
 	background-position: 0 0;
 }
 
-div[id^='wpc-weather'] .olControlNavigationHistoryPreviousItemInactive {
+.wpc-map .olControlNavigationHistoryPreviousItemInactive {
 	background-position: 0 -24px;
 }
 
-div[id^='wpc-weather'] .olControlNavigationHistoryNextItemActive {
+.wpc-map .olControlNavigationHistoryNextItemActive {
 	background-position: -24px 0;
 }
 
-div[id^='wpc-weather'] .olControlNavigationHistoryNextItemInactive {
+.wpc-map .olControlNavigationHistoryNextItemInactive {
 	background-position: -24px -24px;
 }
 
-div[id^='wpc-weather'] div.olControlSaveFeaturesItemActive {
+.wpc-map div.olControlSaveFeaturesItemActive {
 	background-image: url(img/save_features_on.png);
 	background-repeat: no-repeat;
 	background-position: 0 1px;
 }
 
-div[id^='wpc-weather'] div.olControlSaveFeaturesItemInactive {
+.wpc-map div.olControlSaveFeaturesItemInactive {
 	background-image: url(img/save_features_off.png);
 	background-repeat: no-repeat;
 	background-position: 0 1px;
 }
 
-div[id^='wpc-weather'] .olHandlerBoxZoomBox {
+.wpc-map .olHandlerBoxZoomBox {
 	border: 2px solid red;
 	position: absolute;
 	background-color: white;
@@ -195,7 +195,7 @@ div[id^='wpc-weather'] .olHandlerBoxZoomBox {
 	filter: alpha(opacity=50);
 }
 
-div[id^='wpc-weather'] .olHandlerBoxSelectFeature {
+.wpc-map .olHandlerBoxSelectFeature {
 	border: 2px solid blue;
 	position: absolute;
 	background-color: white;
@@ -204,12 +204,12 @@ div[id^='wpc-weather'] .olHandlerBoxSelectFeature {
 	filter: alpha(opacity=50);
 }
 
-div[id^='wpc-weather'] .olControlPanPanel {
+.wpc-map .olControlPanPanel {
 	top: 10px;
 	left: 5px;
 }
 
-div[id^='wpc-weather'] .olControlPanPanel div {
+.wpc-map .olControlPanPanel div {
 	background-image: url(img/pan-panel.png);
 	height: 18px;
 	width: 18px;
@@ -217,37 +217,37 @@ div[id^='wpc-weather'] .olControlPanPanel div {
 	position: absolute;
 }
 
-div[id^='wpc-weather'] .olControlPanPanel .olControlPanNorthItemInactive {
+.wpc-map .olControlPanPanel .olControlPanNorthItemInactive {
 	top: 0;
 	left: 9px;
 	background-position: 0 0;
 }
 
-div[id^='wpc-weather'] .olControlPanPanel .olControlPanSouthItemInactive {
+.wpc-map .olControlPanPanel .olControlPanSouthItemInactive {
 	top: 36px;
 	left: 9px;
 	background-position: 18px 0;
 }
 
-div[id^='wpc-weather'] .olControlPanPanel .olControlPanWestItemInactive {
+.wpc-map .olControlPanPanel .olControlPanWestItemInactive {
 	position: absolute;
 	top: 18px;
 	left: 0;
 	background-position: 0 18px;
 }
 
-div[id^='wpc-weather'] .olControlPanPanel .olControlPanEastItemInactive {
+.wpc-map .olControlPanPanel .olControlPanEastItemInactive {
 	top: 18px;
 	left: 18px;
 	background-position: 18px 18px;
 }
 
-div[id^='wpc-weather'] .olControlZoomPanel {
+.wpc-map .olControlZoomPanel {
 	top: 71px;
 	left: 14px;
 }
 
-div[id^='wpc-weather'] .olControlZoomPanel div {
+.wpc-map .olControlZoomPanel div {
 	background-image: url(img/zoom-panel.png);
 	position: absolute;
 	height: 18px;
@@ -255,70 +255,70 @@ div[id^='wpc-weather'] .olControlZoomPanel div {
 	cursor: pointer;
 }
 
-div[id^='wpc-weather'] .olControlZoomPanel .olControlZoomInItemInactive {
+.wpc-map .olControlZoomPanel .olControlZoomInItemInactive {
 	top: 0;
 	left: 0;
 	background-position: 0 0;
 }
 
-div[id^='wpc-weather'] .olControlZoomPanel .olControlZoomToMaxExtentItemInactive {
+.wpc-map .olControlZoomPanel .olControlZoomToMaxExtentItemInactive {
 	top: 18px;
 	left: 0;
 	background-position: 0 -18px;
 }
 
-div[id^='wpc-weather'] .olControlZoomPanel .olControlZoomOutItemInactive {
+.wpc-map .olControlZoomPanel .olControlZoomOutItemInactive {
 	top: 36px;
 	left: 0;
 	background-position: 0 18px;
 }
 
-div[id^='wpc-weather'] .olControlPanZoomBar div {
+.wpc-map .olControlPanZoomBar div {
 	font-size: 1px;
 }
 
-div[id^='wpc-weather'] .olPopupCloseBox {
+.wpc-map .olPopupCloseBox {
 	background: url("img/close.gif") no-repeat;
 	cursor: pointer;
 }
 
-div[id^='wpc-weather'] .olFramedCloudPopupContent {
+.wpc-map .olFramedCloudPopupContent {
 	padding: 5px;
 	overflow: auto;
 }
 
-div[id^='wpc-weather'] .olControlNoSelect {
+.wpc-map .olControlNoSelect {
 	-moz-user-select: none;
 	-khtml-user-select: none;
 }
 
-div[id^='wpc-weather'] .olImageLoadError {
+.wpc-map .olImageLoadError {
 	background-color: pink;
 	opacity: .5;
 	filter: alpha(opacity=50);
 }
 
-div[id^='wpc-weather'] .olCursorWait {
+.wpc-map .olCursorWait {
 	cursor: wait;
 }
 
-div[id^='wpc-weather'] .olDragDown {
+.wpc-map .olDragDown {
 	cursor: move;
 }
 
-div[id^='wpc-weather'] .olDrawBox {
+.wpc-map .olDrawBox {
 	cursor: crosshair;
 }
 
-div[id^='wpc-weather'] .olControlDragFeatureOver {
+.wpc-map .olControlDragFeatureOver {
 	cursor: move;
 }
 
-div[id^='wpc-weather'] .olControlDragFeatureActive.olControlDragFeatureOver.olDragDown {
+.wpc-map .olControlDragFeatureActive.olControlDragFeatureOver.olDragDown {
 	cursor: -moz-grabbing;
 }
 
-div[id^='wpc-weather'] .olControlLayerSwitcher {
+.wpc-map .olControlLayerSwitcher {
 	position: absolute;
 	top: 25px;
 	right: 0;
@@ -333,7 +333,7 @@ div[id^='wpc-weather'] .olControlLayerSwitcher {
 	background-color: transparent;
 }
 
-div[id^='wpc-weather'] .olControlLayerSwitcher .layersDiv {
+.wpc-map .olControlLayerSwitcher .layersDiv {
 	padding-top: 5px;
 	padding-left: 10px;
 	padding-bottom: 5px;
@@ -341,17 +341,17 @@ div[id^='wpc-weather'] .olControlLayerSwitcher .layersDiv {
 	background-color: darkblue;
 }
 
-div[id^='wpc-weather'] .olControlLayerSwitcher .layersDiv .baseLbl,div[id^='wpc-weather'] .olControlLayerSwitcher .layersDiv .dataLbl {
+.wpc-map .olControlLayerSwitcher .layersDiv .baseLbl,.wpc-map .olControlLayerSwitcher .layersDiv .dataLbl {
 	margin-top: 3px;
 	margin-left: 3px;
 	margin-bottom: 3px;
 }
 
-div[id^='wpc-weather'] .olControlLayerSwitcher .layersDiv .baseLayersDiv,div[id^='wpc-weather'] .olControlLayerSwitcher .layersDiv .dataLayersDiv {
+.wpc-map .olControlLayerSwitcher .layersDiv .baseLayersDiv,.wpc-map .olControlLayerSwitcher .layersDiv .dataLayersDiv {
 	padding-left: 10px;
 }
 
-div[id^='wpc-weather'] .olControlLayerSwitcher .maximizeDiv,div[id^='wpc-weather'] .olControlLayerSwitcher .minimizeDiv {
+.wpc-map .olControlLayerSwitcher .maximizeDiv,.wpc-map .olControlLayerSwitcher .minimizeDiv {
 	width: 18px;
 	height: 18px;
 	top: 5px;
@@ -359,35 +359,35 @@ div[id^='wpc-weather'] .olControlLayerSwitcher .maximizeDiv,div[id^='wpc-weather
 	cursor: pointer;
 }
 
-div[id^='wpc-weather'] .olBingAttribution {
+.wpc-map .olBingAttribution {
 	color: #DDD;
 }
 
-div[id^='wpc-weather'] .olBingAttribution.road {
+.wpc-map .olBingAttribution.road {
 	color: #333;
 }
 
-div[id^='wpc-weather'] .olGoogleAttribution.hybrid,.olGoogleAttribution.satellite {
+.wpc-map .olGoogleAttribution.hybrid,.olGoogleAttribution.satellite {
 	color: #EEE;
 }
 
-div[id^='wpc-weather'] .olGoogleAttribution {
+.wpc-map .olGoogleAttribution {
 	color: #333;
 }
 
-div[id^='wpc-weather'] span.olGoogleAttribution a {
+.wpc-map span.olGoogleAttribution a {
 	color: #77C;
 }
 
-div[id^='wpc-weather'] span.olGoogleAttribution.hybrid a,span.olGoogleAttribution.satellite a {
+.wpc-map span.olGoogleAttribution.hybrid a,span.olGoogleAttribution.satellite a {
 	color: #EEE;
 }
 
-div[id^='wpc-weather'] .olControlNavToolbar,div[id^='wpc-weather'] .olControlEditingToolbar {
+.wpc-map .olControlNavToolbar,.wpc-map .olControlEditingToolbar {
 	margin: 5px 5px 0 0;
 }
 
-div[id^='wpc-weather'] .olControlNavToolbar div,div[id^='wpc-weather'] .olControlEditingToolbar div {
+.wpc-map .olControlNavToolbar div,.wpc-map .olControlEditingToolbar div {
 	background-image: url("img/editing_tool_bar.png");
 	background-repeat: no-repeat;
 	margin: 0 0 5px 5px;
@@ -396,61 +396,61 @@ div[id^='wpc-weather'] .olControlNavToolbar div,div[id^='wpc-weather'] .olContro
 	cursor: pointer;
 }
 
-div[id^='wpc-weather'] .olControlEditingToolbar {
+.wpc-map .olControlEditingToolbar {
 	right: 0;
 	top: 0;
 }
 
-div[id^='wpc-weather'] .olControlNavToolbar {
+.wpc-map .olControlNavToolbar {
 	top: 295px;
 	left: 9px;
 }
 
-div[id^='wpc-weather'] .olControlEditingToolbar div {
+.wpc-map .olControlEditingToolbar div {
 	float: right;
 }
 
-div[id^='wpc-weather'] .olControlNavToolbar .olControlNavigationItemInactive,div[id^='wpc-weather'] .olControlEditingToolbar .olControlNavigationItemInactive {
+.wpc-map .olControlNavToolbar .olControlNavigationItemInactive,.wpc-map .olControlEditingToolbar .olControlNavigationItemInactive {
 	background-position: -103px -1px;
 }
 
-div[id^='wpc-weather'] .olControlNavToolbar .olControlNavigationItemActive,div[id^='wpc-weather'] .olControlEditingToolbar .olControlNavigationItemActive {
+.wpc-map .olControlNavToolbar .olControlNavigationItemActive,.wpc-map .olControlEditingToolbar .olControlNavigationItemActive {
 	background-position: -103px -24px;
 }
 
-div[id^='wpc-weather'] .olControlNavToolbar .olControlZoomBoxItemInactive {
+.wpc-map .olControlNavToolbar .olControlZoomBoxItemInactive {
 	background-position: -128px -1px;
 }
 
-div[id^='wpc-weather'] .olControlNavToolbar .olControlZoomBoxItemActive {
+.wpc-map .olControlNavToolbar .olControlZoomBoxItemActive {
 	background-position: -128px -24px;
 }
 
-div[id^='wpc-weather'] .olControlEditingToolbar .olControlDrawFeaturePointItemInactive {
+.wpc-map .olControlEditingToolbar .olControlDrawFeaturePointItemInactive {
 	background-position: -77px -1px;
 }
 
-div[id^='wpc-weather'] .olControlEditingToolbar .olControlDrawFeaturePointItemActive {
+.wpc-map .olControlEditingToolbar .olControlDrawFeaturePointItemActive {
 	background-position: -77px -24px;
 }
 
-div[id^='wpc-weather'] .olControlEditingToolbar .olControlDrawFeaturePathItemInactive {
+.wpc-map .olControlEditingToolbar .olControlDrawFeaturePathItemInactive {
 	background-position: -51px -1px;
 }
 
-div[id^='wpc-weather'] .olControlEditingToolbar .olControlDrawFeaturePathItemActive {
+.wpc-map .olControlEditingToolbar .olControlDrawFeaturePathItemActive {
 	background-position: -51px -24px;
 }
 
-div[id^='wpc-weather'] .olControlEditingToolbar .olControlDrawFeaturePolygonItemInactive {
+.wpc-map .olControlEditingToolbar .olControlDrawFeaturePolygonItemInactive {
 	background-position: -26px -1px;
 }
 
-div[id^='wpc-weather'] .olControlEditingToolbar .olControlDrawFeaturePolygonItemActive {
+.wpc-map .olControlEditingToolbar .olControlDrawFeaturePolygonItemActive {
 	background-position: -26px -24px;
 }
 
-div[id^='wpc-weather'] div.olControlZoom {
+.wpc-map div.olControlZoom {
 	position: absolute;
 	top: 8px;
 	left: 8px;
@@ -459,7 +459,7 @@ div[id^='wpc-weather'] div.olControlZoom {
 	padding: 2px;
 }
 
-div[id^='wpc-weather'] div.olControlZoom a {
+.wpc-map div.olControlZoom a {
 	display: block;
 	margin: 1px;
 	padding: 0;
@@ -477,34 +477,34 @@ div[id^='wpc-weather'] div.olControlZoom a {
 	filter: alpha(opacity=80);
 }
 
-div[id^='wpc-weather'] div.olControlZoom a:hover {
+.wpc-map div.olControlZoom a:hover {
 	background: #130085;
 	background: rgba(0,60,136,0.7);
 	filter: alpha(opacity=100);
 }
 
 @media only screen and (max-width:600px) {
-	div[id^='wpc-weather'] div.olControlZoom a:hover {
+	.wpc-map div.olControlZoom a:hover {
 		background: rgba(0,60,136,0.5);
 	}
 }
 
-div[id^='wpc-weather'] a.olControlZoomIn {
+.wpc-map a.olControlZoomIn {
 	border-radius: 4px 4px 0 0;
 }
 
-div[id^='wpc-weather'] a.olControlZoomOut {
+.wpc-map a.olControlZoomOut {
 	border-radius: 0 0 4px 4px;
 }
 
-div[id^='wpc-weather'] .olLayerGrid .olTileImage {
+.wpc-map .olLayerGrid .olTileImage {
 	-webkit-transition: opacity .2s linear;
 	-moz-transition: opacity .2s linear;
 	-o-transition: opacity .2s linear;
 	transition: opacity .2s linear;
 }
 
-div[id^='wpc-weather'] .olTileImage {
+.wpc-map .olTileImage {
 	-webkit-transform: translateZ(0);
 	-moz-transform: translateZ(0);
 	-o-transform: translateZ(0);
@@ -520,10 +520,10 @@ div[id^='wpc-weather'] .olTileImage {
 	perspective: 1000;
 }
 
-div[id^='wpc-weather'] .olTileReplacing {
+.wpc-map .olTileReplacing {
 	display: none;
 }
 
-div[id^='wpc-weather'] img.olTileImage {
+.wpc-map img.olTileImage {
 	max-width: none;
 }

@@ -28,8 +28,8 @@ div[class^="wpc-flexslider"] {
 		<!-- Current weather -->
 		<?php echo $wpc_html["now"]["start"]; ?>
 			<?php echo $wpc_html["now"]["location_name"]; ?>
-			<?php echo $wpc_html["now"]["time_symbol"]; ?>
-			<?php echo $wpc_html["now"]["time_temperature"]; ?>
+			<?php echo $wpc_html["now"]["symbol"]; ?>
+			<?php echo $wpc_html["now"]["temperature"]; ?>
 			<?php echo $wpc_html["now"]["weather_description"]; ?>
 		<?php echo $wpc_html["now"]["end"]; ?>
 	</div>

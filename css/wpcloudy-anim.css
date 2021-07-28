@@ -1,72 +1,72 @@
-div[id^='wpc-weather'] svg {
+.wpc-main-symbol svg {
 	float: none;
 	shape-rendering: geometric-precision;
 }
 
 @media only screen and (min-width:480px) {
-	div[id^='wpc-weather'] svg {
+	.wpc-main-symbol svg {
 		width: 50%;
 	}
 }
 
 @media only screen and (min-width:600px) {
-	div[id^='wpc-weather'] svg {
+	.wpc-main-symbol svg {
 		width: 50%;
 	}
 }
 
 @media only screen and (min-width:768px) {
-	div[id^='wpc-weather'] svg {
+	.wpc-main-symbol svg {
 		width: 33.333%;
 	}
 }
 
 @media only screen and (min-width:992px) {
-	div[id^='wpc-weather'] svg {
+	.wpc-main-symbol svg {
 		width: 25%;
 	}
 }
 
 @media only screen and (max-height:319px) {
-	div[id^='wpc-weather'] svg {
+	.wpc-main-symbol svg {
 		height: 29%;
 	}
 }
 
 @media only screen and (min-height:320px) {
-	div[id^='wpc-weather'] svg {
+	.wpc-main-symbol svg {
 		height: 22%;
 	}
 }
 
 @media only screen and (min-height:768px) {
-	div[id^='wpc-weather'] svg {
+	.wpc-main-symbol svg {
 		height: 30%;
 	}
 }
 
 @media only screen and (min-height:1000px) {
-	div[id^='wpc-weather'] svg {
+	.wpc-main-symbol svg {
 		height: 30%;
 	}
 }
 
 @media only screen and (min-height:1400px) {
-	div[id^='wpc-weather'] svg {
+	.wpc-main-symbol svg {
 		height: 22%;
 	}
 }
 
-div[id^='wpc-weather'] svg,div[id^='wpc-weather'] svg * {
+.wpc-main-symbol svg,.wpc-main-symbol svg * {
 	transform-box: fill-box;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke {
+.wpc-main-symbol .climacon_component-stroke {
 	-webkit-text-stroke-width: 0;
 	stroke-width: 0;
 }
 
-div[id^='wpc-weather'] .climacon_component-fill {
+.wpc-main-symbol .climacon_component-fill {
 	-webkit-text-fill-color: #aedef4;
 	-webkit-text-stroke-color: white;
 	-webkit-text-stroke-width: 0;
@@ -75,7 +75,7 @@ div[id^='wpc-weather'] .climacon_component-fill {
 	stroke: white;
 }
 
-div[id^='wpc-weather'] g,div[id^='wpc-weather'] path,div[id^='wpc-weather'] circle,div[id^='wpc-weather'] rect {
+.wpc-main-symbol g,.wpc-main-symbol path,.wpc-main-symbol circle,.wpc-main-symbol rect {
 	-webkit-transform-origin: 50% 50%;
 	-moz-transform-origin: 50% 50%;
 	-o-transform-origin: 50% 50%;
@@ -99,14 +99,14 @@ div[id^='wpc-weather'] g,div[id^='wpc-weather'] path,div[id^='wpc-weather'] circ
 	animation-duration: 12s;
 }
 
-div[id^='wpc-weather'] .climacon_componentWrap-sun {
+.wpc-main-symbol .climacon_componentWrap-sun {
 	-webkit-animation-name: rotate;
 	-moz-animation-name: rotate;
 	-o-animation-name: rotate;
 	animation-name: rotate;
 }
 
-div[id^='wpc-weather'] .climacon_iconWrap-sun .climacon_component-stroke_sunSpoke,div[id^='wpc-weather'] .climacon_iconWrap-sunFill .climacon_component-stroke_sunSpoke {
+.wpc-main-symbol .climacon_iconWrap-sun .climacon_component-stroke_sunSpoke,.wpc-main-symbol .climacon_iconWrap-sunFill .climacon_component-stroke_sunSpoke {
 	fill-opacity: 1;
 	-webkit-animation-name: scale;
 	-moz-animation-name: scale;
@@ -122,21 +122,21 @@ div[id^='wpc-weather'] .climacon_iconWrap-sun .climacon_component-stroke_sunSpok
 	animation-duration: 3s;
 }
 
-div[id^='wpc-weather'] .climacon_iconWrap .climacon_component-stroke_sunSpoke:nth-child(even) {
+.wpc-main-symbol .climacon_iconWrap .climacon_component-stroke_sunSpoke:nth-child(even) {
 	-webkit-animation-delay: 3s;
 	-moz-animation-delay: 3s;
 	-o-animation-delay: 3s;
 	animation-delay: 3s;
 }
 
-div[id^='wpc-weather'] .climacon_componentWrap-moon {
+.wpc-main-symbol .climacon_componentWrap-moon {
 	-webkit-animation-name: wobble;
 	-moz-animation-name: wobble;
 	-o-animation-name: wobble;
 	animation-name: wobble;
 }
 
-div[id^='wpc-weather'] .climacon_componentWrap-snowflake {
+.wpc-main-symbol .climacon_componentWrap-snowflake {
 	-webkit-animation-name: rotate;
 	-moz-animation-name: rotate;
 	-o-animation-name: rotate;
@@ -151,7 +151,7 @@ div[id^='wpc-weather'] .climacon_componentWrap-snowflake {
 	animation-direction: normal;
 }
 
-div[id^='wpc-weather'] .climacon_componentWrap-wind {
+.wpc-main-symbol .climacon_componentWrap-wind {
 	-webkit-animation-name: translateWind;
 	-moz-animation-name: translateWind;
 	-o-animation-name: translateWind;
@@ -170,7 +170,7 @@ div[id^='wpc-weather'] .climacon_componentWrap-wind {
 	animation-timing-function: ease-in-out;
 }
 
-div[id^='wpc-weather'] .climacon_componentWrap-sun_cloud {
+.wpc-main-symbol .climacon_componentWrap-sun_cloud {
 	-webkit-animation-name: behindCloudMove,rotate;
 	-moz-animation-name: behindCloudMove,rotate;
 	-o-animation-name: behindCloudMove,rotate;
@@ -193,7 +193,7 @@ div[id^='wpc-weather'] .climacon_componentWrap-sun_cloud {
 	animation-duration: 3s,12s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_sunSpoke {
+.wpc-main-symbol .climacon_component-stroke_sunSpoke {
 	fill-opacity: 0;
 	-webkit-animation-name: fillOpacity,scale;
 	-moz-animation-name: fillOpacity,scale;
@@ -221,14 +221,14 @@ div[id^='wpc-weather'] .climacon_component-stroke_sunSpoke {
 	animation-fill-mode: both;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_sunSpoke:nth-child(even) {
+.wpc-main-symbol .climacon_component-stroke_sunSpoke:nth-child(even) {
 	-webkit-animation-delay: 3s;
 	-moz-animation-delay: 3s;
 	-o-animation-delay: 3s;
 	animation-delay: 3s;
 }
 
-div[id^='wpc-weather'] .climacon_componentWrap-moon_cloud {
+.wpc-main-symbol .climacon_componentWrap-moon_cloud {
 	-webkit-animation-name: behindCloudMove,wobble;
 	-moz-animation-name: behindCloudMove,wobble;
 	-o-animation-name: behindCloudMove,wobble;
@@ -251,7 +251,7 @@ div[id^='wpc-weather'] .climacon_componentWrap-moon_cloud {
 	animation-duration: 3s,12s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_drizzle {
+.wpc-main-symbol .climacon_component-stroke_drizzle {
 	fill-opacity: 0;
 	-webkit-animation-name: drizzleFall,fillOpacity2;
 	-moz-animation-name: drizzleFall,fillOpacity2;
@@ -267,28 +267,28 @@ div[id^='wpc-weather'] .climacon_component-stroke_drizzle {
 	animation-duration: 1s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_drizzle:nth-child(1) {
+.wpc-main-symbol .climacon_component-stroke_drizzle:nth-child(1) {
 	-webkit-animation-delay: 0;
 	-moz-animation-delay: 0;
 	-o-animation-delay: 0;
 	animation-delay: 0;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_drizzle:nth-child(2) {
+.wpc-main-symbol .climacon_component-stroke_drizzle:nth-child(2) {
 	-webkit-animation-delay: .6s;
 	-moz-animation-delay: .6s;
 	-o-animation-delay: .6s;
 	animation-delay: .6s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_drizzle:nth-child(3) {
+.wpc-main-symbol .climacon_component-stroke_drizzle:nth-child(3) {
 	-webkit-animation-delay: 1.2s;
 	-moz-animation-delay: 1.2s;
 	-o-animation-delay: 1.2s;
 	animation-delay: 1.2s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_rain {
+.wpc-main-symbol .climacon_component-stroke_rain {
 	fill-opacity: 0;
 	-webkit-animation-name: rainFall,fillOpacity2;
 	-webkit-animation-timing-function: ease-in;
@@ -304,21 +304,21 @@ div[id^='wpc-weather'] .climacon_component-stroke_rain {
 	animation-duration: 2s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_rain:nth-child(n+4) {
+.wpc-main-symbol .climacon_component-stroke_rain:nth-child(n+4) {
 	-webkit-animation-delay: 1s;
 	-moz-animation-delay: 1s;
 	-o-animation-delay: 1s;
 	animation-delay: 1s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_rain_alt:nth-child(2) {
+.wpc-main-symbol .climacon_component-stroke_rain_alt:nth-child(2) {
 	-webkit-animation-delay: 1s;
 	-moz-animation-delay: 1s;
 	-o-animation-delay: 1s;
 	animation-delay: 1s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_hailAlt {
+.wpc-main-symbol .climacon_component-stroke_hailAlt {
 	fill-opacity: 0;
 	-webkit-animation-timing-function: ease-in;
 	-moz-animation-timing-function: ease-in;
@@ -330,77 +330,77 @@ div[id^='wpc-weather'] .climacon_component-stroke_hailAlt {
 	animation-duration: .66667s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_hailAlt-left {
+.wpc-main-symbol .climacon_component-stroke_hailAlt-left {
 	-webkit-animation-name: hailLeft,fillOpacity2;
 	-moz-animation-name: hailLeft,fillOpacity2;
 	-o-animation-name: hailLeft,fillOpacity2;
 	animation-name: hailLeft,fillOpacity2;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_hailAlt-middle {
+.wpc-main-symbol .climacon_component-stroke_hailAlt-middle {
 	-webkit-animation-name: hailMiddle,fillOpacity2;
 	-moz-animation-name: hailMiddle,fillOpacity2;
 	-o-animation-name: hailMiddle,fillOpacity2;
 	animation-name: hailMiddle,fillOpacity2;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_hailAlt-middle:nth-child(2) {
+.wpc-main-symbol .climacon_component-stroke_hailAlt-middle:nth-child(2) {
 	-webkit-animation-name: hailMiddle2,fillOpacity2;
 	-moz-animation-name: hailMiddle2,fillOpacity2;
 	-o-animation-name: hailMiddle2,fillOpacity2;
 	animation-name: hailMiddle2,fillOpacity2;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_hailAlt-right {
+.wpc-main-symbol .climacon_component-stroke_hailAlt-right {
 	-webkit-animation-name: hailRight,fillOpacity2;
 	-moz-animation-name: hailRight,fillOpacity2;
 	-o-animation-name: hailRight,fillOpacity2;
 	animation-name: hailRight,fillOpacity2;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_hailAlt:nth-child(1) {
+.wpc-main-symbol .climacon_component-stroke_hailAlt:nth-child(1) {
 	-webkit-animation-delay: 0;
 	-moz-animation-delay: 0;
 	-o-animation-delay: 0;
 	animation-delay: 0;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_hailAlt:nth-child(2) {
+.wpc-main-symbol .climacon_component-stroke_hailAlt:nth-child(2) {
 	-webkit-animation-delay: .11111s;
 	-moz-animation-delay: .11111s;
 	-o-animation-delay: .11111s;
 	animation-delay: .11111s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_hailAlt:nth-child(3) {
+.wpc-main-symbol .climacon_component-stroke_hailAlt:nth-child(3) {
 	-webkit-animation-delay: .22222s;
 	-moz-animation-delay: .22222s;
 	-o-animation-delay: .22222s;
 	animation-delay: .22222s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_hailAlt:nth-child(4) {
+.wpc-main-symbol .climacon_component-stroke_hailAlt:nth-child(4) {
 	-webkit-animation-delay: .33333s;
 	-moz-animation-delay: .33333s;
 	-o-animation-delay: .33333s;
 	animation-delay: .33333s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_hailAlt:nth-child(5) {
+.wpc-main-symbol .climacon_component-stroke_hailAlt:nth-child(5) {
 	-webkit-animation-delay: .44444s;
 	-moz-animation-delay: .44444s;
 	-o-animation-delay: .44444s;
 	animation-delay: .44444s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_hailAlt:nth-child(6) {
+.wpc-main-symbol .climacon_component-stroke_hailAlt:nth-child(6) {
 	-webkit-animation-delay: .55556s;
 	-moz-animation-delay: .55556s;
 	-o-animation-delay: .55556s;
 	animation-delay: .55556s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_snow {
+.wpc-main-symbol .climacon_component-stroke_snow {
 	fill-opacity: 0;
 	-webkit-animation-name: snowFall,fillOpacity2;
 	-moz-animation-name: snowFall,fillOpacity2;
@@ -416,35 +416,35 @@ div[id^='wpc-weather'] .climacon_component-stroke_snow {
 	animation-duration: 6s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_snow:nth-child(3) {
+.wpc-main-symbol .climacon_component-stroke_snow:nth-child(3) {
 	-webkit-animation-name: snowFall2,fillOpacity2;
 	-moz-animation-name: snowFall2,fillOpacity2;
 	-o-animation-name: snowFall2,fillOpacity2;
 	animation-name: snowFall2,fillOpacity2;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_snow:nth-child(1) {
+.wpc-main-symbol .climacon_component-stroke_snow:nth-child(1) {
 	-webkit-animation-delay: 0;
 	-moz-animation-delay: 0;
 	-o-animation-delay: 0;
 	animation-delay: 0;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_snow:nth-child(2) {
+.wpc-main-symbol .climacon_component-stroke_snow:nth-child(2) {
 	-webkit-animation-delay: 2s;
 	-moz-animation-delay: 2s;
 	-o-animation-delay: 2s;
 	animation-delay: 2s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_snow:nth-child(3) {
+.wpc-main-symbol .climacon_component-stroke_snow:nth-child(3) {
 	-webkit-animation-delay: 4s;
 	-moz-animation-delay: 4s;
 	-o-animation-delay: 4s;
 	animation-delay: 4s;
 }
 
-div[id^='wpc-weather'] .climacon_component-snowAlt {
+.wpc-main-symbol .climacon_component-snowAlt {
 	fill-opacity: 0;
 	-webkit-animation-name: snowFall,fillOpacity2;
 	-moz-animation-name: snowFall,fillOpacity2;
@@ -460,7 +460,7 @@ div[id^='wpc-weather'] .climacon_component-snowAlt {
 	animation-duration: 6s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_fogLine {
+.wpc-main-symbol .climacon_component-stroke_fogLine {
 	fill-opacity: .5;
 	-webkit-animation-name: translateFog,fillOpacityFog;
 	-moz-animation-name: translateFog,fillOpacityFog;
@@ -484,14 +484,14 @@ div[id^='wpc-weather'] .climacon_component-stroke_fogLine {
 	animation-duration: 12s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_fogLine:nth-child(even) {
+.wpc-main-symbol .climacon_component-stroke_fogLine:nth-child(even) {
 	-webkit-animation-delay: 6s;
 	-moz-animation-delay: 6s;
 	-o-animation-delay: 6s;
 	animation-delay: 6s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_lightning {
+.wpc-main-symbol .climacon_component-stroke_lightning {
 	fill-opacity: 0;
 	-webkit-animation-name: lightningFlash;
 	-moz-animation-name: lightningFlash;
@@ -515,7 +515,7 @@ div[id^='wpc-weather'] .climacon_component-stroke_lightning {
 	animation-duration: 12s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_tornadoLine {
+.wpc-main-symbol .climacon_component-stroke_tornadoLine {
 	-webkit-animation-name: translateTornado1;
 	-moz-animation-name: translateTornado1;
 	-o-animation-name: translateTornado1;
@@ -538,49 +538,49 @@ div[id^='wpc-weather'] .climacon_component-stroke_tornadoLine {
 	animation-duration: 12s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_tornadoLine:nth-child(1) {
+.wpc-main-symbol .climacon_component-stroke_tornadoLine:nth-child(1) {
 	-webkit-animation-name: translateTornado1;
 	-moz-animation-name: translateTornado1;
 	-o-animation-name: translateTornado1;
 	animation-name: translateTornado1;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_tornadoLine:nth-child(2) {
+.wpc-main-symbol .climacon_component-stroke_tornadoLine:nth-child(2) {
 	-webkit-animation-name: translateTornado2;
 	-moz-animation-name: translateTornado2;
 	-o-animation-name: translateTornado2;
 	animation-name: translateTornado2;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_tornadoLine:nth-child(3) {
+.wpc-main-symbol .climacon_component-stroke_tornadoLine:nth-child(3) {
 	-webkit-animation-name: translateTornado3;
 	-moz-animation-name: translateTornado3;
 	-o-animation-name: translateTornado3;
 	animation-name: translateTornado3;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_tornadoLine:nth-child(4) {
+.wpc-main-symbol .climacon_component-stroke_tornadoLine:nth-child(4) {
 	-webkit-animation-name: translateTornado4;
 	-moz-animation-name: translateTornado4;
 	-o-animation-name: translateTornado4;
 	animation-name: translateTornado4;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_tornadoLine:nth-child(5) {
+.wpc-main-symbol .climacon_component-stroke_tornadoLine:nth-child(5) {
 	-webkit-animation-name: translateTornado5;
 	-moz-animation-name: translateTornado5;
 	-o-animation-name: translateTornado5;
 	animation-name: translateTornado5;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_tornadoLine:nth-child(6) {
+.wpc-main-symbol .climacon_component-stroke_tornadoLine:nth-child(6) {
 	-webkit-animation-name: translateTornado6;
 	-moz-animation-name: translateTornado6;
 	-o-animation-name: translateTornado6;
 	animation-name: translateTornado6;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_arrow-up {
+.wpc-main-symbol .climacon_component-stroke_arrow-up {
 	fill-opacity: 0;
 	-webkit-animation-name: fillOpacity2,translateArrowUp;
 	-moz-animation-name: fillOpacity2,translateArrowUp;
@@ -592,7 +592,7 @@ div[id^='wpc-weather'] .climacon_component-stroke_arrow-up {
 	animation-duration: 3s;
 }
 
-div[id^='wpc-weather'] .climacon_component-stroke_arrow-down {
+.wpc-main-symbol .climacon_component-stroke_arrow-down {
 	fill-opacity: 0;
 	-webkit-animation-name: fillOpacity2,translateArrowDown;
 	-moz-animation-name: fillOpacity2,translateArrowDown;
@@ -604,7 +604,7 @@ div[id^='wpc-weather'] .climacon_component-stroke_arrow-down {
 	animation-duration: 3s;
 }
 
-div[id^='wpc-weather'] .climacon_componentWrap-sunriseAlt {
+.wpc-main-symbol .climacon_componentWrap-sunriseAlt {
 	-webkit-animation-name: translateSunrise,fillOpacity;
 	-moz-animation-name: translateSunrise,fillOpacity;
 	-o-animation-name: translateSunrise,fillOpacity;
@@ -627,7 +627,7 @@ div[id^='wpc-weather'] .climacon_componentWrap-sunriseAlt {
 	animation-fill-mode: forwards;
 }
 
-div[id^='wpc-weather'] .climacon_componentWrap-sunsetAlt {
+.wpc-main-symbol .climacon_componentWrap-sunsetAlt {
 	-webkit-animation-name: translateSunset;
 	-moz-animation-name: translateSunset;
 	-o-animation-name: translateSunset;

@@ -41,7 +41,7 @@
 	cursor: pointer;
 }
 
-#wpcloudy_basic #tabs-1 label,#wpcloudy_basic #tabs-1 .misc,#wpcloudy_basic #tabs-2 .hour,#wpcloudy_basic #tabs-2 .temperatures,#wpcloudy_basic #tabs-2 .wpc-misc,#wpcloudy_basic #tabs-2 .wpc-dates,#wpcloudy_basic #tabs-2 .forecast,#wpcloudy_basic #tabs-2 .footer,#wpcloudy_basic #tabs-3 label,#wpcloudy_basic #tabs-5 label,#wpcloudy_basic .subsection-title,#wpcloudy_basic label[for=wpcloudy_map_height_meta],#wpcloudy_basic label[for=wpcloudy_map_zoom_meta],#wpcloudy_basic label[for=wpcloudy_map_opacity_meta] {
+#wpcloudy_basic #tabs-1 label,#wpcloudy_basic #tabs-1 .misc,#wpcloudy_basic #tabs-2 .hour,#wpcloudy_basic #tabs-2 .temperatures,#wpcloudy_basic #tabs-2 .wpc-misc,#wpcloudy_basic #tabs-2 .wpc-dates,#wpcloudy_basic #tabs-2 .forecast,#wpcloudy_basic #tabs-2 .footer,#wpcloudy_basic #tabs-3 label,#wpcloudy_basic #tabs-5 label,#wpcloudy_basic #tabs-6 label,#wpcloudy_basic .subsection-title,#wpcloudy_basic label[for=wpcloudy_map_height_meta],#wpcloudy_basic label[for=wpcloudy_map_zoom_meta],#wpcloudy_basic label[for=wpcloudy_map_opacity_meta] {
 	border-bottom: 1px solid #ddd;
 	display: block;
 	margin: 20px 0 5px;

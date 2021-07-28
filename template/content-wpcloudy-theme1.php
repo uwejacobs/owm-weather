@@ -9,11 +9,11 @@
         background-color: inherit !important;
         border: none !important;
     }
-div[id^="wpc-weather"] .infos .wind,
-div[id^="wpc-weather"] .infos .humidity,
-div[id^="wpc-weather"] .infos .pressure,
-div[id^="wpc-weather"] .infos .cloudiness,
-div[id^="wpc-weather"] .infos .precipitation {
+.wpc-infos .wpc-wind,
+.wpc-infos .wpc-humidity,
+.wpc-infos .wpc-pressure,
+.wpc-infos .wpc-cloudiness,
+.wpc-infos .wpc-precipitation {
     width: 100%;
 }
 </style>
@@ -28,8 +28,8 @@ div[id^="wpc-weather"] .infos .precipitation {
 	<!-- Current weather -->
 	<?php echo $wpc_html["now"]["start"]; ?>
 		<?php echo $wpc_html["now"]["location_name"]; ?>
-		<?php echo $wpc_html["now"]["time_symbol"]; ?>
-		<?php echo $wpc_html["now"]["time_temperature"]; ?>
+		<?php echo $wpc_html["now"]["symbol"]; ?>
+		<?php echo $wpc_html["now"]["temperature"]; ?>
 		<?php echo $wpc_html["now"]["weather_description"]; ?>
 	<?php echo $wpc_html["now"]["end"]; ?>
 

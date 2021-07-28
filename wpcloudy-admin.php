@@ -159,24 +159,24 @@ class wpc_options
             <div id="wpcloudy-tabs">
                 <h2 class="nav-tab-wrapper hide-if-no-js">
                 	<ul>
+						<li><a href="#tab_advanced" class="nav-tab"><?php _e( 'System', 'wp-cloudy' ); ?></a></li>
 						<li><a href="#tab_basic" class="nav-tab"><?php _e( 'Basic', 'wp-cloudy' ); ?></a></li>
 						<li><a href="#tab_display" class="nav-tab"><?php _e( 'Display', 'wp-cloudy' ); ?></a></li>
 						<li><a href="#tab_layout" class="nav-tab"><?php _e( 'Layout', 'wp-cloudy' ); ?></a></li>
 						<li><a href="#tab_map" class="nav-tab"><?php _e( 'Map', 'wp-cloudy' ); ?></a></li>
-						<li><a href="#tab_advanced" class="nav-tab"><?php _e( 'Advanced', 'wp-cloudy' ); ?></a></li>
                         <li><a href="#tab_export" class="nav-tab"><?php _e( 'Import/Export/Reset', 'wp-cloudy' ); ?></a></li>
-						<!--li><a href="#tab_support" class="nav-tab"><?php _e( 'Support', 'wp-cloudy' ); ?></a></li-->
+						<!--li><a href="#tab_support" class="nav-tab"><?php _e( 'Support', 'wp-cloudy' ); ?></a></li bugbug-->
                 	</ul>
 				</h2>
 
 				<div id="wpcloudy-tabs-settings">
+					<div class="wpc-tab" id="tab_advanced"><?php do_settings_sections( 'wpc-settings-admin-advanced' ); ?></div>
 					<div class="wpc-tab" id="tab_basic"><?php do_settings_sections( 'wpc-settings-admin-basic' ); ?></div>
 					<div class="wpc-tab" id="tab_display"><?php do_settings_sections( 'wpc-settings-admin-display' ); ?></div>
 					<div class="wpc-tab" id="tab_layout"><?php do_settings_sections( 'wpc-settings-admin-layout' ); ?></div>
 					<div class="wpc-tab" id="tab_map"><?php do_settings_sections( 'wpc-settings-admin-map' ); ?></div>
-					<div class="wpc-tab" id="tab_advanced"><?php do_settings_sections( 'wpc-settings-admin-advanced' ); ?></div>
                     <div class="wpc-tab" id="tab_export"></div>
-					<!--div class="wpc-tab" id="tab_support"><?php //bugbug do_settings_sections( 'wpc-settings-admin-support' ); ?></div-->
+					<!--div class="wpc-tab" id="tab_support"><?php //bugbug do_settings_sections( 'wpc-settings-admin-support' ); ?></div bugbug-->
 				</div>
             </div>
             <script>jQuery("#wpc_export_form").detach().appendTo('#tab_export')</script>
@@ -509,7 +509,7 @@ class wpc_options
 
 		add_settings_field(
             'wpc_disable_anims', // ID
-            __("CSS 3 Animations?","wp-cloudy"), // Title
+            __("Disable animations for main icon?","wp-cloudy"), // Title
             array( $this, 'wpc_layout_disable_anims_callback' ), // Callback
             'wpc-settings-admin-layout', // Page
             'wpc_setting_section_layout' // Section
@@ -556,7 +556,7 @@ class wpc_options
             'wpc_setting_section_layout' // Section
         );
 
-		//ADVANCED SECTION=========================================================================
+		//SYSTEM SECTION=========================================================================
         add_settings_section(
             'wpc_setting_section_advanced', // ID
             __("Advanced settings","wp-cloudy"), // Title
@@ -1049,6 +1049,8 @@ class wpc_options
         echo '<option ' . selected( 'theme2', $selected, false ) . ' value="theme2">'. __( 'Theme 2 (with slider)', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'chart1', $selected, false ) . ' value="chart1" disabled>'. __( 'Chart 1', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'chart2', $selected, false ) . ' value="chart2" disabled>'. __( 'Chart 2', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'table1', $selected, false ) . ' value="table1" disabled>'. __( 'Table 1', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'table2', $selected, false ) . ' value="table2" disabled>'. __( 'Table 2', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'custom1', $selected, false ) . ' value="custom1">'. __( 'Custom 1', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'custom2', $selected, false ) . ' value="custom2">'. __( 'Custom 2', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'debug', $selected, false ) . ' value="debug">'. __( 'Debug', 'wp-cloudy' ) .'</option>';
@@ -1062,10 +1064,11 @@ class wpc_options
 		echo '<select id="wpc_iconpack" name="wpc_option_name[wpc_iconpack]"> ';
         echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. __( 'No bypass', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'Climacons', $selected, false ) . ' value="Climacons">'. __( 'Climacons', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'OpenWeatherMap', $selected, false ) . ' value="OpenWeatherMap">'. __( 'Open Weather Map', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'WeatherIcons', $selected, false ) . ' value="WeatherIcons">'. __( 'Weather Icons', 'wp-cloudy' ) .'</option>';
-        echo '<option ' . selected( 'IconVault', $selected, false ) . ' value="IconVault">'. __( 'Forecast', 'wp-cloudy' ) .'</option>';
-        echo '<option disabled ' . selected( 'Dripicons', $selected, false ) . ' value="Dripicons">'. __( 'Dripicons', 'wp-cloudy' ) .'</option>';
-        echo '<option disabled ' . selected( 'Pixeden', $selected, false ) . ' value="Pixeden">'. __( 'Pixeden', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'Forecast', $selected, false ) . ' value="Forecast">'. __( 'Forecast', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'Dripicons', $selected, false ) . ' value="Dripicons">'. __( 'Dripicons', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'Pixeden', $selected, false ) . ' value="Pixeden">'. __( 'Pixeden', 'wp-cloudy' ) .'</option>';
 		echo '</select>';
 	}
 
