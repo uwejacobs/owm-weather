@@ -3,7 +3,7 @@
 Plugin Name: WP Cloudy 2
 Plugin URI: https://github.com/uwejacobs/wp-cloudy-2
 Description: WP Cloudy 2 is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 4.5.1
+Version: 5.0.0
 Author: Uwe Jacobs
 Author URI: https://github.com/uwejacobs
 Original Author: Benjamin DENIS
@@ -48,7 +48,7 @@ function weather_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'weather_deactivation');
 
-define( 'WPCLOUDY_VERSION', '4.5.1' );
+define( 'WPCLOUDY_VERSION', '5.0.0' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
