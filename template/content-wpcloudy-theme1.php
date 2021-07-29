@@ -39,7 +39,7 @@
 	<div class="wpc-toggle-infos">
 
 		<!-- Current infos: wind, humidity, pressure, cloudiness, precipitation -->
-		<div class="infos">
+		<div class="wpc-infos">
 			<div class="wpc-flexslider flexslider carousel">
 				<ul class="slides">
 					<li><?php echo $wpc_html["info"]["wind"]; ?></li>

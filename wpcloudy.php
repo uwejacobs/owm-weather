@@ -464,11 +464,12 @@ function wpcloudy_basic($post){
 				<li><a href="#tabs-2">'. __( 'Display', 'wp-cloudy' ) .'</a></li>
 				<li><a href="#tabs-3">'. __( 'Layout', 'wp-cloudy' ) .'</a></li>
 				<li><a href="#tabs-4">'. __( 'Map', 'wp-cloudy' ) .'</a></li>
-				<li><a href="#tabs-5">'. __( 'Chart', 'wp-cloudy' ) .'</a></li>
-				<li><a href="#tabs-6">'. __( 'Table', 'wp-cloudy' ) .'</a></li>
 			</ul>
 
 			<div id="tabs-1">
+			    <p style="border: 2px solid;padding: 5px;">
+    			    Fill out the <strong>OpenWeatherMap city id</strong> <u>or</u> the <strong>Latitude/Longitude</strong> <u>or</u> the <strong>City/Country</strong> field for the weather location. If all 3 sections are empty, it will try to get the user\'s location from the ip address via <a href="https://tools.keycdn.com/geo" target="_blank">IP Location Finder</a>.
+			    </p>
 				<p>
 					<label for="wpcloudy_id_owm_meta">'. __( 'OpenWeatherMap city ID', 'wp-cloudy' ) .'<span class="mandatory">*</span> <a href="https://openweathermap.org/find?q=" target="_blank"> '.__('Find my city ID','wp-cloudy').'</a><span class="dashicons dashicons-external"></span></label>
 					<input id="wpcloudy_id_owm" type="text" name="wpcloudy_id_owm" value="'.$wpc_opt["id_owm"].'" />
@@ -595,7 +596,7 @@ function wpcloudy_basic($post){
 						<option ' . selected( 'zu', $wpc_opt["owm_language"], false ) . ' value="zu">'. __( 'Zulu', 'wp-cloudy' ) .'</option>
 					</select>
 				</p>
-				<p class="misc">
+				<p class="misc subsection-title">
 					'. __( 'Misc', 'wp-cloudy' ) .'
 				</p>
 				<p>
@@ -612,7 +613,10 @@ function wpcloudy_basic($post){
 				</p>
 			</div>
 			<div id="tabs-2">
-				<p class="wpc-dates">
+			    <p style="border: 2px solid;padding: 5px;">
+    			    Select the information you would like to show on your weather shortcode.
+			    </p>
+				<p class="wpc-dates subsection-title">
 					'. __( 'Current weather', 'wp-cloudy' ) .'
 				</p>
 				<p>
@@ -639,7 +643,7 @@ function wpcloudy_basic($post){
 							'. __( 'Current weather short condition?', 'wp-cloudy' ) .'
 					</label>
 				</p>
-				<p class="temperatures">
+				<p class="temperatures subsection-title">
 					'. __( 'Temperatures', 'wp-cloudy' ) .'
 				</p>
 				<p>
@@ -648,7 +652,7 @@ function wpcloudy_basic($post){
 							'. __( 'Temperatures unit (C / F)?', 'wp-cloudy' ) .'
 					</label>
 				</p>
-				<p class="wpc-dates">
+				<p class="wpc-dates subsection-title">
 					'. __( 'Date, Sunrise/Sunset and Moonrise/Moonset', 'wp-cloudy' ) .'
 				</p>
 				<p>
@@ -681,7 +685,7 @@ function wpcloudy_basic($post){
 							'. __( 'Moonrise + moonset?', 'wp-cloudy' ) .'
 					</label>
 				</p>
-				<p class="wpc-misc">
+				<p class="wpc-misc subsection-title">
 					'. __( 'Misc', 'wp-cloudy' ) .'
 				</p>
 				<p>
@@ -733,7 +737,7 @@ function wpcloudy_basic($post){
 					<label for="wpcloudy_alerts_button_color">'. __( 'Alert Button color', 'wp-cloudy' ) .'</label>
 					<input name="wpcloudy_alerts_button_color" type="text" value="'. $wpc_opt["alerts_button_color"] .'" class="wpcloudy_color_picker" />
 				</p>
-				<p class="hour">
+				<p class="hour subsection-title">
 					'. __( 'Hourly Forecast', 'wp-cloudy' ) .'
 				</p>
 				<p>
@@ -742,7 +746,7 @@ function wpcloudy_basic($post){
 					<br />
 					<span class="dashicons dashicons-editor-help"></span><a href="'.admin_url('options-general.php').'" target="_blank">'.__('Make sure you have properly set the date of your site in WordPress settings.','wp-cloudy').'</a> or set a Custom timezone under Basic.
 				</p>
-				<p class="forecast">
+				<p class="forecast subsection-title">
 					'. __( 'Daily Forecast', 'wp-cloudy' ) .'
 				</p>
 				<p>
@@ -777,7 +781,7 @@ function wpcloudy_basic($post){
 							'. __( 'Normal days names?', 'wp-cloudy' ) .'
 					</label>
 				</p>
-				<p class="footer">
+				<p class="footer subsection-title">
 					'. __( 'Footer', 'wp-cloudy' ) .'
 				</p>
 				<p>
@@ -796,6 +800,9 @@ function wpcloudy_basic($post){
 				</p>
 			</div>
 			<div id="tabs-3">
+			    <p style="border: 2px solid;padding: 5px;">
+    			    Select the layout styling for your weather shortcode.
+			    </p>
 				<p>
 					<label for="template_meta">'. __( 'Template', 'wp-cloudy' ) .'</label>
 					<select name="wpcloudy_template">
@@ -803,9 +810,9 @@ function wpcloudy_basic($post){
 						<option ' . selected( 'theme1', $wpc_opt["template"], false ) . ' value="theme1">'. __( 'Theme 1 (with slider)', 'wp-cloudy' ) .'</option>
 						<option ' . selected( 'theme2', $wpc_opt["template"], false ) . ' value="theme2">'. __( 'Theme 2 (with slider)', 'wp-cloudy' ) .'</option>
 						<option ' . selected( 'chart1', $wpc_opt["template"], false ) . ' value="chart1">'. __( 'Chart 1', 'wp-cloudy' ) .'</option>
-						<option ' . selected( 'chart2', $wpc_opt["template"], false ) . ' value="chart2" disabled>'. __( 'Chart 2', 'wp-cloudy' ) .'</option>
+						<option ' . selected( 'chart2', $wpc_opt["template"], false ) . ' value="chart2">'. __( 'Chart 2', 'wp-cloudy' ) .'</option>
 						<option ' . selected( 'table1', $wpc_opt["template"], false ) . ' value="table1">'. __( 'Table 1', 'wp-cloudy' ) .'</option>
-						<option ' . selected( 'table2', $wpc_opt["template"], false ) . ' value="table2" disabled>'. __( 'Table 2', 'wp-cloudy' ) .'</option>
+						<option ' . selected( 'table2', $wpc_opt["template"], false ) . ' value="table2">'. __( 'Table 2', 'wp-cloudy' ) .'</option>
 						<option ' . selected( 'custom1', $wpc_opt["template"], false ) . ' value="custom1">'. __( 'Custom 1', 'wp-cloudy' ) .'</option>
 						<option ' . selected( 'custom2', $wpc_opt["template"], false ) . ' value="custom2">'. __( 'Custom 2', 'wp-cloudy' ) .'</option>
 						<option ' . selected( 'debug', $wpc_opt["template"], false ) . ' value="debug">'. __( 'Debug', 'wp-cloudy' ) .'</option>
@@ -847,17 +854,8 @@ function wpcloudy_basic($post){
 						<option ' . selected( 'Pixeden', $wpc_opt["iconpack"], false ) . ' value="Pixeden">'. __( 'Pixeden', 'wp-cloudy' ) .'</option>
 					</select>
 				</p>
-				<p>
-					<label for="wpcloudy_disable_spinner_meta">
-						<input type="checkbox" name="wpcloudy_disable_spinner" id="wpcloudy_disable_spinner_meta" value="yes" '. checked( $wpc_opt["disable_spinner"], 'yes', false ) .' />
-							'. __( 'Disable loading spinner?', 'wp-cloudy' ) .'
-					</label>
-				</p>
-				<p>
-					<label for="wpcloudy_disable_anims_meta">
-						<input type="checkbox" name="wpcloudy_disable_anims" id="wpcloudy_disable_anims_meta" value="yes" '. checked( $wpc_opt["disable_anims"], 'yes', false ) .' />
-							'. __( 'Disable animations for main icon?', 'wp-cloudy' ) .'
-					</label>
+				<p class="misc subsection-title">
+					'. __( 'Colors', 'wp-cloudy' ) .'
 				</p>
 				<p>
 					<label for="wpcloudy_background_color">'. __( 'Background color', 'wp-cloudy' ) .'</label>
@@ -871,6 +869,21 @@ function wpcloudy_basic($post){
 					<label for="wpcloudy_border_color">'. __( 'Border color', 'wp-cloudy' ) .'</label>
 					<input name="wpcloudy_border_color" type="text" value="'. $wpc_opt["border_color"] .'" class="wpcloudy_color_picker" />
 				</p>
+				<p class="misc subsection-title">
+					'. __( 'Misc', 'wp-cloudy' ) .'
+				</p>
+				<p>
+					<label for="wpcloudy_disable_spinner_meta">
+						<input type="checkbox" name="wpcloudy_disable_spinner" id="wpcloudy_disable_spinner_meta" value="yes" '. checked( $wpc_opt["disable_spinner"], 'yes', false ) .' />
+							'. __( 'Disable loading spinner?', 'wp-cloudy' ) .'
+					</label>
+				</p>
+				<p>
+					<label for="wpcloudy_disable_anims_meta">
+						<input type="checkbox" name="wpcloudy_disable_anims" id="wpcloudy_disable_anims_meta" value="yes" '. checked( $wpc_opt["disable_anims"], 'yes', false ) .' />
+							'. __( 'Disable animations for main icon?', 'wp-cloudy' ) .'
+					</label>
+				</p>
 				<p>
 					<label for="size_meta">'. __( 'Weather size?', 'wp-cloudy' ) .'</label>
 					<select name="wpcloudy_size">
@@ -882,10 +895,51 @@ function wpcloudy_basic($post){
 				<p>
 					<label for="wpcloudy_custom_css_meta">'. __( 'Custom CSS', 'wp-cloudy' ) .'</label>
 					<textarea id="wpcloudy_custom_css_meta" name="wpcloudy_custom_css">'.$wpc_opt["custom_css"].'</textarea>
-				    <p>Preceed all CSS rules with #wpc-weather-container-' . $id . ' if you are planning to use more than one weather shortcode on a page.</p>
+				    <p>Preceed all CSS rules with .wpc-' . $id . ' if you are planning to use more than one weather shortcode on a page.</p>
+				</p>
+				<p class="subsection-title">
+					'. __( 'Tables', 'wp-cloudy' ) .'
+				</p>
+				<p>
+					<label for="wpcloudy_table_background_color">'. __( 'Background color', 'wp-cloudy' ) .'</label>
+					<input name="wpcloudy_table_background_color" type="text" value="'. $wpc_opt["table_background_color"] .'" class="wpcloudy_color_picker" />
+				</p>
+				<p>
+					<label for="wpcloudy_table_text_color">'. __( 'Text color', 'wp-cloudy' ) .'</label>
+					<input name="wpcloudy_table_text_color" type="text" value="'. $wpc_opt["table_text_color"] .'" class="wpcloudy_color_picker" />
+				</p>
+				<p>
+					<label for="wpcloudy_table_border_color">'. __( 'Border color', 'wp-cloudy' ) .'</label>
+					<input name="wpcloudy_table_border_color" type="text" value="'. $wpc_opt["table_border_color"] .'" class="wpcloudy_color_picker" />
+				</p>
+				<p class="subsection-title">
+					'. __( 'Charts', 'wp-cloudy' ) .'
+				</p>
+				<p>
+					<label for="wpcloudy_chart_height_meta">'. __( 'Height (in px)', 'wp-cloudy' ) .'</label>
+					<input id="wpcloudy_charet_height_meta" type="text" name="wpcloudy_chart_height" value="'.$wpc_opt["chart_height"].'" />
+				</p>
+				<p>
+					<label for="wpcloudy_chart_background_color">'. __( 'Background color', 'wp-cloudy' ) .'</label>
+					<input name="wpcloudy_chart_background_color" type="text" value="'. $wpc_opt["chart_background_color"] .'" class="wpcloudy_color_picker" />
+				</p>
+				<p>
+					<label for="wpcloudy_chart_temperature_color">'. __( 'Temperature color', 'wp-cloudy' ) .'</label>
+					<input name="wpcloudy_chart_temperature_color" type="text" value="'. $wpc_opt["chart_temperature_color"] .'" class="wpcloudy_color_picker" />
+				</p>
+				<p>
+					<label for="wpcloudy_chart_feels_like_color">'. __( 'Feels like color', 'wp-cloudy' ) .'</label>
+					<input name="wpcloudy_chart_feels_like_color" type="text" value="'. $wpc_opt["chart_feels_like_color"] .'" class="wpcloudy_color_picker" />
+				</p>
+				<p>
+					<label for="wpcloudy_chart_dew_point_color">'. __( 'Dew point color', 'wp-cloudy' ) .'</label>
+					<input name="wpcloudy_chart_dew_point_color" type="text" value="'. $wpc_opt["chart_dew_point_color"] .'" class="wpcloudy_color_picker" />
 				</p>
 			</div>
 			<div id="tabs-4">
+			    <p style="border: 2px solid;padding: 5px;">
+    			    Select the information and layout styling for the optional map on your weather shortcode.
+			    </p>
 				<p>
 					<label for="wpcloudy_map_meta">
 						<input type="checkbox" name="wpcloudy_map" id="wpcloudy_map_meta" value="yes" '. checked( $wpc_opt["map"], 'yes', false ) .' />
@@ -987,44 +1041,7 @@ function wpcloudy_basic($post){
 					</label>
 				</p>
 			</div>
-			<div id="tabs-5">
-				<p>
-					<label for="wpcloudy_chart_height_meta">'. __( 'Chart height (in px)', 'wp-cloudy' ) .'</label>
-					<input id="wpcloudy_charet_height_meta" type="text" name="wpcloudy_chart_height" value="'.$wpc_opt["chart_height"].'" />
-				</p>
-				<p>
-					<label for="wpcloudy_chart_background_color">'. __( 'Background color', 'wp-cloudy' ) .'</label>
-					<input name="wpcloudy_chart_background_color" type="text" value="'. $wpc_opt["chart_background_color"] .'" class="wpcloudy_color_picker" />
-				</p>
-				<p>
-					<label for="wpcloudy_chart_temperature_color">'. __( 'Temperature color', 'wp-cloudy' ) .'</label>
-					<input name="wpcloudy_chart_temperature_color" type="text" value="'. $wpc_opt["chart_temperature_color"] .'" class="wpcloudy_color_picker" />
-				</p>
-				<p>
-					<label for="wpcloudy_chart_feels_like_color">'. __( 'Feels like color', 'wp-cloudy' ) .'</label>
-					<input name="wpcloudy_chart_feels_like_color" type="text" value="'. $wpc_opt["chart_feels_like_color"] .'" class="wpcloudy_color_picker" />
-				</p>
-				<p>
-					<label for="wpcloudy_chart_dew_point_color">'. __( 'Dew point color', 'wp-cloudy' ) .'</label>
-					<input name="wpcloudy_chart_dew_point_color" type="text" value="'. $wpc_opt["chart_dew_point_color"] .'" class="wpcloudy_color_picker" />
-				</p>
-			</div>
-			<div id="tabs-6">
-				<p>
-					<label for="wpcloudy_table_background_color">'. __( 'Background color', 'wp-cloudy' ) .'</label>
-					<input name="wpcloudy_table_background_color" type="text" value="'. $wpc_opt["table_background_color"] .'" class="wpcloudy_color_picker" />
-				</p>
-				<p>
-					<label for="wpcloudy_table_text_color">'. __( 'Text color', 'wp-cloudy' ) .'</label>
-					<input name="wpcloudy_table_text_color" type="text" value="'. $wpc_opt["table_text_color"] .'" class="wpcloudy_color_picker" />
-				</p>
-				<p>
-					<label for="wpcloudy_table_border_color">'. __( 'Border color', 'wp-cloudy' ) .'</label>
-					<input name="wpcloudy_table_border_color" type="text" value="'. $wpc_opt["table_border_color"] .'" class="wpcloudy_color_picker" />
-				</p>
-			</div>
-	</div>
-  ';
+	</div>';
 }
 
 
@@ -1530,7 +1547,7 @@ function wpc_get_my_weather_id($atts) {
             $data_attributes[] = "data-" . $key . '="' . $value . '"';
         }
     }
-    
+
     $div_id = wpc_unique_id("wpc-weather-id-".$wpc_opt["id"]);
     $data_attributes[] = "data-weather_id=".$div_id;
 
@@ -1549,7 +1566,7 @@ add_action( 'wp_ajax_nopriv_wpc_get_my_weather', 'wpc_get_my_weather' );
 function wpc_get_my_weather($attr) {
     global $wpc_params;
     $wpc_params = $_POST['wpc_params'];
-    
+
 	check_ajax_referer( 'wpc_get_weather_nonce', $_POST['_ajax_nonce'], true );
 
 	if ( isset( $wpc_params['id'] ) ) {
@@ -1648,13 +1665,18 @@ function wpc_get_my_weather($attr) {
 		if ($wpc_opt["owm_language"] == 'Default') {
 		    $wpc_opt["owm_language"] = 'en';
 		}
-		
+
        	if ($wpc_opt["id_owm"] !='') {
        	    $query = "id=".$wpc_opt["id_owm"];
        	} else if ($wpc_opt["longitude"] != '' && $wpc_opt["latitude"] != '') {
        	    $query = "lat=".$wpc_opt["latitude"]."&lon=".$wpc_opt["longitude"];
-       	} else {
+       	} else  if ($wpc_opt["city"] != '' && $wpc_opt["country_code"] != '') {
        	    $query = "q=".$wpc_opt["city"].",".$wpc_opt["country_code"];
+       	} else {
+            $ipData = IPtoLocation();
+            $wpc_opt["latitude"] = $ipData["data"]["geo"]["latitude"];
+            $wpc_opt["longitude"] =  $ipData["data"]["geo"]["longitude"];
+       	    $query = "lat=".$wpc_opt["latitude"]."&lon=".$wpc_opt["longitude"];
        	}
 
         if ($wpc_opt["disable_cache"] == 'yes') {
@@ -2056,7 +2078,7 @@ function wpc_get_my_weather($attr) {
 
 		      	//Scroll wheel
 		      	$display_map_scroll_wheel = ($wpc_opt["map_disable_zoom_wheel"] == 'yes') ? "false" : "true";
-		      	
+
 		      	$temperature_unit_character = $wpc_opt["temperature_unit"] == "metric" ? 'C' : 'F';
 		      	$temperature_unit_text = $wpc_opt["temperature_unit"] == "metric" ? 'Celsius' : 'Fahrenheit';
                 if ($wpc_opt["wind_unit"] == "2") {
@@ -2815,6 +2837,44 @@ function deleteWhitespaces(&$arr) {
             }
         }
     }
+}
+
+function IPtoLocation() {
+    global $wp;
+
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])){
+        //ip from share internet
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+        //ip pass from proxy
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+$ip = '68.98.137.127';//bugbug
+    $transient_key = 'myweather_iplocation_' . $ip;
+
+    if (false === ($ipData = get_transient($transient_key))) {
+    	$apiURL = 'https://tools.keycdn.com/geo.json?host='.$ip;
+        $request_headers = [];
+        $request_headers[] = 'User-Agent: keycdn-tools:' . home_url($wp->request);
+
+    	$ch = curl_init($apiURL);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
+    	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    	$apiResponse = curl_exec($ch);
+    	if($apiResponse === false) {
+            $msg = curl_error($ch);
+            curl_close($ch);
+            return false;
+        }
+    	curl_close($ch);
+
+    	$ipData = json_decode($apiResponse, true);
+    	set_transient($transient_key, $ipData);
+    }
+
+	return !empty($ipData) ? $ipData : false;
 }
 
 // wp-cloudy settings conversion

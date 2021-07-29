@@ -1047,10 +1047,10 @@ class wpc_options
         echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. __( 'Default', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'theme1', $selected, false ) . ' value="theme1">'. __( 'Theme 1 (with slider)', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'theme2', $selected, false ) . ' value="theme2">'. __( 'Theme 2 (with slider)', 'wp-cloudy' ) .'</option>';
-        echo '<option ' . selected( 'chart1', $selected, false ) . ' value="chart1" disabled>'. __( 'Chart 1', 'wp-cloudy' ) .'</option>';
-        echo '<option ' . selected( 'chart2', $selected, false ) . ' value="chart2" disabled>'. __( 'Chart 2', 'wp-cloudy' ) .'</option>';
-        echo '<option ' . selected( 'table1', $selected, false ) . ' value="table1" disabled>'. __( 'Table 1', 'wp-cloudy' ) .'</option>';
-        echo '<option ' . selected( 'table2', $selected, false ) . ' value="table2" disabled>'. __( 'Table 2', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'chart1', $selected, false ) . ' value="chart1">'. __( 'Chart 1', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'chart2', $selected, false ) . ' value="chart2">'. __( 'Chart 2', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'table1', $selected, false ) . ' value="table1">'. __( 'Table 1', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'table2', $selected, false ) . ' value="table2">'. __( 'Table 2', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'custom1', $selected, false ) . ' value="custom1">'. __( 'Custom 1', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'custom2', $selected, false ) . ' value="custom2">'. __( 'Custom 2', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'debug', $selected, false ) . ' value="debug">'. __( 'Debug', 'wp-cloudy' ) .'</option>';

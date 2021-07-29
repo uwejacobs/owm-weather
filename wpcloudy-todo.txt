@@ -1,12 +1,12 @@
 Must:
 charts
+trim settings fields before saving them
 
 Should:
 check if wpcloudy is activated
 map new style (https://github.com/owm-inc/VANE-intro/tree/master/apps)
 delete references to wpcloudy.com
 readme.txt section for wpcloudy upgrades
-
 
 Nice:
 moon phase icons

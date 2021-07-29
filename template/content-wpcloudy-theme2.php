@@ -40,7 +40,7 @@ div[class^="wpc-flexslider"] {
    	    <?php echo $wpc_html["alert_button"]; ?>
 
 		<!-- Current infos: wind, humidity, pressure, cloudiness, precipitation -->
-		<div class="infos">
+		<div class="wpc-infos">
 			<?php echo $wpc_html["today"]["day"]; ?>
 			<div class="wpc-flexslider flexslider carousel">
 				<ul class="slides">
