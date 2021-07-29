@@ -14,6 +14,7 @@
 		<?php echo $wpc_html["now"]["location_name"]; ?>
 		<?php echo $wpc_html["now"]["symbol"]; ?>
 		<?php echo $wpc_html["now"]["temperature"]; ?>
+		<?php echo $wpc_html["now"]["feels_like"]; ?>
 		<?php echo $wpc_html["now"]["weather_description"]; ?>
 	<?php echo $wpc_html["now"]["end"]; ?>
 
@@ -34,6 +35,7 @@
 		<?php echo $wpc_html["info"]["pressure"]; ?>
 		<?php echo $wpc_html["info"]["cloudiness"]; ?>
 		<?php echo $wpc_html["info"]["precipitation"]; ?>
+		<?php echo $wpc_html["info"]["visibility"]; ?>
 	<?php echo $wpc_html["info"]["end"]; ?>
 
 

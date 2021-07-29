@@ -27,7 +27,7 @@ function wpc_get_admin_bypass($setting) {
 function wpc_get_bypass_yn($bypass, $setting, $id = null) {
     $opt = wpc_get_admin_bypass("wpc_" . $setting);
 
-	if ($bypass && $opt != 'nobypass') {
+	if ($bypass && isset($opt) && $opt != 'nobypass') {
 		return $opt == 'yes' ? 'yes' : null;
 	} else {
     	return get_post_meta($id ?? $_POST['wpc_params']['id'], '_wpcloudy_' . $setting, true);

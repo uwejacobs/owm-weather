@@ -30,6 +30,7 @@ div[class^="wpc-flexslider"] {
 			<?php echo $wpc_html["now"]["location_name"]; ?>
 			<?php echo $wpc_html["now"]["symbol"]; ?>
 			<?php echo $wpc_html["now"]["temperature"]; ?>
+			<?php echo $wpc_html["now"]["feels_like"]; ?>
 			<?php echo $wpc_html["now"]["weather_description"]; ?>
 		<?php echo $wpc_html["now"]["end"]; ?>
 	</div>
@@ -39,7 +40,7 @@ div[class^="wpc-flexslider"] {
     	<!-- Alert button -->
    	    <?php echo $wpc_html["alert_button"]; ?>
 
-		<!-- Current infos: wind, humidity, pressure, cloudiness, precipitation -->
+		<!-- Current infos: wind, humidity, pressure, cloudiness, precipitation, visibility -->
 		<div class="wpc-infos">
 			<?php echo $wpc_html["today"]["day"]; ?>
 			<div class="wpc-flexslider flexslider carousel">
@@ -49,6 +50,7 @@ div[class^="wpc-flexslider"] {
 					<li><?php echo $wpc_html["info"]["pressure"]; ?></li>
 					<li><?php echo $wpc_html["info"]["cloudiness"]; ?></li>
 					<li><?php echo $wpc_html["info"]["precipitation"]; ?></li>
+					<li><?php echo $wpc_html["info"]["visibility"]; ?></li>
 					<li><?php echo $wpc_html["today"]["sun_hor"]; ?></li>
 					<li><?php echo $wpc_html["today"]["moon_hor"]; ?></li>
 				</ul>

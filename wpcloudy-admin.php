@@ -316,6 +316,14 @@ class wpc_options
         );
 
 		add_settings_field(
+            'wpc_current_feels_like', // ID
+			__("Current feels like temperature?","wp-cloudy"), // Title
+            array( $this, 'wpc_display_current_feels_like_callback' ), // Callback
+            'wpc-settings-admin-display', // Page
+            'wpc_setting_section_display' // Section
+        );
+
+		add_settings_field(
             'wpc_current_weather_description', // ID
             __("Current short condition?","wp-cloudy"), // Title
             array( $this, 'wpc_display_weather_description_callback' ), // Callback
@@ -399,6 +407,14 @@ class wpc_options
             'wpc_precipitation', // ID
             __("Precipitation?","wp-cloudy"), // Title
             array( $this, 'wpc_display_precipitation_callback' ), // Callback
+            'wpc-settings-admin-display', // Page
+            'wpc_setting_section_display' // Section
+        );
+
+        add_settings_field(
+            'wpc_visibility', // ID
+            __("Visibility?","wp-cloudy"), // Title
+            array( $this, 'wpc_display_visibility_callback' ), // Callback
             'wpc-settings-admin-display', // Page
             'wpc_setting_section_display' // Section
         );
@@ -821,25 +837,25 @@ class wpc_options
     public function sanitize( $input )
     {
 		if( !empty( $input['wpc_custom_css'] ) )
-		$input['wpc_custom_css'] = sanitize_textarea_field( $input['wpc_custom_css'] );
+		$input['wpc_custom_css'] = sanitize_textarea_field( trim($input['wpc_custom_css']) );
 
 		if( !empty( $input['wpc_background_color'] ) )
-		$input['wpc_background_color'] = sanitize_text_field( $input['wpc_background_color'] );
+		$input['wpc_background_color'] = sanitize_text_field( trim($input['wpc_background_color']) );
 
 		if( !empty( $input['wpc_text_color'] ) )
-		$input['wpc_text_color'] = sanitize_text_field( $input['wpc_text_color'] );
+		$input['wpc_text_color'] = sanitize_text_field( trim($input['wpc_text_color']) );
 
 		if( !empty( $input['wpc_border_color'] ) )
-		$input['wpc_border_color'] = sanitize_text_field( $input['wpc_border_color'] );
+		$input['wpc_border_color'] = sanitize_text_field( trim($input['wpc_border_color']) );
 
 		if( !empty( $input['wpc_advanced_cache_time'] ) )
-		$input['wpc_advanced_cache_time'] = sanitize_text_field( $input['wpc_advanced_cache_time'] );
+		$input['wpc_advanced_cache_time'] = sanitize_text_field( trim($input['wpc_advanced_cache_time']) );
 
 		if( !empty( $input['wpc_advanced_api_key'] ) )
-		$input['wpc_advanced_api_key'] = sanitize_text_field( $input['wpc_advanced_api_key'] );
+		$input['wpc_advanced_api_key'] = sanitize_text_field( trim($input['wpc_advanced_api_key']) );
 
 		if( !empty( $input['wpc_map_height'] ) )
-        $input['wpc_map_height'] = sanitize_text_field( $input['wpc_map_height'] );
+        $input['wpc_map_height'] = sanitize_text_field( trim($input['wpc_map_height']) );
 
         return $input;
     }
@@ -1180,6 +1196,11 @@ class wpc_options
         $this->bypassRadioButtons('wpc_precipitation');
     }
 
+    public function wpc_display_visibility_callback()
+    {
+        $this->bypassRadioButtons('wpc_visibility');
+    }
+
     public function wpc_display_alerts_callback()
     {
         $this->bypassRadioButtons('wpc_alerts');
@@ -1229,6 +1250,11 @@ class wpc_options
 	public function wpc_display_current_temperature_callback()
     {
         $this->bypassRadioButtons('wpc_current_temperature');
+    }
+
+	public function wpc_display_current_feels_like_callback()
+    {
+        $this->bypassRadioButtons('wpc_current_feels_like');
     }
 
 	public function wpc_display_forecast_no_callback()

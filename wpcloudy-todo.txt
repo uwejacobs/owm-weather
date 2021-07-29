@@ -1,14 +1,15 @@
 Must:
 charts
-trim settings fields before saving them
 
 Should:
+mini template with just current weather info
 check if wpcloudy is activated
-map new style (https://github.com/owm-inc/VANE-intro/tree/master/apps)
 delete references to wpcloudy.com
 readme.txt section for wpcloudy upgrades
 
 Nice:
+background type solid/gradient/image
+border width(px), type(solid etc) and radius(px/%)
 moon phase icons
 openweathermap keys
 background image

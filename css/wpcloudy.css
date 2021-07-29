@@ -133,7 +133,7 @@ div[id^='wpc-weather'] {
 	width: 100%;
 }
 
-.wpc-day, .wpc-sun-hours, .wpc-moon-hours {
+.wpc-day, .wpc-sun-hours, .wpc-moon-hours, .wpc-main-feels-like {
     text-align: center;
 }
 
@@ -142,7 +142,7 @@ div[id^='wpc-weather'] {
 	line-height: 1.5;
 }
 
-.wpc-infos .wpc-wind, .wpc-infos .wpc-humidity, .wpc-infos .wpc-pressure, .wpc-infos .wpc-cloudiness, .wpc-infos .wpc-precipitation {
+.wpc-infos .wpc-wind, .wpc-infos .wpc-humidity, .wpc-infos .wpc-pressure, .wpc-infos .wpc-cloudiness, .wpc-infos .wpc-precipitation, .wpc-infos .wpc-visibility {
 	margin: 10px 0;
 	text-align: center;
 }

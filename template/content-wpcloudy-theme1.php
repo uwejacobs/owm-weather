@@ -13,7 +13,8 @@
 .wpc-infos .wpc-humidity,
 .wpc-infos .wpc-pressure,
 .wpc-infos .wpc-cloudiness,
-.wpc-infos .wpc-precipitation {
+.wpc-infos .wpc-precipitation,
+.wpc-infos .wpc-visibility {
     width: 100%;
 }
 </style>
@@ -30,6 +31,7 @@
 		<?php echo $wpc_html["now"]["location_name"]; ?>
 		<?php echo $wpc_html["now"]["symbol"]; ?>
 		<?php echo $wpc_html["now"]["temperature"]; ?>
+		<?php echo $wpc_html["now"]["feels_like"]; ?>
 		<?php echo $wpc_html["now"]["weather_description"]; ?>
 	<?php echo $wpc_html["now"]["end"]; ?>
 
@@ -38,7 +40,7 @@
 
 	<div class="wpc-toggle-infos">
 
-		<!-- Current infos: wind, humidity, pressure, cloudiness, precipitation -->
+		<!-- Current infos: wind, humidity, pressure, cloudiness, precipitation, visibility -->
 		<div class="wpc-infos">
 			<div class="wpc-flexslider flexslider carousel">
 				<ul class="slides">
@@ -47,6 +49,7 @@
 					<li><?php echo $wpc_html["info"]["pressure"]; ?></li>
 					<li><?php echo $wpc_html["info"]["cloudiness"]; ?></li>
 					<li><?php echo $wpc_html["info"]["precipitation"]; ?></li>
+					<li><?php echo $wpc_html["info"]["visibility"]; ?></li>
 					<li><?php echo $wpc_html["today"]["sun_hor"]; ?></li>
 					<li><?php echo $wpc_html["today"]["moon_hor"]; ?></li>
 				</ul>

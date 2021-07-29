@@ -575,9 +575,8 @@ function temperatureUnitSymbol($id, $display_unit, $unit, $iconpack) {
 	    if ($display_unit) {
 	    	$str .=
 	    		'<style>
-	            	#'.$id.'.wpc-small .wpc-now .wpc-main-temperature:after,
-	            	#'.$id.'.wpc-medium .wpc-now .wpc-main-temperature:after,
-	            	#'.$id.'.wpc-large .wpc-now .wpc-main-temperature:after,
+	            	#'.$id.' .wpc-now .wpc-main-temperature:after,
+	            	#'.$id.' .wpc-now .wpc-main-feels-like:after,
 	              	#'.$id.' .wpc-forecast .wpc-temp-max:after,
 	              	#'.$id.' .wpc-forecast .wpc-temp-min:after,
 	              	#'.$id.' .wpc-hours .wpc-temperature:after,
