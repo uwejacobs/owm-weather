@@ -3,7 +3,7 @@
 /* DO NOT CHANGE THIS TEMPLATE DIRECTLY. IT WILL BE OVERWRITTEN BY UPDATES. */
 /****************************************************************************/
 /**
- * The WP Cloudy table1 template
+ * The WP Cloudy Table1 template
  *
  */
 ?>

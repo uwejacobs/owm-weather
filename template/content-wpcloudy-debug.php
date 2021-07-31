@@ -1,3 +1,12 @@
+<?php
+/****************************************************************************/
+/* DO NOT CHANGE THIS TEMPLATE DIRECTLY. IT WILL BE OVERWRITTEN BY UPDATES. */
+/****************************************************************************/
+/**
+ * The WP Cloudy debug template
+ *
+ */
+?>
 <style>
 #debug_accordion<?php echo $wpc_opt["id"]; ?> .card-body {
   background-color: #fff;

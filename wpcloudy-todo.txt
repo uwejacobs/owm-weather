@@ -1,17 +1,17 @@
 Must:
+card template with just current weather info
+widget
 charts
 
 Should:
-mini template with just current weather info
 check if wpcloudy is activated
 delete references to wpcloudy.com
 readme.txt section for wpcloudy upgrades
 
 Nice:
-background type solid/gradient/image
-border width(px), type(solid etc) and radius(px/%)
+tabbed settings
+background type solid/gradient/image/video
 moon phase icons
-openweathermap keys
-background image
 weather-icons: wind-direction plus other icons
 Translations
+openweathermap keys

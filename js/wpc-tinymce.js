@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 	(function() {
 	    tinymce.PluginManager.add('wpc_button_v4', function( editor, url ) {
 	        editor.addButton( 'wpc_button_v4', {
-	            title: 'WP Cloudy',
+	            title: 'WP Cloudy 2',
 	            type: 'button',
 	            icon: 'icon mceIcon dashicons-before dashicons-cloud',
 	            onclick: function() {

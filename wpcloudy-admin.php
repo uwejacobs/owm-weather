@@ -555,6 +555,30 @@ class wpc_options
             'wpc_setting_section_layout' // Section
         );
 
+		add_settings_field(
+            'wpc_border_width', // ID
+            __("Border width (in px)?","wp-cloudy"), // Title
+            array( $this, 'wpc_layout_border_width_callback' ), // Callback
+            'wpc-settings-admin-layout', // Page
+            'wpc_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'wpc_border_style', // ID
+            __("Border style?","wp-cloudy"), // Title
+            array( $this, 'wpc_layout_border_style_callback' ), // Callback
+            'wpc-settings-admin-layout', // Page
+            'wpc_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'wpc_border_radius', // ID
+            __("Border Radius?","wp-cloudy"), // Title
+            array( $this, 'wpc_layout_border_radius_callback' ), // Callback
+            'wpc-settings-admin-layout', // Page
+            'wpc_setting_section_layout' // Section
+        );
+
         add_settings_field(
             'wpc_size', // ID
            __("Weather size?","wp-cloudy"), // Title
@@ -568,6 +592,54 @@ class wpc_options
             'wpc_custom_css', // ID
            __("Custom CSS?","wp-cloudy"), // Title
             array( $this, 'wpc_layout_custom_css_callback' ), // Callback
+            'wpc-settings-admin-layout', // Page
+            'wpc_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'wpc_table_background_color', // ID
+            __("Table background color?","wp-cloudy"), // Title
+            array( $this, 'wpc_layout_table_background_color_callback' ), // Callback
+            'wpc-settings-admin-layout', // Page
+            'wpc_setting_section_layout' // Section
+        );
+
+        add_settings_field(
+            'wpc_table_text_color', // ID
+            __("Table text color?","wp-cloudy"), // Title
+            array( $this, 'wpc_layout_table_text_color_callback' ), // Callback
+            'wpc-settings-admin-layout', // Page
+            'wpc_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'wpc_table_border_color', // ID
+            __("Table border color?","wp-cloudy"), // Title
+            array( $this, 'wpc_layout_table_border_color_callback' ), // Callback
+            'wpc-settings-admin-layout', // Page
+            'wpc_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'wpc_table_border_width', // ID
+            __("Table border width (in px)?","wp-cloudy"), // Title
+            array( $this, 'wpc_layout_table_border_width_callback' ), // Callback
+            'wpc-settings-admin-layout', // Page
+            'wpc_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'wpc_table_border_style', // ID
+            __("Table border style?","wp-cloudy"), // Title
+            array( $this, 'wpc_layout_table_border_style_callback' ), // Callback
+            'wpc-settings-admin-layout', // Page
+            'wpc_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'wpc_table_border_radius', // ID
+            __("Table border Radius?","wp-cloudy"), // Title
+            array( $this, 'wpc_layout_table_border_radius_callback' ), // Callback
             'wpc-settings-admin-layout', // Page
             'wpc_setting_section_layout' // Section
         );
@@ -815,6 +887,11 @@ class wpc_options
             unset($this->options["wpc_display_forecast"]);
             unset($this->options["wpc_display_bypass_forecast_nd"]);
 
+            if (!empty($this->options["wpc_border_color"])) {
+                $this->options["wpc_border_width"] = '1';
+                $this->options["wpc_border_style"] = 'solid';
+                $this->options["wpc_border_radius"] = '0';
+            }
             $this->options["wpc_version"] = WPCLOUDY_VERSION;
             update_option('wpc_option_name', $this->options);
         }
@@ -830,32 +907,18 @@ class wpc_options
     }
 
     /**
-     * Sanitize each setting field as needed
+     * Sanitize each setting field
      *
      * @param array $input Contains all settings fields as array keys
      */
-    public function sanitize( $input )
-    {
-		if( !empty( $input['wpc_custom_css'] ) )
-		$input['wpc_custom_css'] = sanitize_textarea_field( trim($input['wpc_custom_css']) );
-
-		if( !empty( $input['wpc_background_color'] ) )
-		$input['wpc_background_color'] = sanitize_text_field( trim($input['wpc_background_color']) );
-
-		if( !empty( $input['wpc_text_color'] ) )
-		$input['wpc_text_color'] = sanitize_text_field( trim($input['wpc_text_color']) );
-
-		if( !empty( $input['wpc_border_color'] ) )
-		$input['wpc_border_color'] = sanitize_text_field( trim($input['wpc_border_color']) );
-
-		if( !empty( $input['wpc_advanced_cache_time'] ) )
-		$input['wpc_advanced_cache_time'] = sanitize_text_field( trim($input['wpc_advanced_cache_time']) );
-
-		if( !empty( $input['wpc_advanced_api_key'] ) )
-		$input['wpc_advanced_api_key'] = sanitize_text_field( trim($input['wpc_advanced_api_key']) );
-
-		if( !empty( $input['wpc_map_height'] ) )
-        $input['wpc_map_height'] = sanitize_text_field( trim($input['wpc_map_height']) );
+    public function sanitize($input) {
+        foreach($input as $k => &$v) {
+    		if ($k == 'wpc_custom_css') {
+	        	$v = sanitize_textarea_field(trim($v));
+        	} else {
+	        	$v = sanitize_text_field(trim($v));
+        	}
+        }
 
         return $input;
     }
@@ -1061,10 +1124,12 @@ class wpc_options
 		echo '<select id="wpc_template" name="wpc_option_name[wpc_template]"> ';
         echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. __( 'No bypass', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. __( 'Default', 'wp-cloudy' ) .'</option>';
-        echo '<option ' . selected( 'theme1', $selected, false ) . ' value="theme1">'. __( 'Theme 1 (with slider)', 'wp-cloudy' ) .'</option>';
-        echo '<option ' . selected( 'theme2', $selected, false ) . ' value="theme2">'. __( 'Theme 2 (with slider)', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'card1', $selected, false ) . ' value="card1">'. __( 'Card 1', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'card2', $selected, false ) . ' value="card2">'. __( 'Card 2', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'chart1', $selected, false ) . ' value="chart1">'. __( 'Chart 1', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'chart2', $selected, false ) . ' value="chart2">'. __( 'Chart 2', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'slider1', $selected, false ) . ' value="slider1">'. __( 'Slider 1', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'slider2', $selected, false ) . ' value="slider2">'. __( 'Slider 2', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'table1', $selected, false ) . ' value="table1">'. __( 'Table 1', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'table2', $selected, false ) . ' value="table2">'. __( 'Table 2', 'wp-cloudy' ) .'</option>';
         echo '<option ' . selected( 'custom1', $selected, false ) . ' value="custom1">'. __( 'Custom 1', 'wp-cloudy' ) .'</option>';
@@ -1365,6 +1430,41 @@ class wpc_options
 		printf('<input name="wpc_option_name[wpc_border_color]" type="text" value="%s" class="wpcloudy_admin_color_picker" />', esc_attr($check));
     }
 
+	public function wpc_layout_border_width_callback()
+    {
+        $check = $this->options['wpc_border_width'] ?? null;
+
+        printf('<input name="wpc_option_name[wpc_border_width]" type="number" min="0" value="%s" />', esc_attr($check));
+    }
+
+	public function wpc_layout_border_style_callback()
+    {
+        $selected = $this->options['wpc_border_style'] ?? "nobypass";
+
+		echo '<select id="wpc_border_style" name="wpc_option_name[wpc_border_style]">';
+		$this->borderStyleOptions($selected);
+		echo '</select>';
+	}
+
+    private function borderStyleOptions($selected) {
+        echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. __( 'No bypass', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'solid', $selected, false ) . ' value="solid">'. __( 'Solid', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'dotted', $selected, false ) . ' value="dotted">'. __( 'Dotted', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'dashed', $selected, false ) . ' value="dashed">'. __( 'Dashed', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'double', $selected, false ) . ' value="double">'. __( 'Double', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'groove', $selected, false ) . ' value="groove">'. __( 'Groove', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'inset', $selected, false ) . ' value="inset">'. __( 'Inset', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'outset', $selected, false ) . ' value="outset">'. __( 'Outset', 'wp-cloudy' ) .'</option>';
+        echo '<option ' . selected( 'ridge', $selected, false ) . ' value="ridge">'. __( 'Ridge', 'wp-cloudy' ) .'</option>';
+    }
+
+	public function wpc_layout_border_radius_callback()
+    {
+        $check = $this->options['wpc_border_radius'] ?? null;
+
+        printf('<input name="wpc_option_name[wpc_border_radius]" type="number" min="0" value="%s" />', esc_attr($check));
+    }
+
 	public function wpc_layout_size_callback()
     {
         $selected = $this->options['wpc_size'] ?? "nobypass";
@@ -1393,6 +1493,50 @@ class wpc_options
         printf('<textarea name="wpc_option_name[wpc_custom_css]" style="width:100%%;height:300px;">%s</textarea>', esc_attr($check));
     }
 
+    public function wpc_layout_table_background_color_callback()
+    {
+        $check = $this->options['wpc_table_background_color'] ?? null;
+
+        printf('<input name="wpc_option_name[wpc_table_background_color]" type="text" value="%s" class="wpcloudy_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function wpc_layout_table_text_color_callback()
+    {
+        $check = $this->options['wpc_table_text_color'] ?? null;
+
+        printf('<input name="wpc_option_name[wpc_table_text_color]" type="text" value="%s" class="wpcloudy_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function wpc_layout_table_border_color_callback()
+    {
+        $check = $this->options['wpc_table_border_color'] ?? null;
+
+		printf('<input name="wpc_option_name[wpc_table_border_color]" type="text" value="%s" class="wpcloudy_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function wpc_layout_table_border_width_callback()
+    {
+        $check = $this->options['wpc_table_border_width'] ?? null;
+
+        printf('<input name="wpc_option_name[wpc_table_border_width]" type="number" min="0" value="%s" />', esc_attr($check));
+    }
+
+	public function wpc_layout_table_border_style_callback()
+    {
+        $selected = $this->options['wpc_table_border_style'] ?? "nobypass";
+
+		echo '<select id="wpc_border_style" name="wpc_option_name[wpc_table_border_style]">';
+		$this->borderStyleOptions($selected);
+		echo '</select>';
+	}
+
+	public function wpc_layout_table_border_radius_callback()
+    {
+        $check = $this->options['wpc_table_border_radius'] ?? null;
+
+        printf('<input name="wpc_option_name[wpc_table_border_radius]" type="number" min="0" value="%s" />', esc_attr($check));
+    }
+
 	public function wpc_advanced_disable_cache_callback()
     {
 		$check = $this->options['wpc_advanced_disable_cache'] ?? null;
@@ -1407,7 +1551,7 @@ class wpc_options
     {
         $check = $this->options['wpc_advanced_cache_time'] ?? '';
 
-        printf('<input type="text" name="wpc_option_name[wpc_advanced_cache_time]" value="%s" style="width:100%%" />', esc_html( $check ));
+        printf('<input type="number" min="10" name="wpc_option_name[wpc_advanced_cache_time]" value="%s" style="width:100%%" />', esc_html( $check ));
         echo '<br /><br /><span class="dashicons dashicons-editor-help"></span>'.__('Default value: 30 minutes','wp-cloudy');
 	}
 
@@ -1438,7 +1582,7 @@ class wpc_options
     {
         $check = $this->options['wpc_map_height'] ?? '';
 
-        printf('<input name="wpc_option_name[wpc_map_height]" type="text" value="%s" />', esc_attr($check));
+        printf('<input name="wpc_option_name[wpc_map_height]" type="number" min="300" value="%s" />', esc_attr($check));
 	}
 
 	public function wpc_map_opacity_callback()

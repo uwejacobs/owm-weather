@@ -210,6 +210,11 @@ div[id^='wpc-map-container'] svg {
 	height: auto;
 }
 
+.wpc-map, .wpc-chart-container, .wpc-table {
+	padding-top: 1rem !important;
+	padding-bottom: 1rem !important;
+}
+
 .wpc-link-owm {
 	float: left;
 }

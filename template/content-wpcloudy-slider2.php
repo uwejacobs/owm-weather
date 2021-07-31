@@ -1,6 +1,9 @@
 <?php
+/****************************************************************************/
+/* DO NOT CHANGE THIS TEMPLATE DIRECTLY. IT WILL BE OVERWRITTEN BY UPDATES. */
+/****************************************************************************/
 /**
- * The WP Cloudy Theme 2 template
+ * The WP Cloudy Slider 2 template
  *
  */
 ?>
