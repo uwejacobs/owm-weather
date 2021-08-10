@@ -4,7 +4,7 @@ yc iconvault.css -o iconvault.min.css
 yc pe-icon-set-weather.css -o pe-icon-set-weather.min.css 
 yc weather-icons.css -o weather-icons.min.css 
 yc weather-icons-wind.css -o weather-icons-wind.min.css
-yc wpcloudy-admin.css -o wpcloudy-admin.min.css 
-yc wpcloudy-anim.css -o wpcloudy-anim.min.css 
-yc wpcloudy.css -o wpcloudy.min.css 
-yc wpcloudy-map.css -o wpcloudy-map.min.css 
+yc wpowmweather-admin.css -o wpowmweather-admin.min.css 
+yc wpowmweather-anim.css -o wpowmweather-anim.min.css 
+yc wpowmweather.css -o wpowmweather.min.css 
+yc wpowmweather-map.css -o wpowmweather-map.min.css 

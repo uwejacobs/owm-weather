@@ -1,4 +1,4 @@
-=== WP Cloudy 2, weather plugin ===
+=== WP OWM Weather, weather plugin ===
 Contributors: rainbowgeek, uwejacobs
 Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
@@ -8,16 +8,16 @@ Stable tag: 5.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WP Cloudy 2 is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, and much more.
+WP OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, and much more.
 
 == Description ==
 
 <strong>After more than 5 years of loyal service, the original WP Cloudy will no longer be maintained. The wpcloudy.com site will remain accessible for documentation only. Thank you !</strong>
 
-<strong>This is now WP Cloudy 2. It convert any original WP Cloudy settings and weather pages in the background.</strong>
+<strong>This is now WP OWM Weather. It convert any original WP Cloudy settings and weather pages in the background.</strong>
 <hr>
 
-WP Cloudy 2 is a flexible and easy to use weather plugin that allows you to create unlimited different weathers using Custom Post Types and Open Weather Map API. 
+WP OWM Weather is a flexible and easy to use weather plugin that allows you to create unlimited different weathers using Custom Post Types and Open Weather Map API. 
 
 Create a weather, select your city, choose the options and customize the look in a few clicks.
 
@@ -28,12 +28,12 @@ With Custom Post Types, you minimize maintenance: change some settings to automa
 <h4>For developers</h4>
 Templating system: The main advantage is that you can create a completely personalized weather without changing the core of the plugin. In addition, your changes will not be overwritten at each plugin update.
 
-* Go to WP Cloudy template directory: http://yoursite.com/wp-content/plugins/wp-cloudy-2/template/
-* Copy content-wpcloudy-custom1.php and content-wpcloudy-custom2.php files.
+* Go to WP OWM Weather template directory: http://yoursite.com/wp-content/plugins/wp-owm-weather/template/
+* Copy content-wpowmweather-custom1.php and content-wpowmweather-custom2.php files.
 * Go to your theme directory: http://yoursite.com/wp-content/themes/yourtheme/
-* Create a new folder called wp-cloudy-2 (the spelling is important).
-* In this new folder, paste content-wpcloudy-custom1.php and content-wpcloudy-custom2.php files.
-* Now, open content-wpcloudy-custom1.php or content-wpcloudy-custom2.php with a php editor like notepad ++, coda2, sublime text…
+* Create a new folder called wp-owm-weather (the spelling is important).
+* In this new folder, paste content-wpowmweather-custom1.php and content-wpowmweather-custom2.php files.
+* Now, open content-wpowmweather-custom1.php or content-wpowmweather-custom2.php with a php editor like notepad ++, coda2, sublime text…
 * Write your weather layout.. You can use the other templates as guidelines.
 * Save and send your changes via FTP.
 * Now you built a custom weather template. Select the template "Custom 1" or "Custom 2" in your weather settings.
@@ -60,10 +60,10 @@ Templating system: The main advantage is that you can create a completely person
 
 == Installation ==
 
-1. Upload 'wp-cloudy-2' to the '/wp-content/plugins/' directory
+1. Upload 'wp-owm-weather' to the '/wp-content/plugins/' directory
 2. If you are upgrading from the original WP Cloudy plugin, deactivate it through the 'Plugins' menu in WordPress
-3. Activate the WP Cloudy 2 plugin through the 'Plugins' menu in WordPress
-4. Get your free OpenWeatherMap API key and enter it under Settings/WP Cloudy
+3. Activate the WP OWM Weather plugin through the 'Plugins' menu in WordPress
+4. Get your free OpenWeatherMap API key and enter it under Settings/WP OWM Weather
 5. Click on the new custom post type called Weather and start creating your own weather shortcodes!
 
 == Frequently Asked Questions ==
@@ -87,4 +87,4 @@ Templating system: The main advantage is that you can create a completely person
 * Fill Google Tag Manager datalayer with current weather info
 * Existing WP Cloudy settings and weathers will be upgraded on the fly
 = 4.5.0 =
-* Restarted as WP Cloudy 2
+* Restarted as WP OWM Weather

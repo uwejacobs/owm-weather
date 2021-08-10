@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-    $("#wpcloudy-tabs .hidden").removeClass('hidden');
-    $("#wpcloudy-tabs").tabs();
-    $("#wpcloudy-owm-param").tabs();
+    $("#wpowmweather-tabs .hidden").removeClass('hidden');
+    $("#wpowmweather-tabs").tabs();
+    $("#wpowmweather-owm-param").tabs();
 });
