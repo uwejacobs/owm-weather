@@ -111,12 +111,12 @@
 	<!-- Weather Map -->
 	<?php echo $wow_html["map"]; ?>
 
-    	<!-- OWM Link -->
-    	<?php echo $wow_html["owm_link"]; ?>
-
-	<!-- OWM Last Update -->
-    	<?php echo $wow_html["last_update"]; ?>
-
+	<?php echo $wow_html["owm_link_last_update_start"]; ?>
+		<!-- OWM Link -->
+		<?php echo $wow_html["owm_link"]; ?>
+		<!-- OWM Last Update -->
+		<?php echo $wow_html["last_update"]; ?>
+	<?php echo $wow_html["owm_link_last_update_end"]; ?>
 
 	<!-- Alert Modals -->
 	<?php echo $wow_html["alert_modal"]; ?>
