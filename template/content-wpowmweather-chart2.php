@@ -3,8 +3,14 @@
 /* DO NOT CHANGE THIS TEMPLATE DIRECTLY. IT WILL BE OVERWRITTEN BY UPDATES. */
 /****************************************************************************/
 /**
- * The WP OWM Weather chart2 template
+ * The WP OWM Weather chart1 template
  *
  */
 ?>
 <?php
+
+echo $wow_html["container"]["start"];
+echo $wow_html["chart"]["hourly"]["cmd"];
+echo $wow_html["chart"]["daily"]["cmd"];
+echo $wow_html["container"]["end"];
+echo $wow_html["temperature_unit"];

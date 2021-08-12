@@ -59,42 +59,45 @@ class wow_options
 				<span class="wow-info-version"><?php print_r($wow_info_version['Version']); ?></span>
 				<div id="wpowmweather-notice">
 					<div class="small">
-						<!--?php _e( 'Do you like WP OWM Weather? Don\'t forget to rate it 5 stars!', 'wp-owm-weather' ); ?-->
+                         <div id="wpcloudy-notice">
+                            <div class="small">
+                                <span class="dashicons dashicons-wordpress"></span>
+                                <?php _e( 'Do you like WP OPM Weather? Don\'t forget to rate it 5 stars!', 'wp-owm-weather' ); ?>
 
-                        <!--div class="wporg-ratings rating-stars">
-                            <a href="//wordpress.org/support/view/plugin-reviews/wp-owm-weather?rate=1#postform" data-rating="1" title="" target="_blank"><span class="dashicons dashicons-star-filled" style="color:#e6b800 !important;"></span></a>
-                            <a href="//wordpress.org/support/view/plugin-reviews/wp-owm-weather?rate=2#postform" data-rating="2" title="" target="_blank"><span class="dashicons dashicons-star-filled" style="color:#e6b800 !important;"></span></a>
-                            <a href="//wordpress.org/support/view/plugin-reviews/wp-owm-weather?rate=3#postform" data-rating="3" title="" target="_blank"><span class="dashicons dashicons-star-filled" style="color:#e6b800 !important;"></span></a>
-                            <a href="//wordpress.org/support/view/plugin-reviews/wp-owm-weather?rate=4#postform" data-rating="4" title="" target="_blank"><span class="dashicons dashicons-star-filled" style="color:#e6b800 !important;"></span></a>
-                            <a href="//wordpress.org/support/view/plugin-reviews/wp-owm-weather?rate=5#postform" data-rating="5" title="" target="_blank"><span class="dashicons dashicons-star-filled" style="color:#e6b800 !important;"></span></a>
-                        </div-->
-
-                        <form action="https://www.paypal.com/donate" method="post" target="_top">
-						<span class="dashicons dashicons-wordpress"></span>
-						<?php _e( 'Do you like WP OWM Weather? Consider a donation.', 'wp-owm-weather' ); ?>
-                        <input type="hidden" name="hosted_button_id" value="PQDNJGKMLHAFU" />
-                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-                        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                        </form>
-
-                        <!--script>
-                            jQuery(document).ready( function($) {
-                                $('.rating-stars').find('a').hover(
-                                    function() {
+                                <div class="wporg-ratings rating-stars">
+                                    <a href="//wordpress.org/support/view/plugin-reviews/wp-owm-weather?rate=1#postform" data-rating="1" title="" target="_blank"><span class="dashicons dashicons-star-filled" style="color:#e6b800 !important;"></span></a>
+                                    <a href="//wordpress.org/support/view/plugin-reviews/wp-owm-weather?rate=2#postform" data-rating="2" title="" target="_blank"><span class="dashicons dashicons-star-filled" style="color:#e6b800 !important;"></span></a>
+                                    <a href="//wordpress.org/support/view/plugin-reviews/wp-owm-weather?rate=3#postform" data-rating="3" title="" target="_blank"><span class="dashicons dashicons-star-filled" style="color:#e6b800 !important;"></span></a>
+                                    <a href="//wordpress.org/support/view/plugin-reviews/wp-owm-weather?rate=4#postform" data-rating="4" title="" target="_blank"><span class="dashicons dashicons-star-filled" style="color:#e6b800 !important;"></span></a>
+                                    <a href="//wordpress.org/support/view/plugin-reviews/wp-owm-weather?rate=5#postform" data-rating="5" title="" target="_blank"><span class="dashicons dashicons-star-filled" style="color:#e6b800 !important;"></span></a>
+                                </div>
+                                <script>
+                                jQuery(document).ready( function($) {
+                                    $('.rating-stars').find('a').hover(function() {
                                         $(this).nextAll('a').children('span').removeClass('dashicons-star-filled').addClass('dashicons-star-empty');
                                         $(this).prevAll('a').children('span').removeClass('dashicons-star-empty').addClass('dashicons-star-filled');
                                         $(this).children('span').removeClass('dashicons-star-empty').addClass('dashicons-star-filled');
-                                    }, function() {
-                                        var rating = $('input#rating').val();
-                                        if (rating) {
-                                            var list = $('.rating-stars a');
-                                            list.children('span').removeClass('dashicons-star-filled').addClass('dashicons-star-empty');
-                                            list.slice(0, rating).children('span').removeClass('dashicons-star-empty').addClass('dashicons-star-filled');
+                                        }, function() {
+                                            var rating = $('input#rating').val();
+                                            if (rating) {
+                                                var list = $('.rating-stars a');
+                                                list.children('span').removeClass('dashicons-star-filled').addClass('dashicons-star-empty');
+                                                list.slice(0, rating).children('span').removeClass('dashicons-star-empty').addClass('dashicons-star-filled');
+                                            }
                                         }
-                                    }
-                                );
-                            });
-                        </script-->
+                                    );
+                                });
+                                </script>
+                            </div>
+                        </div>
+
+                        <form action="https://www.paypal.com/donate" method="post" target="_top">
+	    					<?php _e( 'Consider a donation', 'wp-owm-weather' ); ?>:
+                            <input type="hidden" name="hosted_button_id" value="PQDNJGKMLHAFU" />
+                            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                        </form>
+
 					</div>
 				</div>
 			</div>

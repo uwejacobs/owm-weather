@@ -2159,6 +2159,9 @@ function wow_get_my_weather($attr) {
 			}
 		}
 
+      	$temperature_unit_character = $wow_opt["temperature_unit"] == "metric" ? 'C' : 'F';
+      	$temperature_unit_text = $wow_opt["temperature_unit"] == "metric" ? 'Celsius' : 'Fahrenheit';
+
 	    //Map
 
 	      	if ($wow_opt['map'] == 'yes') {
@@ -2224,8 +2227,6 @@ function wow_get_my_weather($attr) {
 		      	//Scroll wheel
 		      	$display_map_scroll_wheel = ($wow_opt["map_disable_zoom_wheel"] == 'yes') ? "false" : "true";
 
-		      	$temperature_unit_character = $wow_opt["temperature_unit"] == "metric" ? 'C' : 'F';
-		      	$temperature_unit_text = $wow_opt["temperature_unit"] == "metric" ? 'Celsius' : 'Fahrenheit';
                 if ($wow_opt["wind_unit"] == "2") {
     		      	$map_speed = 'ms';
 				} else if ($wow_opt["wind_unit"] == "3") {

@@ -1,6 +1,7 @@
 Must:
 delete references to wpcloudy.com
-readme with screenshots
+readme.txt: document options
+https://developer.wordpress.org/plugins/wordpress-org/plugin-assets/#plugin-headers
 
 Nice:
 more charts
