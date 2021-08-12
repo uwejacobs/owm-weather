@@ -239,6 +239,10 @@ div[id^='wow-map-container'] svg {
 	float: left;
 }
 
+.wow-owm-link-last-update {
+	margin-top: 5px;
+}
+
 .wow-last-update {
 	float: right;
 }

@@ -1,9 +1,9 @@
 Must:
 delete references to wpcloudy.com
-widget
+readme with screenshots
 
 Nice:
-charts
+more charts
 tabbed settings
 background type gradient/video
 moon phase icons

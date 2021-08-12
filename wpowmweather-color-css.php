@@ -123,7 +123,7 @@ function generateColorCSS($hexColor, $name) {
 }
 
 function addStylesheetRule(&$s, $selector, $property, $value) {
-    $s[$selector][] = $property . ":" . $value . ';';
+    $s[$selector][] = $property . ":" . $value . ' !important;';
 }
 
 function printStylesheetRules($s) {

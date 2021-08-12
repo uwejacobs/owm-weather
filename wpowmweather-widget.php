@@ -27,6 +27,10 @@ function wow_dashboard_widget_function() {
 
 	// Display selected weather.
     if ( $my_weather = get_option( 'wow_dashboard_widget_option' ) ) {
+        wow_add_themes_scripts();
+		wp_enqueue_style('bootstrap-css');/*bugbug*/
+		wp_enqueue_script('bootstrap-js');/*bugbug*/
+		wp_enqueue_script('popper-js');/*bugbug*/
 		echo do_shortcode('[wow-weather id="'.$my_weather['weather_db'].'"]');
 	} else {
 		_e('Please select a weather via configure link','wp-owm-weather');
@@ -75,5 +79,4 @@ function wow_dashboard_widget_option($widget_id) {
 	echo'</p>';
 	
 	echo'<input name="wow_widget_post" type="hidden" value="1" />';
-
 }

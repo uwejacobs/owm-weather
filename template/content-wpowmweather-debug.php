@@ -26,8 +26,8 @@
 
     <div id="collapseSys<?php echo $wow_opt["id"]; ?>" class="collapse" aria-labelledby="headingSys<?php echo $wow_opt["id"]; ?>" data-parent="#debug_accordion<?php echo $wow_opt["id"]; ?>">
       <div class="card-body">
-        <pre class="wow-pre"><?php print_r($wow_sys_opt); ?></pre>
-        <pre class="wow-pre"><?php print_r($wow_params); ?></pre>
+        <pre class="wow-pre">$wow_sys_opt[]:<br><?php print_r($wow_sys_opt); ?></pre>
+        <pre class="wow-pre">$wow_params[]:<br><?php print_r($wow_params); ?></pre>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
 
     <div id="collapsePage<?php echo $wow_opt["id"]; ?>" class="collapse" aria-labelledby="headingPage<?php echo $wow_opt["id"]; ?>" data-parent="#debug_accordion<?php echo $wow_opt["id"]; ?>">
       <div class="card-body">
-        <pre class="wow-pre"><?php print_r($wow_opt); ?></pre>
+        <pre class="wow-pre">$wow_opt[]:<br><?php print_r($wow_opt); ?></pre>
       </div>
     </div>
   </div>
@@ -57,7 +57,7 @@
 
     <div id="collapseData<?php echo $wow_opt["id"]; ?>" class="collapse" aria-labelledby="headingData<?php echo $wow_opt["id"]; ?>" data-parent="#debug_accordion<?php echo $wow_opt["id"]; ?>">
       <div class="card-body">
-        <pre class="wow-pre"><?php print_r($wow_data); ?></pre>
+        <pre class="wow-pre">$wow_data[]:<br><?php print_r($wow_data); ?></pre>
       </div>
     </div>
   </div>
@@ -72,7 +72,7 @@
 
     <div id="collapseHtml<?php echo $wow_opt["id"]; ?>" class="collapse" aria-labelledby="headingHtml<?php echo $wow_opt["id"]; ?>" data-parent="#debug_accordion<?php echo $wow_opt["id"]; ?>">
       <div class="card-body">
-        <pre class="wow-pre"><?php print_r($wow_html); ?></pre>
+        <pre class="wow-pre">$wow_html[]:<br><?php print_r($wow_html); ?></pre>
       </div>
     </div>
   </div>
@@ -95,7 +95,7 @@ function htmlfix(&$item, $key)
 
 array_walk_recursive($wow_html, 'htmlfix');
 ?>
-        <pre class="wow-pre"><?php print_r($wow_html); ?></pre>
+        <pre class="wow-pre">$wow_html[]:<br><?php print_r($wow_html); ?></pre>
       </div>
     </div>
   </div>

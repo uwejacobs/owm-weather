@@ -639,7 +639,7 @@ function wpowmweather_basic($post){
 				<p>
 					<label for="wpowmweather_bypass_exclude_meta">
 						<input type="checkbox" name="wpowmweather_bypass_exclude" id="wpowmweather_bypass_exclude_meta" value="yes" '. checked( $wow_opt["bypass_exclude"], 'yes', false ) .' />
-							'. __( 'Exclude from System Settings Bypass?', 'wp-owm-weather' ) .'
+							'. __( 'Exclude from System Settings and Parameter Bypass?', 'wp-owm-weather' ) .'
 					</label>
 				</p>
 			</div>
@@ -1252,7 +1252,7 @@ function wow_save_metabox($post_id){
 		wow_save_metabox_field_yn('visibility', $post_id);
 		wow_save_metabox_field_yn('uv_index', $post_id);
 		wow_save_metabox_field_yn('current_temperature', $post_id);
-		wow_save_metabox_field_yn('feels_like', $post_id);
+		wow_save_metabox_field_yn('current_feels_like', $post_id);
 		wow_save_metabox_field_yn('forecast_precipitations', $post_id);
 		wow_save_metabox_field_yn('disable_spinner', $post_id);
 		wow_save_metabox_field_yn('disable_anims', $post_id);
@@ -1369,7 +1369,7 @@ function wpowmweather_city_name($custom_city_name, $owm_city_name) {
 }
 
 function wow_display_today_sunrise_sunset($wpowmweather_sunrise_sunset, $sun_rise, $sun_set, $color, $elem) {
-	if( $wpowmweather_sunrise_sunset ) {
+	if( $wpowmweather_sunrise_sunset == 'yes' ) {
 		return '<div class="wow-sun-hours col">
 					<' . $elem . ' class="wow-sunrise" title="'.__('Sunrise','wp-owm-weather').'">'. sunrise($color) . '<span class="font-weight-bold">' . $sun_rise .'</span></' . $elem . '><' . $elem . ' class="wow-sunset" title="'.__('Sunset','wp-owm-weather').'">'. sunset($color) . '<span class="font-weight-bold">' . $sun_set .'</span></' . $elem . '>
 				</div>';
@@ -1379,7 +1379,7 @@ function wow_display_today_sunrise_sunset($wpowmweather_sunrise_sunset, $sun_ris
 }
 
 function wow_display_today_moonrise_moonset($wpowmweather_moonrise_moonset, $moon_rise, $moon_set, $color, $elem) {
-	if( $wpowmweather_moonrise_moonset ) {
+	if( $wpowmweather_moonrise_moonset == 'yes' ) {
 		return '<div class="wow-moon-hours col">
 					<' . $elem . ' class="wow-moonrise" title="'.__('Moonrise','wp-owm-weather').'">'. moonrise($color) . '<span class="font-weight-bold">' . $moon_rise .'</span></' . $elem . '><' . $elem . ' class="wow-moonset" title="'.__('Moonset','wp-owm-weather').'">'. moonset($color) . '<span class="font-weight-bold">' . $moon_set .'</span></' . $elem . '>
 				</div>';
@@ -1436,25 +1436,89 @@ function wow_get_my_weather_id($atts) {
 
     $atts = array_change_key_case((array)$atts, CASE_LOWER);
     $wow_params = shortcode_atts(array(
-        "id"                    => false,
-        "id_owm"                => false,
-        "longitude"             => false,
-        "latitude"              => false,
-        "zip"                   => false,
-        "city"                  => false,
-        "country_code"          => false,
-        "city_name"             => false,
-        "custom_timezone"       => false,
-        "owm_language"          => false,
-        "font"                  => false,
-        "iconpack"              => false,
-        "template"              => false,
-        "size"                  => false,
-        "disable_spinner"       => false,
-        "disable_anims"         => false,
-        "background_image"      => false,
-        "forecast_no"           => false,
-        "hours_forecast_no"     => false,
+        "id"                            => false,
+        "id_owm"                        => false,
+        "longitude"                     => false,
+        "latitude"                      => false,
+        "zip"                           => false,
+        "city"                          => false,
+        "country_code"                  => false,
+        "city_name"                     => false,
+        "custom_timezone"               => false,
+        "owm_language"                  => false,
+        "font"                          => false,
+        "iconpack"                      => false,
+        "template"                      => false,
+        "size"                          => false,
+        "disable_spinner"               => false,
+        "disable_anims"                 => false,
+        "background_image"              => false,
+        "forecast_no"                   => false,
+        "hours_forecast_no"             => false,
+        "unit"                          => false,
+        "time_format"                   => false,
+        "custom_timezone"               => false,
+        "today_date_format"             => false,
+        "wind_unit"                     => false,
+        "display_length_days_names"     => false,
+        "background_color"              => false,
+        "text_color"                    => false,
+        "border_color"                  => false,
+        "border_width"                  => false,
+        "border_style"                  => false,
+        "border_radius"                 => false,
+        "custom_css"                    => false,
+        "map_height"                    => false,
+        "map_opacity"                   => false,
+        "map_zoom"                      => false,
+        "alerts_button_color"           => false,
+        "chart_height"                  => false,
+        "chart_background_color"        => false,
+        "chart_border_color"            => false,
+        "chart_border_width"            => false,
+        "chart_border_style"            => false,
+        "chart_border_radius"           => false,
+        "chart_temperature_color"       => false,
+        "chart_feels_like_color"        => false,
+        "chart_dew_point_color"         => false,
+        "table_background_color"        => false,
+        "table_text_color"              => false,
+        "table_border_color"            => false,
+        "table_border_width"            => false,
+        "table_border_style"            => false,
+        "table_border_radius"           => false,
+        "current_city_name"             => false,
+        "current_weather_symbol"        => false,
+        "current_weather_description"   => false,
+        "current_temperature"           => false,
+        "current_feels_like"            => false,
+        "display_temperature_unit"      => false,
+        "sunrise_sunset"                => false,
+        "moonrise_moonset"              => false,
+        "wind"                          => false,
+        "humidity"                      => false,
+        "dew_point"                     => false,
+        "pressure"                      => false,
+        "cloudiness"                    => false,
+        "precipitation"                 => false,
+        "visibility"                    => false,
+        "uv_index"                      => false,
+        "forecast_precipitations"       => false,
+        "owm_link"                      => false,
+        "last_update"                   => false,
+        "map"                           => false,
+        "map_disable_zoom_wheel"        => false,
+        "map_stations"                  => false,
+        "map_clouds"                    => false,
+        "map_precipitation"             => false,
+        "map_snow"                      => false,
+        "map_wind"                      => false,
+        "map_temperature"               => false,
+        "map_pressure"                  => false,
+        "gtag"                          => false,
+        "bypass_exclude"                => false,
+        "alerts"                        => false,
+        "hours_time_icons"              => false,
     ), $atts);
 
 	if (empty($wow_params["id"])) {
@@ -1668,11 +1732,12 @@ function wow_get_my_weather($attr) {
        	    $query = "zip=".$wow_opt["zip"];
        	} else  if ($wow_opt["city"] != '' && $wow_opt["country_code"] != '') {
        	    $query = "q=".$wow_opt["city"].",".$wow_opt["country_code"];
-       	} else {
-            $ipData = IPtoLocation();
+       	} else if (($ipData = IPtoLocation())){
             $wow_opt["latitude"] = esc_html($ipData["data"]["geo"]["latitude"]);
             $wow_opt["longitude"] =  esc_html($ipData["data"]["geo"]["longitude"]);
        	    $query = "lat=".$wow_opt["latitude"]."&lon=".$wow_opt["longitude"];
+       	} else {
+       	    return;
        	}
 
         if ($wow_opt["disable_cache"] == 'yes') {
@@ -1983,11 +2048,13 @@ function wow_get_my_weather($attr) {
 		$wow_html["container"]["end"]           = '';
 		$wow_html["owm_link"]            		= '';
 		$wow_html["last_update"]         		= '';
+    	$wow_html["owm_link_last_update_start"] = '';
+    	$wow_html["owm_link_last_update_end"]   = '';
         $wow_html["gtag"]                       = '';
         $wow_html["alert_button"]               = '';
         $wow_html["alert_modal"]                = '';
         $wow_html["table"]["hourly"]            = '';
-        $wow_html["table"]["daily"]            = '';
+        $wow_html["table"]["daily"]             = '';
 
        	$wow_html["svg"]["wind"]          = wind_direction_icon($wow_data["wind_degrees"], $wow_opt["text_color"]);
        	$wow_html["svg"]["humidity"]      = humidity_icon($wow_opt["text_color"]);
@@ -2024,7 +2091,7 @@ function wow_get_my_weather($attr) {
    					'<div class="wow-'. $wpowmweather_class_hours[$i].' card">
    						<div class="card-body">
    						    <div class="wow-hour">'. date('D', $value["timestamp"]) . '<br>' .
-       						    ($wow_opt["hours_time_icons"] ? hour_icon($value["time"], $wow_opt["text_color"]) : $value["time"]) .
+       						    ($wow_opt["hours_time_icons"] == 'yes' ? hour_icon($value["time"], $wow_opt["text_color"]) : $value["time"]) .
        				        '</div>' .
        				        $display_hours_icon[$i] .
        				        '<div class="wow-temperature">'.
@@ -2061,28 +2128,28 @@ function wow_get_my_weather($attr) {
        				            <span class="wow-temp-min">' . $value["temperature_minimum"] . '</span> - <span class="wow-temp-max">' . $value["temperature_maximum"] . '</span>
        				        </div>
        				        <div class="wow-infos-text">';
-       				            if ($wow_opt["wind"]) {
+       				            if ($wow_opt["wind"] == 'yes') {
                				        $display_forecast_card[$i] .= '<div>'.wind_direction_icon($value["wind_degrees"], $wow_opt["text_color"]).'Wind: <span class="wow-value">' .$value["wind_speed"].' '.$value["wind_direction"].'</span></div>';
            				        }
-       				            if ($wow_opt["humidity"]) {
+       				            if ($wow_opt["humidity"] == 'yes') {
                				        $display_forecast_card[$i] .= '<div>'.$wow_html["svg"]["humidity"].'Humidity: <span class="wow-value">' .$value["humidity"]. '</span></div>';
                				    }
-       				            if ($wow_opt["dew_point"]) {
+       				            if ($wow_opt["dew_point"] == 'yes') {
                				        $display_forecast_card[$i] .= '<div>'.$wow_html["svg"]["dew_point"].'Dew point: <span class="wow-value wow-temperature">' .$value["dew_point"]. '</span></div>';
                				    }
-       				            if ($wow_opt["pressure"]) {
+       				            if ($wow_opt["pressure"] == 'yes') {
                				        $display_forecast_card[$i] .= '<div>'.$wow_html["svg"]["pressure"].'Pressure: <span class="wow-value">' .$value["pressure"]. '</span></div>';
                				    }
-       				            if ($wow_opt["cloudiness"]) {
+       				            if ($wow_opt["cloudiness"] == 'yes') {
                				        $display_forecast_card[$i] .= '<div>'.$wow_html["svg"]["cloudiness"].'Clouds: <span class="wow-value">' .$value["cloudiness"]. '</span></div>';
                				    }
-       				            if ($wow_opt["precipitation"]) {
+       				            if ($wow_opt["precipitation"] == 'yes') {
                				        $display_forecast_card[$i] .= '<div>'.$wow_html["svg"]["rain_chance"].'Rain Chance: <span class="wow-value">' .$value["rain_chance"]. '</span></div>';
                				    }
-       				            if ($wow_opt["precipitation"]) {
+       				            if ($wow_opt["precipitation"] == 'yes') {
                				        $display_forecast_card[$i] .= '<div>'.$wow_html["svg"]["precipitation"].'Precipitation: <span class="wow-value">' .$value["precipitation"]. '</span></div>';
                				    }
-       				            if ($wow_opt["uv_index"]) {
+       				            if ($wow_opt["uv_index"] == 'yes') {
                				        $display_forecast_card[$i] .= '<div>'.$wow_html["svg"]["uv_index"].'UV index: <span class="wow-value">' .$value["uv_index"]. '</span></div>';
                				    }
         		$display_forecast_card[$i] .=
@@ -2103,13 +2170,13 @@ function wow_get_my_weather($attr) {
                 $display_map_options = '';
 
 		    	//Stations
-		    	if ( $wow_opt["map_stations"] ) {
+		    	if ( $wow_opt["map_stations"] == 'yes' ) {
 		        	$display_map_options         	.= 'var station = L.OWM.current({type: "station", appId: "'.$wow_opt["api_key"].'"});';
 		        	$display_map_layers             .= '"Stations": station,';
 		      	}
 
 		      	//Clouds
-		      	if ( $wow_opt["map_clouds"] ) {
+		      	if ( $wow_opt["map_clouds"] == 'yes' ) {
 		        	$display_map_options         	.= 'var clouds = L.OWM.clouds({showLegend: false, opacity: '.$display_map_layers_opacity.', appId: "'.$wow_opt["api_key"].'"});';
 		        	$display_map_layers             .= '"Clouds": clouds,';
 		        	$display_map_options         	.= 'var cloudscls = L.OWM.cloudsClassic({showLegend: false, opacity: '.$display_map_layers_opacity.', appId: "'.$wow_opt["api_key"].'"});';
@@ -2117,7 +2184,7 @@ function wow_get_my_weather($attr) {
 		      	}
 
 		      	//Precipitations and Rain
-		      	if ( $wow_opt["map_precipitation"] ) {
+		      	if ( $wow_opt["map_precipitation"] == 'yes' ) {
 		        	$display_map_options         	.= 'var rain = L.OWM.rain({opacity: '.$display_map_layers_opacity.', appId: "'.$wow_opt["api_key"].'"});';
 		        	$display_map_layers             .= '"Rain": rain,';
 		        	$display_map_options         	.= 'var raincls = L.OWM.rainClassic({opacity: '.$display_map_layers_opacity.', appId: "'.$wow_opt["api_key"].'"});';
@@ -2129,25 +2196,25 @@ function wow_get_my_weather($attr) {
 		      	}
 
 		      	//Snow
-		      	if ( $wow_opt["map_snow"] ) {
+		      	if ( $wow_opt["map_snow"] == 'yes' ) {
 		        	$display_map_options         	.= 'var snow = L.OWM.snow({opacity: '.$display_map_layers_opacity.', appId: "'.$wow_opt["api_key"].'"});';
 		        	$display_map_layers             .= '"Snow": snow,';
 		      	}
 
 		      	//Wind
-		      	if ( $wow_opt["map_wind"] ) {
+		      	if ( $wow_opt["map_wind"] == 'yes' ) {
 		        	$display_map_options         	.= 'var wind = L.OWM.wind({opacity: '.$display_map_layers_opacity.', appId: "'.$wow_opt["api_key"].'"});';
 		        	$display_map_layers             .= '"Wind": wind,';
 		      	}
 
 		      	//Temperature
-		      	if ( $wow_opt["map_temperature"] ) {
+		      	if ( $wow_opt["map_temperature"] == 'yes' ) {
 		        	$display_map_options         	.= 'var temp = L.OWM.temperature({opacity: '.$display_map_layers_opacity.', appId: "'.$wow_opt["api_key"].'"});';
 		        	$display_map_layers             .= '"Temperature": temp,';
 		      	}
 
 		      	//Pressure
-		      	if ( $wow_opt["map_pressure"] ) {
+		      	if ( $wow_opt["map_pressure"] == 'yes' ) {
 		        	$display_map_options         	.= 'var pressure = L.OWM.pressure({opacity: '.$display_map_layers_opacity.', appId: "'.$wow_opt["api_key"].'"});';
 		        	$display_map_layers             .= '"Pressure": pressure,';
 		        	$display_map_options         	.= 'var pressurecntr = L.OWM.pressureContour({opacity: '.$display_map_layers_opacity.', appId: "'.$wow_opt["api_key"].'"});';
@@ -2256,38 +2323,38 @@ function wow_get_my_weather($attr) {
         $wow_html["today"]["moon_hor"]  = wow_display_today_moonrise_moonset($wow_opt["moonrise_moonset"], $wow_data["moonrise"], $wow_data["moonset"], $wow_opt["text_color"],'div');
         $wow_html["today"]["end"]       = '</div>';
 
-	    if( $wow_opt["wind"] || $wow_opt["humidity"] || $wow_opt["dew_point"] || $wow_opt["pressure"] || $wow_opt["cloudiness"] || $wow_opt["precipitation"] || $wow_opt["visibility"] || $wow_opt["uv_index"]) {
+	    if( $wow_opt["wind"] == 'yes' || $wow_opt["humidity"] == 'yes' || $wow_opt["dew_point"] == 'yes' || $wow_opt["pressure"] == 'yes' || $wow_opt["cloudiness"] == 'yes' || $wow_opt["precipitation"] == 'yes' || $wow_opt["visibility"] == 'yes' || $wow_opt["uv_index"] == 'yes') {
 	    	$wow_html["info"]["start"] .= '<div class="wow-infos row">';
 
-	        if( $wow_opt["wind"] ) {
+	        if( $wow_opt["wind"] == 'yes' ) {
 	        	$wow_html["info"]["wind"]            = '<div class="wow-wind col">'.$wow_html["svg"]["wind"]. __( 'Wind', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["wind_speed"] .' - '.$wow_data["wind_direction"].'</span></div>';
 	        }
 
-	        if( $wow_opt["humidity"] ) {
+	        if( $wow_opt["humidity"] == 'yes' ) {
 	        	$wow_html["info"]["humidity"]        = '<div class="wow-humidity col">'.$wow_html["svg"]["humidity"]. __( 'Humidity', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["humidity"] .'</span></div>';
 	        }
 
-	        if( $wow_opt["dew_point"] ) {
+	        if( $wow_opt["dew_point"] == 'yes' ) {
 	        	$wow_html["info"]["dew_point"]       = '<div class="wow-dew-point col">'.$wow_html["svg"]["dew_point"]. __( 'Dew Point', 'wp-owm-weather' ) .'<span class="wow-highlight wow-temperature">'. $wow_data["dew_point"] .'</span></div>';
 	        }
 
-	        if( $wow_opt["pressure"] ) {
+	        if( $wow_opt["pressure"]  == 'yes') {
 	        	$wow_html["info"]["pressure"]        = '<div class="wow-pressure col">'.$wow_html["svg"]["pressure"]. __( 'Pressure', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["pressure"] .'</span></div>';
 	        }
 
-	        if( $wow_opt["cloudiness"] ) {
+	        if( $wow_opt["cloudiness"] == 'yes' ) {
 	        	$wow_html["info"]["cloudiness"]      = '<div class="wow-cloudiness col">'.$wow_html["svg"]["cloudiness"]. __( 'Cloudiness', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["cloudiness"] .'</span></div>';
 	        }
 
-	        if( $wow_opt["precipitation"] ) {
+	        if( $wow_opt["precipitation"] == 'yes' ) {
 	        	$wow_html["info"]["precipitation"]   = '<div class="wow-precipitation col">'.$wow_html["svg"]["precipitation"]. __( 'Precipitation', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["precipitation_3h"] .'</span></div>';
 	        }
 
-	        if( $wow_opt["visibility"] ) {
+	        if( $wow_opt["visibility"] == 'yes' ) {
 	        	$wow_html["info"]["visibility"]     = '<div class="wow-visibility col">'.$wow_html["svg"]["visibility"]. __( 'Visibility', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["visibility"] .'</span></div>';
 	        }
 
-	        if( $wow_opt["uv_index"] ) {
+	        if( $wow_opt["uv_index"] == 'yes' ) {
 	        	$wow_html["info"]["uv_index"]       = '<div class="wow-uv-index col">'.$wow_html["svg"]["uv_index"]. __( 'UV Index', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["uv_index"] .'</span></div>';
 	        }
 
@@ -2314,7 +2381,7 @@ function wow_get_my_weather($attr) {
 	    }
 
         //Google Tag Manager dataLayer
-        if ($wow_opt["gtag"]) {
+        if ($wow_opt["gtag"] == 'yes') {
             $wow_html["gtag"] = '<script type="text/javascript">
                 var dataLayer = window.dataLayer = window.dataLayer || [];
 	        	jQuery(document).ready(function() {
@@ -2328,13 +2395,13 @@ function wow_get_my_weather($attr) {
             </script>';
         }
 
-	    if ($wow_opt["alerts"] && !empty($wow_data["alerts"])) {
+	    if ($wow_opt["alerts"] == 'yes' && !empty($wow_data["alerts"])) {
     	    require_once dirname( __FILE__ ) . '/wpowmweather-color-css.php';
 
             if (empty($wow_opt["alerts_button_color"])) {
                 $wow_opt["alerts_button_color"] = '#000';
     	    }
-   	        $wow_opt["custom_css"] .= '<style>' . generateColorCSS($wow_opt["alerts_button_color"], "wow-alert-" . $wow_opt["id"]) . '</style>';
+   	        $wow_opt["custom_css"] .= generateColorCSS($wow_opt["alerts_button_color"], "wow-alert-" . $wow_opt["id"]);
             $wow_html["alert_button"] .= '<div class="wow-alert-buttons text-center">';
             foreach($wow_data["alerts"] as $key => $value) {
                 $modal = wow_unique_id('wow-modal-'.$wow_opt["id"]);
@@ -2342,9 +2409,10 @@ function wow_get_my_weather($attr) {
                 $wow_html["alert_modal"] .=
                     '<div class="modal fade" id="' . $modal . '" tabindex="-1" role="dialog" aria-labelledby="' . $modal . '-label" aria-hidden="true">
                       <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" style="' .
+                        		wow_css_color('background-color', $wow_opt["background_color"]) . wow_css_color("color",$wow_opt["text_color"]) . '">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="' . $modal . '-abel">' . $value["event"] . '</h5>
+                            <h5 class="modal-title" id="' . $modal . '-label">' . $value["event"] . '</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
@@ -2363,6 +2431,11 @@ function wow_get_my_weather($attr) {
 	    }
 
     	$wow_html["temperature_unit"] = temperatureUnitSymbol($wow_opt["container_weather_div"], $wow_opt["display_temperature_unit"], $wow_opt["temperature_unit"], $wow_opt["iconpack"]);
+
+        if ($wow_opt["owm_link"] == 'yes' || $wow_opt["last_update"] == 'yes') {
+	    	$wow_html["owm_link_last_update_start"] .= '<div class="wow-owm-link-last-update clearfix">';
+	    	$wow_html["owm_link_last_update_end"] .= '</div>';
+        }
 
 	    if ($wow_opt["owm_link"] == 'yes') {
 	    	$wow_html["owm_link"] .= '<div class="wow-link-owm">'.$wow_data["owm_link"].'</div>';
@@ -2537,7 +2610,7 @@ $wow_html["chart"]["daily"]["cmd"] =
 
         //Table
         if (!empty($wow_opt["table_border_color"])) {
-            $wow_opt["custom_css"] .= '<style>.wow-table.table-bordered > tbody > tr > td, .wow-table .table-bordered > tbody > tr > th, .wow-table.table-bordered > tfoot > tr > td, .wow-table.table-bordered > tfoot > tr > th, .wow-table.table-bordered > thead > tr > td, .wow-table.table-bordered > thead > tr > th { ' . wow_css_border($wow_opt["table_border_color"], $wow_opt["table_border_width"],$wow_opt["table_border_style"],$wow_opt["table_border_radius"]) .'}</style>';
+            $wow_opt["custom_css"] .= '.wow-table.table-bordered > tbody > tr > td, .wow-table .table-bordered > tbody > tr > th, .wow-table.table-bordered > tfoot > tr > td, .wow-table.table-bordered > tfoot > tr > th, .wow-table.table-bordered > thead > tr > td, .wow-table.table-bordered > thead > tr > th { ' . wow_css_border($wow_opt["table_border_color"], $wow_opt["table_border_width"],$wow_opt["table_border_style"],$wow_opt["table_border_radius"]) .'}';
         }
         //Hourly
 	    if ($wow_opt["hours_forecast_no"] > 0) {
@@ -2563,7 +2636,7 @@ $wow_html["chart"]["daily"]["cmd"] =
             $wow_html["table"]["hourly"] .= '<tbody>';
 			foreach ($wow_data["hourly"] as $i => $value) {
                 $wow_html["table"]["hourly"] .= '<tr>';
-                $wow_html["table"]["hourly"] .= '<td>' . date('D', $value["timestamp"]) . ($wow_opt["hours_time_icons"] ? hour_icon($value["time"], $wow_opt["table_text_color"]) : '<br>' . $value["time"]) . '</td>';
+                $wow_html["table"]["hourly"] .= '<td>' . date('D', $value["timestamp"]) . ($wow_opt["hours_time_icons"] == 'yes' ? hour_icon($value["time"], $wow_opt["table_text_color"]) : '<br>' . $value["time"]) . '</td>';
                 $wow_html["table"]["hourly"] .= '<td class="border-right-0">' . weatherIcon($wow_opt["iconpack"], $value["condition_id"], $value["day_night"], $value["description"]) . '</td><td class="border-left-0 small">' . $value["description"] . '</td>';
                 $wow_html["table"]["hourly"] .= '<td class="wow-temperature">' . $value["temperature"] . '</td>';
                 $wow_html["table"]["hourly"] .= '<td class="wow-temperature">' . $value["feels_like"] . '</td>';
@@ -2638,24 +2711,19 @@ $wow_html["chart"]["daily"]["cmd"] =
             $wow_sys_opt = get_option('wow_option_name');
         }
 
+    	ob_start();
 	    if ( locate_template('wp-owm-weather/content-wpowmweather.php', false) != '' && $wow_opt["template"] == 'Default' ) {
-	    	ob_start();
-	    	include get_stylesheet_directory() . '/wp-owm-weather/content-owmweatherdy.php';
-	    	$wow_html["html"] = ob_get_clean();
+	    	include get_stylesheet_directory() . '/wp-owm-weather/content-wpowmweather.php';
 	    } elseif ( $wow_opt["template"] != 'Default' ) {
-	    	ob_start();
 	    	if ( locate_template('wp-owm-weather/content-wpowmweather-' . $wow_opt["template"] . '.php', false) != '' ) {
 		    	include get_stylesheet_directory() . '/wp-owm-weather/content-wpowmweather-' . $wow_opt["template"] . '.php';
-		    	$wow_html["html"] = ob_get_clean();
 	    	} else {
 	    		include dirname( __FILE__ ) . '/template/content-wpowmweather-' . $wow_opt["template"] . '.php';
-		    	$wow_html["html"] = ob_get_clean();
 	    	}
 	    } else { //Default
-	    	ob_start();
 	    	include ( dirname( __FILE__ ) . '/template/content-wpowmweather.php');
-	    	$wow_html["html"] = ob_get_clean();
 	    }
+    	$wow_html["html"] = ob_get_clean();
 
 	  	$response = array();
 	  	$response['weather'] = $wow_params["weather_id"];

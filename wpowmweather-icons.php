@@ -572,7 +572,7 @@ function weatherPixeden($id, $day_night, $description) {
 function temperatureUnitSymbol($id, $display_unit, $unit, $iconpack) {
     $str = '';
     
-	    if ($display_unit) {
+	    if ($display_unit == 'yes') {
 	    	$str .=
 	    		'<style>
 	            	#'.$id.' .wow-now .wow-main-temperature:after,
