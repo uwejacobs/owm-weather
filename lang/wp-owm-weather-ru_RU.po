@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WP OWM Weather\n"
+"Project-Id-Version: OWM Weather\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/wp-owm-weather\n"
 "POT-Creation-Date: 2017-09-19 19:10+0200\n"
 "PO-Revision-Date: 2017-09-19 19:10+0200\n"
@@ -28,11 +28,11 @@ msgid "Download for free"
 msgstr ""
 
 #: wpowmweather-admin.php:69
-msgid "WP OWM Weather"
-msgstr "WP OWM Weather"
+msgid "OWM Weather"
+msgstr "OWM Weather"
 
 #: wpowmweather-admin.php:75
-msgid "You like WP OWM Weather? Don't forget to rate it 5 stars!"
+msgid "You like OWM Weather? Don't forget to rate it 5 stars!"
 msgstr ""
 
 #: wpowmweather-admin.php:112
@@ -69,7 +69,7 @@ msgstr ""
 
 #: wpowmweather-admin.php:145
 msgid ""
-"Reset all WP OWM Weather global settings. It will not delete your weathers and "
+"Reset all OWM Weather global settings. It will not delete your weathers and "
 "their indivuals settings."
 msgstr ""
 
@@ -106,7 +106,7 @@ msgid "Save changes"
 msgstr ""
 
 #: wpowmweather-admin.php:193
-msgid "WP OWM Weather Premium"
+msgid "OWM Weather Premium"
 msgstr ""
 
 #: wpowmweather-admin.php:197
@@ -127,7 +127,7 @@ msgid "Join now"
 msgstr ""
 
 #: wpowmweather-admin.php:211
-msgid "WP OWM Weather cache"
+msgid "OWM Weather cache"
 msgstr ""
 
 #: wpowmweather-admin.php:215
@@ -657,7 +657,7 @@ msgid "Display pressure on all weather maps?"
 msgstr ""
 
 #: wpowmweather-admin.php:1831
-msgid "Problem with WP OWM Weather?"
+msgid "Problem with OWM Weather?"
 msgstr ""
 
 #: wpowmweather-admin.php:1832
@@ -677,15 +677,15 @@ msgid "Read our Guides"
 msgstr ""
 
 #: wpowmweather-admin.php:1834
-msgid "WP OWM Weather Forum on WordPress.org"
+msgid "OWM Weather Forum on WordPress.org"
 msgstr ""
 
 #: wpowmweather-admin.php:1851
-msgid "Setup WP OWM Weather"
+msgid "Setup OWM Weather"
 msgstr ""
 
 #: wpowmweather-admin.php:1852
-msgid "Follow this video to setup WP OWM Weather:"
+msgid "Follow this video to setup OWM Weather:"
 msgstr ""
 
 #: wpowmweather-admin.php:1856
@@ -693,7 +693,7 @@ msgid "Create your first weather"
 msgstr ""
 
 #: wpowmweather-admin.php:1857
-msgid "Follow this video to create your first weather with WP OWM Weather:"
+msgid "Follow this video to create your first weather with OWM Weather:"
 msgstr ""
 
 #: wpowmweather-export.php:40
@@ -734,7 +734,7 @@ msgid "Duplicate"
 msgstr ""
 
 #: wpowmweather.php:307
-msgid "WP OWM Weather global settings"
+msgid "OWM Weather global settings"
 msgstr ""
 
 #: wpowmweather.php:312
@@ -1437,7 +1437,7 @@ msgstr " черновик обновлен."
 
 #: wpowmweather.php:2787
 msgid ""
-"WP OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits "
+"OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits "
 "requests."
 msgstr ""
 

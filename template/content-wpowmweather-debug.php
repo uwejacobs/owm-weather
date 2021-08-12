@@ -3,7 +3,7 @@
 /* DO NOT CHANGE THIS TEMPLATE DIRECTLY. IT WILL BE OVERWRITTEN BY UPDATES. */
 /****************************************************************************/
 /**
- * The WP OWM Weather debug template
+ * The OWM Weather debug template
  *
  */
 ?>
@@ -13,7 +13,7 @@
   color: #000;
 }
 </style>
-<h2>WP OWM Weather Debug Output (Weather Id <?php echo $wow_opt["id"]; ?>)</h2>
+<h2>OWM Weather Debug Output (Weather Id <?php echo $wow_opt["id"]; ?>)</h2>
 <div class="accordion" id="debug_accordion<?php echo $wow_opt["id"]; ?>">
   <div class="card">
     <div class="card-header" id="headingSys<?php echo $wow_opt["id"]; ?>">

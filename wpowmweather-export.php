@@ -3,7 +3,7 @@
 //Import / Exports settings
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Export WP OWM Weather Settings in JSON
+//Export OWM Weather Settings in JSON
 function wow_export_settings() {
     if( empty( $_POST['wow_action'] ) || 'wow_export_settings' != $_POST['wow_action'] )
         return;
@@ -28,7 +28,7 @@ function wow_export_settings() {
 }
 add_action( 'admin_init', 'wow_export_settings' );
 
-//Import WP OWM Weather Settings from JSON
+//Import OWM Weather Settings from JSON
 function wow_import_settings() {
     if( empty( $_POST['wow_action'] ) || 'wow_import_settings' != $_POST['wow_action'] )
         return;
@@ -57,7 +57,7 @@ function wow_import_settings() {
 }
 add_action( 'admin_init', 'wow_import_settings' );
 
-//Reset WP OWM Weather Settings
+//Reset OWM Weather Settings
 function wow_reset_settings() {
     if( empty( $_POST['wow_action'] ) || 'wow_reset_settings' != $_POST['wow_action'] )
         return;

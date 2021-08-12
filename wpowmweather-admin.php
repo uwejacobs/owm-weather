@@ -27,7 +27,7 @@ class wow_options
         // This page will be under "Settings"
     $wow_help_tab = add_options_page(
             'Settings Admin',
-            'WP OWM Weather',
+            'OWM Weather',
             'manage_options',
             'wow-settings-admin',
             array( $this, 'create_admin_page' )
@@ -54,7 +54,7 @@ class wow_options
         <div id="wpowmweather-header">
 			<div id="wpowmweather-clouds">
 				<h3>
-					<?php _e( 'WP OWM Weather', 'wp-owm-weather' ); ?>
+					<?php _e( 'OWM Weather', 'wp-owm-weather' ); ?>
 				</h3>
 				<span class="wow-info-version"><?php print_r($wow_info_version['Version']); ?></span>
 				<div id="wpowmweather-notice">
@@ -141,7 +141,7 @@ class wow_options
                     <div class="postbox">
                         <h3><span><?php _e( 'Reset Settings', 'wp-owm-weather' ); ?></span></h3>
                         <div class="inside">
-                            <p><?php _e( 'Reset all WP OWM Weather global settings. It will not delete your weathers and their indivuals settings.', 'wp-owm-weather' ); ?></p>
+                            <p><?php _e( 'Reset all OWM Weather global settings. It will not delete your weathers and their indivuals settings.', 'wp-owm-weather' ); ?></p>
                             <form method="post" enctype="multipart/form-data">
                                 <p>
                                     <input type="hidden" name="wow_action" value="wow_reset_settings" />
@@ -191,7 +191,7 @@ class wow_options
 
         <div class="wpowmweather-sidebar">
         	<div id="wpowmweather-cache" class="wpowmweather-module wpowmweather-inactive" style="height: 177px;">
-				<h3><?php _e('WP OWM Weather cache','wp-owm-weather'); ?></h3>
+				<h3><?php _e('OWM Weather cache','wp-owm-weather'); ?></h3>
 				<div class="wpowmweather-module-description">
 					<div class="module-image">
 						<div class="dashicons dashicons-trash"></div>
@@ -906,7 +906,7 @@ class wow_options
 
     public function print_section_info_advanced()
     {
-        print __('WP OWM Weather System settings:', 'wp-owm-weather');
+        print __('OWM Weather System settings:', 'wp-owm-weather');
     }
 
 	public function print_section_info_map()
@@ -1728,10 +1728,10 @@ class wow_options
     public function wow_support_info_callback() //bugbug
     {
 		echo
-			'<h3>'. __("Problem with WP OWM Weather?", 'wp-owm-weather').'</h3>
+			'<h3>'. __("Problem with OWM Weather?", 'wp-owm-weather').'</h3>
 			<p><a href="https://www.wpcloudy.com/support/faq/" target="_blank" title="'. __("FAQ", 'wp-owm-weather').'">'. __("Read our FAQ", 'wp-owm-weather').'</a></p>
 			<p><a href="https://www.wpcloudy.com/support/guides/" target="_blank" title="'. __("Guides", 'wp-owm-weather').'">'.__("Read our Guides", 'wp-owm-weather').'</a></p>
-			<p><a href="https://wordpress.org/plugins/wp-owm-weather/" target="_blank" title="'. __("WP OWM Weather Forum on WordPress.org", 'wp-owm-weather').'">'. __("WP OWM Weather Forum on WordPress.org", 'wp-owm-weather').'</a></p>';
+			<p><a href="https://wordpress.org/plugins/owm-weather/" target="_blank" title="'. __("OWM Weather Forum on WordPress.org", 'wp-owm-weather').'">'. __("OWM Weather Forum on WordPress.org", 'wp-owm-weather').'</a></p>';
     }
 
     private function bypassRadioButtons($option) {
@@ -1792,13 +1792,13 @@ function wow_help_tab() {//bugbug
 
     $screen->add_help_tab( array(
         'id'    => 'wow_help_tab',
-        'title' => __('Setup WP OWM Weather', 'wp-owm-weather'),
-        'content'   => '<p>' . __( 'Follow this video to setup WP OWM Weather:', 'wp-owm-weather' ) . '<br>'.wp_oembed_get('https://www.youtube.com/watch?v=mRF_3VOz_OE', array('width'=>560)).'</p>',
+        'title' => __('Setup OWM Weather', 'wp-owm-weather'),
+        'content'   => '<p>' . __( 'Follow this video to setup OWM Weather:', 'wp-owm-weather' ) . '<br>'.wp_oembed_get('https://www.youtube.com/watch?v=mRF_3VOz_OE', array('width'=>560)).'</p>',
     ));
     $screen->add_help_tab( array(
         'id'    => 'wow_help_tab2',
         'title' => __('Create your first weather', 'wp-owm-weather'),
-        'content'   => '<p>' . __( 'Follow this video to create your first weather with WP OWM Weather:', 'wp-owm-weather' ) . '<br>'.wp_oembed_get('https://www.youtube.com/watch?v=xv4lrgsWkkk', array('width'=>560)).'</p>',
+        'content'   => '<p>' . __( 'Follow this video to create your first weather with OWM Weather:', 'wp-owm-weather' ) . '<br>'.wp_oembed_get('https://www.youtube.com/watch?v=xv4lrgsWkkk', array('width'=>560)).'</p>',
     ));
 }
 function no_file_selected_action() {

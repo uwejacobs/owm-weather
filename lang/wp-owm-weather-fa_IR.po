@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WP OWM Weather\n"
+"Project-Id-Version: OWM Weather\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/wp-owm-weather\n"
 "POT-Creation-Date: 2017-11-22 13:51+0100\n"
 "PO-Revision-Date: 2018-01-07 10:21+0330\n"
@@ -26,12 +26,12 @@ msgid "Download for free"
 msgstr "دانلود رایگان"
 
 #: wpowmweather-admin.php:69
-msgid "WP OWM Weather"
-msgstr "WP OWM Weather"
+msgid "OWM Weather"
+msgstr "OWM Weather"
 
 #: wpowmweather-admin.php:75
-msgid "You like WP OWM Weather? Don't forget to rate it 5 stars!"
-msgstr "شما WP OWM Weather را دوست دارید؟ فراموش نکنید که 5 ستاره دهید!"
+msgid "You like OWM Weather? Don't forget to rate it 5 stars!"
+msgstr "شما OWM Weather را دوست دارید؟ فراموش نکنید که 5 ستاره دهید!"
 
 #: wpowmweather-admin.php:112
 msgid "Export Settings"
@@ -69,10 +69,10 @@ msgstr "بازگردانی تنظیمات"
 
 #: wpowmweather-admin.php:145
 msgid ""
-"Reset all WP OWM Weather global settings. It will not delete your weathers and "
+"Reset all OWM Weather global settings. It will not delete your weathers and "
 "their indivuals settings."
 msgstr ""
-"Reset all WP OWM Weather global settings. It will not delete your weathers and "
+"Reset all OWM Weather global settings. It will not delete your weathers and "
 "their indivuals settings."
 
 #: wpowmweather-admin.php:150
@@ -108,8 +108,8 @@ msgid "Save changes"
 msgstr "ذخیره تغییرات"
 
 #: wpowmweather-admin.php:193
-msgid "WP OWM Weather Premium"
-msgstr "WP OWM Weather Premium"
+msgid "OWM Weather Premium"
+msgstr "OWM Weather Premium"
 
 #: wpowmweather-admin.php:197
 msgid "$ 19 / year"
@@ -130,8 +130,8 @@ msgid "Join now"
 msgstr "همین الان بپیوندید"
 
 #: wpowmweather-admin.php:211
-msgid "WP OWM Weather cache"
-msgstr "WP OWM Weather cache"
+msgid "OWM Weather cache"
+msgstr "OWM Weather cache"
 
 #: wpowmweather-admin.php:215
 msgid "cache system"
@@ -669,8 +669,8 @@ msgid "Display pressure on all weather maps?"
 msgstr "نمایش فشار روی تمام نقشه های آب و هوا؟"
 
 #: wpowmweather-admin.php:1849
-msgid "Problem with WP OWM Weather?"
-msgstr "مشکلی با WP OWM Weather دارید؟"
+msgid "Problem with OWM Weather?"
+msgstr "مشکلی با OWM Weather دارید؟"
 
 #: wpowmweather-admin.php:1850
 msgid "FAQ"
@@ -689,24 +689,24 @@ msgid "Read our Guides"
 msgstr "راهنمایی های مارا بخوانید"
 
 #: wpowmweather-admin.php:1852
-msgid "WP OWM Weather Forum on WordPress.org"
-msgstr "فوروم WP OWM Weather در WordPress.org"
+msgid "OWM Weather Forum on WordPress.org"
+msgstr "فوروم OWM Weather در WordPress.org"
 
 #: wpowmweather-admin.php:1869
-msgid "Setup WP OWM Weather"
-msgstr "راه اندازی WP OWM Weather"
+msgid "Setup OWM Weather"
+msgstr "راه اندازی OWM Weather"
 
 #: wpowmweather-admin.php:1870
-msgid "Follow this video to setup WP OWM Weather:"
-msgstr "برای تنظیم WP OWM Weather این ویدیو را دنبال کنید:"
+msgid "Follow this video to setup OWM Weather:"
+msgstr "برای تنظیم OWM Weather این ویدیو را دنبال کنید:"
 
 #: wpowmweather-admin.php:1874
 msgid "Create your first weather"
 msgstr "اولین آب و هوا را ایجاد کنید"
 
 #: wpowmweather-admin.php:1875
-msgid "Follow this video to create your first weather with WP OWM Weather:"
-msgstr "برای ایجاد اولین آب و هوا با WP OWM Weather این ویدیو را دنبال کنید:"
+msgid "Follow this video to create your first weather with OWM Weather:"
+msgstr "برای ایجاد اولین آب و هوا با OWM Weather این ویدیو را دنبال کنید:"
 
 #: wpowmweather-export.php:40
 msgid "Please upload a valid .json file"
@@ -746,8 +746,8 @@ msgid "Duplicate"
 msgstr "کپی"
 
 #: wpowmweather.php:311
-msgid "WP OWM Weather global settings"
-msgstr "تنظیمات جهانی WP OWM Weather"
+msgid "OWM Weather global settings"
+msgstr "تنظیمات جهانی OWM Weather"
 
 #: wpowmweather.php:316
 msgid "Copy and paste this shortcode anywhere in posts, pages, text widgets: "
@@ -1470,8 +1470,8 @@ msgstr " پیش نویس به روز رسانی شد."
 
 #: wpowmweather.php:2812
 msgid ""
-"WP OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits "
+"OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits "
 "requests."
 msgstr ""
-"WP OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits "
+"OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits "
 "requests."

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WP OWM Weather\n"
+"Project-Id-Version: OWM Weather\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/wp-owm-weather\n"
 "POT-Creation-Date: 2017-09-19 19:10+0200\n"
 "PO-Revision-Date: 2017-09-19 19:10+0200\n"
@@ -28,11 +28,11 @@ msgid "Download for free"
 msgstr ""
 
 #: wpowmweather-admin.php:69
-msgid "WP OWM Weather"
-msgstr "WP OWM Weather"
+msgid "OWM Weather"
+msgstr "OWM Weather"
 
 #: wpowmweather-admin.php:75
-msgid "You like WP OWM Weather? Don't forget to rate it 5 stars!"
+msgid "You like OWM Weather? Don't forget to rate it 5 stars!"
 msgstr "Podoba Ci się WP Cloud? Dawaj piątkę!"
 
 #: wpowmweather-admin.php:112
@@ -73,10 +73,10 @@ msgstr "Zresetuj ustawienia"
 
 #: wpowmweather-admin.php:145
 msgid ""
-"Reset all WP OWM Weather global settings. It will not delete your weathers and "
+"Reset all OWM Weather global settings. It will not delete your weathers and "
 "their indivuals settings."
 msgstr ""
-"Zresetuj wszystkie globalne ustawienia WP OWM Weather. Nie skasuje to Twojej "
+"Zresetuj wszystkie globalne ustawienia OWM Weather. Nie skasuje to Twojej "
 "pogody oraz innych indywidualnych ustawień."
 
 #: wpowmweather-admin.php:150
@@ -112,7 +112,7 @@ msgid "Save changes"
 msgstr "Zachowaj zmiany"
 
 #: wpowmweather-admin.php:193
-msgid "WP OWM Weather Premium"
+msgid "OWM Weather Premium"
 msgstr ""
 
 #: wpowmweather-admin.php:197
@@ -133,8 +133,8 @@ msgid "Join now"
 msgstr ""
 
 #: wpowmweather-admin.php:211
-msgid "WP OWM Weather cache"
-msgstr "WP OWM Weather pamięć podręczna"
+msgid "OWM Weather cache"
+msgstr "OWM Weather pamięć podręczna"
 
 #: wpowmweather-admin.php:215
 msgid "cache system"
@@ -671,8 +671,8 @@ msgid "Display pressure on all weather maps?"
 msgstr "Wyświetlać ciśnienie na wszystkich mapach pogody?"
 
 #: wpowmweather-admin.php:1831
-msgid "Problem with WP OWM Weather?"
-msgstr "Problem z WP OWM Weather?"
+msgid "Problem with OWM Weather?"
+msgstr "Problem z OWM Weather?"
 
 #: wpowmweather-admin.php:1832
 msgid "FAQ"
@@ -691,15 +691,15 @@ msgid "Read our Guides"
 msgstr "Czytaj nasze wskazówki"
 
 #: wpowmweather-admin.php:1834
-msgid "WP OWM Weather Forum on WordPress.org"
-msgstr "Forum dyskusyjne WP OWM Weather na WordPress.org"
+msgid "OWM Weather Forum on WordPress.org"
+msgstr "Forum dyskusyjne OWM Weather na WordPress.org"
 
 #: wpowmweather-admin.php:1851
-msgid "Setup WP OWM Weather"
+msgid "Setup OWM Weather"
 msgstr ""
 
 #: wpowmweather-admin.php:1852
-msgid "Follow this video to setup WP OWM Weather:"
+msgid "Follow this video to setup OWM Weather:"
 msgstr ""
 
 #: wpowmweather-admin.php:1856
@@ -707,7 +707,7 @@ msgid "Create your first weather"
 msgstr ""
 
 #: wpowmweather-admin.php:1857
-msgid "Follow this video to create your first weather with WP OWM Weather:"
+msgid "Follow this video to create your first weather with OWM Weather:"
 msgstr ""
 
 #: wpowmweather-export.php:40
@@ -748,7 +748,7 @@ msgid "Duplicate"
 msgstr ""
 
 #: wpowmweather.php:307
-msgid "WP OWM Weather global settings"
+msgid "OWM Weather global settings"
 msgstr ""
 
 #: wpowmweather.php:312
@@ -1461,7 +1461,7 @@ msgstr " szkic zaktualizowany"
 
 #: wpowmweather.php:2787
 msgid ""
-"WP OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits "
+"OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits "
 "requests."
 msgstr ""
 
@@ -1510,7 +1510,7 @@ msgstr ""
 #~ msgid "Follow us on Twitter!"
 #~ msgstr "Śledź nas na Twitter!"
 
-#~ msgid "WP OWM Weather Geolocation"
+#~ msgid "OWM Weather Geolocation"
 #~ msgstr "Geolokacja WP Cloud"
 
 #~ msgid "$ 39"
@@ -1522,8 +1522,8 @@ msgstr ""
 #~ msgid "Learn more"
 #~ msgstr "Dowiedz się więcej"
 
-#~ msgid "WP OWM Weather Skins"
-#~ msgstr "Skórki WP OWM Weather"
+#~ msgid "OWM Weather Skins"
+#~ msgstr "Skórki OWM Weather"
 
 #~ msgid "$ 10"
 #~ msgstr "10 dolców"
@@ -1537,8 +1537,8 @@ msgstr ""
 #~ msgid "Forum"
 #~ msgstr "Forum dyskusyjne"
 
-#~ msgid "WP OWM Weather Forum"
-#~ msgstr "Forum dyskusyjne WP OWM Weather"
+#~ msgid "OWM Weather Forum"
+#~ msgstr "Forum dyskusyjne OWM Weather"
 
 #~ msgid "Bypass language?"
 #~ msgstr "Pominąć język?"

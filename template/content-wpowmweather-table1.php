@@ -3,7 +3,7 @@
 /* DO NOT CHANGE THIS TEMPLATE DIRECTLY. IT WILL BE OVERWRITTEN BY UPDATES. */
 /****************************************************************************/
 /**
- * The WP OWM Weather Table1 template
+ * The OWM Weather Table1 template
  *
  */
 ?>

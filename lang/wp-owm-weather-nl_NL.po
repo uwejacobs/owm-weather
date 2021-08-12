@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WP OWM Weather\n"
+"Project-Id-Version: OWM Weather\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/wp-owm-weather\n"
 "POT-Creation-Date: 2017-08-31 15:39+0200\n"
 "PO-Revision-Date: 2017-09-05 13:46+0200\n"
@@ -27,13 +27,13 @@ msgid "Download for free"
 msgstr "Download gratis"
 
 #: wpowmweather-admin.php:69
-msgid "WP OWM Weather"
-msgstr "WP OWM Weather"
+msgid "OWM Weather"
+msgstr "OWM Weather"
 
 #: wpowmweather-admin.php:75
-msgid "You like WP OWM Weather? Don't forget to rate it 5 stars!"
+msgid "You like OWM Weather? Don't forget to rate it 5 stars!"
 msgstr ""
-"Vind u WP OWM Weather leuk? Vergeet dan niet een 5 sterren beoordeling te geven!"
+"Vind u OWM Weather leuk? Vergeet dan niet een 5 sterren beoordeling te geven!"
 
 #: wpowmweather-admin.php:112
 msgid "Export Settings"
@@ -74,10 +74,10 @@ msgstr "Instellingen resetten"
 
 #: wpowmweather-admin.php:145
 msgid ""
-"Reset all WP OWM Weather global settings. It will not delete your weathers and "
+"Reset all OWM Weather global settings. It will not delete your weathers and "
 "their indivuals settings."
 msgstr ""
-"Stel alle WP OWM Weather standaard instellingen opnieuw in. Het zal uw "
+"Stel alle OWM Weather standaard instellingen opnieuw in. Het zal uw "
 "weerberichten en de instellingen daarvan niet verwijderen."
 
 #: wpowmweather-admin.php:150
@@ -113,8 +113,8 @@ msgid "Save changes"
 msgstr "Wijzigingen opslaan"
 
 #: wpowmweather-admin.php:193
-msgid "WP OWM Weather Premium"
-msgstr "WP OWM Weather Premium"
+msgid "OWM Weather Premium"
+msgstr "OWM Weather Premium"
 
 #: wpowmweather-admin.php:197
 msgid "$ 19 / year"
@@ -136,8 +136,8 @@ msgid "Join now"
 msgstr "Word lid"
 
 #: wpowmweather-admin.php:211
-msgid "WP OWM Weather cache"
-msgstr "WP OWM Weather cache"
+msgid "OWM Weather cache"
+msgstr "OWM Weather cache"
 
 #: wpowmweather-admin.php:215
 msgid "cache system"
@@ -711,8 +711,8 @@ msgid "Display pressure on all weather maps?"
 msgstr "Luchtdruk weergeven bij alle weersberichten?"
 
 #: wpowmweather-admin.php:1861
-msgid "Problem with WP OWM Weather?"
-msgstr "Problemen met WP OWM Weather?"
+msgid "Problem with OWM Weather?"
+msgstr "Problemen met OWM Weather?"
 
 #: wpowmweather-admin.php:1862
 msgid "FAQ"
@@ -731,24 +731,24 @@ msgid "Read our Guides"
 msgstr "Lees onze handleiding"
 
 #: wpowmweather-admin.php:1864
-msgid "WP OWM Weather Forum on WordPress.org"
-msgstr "WP OWM Weather Forum op WordPress.org"
+msgid "OWM Weather Forum on WordPress.org"
+msgstr "OWM Weather Forum op WordPress.org"
 
 #: wpowmweather-admin.php:1881
-msgid "Setup WP OWM Weather"
-msgstr "WP OWM Weather instellen"
+msgid "Setup OWM Weather"
+msgstr "OWM Weather instellen"
 
 #: wpowmweather-admin.php:1882
-msgid "Follow this video to setup WP OWM Weather:"
-msgstr "Volg deze video hoe WP OWM Weather in te stellen:"
+msgid "Follow this video to setup OWM Weather:"
+msgstr "Volg deze video hoe OWM Weather in te stellen:"
 
 #: wpowmweather-admin.php:1886
 msgid "Create your first weather"
 msgstr "Maak je eerste weersvoorpeliing"
 
 #: wpowmweather-admin.php:1887
-msgid "Follow this video to create your first weather with WP OWM Weather:"
-msgstr "Volg deze video om je eerste weersvoorspelling te maken met WP OWM Weather:"
+msgid "Follow this video to create your first weather with OWM Weather:"
+msgstr "Volg deze video om je eerste weersvoorspelling te maken met OWM Weather:"
 
 #: wpowmweather-export.php:40
 msgid "Please upload a valid .json file"
@@ -790,8 +790,8 @@ msgid "Duplicate"
 msgstr "Kopieer"
 
 #: wpowmweather.php:307
-msgid "WP OWM Weather global settings"
-msgstr "WP OWM Weather globale instellingen"
+msgid "OWM Weather global settings"
+msgstr "OWM Weather globale instellingen"
 
 #: wpowmweather.php:312
 msgid "Copy and paste this shortcode anywhere in posts, pages, text widgets: "
@@ -1499,10 +1499,10 @@ msgstr "ontwerp bijgewerkt."
 
 #: wpowmweather.php:2812
 msgid ""
-"WP OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits "
+"OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits "
 "requests."
 msgstr ""
-"WP OWM Weather: Geef aub je eigen OpenWeatherMap API sleutel op om "
+"OWM Weather: Geef aub je eigen OpenWeatherMap API sleutel op om "
 "beperkingsverzoeken te vermijden."
 
 #~ msgid "Not just another WordPress Weather plugin!"
@@ -1523,8 +1523,8 @@ msgstr ""
 #~ msgid "Learn more"
 #~ msgstr "Leer meer"
 
-#~ msgid "WP OWM Weather Skins"
-#~ msgstr "WP OWM Weather Weergaves"
+#~ msgid "OWM Weather Skins"
+#~ msgstr "OWM Weather Weergaves"
 
 #~ msgid "$ 10"
 #~ msgstr "$ 10"

@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: WP OWM Weather
+Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/wp-owm-weather
-Description: WP OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
+Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
 Version: 5.0.0
 Author: Uwe Jacobs
 Author URI: https://github.com/uwejacobs
@@ -177,7 +177,7 @@ global $post;
 }
 add_action( 'admin_enqueue_scripts', 'wow_add_admin_scripts', 10, 1 );
 
-//WP OWM Weather Options page
+//OWM Weather Options page
 function wow_add_admin_options_scripts() {
 			wp_register_style( 'wpowmweather-admin-css', plugins_url('css/wpowmweather-admin.min.css', __FILE__));
 			wp_enqueue_style( 'wpowmweather-admin-css' );
@@ -268,7 +268,7 @@ function wow_add_button_v4_register($buttons) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-//Add duplicate link in WP OWM WEATHER List view
+//Add duplicate link in OWM WEATHER List view
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 function wow_duplicate_post_as_draft(){
@@ -345,8 +345,8 @@ add_filter( 'post_row_actions', 'wow_duplicate_post_link', 999, 2 );
 
 add_action('add_meta_boxes','wp_owm_weather_init_metabox');
 function wp_owm_weather_init_metabox(){
-	add_meta_box('wpowmweather_basic', __('WP OWM Weather Settings','wp-owm-weather') .' - <a href="'.admin_url("options-general.php?page=wow-settings-admin").'">'.__('WP OWM Weather global settings','wp-owm-weather').'</a>', 'wpowmweather_basic', 'wow-weather', 'advanced');
-	add_meta_box('wpowmweather_shortcode', 'WP OWM Weather Shortcode', 'wpowmweather_shortcode', 'wow-weather', 'side');
+	add_meta_box('wpowmweather_basic', __('OWM Weather Settings','wp-owm-weather') .' - <a href="'.admin_url("options-general.php?page=wow-settings-admin").'">'.__('OWM Weather global settings','wp-owm-weather').'</a>', 'wpowmweather_basic', 'wow-weather', 'advanced');
+	add_meta_box('wpowmweather_shortcode', 'OWM Weather Shortcode', 'wpowmweather_shortcode', 'wow-weather', 'side');
 }
 
 function wpowmweather_shortcode($post){
@@ -1522,16 +1522,16 @@ function wow_get_my_weather_id($atts) {
     ), $atts);
 
 	if (empty($wow_params["id"])) {
-	    echo "<p>WP OWM Weather Error: wow-weather shortcode without 'id' parameter</p>";
+	    echo "<p>OWM Weather Error: wow-weather shortcode without 'id' parameter</p>";
 	    return;
 	}
     if (get_post_type($wow_params["id"]) != 'wow-weather') {
-	    echo "<p>WP OWM Weather Error: id '".$wow_params["id"]."' is not type 'weather'</p>";
+	    echo "<p>OWM Weather Error: id '".$wow_params["id"]."' is not type 'weather'</p>";
 	    return;
     }
 
     if (get_post_status($wow_params["id"]) != 'publish') {
-	    echo "<p>WP OWM Weather Error: id '".$wow_params["id"]."' is not published</p>";
+	    echo "<p>OWM Weather Error: id '".$wow_params["id"]."' is not published</p>";
 	    return;
     }
 
@@ -1761,7 +1761,7 @@ function wow_get_my_weather($attr) {
         if (!empty($myweather_current->cod) && $myweather_current->cod != "200") {
     	  	$response = array();
     	  	$response['weather'] = $wow_params["weather_id"];
-    	  	$response['html'] = "<p>WP OWM Weather id '" . $wow_opt["id"] . "': OWM Error " . $myweather_current->cod . (!empty($myweather_current->message) ? " (" . $myweather_current->message . ")" : "") . "</p>";
+    	  	$response['html'] = "<p>OWM Weather id '" . $wow_opt["id"] . "': OWM Error " . $myweather_current->cod . (!empty($myweather_current->message) ? " (" . $myweather_current->message . ")" : "") . "</p>";
     		wp_send_json_success($response);
     		return;
         }
@@ -1863,7 +1863,7 @@ function wow_get_my_weather($attr) {
         if (!empty($myweather->cod) && $myweather->cod != "200") {
     	  	$response = array();
     	  	$response['weather'] = $wow_params["weather_id"];
-    	  	$response['html'] = "<p>WP OWM Weather id '" . $wow_opt["id"] . "': OWM Error " . $myweather->cod . (!empty($myweather->message) ? " (" . $myweather->message . ")" : "") . "</p>";
+    	  	$response['html'] = "<p>OWM Weather id '" . $wow_opt["id"] . "': OWM Error " . $myweather->cod . (!empty($myweather->message) ? " (" . $myweather->message . ")" : "") . "</p>";
     		wp_send_json_success($response);
     		return;
         }
@@ -2243,7 +2243,7 @@ function wow_get_my_weather($attr) {
 			        	jQuery(document).ready( function() {
 
 				        	var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-							maxZoom: 18, attribution: "WP OWM Weather" });
+							maxZoom: 18, attribution: "OWM Weather" });
 
 							var city = L.OWM.current({intervall: '.($wow_opt["cache_time"]??30).', lang: "en", appId: "'.$wow_opt["api_key"] . '",temperatureDigits:0,temperatureUnit:"' . $temperature_unit_character . '",speedUnit:"' . $map_speed . '"});'.
 
@@ -2280,7 +2280,7 @@ function wow_get_my_weather($attr) {
 			$wow_opt["image_bg_position_vertical_e"]		= 	$wpowmweather_image_bg_position_vertical;
 		}
 */
-		$wow_html["container"]["start"] = '<!-- WP OWM Weather : WordPress weather plugin v'.WP_OWM_WEATHER_VERSION.' - https://github.com/uwejacobs/wp-owm-weather -->';
+		$wow_html["container"]["start"] = '<!-- OWM Weather : WordPress weather plugin v'.WP_OWM_WEATHER_VERSION.' - https://github.com/uwejacobs/wp-owm-weather -->';
 		$wow_html["container"]["start"] .= '<div id="' . $wow_opt["container_weather_div"] . '" class="wow-'.$wow_opt["id"].' wow-weather-'.$wow_data["condition_id"].' wow-'. $wow_opt["size"] .' wow-template-'. $wow_opt["template"] .'"';
 		$wow_html["container"]["start"] .= ' style="';
 		$wow_html["container"]["start"] .= wow_css_color('background-color', $wow_opt["background_color"]) .
@@ -2713,11 +2713,11 @@ $wow_html["chart"]["daily"]["cmd"] =
         }
 
     	ob_start();
-	    if ( locate_template('wp-owm-weather/content-wpowmweather.php', false) != '' && $wow_opt["template"] == 'Default' ) {
-	    	include get_stylesheet_directory() . '/wp-owm-weather/content-wpowmweather.php';
+	    if ( locate_template('owm-weather/content-wpowmweather.php', false) != '' && $wow_opt["template"] == 'Default' ) {
+	    	include get_stylesheet_directory() . '/owm-weather/content-wpowmweather.php';
 	    } elseif ( $wow_opt["template"] != 'Default' ) {
-	    	if ( locate_template('wp-owm-weather/content-wpowmweather-' . $wow_opt["template"] . '.php', false) != '' ) {
-		    	include get_stylesheet_directory() . '/wp-owm-weather/content-wpowmweather-' . $wow_opt["template"] . '.php';
+	    	if ( locate_template('owm-weather/content-wpowmweather-' . $wow_opt["template"] . '.php', false) != '' ) {
+		    	include get_stylesheet_directory() . '/owm-weather/content-wpowmweather-' . $wow_opt["template"] . '.php';
 	    	} else {
 	    		include dirname( __FILE__ ) . '/template/content-wpowmweather-' . $wow_opt["template"] . '.php';
 	    	}
@@ -2841,14 +2841,14 @@ function wow_set_messages($messages) {
 add_filter('post_updated_messages', 'wow_set_messages' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-//WP OWM WEATHER Notices
+//OWM WEATHER Notices
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function wpowmweather_notice() {
 	$wow_advanced_api_key = get_option('wow_option_name');
-	if ( is_plugin_active( 'wp-owm-weather/wpowmweather.php' ) && !isset($wow_advanced_api_key['wow_advanced_api_key'])) {
+	if ( is_plugin_active( 'owm-weather/wpowmweather.php' ) && !isset($wow_advanced_api_key['wow_advanced_api_key'])) {
 	    ?>
 	    <div class="error notice">
-	        <p><a href="<?php echo admin_url('admin.php?page=wow-settings-admin#tab_advanced'); ?>"><?php _e( 'WP OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits requests.', 'wp-owm-weather' ); ?></a></p>
+	        <p><a href="<?php echo admin_url('admin.php?page=wow-settings-admin#tab_advanced'); ?>"><?php _e( 'OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits requests.', 'wp-owm-weather' ); ?></a></p>
 	    </div>
 	    <?php
 	}

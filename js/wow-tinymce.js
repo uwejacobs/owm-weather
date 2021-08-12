@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 	(function() {
 	    tinymce.PluginManager.add('wow_button_v4', function( editor, url ) {
 	        editor.addButton( 'wow_button_v4', {
-	            title: 'WP OWM Weather',
+	            title: 'OWM Weather',
 	            type: 'button',
 	            icon: 'icon mceIcon dashicons-before dashicons-cloud',
 	            onclick: function() {

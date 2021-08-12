@@ -54,7 +54,7 @@ var countries = new Bloodhound({
   queryTokenizer: Bloodhound.tokenizers.whitespace,
   limit: 10,
   prefetch: {
-    url: '../wp-content/plugins/wp-owm-weather/js/countries.json',
+    url: '../wp-content/plugins/owm-weather/js/countries.json',
     filter: function(list) {
       return jQuery.map(list, function(country) { return { name: country }; });
     }

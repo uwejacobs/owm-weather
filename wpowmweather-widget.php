@@ -12,7 +12,7 @@ function wow_add_dashboard_widgets() {
 
 	wp_add_dashboard_widget(
                  'wpowmweather_dashboard_widget',     // Widget slug.
-                 'WP OWM Weather',    // Title.
+                 'OWM Weather',    // Title.
                  'wow_dashboard_widget_function',  // Display function.
                  'wow_dashboard_widget_option'   //Options
         );	

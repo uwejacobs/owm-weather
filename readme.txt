@@ -1,4 +1,4 @@
-=== WP OWM Weather, weather plugin ===
+=== OWM Weather, weather plugin ===
 Contributors: rainbowgeek, uwejacobs
 Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
@@ -9,15 +9,15 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WP OWM Weather is a powerful weather plugin for WordPress, based on the Open Weather Map API. It uses a custom post types and shortcodes, and much more.
+OWM Weather is a powerful weather plugin for WordPress, based on the Open Weather Map API. It uses a custom post types and shortcodes, and much more.
 
 == Description ==
 
-<strong><b>WP OWM Weather</b> is derived from the discontinued plugin WP Cloudy. It uses many of the same settings but is completely separate.<strong>
+<strong><b>OWM Weather</b> is derived from the discontinued plugin WP Cloudy. It uses many of the same settings but is completely separate.<strong>
 
 <hr>
 
-WP OWM Weather is a flexible and easy to use weather plugin that allows the creation of unlimited different weathers using Custom Post Types and the Open Weather Map API. 
+OWM Weather is a flexible and easy to use weather plugin that allows the creation of unlimited different weathers using Custom Post Types and the Open Weather Map API. 
 
 Create a weather, select your location, choose the data and customize the look-and-feel with a few clicks.
 
@@ -40,16 +40,16 @@ Use in content and/or sidebar, or as widget on the admin dashboard. Multiple com
 The world-wide location can be specified by the OWM city id (available for over 200,000 cities), the city/country name via dynamic search, the zip code, the latitide/longitude or the IP address of the user (geo location).
 
 = Unlimited weathers =
-WP OWM Weather uses WordPress Custom Post Types which allows for an unlimited number of weathers.
+OWM Weather uses WordPress Custom Post Types which allows for an unlimited number of weathers.
 
 = Cache system =
 Weather data is cached at a frequency defined by you. The data is then loaded from your server and you no longer depend on external sources. This avoids slowdowns and blocked page rendering.
 
 = Open Weather Map API =
-WP OWM Weather retrieves the weather information from the Open Weather Map website, a free weather data and forecast API. Get your own free API key to avoid running into call limits. Note: I can take several hours before your API key is activated ny OWM.
+OWM Weather retrieves the weather information from the Open Weather Map website, a free weather data and forecast API. Get your own free API key to avoid running into call limits. Note: I can take several hours before your API key is activated ny OWM.
 
 = Dashboard Weather =
-You can include WP OWM Weather in your WordPress Dashboard as a widget.
+You can include OWM Weather in your WordPress Dashboard as a widget.
 
 = Flat & Retina responsive design =
 Minimalist and flat responsive design, fully vectorial (SVG/CSS/Webfont), for a perfect display on all devices.
@@ -90,7 +90,7 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 == For developers ==
 Templating system: The main advantage is that you can create a completely personalized weather without changing the core of the plugin. In addition, your changes will not be overwritten at each plugin update.
 
-* Go to WP OWM Weather template directory: http://yoursite.com/wp-content/plugins/wp-owm-weather/template/
+* Go to OWM Weather template directory: http://yoursite.com/wp-content/plugins/owm-weather/template/
 * Copy content-wpowmweather-custom1.php and content-wpowmweather-custom2.php files.
 * Go to your theme directory: http://yoursite.com/wp-content/themes/yourtheme/
 * Create a new folder called wp-owm-weather (the spelling is important).
@@ -105,7 +105,7 @@ Templating system: The main advantage is that you can create a completely person
 
 1. Login to your admin site.
 1. Click the Plugins menu, then click the "Add New" button.
-1. Search WP OWM Weather.
+1. Search OWM Weather.
 1. Click "Install Now" and then "Activate"
 1. If all went well, a new "Weather" menu should appear.
 
@@ -115,10 +115,10 @@ Templating system: The main advantage is that you can create a completely person
 1. Upload the unzipped “wp_owm_weather” folder in the root plugins directory “/wp-content/plugins/”.
 1. Activate the plugin from the Plugins menu of your admin.
 1. If all went well, a new "Weather" menu should appear.
-1. Get your free OpenWeatherMap API key at https://www.openweathermap.com and enter it under Settings/WP OWM Weather
+1. Get your free OpenWeatherMap API key at https://www.openweathermap.com and enter it under Settings/OWM Weather
 
 = Creating your first weather =
-1. Goto Settings / WP OWM Weather. Enter your API key, if you have one. Check "Disable Bootstrap" if you already include Bootstrap in your theme. Leave all other settings as is for now and "Save Changes".
+1. Goto Settings / OWM Weather. Enter your API key, if you have one. Check "Disable Bootstrap" if you already include Bootstrap in your theme. Leave all other settings as is for now and "Save Changes".
 1. Click on the new custom post type called "Weather" and create a "New Weather"
 1. Fill one of the tabs under "Get weather by..." or leave empty for user's location by ip address
 1. Choose "Measurement System" Imperial for Fahrenheit and miles or "Metric" for Celsius and kilometers.
@@ -129,9 +129,9 @@ Templating system: The main advantage is that you can create a completely person
 1. You just created your first weather! Now you add additional fields under "Display", change the look-and-feel under "Layout" or add a map with layers under "Map".
 
 == Frequently Asked Questions ==
-= How many cities are supported by WP OWM Weather? =
+= How many cities are supported by OWM Weather? =
 Over 200,000 cities from 238 countries and territories. Every location on earth is also selectable via latitude/longitude.
-= How many differents weather can I create with WP OWM Weather? =
+= How many differents weather can I create with OWM Weather? =
 Unlimited due to WordPress Custom Post Types.
 = In which languages is the weather data displayed? =
 The setup pages are displayed in English with partial translations in French, Italian, Hungarian, Hebrew, Polish, Russian, Danish, German, Portuguese. Open Weather Map provides the data in most languages.
@@ -144,15 +144,15 @@ Yes. Each weather can have a completely different setup and layout.
 = What is the source of the datas? =
 Open Weather Map (https://openwweathermap.com)
 = Where is the global settings page? =
-In WordPress admin, Settings menu, WP OWM Weather.
+In WordPress admin, Settings menu, OWM Weather.
 = Ads? =
 No.
 = Can I import/export weathers? =
 Yes, using the default WordPress importer/exporter tool (free).
-= Can I import/export global WP OWM Weather settings? =
-Yes, in Settings > WP OWM Weather > Import/Export/Reset tab.
-= Is WP OWM Weather compatible to WP Cloudy? =
-Although many settings look alike, WP OWM Weather uses completely different weather pages and system settings so both can be activate at the same time.
+= Can I import/export global OWM Weather settings? =
+Yes, in Settings > OWM Weather > Import/Export/Reset tab.
+= Is OWM Weather compatible to WP Cloudy? =
+Although many settings look alike, OWM Weather uses completely different weather pages and system settings so both can be activate at the same time.
 
 == Screenshots ==
 1. Basic current weather info with alerts
@@ -181,7 +181,7 @@ Although many settings look alike, WP OWM Weather uses completely different weat
 * Fill Google Tag Manager datalayer with current weather info
 
 = 4.5.0 =
-* Restarted WP Cloudy under WP OWM Weather
+* Restarted WP Cloudy under OWM Weather
 
 == Upgrade Notice ==
-* WP Cloudy users who want to upgrade to WP OWM Weather need to reenter their weathers and system settings.
+* WP Cloudy users who want to upgrade to OWM Weather need to reenter their weathers and system settings.

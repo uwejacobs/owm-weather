@@ -1,7 +1,7 @@
-<h4>WP OWM Weather Custom Template for Developers</h4>
+<h4>OWM Weather Custom Template for Developers</h4>
 <p>You can create a completely personalized weather without changing the core of the plugin. In addition, your changes will not be overwritten at each plugin update.</p>
 <ul>
-  <li>Go to WP OWM Weather template directory: http://yoursite.com/wp-content/plugins/wp-owm-weather/template/</li>
+  <li>Go to OWM Weather template directory: http://yoursite.com/wp-content/plugins/owm-weather/template/</li>
   <li>Copy content-wpowmweather-custom1.php and content-wpowmweather-custom2.php files.</li>
   <li>Go to your theme directory: http://yoursite.com/wp-content/themes/yourtheme/</li>
   <li>Create a new folder called wp-owm-weather (the spelling is important).</li>
