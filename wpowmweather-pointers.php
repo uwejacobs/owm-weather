@@ -29,7 +29,7 @@ add_action( 'admin_enqueue_scripts', 'wow_enqueue_pointer_script_style' );
 function wow_pointer_print_scripts() {
 
 	$pointer_content  = "<h3>OWM Weather 2</h3>";
-	$pointer_content .= '<p>'.__('<strong>Before starting:</strong> enter your own OpenWeatherMap API key in','wp-owm-weather').' <a href="'.admin_url('options-general.php?page=wow-settings-admin#tab_advanced').'">'. __('Advanced Settings!','wp-owm-weather').'</a></p>';
+	$pointer_content .= '<p>'.__('<strong>Before starting:</strong> enter your own OpenWeatherMap API key in','owm-weather').' <a href="'.admin_url('options-general.php?page=wow-settings-admin#tab_advanced').'">'. __('Advanced Settings!','owm-weather').'</a></p>';
 	?>
 	
 	<script type="text/javascript">

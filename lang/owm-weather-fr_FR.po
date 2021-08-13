@@ -1,1458 +1,1803 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OWM Weather\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/wp-owm-weather\n"
-"POT-Creation-Date: 2018-05-28 13:46+0200\n"
-"PO-Revision-Date: 2018-05-28 13:46+0200\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/owm-weather\n"
+"POT-Creation-Date: 2018-05-28 13:45+0200\n"
+"PO-Revision-Date: 2018-05-28 13:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: Benjamin DENIS <contact@wpowmweather.com>\n"
-"Language: en\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: js\n"
 
 #: wpowmweather-admin.php:64
 msgid "The best freemium plugin to boost your SEO with WordPress."
-msgstr ""
+msgstr "La meilleure extension de SEO pour WordPress."
 
 #: wpowmweather-admin.php:65
 msgid "Download for free"
-msgstr ""
+msgstr "Télécharger gratuitement"
 
 #: wpowmweather-admin.php:69
 msgid "OWM Weather"
-msgstr ""
+msgstr "OWM Weather"
 
 #: wpowmweather-admin.php:75
 msgid "You like OWM Weather? Don't forget to rate it 5 stars!"
-msgstr ""
+msgstr "Vous aimez OWM Weather ? N'oubliez pas de nous noter 5 étoiles !"
 
 #: wpowmweather-admin.php:112
 msgid "Export Settings"
-msgstr ""
+msgstr "Exporter Paramètres"
 
 #: wpowmweather-admin.php:114
 msgid ""
 "Export the plugin settings for this site as a .json file. This allows you to "
 "easily import the configuration into another site."
 msgstr ""
+"Exporter les paramètres de l'extension pour ce site comme un fichier JSON. "
+"Cela vous permet d'importer facilement votre configuration dans un autre "
+"site WordPress."
 
 #: wpowmweather-admin.php:119
 msgid "Export"
-msgstr ""
+msgstr "Exporter"
 
 #: wpowmweather-admin.php:126
 msgid "Import Settings"
-msgstr ""
+msgstr "Importer Paramètres"
 
 #: wpowmweather-admin.php:128
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
 msgstr ""
+"Importer les paramètres de l'extension depuis un fichier JSON. Ce fichier "
+"peut être obtenu en exportant les paramètres depuis un autre site en "
+"utilisant le formulaire ci-dessus."
 
 #: wpowmweather-admin.php:136
 msgid "Import"
-msgstr ""
+msgstr "Importer"
 
 #: wpowmweather-admin.php:143
 msgid "Reset Settings"
-msgstr ""
+msgstr "Remise à zéro"
 
 #: wpowmweather-admin.php:145
 msgid ""
 "Reset all OWM Weather global settings. It will not delete your weathers and "
 "their indivuals settings."
 msgstr ""
+"Remettre à zéro tous les paramètres globaux de OWM Weather. Cela ne supprimera "
+"pas vos météos et paramètres individuels."
 
 #: wpowmweather-admin.php:150
 msgid "Reset settings"
-msgstr ""
+msgstr "Remise à zéro"
 
 #: wpowmweather-admin.php:169
 msgid "Basic"
-msgstr ""
+msgstr "Basique"
 
 #: wpowmweather-admin.php:170 wpowmweather.php:420
 msgid "Display"
-msgstr ""
+msgstr "Affichage"
 
 #: wpowmweather-admin.php:171 wpowmweather.php:421
 msgid "Advanced"
-msgstr ""
+msgstr "Avancé"
 
 #: wpowmweather-admin.php:172 wpowmweather.php:422
 msgid "Map"
-msgstr ""
+msgstr "Carte"
 
 #: wpowmweather-admin.php:173
 msgid "Import/Export/Reset"
-msgstr ""
+msgstr "Import/Export/Remise à zéro"
 
 #: wpowmweather-admin.php:174
 msgid "Support"
-msgstr ""
+msgstr "Support"
 
 #: wpowmweather-admin.php:188
 msgid "Save changes"
-msgstr ""
+msgstr "Enregistrer les modifications"
 
 #: wpowmweather-admin.php:193
 msgid "OWM Weather Premium"
-msgstr ""
+msgstr "OWM Weather Premium"
 
 #: wpowmweather-admin.php:197
 msgid "$ 19 / year"
-msgstr ""
+msgstr "19 $ / an"
 
 #: wpowmweather-admin.php:199
 msgid "Enabled"
-msgstr ""
+msgstr "Actif"
 
 #: wpowmweather-admin.php:203
 msgid ""
 "Join now to get Skins & Geolocation Add-ons, and premium support by email."
 msgstr ""
+"Inscrivez vous dès maintenant pour obtenir les add-ons Skins et "
+"Géolocalisation, ainsi que le support premium par mail."
 
 #: wpowmweather-admin.php:207
 msgid "Join now"
-msgstr ""
+msgstr "S'inscrire"
 
 #: wpowmweather-admin.php:211
 msgid "OWM Weather cache"
-msgstr ""
+msgstr "OWM Weather cache"
 
 #: wpowmweather-admin.php:215
 msgid "cache system"
-msgstr ""
+msgstr "système de cache"
 
 #: wpowmweather-admin.php:218
 msgid "Click this button to refresh weather cache."
-msgstr ""
+msgstr "Cliquer sur ce bouton pour vider le cache."
 
 #: wpowmweather-admin.php:276 wpowmweather.php:419
 msgid "Basic settings"
-msgstr ""
+msgstr "Base"
 
 #: wpowmweather-admin.php:283
 msgid "Bypass unit?"
-msgstr ""
+msgstr "Contourner l'unité ?"
 
 #: wpowmweather-admin.php:291
 msgid "Unit"
-msgstr ""
+msgstr "Unité"
 
 #: wpowmweather-admin.php:299
 msgid "Bypass date format?"
-msgstr ""
+msgstr "Contourner le format des dates ?"
 
 #: wpowmweather-admin.php:307
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #: wpowmweather-admin.php:316
 msgid "Display settings"
-msgstr ""
+msgstr "Paramètres d'affichage"
 
 #: wpowmweather-admin.php:323 wpowmweather.php:500
 msgid "Current weather?"
-msgstr ""
+msgstr "Temps actuel ?"
 
 #: wpowmweather-admin.php:331 wpowmweather.php:506
 msgid "Short condition?"
-msgstr ""
+msgstr "Conditions météo en texte ?"
 
 #: wpowmweather-admin.php:339
 msgid "Bypass the todays date format?"
-msgstr ""
+msgstr "Contourner le format de la date d'aujourd'hui?"
 
 #: wpowmweather-admin.php:347
 msgid "Todays date or day of the week?"
-msgstr ""
+msgstr "Date du jour ou jour de la semaine ?"
 
 #: wpowmweather-admin.php:355 wpowmweather.php:584
 msgid "Temperatures unit (C / F)?"
-msgstr ""
+msgstr "Unités de températures (C / F) ?"
 
 #: wpowmweather-admin.php:363
 msgid "Sunrise + sunset?"
-msgstr ""
+msgstr "Lever + coucher du soleil ?"
 
 #: wpowmweather-admin.php:371 wpowmweather-admin.php:724 wpowmweather.php:542
 msgid "Wind?"
-msgstr ""
+msgstr "Vent ?"
 
 #: wpowmweather-admin.php:379
 msgid "Wind unit?"
-msgstr ""
+msgstr "Unité du vent ?"
 
 #: wpowmweather-admin.php:387 wpowmweather.php:557
 msgid "Humidity?"
-msgstr ""
+msgstr "Humidité"
 
 #: wpowmweather-admin.php:395 wpowmweather-admin.php:740 wpowmweather.php:563
 msgid "Pressure?"
-msgstr ""
+msgstr "Pression atmosphérique ?"
 
 #: wpowmweather-admin.php:403 wpowmweather.php:569
 msgid "Cloudiness?"
-msgstr ""
+msgstr "Couverture nuageuse ?"
 
 #: wpowmweather-admin.php:411 wpowmweather.php:575
 msgid "Precipitation?"
-msgstr ""
+msgstr "Précipitations ?"
 
 #: wpowmweather-admin.php:419
 msgid "Hour forecast?"
-msgstr ""
+msgstr "Prévisions heure par heure ?"
 
 #: wpowmweather-admin.php:427
 msgid "Bypass number of hours forecast settings?"
-msgstr ""
+msgstr "Contourner le paramètre de nombre d'heures de prévisions ?"
 
 #: wpowmweather-admin.php:435
 msgid "Number of range hours forecast?"
-msgstr ""
+msgstr "Nombre de plages de prévisions heure par heure ?"
 
 #: wpowmweather-admin.php:443 wpowmweather-admin.php:1192
 msgid "Bypass individual temperatures settings?"
-msgstr ""
+msgstr "Contourner paramètres température ?"
 
 #: wpowmweather-admin.php:451 wpowmweather.php:590
 msgid "Today temperature?"
-msgstr ""
+msgstr "Température du jour ?"
 
 #: wpowmweather-admin.php:459
 msgid "5-Days Forecast"
-msgstr ""
+msgstr "Prévisions à 5 jours"
 
 #: wpowmweather-admin.php:467
 msgid "Bypass number of days forecast settings?"
-msgstr ""
+msgstr "Contourner le paramètre de nombre de jours de prévisions ?"
 
 #: wpowmweather-admin.php:475
 msgid "Number of days forecast"
-msgstr ""
+msgstr "Nombre de jours de prévisions"
 
 #: wpowmweather-admin.php:483
 msgid "Precipitations forecast?"
-msgstr ""
+msgstr "Précipitations dans les prévisions ?"
 
 #: wpowmweather-admin.php:491 wpowmweather-admin.php:1301
 msgid "Bypass the length of name days?"
-msgstr ""
+msgstr "Contourner la longueur du nom des jours ?"
 
 #: wpowmweather-admin.php:499
 msgid "Length name days:"
-msgstr ""
+msgstr "Taille des noms des jours :"
 
 #: wpowmweather-admin.php:507 wpowmweather.php:655
 msgid "Link to OpenWeatherMap?"
-msgstr ""
+msgstr "Lien vers OpenWeatherMap ?"
 
 #: wpowmweather-admin.php:515 wpowmweather.php:663
 msgid "Update date?"
-msgstr ""
+msgstr "Date de mise à jour ?"
 
 #: wpowmweather-admin.php:523
 msgid "Fluid design?"
-msgstr ""
+msgstr "Design fluide ?"
 
 #: wpowmweather-admin.php:531
 msgid "Default Max width parent container (in pixels)?"
-msgstr ""
+msgstr "Largeur par défaut max pour le conteneur parent (en pixels) ?"
 
 #: wpowmweather-admin.php:540
 msgid "Advanced settings"
-msgstr ""
+msgstr "Paramètres avancés"
 
 #: wpowmweather-admin.php:547
 msgid "CSS 3 Animations"
-msgstr ""
+msgstr "CSS3 Animations"
 
 #: wpowmweather-admin.php:555 wpowmweather.php:686
 msgid "Background color"
-msgstr ""
+msgstr "Couleur d'arrière plan"
 
 #: wpowmweather-admin.php:563 wpowmweather.php:690
 msgid "Text color"
-msgstr ""
+msgstr "Couleur du texte"
 
 #: wpowmweather-admin.php:571 wpowmweather.php:694
 msgid "Border color"
-msgstr ""
+msgstr "Couleur des bordures"
 
 #: wpowmweather-admin.php:579
 msgid "Bypass size?"
-msgstr ""
+msgstr "Contourner la taille ?"
 
 #: wpowmweather-admin.php:587
 msgid "Size"
-msgstr ""
+msgstr "Taille"
 
 #: wpowmweather-admin.php:595
 msgid "Disable cache"
-msgstr ""
+msgstr "Désactiver cache"
 
 #: wpowmweather-admin.php:603
 msgid "Time cache refresh (in minutes)"
-msgstr ""
+msgstr "Durée du cache (en minutes)"
 
 #: wpowmweather-admin.php:611
 msgid "Open Weather Map API key"
-msgstr ""
+msgstr "Clé d'API Open Weather Map"
 
 #: wpowmweather-admin.php:619
 msgid "Disable Bootstrap Modal JS?"
-msgstr ""
+msgstr "Désactiver Bootstrap Modal JS ?"
 
 #: wpowmweather-admin.php:629
 msgid "Map settings"
-msgstr ""
+msgstr "Paramètres de la carte"
 
 #: wpowmweather-admin.php:636
 msgid "Map?"
-msgstr ""
+msgstr "Carte ?"
 
 #: wpowmweather-admin.php:644
 msgid "Map height"
-msgstr ""
+msgstr "Hauteur de la carte (en px)"
 
 #: wpowmweather-admin.php:652
 msgid "Bypass layers opacity?"
-msgstr ""
+msgstr "Contourner l'opacité des calques ?"
 
 #: wpowmweather-admin.php:660 wpowmweather.php:722
 msgid "Layers opacity"
-msgstr ""
+msgstr "Opacité des calques"
 
 #: wpowmweather-admin.php:668
 msgid "Bypass zoom?"
-msgstr ""
+msgstr "Contourner le zoom ?"
 
 #: wpowmweather-admin.php:676 wpowmweather.php:738
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 #: wpowmweather-admin.php:684
 msgid "Disable zoom wheel?"
-msgstr ""
+msgstr "Désactiver zoom molette souris ?"
 
 #: wpowmweather-admin.php:692
 msgid "Stations?"
-msgstr ""
+msgstr "Stations ?"
 
 #: wpowmweather-admin.php:700
 msgid "Clouds?"
-msgstr ""
+msgstr "Couverture nuageuse ?"
 
 #: wpowmweather-admin.php:708
 msgid "Precipitations?"
-msgstr ""
+msgstr "Précipitations ?"
 
 #: wpowmweather-admin.php:716
 msgid "Snow?"
-msgstr ""
+msgstr "Neige ?"
 
 #: wpowmweather-admin.php:732
 msgid "Temperatures?"
-msgstr ""
+msgstr "Températures ?"
 
 #: wpowmweather-admin.php:801
 msgid "Basic settings to bypass:"
-msgstr ""
+msgstr "Paramètres de base à contourner :"
 
 #: wpowmweather-admin.php:806
 msgid "Display settings to bypass:"
-msgstr ""
+msgstr "Paramètres d'affichage à contourner :"
 
 #: wpowmweather-admin.php:811
 msgid "Advanced settings to bypass:"
-msgstr ""
+msgstr "Paramètres avancés à contourner :"
 
 #: wpowmweather-admin.php:816
 msgid "Map settings to bypass:"
-msgstr ""
+msgstr "Paramètres de la carte à contourner :"
 
 #: wpowmweather-admin.php:821
 msgid "&nbsp;"
-msgstr ""
+msgstr "&nbsp;"
 
 #: wpowmweather-admin.php:837
 msgid "Enable bypass unit on all weather?"
-msgstr ""
+msgstr "Activer le contournement de l'unité sur toutes les météos ?"
 
 #: wpowmweather-admin.php:853 wpowmweather.php:448
 msgid "Imperial"
-msgstr ""
+msgstr "Impérial"
 
 #: wpowmweather-admin.php:856 wpowmweather.php:449
 msgid "Metric"
-msgstr ""
+msgstr "Métrique"
 
 #: wpowmweather-admin.php:873
 msgid "Enable bypass date format on all weather?"
-msgstr ""
+msgstr "Activer le bypass du format des dates pour toutes les météos ?"
 
 #: wpowmweather-admin.php:889 wpowmweather.php:455
 msgid "12 h"
-msgstr ""
+msgstr "12 h"
 
 #: wpowmweather-admin.php:892 wpowmweather.php:456
 msgid "24 h"
-msgstr ""
+msgstr "24 h"
 
 #: wpowmweather-admin.php:909
 msgid "Display current weather on all weather?"
-msgstr ""
+msgstr "Afficher le temps actuel sur toutes les météos ?"
 
 #: wpowmweather-admin.php:924
 msgid "Display short condition on all weather?"
-msgstr ""
+msgstr "Afficher les conditions météo en texte ?"
 
 #: wpowmweather-admin.php:939
 msgid "Bypass todays date format?"
-msgstr ""
+msgstr "Contourner le format des dates du jour ?"
 
 #: wpowmweather-admin.php:955
 msgid "None (default)?"
-msgstr ""
+msgstr "Aucun (par défaut)"
 
 #: wpowmweather-admin.php:963 wpowmweather.php:521
 msgid "Day of the week (eg: Sunday)?"
-msgstr ""
+msgstr "Jour de la semaine (par exemple: dimanche)?"
 
 #: wpowmweather-admin.php:971
 msgid "Todays date?"
-msgstr ""
+msgstr "La date d'aujourd'hui?"
 
 #: wpowmweather-admin.php:987
 msgid "Display temperatures unit (C / F)?"
-msgstr ""
+msgstr "Afficher les unités de températures (C / F) ?"
 
 #: wpowmweather-admin.php:1003
 msgid "Display sunrise - sunset on all weather?"
-msgstr ""
+msgstr "Afficher lever et coucher du soleil sur toutes les météos ?"
 
 #: wpowmweather-admin.php:1019
 msgid "Display wind on all weather?"
-msgstr ""
+msgstr "Afficher le vent sur toutes les météos ?"
 
 #: wpowmweather-admin.php:1035
 msgid "No bypass"
-msgstr ""
+msgstr "Pas de contournement"
 
 #: wpowmweather-admin.php:1038 wpowmweather.php:548
 msgid "mi/h"
-msgstr ""
+msgstr "mi/h"
 
 #: wpowmweather-admin.php:1041 wpowmweather.php:549
 msgid "m/s"
-msgstr ""
+msgstr "m/s"
 
 #: wpowmweather-admin.php:1044 wpowmweather.php:550
 msgid "km/h"
-msgstr ""
+msgstr "km/h"
 
 #: wpowmweather-admin.php:1047 wpowmweather.php:551
 msgid "kt"
-msgstr ""
+msgstr "noeuds"
 
 #: wpowmweather-admin.php:1064
 msgid "Display humidity on all weather?"
-msgstr ""
+msgstr "Afficher l'humidité sur toutes les météos ?"
 
 #: wpowmweather-admin.php:1080
 msgid "Display pressure on all weather?"
-msgstr ""
+msgstr "Afficher la pression atmosphérique sur toutes les météos ?"
 
 #: wpowmweather-admin.php:1096
 msgid "Display cloudiness on all weather?"
-msgstr ""
+msgstr "Afficher les nuages sur toutes les météos ?"
 
 #: wpowmweather-admin.php:1112
 msgid "Display precipitation on all weather?"
-msgstr ""
+msgstr "Afficher les précipitations pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1128
 msgid "Display hour forecast on all weather?"
-msgstr ""
+msgstr "Afficher les prévisions heure par heure pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1144
 msgid "Enable bypass number of hours forecast on all weather?"
 msgstr ""
+"Activer le contournement du nombre d'heures de prévisions pour toutes les "
+"météos ?"
 
 #: wpowmweather-admin.php:1160 wpowmweather.php:605
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: wpowmweather-admin.php:1163 wpowmweather.php:606
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #: wpowmweather-admin.php:1166 wpowmweather.php:607
 msgid "3"
-msgstr ""
+msgstr "3"
 
 #: wpowmweather-admin.php:1169 wpowmweather.php:608
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: wpowmweather-admin.php:1172 wpowmweather.php:609
 msgid "5"
-msgstr ""
+msgstr "5"
 
 #: wpowmweather-admin.php:1175 wpowmweather.php:610
 msgid "6"
-msgstr ""
+msgstr "6"
 
 #: wpowmweather-admin.php:1208
 msgid "Display today temperature on all weather?"
-msgstr ""
+msgstr "Afficher la température du jour sur toutes les météos ?"
 
 #: wpowmweather-admin.php:1224
 msgid "Display 5-days Forecast on all weather?"
-msgstr ""
+msgstr "Afficher les prévisions à 5 jours pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1240
 msgid "Enable bypass number of days forecast on all weather?"
 msgstr ""
+"Activer le contournement du nombre de jours de prévisions pour toutes les "
+"météos ?"
 
 #: wpowmweather-admin.php:1256 wpowmweather.php:627
 msgid "1 day"
-msgstr ""
+msgstr "1 jour"
 
 #: wpowmweather-admin.php:1259 wpowmweather.php:628
 msgid "2 days"
-msgstr ""
+msgstr "2 jours"
 
 #: wpowmweather-admin.php:1262 wpowmweather.php:629
 msgid "3 days"
-msgstr ""
+msgstr "3 jours"
 
 #: wpowmweather-admin.php:1265 wpowmweather.php:630
 msgid "4 days"
-msgstr ""
+msgstr "4 jours"
 
 #: wpowmweather-admin.php:1268 wpowmweather.php:631
 msgid "5 days"
-msgstr ""
+msgstr "5 jours"
 
 #: wpowmweather-admin.php:1285
 msgid "Display Forecast Precipitations on all Weather?"
 msgstr ""
+"Afficher les Précipitations dans les prévisions sur toutes les météos ?"
 
 #: wpowmweather-admin.php:1318
 msgid "Short days names"
-msgstr ""
+msgstr "Noms des jours en abrégé"
 
 #: wpowmweather-admin.php:1326
 msgid "Normal days names"
-msgstr ""
+msgstr "Noms des jours par défaut"
 
 #: wpowmweather-admin.php:1342
 msgid "Display link to full weather on OpenWeatherMap?"
-msgstr ""
+msgstr "Afficher le lien OpenWeatherMap vers la météo complète ?"
 
 #: wpowmweather-admin.php:1359
 msgid "Display update date on all weather?"
-msgstr ""
+msgstr "Afficher la date de mise à jour sur toutes les météos ?"
 
 #: wpowmweather-admin.php:1376
 msgid "Enable fluid design on all weather?"
-msgstr ""
+msgstr "Activer le design fluide sur toutes les météos ?"
 
 #: wpowmweather-admin.php:1403
 msgid "Disable CSS3 animations, transformations and transitions?"
-msgstr ""
+msgstr "Désactiver les animations, transformations et transitions CSS3 ?"
 
 #: wpowmweather-admin.php:1455
 msgid "Enable bypass size on all weather?"
-msgstr ""
+msgstr "Activer le contournement de la taille pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1471 wpowmweather.php:704
 msgid "Small"
-msgstr ""
+msgstr "Petite"
 
 #: wpowmweather-admin.php:1474 wpowmweather.php:705
 msgid "Medium"
-msgstr ""
+msgstr "Moyenne"
 
 #: wpowmweather-admin.php:1477 wpowmweather.php:706
 msgid "Large"
-msgstr ""
+msgstr "Grande"
 
 #: wpowmweather-admin.php:1494
 msgid "Disable weather cache? (not recommended)"
-msgstr ""
+msgstr "Désactiver le cache météo ? (non recommandé)"
 
 #: wpowmweather-admin.php:1511
 msgid "Default value: 30 minutes"
-msgstr ""
+msgstr "Valeur par défaut: 30 minutes"
 
 #: wpowmweather-admin.php:1524
 msgid "Strongly recommended: "
-msgstr ""
+msgstr "Fortement recommandé:"
 
 #: wpowmweather-admin.php:1524
 msgid "Strongly recommended: get your free OWM API key here"
-msgstr ""
+msgstr "Fortement recommandé: obtenez votre clé d'API OWM gratuitement ici"
 
 #: wpowmweather-admin.php:1537
 msgid ""
 "Disable Bootstrap Modal JS? (disable this if you already include Bootstrap "
 "JS in your theme)"
 msgstr ""
+"Désactiver Bootstrap Modal JS ? (cochez si vous incluez déjà Bootstrap JS "
+"dans votre thème)"
 
 #: wpowmweather-admin.php:1553
 msgid "Enable map on all weather?"
-msgstr ""
+msgstr "Activer la carte pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1580
 msgid "Enable bypass map opacity on all weather?"
 msgstr ""
+"Activer le contournement de l'opacité des calques pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1643
 msgid "Enable bypass map zoom on all weather?"
-msgstr ""
+msgstr "Activer le contournement du zoom des cartes pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1726
 msgid "Disable zoom wheel on all weather?"
-msgstr ""
+msgstr "Désactiver le zoom à la souris sur le carte pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1742
 msgid "Display stations on all weather maps?"
-msgstr ""
+msgstr "Afficher le calque des stations pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1758
 msgid "Display clouds on all weather maps?"
-msgstr ""
+msgstr "Afficher le calque des nuages pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1774
 msgid "Display precipitations on all weather maps?"
-msgstr ""
+msgstr "Afficher le calque des précipitations pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1791
 msgid "Display snow on all weather maps?"
-msgstr ""
+msgstr "Afficher le calque neige pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1807
 msgid "Display wind on all weather maps?"
-msgstr ""
+msgstr "Afficher le calque vent pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1823
 msgid "Display temperatures on all weather maps?"
-msgstr ""
+msgstr "Afficher le calque des températures pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1839
 msgid "Display pressure on all weather maps?"
-msgstr ""
+msgstr "Afficher le calque pression atmosphérique pour toutes les météos ?"
 
 #: wpowmweather-admin.php:1849
 msgid "Problem with OWM Weather?"
-msgstr ""
+msgstr "Un problème avec OWM Weather ?"
 
 #: wpowmweather-admin.php:1850
 msgid "FAQ"
-msgstr ""
+msgstr "FAQ"
 
 #: wpowmweather-admin.php:1850
 msgid "Read our FAQ"
-msgstr ""
+msgstr "Consultez notre FAQ"
 
 #: wpowmweather-admin.php:1851
 msgid "Guides"
-msgstr ""
+msgstr "Guides"
 
 #: wpowmweather-admin.php:1851
 msgid "Read our Guides"
-msgstr ""
+msgstr "Consultez nos guides"
 
 #: wpowmweather-admin.php:1852
 msgid "OWM Weather Forum on WordPress.org"
-msgstr ""
+msgstr "OWM Weather Forum de WordPress.org"
 
 #: wpowmweather-admin.php:1869
 msgid "Setup OWM Weather"
-msgstr ""
+msgstr "Installer OWM Weather"
 
 #: wpowmweather-admin.php:1870
 msgid "Follow this video to setup OWM Weather:"
-msgstr ""
+msgstr "Suivez cette vidéo pour configurer OWM Weather :"
 
 #: wpowmweather-admin.php:1874
 msgid "Create your first weather"
-msgstr ""
+msgstr "Créer votre première météo"
 
 #: wpowmweather-admin.php:1875
 msgid "Follow this video to create your first weather with OWM Weather:"
-msgstr ""
+msgstr "Suivez cette vidéo pour créer votre première météo avec OWM Weather:"
 
 #: wpowmweather-export.php:40
 msgid "Please upload a valid .json file"
-msgstr ""
+msgstr "Veuillez uploader un fichier JSON valide"
 
 #: wpowmweather-export.php:44
 msgid "Please upload a file to import"
-msgstr ""
+msgstr "Uploader un fichier à importer SVP"
 
 #: wpowmweather-pointers.php:32
 msgid ""
 "<strong>Before starting:</strong> enter your own OpenWeatherMap API key in"
 msgstr ""
+"<strong>Avant de commencer :</strong> entrez votre propre clé API "
+"OpenWeatherMap dans"
 
 #: wpowmweather-pointers.php:32
 msgid "Advanced Settings!"
-msgstr ""
+msgstr "Paramètres avancés !"
 
 #: wpowmweather-widget.php:32
 msgid "Please select a weather via configure link"
-msgstr ""
+msgstr "Sélectionner une météo via le lien Configurer."
 
 #: wpowmweather-widget.php:55
 msgid "Select the weather to display:"
-msgstr ""
+msgstr "Choisissez la météo à afficher:"
 
 #: wpowmweather.php:59
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: wpowmweather.php:323
 msgid "Duplicate this item"
-msgstr ""
+msgstr "Dupliquer"
 
 #: wpowmweather.php:323
 msgid "Duplicate"
-msgstr ""
+msgstr "Dupliquer"
 
 #: wpowmweather.php:336
 msgid "OWM Weather Settings"
-msgstr ""
+msgstr "Réglages OWM Weather"
 
 #: wpowmweather.php:336
 msgid "OWM Weather global settings"
-msgstr ""
+msgstr "Paramètres globaux de OWM Weather"
 
 #: wpowmweather.php:341
 msgid "Copy and paste this shortcode anywhere in posts, pages, text widgets: "
 msgstr ""
+"Copier puis coller ce bout de code n'importe où dans vos articles, pages, "
+"widgets textes :"
 
 #: wpowmweather.php:349
 msgid ""
 "If you need to display this weather anywhere in your theme, simply copy and "
 "paste this code snippet in your PHP file like sidebar.php: "
 msgstr ""
+"Si vous souhaitez afficher cette météo n'importe où dans votre thème, copier "
+"puis coller simplement ce bout de code dans votre fichier PHP de votre choix "
+"comme sidebar.php"
 
 #: wpowmweather.php:427
 msgid "OpenWeatherMap city ID"
-msgstr ""
+msgstr "ID de la ville OpenWeatherMap"
 
 #: wpowmweather.php:427
 msgid "Find my city ID"
-msgstr ""
+msgstr "Trouver mon ID de ville"
 
 #: wpowmweather.php:430
 msgid "OR"
-msgstr ""
+msgstr "OU"
 
 #: wpowmweather.php:432
 msgid "City"
-msgstr ""
+msgstr "Ville"
 
 #: wpowmweather.php:433
 msgid "Enter your city"
-msgstr ""
+msgstr "Saisissez votre ville"
 
 #: wpowmweather.php:436
 msgid "Country?"
-msgstr ""
+msgstr "Pays?"
 
 #: wpowmweather.php:439
 msgid ""
 "If you enter an OpenWeatherMap ID, it will automatically bypassed City and "
 "Country fields."
 msgstr ""
+"Si vous saisissez un ID OpenWeatherMap, il surpassera automatiquement les "
+"champs Ville et Pays."
 
 #: wpowmweather.php:442
 msgid "Custom city title"
-msgstr ""
+msgstr "Titre de ville personnalisée"
 
 #: wpowmweather.php:446
 msgid "Imperial or metric units?"
-msgstr ""
+msgstr "Système métrique ou impérial ?"
 
 #: wpowmweather.php:453
 msgid "12h / 24h date format?"
-msgstr ""
+msgstr "12h / 24h format de date ?"
 
 #: wpowmweather.php:462
 msgid "Bypass default WordPress timezone setting?"
-msgstr ""
+msgstr "Contourner le fuseau horaire par défaut de WordPress ?"
 
 #: wpowmweather.php:466
 msgid "Custom timezone? (default: WordPress general settings)"
 msgstr ""
+"Fuseau horaire personnalisé ? (défaut: Paramètres généraux de WordPress)"
 
 #: wpowmweather.php:468
 msgid "UTC -12"
-msgstr ""
+msgstr "UTC -12"
 
 #: wpowmweather.php:469
 msgid "UTC -11"
-msgstr ""
+msgstr "UTC -11"
 
 #: wpowmweather.php:470
 msgid "UTC -10"
-msgstr ""
+msgstr "UTC -10"
 
 #: wpowmweather.php:471
 msgid "UTC -9"
-msgstr ""
+msgstr "UTC -9"
 
 #: wpowmweather.php:472
 msgid "UTC -8"
-msgstr ""
+msgstr "UTC -8"
 
 #: wpowmweather.php:473
 msgid "UTC -7"
-msgstr ""
+msgstr "UTC -7"
 
 #: wpowmweather.php:474
 msgid "UTC -6"
-msgstr ""
+msgstr "UTC -6"
 
 #: wpowmweather.php:475
 msgid "UTC -5"
-msgstr ""
+msgstr "UTC -5"
 
 #: wpowmweather.php:476
 msgid "UTC -4"
-msgstr ""
+msgstr "UTC -4"
 
 #: wpowmweather.php:477
 msgid "UTC -3"
-msgstr ""
+msgstr "UTC -3"
 
 #: wpowmweather.php:478
 msgid "UTC -2"
-msgstr ""
+msgstr "UTC -2"
 
 #: wpowmweather.php:479
 msgid "UTC -1"
-msgstr ""
+msgstr "UTC -1"
 
 #: wpowmweather.php:480
 msgid "UTC 0"
-msgstr ""
+msgstr "UTC 0"
 
 #: wpowmweather.php:481
 msgid "UTC +1"
-msgstr ""
+msgstr "UTC +1"
 
 #: wpowmweather.php:482
 msgid "UTC +2"
-msgstr ""
+msgstr "UTC +2"
 
 #: wpowmweather.php:483
 msgid "UTC +3"
-msgstr ""
+msgstr "UTC +3"
 
 #: wpowmweather.php:484
 msgid "UTC +4"
-msgstr ""
+msgstr "UTC +4"
 
 #: wpowmweather.php:485
 msgid "UTC +5"
-msgstr ""
+msgstr "UTC +5"
 
 #: wpowmweather.php:486
 msgid "UTC +6"
-msgstr ""
+msgstr "UTC +6"
 
 #: wpowmweather.php:487
 msgid "UTC +7"
-msgstr ""
+msgstr "UTC +7"
 
 #: wpowmweather.php:488
 msgid "UTC +8"
-msgstr ""
+msgstr "UTC +8"
 
 #: wpowmweather.php:489
 msgid "UTC +9"
-msgstr ""
+msgstr "UTC +9"
 
 #: wpowmweather.php:490
 msgid "UTC +10"
-msgstr ""
+msgstr "UTC +10"
 
 #: wpowmweather.php:491
 msgid "UTC +11"
-msgstr ""
+msgstr "UTC +11"
 
 #: wpowmweather.php:492
 msgid "UTC +12"
-msgstr ""
+msgstr "UTC +12"
 
 #: wpowmweather.php:510
 msgid "Dates"
-msgstr ""
+msgstr "Dates"
 
 #: wpowmweather.php:515
 msgid "No date (default)?"
-msgstr ""
+msgstr "Aucune date (par défaut)?"
 
 #: wpowmweather.php:527
 msgid "Todays date (based on your WordPress General Settings)?"
-msgstr ""
+msgstr "Date d'aujourd'hui (basé sur les paramètres Généraux de WordPress) ?"
 
 #: wpowmweather.php:531
 msgid "Misc"
-msgstr ""
+msgstr "Divers"
 
 #: wpowmweather.php:536
 msgid "Sunrise + sunset? appears only if today date is checked"
 msgstr ""
+"Lever / coucher du soleil ? Apparait seulement si la date du jour est cochée"
 
 #: wpowmweather.php:546
 msgid "Wind unit: "
-msgstr ""
+msgstr "Unité du vent: "
 
 #: wpowmweather.php:579
 msgid "Temperatures"
-msgstr ""
+msgstr "Températures"
 
 #: wpowmweather.php:594
 msgid "Hourly Forecast"
-msgstr ""
+msgstr "Prévisions heure par heure ?"
 
 #: wpowmweather.php:599
 msgid "Hour Forecast?"
-msgstr ""
+msgstr "Prévisions heure par heure ?"
 
 #: wpowmweather.php:603
 msgid "How hours ranges ?"
-msgstr ""
+msgstr "Combien de plages d'heures ?"
 
 #: wpowmweather.php:613
 msgid ""
 "Make sure you have properly set the date of your site in WordPress settings."
 msgstr ""
+"Assurez vous d'avoir correctement défini les paramètres de date et heure."
 
 #: wpowmweather.php:616
 msgid "5-Day Forecast"
-msgstr ""
+msgstr "Prévisions à 5 jours"
 
 #: wpowmweather.php:621
 msgid "5-Day Forecast? (today + 5 days max)"
-msgstr ""
+msgstr "5 jours de prévisions ? (aujourd'hui + 5 jours max)"
 
 #: wpowmweather.php:625
 msgid "How many days?"
-msgstr ""
+msgstr "Combien de jours ?"
 
 #: wpowmweather.php:637
 msgid "Forecast Precipitations?"
-msgstr ""
+msgstr "Précipitations dans les prévisions ?"
 
 #: wpowmweather.php:643
 msgid "Short days names?"
-msgstr ""
+msgstr "Noms des jours en abrégé"
 
 #: wpowmweather.php:649
 msgid "Normal days names?"
-msgstr ""
+msgstr "Noms des jours par défaut ?"
 
 #: wpowmweather.php:670
 msgid "Fluid design? (useful with small container)"
-msgstr ""
+msgstr "Design fluide ? (utile pour les conteneurs de petite taille)"
 
 #: wpowmweather.php:674
 msgid "Max width parent container to enable fluid design (pixels):"
 msgstr ""
+"Taille max du conteneur parent pour activer le fluide design (en pixels):"
 
 #: wpowmweather.php:682
 msgid "Disable CSS3 animations?"
-msgstr ""
+msgstr "Désactiver les animations CSS3 ?"
 
 #: wpowmweather.php:698
 msgid "Custom CSS"
-msgstr ""
+msgstr "CSS personnalisée"
 
 #: wpowmweather.php:702
 msgid "Weather size?"
-msgstr ""
+msgstr "Taille de la météo ?"
 
 #: wpowmweather.php:714
 msgid "Display map?"
-msgstr ""
+msgstr "Afficher la carte ?"
 
 #: wpowmweather.php:718
 msgid "Map height (in px)"
-msgstr ""
+msgstr "Hauteur de la carte (en px)"
 
 #: wpowmweather.php:763
 msgid "Disable zoom wheel on map?"
-msgstr ""
+msgstr "Désactiver le zoom à la souris sur le carte ?"
 
 #: wpowmweather.php:767
 msgid "Layers"
-msgstr ""
+msgstr "Calques"
 
 #: wpowmweather.php:772
 msgid "Display stations?"
-msgstr ""
+msgstr "Afficher les stations ?"
 
 #: wpowmweather.php:778
 msgid "Display clouds?"
-msgstr ""
+msgstr "Afficher les nuages ?"
 
 #: wpowmweather.php:784
 msgid "Display precipitation?"
-msgstr ""
+msgstr "Afficher les précipitations ?"
 
 #: wpowmweather.php:790
 msgid "Display snow?"
-msgstr ""
+msgstr "Afficher la neige ?"
 
 #: wpowmweather.php:796
 msgid "Display wind?"
-msgstr ""
+msgstr "Afficher le vent ?"
 
 #: wpowmweather.php:802
 msgid "Display temperature?"
-msgstr ""
+msgstr "Afficher les températures ?"
 
 #: wpowmweather.php:808
 msgid "Display pressure?"
-msgstr ""
+msgstr "Afficher la pression atmosphérique ?"
 
 #: wpowmweather.php:1439 wpowmweather.php:1447 wpowmweather.php:1462 wpowmweather.php:1527
 #: wpowmweather.php:1534 wpowmweather.php:1546
 msgid "Unable to retrieve weather data"
-msgstr ""
+msgstr "Impossible de retrouver les données météo"
 
 #: wpowmweather.php:1644
 msgid "Full weather on OpenWeatherMap"
-msgstr ""
+msgstr "Météo complète OpenWeatherMap"
 
 #: wpowmweather.php:1644
 msgid "Full weather"
-msgstr ""
+msgstr "Météo complète"
 
 #: wpowmweather.php:1648
 msgid "Last update: "
-msgstr ""
+msgstr "Mis à jour le :"
 
 #: wpowmweather.php:1686 wpowmweather.php:1774 wpowmweather.php:1799
 msgid "Sunday"
-msgstr ""
+msgstr "Dimanche"
 
 #: wpowmweather.php:1689 wpowmweather.php:1777 wpowmweather.php:1802
 msgid "Monday"
-msgstr ""
+msgstr "Lundi"
 
 #: wpowmweather.php:1692 wpowmweather.php:1780 wpowmweather.php:1805
 msgid "Tuesday"
-msgstr ""
+msgstr "Mardi"
 
 #: wpowmweather.php:1695 wpowmweather.php:1783 wpowmweather.php:1808
 msgid "Wednesday"
-msgstr ""
+msgstr "Mercredi"
 
 #: wpowmweather.php:1698 wpowmweather.php:1786 wpowmweather.php:1811
 msgid "Thursday"
-msgstr ""
+msgstr "Jeudi"
 
 #: wpowmweather.php:1701 wpowmweather.php:1789 wpowmweather.php:1814
 msgid "Friday"
-msgstr ""
+msgstr "Vendredi"
 
 #: wpowmweather.php:1704 wpowmweather.php:1792 wpowmweather.php:1817
 msgid "Saturday"
-msgstr ""
+msgstr "Samedi"
 
 #: wpowmweather.php:1749
 msgid "Sun"
-msgstr ""
+msgstr "Dim"
 
 #: wpowmweather.php:1752
 msgid "Mon"
-msgstr ""
+msgstr "Lun"
 
 #: wpowmweather.php:1755
 msgid "Tue"
-msgstr ""
+msgstr "Mar"
 
 #: wpowmweather.php:1758
 msgid "Wed"
-msgstr ""
+msgstr "Mer"
 
 #: wpowmweather.php:1761
 msgid "Thu"
-msgstr ""
+msgstr "Jeu"
 
 #: wpowmweather.php:1764
 msgid "Fri"
-msgstr ""
+msgstr "Ven"
 
 #: wpowmweather.php:1767
 msgid "Sat"
-msgstr ""
+msgstr "Sam"
 
 #: wpowmweather.php:1848
 msgid "clear sky"
-msgstr ""
+msgstr "ensoleillé"
 
 #: wpowmweather.php:1853
 msgid "few clouds"
-msgstr ""
+msgstr "peu nuageux"
 
 #: wpowmweather.php:1858
 msgid "scattered clouds"
-msgstr ""
+msgstr "nuages épars"
 
 #: wpowmweather.php:1863
 msgid "broken clouds"
-msgstr ""
+msgstr "nuageux dans l'ensemble"
 
 #: wpowmweather.php:1868
 msgid "overcast clouds"
-msgstr ""
+msgstr "couvert"
 
 #: wpowmweather.php:1875
 msgid "light rain"
-msgstr ""
+msgstr "pluie faible"
 
 #: wpowmweather.php:1880
 msgid "moderate rain"
-msgstr ""
+msgstr "pluie modérée"
 
 #: wpowmweather.php:1885
 msgid "heavy intensity rain"
-msgstr ""
+msgstr "pluie forte"
 
 #: wpowmweather.php:1890
 msgid "very heavy rain"
-msgstr ""
+msgstr "pluie très intense"
 
 #: wpowmweather.php:1895
 msgid "extreme rain"
-msgstr ""
+msgstr "pluie abondante"
 
 #: wpowmweather.php:1900
 msgid "freezing rain"
-msgstr ""
+msgstr "pluie verglaçante"
 
 #: wpowmweather.php:1905
 msgid "light intensity shower rain"
-msgstr ""
+msgstr "averses faibles"
 
 #: wpowmweather.php:1910
 msgid "shower rain"
-msgstr ""
+msgstr "averses"
 
 #: wpowmweather.php:1915
 msgid "heavy intensity shower rain"
-msgstr ""
+msgstr "fortes averses"
 
 #: wpowmweather.php:1920
 msgid "ragged shower rain"
-msgstr ""
+msgstr "averses éparses"
 
 #: wpowmweather.php:1927
 msgid "light intensity drizzle"
-msgstr ""
+msgstr "bruine faible"
 
 #: wpowmweather.php:1932
 msgid "drizzle"
-msgstr ""
+msgstr "bruine"
 
 #: wpowmweather.php:1937
 msgid "heavy intensity drizzle"
-msgstr ""
+msgstr "bruine forte"
 
 #: wpowmweather.php:1942
 msgid "light intensity drizzle rain"
-msgstr ""
+msgstr "pluie fine éparse"
 
 #: wpowmweather.php:1947
 msgid "drizzle rain"
-msgstr ""
+msgstr "crachin"
 
 #: wpowmweather.php:1952
 msgid "heavy intensity drizzle rain"
-msgstr ""
+msgstr "crachin intense"
 
 #: wpowmweather.php:1957
 msgid "shower rain and drizzle"
-msgstr ""
+msgstr "averses et crachin"
 
 #: wpowmweather.php:1962
 msgid "heavy shower rain and drizzle"
-msgstr ""
+msgstr "fortes averses et crachin"
 
 #: wpowmweather.php:1967
 msgid "shower drizzle"
-msgstr ""
+msgstr "averses de bruine"
 
 #: wpowmweather.php:1974
 msgid "light snow"
-msgstr ""
+msgstr "légères neiges"
 
 #: wpowmweather.php:1979
 msgid "snow"
-msgstr ""
+msgstr "neige"
 
 #: wpowmweather.php:1984
 msgid "heavy snow"
-msgstr ""
+msgstr "fortes chutes de neige"
 
 #: wpowmweather.php:1989
 msgid "sleet"
-msgstr ""
+msgstr "neige fondue"
 
 #: wpowmweather.php:1994
 msgid "shower sleet"
-msgstr ""
+msgstr "averses de neige fondue"
 
 #: wpowmweather.php:1999
 msgid "light rain and snow"
-msgstr ""
+msgstr "pluie fine et neige"
 
 #: wpowmweather.php:2004
 msgid "rain and snow"
-msgstr ""
+msgstr "pluie et neige"
 
 #: wpowmweather.php:2009
 msgid "light shower snow"
-msgstr ""
+msgstr "faibles averses et neige"
 
 #: wpowmweather.php:2014
 msgid "shower snow"
-msgstr ""
+msgstr "averses de neige"
 
 #: wpowmweather.php:2019
 msgid "heavy shower snow"
-msgstr ""
+msgstr "fortes averses et neige"
 
 #: wpowmweather.php:2026
 msgid "mist"
-msgstr ""
+msgstr "brume"
 
 #: wpowmweather.php:2031
 msgid "smoke"
-msgstr ""
+msgstr "brouillard"
 
 #: wpowmweather.php:2036
 msgid "haze"
-msgstr ""
+msgstr "brume"
 
 #: wpowmweather.php:2041
 msgid "sand, dust whirls"
-msgstr ""
+msgstr "tempête de sable"
 
 #: wpowmweather.php:2046
 msgid "fog"
-msgstr ""
+msgstr "brouillard"
 
 #: wpowmweather.php:2053
 msgid "tornado"
-msgstr ""
+msgstr "tornade"
 
 #: wpowmweather.php:2058
 msgid "tropical storm"
-msgstr ""
+msgstr "tempête tropical"
 
 #: wpowmweather.php:2063
 msgid "hurricane"
-msgstr ""
+msgstr "ouragan"
 
 #: wpowmweather.php:2068
 msgid "windy"
-msgstr ""
+msgstr "vent"
 
 #: wpowmweather.php:2073
 msgid "hail"
-msgstr ""
+msgstr "grêle"
 
 #: wpowmweather.php:2080
 msgid "thunderstorm with light rain"
-msgstr ""
+msgstr "orage avec pluie faible"
 
 #: wpowmweather.php:2086
 msgid "thunderstorm with rain"
-msgstr ""
+msgstr "orage avec pluie modérée"
 
 #: wpowmweather.php:2092
 msgid "thunderstorm with heavy rain"
-msgstr ""
+msgstr "orage avec pluie forte"
 
 #: wpowmweather.php:2098
 msgid "light thunderstorm"
-msgstr ""
+msgstr "orage faible"
 
 #: wpowmweather.php:2104
 msgid "thunderstorm"
-msgstr ""
+msgstr "orage"
 
 #: wpowmweather.php:2110
 msgid "heavy thunderstorm"
-msgstr ""
+msgstr "orage violent"
 
 #: wpowmweather.php:2116
 msgid "ragged thunderstorm"
-msgstr ""
+msgstr "orage épars"
 
 #: wpowmweather.php:2122
 msgid "thunderstorm with light drizzle"
-msgstr ""
+msgstr "orage avec faible bruine"
 
 #: wpowmweather.php:2128
 msgid "thunderstorm with drizzle"
-msgstr ""
+msgstr "orage avec bruine"
 
 #: wpowmweather.php:2134
 msgid "thunderstorm with heavy drizzle"
-msgstr ""
+msgstr "orage avec bruine forte"
 
 #: wpowmweather.php:2166
 msgid "Today"
-msgstr ""
+msgstr "Aujourd'hui"
 
 #: wpowmweather.php:2218
 msgid "Wind"
-msgstr ""
+msgstr "Vent"
 
 #: wpowmweather.php:2222
 msgid "Humidity"
-msgstr ""
+msgstr "Humidité"
 
 #: wpowmweather.php:2225
 msgid "Pressure"
-msgstr ""
+msgstr "Pression"
 
 #: wpowmweather.php:2228
 msgid "Cloudiness"
-msgstr ""
+msgstr "Nuages"
 
 #: wpowmweather.php:2232 wpowmweather.php:2237
 msgid "Precipitation"
-msgstr ""
+msgstr "Précipitations"
 
 #: wpowmweather.php:2246 wpowmweather.php:2254
 msgid "Now"
-msgstr ""
+msgstr "Maintenant"
 
 #: wpowmweather.php:2314 wpowmweather.php:2336
 msgid "0 mm"
-msgstr ""
+msgstr "0 mm"
 
 #: wpowmweather.php:2761
 msgid "Shortcode"
-msgstr ""
+msgstr "Bout de code"
 
 #: wpowmweather.php:2784 wpowmweather.php:2785 wpowmweather.php:2786
 msgid "Weather"
-msgstr ""
+msgstr "Météo"
 
 #: wpowmweather.php:2787
 msgid "Parent Weather:"
-msgstr ""
+msgstr "Météo parent:"
 
 #: wpowmweather.php:2788
 msgid "All Weather"
-msgstr ""
+msgstr "Toutes les météos"
 
 #: wpowmweather.php:2789
 msgid "View Weather"
-msgstr ""
+msgstr "Voir la météo"
 
 #: wpowmweather.php:2790
 msgid "Add New Weather"
-msgstr ""
+msgstr "Ajouter une nouvelle météo"
 
 #: wpowmweather.php:2791
 msgid "New Weather"
-msgstr ""
+msgstr "Nouvelle météo"
 
 #: wpowmweather.php:2792
 msgid "Edit Weather"
-msgstr ""
+msgstr "Editer météo"
 
 #: wpowmweather.php:2793
 msgid "Update Weather"
-msgstr ""
+msgstr "Mettre à jour la météo"
 
 #: wpowmweather.php:2794
 msgid "Search Weather"
-msgstr ""
+msgstr "Rechercher une météo"
 
 #: wpowmweather.php:2795
 msgid "No weather found"
-msgstr ""
+msgstr "Aucune météo trouvée"
 
 #: wpowmweather.php:2796
 msgid "No weather found in Trash"
-msgstr ""
+msgstr "Aucune météo trouvée dans la corbeille"
 
 #: wpowmweather.php:2800
 msgid "weather"
-msgstr ""
+msgstr "météo"
 
 #: wpowmweather.php:2801
 msgid "Listing weather"
-msgstr ""
+msgstr "Liste des météos"
 
 #: wpowmweather.php:2838 wpowmweather.php:2841
 msgid " updated."
-msgstr ""
+msgstr "mis à jour."
 
 #: wpowmweather.php:2839
 msgid "Custom field updated."
-msgstr ""
+msgstr "Champ personnalisé mis à jour."
 
 #: wpowmweather.php:2840
 msgid "Custom field deleted."
-msgstr ""
+msgstr "Champ personnalisé supprimé."
 
 #: wpowmweather.php:2842
 #, php-format
 msgid " restored to revision from %s"
-msgstr ""
+msgstr "restauré de la révision du %s"
 
 #: wpowmweather.php:2843
 msgid " published."
-msgstr ""
+msgstr "publiée."
 
 #: wpowmweather.php:2844
 msgid "Page saved."
-msgstr ""
+msgstr "Page sauvegardée."
 
 #: wpowmweather.php:2845
 msgid " submitted."
-msgstr ""
+msgstr "soumis."
 
 #: wpowmweather.php:2846
 #, php-format
 msgid " scheduled for: <strong>%1$s</strong>. "
-msgstr ""
+msgstr "programmé pour: <strong>%1$s</strong>. "
 
 #: wpowmweather.php:2846
 msgid "M j, Y @ G:i"
-msgstr ""
+msgstr "M j, Y @ G:i"
 
 #: wpowmweather.php:2847
 msgid " draft updated."
-msgstr ""
+msgstr "brouillon mis à jour."
 
 #: wpowmweather.php:2862
 msgid ""
 "OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits "
 "requests."
 msgstr ""
+"OWM Weather: Veuillez entrer votre propre clé d'api OpenWeatherMap svp pour "
+"éviter les limitations de requêtes."
+
+#~ msgid "State?"
+#~ msgstr "Etat?"
+
+#~ msgid "16-Day Forecast"
+#~ msgstr "Prévisions à 16 jours"
+
+#~ msgid "Display 16-day Forecast on all weather?"
+#~ msgstr "Afficher les prévisions à 16 jours pour toutes les météos?"
+
+#~ msgid "6 days"
+#~ msgstr "6 jours"
+
+#~ msgid "7 days"
+#~ msgstr "7 jours"
+
+#~ msgid "8 days"
+#~ msgstr "8 jours"
+
+#~ msgid "9 days"
+#~ msgstr "9 jours"
+
+#~ msgid "10 days"
+#~ msgstr "10 jours"
+
+#~ msgid "11 days"
+#~ msgstr "11 jours"
+
+#~ msgid "12 days"
+#~ msgstr "12 jours"
+
+#~ msgid "13 days"
+#~ msgstr "13 jours"
+
+#~ msgid "14 days"
+#~ msgstr "14 jours"
+
+#~ msgid "15 days"
+#~ msgstr "15 jours"
+
+#~ msgid "Load JS/CSS from:"
+#~ msgstr "Charger le JS/CSS depuis:"
+
+#~ msgid ""
+#~ "The best freemium plugin to customize WordPress administration in seconds."
+#~ msgstr ""
+#~ "La meilleure extension freemium pour personnaliser l'administration "
+#~ "WordPress en quelques secondes."
+
+#~ msgid "January"
+#~ msgstr "Janvier"
+
+#~ msgid "February"
+#~ msgstr "Février"
+
+#~ msgid "March"
+#~ msgstr "Mars"
+
+#~ msgid "April"
+#~ msgstr "Avril"
+
+#~ msgid "May"
+#~ msgstr "Mai"
+
+#~ msgid "June"
+#~ msgstr "Juin"
+
+#~ msgid "July"
+#~ msgstr "Juillet"
+
+#~ msgid "August"
+#~ msgstr "Août"
+
+#~ msgid "September"
+#~ msgstr "Septembre"
+
+#~ msgid "October"
+#~ msgstr "Octobre"
+
+#~ msgid "November"
+#~ msgstr "Novembre"
+
+#~ msgid "December"
+#~ msgstr "Décembre"
+
+#~ msgid "Lenght name days:"
+#~ msgstr "Longueur des noms des jours :"
+
+#~ msgid "Not just another WordPress Weather plugin!"
+#~ msgstr "Not just another WordPress Weather plugin!"
+
+#~ msgid "Plugin website"
+#~ msgstr "Site du plugin"
+
+#~ msgid "Follow us on Twitter!"
+#~ msgstr "Suivez-nous sur Twitter !"
+
+#~ msgid "OWM Weather Geolocation"
+#~ msgstr "OWM Weather Geolocation"
+
+#~ msgid "$ 39"
+#~ msgstr "39 $"
+
+#~ msgid "Geolocated weather for your visitors."
+#~ msgstr "Météo géolocalisée pour vos visiteurs."
+
+#~ msgid "Learn more"
+#~ msgstr "En savoir plus"
+
+#~ msgid "$ 10"
+#~ msgstr "10 $"
+
+#~ msgid "10 beautiful skins for your weather."
+#~ msgstr "10 magnifiques skins pour votre météo."
+
+#~ msgid "Forum"
+#~ msgstr "Forum"
+
+#~ msgid "OWM Weather Forum"
+#~ msgstr "OWM Weather Forum"
+
+#~ msgid "Today date?"
+#~ msgstr "Date du jour?"
+
+#~ msgid "Display today date on all weather?"
+#~ msgstr "Afficher la date du jour sur toutes les météos ?"
+
+#~ msgid "Today Date?"
+#~ msgstr "Date du jour ?"
+
+#~ msgid "Today date + current temperature"
+#~ msgstr "Date du jour + température courante"
+
+#~ msgid "Display today date + temperatures on all weather?"
+#~ msgstr "Date du jour + températures sur toutes les météos ?"
+
+#~ msgid "Display Today date on all weather?"
+#~ msgstr "Afficher la date du jour sur toutes les météos ?"
+
+#~ msgid "Date + temperatures?"
+#~ msgstr "Afficher la date du jour + températures min-maxi / moyenne ?"
+
+#~ msgid "Sunrise + sunset? appears only if date + temperatures is checked"
+#~ msgstr ""
+#~ "Lever et coucher du soleil ? apparait seulement si date + températures "
+#~ "est coché"
+
+#~ msgid "Bypass language?"
+#~ msgstr "Bypasser la langue ?"
+
+#~ msgid "Language"
+#~ msgstr "Langue"
+
+#~ msgid "Today date + Temperatures?"
+#~ msgstr "Date du jour + Températures ?"
+
+#~ msgid "Enable bypass language on all weather?"
+#~ msgstr "Activer le bypass de la langue pour toutes les météos ?"
+
+#~ msgid "French"
+#~ msgstr "Français"
+
+#~ msgid "English"
+#~ msgstr "Anglais"
+
+#~ msgid "Russian"
+#~ msgstr "Russe"
+
+#~ msgid "Italian"
+#~ msgstr "Italien"
+
+#~ msgid "Spanish"
+#~ msgstr "Espagnol"
+
+#~ msgid "Ukrainian"
+#~ msgstr "Ukrainien"
+
+#~ msgid "German"
+#~ msgstr "Allemand"
+
+#~ msgid "Portuguese"
+#~ msgstr "Portugais"
+
+#~ msgid "Romanian"
+#~ msgstr "Roumain"
+
+#~ msgid "Polish"
+#~ msgstr "Polonais"
+
+#~ msgid "Finnish"
+#~ msgstr "Finlandais"
+
+#~ msgid "Dutch"
+#~ msgstr "Néerlandais"
+
+#~ msgid "Bulgarian"
+#~ msgstr "Bulgare"
+
+#~ msgid "Swedish"
+#~ msgstr "Suédois"
+
+#~ msgid "Chinese Traditional"
+#~ msgstr "Chinois traditionnel"
+
+#~ msgid "Chinese Simplified"
+#~ msgstr "Chinois simplifié"
+
+#~ msgid "Turkish"
+#~ msgstr "Turque"
+
+#~ msgid "Czech"
+#~ msgstr "Tchèque"
+
+#~ msgid "Galician"
+#~ msgstr "Galicien"
+
+#~ msgid "Vietnamese"
+#~ msgstr "Vietnamien"
+
+#~ msgid "Arabic"
+#~ msgstr "Arabe"
+
+#~ msgid "Macedonian"
+#~ msgstr "Macédonien"
+
+#~ msgid "Slovak"
+#~ msgstr "Slovaque"
+
+#~ msgid "Learn more about how translations works"
+#~ msgstr "En savoir plus sur le fonctionnement des traductions"
+
+#~ msgid "Display language?"
+#~ msgstr "Langue d'affichage ?"
+
+#~ msgid "Import/Export"
+#~ msgstr "Import/Export"
+
+#~ msgid "Basic options"
+#~ msgstr "Base"
+
+#~ msgid "Display options"
+#~ msgstr "Affichage"
+
+#~ msgid "Advanced options"
+#~ msgstr "Paramètres avancés"
+
+#~ msgid "Map options"
+#~ msgstr "Paramètres de la carte"
+
+#~ msgid "Clear cache!"
+#~ msgstr "Vider le cache !"
+
+#~ msgctxt "Post Type General Name"
+#~ msgid "Weather"
+#~ msgstr "Météos"
+
+#~ msgctxt "Post Type Singular Name"
+#~ msgid "Weather"
+#~ msgstr "Météo"
+
+#~ msgid "http://wpowmweather.com/"
+#~ msgstr "http://wpowmweather.com/"
+
+#~ msgid ""
+#~ "OWM Weather is a powerful weather plugin for WordPress, based on Open "
+#~ "Weather Map API, using Custom Post Types and shortcodes, bundled with a "
+#~ "ton of features."
+#~ msgstr ""
+#~ "OWM Weather est un puissant plugin météo pour WordPress, basé sur l'API "
+#~ "d'Open Weather Map, utilisant les types d'articles personnalisés et les "
+#~ "shortcodes, livré avec un paquet de fonctionnalités."
+
+#~ msgid "Benjamin DENIS"
+#~ msgstr "Benjamin DENIS"
+
+#~ msgid "https://wpowmweather.com/"
+#~ msgstr "https://wpowmweather.com/"
+
+#~ msgid "Today date + Min-Max temperatures"
+#~ msgstr "Date du jour + Températures mini-maxi"
+
+#~ msgid "Display Today date + Min-Max temperatures on all weather?"
+#~ msgstr "Date du jour + Températures mini-maxi sur toutes les météos ?"
+
+#~ msgid "Display Today date + average temperature on all weather?"
+#~ msgstr "Date du jour + Température moyenne sur toutes les météos ?"
+
+#~ msgid "Today date + Min-Max Temperatures?"
+#~ msgstr "Date du jour + Températures mini-maxi ?"
+
+#~ msgid "Today date + Average Temperature?"
+#~ msgstr "Date du jour + Température moyenne ?"
+
+#~ msgid "14-Day Forecast?"
+#~ msgstr "Prévisions à 14 jours ?"
+
+#~ msgid ""
+#~ "Country? (you can enter your country code as well as the country, in your "
+#~ "own language, eg: \"fr\" or \"france\" or \"francia\"...)"
+#~ msgstr ""
+#~ "Pays ? (vous pouvez saisir aussi bien votre code pays que le pays, dans "
+#~ "votre propre langue, ex: \"fr\" ou \"france\" ou \"francia\"...)"
+
+#~ msgid "Bypass temperatures settings on all weather?"
+#~ msgstr "Bypasser les paramètres individuels de température ?"
+
+#~ msgid ""
+#~ "Display language: en (english), fr (french), sp (spanish), de (german)... "
+#~ msgstr ""
+#~ "Langue d'affichage : en (english), fr (french), sp (spanish), de "
+#~ "(german)..."

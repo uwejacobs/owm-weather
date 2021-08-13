@@ -4,7 +4,7 @@
   <li>Go to OWM Weather template directory: http://yoursite.com/wp-content/plugins/owm-weather/template/</li>
   <li>Copy content-wpowmweather-custom1.php and content-wpowmweather-custom2.php files.</li>
   <li>Go to your theme directory: http://yoursite.com/wp-content/themes/yourtheme/</li>
-  <li>Create a new folder called wp-owm-weather (the spelling is important).</li>
+  <li>Create a new folder called owm-weather (the spelling is important).</li>
   <li>In this new folder, paste content-wpowmweather-custom1.php and content-wpowmweather-custom2.php files.</li>
   <li>Now, open content-wpowmweather-custom1.php or content-wpowmweather-custom2.php with a php editor like notepad ++, coda2, sublime text…</li>
   <li>Write your weather layout.. You can use the other templates as guidelines.</li>

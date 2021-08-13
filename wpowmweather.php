@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: OWM Weather
-Plugin URI: https://github.com/uwejacobs/wp-owm-weather
+Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
 Version: 5.0.0
 Author: Uwe Jacobs
@@ -9,7 +9,7 @@ Author URI: https://github.com/uwejacobs
 Original Author: Benjamin DENIS
 Original Author URI: https://wpcloudy.com/
 License: GPLv2
-Text Domain: wp-owm-weather
+Text Domain: owm-weather
 Domain Path: /lang
 */
 
@@ -64,7 +64,7 @@ function wow_plugin_action_links($links, $file) {
     }
 
     if ($file == $this_plugin) {
-        $settings_link = '<a href="' . admin_url('admin.php?page=wow-settings-admin').'">'.__('Settings', 'wp-owm-weather').'</a>';
+        $settings_link = '<a href="' . admin_url('admin.php?page=wow-settings-admin').'">'.__('Settings', 'owm-weather').'</a>';
         array_unshift($links, $settings_link);
     }
 
@@ -75,7 +75,7 @@ function wow_plugin_action_links($links, $file) {
 //Translation
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function wpowmweather_init() {
-	load_plugin_textdomain( 'wp-owm-weather', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+	load_plugin_textdomain( 'owm-weather', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
 
 	//Admin panel + Dashboard widget
 	if ( is_admin() ) {
@@ -103,7 +103,7 @@ add_filter('clean_url', 'wpowmweather_async_js', 11, 1);
 function wpowmweather_styles() {
 	global $post;
 
-	wp_enqueue_script( 'wow-ajax-js', plugins_url('js/wp-owm-weather-ajax.js', __FILE__), array('jquery'), '', true );
+	wp_enqueue_script( 'wow-ajax-js', plugins_url('js/owm-weather-ajax.js', __FILE__), array('jquery'), '', true );
 	$wowAjax = array(
         'wow_nonce' => wp_create_nonce('wow_get_weather_nonce'),
         'wow_url' => admin_url( 'admin-ajax.php' ) . "?lang=" . substr(get_locale(),0,2),
@@ -136,7 +136,7 @@ add_action( 'wp_enqueue_scripts', 'wow_add_themes_scripts', 10, 1 );
 
 //Dashboard
 function wow_add_dashboard_scripts() {
-	wp_enqueue_script( 'wow-ajax-js', plugins_url('js/wp-owm-weather-ajax.js', __FILE__), array('jquery'), '', true );
+	wp_enqueue_script( 'wow-ajax-js', plugins_url('js/owm-weather-ajax.js', __FILE__), array('jquery'), '', true );
 
 	$wowAjax = array(
         'wow_nonce' => wp_create_nonce('wow_get_weather_nonce'),
@@ -331,7 +331,7 @@ add_action( 'admin_action_wow_duplicate_post_as_draft', 'wow_duplicate_post_as_d
 
 function wow_duplicate_post_link( $actions, $post ) {
 	if ($post->post_type === 'wow-weather' && current_user_can('edit_posts')) {
-		$actions['duplicate'] = '<a href="admin.php?action=wow_duplicate_post_as_draft&amp;post=' . $post->ID . '" title="'.__('Duplicate this item','wp-owm-weather').'" rel="permalink">'.__('Duplicate','wp-owm-weather').'</a>';
+		$actions['duplicate'] = '<a href="admin.php?action=wow_duplicate_post_as_draft&amp;post=' . $post->ID . '" title="'.__('Duplicate this item','owm-weather').'" rel="permalink">'.__('Duplicate','owm-weather').'</a>';
 	}
 	return $actions;
 }
@@ -344,12 +344,12 @@ add_filter( 'post_row_actions', 'wow_duplicate_post_link', 999, 2 );
 
 add_action('add_meta_boxes','wp_owm_weather_init_metabox');
 function wp_owm_weather_init_metabox(){
-	add_meta_box('wpowmweather_basic', __('OWM Weather Settings','wp-owm-weather') .' - <a href="'.admin_url("options-general.php?page=wow-settings-admin").'">'.__('OWM Weather global settings','wp-owm-weather').'</a>', 'wpowmweather_basic', 'wow-weather', 'advanced');
+	add_meta_box('wpowmweather_basic', __('OWM Weather Settings','owm-weather') .' - <a href="'.admin_url("options-general.php?page=wow-settings-admin").'">'.__('OWM Weather global settings','owm-weather').'</a>', 'wpowmweather_basic', 'wow-weather', 'advanced');
 	add_meta_box('wpowmweather_shortcode', 'OWM Weather Shortcode', 'wpowmweather_shortcode', 'wow-weather', 'side');
 }
 
 function wpowmweather_shortcode($post){
-	_e( 'Copy and paste this shortcode anywhere in posts, pages, text widgets: ', 'wp-owm-weather' );
+	_e( 'Copy and paste this shortcode anywhere in posts, pages, text widgets: ', 'owm-weather' );
 	echo "<div class='shortcode'>";
 	echo "<span class='wow-highlight'>[wow-weather id=\"";
 	echo get_the_ID();
@@ -357,7 +357,7 @@ function wpowmweather_shortcode($post){
 	echo "</div>";
 
 	echo '<div class="shortcode-php">';
-	_e( 'If you need to display this weather anywhere in your theme, simply copy and paste this code snippet in your PHP file like sidebar.php: ', 'wp-owm-weather' );
+	_e( 'If you need to display this weather anywhere in your theme, simply copy and paste this code snippet in your PHP file like sidebar.php: ', 'owm-weather' );
 	echo "<span class='wow-highlight'>echo do_shortcode('[wow-weather id=\"".get_the_ID()."\"]');</span>";
 	echo "</div>";
 }
@@ -465,10 +465,10 @@ function wpowmweather_basic($post){
 
 	echo '<div id="wpowmweather-tabs">
 			<ul>
-				<li><a href="#tabs-1">'. __( 'Basic', 'wp-owm-weather' ) .'</a></li>
-				<li><a href="#tabs-2">'. __( 'Display', 'wp-owm-weather' ) .'</a></li>
-				<li><a href="#tabs-3">'. __( 'Layout', 'wp-owm-weather' ) .'</a></li>
-				<li><a href="#tabs-4">'. __( 'Map', 'wp-owm-weather' ) .'</a></li>
+				<li><a href="#tabs-1">'. __( 'Basic', 'owm-weather' ) .'</a></li>
+				<li><a href="#tabs-2">'. __( 'Display', 'owm-weather' ) .'</a></li>
+				<li><a href="#tabs-3">'. __( 'Layout', 'owm-weather' ) .'</a></li>
+				<li><a href="#tabs-4">'. __( 'Map', 'owm-weather' ) .'</a></li>
 			</ul>
 
 			<div id="tabs-1">
@@ -477,168 +477,168 @@ function wpowmweather_basic($post){
 			    </p>
                 <div id="wpowmweather-owm-param">
         			<ul>
-    	    			<li><a href="#fragment-1">'. __( 'City Id', 'wp-owm-weather' ) .'</a></li>
-    		    		<li><a href="#fragment-2">'. __( 'Longitude/Latitude', 'wp-owm-weather' ) .'</a></li>
-    				    <li><a href="#fragment-3">'. __( 'Zip', 'wp-owm-weather' ) .'</a></li>
-    			    	<li><a href="#fragment-4">'. __( 'City/Country', 'wp-owm-weather' ) .'</a></li>
-    				    <li><a href="#fragment-5">'. __( 'Visitor\'s Location', 'wp-owm-weather' ) .'</a></li>
+    	    			<li><a href="#fragment-1">'. __( 'City Id', 'owm-weather' ) .'</a></li>
+    		    		<li><a href="#fragment-2">'. __( 'Longitude/Latitude', 'owm-weather' ) .'</a></li>
+    				    <li><a href="#fragment-3">'. __( 'Zip', 'owm-weather' ) .'</a></li>
+    			    	<li><a href="#fragment-4">'. __( 'City/Country', 'owm-weather' ) .'</a></li>
+    				    <li><a href="#fragment-5">'. __( 'Visitor\'s Location', 'owm-weather' ) .'</a></li>
         			</ul>
                     <div id="fragment-1">
           				<p>
-        					<label for="wpowmweather_id_owm_meta">'. __( 'OpenWeatherMap City Id', 'wp-owm-weather' ) .'<span class="mandatory">*</span> <a href="https://openweathermap.org/find?q=" target="_blank"> '.__('Find my City Id','wp-owm-weather').'</a><span class="dashicons dashicons-external"></span></label>
+        					<label for="wpowmweather_id_owm_meta">'. __( 'OpenWeatherMap City Id', 'owm-weather' ) .'<span class="mandatory">*</span> <a href="https://openweathermap.org/find?q=" target="_blank"> '.__('Find my City Id','owm-weather').'</a><span class="dashicons dashicons-external"></span></label>
         					<input id="wpowmweather_id_owm" type="number" name="wpowmweather_id_owm" value="'.$wow_opt["id_owm"].'" />
         				</p>
                     </div>
                     <div id="fragment-2">
         				<p>
-        					<label for="wpowmweather_latitude_meta">'. __( 'Latitude?', 'wp-owm-weather' ) .' <span class="mandatory">*</span></label>
+        					<label for="wpowmweather_latitude_meta">'. __( 'Latitude?', 'owm-weather' ) .' <span class="mandatory">*</span></label>
         					<input id="wpowmweather_latitude_meta" type="number" min="-90" max="90" step="0.000001" name="wpowmweather_latitude" value="'.$wow_opt["latitude"].'" />
         				</p>
         				<p>
-        					<label for="wpowmweather_longitude_meta">'. __( 'Longitude?', 'wp-owm-weather' ) .' <span class="mandatory">*</span></label>
+        					<label for="wpowmweather_longitude_meta">'. __( 'Longitude?', 'owm-weather' ) .' <span class="mandatory">*</span></label>
         					<input id="wpowmweather_longitude_meta" type="number" min="-180" max="180" step="0.000001" name="wpowmweather_longitude" value="'.$wow_opt["longitude"].'" />
         				</p>
-        				<p><em>'.__('If you enter an OpenWeatherMap City Id, it will automatically bypass the  Latitude/Longitude fields.','wp-owm-weather').'</em></p>
+        				<p><em>'.__('If you enter an OpenWeatherMap City Id, it will automatically bypass the  Latitude/Longitude fields.','owm-weather').'</em></p>
                     </div>
                     <div id="fragment-3">
         				<p>
-        					<label for="wpowmweather_zip_meta">'. __( 'Zip code?', 'wp-owm-weather' ) .' <span class="mandatory">*</span></label>
+        					<label for="wpowmweather_zip_meta">'. __( 'Zip code?', 'owm-weather' ) .' <span class="mandatory">*</span></label>
         					<input id="wpowmweather_zip_meta" type="number" min="1" max="99999" name="wpowmweather_zip" value="'.$wow_opt["zip"].'" />
         				</p>
-        				<p><em>'.__('If you enter an OpenWeatherMap City Id or Latitude/Longitude, it will automatically bypass the City and Country fields.','wp-owm-weather').'</em></p>
+        				<p><em>'.__('If you enter an OpenWeatherMap City Id or Latitude/Longitude, it will automatically bypass the City and Country fields.','owm-weather').'</em></p>
                     </div>
                     <div id="fragment-4">
         				<p>
-        					<label for="wpowmweather_city_meta">'. __( 'City', 'wp-owm-weather' ) .' <span class="mandatory">*</span></label>
-        					<input id="wpowmweather_city_meta" data_appid="'.wow_get_admin_api_key2().'" class="cities typeahead" type="text" name="wpowmweather_city" placeholder="'.__('Enter your city','wp-owm-weather').'" value="'.$wow_opt["city"].'" />
+        					<label for="wpowmweather_city_meta">'. __( 'City', 'owm-weather' ) .' <span class="mandatory">*</span></label>
+        					<input id="wpowmweather_city_meta" data_appid="'.wow_get_admin_api_key2().'" class="cities typeahead" type="text" name="wpowmweather_city" placeholder="'.__('Enter your city','owm-weather').'" value="'.$wow_opt["city"].'" />
         				</p>
         				<p>
-        					<label for="wpowmweather_country_meta">'. __( 'Country?', 'wp-owm-weather' ) .' <span class="mandatory">*</span></label>
+        					<label for="wpowmweather_country_meta">'. __( 'Country?', 'owm-weather' ) .' <span class="mandatory">*</span></label>
         					<input id="wpowmweather_country_meta" class="countries typeahead" type="text" name="wpowmweather_country_code" value="'.$wow_opt["country_code"].'" />
         				</p>
-        				<p><em>'.__('If you enter an OpenWeatherMap City Id, Latitude/Longitude or Zip, it will automatically bypass the City and Country fields.','wp-owm-weather').'</em></p>
+        				<p><em>'.__('If you enter an OpenWeatherMap City Id, Latitude/Longitude or Zip, it will automatically bypass the City and Country fields.','owm-weather').'</em></p>
                     </div>
                     <div id="fragment-5">
-        				<p><em>'.__('Leave City Id, Longitude/Latitude, Zip and City/Country empty to use the visitor\'s location.','wp-owm-weather').'</em></p>
+        				<p><em>'.__('Leave City Id, Longitude/Latitude, Zip and City/Country empty to use the visitor\'s location.','owm-weather').'</em></p>
                     </div>
                 </div>
 			    <p class=" subsection-title">
     			    Basic
 			    </p>
 				<p>
-					<label for="wpowmweather_city_name_meta">'. __( 'Custom city title', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_city_name_meta">'. __( 'Custom city title', 'owm-weather' ) .'</label>
 					<input id="wpowmweather_city_name_meta" type="text" name="wpowmweather_city_name" value="'.$wow_opt["custom_city_name"].'" />
 				</p>
 				<p>
-					<label for="unit_meta">'. __( 'Measurement system?', 'wp-owm-weather' ) .'</label>
+					<label for="unit_meta">'. __( 'Measurement system?', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_unit">
-						<option ' . selected( 'imperial', $wow_opt["temperature_unit"], false ) . ' value="imperial">'. __( 'Imperial', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'metric', $wow_opt["temperature_unit"], false ) . ' value="metric">'. __( 'Metric', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( 'imperial', $wow_opt["temperature_unit"], false ) . ' value="imperial">'. __( 'Imperial', 'owm-weather' ) .'</option>
+						<option ' . selected( 'metric', $wow_opt["temperature_unit"], false ) . ' value="metric">'. __( 'Metric', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p>
-					<label for="wpowmweather_time_format_meta">'. __( '12h / 24h time format?', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_time_format_meta">'. __( '12h / 24h time format?', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_time_format">
-						<option ' . selected( '12', $wow_opt["time_format"], false ) . ' value="12">'. __( '12 h', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '24', $wow_opt["time_format"], false ) . ' value="24">'. __( '24 h', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( '12', $wow_opt["time_format"], false ) . ' value="12">'. __( '12 h', 'owm-weather' ) .'</option>
+						<option ' . selected( '24', $wow_opt["time_format"], false ) . ' value="24">'. __( '24 h', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p>
-					<label for="wpowmweather_custom_timezone_meta">'. __( 'Custom timezone? (default: WordPress general settings)', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_custom_timezone_meta">'. __( 'Custom timezone? (default: WordPress general settings)', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_custom_timezone" id="wpowmweather_custom_timezone_meta">
-						<option ' . selected( 'Default', $wow_opt["custom_timezone"], false ) . ' value="Default">'. __( 'WordPress timezone', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '-12', $wow_opt["custom_timezone"], false ) . ' value="-12">'. __( 'UTC -12', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '-11', $wow_opt["custom_timezone"], false ) . ' value="-11">'. __( 'UTC -11', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '-10', $wow_opt["custom_timezone"], false ) . ' value="-10">'. __( 'UTC -10', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '-9', $wow_opt["custom_timezone"], false ) . ' value="-9">'. __( 'UTC -9', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '-8', $wow_opt["custom_timezone"], false ) . ' value="-8">'. __( 'UTC -8', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '-7', $wow_opt["custom_timezone"], false ) . ' value="-7">'. __( 'UTC -7', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '-6', $wow_opt["custom_timezone"], false ) . ' value="-6">'. __( 'UTC -6', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '-5', $wow_opt["custom_timezone"], false ) . ' value="-5">'. __( 'UTC -5', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '-4', $wow_opt["custom_timezone"], false ) . ' value="-4">'. __( 'UTC -4', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '-3', $wow_opt["custom_timezone"], false ) . ' value="-3">'. __( 'UTC -3', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '-2', $wow_opt["custom_timezone"], false ) . ' value="-2">'. __( 'UTC -2', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '-1', $wow_opt["custom_timezone"], false ) . ' value="-1">'. __( 'UTC -1', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '0', $wow_opt["custom_timezone"], false ) . ' value="0">'. __( 'UTC 0', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '1', $wow_opt["custom_timezone"], false ) . ' value="1">'. __( 'UTC +1', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '2', $wow_opt["custom_timezone"], false ) . ' value="2">'. __( 'UTC +2', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '3', $wow_opt["custom_timezone"], false ) . ' value="3">'. __( 'UTC +3', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '4', $wow_opt["custom_timezone"], false ) . ' value="4">'. __( 'UTC +4', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '5', $wow_opt["custom_timezone"], false ) . ' value="5">'. __( 'UTC +5', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '6', $wow_opt["custom_timezone"], false ) . ' value="6">'. __( 'UTC +6', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '7', $wow_opt["custom_timezone"], false ) . ' value="7">'. __( 'UTC +7', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '8', $wow_opt["custom_timezone"], false ) . ' value="8">'. __( 'UTC +8', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '9', $wow_opt["custom_timezone"], false ) . ' value="9">'. __( 'UTC +9', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '10', $wow_opt["custom_timezone"], false ) . ' value="10">'. __( 'UTC +10', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '11', $wow_opt["custom_timezone"], false ) . ' value="11">'. __( 'UTC +11', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '12', $wow_opt["custom_timezone"], false ) . ' value="12">'. __( 'UTC +12', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( 'Default', $wow_opt["custom_timezone"], false ) . ' value="Default">'. __( 'WordPress timezone', 'owm-weather' ) .'</option>
+						<option ' . selected( '-12', $wow_opt["custom_timezone"], false ) . ' value="-12">'. __( 'UTC -12', 'owm-weather' ) .'</option>
+						<option ' . selected( '-11', $wow_opt["custom_timezone"], false ) . ' value="-11">'. __( 'UTC -11', 'owm-weather' ) .'</option>
+						<option ' . selected( '-10', $wow_opt["custom_timezone"], false ) . ' value="-10">'. __( 'UTC -10', 'owm-weather' ) .'</option>
+						<option ' . selected( '-9', $wow_opt["custom_timezone"], false ) . ' value="-9">'. __( 'UTC -9', 'owm-weather' ) .'</option>
+						<option ' . selected( '-8', $wow_opt["custom_timezone"], false ) . ' value="-8">'. __( 'UTC -8', 'owm-weather' ) .'</option>
+						<option ' . selected( '-7', $wow_opt["custom_timezone"], false ) . ' value="-7">'. __( 'UTC -7', 'owm-weather' ) .'</option>
+						<option ' . selected( '-6', $wow_opt["custom_timezone"], false ) . ' value="-6">'. __( 'UTC -6', 'owm-weather' ) .'</option>
+						<option ' . selected( '-5', $wow_opt["custom_timezone"], false ) . ' value="-5">'. __( 'UTC -5', 'owm-weather' ) .'</option>
+						<option ' . selected( '-4', $wow_opt["custom_timezone"], false ) . ' value="-4">'. __( 'UTC -4', 'owm-weather' ) .'</option>
+						<option ' . selected( '-3', $wow_opt["custom_timezone"], false ) . ' value="-3">'. __( 'UTC -3', 'owm-weather' ) .'</option>
+						<option ' . selected( '-2', $wow_opt["custom_timezone"], false ) . ' value="-2">'. __( 'UTC -2', 'owm-weather' ) .'</option>
+						<option ' . selected( '-1', $wow_opt["custom_timezone"], false ) . ' value="-1">'. __( 'UTC -1', 'owm-weather' ) .'</option>
+						<option ' . selected( '0', $wow_opt["custom_timezone"], false ) . ' value="0">'. __( 'UTC 0', 'owm-weather' ) .'</option>
+						<option ' . selected( '1', $wow_opt["custom_timezone"], false ) . ' value="1">'. __( 'UTC +1', 'owm-weather' ) .'</option>
+						<option ' . selected( '2', $wow_opt["custom_timezone"], false ) . ' value="2">'. __( 'UTC +2', 'owm-weather' ) .'</option>
+						<option ' . selected( '3', $wow_opt["custom_timezone"], false ) . ' value="3">'. __( 'UTC +3', 'owm-weather' ) .'</option>
+						<option ' . selected( '4', $wow_opt["custom_timezone"], false ) . ' value="4">'. __( 'UTC +4', 'owm-weather' ) .'</option>
+						<option ' . selected( '5', $wow_opt["custom_timezone"], false ) . ' value="5">'. __( 'UTC +5', 'owm-weather' ) .'</option>
+						<option ' . selected( '6', $wow_opt["custom_timezone"], false ) . ' value="6">'. __( 'UTC +6', 'owm-weather' ) .'</option>
+						<option ' . selected( '7', $wow_opt["custom_timezone"], false ) . ' value="7">'. __( 'UTC +7', 'owm-weather' ) .'</option>
+						<option ' . selected( '8', $wow_opt["custom_timezone"], false ) . ' value="8">'. __( 'UTC +8', 'owm-weather' ) .'</option>
+						<option ' . selected( '9', $wow_opt["custom_timezone"], false ) . ' value="9">'. __( 'UTC +9', 'owm-weather' ) .'</option>
+						<option ' . selected( '10', $wow_opt["custom_timezone"], false ) . ' value="10">'. __( 'UTC +10', 'owm-weather' ) .'</option>
+						<option ' . selected( '11', $wow_opt["custom_timezone"], false ) . ' value="11">'. __( 'UTC +11', 'owm-weather' ) .'</option>
+						<option ' . selected( '12', $wow_opt["custom_timezone"], false ) . ' value="12">'. __( 'UTC +12', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p>
-					<label for="wpowmweather_owm_language_meta">'. __( 'OpenWeatherMap language?', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_owm_language_meta">'. __( 'OpenWeatherMap language?', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_owm_language" id="wpowmweather_owm_language_meta">
-						<option ' . selected( 'Default', $wow_opt["owm_language"], false ) . ' value="Default">'. __( 'Default', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'af', $wow_opt["owm_language"], false ) . ' value="af">'. __( 'Afrikaans', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'al', $wow_opt["owm_language"], false ) . ' value="al">'. __( 'Albanian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'ar', $wow_opt["owm_language"], false ) . ' value="ar">'. __( 'Arabic', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'az', $wow_opt["owm_language"], false ) . ' value="az">'. __( 'Azerbaijani', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'eu', $wow_opt["owm_language"], false ) . ' value="eu">'. __( 'Basque', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'bg', $wow_opt["owm_language"], false ) . ' value="bg">'. __( 'Bulgarian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'ca', $wow_opt["owm_language"], false ) . ' value="ca">'. __( 'Catalan', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'zh_cn', $wow_opt["owm_language"], false ) . ' value="zh_cn">'. __( 'Chinese Simplified', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'zh_tw', $wow_opt["owm_language"], false ) . ' value="zh_tw">'. __( 'Chinese Traditional', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'hr', $wow_opt["owm_language"], false ) . ' value="hr">'. __( 'Croatian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'cz', $wow_opt["owm_language"], false ) . ' value="cz">'. __( 'Czech', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'da', $wow_opt["owm_language"], false ) . ' value="da">'. __( 'Danish', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'nl', $wow_opt["owm_language"], false ) . ' value="nl">'. __( 'Dutch', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'en', $wow_opt["owm_language"], false ) . ' value="en">'. __( 'English', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'fi', $wow_opt["owm_language"], false ) . ' value="fi">'. __( 'Finnish', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'fr', $wow_opt["owm_language"], false ) . ' value="fr">'. __( 'French', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'gl', $wow_opt["owm_language"], false ) . ' value="gl">'. __( 'Galician', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'de', $wow_opt["owm_language"], false ) . ' value="de">'. __( 'German', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'el', $wow_opt["owm_language"], false ) . ' value="el">'. __( 'Greek', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'he', $wow_opt["owm_language"], false ) . ' value="he">'. __( 'Hebrew', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'hi', $wow_opt["owm_language"], false ) . ' value="hi">'. __( 'Hindi', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'hu', $wow_opt["owm_language"], false ) . ' value="hu">'. __( 'Hungarian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'id', $wow_opt["owm_language"], false ) . ' value="id">'. __( 'Indonesian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'it', $wow_opt["owm_language"], false ) . ' value="it">'. __( 'Italian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'ja', $wow_opt["owm_language"], false ) . ' value="ja">'. __( 'Japanese', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'kr', $wow_opt["owm_language"], false ) . ' value="kr">'. __( 'Korean', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'la', $wow_opt["owm_language"], false ) . ' value="la">'. __( 'Latvian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'lt', $wow_opt["owm_language"], false ) . ' value="lt">'. __( 'Lithuanian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'mk', $wow_opt["owm_language"], false ) . ' value="mk">'. __( 'Macedonian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'no', $wow_opt["owm_language"], false ) . ' value="no">'. __( 'Norwegian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'fa', $wow_opt["owm_language"], false ) . ' value="fa">'. __( 'Persian (Farsi)', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'pl', $wow_opt["owm_language"], false ) . ' value="pl">'. __( 'Polish', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'pt', $wow_opt["owm_language"], false ) . ' value="pt">'. __( 'Portuguese', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'pt', $wow_opt["owm_language"], false ) . ' value="pt">'. __( 'Português Brasil', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'ro', $wow_opt["owm_language"], false ) . ' value="ro">'. __( 'Romanian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'ru', $wow_opt["owm_language"], false ) . ' value="ru">'. __( 'Russian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'sr', $wow_opt["owm_language"], false ) . ' value="sr">'. __( 'Serbian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'sv', $wow_opt["owm_language"], false ) . ' value="sv">'. __( 'Swedish', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'sk', $wow_opt["owm_language"], false ) . ' value="sk">'. __( 'Slovak', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'sl', $wow_opt["owm_language"], false ) . ' value="sl">'. __( 'Slovenian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'sp', $wow_opt["owm_language"], false ) . ' value="sp">'. __( 'Spanish', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'th', $wow_opt["owm_language"], false ) . ' value="th">'. __( 'Thai', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'tr', $wow_opt["owm_language"], false ) . ' value="tr">'. __( 'Turkish', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'ua', $wow_opt["owm_language"], false ) . ' value="ua">'. __( 'Ukrainian', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'vi', $wow_opt["owm_language"], false ) . ' value="vi">'. __( 'Vietnamese', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'zu', $wow_opt["owm_language"], false ) . ' value="zu">'. __( 'Zulu', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( 'Default', $wow_opt["owm_language"], false ) . ' value="Default">'. __( 'Default', 'owm-weather' ) .'</option>
+						<option ' . selected( 'af', $wow_opt["owm_language"], false ) . ' value="af">'. __( 'Afrikaans', 'owm-weather' ) .'</option>
+						<option ' . selected( 'al', $wow_opt["owm_language"], false ) . ' value="al">'. __( 'Albanian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'ar', $wow_opt["owm_language"], false ) . ' value="ar">'. __( 'Arabic', 'owm-weather' ) .'</option>
+						<option ' . selected( 'az', $wow_opt["owm_language"], false ) . ' value="az">'. __( 'Azerbaijani', 'owm-weather' ) .'</option>
+						<option ' . selected( 'eu', $wow_opt["owm_language"], false ) . ' value="eu">'. __( 'Basque', 'owm-weather' ) .'</option>
+						<option ' . selected( 'bg', $wow_opt["owm_language"], false ) . ' value="bg">'. __( 'Bulgarian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'ca', $wow_opt["owm_language"], false ) . ' value="ca">'. __( 'Catalan', 'owm-weather' ) .'</option>
+						<option ' . selected( 'zh_cn', $wow_opt["owm_language"], false ) . ' value="zh_cn">'. __( 'Chinese Simplified', 'owm-weather' ) .'</option>
+						<option ' . selected( 'zh_tw', $wow_opt["owm_language"], false ) . ' value="zh_tw">'. __( 'Chinese Traditional', 'owm-weather' ) .'</option>
+						<option ' . selected( 'hr', $wow_opt["owm_language"], false ) . ' value="hr">'. __( 'Croatian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'cz', $wow_opt["owm_language"], false ) . ' value="cz">'. __( 'Czech', 'owm-weather' ) .'</option>
+						<option ' . selected( 'da', $wow_opt["owm_language"], false ) . ' value="da">'. __( 'Danish', 'owm-weather' ) .'</option>
+						<option ' . selected( 'nl', $wow_opt["owm_language"], false ) . ' value="nl">'. __( 'Dutch', 'owm-weather' ) .'</option>
+						<option ' . selected( 'en', $wow_opt["owm_language"], false ) . ' value="en">'. __( 'English', 'owm-weather' ) .'</option>
+						<option ' . selected( 'fi', $wow_opt["owm_language"], false ) . ' value="fi">'. __( 'Finnish', 'owm-weather' ) .'</option>
+						<option ' . selected( 'fr', $wow_opt["owm_language"], false ) . ' value="fr">'. __( 'French', 'owm-weather' ) .'</option>
+						<option ' . selected( 'gl', $wow_opt["owm_language"], false ) . ' value="gl">'. __( 'Galician', 'owm-weather' ) .'</option>
+						<option ' . selected( 'de', $wow_opt["owm_language"], false ) . ' value="de">'. __( 'German', 'owm-weather' ) .'</option>
+						<option ' . selected( 'el', $wow_opt["owm_language"], false ) . ' value="el">'. __( 'Greek', 'owm-weather' ) .'</option>
+						<option ' . selected( 'he', $wow_opt["owm_language"], false ) . ' value="he">'. __( 'Hebrew', 'owm-weather' ) .'</option>
+						<option ' . selected( 'hi', $wow_opt["owm_language"], false ) . ' value="hi">'. __( 'Hindi', 'owm-weather' ) .'</option>
+						<option ' . selected( 'hu', $wow_opt["owm_language"], false ) . ' value="hu">'. __( 'Hungarian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'id', $wow_opt["owm_language"], false ) . ' value="id">'. __( 'Indonesian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'it', $wow_opt["owm_language"], false ) . ' value="it">'. __( 'Italian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'ja', $wow_opt["owm_language"], false ) . ' value="ja">'. __( 'Japanese', 'owm-weather' ) .'</option>
+						<option ' . selected( 'kr', $wow_opt["owm_language"], false ) . ' value="kr">'. __( 'Korean', 'owm-weather' ) .'</option>
+						<option ' . selected( 'la', $wow_opt["owm_language"], false ) . ' value="la">'. __( 'Latvian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'lt', $wow_opt["owm_language"], false ) . ' value="lt">'. __( 'Lithuanian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'mk', $wow_opt["owm_language"], false ) . ' value="mk">'. __( 'Macedonian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'no', $wow_opt["owm_language"], false ) . ' value="no">'. __( 'Norwegian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'fa', $wow_opt["owm_language"], false ) . ' value="fa">'. __( 'Persian (Farsi)', 'owm-weather' ) .'</option>
+						<option ' . selected( 'pl', $wow_opt["owm_language"], false ) . ' value="pl">'. __( 'Polish', 'owm-weather' ) .'</option>
+						<option ' . selected( 'pt', $wow_opt["owm_language"], false ) . ' value="pt">'. __( 'Portuguese', 'owm-weather' ) .'</option>
+						<option ' . selected( 'pt', $wow_opt["owm_language"], false ) . ' value="pt">'. __( 'Português Brasil', 'owm-weather' ) .'</option>
+						<option ' . selected( 'ro', $wow_opt["owm_language"], false ) . ' value="ro">'. __( 'Romanian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'ru', $wow_opt["owm_language"], false ) . ' value="ru">'. __( 'Russian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'sr', $wow_opt["owm_language"], false ) . ' value="sr">'. __( 'Serbian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'sv', $wow_opt["owm_language"], false ) . ' value="sv">'. __( 'Swedish', 'owm-weather' ) .'</option>
+						<option ' . selected( 'sk', $wow_opt["owm_language"], false ) . ' value="sk">'. __( 'Slovak', 'owm-weather' ) .'</option>
+						<option ' . selected( 'sl', $wow_opt["owm_language"], false ) . ' value="sl">'. __( 'Slovenian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'sp', $wow_opt["owm_language"], false ) . ' value="sp">'. __( 'Spanish', 'owm-weather' ) .'</option>
+						<option ' . selected( 'th', $wow_opt["owm_language"], false ) . ' value="th">'. __( 'Thai', 'owm-weather' ) .'</option>
+						<option ' . selected( 'tr', $wow_opt["owm_language"], false ) . ' value="tr">'. __( 'Turkish', 'owm-weather' ) .'</option>
+						<option ' . selected( 'ua', $wow_opt["owm_language"], false ) . ' value="ua">'. __( 'Ukrainian', 'owm-weather' ) .'</option>
+						<option ' . selected( 'vi', $wow_opt["owm_language"], false ) . ' value="vi">'. __( 'Vietnamese', 'owm-weather' ) .'</option>
+						<option ' . selected( 'zu', $wow_opt["owm_language"], false ) . ' value="zu">'. __( 'Zulu', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p class="misc subsection-title">
-					'. __( 'Misc', 'wp-owm-weather' ) .'
+					'. __( 'Misc', 'owm-weather' ) .'
 				</p>
 				<p>
 					<label for="wpowmweather_gtag_meta">
 						<input type="checkbox" name="wpowmweather_gtag" id="wpowmweather_gtag_meta" value="yes" '. checked( $wow_opt["gtag"], 'yes', false ) .' />
-							'. __( 'Google Tag Manager dataLayer?', 'wp-owm-weather' ) .'
+							'. __( 'Google Tag Manager dataLayer?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_bypass_exclude_meta">
 						<input type="checkbox" name="wpowmweather_bypass_exclude" id="wpowmweather_bypass_exclude_meta" value="yes" '. checked( $wow_opt["bypass_exclude"], 'yes', false ) .' />
-							'. __( 'Exclude from System Settings and Parameter Bypass?', 'wp-owm-weather' ) .'
+							'. __( 'Exclude from System Settings and Parameter Bypass?', 'owm-weather' ) .'
 					</label>
 				</p>
 			</div>
@@ -647,207 +647,207 @@ function wpowmweather_basic($post){
     			    Select the information you would like to show on your weather shortcode.
 			    </p>
 				<p class="wow-dates subsection-title">
-					'. __( 'Current weather', 'wp-owm-weather' ) .'
+					'. __( 'Current weather', 'owm-weather' ) .'
 				</p>
 				<p>
 					<label for="wpowmweather_current_city_name_meta">
 						<input type="checkbox" name="wpowmweather_current_city_name" id="wpowmweather_current_city_name_meta" value="yes" '. checked( $wow_opt["current_city_name"], 'yes', false ) .' />
-							'. __( 'Current weather city name?', 'wp-owm-weather' ) .'
+							'. __( 'Current weather city name?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_current_weather_symbol_meta">
 						<input type="checkbox" name="wpowmweather_current_weather_symbol" id="wpowmweather_current_weather_symbol_meta" value="yes" '. checked( $wow_opt["current_weather_symbol"], 'yes', false ) .' />
-							'. __( 'Current weather symbol?', 'wp-owm-weather' ) .'
+							'. __( 'Current weather symbol?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_current_temperature_meta">
 						<input type="checkbox" name="wpowmweather_current_temperature" id="wpowmweather_current_temperature_meta" value="yes" '. checked( $wow_opt["current_temperature"], 'yes', false ) .' />
-							'. __( 'Current temperature?', 'wp-owm-weather' ) .'
+							'. __( 'Current temperature?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_current_feels_like_meta">
 						<input type="checkbox" name="wpowmweather_current_feels_like" id="wpowmweather_current_feels_like_meta" value="yes" '. checked( $wow_opt["current_feels_like"], 'yes', false ) .' />
-							'. __( 'Current feels like temperature?', 'wp-owm-weather' ) .'
+							'. __( 'Current feels like temperature?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_current_weather_description_meta">
 						<input type="checkbox" name="wpowmweather_current_weather_description" id="wpowmweather_current_weather_description_meta" value="yes" '. checked( $wow_opt["current_weather_description"], 'yes', false ) .' />
-							'. __( 'Current weather short condition?', 'wp-owm-weather' ) .'
+							'. __( 'Current weather short condition?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p class="temperatures subsection-title">
-					'. __( 'Temperatures', 'wp-owm-weather' ) .'
+					'. __( 'Temperatures', 'owm-weather' ) .'
 				</p>
 				<p>
 					<label for="wpowmweather_display_temperature_unit_meta">
 						<input type="checkbox" name="wpowmweather_display_temperature_unit" id="wpowmweather_display_temperature_unit_meta" value="yes" '. checked( $wow_opt["display_temperature_unit"], 'yes', false ) .' />
-							'. __( 'Temperatures unit (C / F)?', 'wp-owm-weather' ) .'
+							'. __( 'Temperatures unit (C / F)?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p class="wow-dates subsection-title">
-					'. __( 'Date, Sunrise/Sunset and Moonrise/Moonset', 'wp-owm-weather' ) .'
+					'. __( 'Date, Sunrise/Sunset and Moonrise/Moonset', 'owm-weather' ) .'
 				</p>
 				<p>
 					<label for="wpowmweather_today_date_format_none_meta">
 						<input type="radio" name="wpowmweather_today_date_format" id="wpowmweather_today_date_format_none_meta" value="none" '. checked( $wow_opt["today_date_format"], 'none', false ) .' />
-							'. __( 'No date (default)?', 'wp-owm-weather' ) .'
+							'. __( 'No date (default)?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_today_date_format_week_meta">
 						<input type="radio" name="wpowmweather_today_date_format" id="wpowmweather_today_date_format_week_meta" value="day" '. checked( $wow_opt["today_date_format"], 'day', false ) .' />
-							'. __( 'Day of the week (eg: Sunday)?', 'wp-owm-weather' ) .'
+							'. __( 'Day of the week (eg: Sunday)?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_today_date_format_calendar_meta">
 						<input type="radio" name="wpowmweather_today_date_format" id="wpowmweather_today_date_format_calendar_meta" value="date" '. checked( $wow_opt["today_date_format"], 'date', false ) .' />
-							'. __( 'Today\'s date (based on your WordPress General Settings)?', 'wp-owm-weather' ) .'
+							'. __( 'Today\'s date (based on your WordPress General Settings)?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_sunrise_sunset_meta">
 						<input type="checkbox" name="wpowmweather_sunrise_sunset" id="wpowmweather_sunrise_sunset_meta" value="yes" '. checked( $wow_opt["sunrise_sunset"], 'yes', false ) .' />
-							'. __( 'Sunrise + sunset?', 'wp-owm-weather' ) .'
+							'. __( 'Sunrise + sunset?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_moonrise_moonset_meta">
 						<input type="checkbox" name="wpowmweather_moonrise_moonset" id="wpowmweather_moonrise_moonset_meta" value="yes" '. checked( $wow_opt["moonrise_moonset"], 'yes', false ) .' />
-							'. __( 'Moonrise + moonset?', 'wp-owm-weather' ) .'
+							'. __( 'Moonrise + moonset?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p class="wow-misc subsection-title">
-					'. __( 'Misc', 'wp-owm-weather' ) .'
+					'. __( 'Misc', 'owm-weather' ) .'
 				</p>
 				<p>
 					<label for="wpowmweather_wind_meta">
 						<input type="checkbox" name="wpowmweather_wind" id="wpowmweather_wind_meta" value="yes" '. checked( $wow_opt["wind"], 'yes', false ) .' />
-							'. __( 'Wind?', 'wp-owm-weather' ) .'
+							'. __( 'Wind?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
-					<label for="wpowmweather_wind_unit_meta">'. __( 'Wind unit: ', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_wind_unit_meta">'. __( 'Wind unit: ', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_wind_unit">
-						<option ' . selected( '1', $wow_opt["wind_unit"], false ) . ' value="1">'. __( 'mi/h', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '2', $wow_opt["wind_unit"], false ) . ' value="2">'. __( 'm/s', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '3', $wow_opt["wind_unit"], false ) . ' value="3">'. __( 'km/h', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '4', $wow_opt["wind_unit"], false ) . ' value="4">'. __( 'kt', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( '1', $wow_opt["wind_unit"], false ) . ' value="1">'. __( 'mi/h', 'owm-weather' ) .'</option>
+						<option ' . selected( '2', $wow_opt["wind_unit"], false ) . ' value="2">'. __( 'm/s', 'owm-weather' ) .'</option>
+						<option ' . selected( '3', $wow_opt["wind_unit"], false ) . ' value="3">'. __( 'km/h', 'owm-weather' ) .'</option>
+						<option ' . selected( '4', $wow_opt["wind_unit"], false ) . ' value="4">'. __( 'kt', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p>
 					<label for="wpowmweather_humidity_meta">
 						<input type="checkbox" name="wpowmweather_humidity" id="wpowmweather_humidity_meta" value="yes" '. checked( $wow_opt["humidity"], 'yes', false ) .' />
-							'. __( 'Humidity?', 'wp-owm-weather' ) .'
+							'. __( 'Humidity?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_dew_point_meta">
 						<input type="checkbox" name="wpowmweather_dew_point" id="wpowmweather_dew_point_meta" value="yes" '. checked( $wow_opt["dew_point"], 'yes', false ) .' />
-							'. __( 'Dew Point?', 'wp-owm-weather' ) .'
+							'. __( 'Dew Point?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_pressure_meta">
 						<input type="checkbox" name="wpowmweather_pressure" id="wpowmweather_pressure_meta" value="yes" '. checked( $wow_opt["pressure"], 'yes', false ) .' />
-							'. __( 'Pressure?', 'wp-owm-weather' ) .'
+							'. __( 'Pressure?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_cloudiness_meta">
 						<input type="checkbox" name="wpowmweather_cloudiness" id="wpowmweather_cloudiness_meta" value="yes" '. checked( $wow_opt["cloudiness"], 'yes', false ) .' />
-							'. __( 'Cloudiness?', 'wp-owm-weather' ) .'
+							'. __( 'Cloudiness?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_precipitation_meta">
 						<input type="checkbox" name="wpowmweather_precipitation" id="wpowmweather_precipitation_meta" value="yes" '. checked( $wow_opt["precipitation"], 'yes', false ) .' />
-							'. __( 'Precipitation?', 'wp-owm-weather' ) .'
+							'. __( 'Precipitation?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_visibility_meta">
 						<input type="checkbox" name="wpowmweather_visibility" id="wpowmweather_visibility_meta" value="yes" '. checked( $wow_opt["visibility"], 'yes', false ) .' />
-							'. __( 'Visibility?', 'wp-owm-weather' ) .'
+							'. __( 'Visibility?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_uv_index_meta">
 						<input type="checkbox" name="wpowmweather_uv_index" id="wpowmweather_uv_index_meta" value="yes" '. checked( $wow_opt["uv_index"], 'yes', false ) .' />
-							'. __( 'UV Index?', 'wp-owm-weather' ) .'
+							'. __( 'UV Index?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_alerts_meta">
 						<input type="checkbox" name="wpowmweather_alerts" id="wpowmweather_alerts_meta" value="yes" '. checked( $wow_opt["alerts"], 'yes', false ) .' />
-							'. __( 'Alerts?', 'wp-owm-weather' ) .'
+							'. __( 'Alerts?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
-					<label for="wpowmweather_alerts_button_color">'. __( 'Alert Button color', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_alerts_button_color">'. __( 'Alert Button color', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_alerts_button_color" type="text" value="'. $wow_opt["alerts_button_color"] .'" class="wpowmweather_color_picker" />
 				</p>
 				<p class="hour subsection-title">
-					'. __( 'Hourly Forecast', 'wp-owm-weather' ) .'
+					'. __( 'Hourly Forecast', 'owm-weather' ) .'
 				</p>
 				<p>
-					<label for="wpowmweather_hours_forecast_no_meta">'. __( 'How many hours?', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_hours_forecast_no_meta">'. __( 'How many hours?', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_hours_forecast_no">' . generate_hour_options($wow_opt["hours_forecast_no"]) . '</select>
 					<br />
-					<span class="dashicons dashicons-editor-help"></span><a href="'.admin_url('options-general.php').'" target="_blank">'.__('Make sure you have properly set the date of your site in WordPress settings.','wp-owm-weather').'</a> or set a Custom timezone under Basic.
+					<span class="dashicons dashicons-editor-help"></span><a href="'.admin_url('options-general.php').'" target="_blank">'.__('Make sure you have properly set the date of your site in WordPress settings.','owm-weather').'</a> or set a Custom timezone under Basic.
 				</p>
 				<p>
 					<label for="wpowmweather_hours_time_icons_meta">
 						<input type="checkbox" name="wpowmweather_hours_time_icons" id="wpowmweather_hours_time_icons_meta" value="yes" '. checked( $wow_opt["hours_time_icons"], 'yes', false ) .' />
-							'. __( 'Display time icons?', 'wp-owm-weather' ) .'
+							'. __( 'Display time icons?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p class="forecast subsection-title">
-					'. __( 'Daily Forecast', 'wp-owm-weather' ) .'
+					'. __( 'Daily Forecast', 'owm-weather' ) .'
 				</p>
 				<p>
-					<label for="wpowmweather_forecast_no_meta">'. __( 'How many days?', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_forecast_no_meta">'. __( 'How many days?', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_forecast_no">
-						<option ' . selected( '0', $wow_opt["days_forecast_no"], false ) . ' value="0">'. __( 'None', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '1', $wow_opt["days_forecast_no"], false ) . ' value="1">'. __( 'Today', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '2', $wow_opt["days_forecast_no"], false ) . ' value="2">'. __( 'Today + 1 day', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '3', $wow_opt["days_forecast_no"], false ) . ' value="3">'. __( 'Today + 2 days', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '4', $wow_opt["days_forecast_no"], false ) . ' value="4">'. __( 'Today + 3 days', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '5', $wow_opt["days_forecast_no"], false ) . ' value="5">'. __( 'Today + 4 days', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '6', $wow_opt["days_forecast_no"], false ) . ' value="6">'. __( 'Today + 5 days', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '7', $wow_opt["days_forecast_no"], false ) . ' value="7">'. __( 'Today + 6 days', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( '8', $wow_opt["days_forecast_no"], false ) . ' value="8">'. __( 'Today + 7 days', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( '0', $wow_opt["days_forecast_no"], false ) . ' value="0">'. __( 'None', 'owm-weather' ) .'</option>
+						<option ' . selected( '1', $wow_opt["days_forecast_no"], false ) . ' value="1">'. __( 'Today', 'owm-weather' ) .'</option>
+						<option ' . selected( '2', $wow_opt["days_forecast_no"], false ) . ' value="2">'. __( 'Today + 1 day', 'owm-weather' ) .'</option>
+						<option ' . selected( '3', $wow_opt["days_forecast_no"], false ) . ' value="3">'. __( 'Today + 2 days', 'owm-weather' ) .'</option>
+						<option ' . selected( '4', $wow_opt["days_forecast_no"], false ) . ' value="4">'. __( 'Today + 3 days', 'owm-weather' ) .'</option>
+						<option ' . selected( '5', $wow_opt["days_forecast_no"], false ) . ' value="5">'. __( 'Today + 4 days', 'owm-weather' ) .'</option>
+						<option ' . selected( '6', $wow_opt["days_forecast_no"], false ) . ' value="6">'. __( 'Today + 5 days', 'owm-weather' ) .'</option>
+						<option ' . selected( '7', $wow_opt["days_forecast_no"], false ) . ' value="7">'. __( 'Today + 6 days', 'owm-weather' ) .'</option>
+						<option ' . selected( '8', $wow_opt["days_forecast_no"], false ) . ' value="8">'. __( 'Today + 7 days', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p>
 					<label for="wpowmweather_forecast_precipitations_meta">
 						<input type="checkbox" name="wpowmweather_forecast_precipitations" id="wpowmweather_forecast_precipitations_meta" value="yes" '. checked( $wow_opt["forecast_precipitations"], 'yes', false ) .' />
-							'. __( 'Forecast Precipitations?', 'wp-owm-weather' ) .'
+							'. __( 'Forecast Precipitations?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_display_length_days_names_short_meta">
 						<input type="radio" name="wpowmweather_display_length_days_names" id="wpowmweather_display_length_days_names_short_meta" value="short" '. checked( $wow_opt["display_length_days_names"], 'short', false ) .' />
-							'. __( 'Short days names?', 'wp-owm-weather' ) .'
+							'. __( 'Short days names?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_display_length_days_names_normal_meta">
 						<input type="radio" name="wpowmweather_display_length_days_names" id="wpowmweather_display_length_days_names_normal_meta" value="normal" '. checked( $wow_opt["display_length_days_names"], 'normal', false ) .' />
-							'. __( 'Normal days names?', 'wp-owm-weather' ) .'
+							'. __( 'Normal days names?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p class="footer subsection-title">
-					'. __( 'Footer', 'wp-owm-weather' ) .'
+					'. __( 'Footer', 'owm-weather' ) .'
 				</p>
 				<p>
 					<label for="wpowmweather_owm_link_meta">
 						<input type="checkbox" name="wpowmweather_owm_link" id="wpowmweather_owm_link_meta" value="yes" '. checked( $wow_opt["owm_link"], 'yes', false ) .' />
-						'. __( 'Link to OpenWeatherMap?', 'wp-owm-weather' ) .'
+						'. __( 'Link to OpenWeatherMap?', 'owm-weather' ) .'
 					</label>
 				</p>
 
@@ -855,7 +855,7 @@ function wpowmweather_basic($post){
 					<label for="wpowmweather_last_update_meta">
 						<input type="checkbox" name="wpowmweather_last_update" id="wpowmweather_last_update_meta" value="yes" '. checked( $wow_opt["last_update"], 'yes', false ) .' />
 
-						'. __( 'Update date?', 'wp-owm-weather' ) .'
+						'. __( 'Update date?', 'owm-weather' ) .'
 					</label>
 				</p>
 			</div>
@@ -864,213 +864,213 @@ function wpowmweather_basic($post){
     			    Select the layout styling for your weather shortcode.
 			    </p>
 				<p>
-					<label for="template_meta">'. __( 'Template', 'wp-owm-weather' ) .'</label>
+					<label for="template_meta">'. __( 'Template', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_template">
-						<option ' . selected( 'Default', $wow_opt["template"], false ) . ' value="Default">'. __( 'Default', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'card1', $wow_opt["template"], false ) . ' value="card1">'. __( 'Card 1', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'card2', $wow_opt["template"], false ) . ' value="card2">'. __( 'Card 2', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'chart1', $wow_opt["template"], false ) . ' value="chart1">'. __( 'Chart 1', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'chart2', $wow_opt["template"], false ) . ' value="chart2">'. __( 'Chart 2', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'table1', $wow_opt["template"], false ) . ' value="table1">'. __( 'Table 1', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'table2', $wow_opt["template"], false ) . ' value="table2">'. __( 'Table 2', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'slider1', $wow_opt["template"], false ) . ' value="slider1">'. __( 'Slider 1', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'slider2', $wow_opt["template"], false ) . ' value="slider2">'. __( 'Slider 2', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'custom1', $wow_opt["template"], false ) . ' value="custom1">'. __( 'Custom 1', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'custom2', $wow_opt["template"], false ) . ' value="custom2">'. __( 'Custom 2', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'debug', $wow_opt["template"], false ) . ' value="debug">'. __( 'Debug', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( 'Default', $wow_opt["template"], false ) . ' value="Default">'. __( 'Default', 'owm-weather' ) .'</option>
+						<option ' . selected( 'card1', $wow_opt["template"], false ) . ' value="card1">'. __( 'Card 1', 'owm-weather' ) .'</option>
+						<option ' . selected( 'card2', $wow_opt["template"], false ) . ' value="card2">'. __( 'Card 2', 'owm-weather' ) .'</option>
+						<option ' . selected( 'chart1', $wow_opt["template"], false ) . ' value="chart1">'. __( 'Chart 1', 'owm-weather' ) .'</option>
+						<option ' . selected( 'chart2', $wow_opt["template"], false ) . ' value="chart2">'. __( 'Chart 2', 'owm-weather' ) .'</option>
+						<option ' . selected( 'table1', $wow_opt["template"], false ) . ' value="table1">'. __( 'Table 1', 'owm-weather' ) .'</option>
+						<option ' . selected( 'table2', $wow_opt["template"], false ) . ' value="table2">'. __( 'Table 2', 'owm-weather' ) .'</option>
+						<option ' . selected( 'slider1', $wow_opt["template"], false ) . ' value="slider1">'. __( 'Slider 1', 'owm-weather' ) .'</option>
+						<option ' . selected( 'slider2', $wow_opt["template"], false ) . ' value="slider2">'. __( 'Slider 2', 'owm-weather' ) .'</option>
+						<option ' . selected( 'custom1', $wow_opt["template"], false ) . ' value="custom1">'. __( 'Custom 1', 'owm-weather' ) .'</option>
+						<option ' . selected( 'custom2', $wow_opt["template"], false ) . ' value="custom2">'. __( 'Custom 2', 'owm-weather' ) .'</option>
+						<option ' . selected( 'debug', $wow_opt["template"], false ) . ' value="debug">'. __( 'Debug', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p>
-					<label for="font_meta">'. __( 'Font', 'wp-owm-weather' ) .'</label>
+					<label for="font_meta">'. __( 'Font', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_font">
-						<option ' . selected( 'Default', $wow_opt["font"], false ) . ' value="Default">'. __( 'Default', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Arvo', $wow_opt["font"], false ) . ' value="Arvo">'. __( 'Arvo', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Asap', $wow_opt["font"], false ) . ' value="Asap">'. __( 'Asap', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Bitter', $wow_opt["font"], false ) . ' value="Bitter">'. __( 'Bitter', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Droid Serif', $wow_opt["font"], false ) . ' value="Droid Serif">'. __( 'Droid Serif', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Exo 2', $wow_opt["font"], false ) . ' value="Exo 2">'. __( 'Exo 2', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Francois One', $wow_opt["font"], false ) . ' value="Francois One">'. __( 'Francois One', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Inconsolata', $wow_opt["font"], false ) . ' value="Inconsolata">'. __( 'Inconsolata', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Josefin Sans', $wow_opt["font"], false ) . ' value="Josefin Sans">'. __( 'Josefin Sans', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Lato', $wow_opt["font"], false ) . ' value="Lato">'. __( 'Lato', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Merriweather Sans', $wow_opt["font"], false ) . ' value="Merriweather Sans">'. __( 'Merriweather Sans', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Nunito', $wow_opt["font"], false ) . ' value="Nunito">'. __( 'Nunito', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Open Sans', $wow_opt["font"], false ) . ' value="Open Sans">'. __( 'Open Sans', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Oswald', $wow_opt["font"], false ) . ' value="Oswald">'. __( 'Oswald', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Pacifico', $wow_opt["font"], false ) . ' value="Pacifico">'. __( 'Pacifico', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Roboto', $wow_opt["font"], false ) . ' value="Roboto">'. __( 'Roboto', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Signika', $wow_opt["font"], false ) . ' value="Signika">'. __( 'Signika', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Source Sans Pro', $wow_opt["font"], false ) . ' value="Source Sans Pro">'. __( 'Source Sans Pro', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Tangerine', $wow_opt["font"], false ) . ' value="Tangerine">'. __( 'Tangerine', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Ubuntu', $wow_opt["font"], false ) . ' value="Ubuntu">'. __( 'Ubuntu', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( 'Default', $wow_opt["font"], false ) . ' value="Default">'. __( 'Default', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Arvo', $wow_opt["font"], false ) . ' value="Arvo">'. __( 'Arvo', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Asap', $wow_opt["font"], false ) . ' value="Asap">'. __( 'Asap', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Bitter', $wow_opt["font"], false ) . ' value="Bitter">'. __( 'Bitter', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Droid Serif', $wow_opt["font"], false ) . ' value="Droid Serif">'. __( 'Droid Serif', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Exo 2', $wow_opt["font"], false ) . ' value="Exo 2">'. __( 'Exo 2', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Francois One', $wow_opt["font"], false ) . ' value="Francois One">'. __( 'Francois One', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Inconsolata', $wow_opt["font"], false ) . ' value="Inconsolata">'. __( 'Inconsolata', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Josefin Sans', $wow_opt["font"], false ) . ' value="Josefin Sans">'. __( 'Josefin Sans', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Lato', $wow_opt["font"], false ) . ' value="Lato">'. __( 'Lato', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Merriweather Sans', $wow_opt["font"], false ) . ' value="Merriweather Sans">'. __( 'Merriweather Sans', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Nunito', $wow_opt["font"], false ) . ' value="Nunito">'. __( 'Nunito', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Open Sans', $wow_opt["font"], false ) . ' value="Open Sans">'. __( 'Open Sans', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Oswald', $wow_opt["font"], false ) . ' value="Oswald">'. __( 'Oswald', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Pacifico', $wow_opt["font"], false ) . ' value="Pacifico">'. __( 'Pacifico', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Roboto', $wow_opt["font"], false ) . ' value="Roboto">'. __( 'Roboto', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Signika', $wow_opt["font"], false ) . ' value="Signika">'. __( 'Signika', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Source Sans Pro', $wow_opt["font"], false ) . ' value="Source Sans Pro">'. __( 'Source Sans Pro', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Tangerine', $wow_opt["font"], false ) . ' value="Tangerine">'. __( 'Tangerine', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Ubuntu', $wow_opt["font"], false ) . ' value="Ubuntu">'. __( 'Ubuntu', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p>
-					<label for="iconpack_meta">'. __( 'Icon Pack', 'wp-owm-weather' ) .'</label>
+					<label for="iconpack_meta">'. __( 'Icon Pack', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_iconpack">
-						<option ' . selected( 'Climacons', $wow_opt["iconpack"], false ) . ' value="Climacons">'. __( 'Climacons', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'OpenWeatherMap', $wow_opt["iconpack"], false ) . ' value="OpenWeatherMap">'. __( 'Open Weather Map', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'WeatherIcons', $wow_opt["iconpack"], false ) . ' value="WeatherIcons">'. __( 'Weather Icons', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Forecast', $wow_opt["iconpack"], false ) . ' value="Forecast">'. __( 'Forecast', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Dripicons', $wow_opt["iconpack"], false ) . ' value="Dripicons">'. __( 'Dripicons', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'Pixeden', $wow_opt["iconpack"], false ) . ' value="Pixeden">'. __( 'Pixeden', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( 'Climacons', $wow_opt["iconpack"], false ) . ' value="Climacons">'. __( 'Climacons', 'owm-weather' ) .'</option>
+						<option ' . selected( 'OpenWeatherMap', $wow_opt["iconpack"], false ) . ' value="OpenWeatherMap">'. __( 'Open Weather Map', 'owm-weather' ) .'</option>
+						<option ' . selected( 'WeatherIcons', $wow_opt["iconpack"], false ) . ' value="WeatherIcons">'. __( 'Weather Icons', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Forecast', $wow_opt["iconpack"], false ) . ' value="Forecast">'. __( 'Forecast', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Dripicons', $wow_opt["iconpack"], false ) . ' value="Dripicons">'. __( 'Dripicons', 'owm-weather' ) .'</option>
+						<option ' . selected( 'Pixeden', $wow_opt["iconpack"], false ) . ' value="Pixeden">'. __( 'Pixeden', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p class="misc subsection-title">
-					'. __( 'Colors and Borders', 'wp-owm-weather' ) .'
+					'. __( 'Colors and Borders', 'owm-weather' ) .'
 				</p>
 				<p>
-					<label for="wpowmweather_background_color">'. __( 'Background color', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_background_color">'. __( 'Background color', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_background_color" type="text" value="'. $wow_opt["background_color"] .'" class="wpowmweather_color_picker" />
 				</p>
 				<p>
-					<label>'. __( 'Background image', 'wp-owm-weather' ) .'</label>
+					<label>'. __( 'Background image', 'owm-weather' ) .'</label>
                     <div class="background_image_preview_wrapper">
                     	<img id="background_image_preview" src="' . wp_get_attachment_url( ($wow_opt["background_image"] ?? '' ) ) . '" height="100px"' . (!empty($wow_opt["background_image"]) ? '' : ' style="display: none;"') . '>
                     </div>
-                    <input id="select_background_image_button" type="button" class="button" value="' . __( 'Select image', 'wp-owm-weather' ) . '" />
+                    <input id="select_background_image_button" type="button" class="button" value="' . __( 'Select image', 'owm-weather' ) . '" />
                     <input type="hidden" name="wpowmweather_background_image" id="background_image_attachment_id" value="' . ($wow_opt["background_image"] ?? '') . '">
                     <input id="clear_background_image_button" type="button" class="button" value="Clear" />
                 </p>
 				<p>
-					<label for="wpowmweather_text_color">'. __( 'Text color', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_text_color">'. __( 'Text color', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_text_color" type="text" value="'. $wow_opt["text_color"] .'" class="wpowmweather_color_picker" />
 				</p>
 				<p>
-					<label for="wpowmweather_border_color">'. __( 'Border color', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_border_color">'. __( 'Border color', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_border_color" type="text" value="'. $wow_opt["border_color"] .'" class="wpowmweather_color_picker" />
 				</p>
 				<p>
-					<label for="wpowmweather_border_width">'. __( 'Border width (px)', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_border_width">'. __( 'Border width (px)', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_border_width" type="number" min="0" value="'. $wow_opt["border_width"] .'" />
 				</p>
 				<p>
-					<label for="wpowmweather_border_style">'. __( 'Border style', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_border_style">'. __( 'Border style', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_border_style">
-						<option ' . selected( 'solid', $wow_opt["border_style"], false ) . ' value="solid">'. __( 'Solid', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'dotted', $wow_opt["border_style"], false ) . ' value="dotted">'. __( 'Dotted', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'dashed', $wow_opt["border_style"], false ) . ' value="dashed">'. __( 'Dashed', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'double', $wow_opt["border_style"], false ) . ' value="double">'. __( 'Double', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'groove', $wow_opt["border_style"], false ) . ' value="groove">'. __( 'Groove', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'inset', $wow_opt["border_style"], false ) . ' value="inset">'. __( 'Inset', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'outset', $wow_opt["border_style"], false ) . ' value="outset">'. __( 'Outset', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'ridge', $wow_opt["border_style"], false ) . ' value="ridge">'. __( 'Ridge', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( 'solid', $wow_opt["border_style"], false ) . ' value="solid">'. __( 'Solid', 'owm-weather' ) .'</option>
+						<option ' . selected( 'dotted', $wow_opt["border_style"], false ) . ' value="dotted">'. __( 'Dotted', 'owm-weather' ) .'</option>
+						<option ' . selected( 'dashed', $wow_opt["border_style"], false ) . ' value="dashed">'. __( 'Dashed', 'owm-weather' ) .'</option>
+						<option ' . selected( 'double', $wow_opt["border_style"], false ) . ' value="double">'. __( 'Double', 'owm-weather' ) .'</option>
+						<option ' . selected( 'groove', $wow_opt["border_style"], false ) . ' value="groove">'. __( 'Groove', 'owm-weather' ) .'</option>
+						<option ' . selected( 'inset', $wow_opt["border_style"], false ) . ' value="inset">'. __( 'Inset', 'owm-weather' ) .'</option>
+						<option ' . selected( 'outset', $wow_opt["border_style"], false ) . ' value="outset">'. __( 'Outset', 'owm-weather' ) .'</option>
+						<option ' . selected( 'ridge', $wow_opt["border_style"], false ) . ' value="ridge">'. __( 'Ridge', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p>
-					<label for="wpowmweather_border_radius">'. __( 'Border radius (px)', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_border_radius">'. __( 'Border radius (px)', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_border_radius" type="number" min="0" value="'. $wow_opt["border_radius"] .'" />
 				</p>
 				<p class="misc subsection-title">
-					'. __( 'Misc', 'wp-owm-weather' ) .'
+					'. __( 'Misc', 'owm-weather' ) .'
 				</p>
 				<p>
 					<label for="wpowmweather_disable_spinner_meta">
 						<input type="checkbox" name="wpowmweather_disable_spinner" id="wpowmweather_disable_spinner_meta" value="yes" '. checked( $wow_opt["disable_spinner"], 'yes', false ) .' />
-							'. __( 'Disable loading spinner?', 'wp-owm-weather' ) .'
+							'. __( 'Disable loading spinner?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_disable_anims_meta">
 						<input type="checkbox" name="wpowmweather_disable_anims" id="wpowmweather_disable_anims_meta" value="yes" '. checked( $wow_opt["disable_anims"], 'yes', false ) .' />
-							'. __( 'Disable animations for main icon?', 'wp-owm-weather' ) .'
+							'. __( 'Disable animations for main icon?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
-					<label for="size_meta">'. __( 'Weather size?', 'wp-owm-weather' ) .'</label>
+					<label for="size_meta">'. __( 'Weather size?', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_size">
-						<option ' . selected( 'small', $wow_opt["size"], false ) . ' value="small">'. __( 'Small', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'medium', $wow_opt["size"], false ) . ' value="medium">'. __( 'Medium', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'large', $wow_opt["size"], false ) . ' value="large">'. __( 'Large', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( 'small', $wow_opt["size"], false ) . ' value="small">'. __( 'Small', 'owm-weather' ) .'</option>
+						<option ' . selected( 'medium', $wow_opt["size"], false ) . ' value="medium">'. __( 'Medium', 'owm-weather' ) .'</option>
+						<option ' . selected( 'large', $wow_opt["size"], false ) . ' value="large">'. __( 'Large', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p>
-					<label for="wpowmweather_custom_css_meta">'. __( 'Custom CSS', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_custom_css_meta">'. __( 'Custom CSS', 'owm-weather' ) .'</label>
 					<textarea id="wpowmweather_custom_css_meta" name="wpowmweather_custom_css">'.$wow_opt["custom_css"].'</textarea>
 				    <p>Preceed all CSS rules with .wow-' . $id . ' if you are planning to use more than one weather shortcode on a page.</p>
 				</p>
 				<p class="subsection-title">
-					'. __( 'Tables', 'wp-owm-weather' ) .'
+					'. __( 'Tables', 'owm-weather' ) .'
 				</p>
 				<p>
-					<label for="wpowmweather_table_background_color">'. __( 'Background color', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_table_background_color">'. __( 'Background color', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_table_background_color" type="text" value="'. $wow_opt["table_background_color"] .'" class="wpowmweather_color_picker" />
 				</p>
 				<p>
-					<label for="wpowmweather_table_text_color">'. __( 'Text color', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_table_text_color">'. __( 'Text color', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_table_text_color" type="text" value="'. $wow_opt["table_text_color"] .'" class="wpowmweather_color_picker" />
 				</p>
 				<p>
-					<label for="wpowmweather_table_border_color">'. __( 'Border color', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_table_border_color">'. __( 'Border color', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_table_border_color" type="text" value="'. $wow_opt["table_border_color"] .'" class="wpowmweather_color_picker" />
 				</p>
 				<p>
-					<label for="wpowmweather_table_border_width">'. __( 'Border width (px)', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_table_border_width">'. __( 'Border width (px)', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_table_border_width" type="number" min="0" value="'. $wow_opt["table_border_width"] .'" />
 				</p>
 				<p>
-					<label for="wpowmweather_table_border_style">'. __( 'Border style', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_table_border_style">'. __( 'Border style', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_table_border_style">
-						<option ' . selected( 'solid', $wow_opt["table_border_style"], false ) . ' value="solid">'. __( 'Solid', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'dotted', $wow_opt["table_border_style"], false ) . ' value="dotted">'. __( 'Dotted', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'dashed', $wow_opt["table_border_style"], false ) . ' value="dashed">'. __( 'Dashed', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'double', $wow_opt["table_border_style"], false ) . ' value="double">'. __( 'Double', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'groove', $wow_opt["table_border_style"], false ) . ' value="groove">'. __( 'Groove', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'inset', $wow_opt["table_border_style"], false ) . ' value="inset">'. __( 'Inset', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'outset', $wow_opt["table_border_style"], false ) . ' value="outset">'. __( 'Outset', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'ridge', $wow_opt["table_border_style"], false ) . ' value="ridge">'. __( 'Ridge', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( 'solid', $wow_opt["table_border_style"], false ) . ' value="solid">'. __( 'Solid', 'owm-weather' ) .'</option>
+						<option ' . selected( 'dotted', $wow_opt["table_border_style"], false ) . ' value="dotted">'. __( 'Dotted', 'owm-weather' ) .'</option>
+						<option ' . selected( 'dashed', $wow_opt["table_border_style"], false ) . ' value="dashed">'. __( 'Dashed', 'owm-weather' ) .'</option>
+						<option ' . selected( 'double', $wow_opt["table_border_style"], false ) . ' value="double">'. __( 'Double', 'owm-weather' ) .'</option>
+						<option ' . selected( 'groove', $wow_opt["table_border_style"], false ) . ' value="groove">'. __( 'Groove', 'owm-weather' ) .'</option>
+						<option ' . selected( 'inset', $wow_opt["table_border_style"], false ) . ' value="inset">'. __( 'Inset', 'owm-weather' ) .'</option>
+						<option ' . selected( 'outset', $wow_opt["table_border_style"], false ) . ' value="outset">'. __( 'Outset', 'owm-weather' ) .'</option>
+						<option ' . selected( 'ridge', $wow_opt["table_border_style"], false ) . ' value="ridge">'. __( 'Ridge', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p>
-					<label for="wpowmweather_table_border_radius">'. __( 'Border radius (px)', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_table_border_radius">'. __( 'Border radius (px)', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_table_border_radius" type="number" min="0" value="'. $wow_opt["table_border_radius"] .'" />
 				</p>
 				<p class="subsection-title">
-					'. __( 'Charts', 'wp-owm-weather' ) .'
+					'. __( 'Charts', 'owm-weather' ) .'
 				</p>
 				<p>
-					<label for="wpowmweather_chart_height_meta">'. __( 'Height (in px)', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_chart_height_meta">'. __( 'Height (in px)', 'owm-weather' ) .'</label>
 					<input id="wpowmweather_charet_height_meta" type="text" name="wpowmweather_chart_height" value="'.$wow_opt["chart_height"].'" />
 				</p>
 				<p>
-					<label for="wpowmweather_chart_background_color">'. __( 'Background color', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_chart_background_color">'. __( 'Background color', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_chart_background_color" type="text" value="'. $wow_opt["chart_background_color"] .'" class="wpowmweather_color_picker" />
 				</p>
 				<p>
-					<label for="wpowmweather_chart_border_color">'. __( 'Border color', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_chart_border_color">'. __( 'Border color', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_chart_border_color" type="text" value="'. $wow_opt["chart_border_color"] .'" class="wpowmweather_color_picker" />
 				</p>
 				<p>
-					<label for="wpowmweather_chart_border_width">'. __( 'Border width (px)', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_chart_border_width">'. __( 'Border width (px)', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_chart_border_width" type="number" min="0" value="'. $wow_opt["chart_border_width"] .'" />
 				</p>
 				<p>
-					<label for="wpowmweather_chart_border_style">'. __( 'Border style', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_chart_border_style">'. __( 'Border style', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_chart_border_style">
-						<option ' . selected( 'solid', $wow_opt["chart_border_style"], false ) . ' value="solid">'. __( 'Solid', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'dotted', $wow_opt["chart_border_style"], false ) . ' value="dotted">'. __( 'Dotted', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'dashed', $wow_opt["chart_border_style"], false ) . ' value="dashed">'. __( 'Dashed', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'double', $wow_opt["chart_border_style"], false ) . ' value="double">'. __( 'Double', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'groove', $wow_opt["chart_border_style"], false ) . ' value="groove">'. __( 'Groove', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'inset', $wow_opt["chart_border_style"], false ) . ' value="inset">'. __( 'Inset', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'outset', $wow_opt["chart_border_style"], false ) . ' value="outset">'. __( 'Outset', 'wp-owm-weather' ) .'</option>
-						<option ' . selected( 'ridge', $wow_opt["chart_border_style"], false ) . ' value="ridge">'. __( 'Ridge', 'wp-owm-weather' ) .'</option>
+						<option ' . selected( 'solid', $wow_opt["chart_border_style"], false ) . ' value="solid">'. __( 'Solid', 'owm-weather' ) .'</option>
+						<option ' . selected( 'dotted', $wow_opt["chart_border_style"], false ) . ' value="dotted">'. __( 'Dotted', 'owm-weather' ) .'</option>
+						<option ' . selected( 'dashed', $wow_opt["chart_border_style"], false ) . ' value="dashed">'. __( 'Dashed', 'owm-weather' ) .'</option>
+						<option ' . selected( 'double', $wow_opt["chart_border_style"], false ) . ' value="double">'. __( 'Double', 'owm-weather' ) .'</option>
+						<option ' . selected( 'groove', $wow_opt["chart_border_style"], false ) . ' value="groove">'. __( 'Groove', 'owm-weather' ) .'</option>
+						<option ' . selected( 'inset', $wow_opt["chart_border_style"], false ) . ' value="inset">'. __( 'Inset', 'owm-weather' ) .'</option>
+						<option ' . selected( 'outset', $wow_opt["chart_border_style"], false ) . ' value="outset">'. __( 'Outset', 'owm-weather' ) .'</option>
+						<option ' . selected( 'ridge', $wow_opt["chart_border_style"], false ) . ' value="ridge">'. __( 'Ridge', 'owm-weather' ) .'</option>
 					</select>
 				</p>
 				<p>
-					<label for="wpowmweather_chart_border_radius">'. __( 'Border radius (px)', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_chart_border_radius">'. __( 'Border radius (px)', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_chart_border_radius" type="number" min="0" value="'. $wow_opt["chart_border_radius"] .'" />
 				</p>
 				<p>
-					<label for="wpowmweather_chart_temperature_color">'. __( 'Temperature color', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_chart_temperature_color">'. __( 'Temperature color', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_chart_temperature_color" type="text" value="'. $wow_opt["chart_temperature_color"] .'" class="wpowmweather_color_picker" />
 				</p>
 				<p>
-					<label for="wpowmweather_chart_feels_like_color">'. __( 'Feels like color', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_chart_feels_like_color">'. __( 'Feels like color', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_chart_feels_like_color" type="text" value="'. $wow_opt["chart_feels_like_color"] .'" class="wpowmweather_color_picker" />
 				</p>
 				<p>
-					<label for="wpowmweather_chart_dew_point_color">'. __( 'Dew point color', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_chart_dew_point_color">'. __( 'Dew point color', 'owm-weather' ) .'</label>
 					<input name="wpowmweather_chart_dew_point_color" type="text" value="'. $wow_opt["chart_dew_point_color"] .'" class="wpowmweather_color_picker" />
 				</p>
 			</div>
@@ -1081,15 +1081,15 @@ function wpowmweather_basic($post){
 				<p>
 					<label for="wpowmweather_map_meta">
 						<input type="checkbox" name="wpowmweather_map" id="wpowmweather_map_meta" value="yes" '. checked( $wow_opt["map"], 'yes', false ) .' />
-							'. __( 'Display map?', 'wp-owm-weather' ) .'
+							'. __( 'Display map?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
-					<label for="wpowmweather_map_height_meta">'. __( 'Map height (in px)', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_map_height_meta">'. __( 'Map height (in px)', 'owm-weather' ) .'</label>
 					<input id="wpowmweather_map_height_meta" type="number" min="300" name="wpowmweather_map_height" value="'.$wow_opt["map_height"].'" />
 				</p>
 				<p>
-					<label for="wpowmweather_map_opacity_meta">'. __( 'Layers opacity', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_map_opacity_meta">'. __( 'Layers opacity', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_map_opacity">
 						<option ' . selected( '0', $wow_opt["map_opacity"], false ) . ' value="0">0%</option>
 						<option ' . selected( '0.1', $wow_opt["map_opacity"], false ) . ' value="0.1">10%</option>
@@ -1105,7 +1105,7 @@ function wpowmweather_basic($post){
 					</select>
 				</p>
 				<p>
-					<label for="wpowmweather_map_zoom_meta">'. __( 'Zoom', 'wp-owm-weather' ) .'</label>
+					<label for="wpowmweather_map_zoom_meta">'. __( 'Zoom', 'owm-weather' ) .'</label>
 					<select name="wpowmweather_map_zoom">
 						<option ' . selected( '1', $wow_opt["map_zoom"], false ) . ' value="1">1</option>
 						<option ' . selected( '2', $wow_opt["map_zoom"], false ) . ' value="2">2</option>
@@ -1130,52 +1130,52 @@ function wpowmweather_basic($post){
 				<p>
 					<label for="wpowmweather_map_disable_zoom_wheel_meta">
 						<input type="checkbox" name="wpowmweather_map_disable_zoom_wheel" id="wpowmweather_map_disable_zoom_wheel_meta" value="yes" '. checked( $wow_opt["map_disable_zoom_wheel"], 'yes', false ) .' />
-							'. __( 'Disable zoom wheel on map?', 'wp-owm-weather' ) .'
+							'. __( 'Disable zoom wheel on map?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p class="subsection-title">
-					'. __( 'Layers', 'wp-owm-weather' ) .'
+					'. __( 'Layers', 'owm-weather' ) .'
 				</p>
 				<p>
 					<label for="wpowmweather_map_stations_meta">
 						<input type="checkbox" name="wpowmweather_map_stations" id="wpowmweather_map_stations_meta" value="yes" '. checked( $wow_opt["map_stations"], 'yes', false ) .' />
-							'. __( 'Display stations?', 'wp-owm-weather' ) .'
+							'. __( 'Display stations?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_map_clouds_meta">
 						<input type="checkbox" name="wpowmweather_map_clouds" id="wpowmweather_map_clouds_meta" value="yes" '. checked( $wow_opt["map_clouds"], 'yes', false ) .' />
-							'. __( 'Display clouds?', 'wp-owm-weather' ) .'
+							'. __( 'Display clouds?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_map_precipitation_meta">
 						<input type="checkbox" name="wpowmweather_map_precipitation" id="wpowmweather_map_precipitation_meta" value="yes" '. checked( $wow_opt["map_precipitation"], 'yes', false ) .' />
-							'. __( 'Display precipitation?', 'wp-owm-weather' ) .'
+							'. __( 'Display precipitation?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_map_snow_meta">
 						<input type="checkbox" name="wpowmweather_map_snow" id="wpowmweather_map_snow_meta" value="yes" '. checked( $wow_opt["map_snow"], 'yes', false ) .' />
-							'. __( 'Display snow?', 'wp-owm-weather' ) .'
+							'. __( 'Display snow?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_map_wind_meta">
 						<input type="checkbox" name="wpowmweather_map_wind" id="wpowmweather_map_wind_meta" value="yes" '. checked( $wow_opt["map_wind"], 'yes', false ) .' />
-							'. __( 'Display wind?', 'wp-owm-weather' ) .'
+							'. __( 'Display wind?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_map_temperature_meta">
 						<input type="checkbox" name="wpowmweather_map_temperature" id="wpowmweather_map_temperature_meta" value="yes" '. checked( $wow_opt["map_temperature"], 'yes', false ) .' />
-							'. __( 'Display temperature?', 'wp-owm-weather' ) .'
+							'. __( 'Display temperature?', 'owm-weather' ) .'
 					</label>
 				</p>
 				<p>
 					<label for="wpowmweather_map_pressure_meta">
 						<input type="checkbox" name="wpowmweather_map_pressure" id="wpowmweather_map_pressure_meta" value="yes" '. checked( $wow_opt["map_pressure"], 'yes', false ) .' />
-							'. __( 'Display pressure?', 'wp-owm-weather' ) .'
+							'. __( 'Display pressure?', 'owm-weather' ) .'
 					</label>
 				</p>
 			</div>
@@ -1370,7 +1370,7 @@ function wpowmweather_city_name($custom_city_name, $owm_city_name) {
 function wow_display_today_sunrise_sunset($wpowmweather_sunrise_sunset, $sun_rise, $sun_set, $color, $elem) {
 	if( $wpowmweather_sunrise_sunset == 'yes' ) {
 		return '<div class="wow-sun-hours col">
-					<' . $elem . ' class="wow-sunrise" title="'.__('Sunrise','wp-owm-weather').'">'. sunrise($color) . '<span class="font-weight-bold">' . $sun_rise .'</span></' . $elem . '><' . $elem . ' class="wow-sunset" title="'.__('Sunset','wp-owm-weather').'">'. sunset($color) . '<span class="font-weight-bold">' . $sun_set .'</span></' . $elem . '>
+					<' . $elem . ' class="wow-sunrise" title="'.__('Sunrise','owm-weather').'">'. sunrise($color) . '<span class="font-weight-bold">' . $sun_rise .'</span></' . $elem . '><' . $elem . ' class="wow-sunset" title="'.__('Sunset','owm-weather').'">'. sunset($color) . '<span class="font-weight-bold">' . $sun_set .'</span></' . $elem . '>
 				</div>';
 	}
 
@@ -1380,7 +1380,7 @@ function wow_display_today_sunrise_sunset($wpowmweather_sunrise_sunset, $sun_ris
 function wow_display_today_moonrise_moonset($wpowmweather_moonrise_moonset, $moon_rise, $moon_set, $color, $elem) {
 	if( $wpowmweather_moonrise_moonset == 'yes' ) {
 		return '<div class="wow-moon-hours col">
-					<' . $elem . ' class="wow-moonrise" title="'.__('Moonrise','wp-owm-weather').'">'. moonrise($color) . '<span class="font-weight-bold">' . $moon_rise .'</span></' . $elem . '><' . $elem . ' class="wow-moonset" title="'.__('Moonset','wp-owm-weather').'">'. moonset($color) . '<span class="font-weight-bold">' . $moon_set .'</span></' . $elem . '>
+					<' . $elem . ' class="wow-moonrise" title="'.__('Moonrise','owm-weather').'">'. moonrise($color) . '<span class="font-weight-bold">' . $moon_rise .'</span></' . $elem . '><' . $elem . ' class="wow-moonset" title="'.__('Moonset','owm-weather').'">'. moonset($color) . '<span class="font-weight-bold">' . $moon_set .'</span></' . $elem . '>
 				</div>';
 	}
 
@@ -1744,7 +1744,7 @@ function wow_get_my_weather($attr) {
 
           	$myweather_current = json_decode($myweather_current_url);
           	if (!$myweather_current) {
-          		_e('Unable to retrieve weather data','wp-owm-weather');
+          		_e('Unable to retrieve weather data','owm-weather');
 			}
         } else {
             $transient_key = 'myweather_current_' . $query . $wow_opt["owm_language"] . $wow_opt["temperature_unit"];
@@ -1774,7 +1774,7 @@ function wow_get_my_weather($attr) {
         $wow_data["id"] = $myweather_current->id ?? null;
         $wow_data["timezone"] = $myweather_current->timezone ?? null;
         $wow_data["timestamp"] = $myweather_current->dt ? $myweather_current->dt + (60 * $utc_time_wp) : null;
-        $wow_data["last_update"] = __('Last updated: ','wp-owm-weather').date($wpowmweather_time_php, $wow_data["timestamp"]);
+        $wow_data["last_update"] = __('Last updated: ','owm-weather').date($wpowmweather_time_php, $wow_data["timestamp"]);
         $wow_data["latitude"] = $myweather_current->coord->lat ?? null;
         $wow_data["longitude"] = $myweather_current->coord->lon ?? null;
         $wow_data["condition_id"] = $myweather_current->weather[0]->id ?? null;
@@ -1789,10 +1789,10 @@ function wow_get_my_weather($attr) {
         $wow_data["temperature_unit_character"] = $wow_opt["temperature_unit"] == 'metric' ? 'C' : 'F';
         $wow_data["feels_like"] = $myweather_current->main->feels_like ? ceil($myweather_current->main->feels_like) : null;
         $wow_data["humidity"] = $myweather_current->main->humidity ? $myweather_current->main->humidity . '%' : null;
-        $wow_data["pressure_unit"] = $wow_opt["temperature_unit"] == 'imperial' ? __('in','wp-owm-weather') : __('hPa','wp-owm-weather');
+        $wow_data["pressure_unit"] = $wow_opt["temperature_unit"] == 'imperial' ? __('in','owm-weather') : __('hPa','owm-weather');
         $wow_data["pressure"] = converthp2iom($wow_opt["temperature_unit"], $myweather_current->main->pressure) . ' ' . $wow_data["pressure_unit"];
         $wow_data["cloudiness"] = $myweather_current->clouds->all ? $myweather_current->clouds->all . '%' : null;
-        $wow_data["precipitation_unit"] = $wow_opt["temperature_unit"] == 'imperial' ? __('in','wp-owm-weather') : __('mm','wp-owm-weather');
+        $wow_data["precipitation_unit"] = $wow_opt["temperature_unit"] == 'imperial' ? __('in','owm-weather') : __('mm','owm-weather');
         $wow_data["rain_1h"] = getConvertedPrecipitation($wow_opt["temperature_unit"], $myweather_current->rain->{"1h"} ?? 0) . ' ' . $wow_data["precipitation_unit"];
         $wow_data["rain_3h"] = getConvertedPrecipitation($wow_opt["temperature_unit"], $myweather_current->rain->{"3h"} ?? 0) . ' ' . $wow_data["precipitation_unit"];
         $wow_data["snow_1h"] = getConvertedPrecipitation($wow_opt["temperature_unit"], $myweather_current->snow->{"1h"} ?? 0) . ' ' . $wow_data["precipitation_unit"];
@@ -1800,7 +1800,7 @@ function wow_get_my_weather($attr) {
         $wow_data["precipitation_1h"] = $wow_data["rain_1h"] ?? 0 + $wow_data["snow_1h"] ?? 0 . ' ' . $wow_data["precipitation_unit"];
         $wow_data["precipitation_3h"] = $wow_data["rain_3h"] ?? 0 + $wow_data["snow_3h"] ?? 0 . ' ' . $wow_data["precipitation_unit"];;
         $wow_data["visibility"] = getConvertedDistance($wow_opt["temperature_unit"], $myweather_current->visibility);
-        $wow_data["owm_link"] = '<a href="https://openweathermap.org/city/'.($myweather_current->id ?? "").'" target="_blank" title="'.__('Full weather on OpenWeatherMap','wp-owm-weather').'">'.__('Full weather','wp-owm-weather').'</a>';
+        $wow_data["owm_link"] = '<a href="https://openweathermap.org/city/'.($myweather_current->id ?? "").'" target="_blank" title="'.__('Full weather on OpenWeatherMap','owm-weather').'">'.__('Full weather','owm-weather').'</a>';
         $wow_data["timestamp_sunrise"] = $myweather_current->sys->sunrise ? $myweather_current->sys->sunrise + (60 * $utc_time_wp) : null;
         $wow_data["timestamp_sunset"] = $myweather_current->sys->sunset ? $myweather_current->sys->sunset + (60 * $utc_time_wp) : null;
         $wow_data["sunrise"] = (string)date($wpowmweather_time_php, $wow_data["timestamp_sunrise"]);
@@ -1813,25 +1813,25 @@ function wow_get_my_weather($attr) {
 		} else if ($wow_opt["today_date_format"] == 'day') {
 			switch (strftime("%w", $wow_data["timestamp"])) {
 		        case "0":
-		          	$today_day      = __('Sunday','wp-owm-weather');
+		          	$today_day      = __('Sunday','owm-weather');
 		          	break;
 		        case "1":
-		          	$today_day      = __('Monday','wp-owm-weather');
+		          	$today_day      = __('Monday','owm-weather');
 		          	break;
 		        case "2":
-		        	$today_day      = __('Tuesday','wp-owm-weather');
+		        	$today_day      = __('Tuesday','owm-weather');
 		          	break;
 		        case "3":
-		        	$today_day      = __('Wednesday','wp-owm-weather');
+		        	$today_day      = __('Wednesday','owm-weather');
 		          	break;
 		        case "4":
-		        	$today_day      = __('Thursday','wp-owm-weather');
+		        	$today_day      = __('Thursday','owm-weather');
 		          	break;
 		        case "5":
-		        	$today_day      = __('Friday','wp-owm-weather');
+		        	$today_day      = __('Friday','owm-weather');
 		          	break;
 		        case "6":
-		        	$today_day      = __('Saturday','wp-owm-weather');
+		        	$today_day      = __('Saturday','owm-weather');
 		          	break;
 		  		}
 		} else {
@@ -1845,7 +1845,7 @@ function wow_get_my_weather($attr) {
    				$myweather_url = wp_remote_retrieve_body(wp_remote_get("https://api.openweathermap.org/data/2.5/onecall?lon=".$wow_data["longitude"]."&lat=".$wow_data["latitude"]."&mode=json&exclude=minutely&units=".$wow_opt["temperature_unit"]."&APPID=".$wow_opt["api_key"], array( 'timeout' => 10)));
           		$myweather = json_decode($myweather_url);
           		if (!$myweather) {
-          			_e('Unable to retrieve weather data','wp-owm-weather');
+          			_e('Unable to retrieve weather data','owm-weather');
 				}
         	} else {
         	    $transient_key = 'myweather_' . $wow_data["longitude"] . $wow_data["latitude"] . $wow_opt["temperature_unit"];
@@ -1877,25 +1877,25 @@ function wow_get_my_weather($attr) {
 			foreach ($myweather->daily as $i => $value) {
 		    	switch (strftime('%w', $myweather->daily[$i]->dt + (60 * $utc_time_wp))) {
 			    	case "0":
-			      		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Sun','wp-owm-weather') : __('Sunday','wp-owm-weather');
+			      		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Sun','owm-weather') : __('Sunday','owm-weather');
 			      		break;
 			    	case "1":
-			      		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Mon','wp-owm-weather') : __('Monday','wp-owm-weather');
+			      		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Mon','owm-weather') : __('Monday','owm-weather');
 			      		break;
 			    	case "2":
-			    		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Tue','wp-owm-weather') : __('Tuesday','wp-owm-weather');
+			    		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Tue','owm-weather') : __('Tuesday','owm-weather');
 			      		break;
 			    	case "3":
-			    		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Wed','wp-owm-weather') : __('Wednesday','wp-owm-weather');
+			    		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Wed','owm-weather') : __('Wednesday','owm-weather');
 			      		break;
 			    	case "4":
-			    		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Thu','wp-owm-weather') : __('Thursday','wp-owm-weather');
+			    		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Thu','owm-weather') : __('Thursday','owm-weather');
 			      		break;
 			    	case "5":
-			    		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Fri','wp-owm-weather') : __('Friday','wp-owm-weather');
+			    		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Fri','owm-weather') : __('Friday','owm-weather');
 			      		break;
 			    	case "6":
-			    		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Sat','wp-owm-weather') : __('Saturday','wp-owm-weather');
+			    		$wow_data["daily"][$i]["day"] = $wow_opt["display_length_days_names"] == 'short' ? __('Sat','owm-weather') : __('Saturday','owm-weather');
 				      	break;
 			    }
 
@@ -2279,7 +2279,7 @@ function wow_get_my_weather($attr) {
 			$wow_opt["image_bg_position_vertical_e"]		= 	$wpowmweather_image_bg_position_vertical;
 		}
 */
-		$wow_html["container"]["start"] = '<!-- OWM Weather : WordPress weather plugin v'.WP_OWM_WEATHER_VERSION.' - https://github.com/uwejacobs/wp-owm-weather -->';
+		$wow_html["container"]["start"] = '<!-- OWM Weather : WordPress weather plugin v'.WP_OWM_WEATHER_VERSION.' - https://github.com/uwejacobs/owm-weather -->';
 		$wow_html["container"]["start"] .= '<div id="' . $wow_opt["container_weather_div"] . '" class="wow-'.$wow_opt["id"].' wow-weather-'.$wow_data["condition_id"].' wow-'. $wow_opt["size"] .' wow-template-'. $wow_opt["template"] .'"';
 		$wow_html["container"]["start"] .= ' style="';
 		$wow_html["container"]["start"] .= wow_css_color('background-color', $wow_opt["background_color"]) .
@@ -2327,35 +2327,35 @@ function wow_get_my_weather($attr) {
 	    	$wow_html["info"]["start"] .= '<div class="wow-infos row">';
 
 	        if( $wow_opt["wind"] == 'yes' ) {
-	        	$wow_html["info"]["wind"]            = '<div class="wow-wind col">'.$wow_html["svg"]["wind"]. __( 'Wind', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["wind_speed"] .' - '.$wow_data["wind_direction"].'</span></div>';
+	        	$wow_html["info"]["wind"]            = '<div class="wow-wind col">'.$wow_html["svg"]["wind"]. __( 'Wind', 'owm-weather' ) .'<span class="wow-highlight">'. $wow_data["wind_speed"] .' - '.$wow_data["wind_direction"].'</span></div>';
 	        }
 
 	        if( $wow_opt["humidity"] == 'yes' ) {
-	        	$wow_html["info"]["humidity"]        = '<div class="wow-humidity col">'.$wow_html["svg"]["humidity"]. __( 'Humidity', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["humidity"] .'</span></div>';
+	        	$wow_html["info"]["humidity"]        = '<div class="wow-humidity col">'.$wow_html["svg"]["humidity"]. __( 'Humidity', 'owm-weather' ) .'<span class="wow-highlight">'. $wow_data["humidity"] .'</span></div>';
 	        }
 
 	        if( $wow_opt["dew_point"] == 'yes' ) {
-	        	$wow_html["info"]["dew_point"]       = '<div class="wow-dew-point col">'.$wow_html["svg"]["dew_point"]. __( 'Dew Point', 'wp-owm-weather' ) .'<span class="wow-highlight wow-temperature">'. $wow_data["dew_point"] .'</span></div>';
+	        	$wow_html["info"]["dew_point"]       = '<div class="wow-dew-point col">'.$wow_html["svg"]["dew_point"]. __( 'Dew Point', 'owm-weather' ) .'<span class="wow-highlight wow-temperature">'. $wow_data["dew_point"] .'</span></div>';
 	        }
 
 	        if( $wow_opt["pressure"]  == 'yes') {
-	        	$wow_html["info"]["pressure"]        = '<div class="wow-pressure col">'.$wow_html["svg"]["pressure"]. __( 'Pressure', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["pressure"] .'</span></div>';
+	        	$wow_html["info"]["pressure"]        = '<div class="wow-pressure col">'.$wow_html["svg"]["pressure"]. __( 'Pressure', 'owm-weather' ) .'<span class="wow-highlight">'. $wow_data["pressure"] .'</span></div>';
 	        }
 
 	        if( $wow_opt["cloudiness"] == 'yes' ) {
-	        	$wow_html["info"]["cloudiness"]      = '<div class="wow-cloudiness col">'.$wow_html["svg"]["cloudiness"]. __( 'Cloudiness', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["cloudiness"] .'</span></div>';
+	        	$wow_html["info"]["cloudiness"]      = '<div class="wow-cloudiness col">'.$wow_html["svg"]["cloudiness"]. __( 'Cloudiness', 'owm-weather' ) .'<span class="wow-highlight">'. $wow_data["cloudiness"] .'</span></div>';
 	        }
 
 	        if( $wow_opt["precipitation"] == 'yes' ) {
-	        	$wow_html["info"]["precipitation"]   = '<div class="wow-precipitation col">'.$wow_html["svg"]["precipitation"]. __( 'Precipitation', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["precipitation_3h"] .'</span></div>';
+	        	$wow_html["info"]["precipitation"]   = '<div class="wow-precipitation col">'.$wow_html["svg"]["precipitation"]. __( 'Precipitation', 'owm-weather' ) .'<span class="wow-highlight">'. $wow_data["precipitation_3h"] .'</span></div>';
 	        }
 
 	        if( $wow_opt["visibility"] == 'yes' ) {
-	        	$wow_html["info"]["visibility"]     = '<div class="wow-visibility col">'.$wow_html["svg"]["visibility"]. __( 'Visibility', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["visibility"] .'</span></div>';
+	        	$wow_html["info"]["visibility"]     = '<div class="wow-visibility col">'.$wow_html["svg"]["visibility"]. __( 'Visibility', 'owm-weather' ) .'<span class="wow-highlight">'. $wow_data["visibility"] .'</span></div>';
 	        }
 
 	        if( $wow_opt["uv_index"] == 'yes' ) {
-	        	$wow_html["info"]["uv_index"]       = '<div class="wow-uv-index col">'.$wow_html["svg"]["uv_index"]. __( 'UV Index', 'wp-owm-weather' ) .'<span class="wow-highlight">'. $wow_data["uv_index"] .'</span></div>';
+	        	$wow_html["info"]["uv_index"]       = '<div class="wow-uv-index col">'.$wow_html["svg"]["uv_index"]. __( 'UV Index', 'owm-weather' ) .'<span class="wow-highlight">'. $wow_data["uv_index"] .'</span></div>';
 	        }
 
 	        $wow_html["info"]["end"] .= '</div>';
@@ -2769,24 +2769,24 @@ function wow_custom_wow_weather_column($column, $post_id) {
 // Register Custom Post Type
 function wpowmweather_weather() {
 	$labels = array(
-		'name'                => _x( 'Weather', 'Post Type General Name', 'wp-owm-weather' ),
-		'singular_name'       => _x( 'Weather', 'Post Type Singular Name', 'wp-owm-weather' ),
-		'menu_name'           => __( 'Weather', 'wp-owm-weather' ),
-		'parent_item_colon'   => __( 'Parent Weather:', 'wp-owm-weather' ),
-		'all_items'           => __( 'All Weather', 'wp-owm-weather' ),
-		'view_item'           => __( 'View Weather', 'wp-owm-weather' ),
-		'add_new_item'        => __( 'Add New Weather', 'wp-owm-weather' ),
-		'add_new'             => __( 'New Weather', 'wp-owm-weather' ),
-		'edit_item'           => __( 'Edit Weather', 'wp-owm-weather' ),
-		'update_item'         => __( 'Update Weather', 'wp-owm-weather' ),
-		'search_items'        => __( 'Search Weather', 'wp-owm-weather' ),
-		'not_found'           => __( 'No weather found', 'wp-owm-weather' ),
-		'not_found_in_trash'  => __( 'No weather found in Trash', 'wp-owm-weather' ),
+		'name'                => _x( 'Weather', 'Post Type General Name', 'owm-weather' ),
+		'singular_name'       => _x( 'Weather', 'Post Type Singular Name', 'owm-weather' ),
+		'menu_name'           => __( 'Weather', 'owm-weather' ),
+		'parent_item_colon'   => __( 'Parent Weather:', 'owm-weather' ),
+		'all_items'           => __( 'All Weather', 'owm-weather' ),
+		'view_item'           => __( 'View Weather', 'owm-weather' ),
+		'add_new_item'        => __( 'Add New Weather', 'owm-weather' ),
+		'add_new'             => __( 'New Weather', 'owm-weather' ),
+		'edit_item'           => __( 'Edit Weather', 'owm-weather' ),
+		'update_item'         => __( 'Update Weather', 'owm-weather' ),
+		'search_items'        => __( 'Search Weather', 'owm-weather' ),
+		'not_found'           => __( 'No weather found', 'owm-weather' ),
+		'not_found_in_trash'  => __( 'No weather found in Trash', 'owm-weather' ),
 	);
 
 	$args = array(
-		'label'               => __( 'weather', 'wp-owm-weather' ),
-		'description'         => __( 'Listing weather', 'wp-owm-weather' ),
+		'label'               => __( 'weather', 'owm-weather' ),
+		'description'         => __( 'Listing weather', 'owm-weather' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title' ),
 		'hierarchical'        => false,
@@ -2847,7 +2847,7 @@ function wpowmweather_notice() {
 	if ( is_plugin_active( 'owm-weather/wpowmweather.php' ) && !isset($wow_advanced_api_key['wow_advanced_api_key'])) {
 	    ?>
 	    <div class="error notice">
-	        <p><a href="<?php echo admin_url('admin.php?page=wow-settings-admin#tab_advanced'); ?>"><?php _e( 'OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits requests.', 'wp-owm-weather' ); ?></a></p>
+	        <p><a href="<?php echo admin_url('admin.php?page=wow-settings-admin#tab_advanced'); ?>"><?php _e( 'OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits requests.', 'owm-weather' ); ?></a></p>
 	    </div>
 	    <?php
 	}
@@ -2858,7 +2858,7 @@ add_action( 'admin_notices', 'wpowmweather_notice' );
 //Utility functions
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function generate_hour_options($current) {
-	$str = '<option ' . selected( 0, intval($current), false ) . ' value="0">' . __( "None", 'wp-owm-weather' ) . '</option>';
+	$str = '<option ' . selected( 0, intval($current), false ) . ' value="0">' . __( "None", 'owm-weather' ) . '</option>';
 
     for ($i=1; $i<=48; $i++) {
         if ($i == 1) {
@@ -2868,7 +2868,7 @@ function generate_hour_options($current) {
         } else {
             $h = 'Now + ' . ($i-1) . ' hours';
         }
-		$str .= '<option ' . selected( $i, intval($current), false ) . ' value="' . $i . '">' . __( $h, 'wp-owm-weather' ) . '</option>';
+		$str .= '<option ' . selected( $i, intval($current), false ) . ' value="' . $i . '">' . __( $h, 'owm-weather' ) . '</option>';
     }
 
     return $str;

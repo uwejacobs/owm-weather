@@ -93,7 +93,7 @@ Templating system: The main advantage is that you can create a completely person
 * Go to OWM Weather template directory: http://yoursite.com/wp-content/plugins/owm-weather/template/
 * Copy content-wpowmweather-custom1.php and content-wpowmweather-custom2.php files.
 * Go to your theme directory: http://yoursite.com/wp-content/themes/yourtheme/
-* Create a new folder called wp-owm-weather (the spelling is important).
+* Create a new folder called owm-weather (the spelling is important).
 * In this new folder, paste content-wpowmweather-custom1.php and content-wpowmweather-custom2.php files.
 * Now, open content-wpowmweather-custom1.php or content-wpowmweather-custom2.php with a php editor like notepad ++, coda2, sublime text…
 * Write your weather layout.. You can use the other templates as guidelines.

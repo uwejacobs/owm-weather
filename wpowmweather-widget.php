@@ -33,7 +33,7 @@ function wow_dashboard_widget_function() {
 		wp_enqueue_script('popper-js');/*bugbug*/
 		echo do_shortcode('[wow-weather id="'.$my_weather['weather_db'].'"]');
 	} else {
-		_e('Please select a weather via configure link','wp-owm-weather');
+		_e('Please select a weather via configure link','owm-weather');
 	}
 }
 /**
@@ -56,7 +56,7 @@ function wow_dashboard_widget_option($widget_id) {
 
 	echo'<p>';
 	echo'<label for="wow_weather_db-">';
-			_e('Select the weather to display:', 'wp-owm-weather');
+			_e('Select the weather to display:', 'owm-weather');
 	echo'</label>';
 
 	echo'<select name="wow_widget[weather_db]">';
