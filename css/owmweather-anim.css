@@ -1,72 +1,72 @@
-.wow-main-symbol svg {
+.owmw-main-symbol svg {
 	float: none;
 	shape-rendering: geometric-precision;
 }
 
 @media only screen and (min-width:480px) {
-	.wow-main-symbol svg {
+	.owmw-main-symbol svg {
 		width: 50%;
 	}
 }
 
 @media only screen and (min-width:600px) {
-	.wow-main-symbol svg {
+	.owmw-main-symbol svg {
 		width: 50%;
 	}
 }
 
 @media only screen and (min-width:768px) {
-	.wow-main-symbol svg {
+	.owmw-main-symbol svg {
 		width: 33.333%;
 	}
 }
 
 @media only screen and (min-width:992px) {
-	.wow-main-symbol svg {
+	.owmw-main-symbol svg {
 		width: 25%;
 	}
 }
 
 @media only screen and (max-height:319px) {
-	.wow-main-symbol svg {
+	.owmw-main-symbol svg {
 		height: 29%;
 	}
 }
 
 @media only screen and (min-height:320px) {
-	.wow-main-symbol svg {
+	.owmw-main-symbol svg {
 		height: 22%;
 	}
 }
 
 @media only screen and (min-height:768px) {
-	.wow-main-symbol svg {
+	.owmw-main-symbol svg {
 		height: 30%;
 	}
 }
 
 @media only screen and (min-height:1000px) {
-	.wow-main-symbol svg {
+	.owmw-main-symbol svg {
 		height: 30%;
 	}
 }
 
 @media only screen and (min-height:1400px) {
-	.wow-main-symbol svg {
+	.owmw-main-symbol svg {
 		height: 22%;
 	}
 }
 
-.wow-main-symbol svg,.wow-main-symbol svg * {
+.owmw-main-symbol svg,.owmw-main-symbol svg * {
 	transform-box: fill-box;
 }
 
-.wow-main-symbol .climacon-component-stroke {
+.owmw-main-symbol .climacon-component-stroke {
 	-webkit-text-stroke-width: 0;
 	stroke-width: 0;
 }
 
-.wow-main-symbol .climacon-component-fill {
+.owmw-main-symbol .climacon-component-fill {
 	-webkit-text-fill-color: #aedef4;
 	-webkit-text-stroke-color: white;
 	-webkit-text-stroke-width: 0;
@@ -75,7 +75,7 @@
 	stroke: white;
 }
 
-.wow-main-symbol g,.wow-main-symbol path,.wow-main-symbol circle,.wow-main-symbol rect {
+.owmw-main-symbol g,.owmw-main-symbol path,.owmw-main-symbol circle,.owmw-main-symbol rect {
 	-webkit-transform-origin: 50% 50%;
 	-moz-transform-origin: 50% 50%;
 	-o-transform-origin: 50% 50%;
@@ -99,14 +99,14 @@
 	animation-duration: 12s;
 }
 
-.wow-main-symbol .climacon-componentWrap-sun {
+.owmw-main-symbol .climacon-componentWrap-sun {
 	-webkit-animation-name: rotate;
 	-moz-animation-name: rotate;
 	-o-animation-name: rotate;
 	animation-name: rotate;
 }
 
-.wow-main-symbol .climacon-iconWrap-sun .climacon-component-stroke_sunSpoke,.wow-main-symbol .climacon-iconWrap-sunFill .climacon-component-stroke_sunSpoke {
+.owmw-main-symbol .climacon-iconWrap-sun .climacon-component-stroke_sunSpoke,.owmw-main-symbol .climacon-iconWrap-sunFill .climacon-component-stroke_sunSpoke {
 	fill-opacity: 1;
 	-webkit-animation-name: scale;
 	-moz-animation-name: scale;
@@ -122,21 +122,21 @@
 	animation-duration: 3s;
 }
 
-.wow-main-symbol .climacon-iconWrap .climacon-component-stroke_sunSpoke:nth-child(even) {
+.owmw-main-symbol .climacon-iconWrap .climacon-component-stroke_sunSpoke:nth-child(even) {
 	-webkit-animation-delay: 3s;
 	-moz-animation-delay: 3s;
 	-o-animation-delay: 3s;
 	animation-delay: 3s;
 }
 
-.wow-main-symbol .climacon-componentWrap-moon {
+.owmw-main-symbol .climacon-componentWrap-moon {
 	-webkit-animation-name: wobble;
 	-moz-animation-name: wobble;
 	-o-animation-name: wobble;
 	animation-name: wobble;
 }
 
-.wow-main-symbol .climacon-componentWrap-snowflake {
+.owmw-main-symbol .climacon-componentWrap-snowflake {
 	-webkit-animation-name: rotate;
 	-moz-animation-name: rotate;
 	-o-animation-name: rotate;
@@ -151,7 +151,7 @@
 	animation-direction: normal;
 }
 
-.wow-main-symbol .climacon-componentWrap-wind {
+.owmw-main-symbol .climacon-componentWrap-wind {
 	-webkit-animation-name: translateWind;
 	-moz-animation-name: translateWind;
 	-o-animation-name: translateWind;
@@ -170,7 +170,7 @@
 	animation-timing-function: ease-in-out;
 }
 
-.wow-main-symbol .climacon-componentWrap-sun_cloud {
+.owmw-main-symbol .climacon-componentWrap-sun_cloud {
 	-webkit-animation-name: behindCloudMove,rotate;
 	-moz-animation-name: behindCloudMove,rotate;
 	-o-animation-name: behindCloudMove,rotate;
@@ -193,7 +193,7 @@
 	animation-duration: 3s,12s;
 }
 
-.wow-main-symbol .climacon-component-stroke_sunSpoke {
+.owmw-main-symbol .climacon-component-stroke_sunSpoke {
 	fill-opacity: 0;
 	-webkit-animation-name: fillOpacity,scale;
 	-moz-animation-name: fillOpacity,scale;
@@ -221,14 +221,14 @@
 	animation-fill-mode: both;
 }
 
-.wow-main-symbol .climacon-component-stroke_sunSpoke:nth-child(even) {
+.owmw-main-symbol .climacon-component-stroke_sunSpoke:nth-child(even) {
 	-webkit-animation-delay: 3s;
 	-moz-animation-delay: 3s;
 	-o-animation-delay: 3s;
 	animation-delay: 3s;
 }
 
-.wow-main-symbol .climacon-componentWrap-moon_cloud {
+.owmw-main-symbol .climacon-componentWrap-moon_cloud {
 	-webkit-animation-name: behindCloudMove,wobble;
 	-moz-animation-name: behindCloudMove,wobble;
 	-o-animation-name: behindCloudMove,wobble;
@@ -251,7 +251,7 @@
 	animation-duration: 3s,12s;
 }
 
-.wow-main-symbol .climacon-component-stroke_drizzle {
+.owmw-main-symbol .climacon-component-stroke_drizzle {
 	fill-opacity: 0;
 	-webkit-animation-name: drizzleFall,fillOpacity2;
 	-moz-animation-name: drizzleFall,fillOpacity2;
@@ -267,28 +267,28 @@
 	animation-duration: 1s;
 }
 
-.wow-main-symbol .climacon-component-stroke_drizzle:nth-child(1) {
+.owmw-main-symbol .climacon-component-stroke_drizzle:nth-child(1) {
 	-webkit-animation-delay: 0;
 	-moz-animation-delay: 0;
 	-o-animation-delay: 0;
 	animation-delay: 0;
 }
 
-.wow-main-symbol .climacon-component-stroke_drizzle:nth-child(2) {
+.owmw-main-symbol .climacon-component-stroke_drizzle:nth-child(2) {
 	-webkit-animation-delay: .6s;
 	-moz-animation-delay: .6s;
 	-o-animation-delay: .6s;
 	animation-delay: .6s;
 }
 
-.wow-main-symbol .climacon-component-stroke_drizzle:nth-child(3) {
+.owmw-main-symbol .climacon-component-stroke_drizzle:nth-child(3) {
 	-webkit-animation-delay: 1.2s;
 	-moz-animation-delay: 1.2s;
 	-o-animation-delay: 1.2s;
 	animation-delay: 1.2s;
 }
 
-.wow-main-symbol .climacon-component-stroke_rain {
+.owmw-main-symbol .climacon-component-stroke_rain {
 	fill-opacity: 0;
 	-webkit-animation-name: rainFall,fillOpacity2;
 	-webkit-animation-timing-function: ease-in;
@@ -304,21 +304,21 @@
 	animation-duration: 2s;
 }
 
-.wow-main-symbol .climacon-component-stroke_rain:nth-child(n+4) {
+.owmw-main-symbol .climacon-component-stroke_rain:nth-child(n+4) {
 	-webkit-animation-delay: 1s;
 	-moz-animation-delay: 1s;
 	-o-animation-delay: 1s;
 	animation-delay: 1s;
 }
 
-.wow-main-symbol .climacon-component-stroke_rain_alt:nth-child(2) {
+.owmw-main-symbol .climacon-component-stroke_rain_alt:nth-child(2) {
 	-webkit-animation-delay: 1s;
 	-moz-animation-delay: 1s;
 	-o-animation-delay: 1s;
 	animation-delay: 1s;
 }
 
-.wow-main-symbol .climacon-component-stroke_hailAlt {
+.owmw-main-symbol .climacon-component-stroke_hailAlt {
 	fill-opacity: 0;
 	-webkit-animation-timing-function: ease-in;
 	-moz-animation-timing-function: ease-in;
@@ -330,77 +330,77 @@
 	animation-duration: .66667s;
 }
 
-.wow-main-symbol .climacon-component-stroke_hailAlt-left {
+.owmw-main-symbol .climacon-component-stroke_hailAlt-left {
 	-webkit-animation-name: hailLeft,fillOpacity2;
 	-moz-animation-name: hailLeft,fillOpacity2;
 	-o-animation-name: hailLeft,fillOpacity2;
 	animation-name: hailLeft,fillOpacity2;
 }
 
-.wow-main-symbol .climacon-component-stroke_hailAlt-middle {
+.owmw-main-symbol .climacon-component-stroke_hailAlt-middle {
 	-webkit-animation-name: hailMiddle,fillOpacity2;
 	-moz-animation-name: hailMiddle,fillOpacity2;
 	-o-animation-name: hailMiddle,fillOpacity2;
 	animation-name: hailMiddle,fillOpacity2;
 }
 
-.wow-main-symbol .climacon-component-stroke_hailAlt-middle:nth-child(2) {
+.owmw-main-symbol .climacon-component-stroke_hailAlt-middle:nth-child(2) {
 	-webkit-animation-name: hailMiddle2,fillOpacity2;
 	-moz-animation-name: hailMiddle2,fillOpacity2;
 	-o-animation-name: hailMiddle2,fillOpacity2;
 	animation-name: hailMiddle2,fillOpacity2;
 }
 
-.wow-main-symbol .climacon-component-stroke_hailAlt-right {
+.owmw-main-symbol .climacon-component-stroke_hailAlt-right {
 	-webkit-animation-name: hailRight,fillOpacity2;
 	-moz-animation-name: hailRight,fillOpacity2;
 	-o-animation-name: hailRight,fillOpacity2;
 	animation-name: hailRight,fillOpacity2;
 }
 
-.wow-main-symbol .climacon-component-stroke_hailAlt:nth-child(1) {
+.owmw-main-symbol .climacon-component-stroke_hailAlt:nth-child(1) {
 	-webkit-animation-delay: 0;
 	-moz-animation-delay: 0;
 	-o-animation-delay: 0;
 	animation-delay: 0;
 }
 
-.wow-main-symbol .climacon-component-stroke_hailAlt:nth-child(2) {
+.owmw-main-symbol .climacon-component-stroke_hailAlt:nth-child(2) {
 	-webkit-animation-delay: .11111s;
 	-moz-animation-delay: .11111s;
 	-o-animation-delay: .11111s;
 	animation-delay: .11111s;
 }
 
-.wow-main-symbol .climacon-component-stroke_hailAlt:nth-child(3) {
+.owmw-main-symbol .climacon-component-stroke_hailAlt:nth-child(3) {
 	-webkit-animation-delay: .22222s;
 	-moz-animation-delay: .22222s;
 	-o-animation-delay: .22222s;
 	animation-delay: .22222s;
 }
 
-.wow-main-symbol .climacon-component-stroke_hailAlt:nth-child(4) {
+.owmw-main-symbol .climacon-component-stroke_hailAlt:nth-child(4) {
 	-webkit-animation-delay: .33333s;
 	-moz-animation-delay: .33333s;
 	-o-animation-delay: .33333s;
 	animation-delay: .33333s;
 }
 
-.wow-main-symbol .climacon-component-stroke_hailAlt:nth-child(5) {
+.owmw-main-symbol .climacon-component-stroke_hailAlt:nth-child(5) {
 	-webkit-animation-delay: .44444s;
 	-moz-animation-delay: .44444s;
 	-o-animation-delay: .44444s;
 	animation-delay: .44444s;
 }
 
-.wow-main-symbol .climacon-component-stroke_hailAlt:nth-child(6) {
+.owmw-main-symbol .climacon-component-stroke_hailAlt:nth-child(6) {
 	-webkit-animation-delay: .55556s;
 	-moz-animation-delay: .55556s;
 	-o-animation-delay: .55556s;
 	animation-delay: .55556s;
 }
 
-.wow-main-symbol .climacon-component-stroke_snow {
+.owmw-main-symbol .climacon-component-stroke_snow {
 	fill-opacity: 0;
 	-webkit-animation-name: snowFall,fillOpacity2;
 	-moz-animation-name: snowFall,fillOpacity2;
@@ -416,35 +416,35 @@
 	animation-duration: 6s;
 }
 
-.wow-main-symbol .climacon-component-stroke_snow:nth-child(3) {
+.owmw-main-symbol .climacon-component-stroke_snow:nth-child(3) {
 	-webkit-animation-name: snowFall2,fillOpacity2;
 	-moz-animation-name: snowFall2,fillOpacity2;
 	-o-animation-name: snowFall2,fillOpacity2;
 	animation-name: snowFall2,fillOpacity2;
 }
 
-.wow-main-symbol .climacon-component-stroke_snow:nth-child(1) {
+.owmw-main-symbol .climacon-component-stroke_snow:nth-child(1) {
 	-webkit-animation-delay: 0;
 	-moz-animation-delay: 0;
 	-o-animation-delay: 0;
 	animation-delay: 0;
 }
 
-.wow-main-symbol .climacon-component-stroke_snow:nth-child(2) {
+.owmw-main-symbol .climacon-component-stroke_snow:nth-child(2) {
 	-webkit-animation-delay: 2s;
 	-moz-animation-delay: 2s;
 	-o-animation-delay: 2s;
 	animation-delay: 2s;
 }
 
-.wow-main-symbol .climacon-component-stroke_snow:nth-child(3) {
+.owmw-main-symbol .climacon-component-stroke_snow:nth-child(3) {
 	-webkit-animation-delay: 4s;
 	-moz-animation-delay: 4s;
 	-o-animation-delay: 4s;
 	animation-delay: 4s;
 }
 
-.wow-main-symbol .climacon-component-snowAlt {
+.owmw-main-symbol .climacon-component-snowAlt {
 	fill-opacity: 0;
 	-webkit-animation-name: snowFall,fillOpacity2;
 	-moz-animation-name: snowFall,fillOpacity2;
@@ -460,7 +460,7 @@
 	animation-duration: 6s;
 }
 
-.wow-main-symbol .climacon-component-stroke_fogLine {
+.owmw-main-symbol .climacon-component-stroke_fogLine {
 	fill-opacity: .5;
 	-webkit-animation-name: translateFog,fillOpacityFog;
 	-moz-animation-name: translateFog,fillOpacityFog;
@@ -484,14 +484,14 @@
 	animation-duration: 12s;
 }
 
-.wow-main-symbol .climacon-component-stroke_fogLine:nth-child(even) {
+.owmw-main-symbol .climacon-component-stroke_fogLine:nth-child(even) {
 	-webkit-animation-delay: 6s;
 	-moz-animation-delay: 6s;
 	-o-animation-delay: 6s;
 	animation-delay: 6s;
 }
 
-.wow-main-symbol .climacon-component-stroke_lightning {
+.owmw-main-symbol .climacon-component-stroke_lightning {
 	fill-opacity: 0;
 	-webkit-animation-name: lightningFlash;
 	-moz-animation-name: lightningFlash;
@@ -515,7 +515,7 @@
 	animation-duration: 12s;
 }
 
-.wow-main-symbol .climacon-component-stroke_tornadoLine {
+.owmw-main-symbol .climacon-component-stroke_tornadoLine {
 	-webkit-animation-name: translateTornado1;
 	-moz-animation-name: translateTornado1;
 	-o-animation-name: translateTornado1;
@@ -538,49 +538,49 @@
 	animation-duration: 12s;
 }
 
-.wow-main-symbol .climacon-component-stroke_tornadoLine:nth-child(1) {
+.owmw-main-symbol .climacon-component-stroke_tornadoLine:nth-child(1) {
 	-webkit-animation-name: translateTornado1;
 	-moz-animation-name: translateTornado1;
 	-o-animation-name: translateTornado1;
 	animation-name: translateTornado1;
 }
 
-.wow-main-symbol .climacon-component-stroke_tornadoLine:nth-child(2) {
+.owmw-main-symbol .climacon-component-stroke_tornadoLine:nth-child(2) {
 	-webkit-animation-name: translateTornado2;
 	-moz-animation-name: translateTornado2;
 	-o-animation-name: translateTornado2;
 	animation-name: translateTornado2;
 }
 
-.wow-main-symbol .climacon-component-stroke_tornadoLine:nth-child(3) {
+.owmw-main-symbol .climacon-component-stroke_tornadoLine:nth-child(3) {
 	-webkit-animation-name: translateTornado3;
 	-moz-animation-name: translateTornado3;
 	-o-animation-name: translateTornado3;
 	animation-name: translateTornado3;
 }
 
-.wow-main-symbol .climacon-component-stroke_tornadoLine:nth-child(4) {
+.owmw-main-symbol .climacon-component-stroke_tornadoLine:nth-child(4) {
 	-webkit-animation-name: translateTornado4;
 	-moz-animation-name: translateTornado4;
 	-o-animation-name: translateTornado4;
 	animation-name: translateTornado4;
 }
 
-.wow-main-symbol .climacon-component-stroke_tornadoLine:nth-child(5) {
+.owmw-main-symbol .climacon-component-stroke_tornadoLine:nth-child(5) {
 	-webkit-animation-name: translateTornado5;
 	-moz-animation-name: translateTornado5;
 	-o-animation-name: translateTornado5;
 	animation-name: translateTornado5;
 }
 
-.wow-main-symbol .climacon-component-stroke_tornadoLine:nth-child(6) {
+.owmw-main-symbol .climacon-component-stroke_tornadoLine:nth-child(6) {
 	-webkit-animation-name: translateTornado6;
 	-moz-animation-name: translateTornado6;
 	-o-animation-name: translateTornado6;
 	animation-name: translateTornado6;
 }
 
-.wow-main-symbol .climacon-component-stroke_arrow-up {
+.owmw-main-symbol .climacon-component-stroke_arrow-up {
 	fill-opacity: 0;
 	-webkit-animation-name: fillOpacity2,translateArrowUp;
 	-moz-animation-name: fillOpacity2,translateArrowUp;
@@ -592,7 +592,7 @@
 	animation-duration: 3s;
 }
 
-.wow-main-symbol .climacon-component-stroke_arrow-down {
+.owmw-main-symbol .climacon-component-stroke_arrow-down {
 	fill-opacity: 0;
 	-webkit-animation-name: fillOpacity2,translateArrowDown;
 	-moz-animation-name: fillOpacity2,translateArrowDown;
@@ -604,7 +604,7 @@
 	animation-duration: 3s;
 }
 
-.wow-main-symbol .climacon-componentWrap-sunriseAlt {
+.owmw-main-symbol .climacon-componentWrap-sunriseAlt {
 	-webkit-animation-name: translateSunrise,fillOpacity;
 	-moz-animation-name: translateSunrise,fillOpacity;
 	-o-animation-name: translateSunrise,fillOpacity;
@@ -627,7 +627,7 @@
 	animation-fill-mode: forwards;
 }
 
-.wow-main-symbol .climacon-componentWrap-sunsetAlt {
+.owmw-main-symbol .climacon-componentWrap-sunsetAlt {
 	-webkit-animation-name: translateSunset;
 	-moz-animation-name: translateSunset;
 	-o-animation-name: translateSunset;

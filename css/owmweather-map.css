@@ -1,43 +1,43 @@
-.wow-map div.olMap {
+.owmw-map div.olMap {
 	z-index: 0;
 	padding: 0 !important;
 	margin: 0 !important;
 	cursor: default;
 }
 
-.wow-map div.olMapViewport {
+.owmw-map div.olMapViewport {
 	text-align: left;
 	-ms-touch-action: none;
 }
 
-.wow-map div.olLayerDiv {
+.owmw-map div.olLayerDiv {
 	-moz-user-select: none;
 	-khtml-user-select: none;
 }
 
-.wow-map .olLayerGoogleCopyright {
+.owmw-map .olLayerGoogleCopyright {
 	left: 2px;
 	bottom: 2px;
 }
 
-.wow-map .olLayerGoogleV3.olLayerGoogleCopyright {
+.owmw-map .olLayerGoogleV3.olLayerGoogleCopyright {
 	right: auto !important;
 }
 
-.wow-map .olLayerGooglePoweredBy {
+.owmw-map .olLayerGooglePoweredBy {
 	left: 2px;
 	bottom: 15px;
 }
 
-.wow-map .olLayerGoogleV3.olLayerGooglePoweredBy {
+.owmw-map .olLayerGoogleV3.olLayerGooglePoweredBy {
 	bottom: 15px !important;
 }
 
-.wow-map .olForeignContainer {
+.owmw-map .olForeignContainer {
 	opacity: 1 !important;
 }
 
-.wow-map .olControlAttribution {
+.owmw-map .olControlAttribution {
 	font-size: smaller;
 	right: 3px;
 	bottom: 0;
@@ -45,7 +45,7 @@
 	display: block;
 }
 
-.wow-map .olControlScale {
+.owmw-map .olControlScale {
 	right: 3px;
 	bottom: 3em;
 	display: block;
@@ -53,7 +53,7 @@
 	font-size: smaller;
 }
 
-.wow-map .olControlScaleLine {
+.owmw-map .olControlScaleLine {
 	display: block;
 	position: absolute;
 	left: 10px;
@@ -61,20 +61,20 @@
 	font-size: xx-small;
 }
 
-.wow-map .olControlScaleLineBottom {
+.owmw-map .olControlScaleLineBottom {
 	border: solid 2px black;
 	border-bottom: 0;
 	margin-top: -2px;
 	text-align: center;
 }
 
-.wow-map .olControlScaleLineTop {
+.owmw-map .olControlScaleLineTop {
 	border: solid 2px black;
 	border-top: 0;
 	text-align: center;
 }
 
-.wow-map .olControlPermalink {
+.owmw-map .olControlPermalink {
 	right: 3px;
 	bottom: 1.5em;
 	display: block;
@@ -82,7 +82,7 @@
 	font-size: smaller;
 }
 
-.wow-map div.olControlMousePosition {
+.owmw-map div.olControlMousePosition {
 	bottom: 0;
 	right: 3px;
 	display: block;
@@ -91,19 +91,19 @@
 	font-size: smaller;
 }
 
-.wow-map .olControlOverviewMapContainer {
+.owmw-map .olControlOverviewMapContainer {
 	position: absolute;
 	bottom: 0;
 	right: 0;
 }
 
-.wow-map .olControlOverviewMapElement {
+.owmw-map .olControlOverviewMapElement {
 	padding: 10px 18px 10px 10px;
 	background-color: #00008b;
 	-moz-border-radius: 1em 0 0 0;
 }
 
-.wow-map .olControlOverviewMapMinimizeButton,.wow-map .olControlOverviewMapMaximizeButton {
+.owmw-map .olControlOverviewMapMinimizeButton,.owmw-map .olControlOverviewMapMaximizeButton {
 	height: 18px;
 	width: 18px;
 	right: 0;
@@ -111,14 +111,14 @@
 	cursor: pointer;
 }
 
-.wow-map .olControlOverviewMapExtentRectangle {
+.owmw-map .olControlOverviewMapExtentRectangle {
 	overflow: hidden;
 	background-image: url("img/blank.gif");
 	cursor: move;
 	border: 2px dotted red;
 }
 
-.wow-map .olControlOverviewMapRectReplacement {
+.owmw-map .olControlOverviewMapRectReplacement {
 	overflow: hidden;
 	cursor: move;
 	background-image: url("img/overview_replacement.gif");
@@ -126,14 +126,14 @@
 	background-position: center;
 }
 
-.wow-map .olLayerGeoRSSDescription {
+.owmw-map .olLayerGeoRSSDescription {
 	float: left;
 	width: 100%;
 	overflow: auto;
 	font-size: 1.0;
 }
 
-.wow-map .olLayerGeoRSSClose {
+.owmw-map .olLayerGeoRSSClose {
 	float: right;
 	color: gray;
 	font-size: 1.2em;
@@ -141,52 +141,52 @@
 	font-family: sans-serif;
 }
 
-.wow-map .olLayerGeoRSSTitle {
+.owmw-map .olLayerGeoRSSTitle {
 	float: left;
 	font-size: 1.2em;
 }
 
-.wow-map .olPopupContent {
+.owmw-map .olPopupContent {
 	padding: 5px;
 	overflow: auto;
 }
 
-.wow-map .olControlNavigationHistory {
+.owmw-map .olControlNavigationHistory {
 	background-image: url("img/navigation_history.png");
 	background-repeat: no-repeat;
 	width: 24px;
 	height: 24px;
 }
 
-.wow-map .olControlNavigationHistoryPreviousItemActive {
+.owmw-map .olControlNavigationHistoryPreviousItemActive {
 	background-position: 0 0;
 }
 
-.wow-map .olControlNavigationHistoryPreviousItemInactive {
+.owmw-map .olControlNavigationHistoryPreviousItemInactive {
 	background-position: 0 -24px;
 }
 
-.wow-map .olControlNavigationHistoryNextItemActive {
+.owmw-map .olControlNavigationHistoryNextItemActive {
 	background-position: -24px 0;
 }
 
-.wow-map .olControlNavigationHistoryNextItemInactive {
+.owmw-map .olControlNavigationHistoryNextItemInactive {
 	background-position: -24px -24px;
 }
 
-.wow-map div.olControlSaveFeaturesItemActive {
+.owmw-map div.olControlSaveFeaturesItemActive {
 	background-image: url(img/save_features_on.png);
 	background-repeat: no-repeat;
 	background-position: 0 1px;
 }
 
-.wow-map div.olControlSaveFeaturesItemInactive {
+.owmw-map div.olControlSaveFeaturesItemInactive {
 	background-image: url(img/save_features_off.png);
 	background-repeat: no-repeat;
 	background-position: 0 1px;
 }
 
-.wow-map .olHandlerBoxZoomBox {
+.owmw-map .olHandlerBoxZoomBox {
 	border: 2px solid red;
 	position: absolute;
 	background-color: white;
@@ -195,7 +195,7 @@
 	filter: alpha(opacity=50);
 }
 
-.wow-map .olHandlerBoxSelectFeature {
+.owmw-map .olHandlerBoxSelectFeature {
 	border: 2px solid blue;
 	position: absolute;
 	background-color: white;
@@ -204,12 +204,12 @@
 	filter: alpha(opacity=50);
 }
 
-.wow-map .olControlPanPanel {
+.owmw-map .olControlPanPanel {
 	top: 10px;
 	left: 5px;
 }
 
-.wow-map .olControlPanPanel div {
+.owmw-map .olControlPanPanel div {
 	background-image: url(img/pan-panel.png);
 	height: 18px;
 	width: 18px;
@@ -217,37 +217,37 @@
 	position: absolute;
 }
 
-.wow-map .olControlPanPanel .olControlPanNorthItemInactive {
+.owmw-map .olControlPanPanel .olControlPanNorthItemInactive {
 	top: 0;
 	left: 9px;
 	background-position: 0 0;
 }
 
-.wow-map .olControlPanPanel .olControlPanSouthItemInactive {
+.owmw-map .olControlPanPanel .olControlPanSouthItemInactive {
 	top: 36px;
 	left: 9px;
 	background-position: 18px 0;
 }
 
-.wow-map .olControlPanPanel .olControlPanWestItemInactive {
+.owmw-map .olControlPanPanel .olControlPanWestItemInactive {
 	position: absolute;
 	top: 18px;
 	left: 0;
 	background-position: 0 18px;
 }
 
-.wow-map .olControlPanPanel .olControlPanEastItemInactive {
+.owmw-map .olControlPanPanel .olControlPanEastItemInactive {
 	top: 18px;
 	left: 18px;
 	background-position: 18px 18px;
 }
 
-.wow-map .olControlZoomPanel {
+.owmw-map .olControlZoomPanel {
 	top: 71px;
 	left: 14px;
 }
 
-.wow-map .olControlZoomPanel div {
+.owmw-map .olControlZoomPanel div {
 	background-image: url(img/zoom-panel.png);
 	position: absolute;
 	height: 18px;
@@ -255,70 +255,70 @@
 	cursor: pointer;
 }
 
-.wow-map .olControlZoomPanel .olControlZoomInItemInactive {
+.owmw-map .olControlZoomPanel .olControlZoomInItemInactive {
 	top: 0;
 	left: 0;
 	background-position: 0 0;
 }
 
-.wow-map .olControlZoomPanel .olControlZoomToMaxExtentItemInactive {
+.owmw-map .olControlZoomPanel .olControlZoomToMaxExtentItemInactive {
 	top: 18px;
 	left: 0;
 	background-position: 0 -18px;
 }
 
-.wow-map .olControlZoomPanel .olControlZoomOutItemInactive {
+.owmw-map .olControlZoomPanel .olControlZoomOutItemInactive {
 	top: 36px;
 	left: 0;
 	background-position: 0 18px;
 }
 
-.wow-map .olControlPanZoomBar div {
+.owmw-map .olControlPanZoomBar div {
 	font-size: 1px;
 }
 
-.wow-map .olPopupCloseBox {
+.owmw-map .olPopupCloseBox {
 	background: url("img/close.gif") no-repeat;
 	cursor: pointer;
 }
 
-.wow-map .olFramedCloudPopupContent {
+.owmw-map .olFramedCloudPopupContent {
 	padding: 5px;
 	overflow: auto;
 }
 
-.wow-map .olControlNoSelect {
+.owmw-map .olControlNoSelect {
 	-moz-user-select: none;
 	-khtml-user-select: none;
 }
 
-.wow-map .olImageLoadError {
+.owmw-map .olImageLoadError {
 	background-color: pink;
 	opacity: .5;
 	filter: alpha(opacity=50);
 }
 
-.wow-map .olCursorWait {
+.owmw-map .olCursorWait {
 	cursor: wait;
 }
 
-.wow-map .olDragDown {
+.owmw-map .olDragDown {
 	cursor: move;
 }
 
-.wow-map .olDrawBox {
+.owmw-map .olDrawBox {
 	cursor: crosshair;
 }
 
-.wow-map .olControlDragFeatureOver {
+.owmw-map .olControlDragFeatureOver {
 	cursor: move;
 }
 
-.wow-map .olControlDragFeatureActive.olControlDragFeatureOver.olDragDown {
+.owmw-map .olControlDragFeatureActive.olControlDragFeatureOver.olDragDown {
 	cursor: -moz-grabbing;
 }
 
-.wow-map .olControlLayerSwitcher {
+.owmw-map .olControlLayerSwitcher {
 	position: absolute;
 	top: 25px;
 	right: 0;
@@ -333,7 +333,7 @@
 	background-color: transparent;
 }
 
-.wow-map .olControlLayerSwitcher .layersDiv {
+.owmw-map .olControlLayerSwitcher .layersDiv {
 	padding-top: 5px;
 	padding-left: 10px;
 	padding-bottom: 5px;
@@ -341,17 +341,17 @@
 	background-color: darkblue;
 }
 
-.wow-map .olControlLayerSwitcher .layersDiv .baseLbl,.wow-map .olControlLayerSwitcher .layersDiv .dataLbl {
+.owmw-map .olControlLayerSwitcher .layersDiv .baseLbl,.owmw-map .olControlLayerSwitcher .layersDiv .dataLbl {
 	margin-top: 3px;
 	margin-left: 3px;
 	margin-bottom: 3px;
 }
 
-.wow-map .olControlLayerSwitcher .layersDiv .baseLayersDiv,.wow-map .olControlLayerSwitcher .layersDiv .dataLayersDiv {
+.owmw-map .olControlLayerSwitcher .layersDiv .baseLayersDiv,.owmw-map .olControlLayerSwitcher .layersDiv .dataLayersDiv {
 	padding-left: 10px;
 }
 
-.wow-map .olControlLayerSwitcher .maximizeDiv,.wow-map .olControlLayerSwitcher .minimizeDiv {
+.owmw-map .olControlLayerSwitcher .maximizeDiv,.owmw-map .olControlLayerSwitcher .minimizeDiv {
 	width: 18px;
 	height: 18px;
 	top: 5px;
@@ -359,35 +359,35 @@
 	cursor: pointer;
 }
 
-.wow-map .olBingAttribution {
+.owmw-map .olBingAttribution {
 	color: #DDD;
 }
 
-.wow-map .olBingAttribution.road {
+.owmw-map .olBingAttribution.road {
 	color: #333;
 }
 
-.wow-map .olGoogleAttribution.hybrid,.olGoogleAttribution.satellite {
+.owmw-map .olGoogleAttribution.hybrid,.olGoogleAttribution.satellite {
 	color: #EEE;
 }
 
-.wow-map .olGoogleAttribution {
+.owmw-map .olGoogleAttribution {
 	color: #333;
 }
 
-.wow-map span.olGoogleAttribution a {
+.owmw-map span.olGoogleAttribution a {
 	color: #77C;
 }
 
-.wow-map span.olGoogleAttribution.hybrid a,span.olGoogleAttribution.satellite a {
+.owmw-map span.olGoogleAttribution.hybrid a,span.olGoogleAttribution.satellite a {
 	color: #EEE;
 }
 
-.wow-map .olControlNavToolbar,.wow-map .olControlEditingToolbar {
+.owmw-map .olControlNavToolbar,.owmw-map .olControlEditingToolbar {
 	margin: 5px 5px 0 0;
 }
 
-.wow-map .olControlNavToolbar div,.wow-map .olControlEditingToolbar div {
+.owmw-map .olControlNavToolbar div,.owmw-map .olControlEditingToolbar div {
 	background-image: url("img/editing_tool_bar.png");
 	background-repeat: no-repeat;
 	margin: 0 0 5px 5px;
@@ -396,61 +396,61 @@
 	cursor: pointer;
 }
 
-.wow-map .olControlEditingToolbar {
+.owmw-map .olControlEditingToolbar {
 	right: 0;
 	top: 0;
 }
 
-.wow-map .olControlNavToolbar {
+.owmw-map .olControlNavToolbar {
 	top: 295px;
 	left: 9px;
 }
 
-.wow-map .olControlEditingToolbar div {
+.owmw-map .olControlEditingToolbar div {
 	float: right;
 }
 
-.wow-map .olControlNavToolbar .olControlNavigationItemInactive,.wow-map .olControlEditingToolbar .olControlNavigationItemInactive {
+.owmw-map .olControlNavToolbar .olControlNavigationItemInactive,.owmw-map .olControlEditingToolbar .olControlNavigationItemInactive {
 	background-position: -103px -1px;
 }
 
-.wow-map .olControlNavToolbar .olControlNavigationItemActive,.wow-map .olControlEditingToolbar .olControlNavigationItemActive {
+.owmw-map .olControlNavToolbar .olControlNavigationItemActive,.owmw-map .olControlEditingToolbar .olControlNavigationItemActive {
 	background-position: -103px -24px;
 }
 
-.wow-map .olControlNavToolbar .olControlZoomBoxItemInactive {
+.owmw-map .olControlNavToolbar .olControlZoomBoxItemInactive {
 	background-position: -128px -1px;
 }
 
-.wow-map .olControlNavToolbar .olControlZoomBoxItemActive {
+.owmw-map .olControlNavToolbar .olControlZoomBoxItemActive {
 	background-position: -128px -24px;
 }
 
-.wow-map .olControlEditingToolbar .olControlDrawFeaturePointItemInactive {
+.owmw-map .olControlEditingToolbar .olControlDrawFeaturePointItemInactive {
 	background-position: -77px -1px;
 }
 
-.wow-map .olControlEditingToolbar .olControlDrawFeaturePointItemActive {
+.owmw-map .olControlEditingToolbar .olControlDrawFeaturePointItemActive {
 	background-position: -77px -24px;
 }
 
-.wow-map .olControlEditingToolbar .olControlDrawFeaturePathItemInactive {
+.owmw-map .olControlEditingToolbar .olControlDrawFeaturePathItemInactive {
 	background-position: -51px -1px;
 }
 
-.wow-map .olControlEditingToolbar .olControlDrawFeaturePathItemActive {
+.owmw-map .olControlEditingToolbar .olControlDrawFeaturePathItemActive {
 	background-position: -51px -24px;
 }
 
-.wow-map .olControlEditingToolbar .olControlDrawFeaturePolygonItemInactive {
+.owmw-map .olControlEditingToolbar .olControlDrawFeaturePolygonItemInactive {
 	background-position: -26px -1px;
 }
 
-.wow-map .olControlEditingToolbar .olControlDrawFeaturePolygonItemActive {
+.owmw-map .olControlEditingToolbar .olControlDrawFeaturePolygonItemActive {
 	background-position: -26px -24px;
 }
 
-.wow-map div.olControlZoom {
+.owmw-map div.olControlZoom {
 	position: absolute;
 	top: 8px;
 	left: 8px;
@@ -459,7 +459,7 @@
 	padding: 2px;
 }
 
-.wow-map div.olControlZoom a {
+.owmw-map div.olControlZoom a {
 	display: block;
 	margin: 1px;
 	padding: 0;
@@ -477,34 +477,34 @@
 	filter: alpha(opacity=80);
 }
 
-.wow-map div.olControlZoom a:hover {
+.owmw-map div.olControlZoom a:hover {
 	background: #130085;
 	background: rgba(0,60,136,0.7);
 	filter: alpha(opacity=100);
 }
 
 @media only screen and (max-width:600px) {
-	.wow-map div.olControlZoom a:hover {
+	.owmw-map div.olControlZoom a:hover {
 		background: rgba(0,60,136,0.5);
 	}
 }
 
-.wow-map a.olControlZoomIn {
+.owmw-map a.olControlZoomIn {
 	border-radius: 4px 4px 0 0;
 }
 
-.wow-map a.olControlZoomOut {
+.owmw-map a.olControlZoomOut {
 	border-radius: 0 0 4px 4px;
 }
 
-.wow-map .olLayerGrid .olTileImage {
+.owmw-map .olLayerGrid .olTileImage {
 	-webkit-transition: opacity .2s linear;
 	-moz-transition: opacity .2s linear;
 	-o-transition: opacity .2s linear;
 	transition: opacity .2s linear;
 }
 
-.wow-map .olTileImage {
+.owmw-map .olTileImage {
 	-webkit-transform: translateZ(0);
 	-moz-transform: translateZ(0);
 	-o-transform: translateZ(0);
@@ -520,10 +520,10 @@
 	perspective: 1000;
 }
 
-.wow-map .olTileReplacing {
+.owmw-map .olTileReplacing {
 	display: none;
 }
 
-.wow-map img.olTileImage {
+.owmw-map img.olTileImage {
 	max-width: none;
 }

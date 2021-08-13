@@ -20,27 +20,27 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: js\n"
 
-#: wpowmweather-admin.php:64
+#: owmweather-admin.php:64
 msgid "The best freemium plugin to boost your SEO with WordPress."
 msgstr "A legjobb freemium plugin, hogy növelje SEO-val a WordPress-t."
 
-#: wpowmweather-admin.php:65
+#: owmweather-admin.php:65
 msgid "Download for free"
 msgstr "Letöltés ingyen"
 
-#: wpowmweather-admin.php:69
+#: owmweather-admin.php:69
 msgid "OWM Weather"
 msgstr "OWM Weather"
 
-#: wpowmweather-admin.php:75
+#: owmweather-admin.php:75
 msgid "You like OWM Weather? Don't forget to rate it 5 stars!"
 msgstr "Szereted OWM Weather-t? Ne felejtsd el, hogy értékeld 5 csillagra!"
 
-#: wpowmweather-admin.php:112
+#: owmweather-admin.php:112
 msgid "Export Settings"
 msgstr "Exportálás Beállítások"
 
-#: wpowmweather-admin.php:114
+#: owmweather-admin.php:114
 msgid ""
 "Export the plugin settings for this site as a .json file. This allows you to "
 "easily import the configuration into another site."
@@ -48,15 +48,15 @@ msgstr ""
 "Exportálja a bővítmény beállításait ezen az oldalon, mint egy .json fájlt. "
 "Ez lehetővé teszi, hogy egyszerűen importálni a beállítást a másik oldalon."
 
-#: wpowmweather-admin.php:119
+#: owmweather-admin.php:119
 msgid "Export"
 msgstr "Exportálás"
 
-#: wpowmweather-admin.php:126
+#: owmweather-admin.php:126
 msgid "Import Settings"
 msgstr "Importálás Beállítások"
 
-#: wpowmweather-admin.php:128
+#: owmweather-admin.php:128
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
@@ -64,15 +64,15 @@ msgstr ""
 "Importálja a plugin beállításokat egy .json fájlt. Ez a fájl állítható elő "
 "az exportáló a beállításokat egy másik oldalra a fenti űrlap segítségével."
 
-#: wpowmweather-admin.php:136
+#: owmweather-admin.php:136
 msgid "Import"
 msgstr "Importálás"
 
-#: wpowmweather-admin.php:143
+#: owmweather-admin.php:143
 msgid "Reset Settings"
 msgstr "Beállítások Újraindítása"
 
-#: wpowmweather-admin.php:145
+#: owmweather-admin.php:145
 msgid ""
 "Reset all OWM Weather global settings. It will not delete your weathers and "
 "their indivuals settings."
@@ -80,548 +80,548 @@ msgstr ""
 "Állítsa vissza az összes WP felhő globális beállításokat. Ez nem törli az "
 "időjárási és az egyéni beállításokat."
 
-#: wpowmweather-admin.php:150
+#: owmweather-admin.php:150
 msgid "Reset settings"
 msgstr "Beállítások újraindítása"
 
-#: wpowmweather-admin.php:169
+#: owmweather-admin.php:169
 msgid "Basic"
 msgstr "Alap"
 
-#: wpowmweather-admin.php:170 wpowmweather.php:391
+#: owmweather-admin.php:170 owmweather.php:391
 msgid "Display"
 msgstr "Kijelző"
 
-#: wpowmweather-admin.php:171 wpowmweather.php:392
+#: owmweather-admin.php:171 owmweather.php:392
 msgid "Advanced"
 msgstr "Haladó"
 
-#: wpowmweather-admin.php:172 wpowmweather.php:393
+#: owmweather-admin.php:172 owmweather.php:393
 msgid "Map"
 msgstr "Térkép"
 
-#: wpowmweather-admin.php:173
+#: owmweather-admin.php:173
 msgid "Import/Export/Reset"
 msgstr "Import/Export/Újraindítás"
 
-#: wpowmweather-admin.php:174
+#: owmweather-admin.php:174
 msgid "Support"
 msgstr "Támogatás"
 
-#: wpowmweather-admin.php:188
+#: owmweather-admin.php:188
 msgid "Save changes"
 msgstr "Változtatások mentése"
 
-#: wpowmweather-admin.php:193
+#: owmweather-admin.php:193
 msgid "OWM Weather Premium"
 msgstr "OWM Weather Prémium"
 
-#: wpowmweather-admin.php:197
+#: owmweather-admin.php:197
 msgid "$ 19 / year"
 msgstr "$ 19 / év"
 
-#: wpowmweather-admin.php:199
+#: owmweather-admin.php:199
 msgid "Enabled"
 msgstr "Engedélyezett"
 
-#: wpowmweather-admin.php:203
+#: owmweather-admin.php:203
 msgid ""
 "Join now to get Skins & Geolocation Add-ons, and premium support by email."
 msgstr ""
 "Csatlakozz most, hogy Skins & Geolocation bővítményhez és prémium "
 "támogatáshoz e-mailben."
 
-#: wpowmweather-admin.php:207
+#: owmweather-admin.php:207
 msgid "Join now"
 msgstr "Csatlakozz most"
 
-#: wpowmweather-admin.php:211
+#: owmweather-admin.php:211
 msgid "OWM Weather cache"
 msgstr "OWM Weather gyorsítótár"
 
-#: wpowmweather-admin.php:215
+#: owmweather-admin.php:215
 msgid "cache system"
 msgstr "gyorsítótár rendszer"
 
-#: wpowmweather-admin.php:218
+#: owmweather-admin.php:218
 msgid "Click this button to refresh weather cache."
 msgstr "Ezzel a gombbal a frissítheted az időjárás gyorsítótárat."
 
-#: wpowmweather-admin.php:276 wpowmweather.php:390
+#: owmweather-admin.php:276 owmweather.php:390
 msgid "Basic settings"
 msgstr "Alap beállítások"
 
-#: wpowmweather-admin.php:283
+#: owmweather-admin.php:283
 msgid "Bypass unit?"
 msgstr "Bypass egység?"
 
-#: wpowmweather-admin.php:291
+#: owmweather-admin.php:291
 msgid "Unit"
 msgstr "Egység"
 
-#: wpowmweather-admin.php:299
+#: owmweather-admin.php:299
 msgid "Bypass date format?"
 msgstr "Bypass dátum formátum?"
 
-#: wpowmweather-admin.php:307
+#: owmweather-admin.php:307
 msgid "Date"
 msgstr "Dátum"
 
-#: wpowmweather-admin.php:316
+#: owmweather-admin.php:316
 msgid "Display settings"
 msgstr "Kijelző beállíások"
 
-#: wpowmweather-admin.php:323 wpowmweather.php:468
+#: owmweather-admin.php:323 owmweather.php:468
 msgid "Current weather?"
 msgstr "Aktuális időjárás?"
 
-#: wpowmweather-admin.php:331 wpowmweather.php:474
+#: owmweather-admin.php:331 owmweather.php:474
 msgid "Short condition?"
 msgstr "Rövid állapot?"
 
-#: wpowmweather-admin.php:339
+#: owmweather-admin.php:339
 msgid "Bypass the todays date format?"
 msgstr "A jelenlegi dátumformátum megkerülése?"
 
-#: wpowmweather-admin.php:347
+#: owmweather-admin.php:347
 msgid "Todays date or day of the week?"
 msgstr "A mai dátum vagy a hét napja?"
 
-#: wpowmweather-admin.php:355 wpowmweather.php:552
+#: owmweather-admin.php:355 owmweather.php:552
 msgid "Temperatures unit (C / F)?"
 msgstr "Hőmérsékleti egység (C / F)?"
 
-#: wpowmweather-admin.php:363
+#: owmweather-admin.php:363
 msgid "Sunrise + sunset?"
 msgstr "Napkelte + naplemente?"
 
-#: wpowmweather-admin.php:371 wpowmweather-admin.php:724 wpowmweather.php:510
+#: owmweather-admin.php:371 owmweather-admin.php:724 owmweather.php:510
 msgid "Wind?"
 msgstr "Szél?"
 
-#: wpowmweather-admin.php:379
+#: owmweather-admin.php:379
 #, fuzzy
 #| msgid "Wind?"
 msgid "Wind unit?"
 msgstr "Szél?"
 
-#: wpowmweather-admin.php:387 wpowmweather.php:525
+#: owmweather-admin.php:387 owmweather.php:525
 msgid "Humidity?"
 msgstr "Páratartalom?"
 
-#: wpowmweather-admin.php:395 wpowmweather-admin.php:740 wpowmweather.php:531
+#: owmweather-admin.php:395 owmweather-admin.php:740 owmweather.php:531
 msgid "Pressure?"
 msgstr "Nyomás"
 
-#: wpowmweather-admin.php:403 wpowmweather.php:537
+#: owmweather-admin.php:403 owmweather.php:537
 msgid "Cloudiness?"
 msgstr "Felhőzet?"
 
-#: wpowmweather-admin.php:411 wpowmweather.php:543
+#: owmweather-admin.php:411 owmweather.php:543
 msgid "Precipitation?"
 msgstr "Csapadék?"
 
-#: wpowmweather-admin.php:419
+#: owmweather-admin.php:419
 msgid "Hour forecast?"
 msgstr "Órás előrejelzés?"
 
-#: wpowmweather-admin.php:427
+#: owmweather-admin.php:427
 msgid "Bypass number of hours forecast settings?"
 msgstr "Bypass órák száma az előrejelzést beállításoknál?"
 
-#: wpowmweather-admin.php:435
+#: owmweather-admin.php:435
 msgid "Number of range hours forecast?"
 msgstr "Sor száma az órás előrejelzésnek?"
 
-#: wpowmweather-admin.php:443 wpowmweather-admin.php:1192
+#: owmweather-admin.php:443 owmweather-admin.php:1192
 msgid "Bypass individual temperatures settings?"
 msgstr "Bypass egyéni hőmérséklet beállítások?"
 
-#: wpowmweather-admin.php:451 wpowmweather.php:558
+#: owmweather-admin.php:451 owmweather.php:558
 msgid "Today temperature?"
 msgstr "Mai hőmérséklet?"
 
-#: wpowmweather-admin.php:459
+#: owmweather-admin.php:459
 #, fuzzy
 #| msgid "16-Day Forecast"
 msgid "5-Days Forecast"
 msgstr "16 napi Előrejezés"
 
-#: wpowmweather-admin.php:467
+#: owmweather-admin.php:467
 msgid "Bypass number of days forecast settings?"
 msgstr "Bypass napok száma az előrejelzési beállításoknál?"
 
-#: wpowmweather-admin.php:475
+#: owmweather-admin.php:475
 msgid "Number of days forecast"
 msgstr "Előrejelzési napok száma"
 
-#: wpowmweather-admin.php:483
+#: owmweather-admin.php:483
 msgid "Precipitations forecast?"
 msgstr "A csapadék előrejelzése?"
 
-#: wpowmweather-admin.php:491 wpowmweather-admin.php:1301
+#: owmweather-admin.php:491 owmweather-admin.php:1301
 msgid "Bypass the length of name days?"
 msgstr "Bypass a névnapok hossza?"
 
-#: wpowmweather-admin.php:499
+#: owmweather-admin.php:499
 msgid "Length name days:"
 msgstr "Névnapok hossza"
 
-#: wpowmweather-admin.php:507 wpowmweather.php:623
+#: owmweather-admin.php:507 owmweather.php:623
 msgid "Link to OpenWeatherMap?"
 msgstr "Link az Nyitott időjárás térképhez?"
 
-#: wpowmweather-admin.php:515 wpowmweather.php:631
+#: owmweather-admin.php:515 owmweather.php:631
 msgid "Update date?"
 msgstr "Frissítés dátum"
 
-#: wpowmweather-admin.php:523
+#: owmweather-admin.php:523
 msgid "Fluid design?"
 msgstr "Cseppfolyós design?"
 
-#: wpowmweather-admin.php:531
+#: owmweather-admin.php:531
 msgid "Default Max width parent container (in pixels)?"
 msgstr "Alapértelmezett maximális szélesség szülő tároló (képpontban)?"
 
-#: wpowmweather-admin.php:540
+#: owmweather-admin.php:540
 msgid "Advanced settings"
 msgstr "Haladó beállítások"
 
-#: wpowmweather-admin.php:547
+#: owmweather-admin.php:547
 msgid "CSS 3 Animations"
 msgstr "CSS 3 Animációk"
 
-#: wpowmweather-admin.php:555 wpowmweather.php:654
+#: owmweather-admin.php:555 owmweather.php:654
 msgid "Background color"
 msgstr "Háttér szín"
 
-#: wpowmweather-admin.php:563 wpowmweather.php:658
+#: owmweather-admin.php:563 owmweather.php:658
 msgid "Text color"
 msgstr "Szöveg szín"
 
-#: wpowmweather-admin.php:571 wpowmweather.php:662
+#: owmweather-admin.php:571 owmweather.php:662
 msgid "Border color"
 msgstr "Keret szín"
 
-#: wpowmweather-admin.php:579
+#: owmweather-admin.php:579
 msgid "Bypass size?"
 msgstr "Bypass méret?"
 
-#: wpowmweather-admin.php:587
+#: owmweather-admin.php:587
 msgid "Size"
 msgstr "Méret"
 
-#: wpowmweather-admin.php:595
+#: owmweather-admin.php:595
 msgid "Disable cache"
 msgstr "Gyorsítótár tiltása"
 
-#: wpowmweather-admin.php:603
+#: owmweather-admin.php:603
 msgid "Time cache refresh (in minutes)"
 msgstr "Gyorsítótár idejének frissítése (percekben)"
 
-#: wpowmweather-admin.php:611
+#: owmweather-admin.php:611
 msgid "Open Weather Map API key"
 msgstr "Nyitott időjárás térkép API kulccsal"
 
-#: wpowmweather-admin.php:619
+#: owmweather-admin.php:619
 msgid "Disable Bootstrap Modal JS?"
 msgstr "Kikapcsolja Bootstrap modális JS-t?"
 
-#: wpowmweather-admin.php:629
+#: owmweather-admin.php:629
 msgid "Map settings"
 msgstr "Térkép beállítások"
 
-#: wpowmweather-admin.php:636
+#: owmweather-admin.php:636
 msgid "Map?"
 msgstr "Térkép?"
 
-#: wpowmweather-admin.php:644
+#: owmweather-admin.php:644
 msgid "Map height"
 msgstr "Térkép hossza"
 
-#: wpowmweather-admin.php:652
+#: owmweather-admin.php:652
 msgid "Bypass layers opacity?"
 msgstr "Bypass rétegek átlátszósága"
 
-#: wpowmweather-admin.php:660 wpowmweather.php:690
+#: owmweather-admin.php:660 owmweather.php:690
 msgid "Layers opacity"
 msgstr "Rétegek átlátszósága"
 
-#: wpowmweather-admin.php:668
+#: owmweather-admin.php:668
 msgid "Bypass zoom?"
 msgstr "Bypass zoom?"
 
-#: wpowmweather-admin.php:676 wpowmweather.php:706
+#: owmweather-admin.php:676 owmweather.php:706
 msgid "Zoom"
 msgstr "Zoom"
 
-#: wpowmweather-admin.php:684
+#: owmweather-admin.php:684
 msgid "Disable zoom wheel?"
 msgstr "Zoom kerék tiltása?"
 
-#: wpowmweather-admin.php:692
+#: owmweather-admin.php:692
 msgid "Stations?"
 msgstr "Állomások?"
 
-#: wpowmweather-admin.php:700
+#: owmweather-admin.php:700
 msgid "Clouds?"
 msgstr "Felhők"
 
-#: wpowmweather-admin.php:708
+#: owmweather-admin.php:708
 msgid "Precipitations?"
 msgstr "Csapadék?"
 
-#: wpowmweather-admin.php:716
+#: owmweather-admin.php:716
 msgid "Snow?"
 msgstr "Hó?"
 
-#: wpowmweather-admin.php:732
+#: owmweather-admin.php:732
 msgid "Temperatures?"
 msgstr "Hőmérséklet?"
 
-#: wpowmweather-admin.php:801
+#: owmweather-admin.php:801
 msgid "Basic settings to bypass:"
 msgstr "Alap beállítások bypassnál"
 
-#: wpowmweather-admin.php:806
+#: owmweather-admin.php:806
 msgid "Display settings to bypass:"
 msgstr "Kijelző beállítások a bypassnál"
 
-#: wpowmweather-admin.php:811
+#: owmweather-admin.php:811
 msgid "Advanced settings to bypass:"
 msgstr "Haladó beállítások a bypassnál:"
 
-#: wpowmweather-admin.php:816
+#: owmweather-admin.php:816
 msgid "Map settings to bypass:"
 msgstr "Térkép beállítások bypassnál:"
 
-#: wpowmweather-admin.php:821
+#: owmweather-admin.php:821
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: wpowmweather-admin.php:837
+#: owmweather-admin.php:837
 msgid "Enable bypass unit on all weather?"
 msgstr "Engedélyezi a bypass egységet minden időjárásnál"
 
-#: wpowmweather-admin.php:853 wpowmweather.php:416
+#: owmweather-admin.php:853 owmweather.php:416
 msgid "Imperial"
 msgstr "Angolszász"
 
-#: wpowmweather-admin.php:856 wpowmweather.php:417
+#: owmweather-admin.php:856 owmweather.php:417
 msgid "Metric"
 msgstr "Metrikus"
 
-#: wpowmweather-admin.php:873
+#: owmweather-admin.php:873
 msgid "Enable bypass date format on all weather?"
 msgstr "Engedélyezi a bypass dátum formátumot minden időjárásnál?"
 
-#: wpowmweather-admin.php:889 wpowmweather.php:423
+#: owmweather-admin.php:889 owmweather.php:423
 msgid "12 h"
 msgstr "12 órás"
 
-#: wpowmweather-admin.php:892 wpowmweather.php:424
+#: owmweather-admin.php:892 owmweather.php:424
 msgid "24 h"
 msgstr "24 órás"
 
-#: wpowmweather-admin.php:909
+#: owmweather-admin.php:909
 msgid "Display current weather on all weather?"
 msgstr "Kijelzi az aktuális időjárást minden időjárásnál?"
 
-#: wpowmweather-admin.php:924
+#: owmweather-admin.php:924
 msgid "Display short condition on all weather?"
 msgstr "Rövid feltételű kijelzés minden időjárásra?"
 
-#: wpowmweather-admin.php:939
+#: owmweather-admin.php:939
 msgid "Bypass todays date format?"
 msgstr "Bypass a mai dátum formátum?"
 
-#: wpowmweather-admin.php:955
+#: owmweather-admin.php:955
 msgid "None (default)?"
 msgstr "Nincs (alapértelmezett)?"
 
-#: wpowmweather-admin.php:963 wpowmweather.php:489
+#: owmweather-admin.php:963 owmweather.php:489
 msgid "Day of the week (eg: Sunday)?"
 msgstr "A hét napja (pl: vasárnap)?"
 
-#: wpowmweather-admin.php:971
+#: owmweather-admin.php:971
 msgid "Todays date?"
 msgstr "Mai dátum?"
 
-#: wpowmweather-admin.php:987
+#: owmweather-admin.php:987
 msgid "Display temperatures unit (C / F)?"
 msgstr "Kijelzi a hőmérsékleti egységet (C / F)?"
 
-#: wpowmweather-admin.php:1003
+#: owmweather-admin.php:1003
 msgid "Display sunrise - sunset on all weather?"
 msgstr "Kijelző napkelte - napnyugta minden időjárásra?"
 
-#: wpowmweather-admin.php:1019
+#: owmweather-admin.php:1019
 msgid "Display wind on all weather?"
 msgstr "Szél kijelzése minden időjárásra?"
 
-#: wpowmweather-admin.php:1035
+#: owmweather-admin.php:1035
 msgid "No bypass"
 msgstr ""
 
-#: wpowmweather-admin.php:1038 wpowmweather.php:516
+#: owmweather-admin.php:1038 owmweather.php:516
 msgid "mi/h"
 msgstr ""
 
-#: wpowmweather-admin.php:1041 wpowmweather.php:517
+#: owmweather-admin.php:1041 owmweather.php:517
 msgid "m/s"
 msgstr ""
 
-#: wpowmweather-admin.php:1044 wpowmweather.php:518
+#: owmweather-admin.php:1044 owmweather.php:518
 msgid "km/h"
 msgstr ""
 
-#: wpowmweather-admin.php:1047 wpowmweather.php:519
+#: owmweather-admin.php:1047 owmweather.php:519
 msgid "kt"
 msgstr ""
 
-#: wpowmweather-admin.php:1064
+#: owmweather-admin.php:1064
 msgid "Display humidity on all weather?"
 msgstr "Páratartalom kijelzése minden időjárásra?"
 
-#: wpowmweather-admin.php:1080
+#: owmweather-admin.php:1080
 msgid "Display pressure on all weather?"
 msgstr "Nyomás kijelzése minden időjárásra?"
 
-#: wpowmweather-admin.php:1096
+#: owmweather-admin.php:1096
 msgid "Display cloudiness on all weather?"
 msgstr "Felhősség kijelzés minden időjárásra?"
 
-#: wpowmweather-admin.php:1112
+#: owmweather-admin.php:1112
 msgid "Display precipitation on all weather?"
 msgstr "Csapadék kijelzése minden időjárásra?"
 
-#: wpowmweather-admin.php:1128
+#: owmweather-admin.php:1128
 msgid "Display hour forecast on all weather?"
 msgstr "Órás előrejlzés kijelzése minden időjárásra?"
 
-#: wpowmweather-admin.php:1144
+#: owmweather-admin.php:1144
 msgid "Enable bypass number of hours forecast on all weather?"
 msgstr "Bypass szám engedélyezése az órás előrejelzéshez minden időjárásra?"
 
-#: wpowmweather-admin.php:1160 wpowmweather.php:573
+#: owmweather-admin.php:1160 owmweather.php:573
 msgid "1"
 msgstr "1"
 
-#: wpowmweather-admin.php:1163 wpowmweather.php:574
+#: owmweather-admin.php:1163 owmweather.php:574
 msgid "2"
 msgstr "2"
 
-#: wpowmweather-admin.php:1166 wpowmweather.php:575
+#: owmweather-admin.php:1166 owmweather.php:575
 msgid "3"
 msgstr "3"
 
-#: wpowmweather-admin.php:1169 wpowmweather.php:576
+#: owmweather-admin.php:1169 owmweather.php:576
 msgid "4"
 msgstr "4"
 
-#: wpowmweather-admin.php:1172 wpowmweather.php:577
+#: owmweather-admin.php:1172 owmweather.php:577
 msgid "5"
 msgstr "5"
 
-#: wpowmweather-admin.php:1175 wpowmweather.php:578
+#: owmweather-admin.php:1175 owmweather.php:578
 msgid "6"
 msgstr "6"
 
-#: wpowmweather-admin.php:1208
+#: owmweather-admin.php:1208
 msgid "Display today temperature on all weather?"
 msgstr "A kijelzi a mai hőmérséklet minden időjárásnál?"
 
-#: wpowmweather-admin.php:1224
+#: owmweather-admin.php:1224
 #, fuzzy
 #| msgid "Display 16-day Forecast on all weather?"
 msgid "Display 5-days Forecast on all weather?"
 msgstr "Kijelzi 16 napos előrejelzést minden időjárásra?"
 
-#: wpowmweather-admin.php:1240
+#: owmweather-admin.php:1240
 msgid "Enable bypass number of days forecast on all weather?"
 msgstr "Bypass szám engedélyezése a napi előrejelzés minden időjárásnál?"
 
-#: wpowmweather-admin.php:1256 wpowmweather.php:595
+#: owmweather-admin.php:1256 owmweather.php:595
 msgid "1 day"
 msgstr "1 nap"
 
-#: wpowmweather-admin.php:1259 wpowmweather.php:596
+#: owmweather-admin.php:1259 owmweather.php:596
 msgid "2 days"
 msgstr "2 nap"
 
-#: wpowmweather-admin.php:1262 wpowmweather.php:597
+#: owmweather-admin.php:1262 owmweather.php:597
 msgid "3 days"
 msgstr "3 nap"
 
-#: wpowmweather-admin.php:1265 wpowmweather.php:598
+#: owmweather-admin.php:1265 owmweather.php:598
 msgid "4 days"
 msgstr "4 nap"
 
-#: wpowmweather-admin.php:1268 wpowmweather.php:599
+#: owmweather-admin.php:1268 owmweather.php:599
 msgid "5 days"
 msgstr "5 nap"
 
-#: wpowmweather-admin.php:1285
+#: owmweather-admin.php:1285
 msgid "Display Forecast Precipitations on all Weather?"
 msgstr "A csapadék előrejelzése minden időjárással kapcsolatban?"
 
-#: wpowmweather-admin.php:1318
+#: owmweather-admin.php:1318
 msgid "Short days names"
 msgstr "Rövid névnapok"
 
-#: wpowmweather-admin.php:1326
+#: owmweather-admin.php:1326
 msgid "Normal days names"
 msgstr "Normál névnapok"
 
-#: wpowmweather-admin.php:1342
+#: owmweather-admin.php:1342
 msgid "Display link to full weather on OpenWeatherMap?"
 msgstr "A teljes időjárs Link kijelzése az Nyitott Időjárás Térképen?"
 
-#: wpowmweather-admin.php:1359
+#: owmweather-admin.php:1359
 msgid "Display update date on all weather?"
 msgstr "Kijelző dátum frissítés minden időjárásra?"
 
-#: wpowmweather-admin.php:1376
+#: owmweather-admin.php:1376
 msgid "Enable fluid design on all weather?"
 msgstr ""
 
-#: wpowmweather-admin.php:1401
+#: owmweather-admin.php:1401
 msgid "Disable CSS3 animations, transformations and transitions?"
 msgstr "Tiltsa CSS3 animációkat, átalakulásokat és átmeneteket?"
 
-#: wpowmweather-admin.php:1446
+#: owmweather-admin.php:1446
 msgid "Enable bypass size on all weather?"
 msgstr "Engedélyezze a bypass méretét minden időjárásnál?"
 
-#: wpowmweather-admin.php:1462 wpowmweather.php:672
+#: owmweather-admin.php:1462 owmweather.php:672
 msgid "Small"
 msgstr "Kicsi"
 
-#: wpowmweather-admin.php:1465 wpowmweather.php:673
+#: owmweather-admin.php:1465 owmweather.php:673
 msgid "Medium"
 msgstr "Közepes"
 
-#: wpowmweather-admin.php:1468 wpowmweather.php:674
+#: owmweather-admin.php:1468 owmweather.php:674
 msgid "Large"
 msgstr "Nagy"
 
-#: wpowmweather-admin.php:1485
+#: owmweather-admin.php:1485
 msgid "Disable weather cache? (not recommended)"
 msgstr "Tiltsa időjárás gyorsítótárat? (nem ajánlott)"
 
-#: wpowmweather-admin.php:1498
+#: owmweather-admin.php:1498
 msgid "Default value: 30 minutes"
 msgstr "Alapértelmezett érték: 30 perc"
 
-#: wpowmweather-admin.php:1507
+#: owmweather-admin.php:1507
 msgid "Strongly recommended: "
 msgstr "Erősen ajánlott:"
 
-#: wpowmweather-admin.php:1507
+#: owmweather-admin.php:1507
 msgid "Strongly recommended: get your free OWM API key here"
 msgstr "Erősen ajánlott: kap a szabad SAJÁT API kulcsot itt"
 
-#: wpowmweather-admin.php:1520
+#: owmweather-admin.php:1520
 msgid ""
 "Disable Bootstrap Modal JS? (disable this if you already include Bootstrap "
 "JS in your theme)"
@@ -629,138 +629,138 @@ msgstr ""
 "Kikapcsolja Bootstrap modális JS-t? (Kikapcsolja ezt, ha már tartalmazza "
 "Bootstrap JS a témát)"
 
-#: wpowmweather-admin.php:1536
+#: owmweather-admin.php:1536
 msgid "Enable map on all weather?"
 msgstr "Engedélyezze a térképet minden időjárásnál?"
 
-#: wpowmweather-admin.php:1561
+#: owmweather-admin.php:1561
 msgid "Enable bypass map opacity on all weather?"
 msgstr "Bypass térkép átlátszóság engedélyezése minden időjárásnál? "
 
-#: wpowmweather-admin.php:1624
+#: owmweather-admin.php:1624
 msgid "Enable bypass map zoom on all weather?"
 msgstr "Bypass térkép zoom engedélyezése minden időjárásnál?"
 
-#: wpowmweather-admin.php:1708
+#: owmweather-admin.php:1708
 msgid "Disable zoom wheel on all weather?"
 msgstr "Kikapcsolja a zoom görgőt minden időjárásnál?"
 
-#: wpowmweather-admin.php:1724
+#: owmweather-admin.php:1724
 msgid "Display stations on all weather maps?"
 msgstr "Állomások kijelzése minden időjárás térképen?"
 
-#: wpowmweather-admin.php:1740
+#: owmweather-admin.php:1740
 msgid "Display clouds on all weather maps?"
 msgstr "Felhők kijelzése minden időjárás térképen?"
 
-#: wpowmweather-admin.php:1756
+#: owmweather-admin.php:1756
 msgid "Display precipitations on all weather maps?"
 msgstr "Csapadék kijelzése minden időjárás térképen?"
 
-#: wpowmweather-admin.php:1773
+#: owmweather-admin.php:1773
 msgid "Display snow on all weather maps?"
 msgstr "Hó kijelzése minden időjárás térképen?"
 
-#: wpowmweather-admin.php:1789
+#: owmweather-admin.php:1789
 msgid "Display wind on all weather maps?"
 msgstr "Szél kijelzése minden időjárás térképen?"
 
-#: wpowmweather-admin.php:1805
+#: owmweather-admin.php:1805
 msgid "Display temperatures on all weather maps?"
 msgstr "Hőmérséklet kijelzése minden időjárás térképen?"
 
-#: wpowmweather-admin.php:1821
+#: owmweather-admin.php:1821
 msgid "Display pressure on all weather maps?"
 msgstr "Nyomás kijelzése minden időjárás térképen?"
 
-#: wpowmweather-admin.php:1831
+#: owmweather-admin.php:1831
 msgid "Problem with OWM Weather?"
 msgstr "OWM Weather-val probléma van?"
 
-#: wpowmweather-admin.php:1832
+#: owmweather-admin.php:1832
 msgid "FAQ"
 msgstr "Gyakran Intézett Kérdések"
 
-#: wpowmweather-admin.php:1832
+#: owmweather-admin.php:1832
 msgid "Read our FAQ"
 msgstr "Olvasd el a mi Gyakran Intézett Kérdéseinket"
 
-#: wpowmweather-admin.php:1833
+#: owmweather-admin.php:1833
 msgid "Guides"
 msgstr "Útmutatók"
 
-#: wpowmweather-admin.php:1833
+#: owmweather-admin.php:1833
 msgid "Read our Guides"
 msgstr "Olvasd ami útmutatók"
 
-#: wpowmweather-admin.php:1834
+#: owmweather-admin.php:1834
 msgid "OWM Weather Forum on WordPress.org"
 msgstr "OWM Weather Fórum a WordPress.org-on"
 
-#: wpowmweather-admin.php:1851
+#: owmweather-admin.php:1851
 msgid "Setup OWM Weather"
 msgstr ""
 
-#: wpowmweather-admin.php:1852
+#: owmweather-admin.php:1852
 msgid "Follow this video to setup OWM Weather:"
 msgstr ""
 
-#: wpowmweather-admin.php:1856
+#: owmweather-admin.php:1856
 msgid "Create your first weather"
 msgstr ""
 
-#: wpowmweather-admin.php:1857
+#: owmweather-admin.php:1857
 msgid "Follow this video to create your first weather with OWM Weather:"
 msgstr ""
 
-#: wpowmweather-export.php:40
+#: owmweather-export.php:40
 msgid "Please upload a valid .json file"
 msgstr "Kérem töltsön fel egy érvényes .json fájlt"
 
-#: wpowmweather-export.php:44
+#: owmweather-export.php:44
 msgid "Please upload a file to import"
 msgstr "Kérjük, töltsön fel egy fájlt importáláshoz"
 
-#: wpowmweather-pointers.php:32
+#: owmweather-pointers.php:32
 msgid ""
 "<strong>Before starting:</strong> enter your own OpenWeatherMap API key in"
 msgstr ""
 
-#: wpowmweather-pointers.php:32
+#: owmweather-pointers.php:32
 msgid "Advanced Settings!"
 msgstr ""
 
-#: wpowmweather-widget.php:32
+#: owmweather-widget.php:32
 msgid "Please select a weather via configure link"
 msgstr "Kérjük, válasszon ki egy időjárás útvonalat kapcsolati beállítást"
 
-#: wpowmweather-widget.php:55
+#: owmweather-widget.php:55
 msgid "Select the weather to display:"
 msgstr "Válaszd ki időjárás a kijelzőn:"
 
-#: wpowmweather.php:61
+#: owmweather.php:61
 msgid "Settings"
 msgstr "Beállítások"
 
-#: wpowmweather.php:294
+#: owmweather.php:294
 msgid "Duplicate this item"
 msgstr "Másolat erről az elemről"
 
-#: wpowmweather.php:294
+#: owmweather.php:294
 msgid "Duplicate"
 msgstr "Másolat"
 
-#: wpowmweather.php:307
+#: owmweather.php:307
 msgid "OWM Weather global settings"
 msgstr ""
 
-#: wpowmweather.php:312
+#: owmweather.php:312
 msgid "Copy and paste this shortcode anywhere in posts, pages, text widgets: "
 msgstr ""
 "Másolás és beillesztés rövidkódja bárhová a bejegyzésbe, oldalakba, szöveges "
 "widgetekbe:"
 
-#: wpowmweather.php:320
+#: owmweather.php:320
 msgid ""
 "If you need to display this weather anywhere in your theme, simply copy and "
 "paste this code snippet in your PHP file like sidebar.php: "
@@ -768,703 +768,703 @@ msgstr ""
 "Ha kell, hogy megjelenjen ez az időjárás bárhol a téma, egyszerűen másolja "
 "be ezt a kódrészletet a PHP fájlt, mint sidebar.php-t:"
 
-#: wpowmweather.php:398
+#: owmweather.php:398
 msgid "City"
 msgstr "Város"
 
-#: wpowmweather.php:399
+#: owmweather.php:399
 msgid "Enter your city"
 msgstr "A városod"
 
-#: wpowmweather.php:402
+#: owmweather.php:402
 msgid "Custom city title"
 msgstr "Egyedi város neve"
 
-#: wpowmweather.php:406
+#: owmweather.php:406
 msgid "State?"
 msgstr "Állam?"
 
-#: wpowmweather.php:410
+#: owmweather.php:410
 msgid "Country?"
 msgstr "Ország?"
 
-#: wpowmweather.php:414
+#: owmweather.php:414
 msgid "Imperial or metric units?"
 msgstr "Angolszász vagy metrikus mértékegységben?"
 
-#: wpowmweather.php:421
+#: owmweather.php:421
 msgid "12h / 24h date format?"
 msgstr "12 órás / 24 órás dátum formátum?"
 
-#: wpowmweather.php:430
+#: owmweather.php:430
 msgid "Bypass default WordPress timezone setting?"
 msgstr "Bypass alapértelmezett WordPress időzónát beállításnál?"
 
-#: wpowmweather.php:434
+#: owmweather.php:434
 msgid "Custom timezone? (default: WordPress general settings)"
 msgstr ""
 "Szokásos időzónát? (Alapértelmezett: WordPress általános beállításoknál)"
 
-#: wpowmweather.php:436
+#: owmweather.php:436
 msgid "UTC -12"
 msgstr "UTC -12"
 
-#: wpowmweather.php:437
+#: owmweather.php:437
 msgid "UTC -11"
 msgstr "UTC -11"
 
-#: wpowmweather.php:438
+#: owmweather.php:438
 msgid "UTC -10"
 msgstr "UTC -10"
 
-#: wpowmweather.php:439
+#: owmweather.php:439
 msgid "UTC -9"
 msgstr "UTC -9"
 
-#: wpowmweather.php:440
+#: owmweather.php:440
 msgid "UTC -8"
 msgstr "UTC -8"
 
-#: wpowmweather.php:441
+#: owmweather.php:441
 msgid "UTC -7"
 msgstr "UTC -7"
 
-#: wpowmweather.php:442
+#: owmweather.php:442
 msgid "UTC -6"
 msgstr "UTC -6"
 
-#: wpowmweather.php:443
+#: owmweather.php:443
 msgid "UTC -5"
 msgstr "UTC -5"
 
-#: wpowmweather.php:444
+#: owmweather.php:444
 msgid "UTC -4"
 msgstr "UTC -4"
 
-#: wpowmweather.php:445
+#: owmweather.php:445
 msgid "UTC -3"
 msgstr "UTC -3"
 
-#: wpowmweather.php:446
+#: owmweather.php:446
 msgid "UTC -2"
 msgstr "UTC -2"
 
-#: wpowmweather.php:447
+#: owmweather.php:447
 msgid "UTC -1"
 msgstr "UTC -1"
 
-#: wpowmweather.php:448
+#: owmweather.php:448
 msgid "UTC 0"
 msgstr "UTC 0"
 
-#: wpowmweather.php:449
+#: owmweather.php:449
 msgid "UTC +1"
 msgstr "UTC +1"
 
-#: wpowmweather.php:450
+#: owmweather.php:450
 msgid "UTC +2"
 msgstr "UTC +2"
 
-#: wpowmweather.php:451
+#: owmweather.php:451
 msgid "UTC +3"
 msgstr "UTC +3"
 
-#: wpowmweather.php:452
+#: owmweather.php:452
 msgid "UTC +4"
 msgstr "UTC +4"
 
-#: wpowmweather.php:453
+#: owmweather.php:453
 msgid "UTC +5"
 msgstr "UTC +5"
 
-#: wpowmweather.php:454
+#: owmweather.php:454
 msgid "UTC +6"
 msgstr "UTC +6"
 
-#: wpowmweather.php:455
+#: owmweather.php:455
 msgid "UTC +7"
 msgstr "UTC +7"
 
-#: wpowmweather.php:456
+#: owmweather.php:456
 msgid "UTC +8"
 msgstr "UTC +8"
 
-#: wpowmweather.php:457
+#: owmweather.php:457
 msgid "UTC +9"
 msgstr "UTC +9"
 
-#: wpowmweather.php:458
+#: owmweather.php:458
 msgid "UTC +10"
 msgstr "UTC +10"
 
-#: wpowmweather.php:459
+#: owmweather.php:459
 msgid "UTC +11"
 msgstr "UTC +11"
 
-#: wpowmweather.php:460
+#: owmweather.php:460
 msgid "UTC +12"
 msgstr "UTC +12"
 
-#: wpowmweather.php:478
+#: owmweather.php:478
 msgid "Dates"
 msgstr ""
 
-#: wpowmweather.php:483
+#: owmweather.php:483
 msgid "No date (default)?"
 msgstr "Nincs dátum (alapértelmezett)?"
 
-#: wpowmweather.php:495
+#: owmweather.php:495
 msgid "Todays date (based on your WordPress General Settings)?"
 msgstr "Mai dátum (alapja a te WordPress Általános Beállításoknak)?"
 
-#: wpowmweather.php:499
+#: owmweather.php:499
 msgid "Misc"
 msgstr ""
 
-#: wpowmweather.php:504
+#: owmweather.php:504
 msgid "Sunrise + sunset? appears only if today date is checked"
 msgstr ""
 "Napkelte + naplemente? csak akkor jelenik meg, ha a mai dátum van jelölve"
 
-#: wpowmweather.php:514
+#: owmweather.php:514
 msgid "Wind unit: "
 msgstr ""
 
-#: wpowmweather.php:547
+#: owmweather.php:547
 msgid "Temperatures"
 msgstr "Hőmérsékletek"
 
-#: wpowmweather.php:562
+#: owmweather.php:562
 msgid "Hourly Forecast"
 msgstr "Órai Előrejelzés"
 
-#: wpowmweather.php:567
+#: owmweather.php:567
 msgid "Hour Forecast?"
 msgstr "Órás Előrejelzés"
 
-#: wpowmweather.php:571
+#: owmweather.php:571
 msgid "How hours ranges ?"
 msgstr "Hogyan terjed óráig?"
 
-#: wpowmweather.php:581
+#: owmweather.php:581
 msgid ""
 "Make sure you have properly set the date of your site in WordPress settings."
 msgstr ""
 "Győződjön meg róla, hogy megfelelően állítja be a dátumot a webhely a "
 "WordPress beállításoknál."
 
-#: wpowmweather.php:584
+#: owmweather.php:584
 #, fuzzy
 #| msgid "16-Day Forecast"
 msgid "5-Day Forecast"
 msgstr "16 napi Előrejezés"
 
-#: wpowmweather.php:589
+#: owmweather.php:589
 #, fuzzy
 #| msgid "16-Day Forecast? (today + 15 days max)"
 msgid "5-Day Forecast? (today + 5 days max)"
 msgstr "16 napos Előrejelzést? (ma + 15 napos max)"
 
-#: wpowmweather.php:593
+#: owmweather.php:593
 msgid "How many days?"
 msgstr "Hány napos"
 
-#: wpowmweather.php:605
+#: owmweather.php:605
 msgid "Forecast Precipitations?"
 msgstr ""
 
-#: wpowmweather.php:611
+#: owmweather.php:611
 msgid "Short days names?"
 msgstr "Rövid napok neve?"
 
-#: wpowmweather.php:617
+#: owmweather.php:617
 msgid "Normal days names?"
 msgstr "Normál napok neve?"
 
-#: wpowmweather.php:638
+#: owmweather.php:638
 msgid "Fluid design? (useful with small container)"
 msgstr "Folyékony design? (Hasznos a kis tároló)"
 
-#: wpowmweather.php:642
+#: owmweather.php:642
 msgid "Max width parent container to enable fluid design (pixels):"
 msgstr "Max szélesség szülőtárolónál, hogy folyékony design (képpont):"
 
-#: wpowmweather.php:650
+#: owmweather.php:650
 msgid "Disable CSS3 animations?"
 msgstr "Tiltja a CSS3 animációt?"
 
-#: wpowmweather.php:666
+#: owmweather.php:666
 msgid "Custom CSS"
 msgstr "Egyéni CSS"
 
-#: wpowmweather.php:670
+#: owmweather.php:670
 msgid "Weather size?"
 msgstr "Időjárás méret?"
 
-#: wpowmweather.php:682
+#: owmweather.php:682
 msgid "Display map?"
 msgstr "Térkép kijelzése?"
 
-#: wpowmweather.php:686
+#: owmweather.php:686
 msgid "Map height (in px)"
 msgstr "Térkép hossza (pixelbe)"
 
-#: wpowmweather.php:731
+#: owmweather.php:731
 msgid "Disable zoom wheel on map?"
 msgstr "Zoom görgetés tiltása a térképen?"
 
-#: wpowmweather.php:735
+#: owmweather.php:735
 msgid "Layers"
 msgstr "Rétegek"
 
-#: wpowmweather.php:740
+#: owmweather.php:740
 msgid "Display stations?"
 msgstr "Állomás mutatása?"
 
-#: wpowmweather.php:746
+#: owmweather.php:746
 msgid "Display clouds?"
 msgstr "Felhők kijelzése?"
 
-#: wpowmweather.php:752
+#: owmweather.php:752
 msgid "Display precipitation?"
 msgstr "Csapadék kijelzése?"
 
-#: wpowmweather.php:758
+#: owmweather.php:758
 msgid "Display snow?"
 msgstr "Hó kijelzése?"
 
-#: wpowmweather.php:764
+#: owmweather.php:764
 msgid "Display wind?"
 msgstr "Szél kijelzése?"
 
-#: wpowmweather.php:770
+#: owmweather.php:770
 msgid "Display temperature?"
 msgstr "Hőmérséklet kijelzése?"
 
-#: wpowmweather.php:776
+#: owmweather.php:776
 msgid "Display pressure?"
 msgstr "Nyomás kijelzése?"
 
-#: wpowmweather.php:1407 wpowmweather.php:1415 wpowmweather.php:1425 wpowmweather.php:1486
-#: wpowmweather.php:1493 wpowmweather.php:1501
+#: owmweather.php:1407 owmweather.php:1415 owmweather.php:1425 owmweather.php:1486
+#: owmweather.php:1493 owmweather.php:1501
 msgid "Unable to retrieve weather data"
 msgstr "Nem sikerült lekérdezni az időjárási adatokat"
 
-#: wpowmweather.php:1582
+#: owmweather.php:1582
 msgid "Full weather on OpenWeatherMap"
 msgstr "Teljes időjárás az Nyitott Időjárás Térkép"
 
-#: wpowmweather.php:1582
+#: owmweather.php:1582
 msgid "Full weather"
 msgstr "Teljes Időjárás"
 
-#: wpowmweather.php:1585
+#: owmweather.php:1585
 msgid "Last update: "
 msgstr "Utolsó frissítés:"
 
-#: wpowmweather.php:1617 wpowmweather.php:1705 wpowmweather.php:1730
+#: owmweather.php:1617 owmweather.php:1705 owmweather.php:1730
 msgid "Sunday"
 msgstr "Vasárnap"
 
-#: wpowmweather.php:1620 wpowmweather.php:1708 wpowmweather.php:1733
+#: owmweather.php:1620 owmweather.php:1708 owmweather.php:1733
 msgid "Monday"
 msgstr "Hétfő"
 
-#: wpowmweather.php:1623 wpowmweather.php:1711 wpowmweather.php:1736
+#: owmweather.php:1623 owmweather.php:1711 owmweather.php:1736
 msgid "Tuesday"
 msgstr "Kedd"
 
-#: wpowmweather.php:1626 wpowmweather.php:1714 wpowmweather.php:1739
+#: owmweather.php:1626 owmweather.php:1714 owmweather.php:1739
 msgid "Wednesday"
 msgstr "Szerda"
 
-#: wpowmweather.php:1629 wpowmweather.php:1717 wpowmweather.php:1742
+#: owmweather.php:1629 owmweather.php:1717 owmweather.php:1742
 msgid "Thursday"
 msgstr "Csütörtök"
 
-#: wpowmweather.php:1632 wpowmweather.php:1720 wpowmweather.php:1745
+#: owmweather.php:1632 owmweather.php:1720 owmweather.php:1745
 msgid "Friday"
 msgstr "Péntek"
 
-#: wpowmweather.php:1635 wpowmweather.php:1723 wpowmweather.php:1748
+#: owmweather.php:1635 owmweather.php:1723 owmweather.php:1748
 msgid "Saturday"
 msgstr "Szombat"
 
-#: wpowmweather.php:1680
+#: owmweather.php:1680
 msgid "Sun"
 msgstr "Nap"
 
-#: wpowmweather.php:1683
+#: owmweather.php:1683
 msgid "Mon"
 msgstr "Hét"
 
-#: wpowmweather.php:1686
+#: owmweather.php:1686
 msgid "Tue"
 msgstr "Ke"
 
-#: wpowmweather.php:1689
+#: owmweather.php:1689
 msgid "Wed"
 msgstr "Sze"
 
-#: wpowmweather.php:1692
+#: owmweather.php:1692
 msgid "Thu"
 msgstr "Csü"
 
-#: wpowmweather.php:1695
+#: owmweather.php:1695
 msgid "Fri"
 msgstr "Pé"
 
-#: wpowmweather.php:1698
+#: owmweather.php:1698
 msgid "Sat"
 msgstr "Szo"
 
-#: wpowmweather.php:1777
+#: owmweather.php:1777
 msgid "clear sky"
 msgstr "tiszta égbolt"
 
-#: wpowmweather.php:1782
+#: owmweather.php:1782
 msgid "few clouds"
 msgstr "kissé felhős"
 
-#: wpowmweather.php:1787
+#: owmweather.php:1787
 msgid "scattered clouds"
 msgstr "szétszórt felhőzet"
 
-#: wpowmweather.php:1792
+#: owmweather.php:1792
 msgid "broken clouds"
 msgstr "felszakadozott felhőzet"
 
-#: wpowmweather.php:1797
+#: owmweather.php:1797
 msgid "overcast clouds"
 msgstr "borús égbolt"
 
-#: wpowmweather.php:1804
+#: owmweather.php:1804
 msgid "light rain"
 msgstr "enyhe eső"
 
-#: wpowmweather.php:1809
+#: owmweather.php:1809
 msgid "moderate rain"
 msgstr "mérsékelt eső"
 
-#: wpowmweather.php:1814
+#: owmweather.php:1814
 msgid "heavy intensity rain"
 msgstr "nagy eső"
 
-#: wpowmweather.php:1819
+#: owmweather.php:1819
 msgid "very heavy rain"
 msgstr "kiadós eső"
 
-#: wpowmweather.php:1824
+#: owmweather.php:1824
 msgid "extreme rain"
 msgstr "szélsőséges esőzés"
 
-#: wpowmweather.php:1829
+#: owmweather.php:1829
 msgid "freezing rain"
 msgstr "ónos eső"
 
-#: wpowmweather.php:1834
+#: owmweather.php:1834
 msgid "light intensity shower rain"
 msgstr "enyhe zivatar"
 
-#: wpowmweather.php:1839
+#: owmweather.php:1839
 msgid "shower rain"
 msgstr "zivatar"
 
-#: wpowmweather.php:1844
+#: owmweather.php:1844
 msgid "heavy intensity shower rain"
 msgstr "nagy zivatar"
 
-#: wpowmweather.php:1849
+#: owmweather.php:1849
 msgid "ragged shower rain"
 msgstr "erős zivatar"
 
-#: wpowmweather.php:1856
+#: owmweather.php:1856
 msgid "light intensity drizzle"
 msgstr "enyhe szitáló eső"
 
-#: wpowmweather.php:1861
+#: owmweather.php:1861
 msgid "drizzle"
 msgstr "finoman szitáló eső"
 
-#: wpowmweather.php:1866
+#: owmweather.php:1866
 msgid "heavy intensity drizzle"
 msgstr "nagy intenzitású szitáló eső"
 
-#: wpowmweather.php:1871
+#: owmweather.php:1871
 msgid "light intensity drizzle rain"
 msgstr "enyhe intenzitású szitáló eső"
 
-#: wpowmweather.php:1876
+#: owmweather.php:1876
 msgid "drizzle rain"
 msgstr "szitáló eső"
 
-#: wpowmweather.php:1881
+#: owmweather.php:1881
 msgid "heavy intensity drizzle rain"
 msgstr "erős intenzitású szitáló eső"
 
-#: wpowmweather.php:1886
+#: owmweather.php:1886
 msgid "shower rain and drizzle"
 msgstr "enyhe zápor és szitálás"
 
-#: wpowmweather.php:1891
+#: owmweather.php:1891
 msgid "heavy shower rain and drizzle"
 msgstr "erős zápor szitáló esővel"
 
-#: wpowmweather.php:1896
+#: owmweather.php:1896
 msgid "shower drizzle"
 msgstr "zápor"
 
-#: wpowmweather.php:1903
+#: owmweather.php:1903
 msgid "light snow"
 msgstr "kevés hó"
 
-#: wpowmweather.php:1908
+#: owmweather.php:1908
 msgid "snow"
 msgstr "hó"
 
-#: wpowmweather.php:1913
+#: owmweather.php:1913
 msgid "heavy snow"
 msgstr "erős havazás"
 
-#: wpowmweather.php:1918
+#: owmweather.php:1918
 msgid "sleet"
 msgstr "ónos eső"
 
-#: wpowmweather.php:1923
+#: owmweather.php:1923
 msgid "shower sleet"
 msgstr "zivataros ónos eső"
 
-#: wpowmweather.php:1928
+#: owmweather.php:1928
 msgid "light rain and snow"
 msgstr "kisebb havaseső"
 
-#: wpowmweather.php:1933
+#: owmweather.php:1933
 msgid "rain and snow"
 msgstr "havaseső"
 
-#: wpowmweather.php:1938
+#: owmweather.php:1938
 msgid "light shower snow"
 msgstr "enyhe hózivatar"
 
-#: wpowmweather.php:1943
+#: owmweather.php:1943
 msgid "shower snow"
 msgstr "hózivatar"
 
-#: wpowmweather.php:1948
+#: owmweather.php:1948
 msgid "heavy shower snow"
 msgstr "heves hózápor, nagy hózivatar"
 
-#: wpowmweather.php:1955
+#: owmweather.php:1955
 msgid "mist"
 msgstr "köd"
 
-#: wpowmweather.php:1960
+#: owmweather.php:1960
 msgid "smoke"
 msgstr "füst"
 
-#: wpowmweather.php:1965
+#: owmweather.php:1965
 msgid "haze"
 msgstr "köd"
 
-#: wpowmweather.php:1970
+#: owmweather.php:1970
 msgid "sand, dust whirls"
 msgstr "porfelhő"
 
-#: wpowmweather.php:1975
+#: owmweather.php:1975
 msgid "fog"
 msgstr "köd"
 
-#: wpowmweather.php:1982
+#: owmweather.php:1982
 msgid "tornado"
 msgstr "tornádó"
 
-#: wpowmweather.php:1987
+#: owmweather.php:1987
 msgid "tropical storm"
 msgstr "trópusi vihar"
 
-#: wpowmweather.php:1992
+#: owmweather.php:1992
 msgid "hurricane"
 msgstr "hurrikán"
 
-#: wpowmweather.php:1997
+#: owmweather.php:1997
 msgid "windy"
 msgstr "szeles"
 
-#: wpowmweather.php:2002
+#: owmweather.php:2002
 msgid "hail"
 msgstr "jégeső"
 
-#: wpowmweather.php:2009
+#: owmweather.php:2009
 msgid "thunderstorm with light rain"
 msgstr "zivatar"
 
-#: wpowmweather.php:2015
+#: owmweather.php:2015
 msgid "thunderstorm with rain"
 msgstr "eső"
 
-#: wpowmweather.php:2021
+#: owmweather.php:2021
 msgid "thunderstorm with heavy rain"
 msgstr "nagy eső"
 
-#: wpowmweather.php:2027
+#: owmweather.php:2027
 msgid "light thunderstorm"
 msgstr "enyhe vihar"
 
-#: wpowmweather.php:2033
+#: owmweather.php:2033
 msgid "thunderstorm"
 msgstr "vihar"
 
-#: wpowmweather.php:2039
+#: owmweather.php:2039
 msgid "heavy thunderstorm"
 msgstr "heves vihar"
 
-#: wpowmweather.php:2045
+#: owmweather.php:2045
 msgid "ragged thunderstorm"
 msgstr "tomboló vihar"
 
-#: wpowmweather.php:2051
+#: owmweather.php:2051
 msgid "thunderstorm with light drizzle"
 msgstr "zápor"
 
-#: wpowmweather.php:2057
+#: owmweather.php:2057
 msgid "thunderstorm with drizzle"
 msgstr "szitáló eső"
 
-#: wpowmweather.php:2063
+#: owmweather.php:2063
 msgid "thunderstorm with heavy drizzle"
 msgstr "sűrűn szitáló eső"
 
-#: wpowmweather.php:2095
+#: owmweather.php:2095
 msgid "Today"
 msgstr "Ma"
 
-#: wpowmweather.php:2145
+#: owmweather.php:2145
 msgid "Wind"
 msgstr "Szél"
 
-#: wpowmweather.php:2148
+#: owmweather.php:2148
 msgid "Humidity"
 msgstr "Páratartalom"
 
-#: wpowmweather.php:2151
+#: owmweather.php:2151
 msgid "Pressure"
 msgstr "Nyomás"
 
-#: wpowmweather.php:2154
+#: owmweather.php:2154
 msgid "Cloudiness"
 msgstr "Felhősség"
 
-#: wpowmweather.php:2158 wpowmweather.php:2163
+#: owmweather.php:2158 owmweather.php:2163
 msgid "Precipitation"
 msgstr "Csapadék"
 
-#: wpowmweather.php:2172 wpowmweather.php:2180
+#: owmweather.php:2172 owmweather.php:2180
 msgid "Now"
 msgstr "Most"
 
-#: wpowmweather.php:2238 wpowmweather.php:2260
+#: owmweather.php:2238 owmweather.php:2260
 msgid "0 mm"
 msgstr ""
 
-#: wpowmweather.php:2685
+#: owmweather.php:2685
 msgid "Shortcode"
 msgstr "Rövid kód"
 
-#: wpowmweather.php:2708 wpowmweather.php:2709 wpowmweather.php:2710
+#: owmweather.php:2708 owmweather.php:2709 owmweather.php:2710
 msgid "Weather"
 msgstr "Időjárás"
 
-#: wpowmweather.php:2711
+#: owmweather.php:2711
 msgid "Parent Weather:"
 msgstr "Szülő Időjárás"
 
-#: wpowmweather.php:2712
+#: owmweather.php:2712
 msgid "All Weather"
 msgstr "Minden Időjárás"
 
-#: wpowmweather.php:2713
+#: owmweather.php:2713
 msgid "View Weather"
 msgstr "Időjárás nézet"
 
-#: wpowmweather.php:2714
+#: owmweather.php:2714
 msgid "Add New Weather"
 msgstr "Új időjárást hozzáad"
 
-#: wpowmweather.php:2715
+#: owmweather.php:2715
 msgid "New Weather"
 msgstr "Új időjárás"
 
-#: wpowmweather.php:2716
+#: owmweather.php:2716
 msgid "Edit Weather"
 msgstr "Időjárás szerkesztése"
 
-#: wpowmweather.php:2717
+#: owmweather.php:2717
 msgid "Update Weather"
 msgstr "Időjárás frissítése"
 
-#: wpowmweather.php:2718
+#: owmweather.php:2718
 msgid "Search Weather"
 msgstr "Időjárás keresés"
 
-#: wpowmweather.php:2719
+#: owmweather.php:2719
 msgid "No weather found"
 msgstr "Időjárást nem talált"
 
-#: wpowmweather.php:2720
+#: owmweather.php:2720
 msgid "No weather found in Trash"
 msgstr "Nem talált időjárást a kukába"
 
-#: wpowmweather.php:2724
+#: owmweather.php:2724
 msgid "weather"
 msgstr "időjárás"
 
-#: wpowmweather.php:2725
+#: owmweather.php:2725
 msgid "Listing weather"
 msgstr "Időjárás listázása"
 
-#: wpowmweather.php:2762 wpowmweather.php:2765
+#: owmweather.php:2762 owmweather.php:2765
 msgid " updated."
 msgstr "frissített."
 
-#: wpowmweather.php:2763
+#: owmweather.php:2763
 msgid "Custom field updated."
 msgstr "Aktuális mező mentése"
 
-#: wpowmweather.php:2764
+#: owmweather.php:2764
 msgid "Custom field deleted."
 msgstr "Aktuális mező törlése"
 
-#: wpowmweather.php:2766
+#: owmweather.php:2766
 #, php-format
 msgid " restored to revision from %s"
 msgstr "felülvizsgálat helyreállítása %s"
 
-#: wpowmweather.php:2767
+#: owmweather.php:2767
 msgid " published."
 msgstr "közzétett"
 
-#: wpowmweather.php:2768
+#: owmweather.php:2768
 msgid "Page saved."
 msgstr "Oldal mentése."
 
-#: wpowmweather.php:2769
+#: owmweather.php:2769
 msgid " submitted."
 msgstr "beállított."
 
-#: wpowmweather.php:2770
+#: owmweather.php:2770
 #, php-format
 msgid " scheduled for: <strong>%1$s</strong>. "
 msgstr " ütemezett: <strong>%1$s</strong>. "
 
-#: wpowmweather.php:2770
+#: owmweather.php:2770
 msgid "M j, Y @ G:i"
 msgstr "M j, Y @ G:i"
 
-#: wpowmweather.php:2771
+#: owmweather.php:2771
 msgid " draft updated."
 msgstr "tervezet frissítve."
 
-#: wpowmweather.php:2787
+#: owmweather.php:2787
 msgid ""
 "OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits "
 "requests."

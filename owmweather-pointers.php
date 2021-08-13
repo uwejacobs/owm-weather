@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) or die( 'Please don&rsquo;t call the plugin directly. Thanks :)' );
 
-function wow_enqueue_pointer_script_style( $hook_suffix ) {
+function owmw_enqueue_pointer_script_style( $hook_suffix ) {
 	
 	// Assume pointer shouldn't be shown
 	$enqueue_pointer_script_style = false;
@@ -10,11 +10,11 @@ function wow_enqueue_pointer_script_style( $hook_suffix ) {
 	$dismissed_pointers = explode( ',', get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
 
 	// Check if our pointer is not among dismissed ones
-	if( !in_array( 'wow_settings_pointer', $dismissed_pointers ) ) {
+	if( !in_array( 'owmw_settings_pointer', $dismissed_pointers ) ) {
 		$enqueue_pointer_script_style = true;
 		
 		// Add footer scripts using callback function
-		add_action( 'admin_print_footer_scripts', 'wow_pointer_print_scripts' );
+		add_action( 'admin_print_footer_scripts', 'owmw_pointer_print_scripts' );
 	}
 
 	// Enqueue pointer CSS and JS files, if needed
@@ -24,12 +24,12 @@ function wow_enqueue_pointer_script_style( $hook_suffix ) {
 	}
 	
 }
-add_action( 'admin_enqueue_scripts', 'wow_enqueue_pointer_script_style' );
+add_action( 'admin_enqueue_scripts', 'owmw_enqueue_pointer_script_style' );
 
-function wow_pointer_print_scripts() {
+function owmw_pointer_print_scripts() {
 
 	$pointer_content  = "<h3>OWM Weather 2</h3>";
-	$pointer_content .= '<p>'.__('<strong>Before starting:</strong> enter your own OpenWeatherMap API key in','owm-weather').' <a href="'.admin_url('options-general.php?page=wow-settings-admin#tab_advanced').'">'. __('Advanced Settings!','owm-weather').'</a></p>';
+	$pointer_content .= '<p>'.__('<strong>Before starting:</strong> enter your own OpenWeatherMap API key in','owm-weather').' <a href="'.admin_url('options-general.php?page=owmw-settings-admin#tab_advanced').'">'. __('Advanced Settings!','owm-weather').'</a></p>';
 	?>
 	
 	<script type="text/javascript">
@@ -44,7 +44,7 @@ function wow_pointer_print_scripts() {
 			pointerWidth:	350,
 			close:			function() {
 								$.post( ajaxurl, {
-										pointer: 'wow_settings_pointer', // pointer ID
+										pointer: 'owmw_settings_pointer', // pointer ID
 										action: 'dismiss-wp-pointer'
 								});
 							}

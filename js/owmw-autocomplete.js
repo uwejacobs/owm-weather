@@ -2,7 +2,7 @@
 // Cities
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // instantiate the bloodhound suggestion engine
-var wow_api_key = jQuery('#wpowmweather_city_meta').attr('data_appid');
+var owmw_api_key = jQuery('#owmweather_city_meta').attr('data_appid');
 
 var weathers = new Bloodhound({
     datumTokenizer: function (d) {
@@ -10,7 +10,7 @@ var weathers = new Bloodhound({
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
-        url: 'https://api.openweathermap.org/data/2.5/find?q=%QUERY&type=like&mode=json&APPID='+wow_api_key,
+        url: 'https://api.openweathermap.org/data/2.5/find?q=%QUERY&type=like&mode=json&APPID='+owmw_api_key,
         filter: function (weathers) {
             return jQuery.map(weathers.list, function (list) {
                 return {

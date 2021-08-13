@@ -7,56 +7,56 @@ if ( !function_exists( 'add_action' ) ) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //OWM WEATHER Options Panel
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-function wow_get_admin_bypass($setting) {
-    global $wow_params;
+function owmw_get_admin_bypass($setting) {
+    global $owmw_params;
 
 	static $options = [];
 
 	if (empty($options)) {
-    	$options = get_option("wow_option_name");
+    	$options = get_option("owmw_option_name");
     }
-    if (isset($wow_params[substr($setting, 4)]) && $wow_params[substr($setting, 4)] !== false) {
-        return($wow_params[substr($setting, 4)]);
+    if (isset($owmw_params[substr($setting, 5)]) && $owmw_params[substr($setting, 5)] !== false) {
+        return($owmw_params[substr($setting, 5)]);
     } else {
     	return $options[$setting] ?? null;
     }
 }
 
 //Get Bypass for Yes/No settings
-function wow_get_bypass_yn($bypass, $setting, $id = null) {
-    $opt = wow_get_admin_bypass("wow_" . $setting);
+function owmw_get_bypass_yn($bypass, $setting, $id = null) {
+    $opt = owmw_get_admin_bypass("owmw_" . $setting);
 
 	if ($bypass && isset($opt) && $opt != 'nobypass') {
 		return $opt == 'yes' ? 'yes' : null;
 	} else {
-    	return get_post_meta($id ?? $_POST['wow_params']['id'], '_wpowmweather_' . $setting, true);
+    	return get_post_meta($id ?? $_POST['owmw_params']['id'], '_owmweather_' . $setting, true);
 	}
 }
 
 //Get Bypass for settings
-function wow_get_bypass($bypass, $setting, $id = null) {
-    $opt = wow_get_admin_bypass("wow_" . $setting);
+function owmw_get_bypass($bypass, $setting, $id = null) {
+    $opt = owmw_get_admin_bypass("owmw_" . $setting);
 
 	if ($bypass && isset($opt) && $opt != 'nobypass') {
 		return $opt;
 	} else {
-    	return get_post_meta($id ?? $_POST['wow_params']['id'], '_wpowmweather_' . $setting, true);
+    	return get_post_meta($id ?? $_POST['owmw_params']['id'], '_owmweather_' . $setting, true);
 	}
 }
 
 //Disables weather cache
-function wow_get_admin_disable_cache() {
-    return $wow_admin_disable_cache_option['wow_advanced_disable_cache'] ?? null;
+function owmw_get_admin_disable_cache() {
+    return $owmw_admin_disable_cache_option['owmw_advanced_disable_cache'] ?? null;
 }
 
 //Time cache refresh
-function wow_get_admin_cache_time() {
-    return $wow_admin_cache_time_option['wow_advanced_cache_time'] ?? 30;
+function owmw_get_admin_cache_time() {
+    return $owmw_admin_cache_time_option['owmw_advanced_cache_time'] ?? 30;
 };
 
 //API Key
-function wow_get_admin_api_key() {
-    $opt = wow_get_admin_bypass("wow_advanced_api_key");
+function owmw_get_admin_api_key() {
+    $opt = owmw_get_admin_bypass("owmw_advanced_api_key");
 
 	if ($opt) {
 		return $opt;

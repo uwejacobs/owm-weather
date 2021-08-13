@@ -7,60 +7,60 @@
  *
  */
 ?>
-<!-- Start #wow-weather styles -->
+<!-- Start #owm-weather styles -->
 <style>
-#<?php echo $wow_opt["main_weather_div"] ?> {
+#<?php echo $owmw_opt["main_weather_div"] ?> {
     width: 100%;
 }
-#<?php echo $wow_opt["container_weather_div"] ?> {
+#<?php echo $owmw_opt["container_weather_div"] ?> {
 	width: auto;
 }
-#<?php echo $wow_opt["main_weather_div"] ?> .wow-infos-text {
+#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-infos-text {
     line-height: 1.5;
     margin-top: 20px;
     text-align: left;
 }
-#<?php echo $wow_opt["main_weather_div"] ?> .wow-infos-text span.wow-value,
-#<?php echo $wow_opt["main_weather_div"] ?> .wow-temperature {
+#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-infos-text span.owmw-value,
+#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-temperature {
     font-size: 125%;
     font-weight: 700;
 }
-#<?php echo $wow_opt["main_weather_div"] ?> .wow-infos-text svg {
+#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-infos-text svg {
     height: 28px;
     width: 29px;
 }
-#<?php echo $wow_opt["main_weather_div"] ?> .wow-now .wow-main-temperature {
+#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-now .owmw-main-temperature {
     font-size: 36px;
 }
-#<?php echo $wow_opt["main_weather_div"] ?> .wow-today .wow-sun-hours,
-#<?php echo $wow_opt["main_weather_div"] ?> .wow-today .wow-moon-hours {
+#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-today .owmw-sun-hours,
+#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-today .owmw-moon-hours {
     font-size: 12px;
 }
-#<?php echo $wow_opt["main_weather_div"] ?> .wow-hours .card,
-#<?php echo $wow_opt["main_weather_div"] ?> .wow-forecast .card {
+#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-hours .card,
+#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-forecast .card {
     margin: 0 !important;
 }
-#<?php echo $wow_opt["main_weather_div"] ?> .wow-current {
-    border-right: <?php echo "1px " . $wow_opt["border_style"] ?? "solid " . $wow_opt["border_color"] ?? "inherit" . ";" ; ?>;
+#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-current {
+    border-right: <?php echo "1px " . $owmw_opt["border_style"] ?? "solid " . $owmw_opt["border_color"] ?? "inherit" . ";" ; ?>;
 }
 
 @media only screen and (max-width: 558px) {
-    #<?php echo $wow_opt["main_weather_div"] ?> .wow-current {
+    #<?php echo $owmw_opt["main_weather_div"] ?> .owmw-current {
         border-right: none;
     }
 }
 
 @media only screen and (max-width: 767px) {
-    #<?php echo $wow_opt["main_weather_div"] ?> .wow-infos-text {
+    #<?php echo $owmw_opt["main_weather_div"] ?> .owmw-infos-text {
         text-align: center;
     }
 }
 </style>
 
 <?php
-    $info_col = ($wow_opt["wind"] =='yes' || $wow_opt["humidity"] =='yes' || $wow_opt["dew_point"] =='yes' || $wow_opt["pressure"] =='yes' || $wow_opt["cloudiness"] =='yes' || $wow_opt["precipitation"] =='yes' || $wow_opt["visibility"] =='yes' || $wow_opt["uv_index"] =='yes');
-    $hour_col = ($wow_opt["hours_forecast_no"] > 0);
-    $day_col  = ($wow_opt["days_forecast_no"] > 0);
+    $info_col = ($owmw_opt["wind"] =='yes' || $owmw_opt["humidity"] =='yes' || $owmw_opt["dew_point"] =='yes' || $owmw_opt["pressure"] =='yes' || $owmw_opt["cloudiness"] =='yes' || $owmw_opt["precipitation"] =='yes' || $owmw_opt["visibility"] =='yes' || $owmw_opt["uv_index"] =='yes');
+    $hour_col = ($owmw_opt["hours_forecast_no"] > 0);
+    $day_col  = ($owmw_opt["days_forecast_no"] > 0);
     
     if ($info_col && ($hour_col || $day_col)) {
         $main_class = "col-md-3 col-sm-4 col-12";
@@ -77,88 +77,88 @@
     }
 ?>
 
-<!-- Start #wow-weather -->
-<?php echo $wow_html["container"]["start"]; ?>
+<!-- Start #owm-weather -->
+<?php echo $owmw_html["container"]["start"]; ?>
 
     <div class="row">
-        <div class="wow-current <?php echo $main_class ?>">
+        <div class="owmw-current <?php echo $main_class ?>">
 
         	<!-- Current weather -->
-        	<?php echo $wow_html["now"]["start"]; ?>
-        		<?php echo $wow_html["now"]["location_name"]; ?>
-        		<?php echo $wow_html["now"]["symbol"]; ?>
-        		<?php echo $wow_html["now"]["temperature"]; ?>
-        		<?php echo $wow_html["now"]["feels_like"]; ?>
-        		<?php echo $wow_html["now"]["weather_description"]; ?>
-        	<?php echo $wow_html["now"]["end"]; ?>
+        	<?php echo $owmw_html["now"]["start"]; ?>
+        		<?php echo $owmw_html["now"]["location_name"]; ?>
+        		<?php echo $owmw_html["now"]["symbol"]; ?>
+        		<?php echo $owmw_html["now"]["temperature"]; ?>
+        		<?php echo $owmw_html["now"]["feels_like"]; ?>
+        		<?php echo $owmw_html["now"]["weather_description"]; ?>
+        	<?php echo $owmw_html["now"]["end"]; ?>
 
         	<!-- Today -->
-        	<?php echo str_replace("row", "", $wow_html["today"]["start"]); ?>
-        		<?php echo str_replace("col", "", $wow_html["today"]["day"]); ?>
-        		<?php echo str_replace("col", "", $wow_html["today"]["sun"]); ?>
-        		<?php echo str_replace("col", "", $wow_html["today"]["moon"]); ?>
-        	<?php echo $wow_html["today"]["end"]; ?>
+        	<?php echo str_replace("row", "", $owmw_html["today"]["start"]); ?>
+        		<?php echo str_replace("col", "", $owmw_html["today"]["day"]); ?>
+        		<?php echo str_replace("col", "", $owmw_html["today"]["sun"]); ?>
+        		<?php echo str_replace("col", "", $owmw_html["today"]["moon"]); ?>
+        	<?php echo $owmw_html["today"]["end"]; ?>
 
         	<!-- Alert button -->
-        	<?php echo $wow_html["alert_button"]; ?>
+        	<?php echo $owmw_html["alert_button"]; ?>
 
         	<!-- Current infos: wind, humidity, pressure, cloudiness, precipitation -->
-            <?php if ($wow_opt["wind"] =='yes' || $wow_opt["humidity"] =='yes' || $wow_opt["dew_point"] =='yes' || $wow_opt["pressure"] =='yes' || $wow_opt["cloudiness"] =='yes' || $wow_opt["precipitation"] =='yes' || $wow_opt["visibility"] =='yes' || $wow_opt["uv_index"] =='yes') { ?>
+            <?php if ($owmw_opt["wind"] =='yes' || $owmw_opt["humidity"] =='yes' || $owmw_opt["dew_point"] =='yes' || $owmw_opt["pressure"] =='yes' || $owmw_opt["cloudiness"] =='yes' || $owmw_opt["precipitation"] =='yes' || $owmw_opt["visibility"] =='yes' || $owmw_opt["uv_index"] =='yes') { ?>
                 <?php if (!empty($info_class)) { ?>
                     </div>
                     <div class="<?php echo $info_class ?>">
                 <?php } ?>
-            	<?php echo '<p class="wow-infos-text">'; ?>
-            	<?php if ($wow_opt["wind"] =='yes') echo $wow_html["svg"]["wind"] . 'Wind: <span class="wow-value">' . $wow_data["wind_speed"] . ' ' . $wow_data["wind_direction"] . '</span><br>'; ?>
-            	<?php if ($wow_opt["humidity"] =='yes') echo $wow_html["svg"]["humidity"] .'Humidity: <span class="wow-value">' . $wow_data["humidity"] . '</span><br>'; ?>
-            	<?php if ($wow_opt["dew_point"] =='yes') echo $wow_html["svg"]["dew_point"] .'Dew Point: <span class="wow-value wow-temperature">' . $wow_data["dew_point"] . '</span><br>'; ?>
-            	<?php if ($wow_opt["pressure"] =='yes') echo $wow_html["svg"]["pressure"] .'Pressure: <span class="wow-value">' . $wow_data["pressure"] . '</span><br>'; ?>
-            	<?php if ($wow_opt["cloudiness"] =='yes') echo $wow_html["svg"]["cloudiness"] .'Cloudiness: <span class="wow-value">' . $wow_data["cloudiness"] . '</span><br>'; ?>
-            	<?php if ($wow_opt["precipitation"] =='yes') echo $wow_html["svg"]["precipitation"] .'Precipitation: <span class="wow-value">' . $wow_data["precipitation_1h"] . '</span><br>'; ?>
-            	<?php if ($wow_opt["visibility"] =='yes') echo $wow_html["svg"]["visibility"] . 'Visibility: <span class="wow-value">' . $wow_data["visibility"] . '</span><br>'; ?>
-            	<?php if ($wow_opt["uv_index"] =='yes') echo $wow_html["svg"]["uv_index"] . 'UV Index: <span class="wow-value">' . $wow_data["uv_index"] . '</span><br>'; ?>
+            	<?php echo '<p class="owmw-infos-text">'; ?>
+            	<?php if ($owmw_opt["wind"] =='yes') echo $owmw_html["svg"]["wind"] . 'Wind: <span class="owmw-value">' . $owmw_data["wind_speed"] . ' ' . $owmw_data["wind_direction"] . '</span><br>'; ?>
+            	<?php if ($owmw_opt["humidity"] =='yes') echo $owmw_html["svg"]["humidity"] .'Humidity: <span class="owmw-value">' . $owmw_data["humidity"] . '</span><br>'; ?>
+            	<?php if ($owmw_opt["dew_point"] =='yes') echo $owmw_html["svg"]["dew_point"] .'Dew Point: <span class="owmw-value owmw-temperature">' . $owmw_data["dew_point"] . '</span><br>'; ?>
+            	<?php if ($owmw_opt["pressure"] =='yes') echo $owmw_html["svg"]["pressure"] .'Pressure: <span class="owmw-value">' . $owmw_data["pressure"] . '</span><br>'; ?>
+            	<?php if ($owmw_opt["cloudiness"] =='yes') echo $owmw_html["svg"]["cloudiness"] .'Cloudiness: <span class="owmw-value">' . $owmw_data["cloudiness"] . '</span><br>'; ?>
+            	<?php if ($owmw_opt["precipitation"] =='yes') echo $owmw_html["svg"]["precipitation"] .'Precipitation: <span class="owmw-value">' . $owmw_data["precipitation_1h"] . '</span><br>'; ?>
+            	<?php if ($owmw_opt["visibility"] =='yes') echo $owmw_html["svg"]["visibility"] . 'Visibility: <span class="owmw-value">' . $owmw_data["visibility"] . '</span><br>'; ?>
+            	<?php if ($owmw_opt["uv_index"] =='yes') echo $owmw_html["svg"]["uv_index"] . 'UV Index: <span class="owmw-value">' . $owmw_data["uv_index"] . '</span><br>'; ?>
             	<?php echo "</p>"; ?>
             <?php } ?>
 
         </div>
 	
-    	<?php if ($wow_opt["hours_forecast_no"] > 0 || $wow_opt["days_forecast_no"] > 0) { ?>
+    	<?php if ($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0) { ?>
             <div class="<?php echo $hour_day_class ?>">
     	<?php } ?>
 
-    	<?php if ($wow_opt["hours_forecast_no"] > 0) { ?>
+    	<?php if ($owmw_opt["hours_forecast_no"] > 0) { ?>
             <div class="row">
                 <div class="col">
             		<!-- Hourly Forecast -->
-            		<?php echo $wow_html["hour"]["start"]; ?>
+            		<?php echo $owmw_html["hour"]["start"]; ?>
             		<?php
-            			for ($i = 0; $i < $wow_opt["hours_forecast_no"]; $i++) {
-            			    if (isset($wow_html["hour"]["info"][$i])) {
-                				echo $wow_html["hour"]["info"][$i];
+            			for ($i = 0; $i < $owmw_opt["hours_forecast_no"]; $i++) {
+            			    if (isset($owmw_html["hour"]["info"][$i])) {
+                				echo $owmw_html["hour"]["info"][$i];
                 			}
             			}
             		?>
-            		<?php echo $wow_html["hour"]["end"]; ?>
+            		<?php echo $owmw_html["hour"]["end"]; ?>
         		</div>
     		</div>
     	<?php } ?>
 
-    	<?php if ($wow_opt["days_forecast_no"] > 0) { ?>	
+    	<?php if ($owmw_opt["days_forecast_no"] > 0) { ?>	
             <div class="row">
                 <div class="col">
         		<!-- Daily Forecast -->
-        		<?php echo $wow_html["forecast"]["start_card"]; ?>
+        		<?php echo $owmw_html["forecast"]["start_card"]; ?>
         			<?php
-        				for ($i = 0; $i < $wow_opt["days_forecast_no"]; $i++) {
-        					echo $wow_html["forecast"]["info_card"][$i];
+        				for ($i = 0; $i < $owmw_opt["days_forecast_no"]; $i++) {
+        					echo $owmw_html["forecast"]["info_card"][$i];
         				}
         			?>	
-        		<?php echo $wow_html["forecast"]["end_card"]; ?>
+        		<?php echo $owmw_html["forecast"]["end_card"]; ?>
         		</div>
     		</div>
     	<?php } ?>
 
-    	<?php if ($wow_opt["hours_forecast_no"] > 0 || $wow_opt["days_forecast_no"] > 0) { ?>
+    	<?php if ($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0) { ?>
             </div>
     	<?php } ?>
 
@@ -166,22 +166,22 @@
     </div>
 
 	<!-- Weather Map -->
-	<?php echo $wow_html["map"]; ?>
+	<?php echo $owmw_html["map"]; ?>
 
-	<?php echo $wow_html["owm_link_last_update_start"]; ?>
+	<?php echo $owmw_html["owm_link_last_update_start"]; ?>
 		<!-- OWM Link -->
-		<?php echo $wow_html["owm_link"]; ?>
+		<?php echo $owmw_html["owm_link"]; ?>
 		<!-- OWM Last Update -->
-		<?php echo $wow_html["last_update"]; ?>
-	<?php echo $wow_html["owm_link_last_update_end"]; ?>
+		<?php echo $owmw_html["last_update"]; ?>
+	<?php echo $owmw_html["owm_link_last_update_end"]; ?>
 
 	<!-- Alert Modals -->
-	<?php echo $wow_html["alert_modal"]; ?>
+	<?php echo $owmw_html["alert_modal"]; ?>
 
 	<!-- CSS/Scripts -->
-	<?php echo $wow_html["custom_css"]; ?>
-	<?php echo $wow_html["temperature_unit"]; ?>
-	<?php echo $wow_html["gtag"]; ?>
+	<?php echo $owmw_html["custom_css"]; ?>
+	<?php echo $owmw_html["temperature_unit"]; ?>
+	<?php echo $owmw_html["gtag"]; ?>
 
-<!-- End #wow-weather -->
-<?php echo $wow_html["container"]["end"]; ?>
+<!-- End #owm-weather -->
+<?php echo $owmw_html["container"]["end"]; ?>

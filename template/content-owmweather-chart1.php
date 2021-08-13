@@ -9,8 +9,8 @@
 ?>
 <?php
 
-echo $wow_html["container"]["start"];
-echo $wow_html["chart"]["hourly"]["cmd"];
-echo $wow_html["chart"]["daily"]["cmd"];
-echo $wow_html["container"]["end"];
-echo $wow_html["temperature_unit"];
+echo $owmw_html["container"]["start"];
+echo $owmw_html["chart"]["hourly"]["cmd"];
+echo $owmw_html["chart"]["daily"]["cmd"];
+echo $owmw_html["container"]["end"];
+echo $owmw_html["temperature_unit"];

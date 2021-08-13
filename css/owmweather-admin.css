@@ -1,10 +1,10 @@
-.mceIcon.mce_wow_button:before {
+.mceIcon.mce_owmw_button:before {
 	content: "\f176" !important;
 	font-family: dashicons;
 	font-size: 20px;
 }
 
-#wpowmweather_basic .ui-tabs .ui-tabs-nav {
+#owmweather_basic .ui-tabs .ui-tabs-nav {
 	display: inline-block;
 	height: 26px;
 	position: relative;
@@ -14,11 +14,11 @@
 	padding: 0;
 }
 
-#wpowmweather_basic .ui-helper-clearfix:after {
+#owmweather_basic .ui-helper-clearfix:after {
 	content: none;
 }
 
-#wpowmweather_basic .ui-tabs .ui-tabs-panel {
+#owmweather_basic .ui-tabs .ui-tabs-panel {
 	background: none repeat scroll 0 0 #fff;
 	border: 1px solid #ddd;
 	border-radius: 0 3px 3px 3px;
@@ -26,11 +26,11 @@
 	padding: 1em 1.4em;
 }
 
-#wpowmweather_basic .ui-tabs .ui-tabs-nav li,#wpowmweather_basic .ui-tabs-anchor {
+#owmweather_basic .ui-tabs .ui-tabs-nav li,#owmweather_basic .ui-tabs-anchor {
 	cursor: pointer !important;
 }
 
-#wpowmweather_basic .ui-tabs .ui-tabs-nav li.ui-tabs-active {
+#owmweather_basic .ui-tabs .ui-tabs-nav li.ui-tabs-active {
 	background: none repeat scroll 0 0 #fff;
 	border-color: #ddd #ddd #fff;
 	border-image: none;
@@ -41,13 +41,13 @@
 	cursor: pointer;
 }
 
-#wpowmweather_basic #tabs-1 label,#wpowmweather_basic #tabs-1 .misc,#wpowmweather_basic #tabs-2 .hour,#wpowmweather_basic #tabs-2 .temperatures,#wpowmweather_basic #tabs-2 .wow-misc,#wpowmweather_basic #tabs-2 .wow-dates,#wpowmweather_basic #tabs-2 .forecast,#wpowmweather_basic #tabs-2 .footer,#wpowmweather_basic #tabs-3 label,#wpowmweather_basic .subsection-title,#wpowmweather_basic label[for=wpowmweather_map_height_meta],#wpowmweather_basic label[for=wpowmweather_map_zoom_meta],#wpowmweather_basic label[for=wpowmweather_map_opacity_meta] {
+#owmweather_basic #tabs-1 label,#owmweather_basic #tabs-1 .misc,#owmweather_basic #tabs-2 .hour,#owmweather_basic #tabs-2 .temperatures,#owmweather_basic #tabs-2 .owmw-misc,#owmweather_basic #tabs-2 .owmw-dates,#owmweather_basic #tabs-2 .forecast,#owmweather_basic #tabs-2 .footer,#owmweather_basic #tabs-3 label,#owmweather_basic .subsection-title,#owmweather_basic label[for=owmweather_map_height_meta],#owmweather_basic label[for=owmweather_map_zoom_meta],#owmweather_basic label[for=owmweather_map_opacity_meta] {
 	border-bottom: 1px solid #ddd;
 	display: block;
 	margin: 20px 0 5px;
 }
 
-#wpowmweather_basic .subsection-title {
+#owmweather_basic .subsection-title {
 	font-weight: bold;
 }
 
@@ -57,49 +57,49 @@
 	margin: 0 0 5px 5px !important;
 }
 
-#wpowmweather_basic #tabs-1 label[for=wpowmweather_date_timezone_bypass_meta],#wpowmweather_basic #tabs-1 label[for=wpowmweather_gtag_meta],#wpowmweather_basic #tabs-1 label[for=wpowmweather_bypass_exclude_meta] {
+#owmweather_basic #tabs-1 label[for=owmweather_date_timezone_bypass_meta],#owmweather_basic #tabs-1 label[for=owmweather_gtag_meta],#owmweather_basic #tabs-1 label[for=owmweather_bypass_exclude_meta] {
 	border: 0;
 	width: inherit;
 }
 
-#wpowmweather_basic #tabs-1 label[for=wpowmweather_date_timezone_bypass_meta] input,#wpowmweather_basic #tabs-1 label[for=wpowmweather_gtag_meta] input,#wpowmweather_basic #tabs-1 label[for=wpowmweather_bypass_exclude_meta] input {
+#owmweather_basic #tabs-1 label[for=owmweather_date_timezone_bypass_meta] input,#owmweather_basic #tabs-1 label[for=owmweather_gtag_meta] input,#owmweather_basic #tabs-1 label[for=owmweather_bypass_exclude_meta] input {
 	width: inherit;
 }
 
-#wpowmweather_basic .wp-color-result {
+#owmweather_basic .wp-color-result {
 	margin: 0;
 }
 
-#wpowmweather_basic #tabs-1 input,#wpowmweather_basic #wpowmweather_map_height_meta,#wpowmweather_basic #wpowmweather_map_opacity_meta {
+#owmweather_basic #tabs-1 input,#owmweather_basic #owmweather_map_height_meta,#owmweather_basic #owmweather_map_opacity_meta {
 	width: 300px;
 }
 
-#wpowmweather_basic select {
+#owmweather_basic select {
 	width: 300px;
 }
 
-#wpowmweather_basic #wpowmweather_custom_css_meta {
+#owmweather_basic #owmweather_custom_css_meta {
 	width: 100%;
 	height: 250px;
 }
 
-#wpowmweather_basic .mandatory {
+#owmweather_basic .mandatory {
 	color: #c00;
 }
 
-#wpowmweather_basic .typeahead {
+#owmweather_basic .typeahead {
 	background-color: #fff;
 }
 
-#wpowmweather_basic .tt-query {
+#owmweather_basic .tt-query {
 	box-shadow: 0 1px 1px rgba(0,0,0,0.075) inset;
 }
 
-#wpowmweather_basic .tt-hint {
+#owmweather_basic .tt-hint {
 	color: #999;
 }
 
-#wpowmweather_basic .tt-dropdown-menu {
+#owmweather_basic .tt-dropdown-menu {
 	background-color: #fff;
 	border: 1px solid rgba(0,0,0,0.2);
 	border-radius: 8px 8px 8px 8px;
@@ -109,34 +109,34 @@
 	width: 422px;
 }
 
-#wpowmweather_basic .tt-suggestion {
+#owmweather_basic .tt-suggestion {
 	font-size: 18px;
 	line-height: 24px;
 	padding: 3px 20px;
 }
 
-#wpowmweather_basic .tt-suggestion.tt-cursor {
+#owmweather_basic .tt-suggestion.tt-cursor {
 	background-color: #0097cf;
 	color: #fff;
 }
 
-#wpowmweather_basic .tt-suggestion p {
+#owmweather_basic .tt-suggestion p {
 	margin: 0;
 }
 
-#wpowmweather_basic .gist {
+#owmweather_basic .gist {
 	font-size: 14px;
 }
 
-#wpowmweather_shortcode .shortcode {
+#owmweather_shortcode .shortcode {
 	margin: 20px 0;
 }
 
-#wpowmweather_shortcode .shortcode-php {
+#owmweather_shortcode .shortcode-php {
 	margin: 0 0 20px 0;
 }
 
-#wpowmweather_shortcode .shortcode-php .wow-highlight,#wpowmweather_shortcode .shortcode .wow-highlight {
+#owmweather_shortcode .shortcode-php .owmw-highlight,#owmweather_shortcode .shortcode .owmw-highlight {
 	background: none repeat scroll 0 0 #222;
 	color: #fff;
 	display: block;
@@ -144,12 +144,12 @@
 	padding: 5px;
 }
 
-#wpowmweather_basic .ui-tabs {
+#owmweather_basic .ui-tabs {
 	position: relative;
 	padding: .2em;
 }
 
-#wpowmweather_basic .ui-tabs .ui-tabs-nav li {
+#owmweather_basic .ui-tabs .ui-tabs-nav li {
 	list-style: none;
 	float: left;
 	position: relative;
@@ -160,36 +160,36 @@
 	white-space: nowrap;
 }
 
-#wpowmweather_basic .ui-tabs .ui-tabs-nav li a {
+#owmweather_basic .ui-tabs .ui-tabs-nav li a {
 	float: left;
 	padding: .38em 1em;
 	text-decoration: none;
 }
 
-#wpowmweather_basic .ui-tabs .ui-tabs-nav li.ui-tabs-active {
+#owmweather_basic .ui-tabs .ui-tabs-nav li.ui-tabs-active {
 	margin-bottom: -1px;
 	padding-bottom: 1px;
 }
 
-#wpowmweather_basic .ui-tabs .ui-tabs-nav li.ui-tabs-active a,#wpowmweather_basic .ui-tabs .ui-tabs-nav li.ui-state-disabled a,#wpowmweather_basic .ui-tabs .ui-tabs-nav li.ui-tabs-loading a {
+#owmweather_basic .ui-tabs .ui-tabs-nav li.ui-tabs-active a,#owmweather_basic .ui-tabs .ui-tabs-nav li.ui-state-disabled a,#owmweather_basic .ui-tabs .ui-tabs-nav li.ui-tabs-loading a {
 	cursor: text;
 }
 
-#wpowmweather_basic .ui-tabs .ui-tabs-nav li a,#wpowmweather_basic .ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active a {
+#owmweather_basic .ui-tabs .ui-tabs-nav li a,#owmweather_basic .ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active a {
 	cursor: pointer;
 }
 
-#wpowmweather_basic .ui-tabs-vertical {
+#owmweather_basic .ui-tabs-vertical {
 	width: 55em;
 }
 
-#wpowmweather_basic .ui-tabs-vertical .ui-tabs-nav {
+#owmweather_basic .ui-tabs-vertical .ui-tabs-nav {
 	padding: .2em .1em .2em .2em;
 	float: left;
 	width: 12em;
 }
 
-#wpowmweather_basic .ui-tabs-vertical .ui-tabs-nav li {
+#owmweather_basic .ui-tabs-vertical .ui-tabs-nav li {
 	clear: left;
 	width: 100%;
 	border-bottom-width: 1px !important;
@@ -197,32 +197,32 @@
 	margin: 0 -1px .2em 0;
 }
 
-#wpowmweather_basic .ui-tabs-vertical .ui-tabs-nav li a {
+#owmweather_basic .ui-tabs-vertical .ui-tabs-nav li a {
 	display: block;
 }
 
-#wpowmweather_basic .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+#owmweather_basic .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
 	padding-bottom: 0;
 	padding-right: .1em;
 	border-right-width: 1px;
 	border-right-width: 1px;
 }
 
-#wpowmweather_basic .ui-tabs-vertical .ui-tabs-panel {
+#owmweather_basic .ui-tabs-vertical .ui-tabs-panel {
 	padding: 1em;
 	float: right;
 	width: 40em;
 }
 
-#wpowmweather-clouds {
+#owmweather-clouds {
 	position: relative;
 }
 
-#wpowmweather-header {
+#owmweather-header {
 	margin: 0 10px 20px;
 }
 
-#wpowmweather-header #wpowmweather-clouds h3 {
+#owmweather-header #owmweather-clouds h3 {
 	background: url("../img/logo-owmweather.png") no-repeat scroll 0 0 / contain rgba(0,0,0,0);
 	font-size: 20px;
 	font-weight: bold;
@@ -231,7 +231,7 @@
 	text-indent: -9999px;
 }
 
-#wpowmweather-header #wpowmweather-clouds .wow-info-version {
+#owmweather-header #owmweather-clouds .owmw-info-version {
 	font-size: 14px;
 	left: 290px;
 	position: absolute;
@@ -239,41 +239,41 @@
 	top: 20px;
 }
 
-#wpowmweather-header #wpowmweather-clouds #wpowmweather-notice {
+#owmweather-header #owmweather-clouds #owmweather-notice {
 	width: 63%;
 }
 
-#wpowmweather-header #wpowmweather-clouds #wpowmweather-notice p {
+#owmweather-header #owmweather-clouds #owmweather-notice p {
 	font-size: 16px;
 }
 
-#wpowmweather-header #wpowmweather-clouds #wpowmweather-notice .dashicons {
+#owmweather-header #owmweather-clouds #owmweather-notice .dashicons {
 	color: #444;
 	text-decoration: none;
 	vertical-align: middle;
 	font-size: 18px;
 }
 
-#wpowmweather-header #wpowmweather-clouds #wpowmweather-notice .small {
+#owmweather-header #owmweather-clouds #owmweather-notice .small {
 	font-size: 13px;
 	line-height: 20px;
 }
 
-#wpowmweather-header #wpowmweather-clouds #wpowmweather-notice .wporg-ratings {
+#owmweather-header #owmweather-clouds #owmweather-notice .wporg-ratings {
 	display: inline;
 }
 
-.wpowmweather-settings {
+.owmweather-settings {
 	float: left;
 	max-width: 750px;
 	width: 100%;
 }
 
-.wpowmweather-settings label {
+.owmweather-settings label {
 	margin: 0 0 0 10px;
 }
 
-.wpowmweather-sidebar {
+.owmweather-sidebar {
 	float: left;
 	margin-left: 20px;
 	position: relative;
@@ -282,11 +282,11 @@
 	right: 15px;
 }
 
-.wpowmweather-sidebar .button {
+.owmweather-sidebar .button {
 	font-family: "Open Sans",sans-serif;
 }
 
-.wpowmweather-sidebar .wpowmweather-module {
+.owmweather-sidebar .owmweather-module {
 	background: none repeat scroll 0 0 #fff;
 	border: 1px solid #dedede;
 	border-radius: 3px;
@@ -301,7 +301,7 @@
 	width: 210px;
 }
 
-.wpowmweather-sidebar .wpowmweather-module h3 {
+.owmweather-sidebar .owmweather-module h3 {
 	color: #000;
 	font-size: 17px;
 	font-style: normal;
@@ -311,7 +311,7 @@
 	padding: 0;
 }
 
-.wpowmweather-sidebar .wpowmweather-module .wpowmweather-module-actions {
+.owmweather-sidebar .owmweather-module .owmweather-module-actions {
 	background: none repeat scroll 0 0 #fff;
 	bottom: 20px;
 	display: block;
@@ -319,7 +319,7 @@
 	position: absolute;
 }
 
-.wpowmweather-sidebar .wpowmweather-module .module-image {
+.owmweather-sidebar .owmweather-module .module-image {
 	background: rgba(52,153,220,0.8);
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
@@ -329,7 +329,7 @@
 	width: 80px;
 }
 
-.wpowmweather-sidebar .wpowmweather-module .module-image .dashicons {
+.owmweather-sidebar .owmweather-module .module-image .dashicons {
 	color: rgba(255,255,255,0.85);
 	font-size: 60px;
 	height: 40px;
@@ -339,7 +339,7 @@
 	width: 40px;
 }
 
-.wpowmweather-sidebar .wpowmweather-module .module-image .enabled {
+.owmweather-sidebar .owmweather-module .module-image .enabled {
 	border-bottom: 1px solid #ccc;
 	font-family: Open Sans;
 	font-size: 12px;
@@ -351,7 +351,7 @@
 	width: 56px;
 }
 
-.wpowmweather-sidebar .wpowmweather-module .module-image .enabled .dashicons {
+.owmweather-sidebar .owmweather-module .module-image .enabled .dashicons {
 	color: #27ae60;
 	font-size: 20px;
 	left: -10px;
@@ -359,7 +359,7 @@
 	top: 0;
 }
 
-.wpowmweather-sidebar .wpowmweather-module .module-image p {
+.owmweather-sidebar .owmweather-module .module-image p {
 	background-color: #3498db;
 	border-bottom-left-radius: 2px;
 	clear: both;
@@ -371,7 +371,7 @@
 	text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 }
 
-.wpowmweather-sidebar .wpowmweather-module-description {
+.owmweather-sidebar .owmweather-module-description {
 	color: #666;
 	font-size: 12px;
 	line-height: 150%;
@@ -379,19 +379,19 @@
 	font-family: georgia,arial;
 }
 
-#wpowmweather-tabs .nav-tab-wrapper ul {
+#owmweather-tabs .nav-tab-wrapper ul {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 	border-bottom: 1px solid #ccc;
 }
 
-#wpowmweather-tabs .nav-tab-wrapper ul li {
+#owmweather-tabs .nav-tab-wrapper ul li {
 	display: inline-block;
 	margin: 0 0 -4px 0;
 }
 
-#wpowmweather-tabs .nav-tab-wrapper ul li.ui-tabs-active a {
+#owmweather-tabs .nav-tab-wrapper ul li.ui-tabs-active a {
 	background: #f1f1f1;
 	color: #333;
 }

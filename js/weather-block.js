@@ -3,7 +3,7 @@ const { registerBlockType } = wp.blocks // Importe la fonction registerBlockType
 
 // Fonction WordPress pour déclarer un bloc
 registerBlockType(
-	'gutenberg-wpowmweather/wpowmweather', // Nom du bloc sous forme de slug avec son préfixe (wp est bien sûr réservé)
+	'gutenberg-owmweather/owmweather', // Nom du bloc sous forme de slug avec son préfixe (wp est bien sûr réservé)
 	{
 		title: __( "Weather"), // Titre du bloc lisible par un humain
 		description: __("OWM Weather widget"), // Description qui apparait dans l'inspecteur
@@ -11,7 +11,7 @@ registerBlockType(
 		category: 'layout widgets', // Catégorie (common, formatting, layout widgets, embed)
 		keywords: [ // Mots clés pour améliorer la recherche de blocs
 			__( 'weather' ),
-			__( 'wp owm weather' ),
+			__( 'owm weather' ),
 			__( 'forecast' ),
 		],
 

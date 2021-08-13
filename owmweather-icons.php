@@ -1,7 +1,7 @@
 <?php
 function weatherIcon($iconpack, $id, $day_night, $description) {
     if ($iconpack == 'WeatherIcons') {
-        return '<div class="wow-symbol"><i class="wi wi-owm-' . $day_night . '-' . $id . '" title="' . $description . '"></i></div>';
+        return '<div class="owmw-symbol"><i class="wi wi-owm-' . $day_night . '-' . $id . '" title="' . $description . '"></i></div>';
 	} else if ($iconpack == 'Forecast') {
         return weatherIconvault($id, $day_night, $description);
 	} else if ($iconpack == 'Dripicons') {
@@ -11,7 +11,7 @@ function weatherIcon($iconpack, $id, $day_night, $description) {
 	} else if ($iconpack == 'OpenWeatherMap') {
         return weatherOpenWeatherMap($id, $day_night, $description);
 	} else {
-   		return '<div class="wow-symbol climacon w' . $id . ' ' . $day_night  .'" title="' . $description . '"></div>';
+   		return '<div class="owmw-symbol climacon w' . $id . ' ' . $day_night  .'" title="' . $description . '"></div>';
 	}
 }
 
@@ -325,7 +325,7 @@ function weatherOpenWeatherMap($id, $day_night, $description) {
     }
     
     if ($icon) {
-        return '<img class="wow-symbol owm-icon img-fluid" src="https://openweathermap.org/img/wn/' . $icon . ($day_night == 'day' ? 'd' : 'n') . '.png" title="'.$description.'" alt="'.$description.'">';
+        return '<img class="owmw-symbol owm-icon img-fluid" src="https://openweathermap.org/img/wn/' . $icon . ($day_night == 'day' ? 'd' : 'n') . '.png" title="'.$description.'" alt="'.$description.'">';
     }
     
     return '';
@@ -410,7 +410,7 @@ function weatherIconvault($id, $day_night, $description) {
         232 => '<li class="basecloud"><li class="icon-thunder"></li>'
 	);
 
-    return '<div class="wow-symbol iconvault" title="' . $description . '"><ul class="list-unstyled">'. ($iconvault[$id] ?? '') .'</ul></div>';
+    return '<div class="owmw-symbol iconvault" title="' . $description . '"><ul class="list-unstyled">'. ($iconvault[$id] ?? '') .'</ul></div>';
 }
 
 function weatherDripicons($id, $day_night, $description) {
@@ -495,7 +495,7 @@ function weatherDripicons($id, $day_night, $description) {
    
     );
 
-    return '<div class="wow-symbol diw '. ($dripicon[$id] ?? '') .'" title="' . $description . '"></div>';
+    return '<div class="owmw-symbol diw '. ($dripicon[$id] ?? '') .'" title="' . $description . '"></div>';
 }
 
 function weatherPixeden($id, $day_night, $description) {
@@ -566,7 +566,7 @@ function weatherPixeden($id, $day_night, $description) {
         case 232: $icon = $day_night == "day" ? "mix-rainfall-2-f" : "mix-rainfall-1-f"; break;
     }
 
-    return '<span class="wow-symbol pe pe-is-w-'. ($icon ?? '') .'" title="' . $description . '"></span>';
+    return '<span class="owmw-symbol pe pe-is-w-'. ($icon ?? '') .'" title="' . $description . '"></span>';
 }
 
 function temperatureUnitSymbol($id, $display_unit, $unit, $iconpack) {
@@ -575,16 +575,16 @@ function temperatureUnitSymbol($id, $display_unit, $unit, $iconpack) {
 	    if ($display_unit == 'yes') {
 	    	$str .=
 	    		'<style>
-	            	#'.$id.' .wow-now .wow-main-temperature:after,
-	            	#'.$id.' .wow-now .wow-main-feels-like:after,
-	            	#'.$id.' .wow-infos .wow-temperature:after,
-	            	#'.$id.' .wow-infos-text .wow-temperature:after,
-	              	#'.$id.' .wow-forecast .wow-temp-max:after,
-	              	#'.$id.' .wow-forecast .wow-temp-min:after,
-	              	#'.$id.' .wow-hours .wow-temperature:after,
-	              	#'.$id.' .wow-today .wow-main-temperature_max:after,
-	              	#'.$id.' .wow-today .wow-main-temperature_min:after,
-	              	#'.$id.' .wow-table .wow-temperature:after {';
+	            	#'.$id.' .owmw-now .owmw-main-temperature:after,
+	            	#'.$id.' .owmw-now .owmw-main-feels-like:after,
+	            	#'.$id.' .owmw-infos .owmw-temperature:after,
+	            	#'.$id.' .owmw-infos-text .owmw-temperature:after,
+	              	#'.$id.' .owmw-forecast .owmw-temp-max:after,
+	              	#'.$id.' .owmw-forecast .owmw-temp-min:after,
+	              	#'.$id.' .owmw-hours .owmw-temperature:after,
+	              	#'.$id.' .owmw-today .owmw-main-temperature_max:after,
+	              	#'.$id.' .owmw-today .owmw-main-temperature_min:after,
+	              	#'.$id.' .owmw-table .owmw-temperature:after {';
 
 	        if ($unit == 'metric') {
 	            if ($iconpack == 'WeatherIcons') {

@@ -1,4 +1,4 @@
 jQuery(document).ready(function($){
-    $('.wpowmweather_color_picker').wpColorPicker();
-    $('.wpowmweather_admin_color_picker').wpColorPicker();
+    $('.owmweather_color_picker').wpColorPicker();
+    $('.owmweather_admin_color_picker').wpColorPicker();
 });

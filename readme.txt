@@ -91,11 +91,11 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 Templating system: The main advantage is that you can create a completely personalized weather without changing the core of the plugin. In addition, your changes will not be overwritten at each plugin update.
 
 * Go to OWM Weather template directory: http://yoursite.com/wp-content/plugins/owm-weather/template/
-* Copy content-wpowmweather-custom1.php and content-wpowmweather-custom2.php files.
+* Copy content-owmweather-custom1.php and content-owmweather-custom2.php files.
 * Go to your theme directory: http://yoursite.com/wp-content/themes/yourtheme/
 * Create a new folder called owm-weather (the spelling is important).
-* In this new folder, paste content-wpowmweather-custom1.php and content-wpowmweather-custom2.php files.
-* Now, open content-wpowmweather-custom1.php or content-wpowmweather-custom2.php with a php editor like notepad ++, coda2, sublime text…
+* In this new folder, paste content-owmweather-custom1.php and content-owmweather-custom2.php files.
+* Now, open content-owmweather-custom1.php or content-owmweather-custom2.php with a php editor like notepad ++, coda2, sublime text…
 * Write your weather layout.. You can use the other templates as guidelines.
 * Save and send your changes via FTP.
 * Now you built a custom weather template. Select the template "Custom 1" or "Custom 2" in your weather settings.
@@ -112,7 +112,7 @@ Templating system: The main advantage is that you can create a completely person
 = Via FTP =
 1. Download the plugin from the official WordPress directory or from GitHub.
 1. Connect to your FTP.
-1. Upload the unzipped “wp_owm_weather” folder in the root plugins directory “/wp-content/plugins/”.
+1. Upload the unzipped “owm_weather” folder in the root plugins directory “/wp-content/plugins/”.
 1. Activate the plugin from the Plugins menu of your admin.
 1. If all went well, a new "Weather" menu should appear.
 1. Get your free OpenWeatherMap API key at https://www.openweathermap.com and enter it under Settings/OWM Weather
@@ -125,7 +125,7 @@ Templating system: The main advantage is that you can create a completely person
 1. Choose "12h" or "24" hour time format.
 1. Under the "Display" tab, select the fields you would like to display.
 1. "Publish" your weather.
-1. Put the shortcode "[wow-weather id="XXX"/]" on a page or post and look at the page.
+1. Put the shortcode "[owm-weather id="XXX"/]" on a page or post and look at the page.
 1. You just created your first weather! Now you add additional fields under "Display", change the look-and-feel under "Layout" or add a map with layers under "Map".
 
 == Frequently Asked Questions ==

@@ -1,8 +1,8 @@
 jQuery(document).ready(function($) {
     //TinyMCE v4.x
 	(function() {
-	    tinymce.PluginManager.add('wow_button_v4', function( editor, url ) {
-	        editor.addButton( 'wow_button_v4', {
+	    tinymce.PluginManager.add('owmw_button_v4', function( editor, url ) {
+	        editor.addButton( 'owmw_button_v4', {
 	            title: 'OWM Weather',
 	            type: 'button',
 	            icon: 'icon mceIcon dashicons-before dashicons-cloud',
@@ -15,7 +15,7 @@ jQuery(document).ready(function($) {
 				            label: 'Enter the id of the weather to display:'
 				        }],
 				        onsubmit: function( e ) {
-				            editor.insertContent( '[wow-weather id="' + e.data.title + '"/]');
+				            editor.insertContent( '[owm-weather id="' + e.data.title + '"/]');
 				        }
 				    });
 				}
