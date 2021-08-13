@@ -79,10 +79,10 @@ function wpowmweather_init() {
 
 	//Admin panel + Dashboard widget
 	if ( is_admin() ) {
-		require_once dirname( __FILE__ ) . '/wpowmweather-admin.php';
-		require_once dirname( __FILE__ ) . '/wpowmweather-export.php';
-	    require_once dirname( __FILE__ ) . '/wpowmweather-widget.php';
-	    require_once dirname( __FILE__ ) . '/wpowmweather-pointers.php';
+		require_once dirname( __FILE__ ) . '/owmweather-admin.php';
+		require_once dirname( __FILE__ ) . '/owmweather-export.php';
+	    require_once dirname( __FILE__ ) . '/owmweather-widget.php';
+	    require_once dirname( __FILE__ ) . '/owmweather-pointers.php';
 	}
 }
 add_action('plugins_loaded', 'wpowmweather_init');
@@ -110,10 +110,10 @@ function wpowmweather_styles() {
     );
 	wp_localize_script( 'wow-ajax-js', 'wowAjax', $wowAjax);
 
-	wp_register_style('wpowmweather-css', plugins_url('css/wpowmweather.min.css', __FILE__));
-	wp_enqueue_style('wpowmweather-css');
+	wp_register_style('owmweather-css', plugins_url('css/owmweather.min.css', __FILE__));
+	wp_enqueue_style('owmweather-css');
 
-	wp_register_style('wpowmweather-anim-css', plugins_url('css/wpowmweather-anim.min.css', __FILE__));
+	wp_register_style('owmweather-anim-css', plugins_url('css/owmweather-anim.min.css', __FILE__));
 }
 add_action('wp_enqueue_scripts', 'wpowmweather_styles');
 
@@ -144,10 +144,10 @@ function wow_add_dashboard_scripts() {
     );
 	wp_localize_script( 'wow-ajax-js', 'wowAjax', $wowAjax);
 
-	wp_register_style('wpowmweather-css', plugins_url('css/wpowmweather.min.css', __FILE__));
-	wp_enqueue_style('wpowmweather-css');
+	wp_register_style('owmweather-css', plugins_url('css/owmweather.min.css', __FILE__));
+	wp_enqueue_style('owmweather-css');
 
-	wp_register_style('wpowmweather-anim-css', plugins_url('css/wpowmweather-anim.min.css', __FILE__));
+	wp_register_style('owmweather-anim-css', plugins_url('css/owmweather-anim.min.css', __FILE__));
 
 }
 add_action('admin_head-index.php', 'wow_add_dashboard_scripts');
@@ -160,8 +160,8 @@ global $post;
 	if ( $hook == 'post-new.php' || $hook == 'post.php') {
 
         if ( 'wow-weather' === $post->post_type ) {
-			wp_register_style( 'wpowmweather-admin-css', plugins_url('css/wpowmweather-admin.min.css', __FILE__));
-			wp_enqueue_style( 'wpowmweather-admin-css' );
+			wp_register_style( 'owmweather-admin-css', plugins_url('css/owmweather-admin.min.css', __FILE__));
+			wp_enqueue_style( 'owmweather-admin-css' );
 
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_script( 'color-picker-js', plugins_url('js/color-picker.js', __FILE__), array( 'wp-color-picker' ) );
@@ -178,8 +178,8 @@ add_action( 'admin_enqueue_scripts', 'wow_add_admin_scripts', 10, 1 );
 
 //OWM Weather Options page
 function wow_add_admin_options_scripts() {
-			wp_register_style( 'wpowmweather-admin-css', plugins_url('css/wpowmweather-admin.min.css', __FILE__));
-			wp_enqueue_style( 'wpowmweather-admin-css' );
+			wp_register_style( 'owmweather-admin-css', plugins_url('css/owmweather-admin.min.css', __FILE__));
+			wp_enqueue_style( 'owmweather-admin-css' );
 
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_script( 'color-picker-js', plugins_url('js/color-picker.js', __FILE__), array( 'wp-color-picker' ) );
@@ -1431,7 +1431,7 @@ add_shortcode("wow-weather", 'wow_get_my_weather_id');
 function wow_get_my_weather_id($atts) {
     global $wow_params;
     
-	require_once dirname( __FILE__ ) . '/wpowmweather-options.php';
+	require_once dirname( __FILE__ ) . '/owmweather-options.php';
 
     $atts = array_change_key_case((array)$atts, CASE_LOWER);
     $wow_params = shortcode_atts(array(
@@ -1562,7 +1562,7 @@ function wow_get_my_weather_id($atts) {
     }
 
 	if ($wow_opt["disable_anims"] != 'yes') {
-    	wp_enqueue_style('wpowmweather-anim-css');
+    	wp_enqueue_style('owmweather-anim-css');
     }
 
     //Map
@@ -1613,9 +1613,9 @@ function wow_get_my_weather($attr) {
 	if ( isset( $wow_params['id'] ) ) {
 		$id = $wow_params['id'];
 
-		require_once dirname( __FILE__ ) . '/wpowmweather-options.php';
-		require_once dirname( __FILE__ ) . '/wpowmweather-anim.php';
-		require_once dirname( __FILE__ ) . '/wpowmweather-icons.php';
+		require_once dirname( __FILE__ ) . '/owmweather-options.php';
+		require_once dirname( __FILE__ ) . '/owmweather-anim.php';
+		require_once dirname( __FILE__ ) . '/owmweather-icons.php';
 
         $wow_opt                                    = [];
 	  	$wow_opt["id"] 								= $id;
@@ -2396,7 +2396,7 @@ function wow_get_my_weather($attr) {
         }
 
 	    if ($wow_opt["alerts"] == 'yes' && !empty($wow_data["alerts"])) {
-    	    require_once dirname( __FILE__ ) . '/wpowmweather-color-css.php';
+    	    require_once dirname( __FILE__ ) . '/owmweather-color-css.php';
 
             if (empty($wow_opt["alerts_button_color"])) {
                 $wow_opt["alerts_button_color"] = '#000';
@@ -2712,16 +2712,16 @@ $wow_html["chart"]["daily"]["cmd"] =
         }
 
     	ob_start();
-	    if ( locate_template('owm-weather/content-wpowmweather.php', false) != '' && $wow_opt["template"] == 'Default' ) {
-	    	include get_stylesheet_directory() . '/owm-weather/content-wpowmweather.php';
+	    if ( locate_template('owm-weather/content-owmweather.php', false) != '' && $wow_opt["template"] == 'Default' ) {
+	    	include get_stylesheet_directory() . '/owm-weather/content-owmweather.php';
 	    } elseif ( $wow_opt["template"] != 'Default' ) {
-	    	if ( locate_template('owm-weather/content-wpowmweather-' . $wow_opt["template"] . '.php', false) != '' ) {
-		    	include get_stylesheet_directory() . '/owm-weather/content-wpowmweather-' . $wow_opt["template"] . '.php';
+	    	if ( locate_template('owm-weather/content-owmweather-' . $wow_opt["template"] . '.php', false) != '' ) {
+		    	include get_stylesheet_directory() . '/owm-weather/content-owmweather-' . $wow_opt["template"] . '.php';
 	    	} else {
-	    		include dirname( __FILE__ ) . '/template/content-wpowmweather-' . $wow_opt["template"] . '.php';
+	    		include dirname( __FILE__ ) . '/template/content-owmweather-' . $wow_opt["template"] . '.php';
 	    	}
 	    } else { //Default
-	    	include ( dirname( __FILE__ ) . '/template/content-wpowmweather.php');
+	    	include ( dirname( __FILE__ ) . '/template/content-owmweather.php');
 	    }
     	$wow_html["html"] = ob_get_clean();
 
@@ -2844,7 +2844,7 @@ add_filter('post_updated_messages', 'wow_set_messages' );
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function wpowmweather_notice() {
 	$wow_advanced_api_key = get_option('wow_option_name');
-	if ( is_plugin_active( 'owm-weather/wpowmweather.php' ) && !isset($wow_advanced_api_key['wow_advanced_api_key'])) {
+	if ( is_plugin_active( 'owm-weather/owmweather.php' ) && !isset($wow_advanced_api_key['wow_advanced_api_key'])) {
 	    ?>
 	    <div class="error notice">
 	        <p><a href="<?php echo admin_url('admin.php?page=wow-settings-admin#tab_advanced'); ?>"><?php _e( 'OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits requests.', 'owm-weather' ); ?></a></p>

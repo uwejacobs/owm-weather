@@ -49,7 +49,7 @@ class wow_options
         // Set class property
         $this->options = get_option( 'wow_option_name' );
         ?>
-        <?php $wow_info_version = get_plugin_data( plugin_dir_path( __FILE__ ).'/wpowmweather.php'); ?>
+        <?php $wow_info_version = get_plugin_data( plugin_dir_path( __FILE__ ).'/owmweather.php'); ?>
 
         <div id="wpowmweather-header">
 			<div id="wpowmweather-clouds">
