@@ -125,8 +125,7 @@ function wow_add_themes_scripts() {
 	wp_register_style( 'wow-flexslider-css', plugins_url( 'css/flexslider.css', __FILE__ ));
 	wp_register_script( 'wow-flexslider-js', plugins_url( 'js/jquery.flexslider-min.js#async', __FILE__ ));
 	wp_register_style( 'bootstrap-css', plugins_url( 'css/bootstrap.min.css', __FILE__ ));
-	wp_register_script( 'bootstrap-js', plugins_url( 'js/bootstrap.min.js#async', __FILE__ ));
-	wp_register_script( 'popper-js', plugins_url( 'js/popper.min.js#async', __FILE__ ));
+	wp_register_script( 'bootstrap-js', plugins_url( 'js/bootstrap.bundle.min.js#async', __FILE__ ));
 	wp_register_script( 'chart-js', plugins_url( 'js/chart.min.js#async', __FILE__ ));
 }
 add_action( 'wp_enqueue_scripts', 'wow_add_themes_scripts', 10, 1 );
