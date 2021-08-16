@@ -8,7 +8,7 @@ if ( !function_exists( 'add_action' ) ) {
 //SVG Icon animation
 // original viewbox: "15 15 70 70"
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-function sun() {
+function owmw_sun() {
 	return '
 		<svg
         version="1.1"
@@ -75,7 +75,7 @@ function sun() {
 	<!-- sun -->';
 }
 
-function sunFill() {
+function owmw_sunFill() {
 	return '
 		<svg
         version="1.1"
@@ -143,7 +143,7 @@ function sunFill() {
     </svg><!-- sunFill -->';
 }
 
-function moon() {
+function owmw_moon() {
 	return '
 		<svg
         version="1.1"
@@ -169,7 +169,7 @@ function moon() {
 
 }
 
-function moonFill() {
+function owmw_moonFill() {
 	return '
 		<svg
         version="1.1"
@@ -195,7 +195,7 @@ function moonFill() {
     </svg><!-- moonFill --> ';
 }
 
-function snowflake() {
+function owmw_snowflake() {
 	return '
 		<svg
         version="1.1"
@@ -221,7 +221,7 @@ function snowflake() {
     </svg><!-- snowflake --> ';
 }
 
-function snowflakeFill() {
+function owmw_snowflakeFill() {
 	return '
 		<svg
         version="1.1"
@@ -249,7 +249,7 @@ function snowflakeFill() {
     </svg><!-- snowflakeFill --> ';
 }
 
-function wind() {
+function owmw_wind() {
 	return '
 		<svg
         version="1.1"
@@ -274,7 +274,7 @@ function wind() {
     </svg><!-- wind --> ';
 }
 
-function tornado() {
+function owmw_tornado() {
 	return '
 		<svg
         version="1.1"
@@ -308,7 +308,7 @@ function tornado() {
     </svg><!-- tornado --> ';
 }
 
-function cloud() {
+function owmw_cloud() {
 	return '
 		<svg
         version="1.1"
@@ -333,7 +333,7 @@ function cloud() {
     </svg><!-- cloud --> ';
 }
 
-function cloudFill() {
+function owmw_cloudFill() {
 	return '
 		<svg
         version="1.1"
@@ -359,7 +359,7 @@ function cloudFill() {
     </svg><!-- cloudFill  --> ';
 }
 
-function cloudSun() {
+function owmw_cloudSun() {
 	return '
 		<svg
         version="1.1"
@@ -426,7 +426,7 @@ function cloudSun() {
     </svg><!-- cloudSun --> ';
 }
 
-function cloudSunFill() {
+function owmw_cloudSunFill() {
 	return '
 		<svg
         version="1.1"
@@ -494,7 +494,7 @@ function cloudSunFill() {
     </svg><!-- cloudSunFill --> ';
 }
 
-function cloudMoon() {
+function owmw_cloudMoon() {
 	return '
 		<svg
         version="1.1"
@@ -531,7 +531,7 @@ function cloudMoon() {
     </svg><!-- cloudMoon --> ';
 }
 
-function cloudMoonFill() {
+function owmw_cloudMoonFill() {
 	return '
 		<svg
         version="1.1"
@@ -566,7 +566,7 @@ function cloudMoonFill() {
     </svg><!-- cloudMoonFill --> ';
 }
 
-function cloudDrizzle() {
+function owmw_cloudDrizzle() {
 	return '
 		<svg
         version="1.1"
@@ -599,7 +599,7 @@ function cloudDrizzle() {
     </svg><!-- cloudDrizzle --> ';
 }
 
-function cloudDrizzleFill() {
+function owmw_cloudDrizzleFill() {
 	return '
 		<svg
         version="1.1"
@@ -637,7 +637,7 @@ function cloudDrizzleFill() {
     </svg><!-- cloudDrizzleFill --> ';
 }
 
-function cloudDrizzleSun() {
+function owmw_cloudDrizzleSun() {
 	return '
 		<svg
         version="1.1"
@@ -719,7 +719,7 @@ function cloudDrizzleSun() {
     </svg><!-- cloudDrizzleSun --> ';
 }
 
-function cloudDrizzleSunFill() {
+function owmw_cloudDrizzleSunFill() {
 	return '
 		<svg
         version="1.1"
@@ -797,7 +797,7 @@ function cloudDrizzleSunFill() {
     </svg><!-- cloudDrizzleSunFill --> ';
 }
 
-function cloudDrizzleMoon() {
+function owmw_cloudDrizzleMoon() {
 	return '
 		<svg
         version="1.1"
@@ -844,7 +844,7 @@ function cloudDrizzleMoon() {
     </svg><!-- cloudDrizzleMoon --> ';
 }
 
-function cloudDrizzleMoonFill() {
+function owmw_cloudDrizzleMoonFill() {
 	return '
 		<svg
         version="1.1"
@@ -890,7 +890,7 @@ function cloudDrizzleMoonFill() {
     </svg><!-- cloudDrizzleMoonFill --> ';
 }
 
-function cloudDrizzleAlt() {
+function owmw_cloudDrizzleAlt() {
 	return '
 		<svg
         version="1.1"
@@ -924,7 +924,7 @@ function cloudDrizzleAlt() {
     </svg><!-- cloudDrizzleAlt --> ';
 }
 
-function cloudDrizzleFillAlt() {
+function owmw_cloudDrizzleFillAlt() {
 	return '
 		<svg
         version="1.1"
@@ -962,7 +962,7 @@ function cloudDrizzleFillAlt() {
     </svg><!-- cloudDrizzleFillAlt --> ';
 }
 
-function cloudDrizzleSunAlt() {
+function owmw_cloudDrizzleSunAlt() {
 	return '
 		<svg
         version="1.1"
@@ -1041,7 +1041,7 @@ function cloudDrizzleSunAlt() {
     </svg><!-- cloudDrizzleSunAlt --> ';
 }
 
-function cloudDrizzleSunFillAlt() {
+function owmw_cloudDrizzleSunFillAlt() {
 	return '
 		<svg
         version="1.1"
@@ -1119,7 +1119,7 @@ function cloudDrizzleSunFillAlt() {
     </svg><!-- cloudDrizzleSunFillAlt --> ';
 }
 
-function cloudDrizzleMoonAlt() {
+function owmw_cloudDrizzleMoonAlt() {
 	return '
 		<svg
         version="1.1"
@@ -1167,7 +1167,7 @@ function cloudDrizzleMoonAlt() {
     </svg><!-- cloudDrizzleMoonAlt --> ';
 }
 
-function cloudDrizzleMoonFillAlt() {
+function owmw_cloudDrizzleMoonFillAlt() {
 	return '
 		<svg
         version="1.1"
@@ -1214,7 +1214,7 @@ function cloudDrizzleMoonFillAlt() {
     </svg><!-- cloudDrizzleMoonFillAlt --> ';
 }
 
-function cloudRain() {
+function owmw_cloudRain() {
 	return '
 		<svg
         version="1.1"
@@ -1259,7 +1259,7 @@ function cloudRain() {
     </svg><!-- cloudRain --> ';
 }
 
-function cloudRainFill() {
+function owmw_cloudRainFill() {
 	return '
 		<svg
         version="1.1"
@@ -1305,7 +1305,7 @@ function cloudRainFill() {
     </svg><!-- cloudRainFill --> ';
 }
 
-function cloudRainSun() {
+function owmw_cloudRainSun() {
 	return '
 		<svg
         version="1.1"
@@ -1396,7 +1396,7 @@ function cloudRainSun() {
     </svg><!-- cloudRainSun --> ';
 }
 
-function cloudRainSunFill() {
+function owmw_cloudRainSunFill() {
 	return '
 		<svg
         version="1.1"
@@ -1483,7 +1483,7 @@ function cloudRainSunFill() {
     </svg><!-- cloudRainSunFill --> ';
 }
 
-function cloudRainMoon() {
+function owmw_cloudRainMoon() {
 	return '
 		<svg
         version="1.1"
@@ -1539,7 +1539,7 @@ function cloudRainMoon() {
     </svg><!-- cloudRainMoon --> ';
 }
 
-function cloudRainMoonFill() {
+function owmw_cloudRainMoonFill() {
 	return '
 		<svg
         version="1.1"
@@ -1594,7 +1594,7 @@ function cloudRainMoonFill() {
     </svg><!-- cloudRainMoonFill --> ';
 }
 
-function cloudRainAlt() {
+function owmw_cloudRainAlt() {
 	return '
 		<svg
         version="1.1"
@@ -1627,7 +1627,7 @@ function cloudRainAlt() {
     </svg><!-- cloudRainAlt --> ';
 }
 
-function cloudRainAltFill() {
+function owmw_cloudRainAltFill() {
 	return '
 		<svg
         version="1.1"
@@ -1661,7 +1661,7 @@ function cloudRainAltFill() {
     </svg><!-- cloudRainAlt --> ';
 }
 
-function cloudSunRainAlt() {
+function owmw_cloudSunRainAlt() {
 	return '
 		<svg
         version="1.1"
@@ -1740,7 +1740,7 @@ function cloudSunRainAlt() {
     </svg><!-- cloudRainSunAlt --> ';
 }
 
-function cloudSunRainAltFill() {
+function owmw_cloudSunRainAltFill() {
 	return '
 		<svg
         version="1.1"
@@ -1814,7 +1814,7 @@ function cloudSunRainAltFill() {
     </svg><!-- cloudRainSunAltFill --> ';
 }
 
-function cloudMoonRainAlt() {
+function owmw_cloudMoonRainAlt() {
 	return '
 		<svg
         version="1.1"
@@ -1858,7 +1858,7 @@ function cloudMoonRainAlt() {
     </svg><!-- cloudRainMoonAlt --> ';
 }
 
-function cloudMoonRainAltFill() {
+function owmw_cloudMoonRainAltFill() {
 	return '
 		<svg
         version="1.1"
@@ -1902,7 +1902,7 @@ function cloudMoonRainAltFill() {
     </svg><!-- cloudRainMoonAltFill --> ';
 }
 
-function cloudHailAlt() {
+function owmw_cloudHailAlt() {
 	return '
 		<svg
         version="1.1"
@@ -1944,7 +1944,7 @@ function cloudHailAlt() {
     </svg><!-- cloudHailAlt --> ';
 }
 
-function cloudHailAltFill() {
+function owmw_cloudHailAltFill() {
 	return '
 		<svg
         version="1.1"
@@ -1990,7 +1990,7 @@ function cloudHailAltFill() {
     </svg><!-- cloudHailAltFill --> ';
 }
 
-function cloudHailAltSun() {
+function owmw_cloudHailAltSun() {
 	return '
 		<svg
         version="1.1"
@@ -2080,7 +2080,7 @@ function cloudHailAltSun() {
     </svg><!-- cloudHailAltSun --> ';
 }
 
-function cloudHailAltSunFill() {
+function owmw_cloudHailAltSunFill() {
 	return '
 		<svg
         version="1.1"
@@ -2166,7 +2166,7 @@ function cloudHailAltSunFill() {
     </svg><!-- cloudHailAltSun --> ';
 }
 
-function cloudHailAltMoon() {
+function owmw_cloudHailAltMoon() {
 	return '
 		<svg
         version="1.1"
@@ -2226,7 +2226,7 @@ function cloudHailAltMoon() {
     </svg><!-- cloudHailAltMoon --> ';
 }
 
-function cloudHailAltMoonFill() {
+function owmw_cloudHailAltMoonFill() {
 	return '
 		<svg
         version="1.1"
@@ -2281,7 +2281,7 @@ function cloudHailAltMoonFill() {
     </svg><!-- cloudHailAltMoonFill --> ';
 }
 
-function cloudSnow() {
+function owmw_cloudSnow() {
 	return '
 		<svg
         version="1.1"
@@ -2321,7 +2321,7 @@ function cloudSnow() {
     </svg><!-- cloudSnow --> ';
 }
 
-function cloudSnowFill() {
+function owmw_cloudSnowFill() {
 	return '
 		<svg
         version="1.1"
@@ -2364,7 +2364,7 @@ function cloudSnowFill() {
     </svg><!-- cloudSnowFill --> ';
 }
 
-function cloudSnowSun() {
+function owmw_cloudSnowSun() {
 	return '
 		<svg
         version="1.1"
@@ -2451,7 +2451,7 @@ function cloudSnowSun() {
     </svg><!-- cloudSnowSun --> ';
 }
 
-function cloudSnowSunFill() {
+function owmw_cloudSnowSunFill() {
 	return '
 		<svg
         version="1.1"
@@ -2534,7 +2534,7 @@ function cloudSnowSunFill() {
     </svg><!-- cloudSnowSunFill --> ';
 }
 
-function cloudSnowMoon() {
+function owmw_cloudSnowMoon() {
 	return '
 		<svg
         version="1.1"
@@ -2587,7 +2587,7 @@ function cloudSnowMoon() {
     </svg><!-- cloudSnowMoon --> ';
 }
 
-function cloudSnowMoonFill() {
+function owmw_cloudSnowMoonFill() {
 	return '
 		<svg
         version="1.1"
@@ -2639,7 +2639,7 @@ function cloudSnowMoonFill() {
     </svg><!-- cloudSnowMoonFill --> ';
 }
 
-function cloudSnowAlt() {
+function owmw_cloudSnowAlt() {
 	return '
 		<svg
         version="1.1"
@@ -2671,7 +2671,7 @@ function cloudSnowAlt() {
     </svg><!-- cloudSnowAlt --> ';
 }
 
-function cloudSnowAltFill() {
+function owmw_cloudSnowAltFill() {
 	return '
 		<svg
         version="1.1"
@@ -2710,7 +2710,7 @@ function cloudSnowAltFill() {
     </svg><!-- cloudSnowAltFill --> ';
 }
 
-function cloudSnowSunAlt() {
+function owmw_cloudSnowSunAlt() {
 	return '
 		<svg
         version="1.1"
@@ -2790,7 +2790,7 @@ function cloudSnowSunAlt() {
     </svg><!-- cloudSnowSunAlt --> ';
 }
 
-function cloudSnowSunAltFill() {
+function owmw_cloudSnowSunAltFill() {
 	return '
 		<svg
         version="1.1"
@@ -2869,7 +2869,7 @@ function cloudSnowSunAltFill() {
     </svg><!-- cloudSnowSunAltFill --> ';
 }
 
-function cloudSnowAlt2() {
+function owmw_cloudSnowAlt2() {
 	return '
 		<svg
         version="1.1"
@@ -2915,7 +2915,7 @@ function cloudSnowAlt2() {
     </svg><!-- cloudSnowMoonAlt --> ';
 }
 
-function cloudSnowAltFill2() {
+function owmw_cloudSnowAltFill2() {
 	return '
 		<svg
         version="1.1"
@@ -2963,7 +2963,7 @@ function cloudSnowAltFill2() {
     </svg><!-- cloudSnowMoonAltFill --> ';
 }
 
-function cloudFog() {
+function owmw_cloudFog() {
 	return '
 		<svg
         version="1.1"
@@ -2996,7 +2996,7 @@ function cloudFog() {
     </svg><!--cloudFog --> ';
 }
 
-function cloudFogFill() {
+function owmw_cloudFogFill() {
 	return '
 		<svg
         version="1.1"
@@ -3036,7 +3036,7 @@ function cloudFogFill() {
     </svg><!--cloudFogFill --> ';
 }
 
-function cloudFogSun() {
+function owmw_cloudFogSun() {
 	return '
 		<svg
         version="1.1"
@@ -3118,7 +3118,7 @@ function cloudFogSun() {
     </svg><!--cloudFogSun --> ';
 }
 
-function cloudFogSunFill() {
+function owmw_cloudFogSunFill() {
 	return '
 		<svg
         version="1.1"
@@ -3211,7 +3211,7 @@ function cloudFogSunFill() {
     </svg><!-- cloudFogSunFill --> ';
 }
 
-function cloudFogMoon() {
+function owmw_cloudFogMoon() {
 	return '
 		<svg
         version="1.1"
@@ -3258,7 +3258,7 @@ function cloudFogMoon() {
     </svg><!-- cloudFogMoon --> ';
 }
 
-function cloudFogMoonFill() {
+function owmw_cloudFogMoonFill() {
 	return '
 		<svg
         version="1.1"
@@ -3313,7 +3313,7 @@ function cloudFogMoonFill() {
     </svg><!-- cloudFogMoonFill --> ';
 }
 
-function cloudFogAlt() {
+function owmw_cloudFogAlt() {
 	return '
 		<svg
         version="1.1"
@@ -3356,7 +3356,7 @@ function cloudFogAlt() {
     </svg><!--cloudFogAlt --> ';
 }
 
-function cloudFogAltFill() {
+function owmw_cloudFogAltFill() {
 	return '
 		<svg
         version="1.1"
@@ -3406,7 +3406,7 @@ function cloudFogAltFill() {
     </svg><!--cloudFogAltFill --> ';
 }
 
-function cloudFogSunAlt() {
+function owmw_cloudFogSunAlt() {
 	return '
 		<svg
         version="1.1"
@@ -3497,7 +3497,7 @@ function cloudFogSunAlt() {
     </svg><!--cloudFogSunAlt --> ';
 }
 
-function cloudFogSunAltFill() {
+function owmw_cloudFogSunAltFill() {
 	return '
 		<svg
         version="1.1"
@@ -3592,7 +3592,7 @@ function cloudFogSunAltFill() {
     </svg><!--cloudFogSunAltFill --> ';
 }
 
-function cloudFogMoonAlt() {
+function owmw_cloudFogMoonAlt() {
 	return '
 		<svg
         version="1.1"
@@ -3649,7 +3649,7 @@ function cloudFogMoonAlt() {
     </svg><!--cloudFogMoonAlt --> ';
 }
 
-function cloudFogMoonAltFill() {
+function owmw_cloudFogMoonAltFill() {
 	return '
 		<svg
         version="1.1"
@@ -3714,7 +3714,7 @@ function cloudFogMoonAltFill() {
     </svg><!--cloudFogMoonAltFill --> ';
 }
 
-function cloudLightning() {
+function owmw_cloudLightning() {
 	return '
 		<svg
         version="1.1"
@@ -3741,7 +3741,7 @@ function cloudLightning() {
     </svg><!--cloudLightning --> ';
 }
 
-function cloudLightningFill() {
+function owmw_cloudLightningFill() {
 	return '
 		<svg
         version="1.1"
@@ -3772,7 +3772,7 @@ function cloudLightningFill() {
     </svg><!--cloudLightningFill --> ';
 }
 
-function cloudLightningSun() {
+function owmw_cloudLightningSun() {
 	return '
 		<svg
         version="1.1"
@@ -3847,7 +3847,7 @@ function cloudLightningSun() {
     </svg><!--cloudLightningSun --> ';
 }
 
-function cloudLightningSunFill() {
+function owmw_cloudLightningSunFill() {
 	return '
 		<svg
         version="1.1"
@@ -3922,7 +3922,7 @@ function cloudLightningSunFill() {
     </svg><!--cloudLightningSunFill --> ';
 }
 
-function cloudLightningMoon() {
+function owmw_cloudLightningMoon() {
 	return '
 		<svg
         version="1.1"
@@ -3964,7 +3964,7 @@ function cloudLightningMoon() {
     </svg><!--cloudLightningMoon --> ';
 }
 
-function cloudLightningMoonFill() {
+function owmw_cloudLightningMoonFill() {
 	return '
 		<svg
         version="1.1"
@@ -4004,7 +4004,7 @@ function cloudLightningMoonFill() {
     </svg><!--cloudLightningMoonFill --> ';
 }
 
-/*function sunrise() {
+/*function owmw_sunrise() {
 	return '
 		<svg
         version="1.1"
@@ -4064,7 +4064,7 @@ function cloudLightningMoonFill() {
 }
 */
 
-function sunriseFill() {
+function owmw_sunriseFill() {
 	return '
 		<svg
         version="1.1"
@@ -4132,7 +4132,7 @@ function sunriseFill() {
 }
 
 /*
-function sunset() {
+function owmw_sunset() {
 	return '
 		<svg
         version="1.1"
@@ -4192,7 +4192,7 @@ function sunset() {
 }
 */
 
-function sunsetFill() {
+function owmw_sunsetFill() {
 	return '
 		<svg
         version="1.1"
@@ -4260,7 +4260,7 @@ function sunsetFill() {
     </svg><!-- sunsetFill--> ';
 }
 
-function sunriseAlt() {
+function owmw_sunriseAlt() {
 	return '
 		<svg
         version="1.1"
@@ -4323,7 +4323,7 @@ function sunriseAlt() {
     </svg><!-- sunriseAlt --> ';
 }
 
-function sunriseAltFill() {
+function owmw_sunriseAltFill() {
 	return '
 		<svg
         version="1.1"
@@ -4391,7 +4391,7 @@ function sunriseAltFill() {
     </svg><!-- sunriseAltFill --> ';
 }
 
-function sunsetAlt() {
+function owmw_sunsetAlt() {
 	return '
 		<svg
         version="1.1"
@@ -4454,7 +4454,7 @@ function sunsetAlt() {
     </svg><!-- sunsetAlt --> ';
 }
 
-function sunsetAltFill() {
+function owmw_sunsetAltFill() {
 	return '	
 		<svg
         version="1.1"

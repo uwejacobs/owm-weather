@@ -88,12 +88,12 @@
     <div id="collapseRawHtml<?php echo $owmw_opt["id"]; ?>" class="collapse" aria-labelledby="headingRawHtml<?php echo $owmw_opt["id"]; ?>" data-parent="#debug_accordion<?php echo $owmw_opt["id"]; ?>">
       <div class="card-body">
 <?php
-function htmlfix(&$item, $key)
+function owmw_htmlfix(&$item, $key)
 {
     $item = trim(htmlentities($item));
 }
 
-array_walk_recursive($owmw_html, 'htmlfix');
+array_walk_recursive($owmw_html, 'owmw_htmlfix');
 ?>
         <pre class="owmw-pre">$owmw_html[]:<br><?php print_r($owmw_html); ?></pre>
       </div>

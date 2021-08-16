@@ -39,11 +39,11 @@ function owmw_import_settings() {
 
     $owmw_import_file = $_FILES['owmw_import_file']['tmp_name'];
     if( empty( $owmw_import_file ) ) {
-        add_action( 'admin_notices', 'no_file_selected_action' );
+        add_action( 'admin_notices', 'owmw_no_file_selected_action' );
         return;
     }
     if( substr_compare($_FILES['owmw_import_file']['name'], ".json", -5, 5, true) != 0 ) {
-        add_action( 'admin_notices', 'no_json_file_selected_action' );
+        add_action( 'admin_notices', 'owmw_no_json_file_selected_action' );
         return;
     }
 
@@ -78,4 +78,15 @@ function owmw_reset_settings() {
     ob_end_flush();
 }
 add_action( 'admin_init', 'owmw_reset_settings' );
+
+function owmw_no_file_selected_action() {
+    $message = __( 'Please upload a file to import', 'owm-weather' );
+    add_settings_error('no_file_selected', '', $message, 'error');
+}
+
+function owmw_no_json_file_selected_action() {
+        $message = __( 'Please upload a valid .json file', 'owm-weather' );
+        add_settings_error('no_json_file_selected', '', $message, 'error');
+}
+
 ?>

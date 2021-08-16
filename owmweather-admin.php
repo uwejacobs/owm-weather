@@ -16,21 +16,21 @@ class owmw_options
      * Start up
      */
     public function __construct() {
-        add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
+        add_action( 'admin_menu', array( $this, 'owmw_add_plugin_page' ) );
         add_action( 'admin_init', array( $this, 'page_init' ) );
     }
 
     /**
      * Add options page
      */
-    public function add_plugin_page() {
+    public function owmw_add_plugin_page() {
         // This page will be under "Settings"
     $owmw_help_tab = add_options_page(
             'Settings Admin',
             'OWM Weather',
             'manage_options',
             'owmw-settings-admin',
-            array( $this, 'create_admin_page' )
+            array( $this, 'owmw_create_admin_page' )
         );
     add_action('load-'.$owmw_help_tab, 'owmw_help_tab');
 
@@ -41,10 +41,10 @@ class owmw_options
     /**
      * Options page callback
      */
-    public function create_admin_page() {
+    public function owmw_create_admin_page() {
 
     	wp_enqueue_media();
-        add_action( 'admin_footer', 'media_selector_print_scripts' );
+        add_action( 'admin_footer', 'owmw_media_selector_print_scripts' );
 
         // Set class property
         $this->options = get_option( 'owmw_option_name' );
@@ -253,7 +253,7 @@ class owmw_options
 		add_settings_section(
             'owmw_setting_section_basic', // ID
             __("Basic settings",'owm-weather'), // Title
-            array( $this, 'print_section_info_basic' ), // Callback
+            array( $this, 'owmw_print_section_info_basic' ), // Callback
             'owmw-settings-admin-basic' // Page
         );
 
@@ -293,7 +293,7 @@ class owmw_options
         add_settings_section(
             'owmw_setting_section_display', // ID
             __("Display settings",'owm-weather'), // Title
-            array( $this, 'print_section_info_display' ), // Callback
+            array( $this, 'owmw_print_section_info_display' ), // Callback
             'owmw-settings-admin-display' // Page
         );
 
@@ -517,7 +517,7 @@ class owmw_options
         add_settings_section(
             'owmw_setting_section_layout', // ID
             __("Layout settings",'owm-weather'), // Title
-            array( $this, 'print_section_info_layout' ), // Callback
+            array( $this, 'owmw_print_section_info_layout' ), // Callback
             'owmw-settings-admin-layout' // Page
         );
 
@@ -572,7 +572,7 @@ class owmw_options
         add_settings_field(
             'owmw_background_image', // ID
             __("Background Image?",'owm-weather'), // Title
-            array( $this, 'media_selector_settings_page_callback' ), // Callback
+            array( $this, 'owmw_media_selector_settings_page_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
         );
@@ -686,7 +686,7 @@ class owmw_options
         add_settings_section(
             'owmw_setting_section_advanced', // ID
             __("Advanced settings",'owm-weather'), // Title
-            array( $this, 'print_section_info_advanced' ), // Callback
+            array( $this, 'owmw_print_section_info_advanced' ), // Callback
             'owmw-settings-admin-advanced' // Page
         );
 
@@ -727,7 +727,7 @@ class owmw_options
 		add_settings_section(
             'owmw_setting_section_map', // ID
             __("Map settings",'owm-weather'), // Title
-            array( $this, 'print_section_info_map' ), // Callback
+            array( $this, 'owmw_print_section_info_map' ), // Callback
             'owmw-settings-admin-map' // Page
         );
 
@@ -890,28 +890,28 @@ class owmw_options
      * Print the Section text
      */
 
-	public function print_section_info_basic()
+	public function owmw_print_section_info_basic()
     {
         print __('Basic settings to bypass on all weather:', 'owm-weather');
         echo '<input type="hidden" name="owmw_option_name[owmw_version]" value="' . OWM_WEATHER_VERSION . '" />';
     }
 
-	public function print_section_info_display()
+	public function owmw_print_section_info_display()
     {
         print __('Display settings to bypass on all weather:', 'owm-weather');
     }
 
-    public function print_section_info_layout()
+    public function owmw_print_section_info_layout()
     {
         print __('Layout settings to bypass on all weather:', 'owm-weather');
     }
 
-    public function print_section_info_advanced()
+    public function owmw_print_section_info_advanced()
     {
         print __('OWM Weather System settings:', 'owm-weather');
     }
 
-	public function print_section_info_map()
+	public function owmw_print_section_info_map()
     {
         print __('Map settings to bypass on all weather:', 'owm-weather');
     }
@@ -1118,17 +1118,17 @@ class owmw_options
 
 	public function owmw_display_current_city_name_callback()
     {
-        $this->bypassRadioButtons('owmw_current_city_name');
+        $this->owmw_bypassRadioButtons('owmw_current_city_name');
     }
 
 	public function owmw_display_current_weather_symbol_callback()
     {
-        $this->bypassRadioButtons('owmw_current_weather_symbol');
+        $this->owmw_bypassRadioButtons('owmw_current_weather_symbol');
     }
 
 	public function owmw_display_weather_description_callback()
     {
-        $this->bypassRadioButtons('owmw_current_weather_description');
+        $this->owmw_bypassRadioButtons('owmw_current_weather_description');
     }
 
     public function owmw_display_today_date_format_callback()
@@ -1163,22 +1163,22 @@ class owmw_options
 
     public function owmw_display_date_temp_unit_callback()
     {
-        $this->bypassRadioButtons('owmw_display_temperature_unit');
+        $this->owmw_bypassRadioButtons('owmw_display_temperature_unit');
     }
 
 	public function owmw_display_sunrise_sunset_callback()
     {
-        $this->bypassRadioButtons('owmw_sunrise_sunset');
+        $this->owmw_bypassRadioButtons('owmw_sunrise_sunset');
     }
 
 	public function owmw_display_moonrise_moonset_callback()
     {
-        $this->bypassRadioButtons('owmw_moonrise_moonset');
+        $this->owmw_bypassRadioButtons('owmw_moonrise_moonset');
     }
 
 	public function owmw_display_wind_callback()
     {
-        $this->bypassRadioButtons('owmw_wind');
+        $this->owmw_bypassRadioButtons('owmw_wind');
     }
 
     public function owmw_display_wind_unit_callback()
@@ -1206,42 +1206,42 @@ class owmw_options
 
 	public function owmw_display_humidity_callback()
     {
-        $this->bypassRadioButtons('owmw_humidity');
+        $this->owmw_bypassRadioButtons('owmw_humidity');
     }
 
 	public function owmw_display_dew_point_callback()
     {
-        $this->bypassRadioButtons('owmw_dew_point');
+        $this->owmw_bypassRadioButtons('owmw_dew_point');
     }
 
 	public function owmw_display_pressure_callback()
     {
-        $this->bypassRadioButtons('owmw_pressure');
+        $this->owmw_bypassRadioButtons('owmw_pressure');
     }
 
 	public function owmw_display_cloudiness_callback()
     {
-        $this->bypassRadioButtons('owmw_cloudiness');
+        $this->owmw_bypassRadioButtons('owmw_cloudiness');
     }
 
     public function owmw_display_precipitation_callback()
     {
-        $this->bypassRadioButtons('owmw_precipitation');
+        $this->owmw_bypassRadioButtons('owmw_precipitation');
     }
 
     public function owmw_display_visibility_callback()
     {
-        $this->bypassRadioButtons('owmw_visibility');
+        $this->owmw_bypassRadioButtons('owmw_visibility');
     }
 
     public function owmw_display_uv_index_callback()
     {
-        $this->bypassRadioButtons('owmw_uv_index');
+        $this->owmw_bypassRadioButtons('owmw_uv_index');
     }
 
     public function owmw_display_alerts_callback()
     {
-        $this->bypassRadioButtons('owmw_alerts');
+        $this->owmw_bypassRadioButtons('owmw_alerts');
     }
 
     public function owmw_display_alerts_button_color_callback()
@@ -1262,7 +1262,7 @@ class owmw_options
 
     public function owmw_display_hour_time_icons_callback()
     {
-        $this->bypassRadioButtons('owmw_hours_time_icons');
+        $this->owmw_bypassRadioButtons('owmw_hours_time_icons');
     }
 
     private function owmw_generate_hour_options($selected) {
@@ -1292,12 +1292,12 @@ class owmw_options
 
 	public function owmw_display_current_temperature_callback()
     {
-        $this->bypassRadioButtons('owmw_current_temperature');
+        $this->owmw_bypassRadioButtons('owmw_current_temperature');
     }
 
 	public function owmw_display_current_feels_like_callback()
     {
-        $this->bypassRadioButtons('owmw_current_feels_like');
+        $this->owmw_bypassRadioButtons('owmw_current_feels_like');
     }
 
 	public function owmw_display_forecast_no_callback()
@@ -1340,7 +1340,7 @@ class owmw_options
 
     public function owmw_display_forecast_precipitations_callback()
     {
-        $this->bypassRadioButtons('owmw_forecast_precipitations');
+        $this->owmw_bypassRadioButtons('owmw_forecast_precipitations');
     }
 
 	public function owmw_display_display_length_days_names_callback()
@@ -1369,22 +1369,22 @@ class owmw_options
 
     public function owmw_display_owm_link_callback()
     {
-        $this->bypassRadioButtons('owmw_owm_link');
+        $this->owmw_bypassRadioButtons('owmw_owm_link');
     }
 
     public function owmw_display_last_update_callback()
     {
-        $this->bypassRadioButtons('owmw_last_update');
+        $this->owmw_bypassRadioButtons('owmw_last_update');
     }
 
 	public function owmw_layout_disable_spinner_callback()
     {
-        $this->bypassRadioButtonsDisable('owmw_disable_spinner');
+        $this->owmw_bypassRadioButtonsDisable('owmw_disable_spinner');
     }
 
 	public function owmw_layout_disable_anims_callback()
     {
-        $this->bypassRadioButtonsDisable('owmw_disable_anims');
+        $this->owmw_bypassRadioButtonsDisable('owmw_disable_anims');
     }
 
     public function owmw_layout_background_color_callback()
@@ -1394,7 +1394,7 @@ class owmw_options
         printf('<input name="owmw_option_name[owmw_background_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-    function media_selector_settings_page_callback() {
+    function owmw_media_selector_settings_page_callback() {
 
     	// Save attachment ID
     	if ( isset( $_POST['submit_image_selector'] ) && isset( $_POST['background_image_attachment_id'] ) ) {
@@ -1435,11 +1435,11 @@ class owmw_options
         $selected = $this->options['owmw_border_style'] ?? "nobypass";
 
 		echo '<select id="owmw_border_style" name="owmw_option_name[owmw_border_style]">';
-		$this->borderStyleOptions($selected);
+		$this->owmw_borderStyleOptions($selected);
 		echo '</select>';
 	}
 
-    private function borderStyleOptions($selected) {
+    private function owmw_borderStyleOptions($selected) {
         echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. __( 'No bypass', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'solid', $selected, false ) . ' value="solid">'. __( 'Solid', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'dotted', $selected, false ) . ' value="dotted">'. __( 'Dotted', 'owm-weather' ) .'</option>';
@@ -1519,7 +1519,7 @@ class owmw_options
         $selected = $this->options['owmw_table_border_style'] ?? "nobypass";
 
 		echo '<select id="owmw_border_style" name="owmw_option_name[owmw_table_border_style]">';
-		$this->borderStyleOptions($selected);
+		$this->owmw_borderStyleOptions($selected);
 		echo '</select>';
 	}
 
@@ -1568,7 +1568,7 @@ class owmw_options
 
 	public function owmw_map_display_callback()
     {
-        $this->bypassRadioButtons('owmw_map');
+        $this->owmw_bypassRadioButtons('owmw_map');
     }
 
 	public function owmw_map_height_callback()
@@ -1689,42 +1689,42 @@ class owmw_options
 
 	public function owmw_map_disable_zoom_wheel_callback()
     {
-        $this->bypassRadioButtonsDisable('owmw_map_disable_zoom_wheel');
+        $this->owmw_bypassRadioButtonsDisable('owmw_map_disable_zoom_wheel');
     }
 
 	public function owmw_map_layers_stations_callback()
     {
-        $this->bypassRadioButtons('owmw_map_stations');
+        $this->owmw_bypassRadioButtons('owmw_map_stations');
     }
 
 	public function owmw_map_layers_clouds_callback()
     {
-        $this->bypassRadioButtons('owmw_map_clouds');
+        $this->owmw_bypassRadioButtons('owmw_map_clouds');
     }
 
 	public function owmw_map_layers_precipitation_callback()
     {
-        $this->bypassRadioButtons('owmw_map_precipitation');
+        $this->owmw_bypassRadioButtons('owmw_map_precipitation');
     }
 
 	public function owmw_map_layers_snow_callback()
     {
-        $this->bypassRadioButtons('owmw_map_snow');
+        $this->owmw_bypassRadioButtons('owmw_map_snow');
     }
 
 	public function owmw_map_layers_wind_callback()
     {
-        $this->bypassRadioButtons('owmw_map_wind');
+        $this->owmw_bypassRadioButtons('owmw_map_wind');
     }
 
 	public function owmw_map_layers_temperature_callback()
     {
-        $this->bypassRadioButtons('owmw_map_temperature');
+        $this->owmw_bypassRadioButtons('owmw_map_temperature');
     }
 
     public function owmw_map_layers_pressure_callback()
     {
-        $this->bypassRadioButtons('owmw_map_pressure');
+        $this->owmw_bypassRadioButtons('owmw_map_pressure');
     }
 
     public function owmw_support_info_callback() //bugbug
@@ -1736,7 +1736,7 @@ class owmw_options
 			<p><a href="https://wordpress.org/plugins/owm-weather/" target="_blank" title="'. __("OWM Weather Forum on WordPress.org", 'owm-weather').'">'. __("OWM Weather Forum on WordPress.org", 'owm-weather').'</a></p>';
     }
 
-    private function bypassRadioButtons($option) {
+    private function owmw_bypassRadioButtons($option) {
 		$value = $this->options[$option] ?? 'nobypass';
 
         echo '<input id="' . $option . '_nobypass" name="owmw_option_name[' . $option . ']" type="radio"';
@@ -1759,7 +1759,7 @@ class owmw_options
         echo '<label for="' . $option . '_off">'. __( 'Suppress on all weather', 'owm-weather' ) .'</label>';
     }
 
-    private function bypassRadioButtonsDisable($option) {
+    private function owmw_bypassRadioButtonsDisable($option) {
 		$value = $this->options[$option] ?? 'nobypass';
 
         echo '<input id="' . $option . '_nobypass" name="owmw_option_name[' . $option . ']" type="radio"';
@@ -1803,16 +1803,8 @@ function owmw_help_tab() {//bugbug
         'content'   => '<p>' . __( 'Follow this video to create your first weather with OWM Weather:', 'owm-weather' ) . '<br>'.wp_oembed_get('https://www.youtube.com/watch?v=xv4lrgsWkkk', array('width'=>560)).'</p>',
     ));
 }
-function no_file_selected_action() {
-    $message = __( 'Please upload a file to import', 'owm-weather' );
-    add_settings_error('no_file_selected', '', $message, 'error');
-}
-function no_json_file_selected_action() {
-        $message = __( 'Please upload a valid .json file', 'owm-weather' );
-        add_settings_error('no_json_file_selected', '', $message, 'error');
-}
 
-function media_selector_print_scripts($id = null) {
+function owmw_media_selector_print_scripts($id = null) {
     if (!empty($id)) {
         $image_id = get_post_meta($id,'_owmweather_background_image',true);
     } else {
