@@ -131,12 +131,12 @@ div[class^="owmw-flexslider"] {
 
 <script type="text/javascript" charset="utf-8">
 	jQuery(window).ready(function() {
-    	jQuery( "#<?php echo $owmw_opt["container_weather_div"] ?> .owmw-btn-toggle-infos" ).click(function() {
-	    	jQuery( "#<?php echo $owmw_opt["container_weather_div"] ?> .owmw-toggle-infos" ).toggleClass( "owmw-show" );
-		    jQuery( "#<?php echo $owmw_opt["container_weather_div"] ?> .owmw-toggle-now" ).toggleClass( "owmw-hide" );
-		    jQuery( "#<?php echo $owmw_opt["container_map_div"]; ?>" ).trigger("invalidSize");
-            slider("#<?php echo $owmw_opt["container_weather_div"] ?>");
-            x = jQuery("#<?php echo $owmw_opt["container_weather_div"] ?> .owmw-btn-toggle-infos");
+    	jQuery( "#<?php echo $owmw_html["container_weather_div"] ?> .owmw-btn-toggle-infos" ).click(function() {
+	    	jQuery( "#<?php echo $owmw_html["container_weather_div"] ?> .owmw-toggle-infos" ).toggleClass( "owmw-show" );
+		    jQuery( "#<?php echo $owmw_html["container_weather_div"] ?> .owmw-toggle-now" ).toggleClass( "owmw-hide" );
+		    jQuery( "#<?php echo $owmw_html["container_map_div"]; ?>" ).trigger("invalidSize");
+            slider("#<?php echo $owmw_html["container_weather_div"] ?>");
+            x = jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .owmw-btn-toggle-infos");
             x.html(x.html() == '+' ? '-' : '+');
 	    });
 	});

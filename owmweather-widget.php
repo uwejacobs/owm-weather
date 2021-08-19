@@ -27,13 +27,9 @@ function owmw_dashboard_widget_function() {
 
 	// Display selected weather.
     if ( $my_weather = get_option( 'owmw_dashboard_widget_option' ) ) {
-        owmw_add_themes_scripts();
-		wp_enqueue_style('bootstrap-css');/*bugbug*/
-		wp_enqueue_script('bootstrap-js');/*bugbug*/
-		wp_enqueue_script('popper-js');/*bugbug*/
-		echo do_shortcode('[owm-weather id="'.$my_weather['weather_db'].'"]');
+		echo do_shortcode('[owm-weather id="'.esc_attr($my_weather['weather_db']).'"]');
 	} else {
-		_e('Please select a weather via configure link','owm-weather');
+		esc_html_e('Please select a weather via configure link','owm-weather');
 	}
 }
 /**
@@ -43,20 +39,19 @@ function owmw_dashboard_widget_option($widget_id) {
 	
 	// Get widget options
 	if ( !$owmw_widget_options = get_option( 'owmw_dashboard_widget_option' ) )
-		$owmw_widget_options = array();
-	
+		$owmw_widget_options = [];
+
 	// Update widget options
 	if ( 'POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['owmw_widget_post']) ) {
-		update_option( 'owmw_dashboard_widget_option', $_POST['owmw_widget'] );
+        update_option( 'owmw_dashboard_widget_option', $_POST['owmw_widget'] );
 	}
 	
 	// Retrieve feed URLs
-	$weather_db = $owmw_widget_options['weather_db'];
-	
+	$weather_db = $owmw_widget_options['weather_db'] ?? null;
 
 	echo'<p>';
 	echo'<label for="owm_weather_db">';
-			_e('Select the weather to display:', 'owm-weather');
+			esc_html_e('Select the weather to display:', 'owm-weather');
 	echo'</label>';
 
 	echo'<select id="owm_weather_db" name="owmw_widget[weather_db]">';
@@ -64,15 +59,13 @@ function owmw_dashboard_widget_option($widget_id) {
 			$query = new WP_Query( array( 'post_type' => array( 'owm-weather' ) ) );
 	
 				while ( $query->have_posts() ) : $query->the_post();
-					echo '<option value="'.get_the_ID().'"';
+					echo '<option value="'.esc_attr(get_the_ID()).'"';
 							selected( $weather_db, get_the_ID() );
 					echo '>';
 							the_title();
 	
 					echo '</option>';
 				endwhile;
-			
-		
 			
 		echo'</select>';
 				

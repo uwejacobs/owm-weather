@@ -17,6 +17,9 @@ jQuery(document).ready(function($){
 					console.log("Error:" + data.data );
 				}
 			},
+			failure : function(data) {
+				console.log("xxx");
+			},
 			beforeSend: function(){
 		       $(".owmw-loading-spinner").show();
 		       $("div[id^='owm-weather-container-']").hide();

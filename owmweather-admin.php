@@ -91,7 +91,7 @@ class owmw_options
                             </div>
                         </div>
 
-                        <form action="https://www.paypal.com/donate" method="post" target="_top">
+                        <form action="https://www.paypal.com/donate" method="post" target="_blank">
 	    					<?php _e( 'Consider a donation', 'owm-weather' ); ?>:
                             <input type="hidden" name="hosted_button_id" value="PQDNJGKMLHAFU" />
                             <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
@@ -227,8 +227,8 @@ class owmw_options
 
 						<?php
 							global $wpdb;
-							$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_myweather%' ");
-							$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_myweather%' ");
+							$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmweather%' ");
+							$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmweather%' ");
 						}
 					};
 					?>
@@ -858,30 +858,19 @@ class owmw_options
 
     }
     
-    private function renameOptionField($old, $new) {
-        if (!empty($this->options[$old])) {
-            $this->options[$new] = $this->options[$old];
-            unset($this->options[$old]);
-        }
-
-        update_option('owmw_option_name', $this->options);
-    }
-
     /**
      * Sanitize each setting field
      *
      * @param array $input Contains all settings fields as array keys
      */
     public function sanitize($input) {
-	if (!empty($input)) {
+    	if (!empty($input)) {
             foreach($input as $k => &$v) {
-    		if ($k == 'owmw_custom_css') {
-	        	$v = sanitize_textarea_field(trim($v));
-        	} else {
-	        	$v = sanitize_text_field(trim($v));
-        	}
-	    }
-	}
+        		if (!in_array($v, array('yes', 'nobypass'))) {
+    	        	$v = owmw_sanitize_validate_field(substr($k, 5), $v);
+            	}
+	        }
+    	}
 
         return $input;
     }
@@ -892,33 +881,33 @@ class owmw_options
 
 	public function owmw_print_section_info_basic()
     {
-        print __('Basic settings to bypass on all weather:', 'owm-weather');
+        esc_html_e('Basic settings to bypass on all weather:', 'owm-weather');
         echo '<input type="hidden" name="owmw_option_name[owmw_version]" value="' . OWM_WEATHER_VERSION . '" />';
     }
 
 	public function owmw_print_section_info_display()
     {
-        print __('Display settings to bypass on all weather:', 'owm-weather');
+        esc_html_e('Display settings to bypass on all weather:', 'owm-weather');
     }
 
     public function owmw_print_section_info_layout()
     {
-        print __('Layout settings to bypass on all weather:', 'owm-weather');
+        esc_html_e('Layout settings to bypass on all weather:', 'owm-weather');
     }
 
     public function owmw_print_section_info_advanced()
     {
-        print __('OWM Weather System settings:', 'owm-weather');
+        esc_html_e('OWM Weather System settings:', 'owm-weather');
     }
 
 	public function owmw_print_section_info_map()
     {
-        print __('Map settings to bypass on all weather:', 'owm-weather');
+        esc_html_e('Map settings to bypass on all weather:', 'owm-weather');
     }
 
     public function print_section_info_support()
     {
-        print __('&nbsp;', 'owm-weather');
+        esc_html_e('&nbsp;', 'owm-weather');
     }
 
     /**
@@ -932,13 +921,13 @@ class owmw_options
 		echo ' <select id="owmw_unit" name="owmw_option_name[owmw_unit]"> ';
         echo ' <option ';
         if ('nobypass' == $selected) echo 'selected="selected"';
-        echo ' value="nobypass">'. __( 'No bypass', 'owm-weather' ) .'</option>';
+        echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
 		echo ' <option ';
 		if ('imperial' == $selected) echo 'selected="selected"';
-		echo ' value="imperial">'. __( 'Imperial', 'owm-weather' ) .'</option>';
+		echo ' value="imperial">'. esc_html__( 'Imperial', 'owm-weather' ) .'</option>';
 		echo '<option ';
 		if ('metric' == $selected) echo 'selected="selected"';
-		echo ' value="metric">'. __( 'Metric', 'owm-weather' ) .'</option>';
+		echo ' value="metric">'. esc_html__( 'Metric', 'owm-weather' ) .'</option>';
 		echo '</select>';
 	}
 
@@ -949,14 +938,14 @@ class owmw_options
 		echo '<select id="owmw_time_format" name="owmw_option_name[owmw_time_format]"> ';
         echo ' <option ';
         if ('nobypass' == $selected) echo 'selected="selected"';
-        echo ' value="nobypass">'. __( 'No bypass', 'owm-weather' ) .'</option>';
+        echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
 		echo ' <option ';
 		echo '<option ';
 		if ('12' == $selected) echo 'selected="selected"';
-		echo ' value="12">'. __( '12 h', 'owm-weather' ) .'</option>';
+		echo ' value="12">'. esc_html__( '12 h', 'owm-weather' ) .'</option>';
 		echo '<option ';
 		if ('24' == $selected) echo 'selected="selected"';
-		echo ' value="24">'. __( '24 h', 'owm-weather' ) .'</option>';
+		echo ' value="24">'. esc_html__( '24 h', 'owm-weather' ) .'</option>';
 		echo '</select>';
 	}
 
@@ -965,33 +954,33 @@ class owmw_options
         $selected = $this->options['owmw_custom_timezone'] ?? "nobypass";
 
 		echo '<select id="owmw_custom_timezone" name="owmw_option_name[owmw_custom_timezone]"> ';
-        echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. __( 'No bypass', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. __( 'WordPress timezone', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '-12', $selected, false ) . ' value="-12">'. __( 'UTC -12', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '-11', $selected, false ) . ' value="-11">'. __( 'UTC -11', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '-10', $selected, false ) . ' value="-10">'. __( 'UTC -10', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '-9', $selected, false ) . ' value="-9">'. __( 'UTC -9', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '-8', $selected, false ) . ' value="-8">'. __( 'UTC -8', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '-7', $selected, false ) . ' value="-7">'. __( 'UTC -7', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '-6', $selected, false ) . ' value="-6">'. __( 'UTC -6', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '-5', $selected, false ) . ' value="-5">'. __( 'UTC -5', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '-4', $selected, false ) . ' value="-4">'. __( 'UTC -4', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '-3', $selected, false ) . ' value="-3">'. __( 'UTC -3', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '-2', $selected, false ) . ' value="-2">'. __( 'UTC -2', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '-1', $selected, false ) . ' value="-1">'. __( 'UTC -1', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '0', $selected, false ) . ' value="0">'. __( 'UTC 0', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '1', $selected, false ) . ' value="1">'. __( 'UTC +1', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '2', $selected, false ) . ' value="2">'. __( 'UTC +2', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '3', $selected, false ) . ' value="3">'. __( 'UTC +3', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '4', $selected, false ) . ' value="4">'. __( 'UTC +4', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '5', $selected, false ) . ' value="5">'. __( 'UTC +5', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '6', $selected, false ) . ' value="6">'. __( 'UTC +6', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '7', $selected, false ) . ' value="7">'. __( 'UTC +7', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '8', $selected, false ) . ' value="8">'. __( 'UTC +8', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '9', $selected, false ) . ' value="9">'. __( 'UTC +9', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '10', $selected, false ) . ' value="10">'. __( 'UTC +10', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '11', $selected, false ) . ' value="11">'. __( 'UTC +11', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( '12', $selected, false ) . ' value="12">'. __( 'UTC +12', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. esc_html__( 'WordPress timezone', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '-12', $selected, false ) . ' value="-12">'. esc_html__( 'UTC -12', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '-11', $selected, false ) . ' value="-11">'. esc_html__( 'UTC -11', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '-10', $selected, false ) . ' value="-10">'. esc_html__( 'UTC -10', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '-9', $selected, false ) . ' value="-9">'. esc_html__( 'UTC -9', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '-8', $selected, false ) . ' value="-8">'. esc_html__( 'UTC -8', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '-7', $selected, false ) . ' value="-7">'. esc_html__( 'UTC -7', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '-6', $selected, false ) . ' value="-6">'. esc_html__( 'UTC -6', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '-5', $selected, false ) . ' value="-5">'. esc_html__( 'UTC -5', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '-4', $selected, false ) . ' value="-4">'. esc_html__( 'UTC -4', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '-3', $selected, false ) . ' value="-3">'. esc_html__( 'UTC -3', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '-2', $selected, false ) . ' value="-2">'. esc_html__( 'UTC -2', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '-1', $selected, false ) . ' value="-1">'. esc_html__( 'UTC -1', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '0', $selected, false ) . ' value="0">'. esc_html__( 'UTC 0', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '1', $selected, false ) . ' value="1">'. esc_html__( 'UTC +1', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '2', $selected, false ) . ' value="2">'. esc_html__( 'UTC +2', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '3', $selected, false ) . ' value="3">'. esc_html__( 'UTC +3', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '4', $selected, false ) . ' value="4">'. esc_html__( 'UTC +4', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '5', $selected, false ) . ' value="5">'. esc_html__( 'UTC +5', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '6', $selected, false ) . ' value="6">'. esc_html__( 'UTC +6', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '7', $selected, false ) . ' value="7">'. esc_html__( 'UTC +7', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '8', $selected, false ) . ' value="8">'. esc_html__( 'UTC +8', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '9', $selected, false ) . ' value="9">'. esc_html__( 'UTC +9', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '10', $selected, false ) . ' value="10">'. esc_html__( 'UTC +10', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '11', $selected, false ) . ' value="11">'. esc_html__( 'UTC +11', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( '12', $selected, false ) . ' value="12">'. esc_html__( 'UTC +12', 'owm-weather' ) .'</option>';
 		echo '</select>';
 	}
 
@@ -1000,54 +989,54 @@ class owmw_options
         $selected = $this->options['owmw_owm_language'] ?? "nobypass";
 
 		echo '<select id="owmw_owm_language" name="owmw_option_name[owmw_owm_language]"> ';
-        echo '<option ' . ('nobypass' == $selected ? 'selected="selected"' : '') . ' value="nobypass">'. __( 'No bypass', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. __( 'Default', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'af', $selected, false ) . ' value="af">'. __( 'Afrikaans', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'al', $selected, false ) . ' value="al">'. __( 'Albanian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'ar', $selected, false ) . ' value="ar">'. __( 'Arabic', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'az', $selected, false ) . ' value="az">'. __( 'Azerbaijani', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'eu', $selected, false ) . ' value="eu">'. __( 'Basque', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'bg', $selected, false ) . ' value="bg">'. __( 'Bulgarian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'ca', $selected, false ) . ' value="ca">'. __( 'Catalan', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'zh_cn', $selected, false ) . ' value="zh_cn">'. __( 'Chinese Simplified', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'zh_tw', $selected, false ) . ' value="zh_tw">'. __( 'Chinese Traditional', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'hr', $selected, false ) . ' value="hr">'. __( 'Croatian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'cz', $selected, false ) . ' value="cz">'. __( 'Czech', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'da', $selected, false ) . ' value="da">'. __( 'Danish', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'nl', $selected, false ) . ' value="nl">'. __( 'Dutch', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'en', $selected, false ) . ' value="en">'. __( 'English', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'fi', $selected, false ) . ' value="fi">'. __( 'Finnish', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'fr', $selected, false ) . ' value="fr">'. __( 'French', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'gl', $selected, false ) . ' value="gl">'. __( 'Galician', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'de', $selected, false ) . ' value="de">'. __( 'German', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'el', $selected, false ) . ' value="el">'. __( 'Greek', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'he', $selected, false ) . ' value="he">'. __( 'Hebrew', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'hi', $selected, false ) . ' value="hi">'. __( 'Hindi', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'hu', $selected, false ) . ' value="hu">'. __( 'Hungarian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'id', $selected, false ) . ' value="id">'. __( 'Indonesian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'it', $selected, false ) . ' value="it">'. __( 'Italian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'ja', $selected, false ) . ' value="ja">'. __( 'Japanese', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'kr', $selected, false ) . ' value="kr">'. __( 'Korean', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'la', $selected, false ) . ' value="la">'. __( 'Latvian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'lt', $selected, false ) . ' value="lt">'. __( 'Lithuanian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'mk', $selected, false ) . ' value="mk">'. __( 'Macedonian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'no', $selected, false ) . ' value="no">'. __( 'Norwegian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'fa', $selected, false ) . ' value="fa">'. __( 'Persian (Farsi)', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'pl', $selected, false ) . ' value="pl">'. __( 'Polish', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'pt', $selected, false ) . ' value="pt">'. __( 'Portuguese', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'pt', $selected, false ) . ' value="pt">'. __( 'Português Brasil', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'ro', $selected, false ) . ' value="ro">'. __( 'Romanian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'ru', $selected, false ) . ' value="ru">'. __( 'Russian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'sr', $selected, false ) . ' value="sr">'. __( 'Serbian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'sv', $selected, false ) . ' value="sv">'. __( 'Swedish', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'sk', $selected, false ) . ' value="sk">'. __( 'Slovak', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'sl', $selected, false ) . ' value="sl">'. __( 'Slovenian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'sp', $selected, false ) . ' value="sp">'. __( 'Spanish', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'th', $selected, false ) . ' value="th">'. __( 'Thai', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'tr', $selected, false ) . ' value="tr">'. __( 'Turkish', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'ua', $selected, false ) . ' value="ua">'. __( 'Ukrainian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'vi', $selected, false ) . ' value="vi">'. __( 'Vietnamese', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'zu', $selected, false ) . ' value="zu">'. __( 'Zulu', 'owm-weather' ) .'</option>';
+        echo '<option ' . ('nobypass' == $selected ? 'selected="selected"' : '') . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. esc_html__( 'Default', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'af', $selected, false ) . ' value="af">'. esc_html__( 'Afrikaans', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'al', $selected, false ) . ' value="al">'. esc_html__( 'Albanian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'ar', $selected, false ) . ' value="ar">'. esc_html__( 'Arabic', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'az', $selected, false ) . ' value="az">'. esc_html__( 'Azerbaijani', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'eu', $selected, false ) . ' value="eu">'. esc_html__( 'Basque', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'bg', $selected, false ) . ' value="bg">'. esc_html__( 'Bulgarian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'ca', $selected, false ) . ' value="ca">'. esc_html__( 'Catalan', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'zh_cn', $selected, false ) . ' value="zh_cn">'. esc_html__( 'Chinese Simplified', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'zh_tw', $selected, false ) . ' value="zh_tw">'. esc_html__( 'Chinese Traditional', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'hr', $selected, false ) . ' value="hr">'. esc_html__( 'Croatian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'cz', $selected, false ) . ' value="cz">'. esc_html__( 'Czech', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'da', $selected, false ) . ' value="da">'. esc_html__( 'Danish', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'nl', $selected, false ) . ' value="nl">'. esc_html__( 'Dutch', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'en', $selected, false ) . ' value="en">'. esc_html__( 'English', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'fi', $selected, false ) . ' value="fi">'. esc_html__( 'Finnish', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'fr', $selected, false ) . ' value="fr">'. esc_html__( 'French', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'gl', $selected, false ) . ' value="gl">'. esc_html__( 'Galician', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'de', $selected, false ) . ' value="de">'. esc_html__( 'German', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'el', $selected, false ) . ' value="el">'. esc_html__( 'Greek', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'he', $selected, false ) . ' value="he">'. esc_html__( 'Hebrew', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'hi', $selected, false ) . ' value="hi">'. esc_html__( 'Hindi', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'hu', $selected, false ) . ' value="hu">'. esc_html__( 'Hungarian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'id', $selected, false ) . ' value="id">'. esc_html__( 'Indonesian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'it', $selected, false ) . ' value="it">'. esc_html__( 'Italian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'ja', $selected, false ) . ' value="ja">'. esc_html__( 'Japanese', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'kr', $selected, false ) . ' value="kr">'. esc_html__( 'Korean', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'la', $selected, false ) . ' value="la">'. esc_html__( 'Latvian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'lt', $selected, false ) . ' value="lt">'. esc_html__( 'Lithuanian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'mk', $selected, false ) . ' value="mk">'. esc_html__( 'Macedonian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'no', $selected, false ) . ' value="no">'. esc_html__( 'Norwegian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'fa', $selected, false ) . ' value="fa">'. esc_html__( 'Persian (Farsi)', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'pl', $selected, false ) . ' value="pl">'. esc_html__( 'Polish', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'pt', $selected, false ) . ' value="pt">'. esc_html__( 'Portuguese', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'pt', $selected, false ) . ' value="pt">'. esc_html__( 'Português Brasil', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'ro', $selected, false ) . ' value="ro">'. esc_html__( 'Romanian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'ru', $selected, false ) . ' value="ru">'. esc_html__( 'Russian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'sr', $selected, false ) . ' value="sr">'. esc_html__( 'Serbian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'sv', $selected, false ) . ' value="sv">'. esc_html__( 'Swedish', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'sk', $selected, false ) . ' value="sk">'. esc_html__( 'Slovak', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'sl', $selected, false ) . ' value="sl">'. esc_html__( 'Slovenian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'sp', $selected, false ) . ' value="sp">'. esc_html__( 'Spanish', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'th', $selected, false ) . ' value="th">'. esc_html__( 'Thai', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'tr', $selected, false ) . ' value="tr">'. esc_html__( 'Turkish', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'ua', $selected, false ) . ' value="ua">'. esc_html__( 'Ukrainian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'vi', $selected, false ) . ' value="vi">'. esc_html__( 'Vietnamese', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'zu', $selected, false ) . ' value="zu">'. esc_html__( 'Zulu', 'owm-weather' ) .'</option>';
 		echo '</select>';
 	}
 
@@ -1056,27 +1045,27 @@ class owmw_options
         $selected = $this->options['owmw_font'] ?? "nobypass";
 
 		echo '<select id="owmw_font" name="owmw_option_name[owmw_font]"> ';
-        echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. __( 'No bypass', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. __( 'Default', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Arvo', $selected, false ) . ' value="Arvo">'. __( 'Arvo', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Asap', $selected, false ) . ' value="Asap">'. __( 'Asap', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Bitter', $selected, false ) . ' value="Bitter">'. __( 'Bitter', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Droid Serif', $selected, false ) . ' value="Droid Serif">'. __( 'Droid Serif', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Exo 2', $selected, false ) . ' value="Exo 2">'. __( 'Exo 2', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Francois One', $selected, false ) . ' value="Francois One">'. __( 'Francois One', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Inconsolata', $selected, false ) . ' value="Inconsolata">'. __( 'Inconsolata', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Josefin Sans', $selected, false ) . ' value="Josefin Sans">'. __( 'Josefin Sans', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Lato', $selected, false ) . ' value="Lato">'. __( 'Lato', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Merriweather Sans', $selected, false ) . ' value="Merriweather Sans">'. __( 'Merriweather Sans', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Nunito', $selected, false ) . ' value="Nunito">'. __( 'Nunito', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Open Sans', $selected, false ) . ' value="Open Sans">'. __( 'Open Sans', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Oswald', $selected, false ) . ' value="Oswald">'. __( 'Oswald', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Pacifico', $selected, false ) . ' value="Pacifico">'. __( 'Pacifico', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Roboto', $selected, false ) . ' value="Roboto">'. __( 'Roboto', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Signika', $selected, false ) . ' value="Signika">'. __( 'Signika', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Source Sans Pro', $selected, false ) . ' value="Source Sans Pro">'. __( 'Source Sans Pro', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Tangerine', $selected, false ) . ' value="Tangerine">'. __( 'Tangerine', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Ubuntu', $selected, false ) . ' value="Ubuntu">'. __( 'Ubuntu', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. esc_html__( 'Default', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Arvo', $selected, false ) . ' value="Arvo">'. esc_html__( 'Arvo', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Asap', $selected, false ) . ' value="Asap">'. esc_html__( 'Asap', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Bitter', $selected, false ) . ' value="Bitter">'. esc_html__( 'Bitter', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Droid Serif', $selected, false ) . ' value="Droid Serif">'. esc_html__( 'Droid Serif', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Exo 2', $selected, false ) . ' value="Exo 2">'. esc_html__( 'Exo 2', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Francois One', $selected, false ) . ' value="Francois One">'. esc_html__( 'Francois One', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Inconsolata', $selected, false ) . ' value="Inconsolata">'. esc_html__( 'Inconsolata', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Josefin Sans', $selected, false ) . ' value="Josefin Sans">'. esc_html__( 'Josefin Sans', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Lato', $selected, false ) . ' value="Lato">'. esc_html__( 'Lato', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Merriweather Sans', $selected, false ) . ' value="Merriweather Sans">'. esc_html__( 'Merriweather Sans', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Nunito', $selected, false ) . ' value="Nunito">'. esc_html__( 'Nunito', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Open Sans', $selected, false ) . ' value="Open Sans">'. esc_html__( 'Open Sans', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Oswald', $selected, false ) . ' value="Oswald">'. esc_html__( 'Oswald', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Pacifico', $selected, false ) . ' value="Pacifico">'. esc_html__( 'Pacifico', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Roboto', $selected, false ) . ' value="Roboto">'. esc_html__( 'Roboto', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Signika', $selected, false ) . ' value="Signika">'. esc_html__( 'Signika', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Source Sans Pro', $selected, false ) . ' value="Source Sans Pro">'. esc_html__( 'Source Sans Pro', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Tangerine', $selected, false ) . ' value="Tangerine">'. esc_html__( 'Tangerine', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Ubuntu', $selected, false ) . ' value="Ubuntu">'. esc_html__( 'Ubuntu', 'owm-weather' ) .'</option>';
 		echo '</select>';
 	}
 
@@ -1085,19 +1074,19 @@ class owmw_options
         $selected = $this->options['owmw_template'] ?? "nobypass";
 
 		echo '<select id="owmw_template" name="owmw_option_name[owmw_template]"> ';
-        echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. __( 'No bypass', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. __( 'Default', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'card1', $selected, false ) . ' value="card1">'. __( 'Card 1', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'card2', $selected, false ) . ' value="card2">'. __( 'Card 2', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'chart1', $selected, false ) . ' value="chart1">'. __( 'Chart 1', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'chart2', $selected, false ) . ' value="chart2">'. __( 'Chart 2', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'slider1', $selected, false ) . ' value="slider1">'. __( 'Slider 1', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'slider2', $selected, false ) . ' value="slider2">'. __( 'Slider 2', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'table1', $selected, false ) . ' value="table1">'. __( 'Table 1', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'table2', $selected, false ) . ' value="table2">'. __( 'Table 2', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'custom1', $selected, false ) . ' value="custom1">'. __( 'Custom 1', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'custom2', $selected, false ) . ' value="custom2">'. __( 'Custom 2', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'debug', $selected, false ) . ' value="debug">'. __( 'Debug', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. esc_html__( 'Default', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'card1', $selected, false ) . ' value="card1">'. esc_html__( 'Card 1', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'card2', $selected, false ) . ' value="card2">'. esc_html__( 'Card 2', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'chart1', $selected, false ) . ' value="chart1">'. esc_html__( 'Chart 1', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'chart2', $selected, false ) . ' value="chart2">'. esc_html__( 'Chart 2', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'slider1', $selected, false ) . ' value="slider1">'. esc_html__( 'Slider 1', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'slider2', $selected, false ) . ' value="slider2">'. esc_html__( 'Slider 2', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'table1', $selected, false ) . ' value="table1">'. esc_html__( 'Table 1', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'table2', $selected, false ) . ' value="table2">'. esc_html__( 'Table 2', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'custom1', $selected, false ) . ' value="custom1">'. esc_html__( 'Custom 1', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'custom2', $selected, false ) . ' value="custom2">'. esc_html__( 'Custom 2', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'debug', $selected, false ) . ' value="debug">'. esc_html__( 'Debug', 'owm-weather' ) .'</option>';
 		echo '</select>';
 	}
 
@@ -1106,13 +1095,13 @@ class owmw_options
         $selected = $this->options['owmw_iconpack'] ?? "nobypass";
 
 		echo '<select id="owmw_iconpack" name="owmw_option_name[owmw_iconpack]"> ';
-        echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. __( 'No bypass', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Climacons', $selected, false ) . ' value="Climacons">'. __( 'Climacons', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'OpenWeatherMap', $selected, false ) . ' value="OpenWeatherMap">'. __( 'Open Weather Map', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'WeatherIcons', $selected, false ) . ' value="WeatherIcons">'. __( 'Weather Icons', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Forecast', $selected, false ) . ' value="Forecast">'. __( 'Forecast', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Dripicons', $selected, false ) . ' value="Dripicons">'. __( 'Dripicons', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'Pixeden', $selected, false ) . ' value="Pixeden">'. __( 'Pixeden', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Climacons', $selected, false ) . ' value="Climacons">'. esc_html__( 'Climacons', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'OpenWeatherMap', $selected, false ) . ' value="OpenWeatherMap">'. esc_html__( 'Open Weather Map', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'WeatherIcons', $selected, false ) . ' value="WeatherIcons">'. esc_html__( 'Weather Icons', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Forecast', $selected, false ) . ' value="Forecast">'. esc_html__( 'Forecast', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Dripicons', $selected, false ) . ' value="Dripicons">'. esc_html__( 'Dripicons', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'Pixeden', $selected, false ) . ' value="Pixeden">'. esc_html__( 'Pixeden', 'owm-weather' ) .'</option>';
 		echo '</select>';
 	}
 
@@ -1138,27 +1127,27 @@ class owmw_options
         echo '<input id="owmw_today_date_format_nobypass" name="owmw_option_name[owmw_today_date_format]" type="radio"';
         if ('nobypass' == $check) echo 'checked="checked"';
         echo ' value="nobypass"/>';
-        echo '<label for="owmw_today_date_format_nobypass">'. __( 'No bypass', 'owm-weather' ) .'</label>';
+        echo '<label for="owmw_today_date_format_nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</label>';
 
         echo '<br><br>';
         echo '<input id="owmw_today_date_format_none" name="owmw_option_name[owmw_today_date_format]" type="radio"';
         if ('none' == $check) echo 'checked="checked"';
         echo ' value="none"/>';
-        echo '<label for="owmw_today_date_format_none">'. __( 'None', 'owm-weather' ) .'</label>';
+        echo '<label for="owmw_today_date_format_none">'. esc_html__( 'None', 'owm-weather' ) .'</label>';
 
         echo '<br><br>';
 
         echo '<input id="owmw_today_date_format_day" name="owmw_option_name[owmw_today_date_format]" type="radio"';
         if ('day' == $check) echo 'checked="checked"';
         echo ' value="day"/>';
-        echo '<label for="owmw_today_date_format_day">'. __( 'Day of the week (eg: Sunday)', 'owm-weather' ) .'</label>';
+        echo '<label for="owmw_today_date_format_day">'. esc_html__( 'Day of the week (eg: Sunday)', 'owm-weather' ) .'</label>';
 
         echo '<br><br>';
 
         echo '<input id="owmw_today_date_format_date" name="owmw_option_name[owmw_today_date_format]" type="radio"';
         if ('date' == $check) echo 'checked="checked"';
         echo ' value="date"/>';
-        echo '<label for="owmw_today_date_format_date">'. __( 'Today\'s date', 'owm-weather' ) .'</label>';
+        echo '<label for="owmw_today_date_format_date">'. esc_html__( 'Today\'s date', 'owm-weather' ) .'</label>';
     }
 
     public function owmw_display_date_temp_unit_callback()
@@ -1188,19 +1177,19 @@ class owmw_options
         echo ' <select id="owmw_wind_unit" name="owmw_option_name[owmw_wind_unit]"> ';
         echo ' <option ';
         if ('nobypass' == $selected) echo 'selected="selected"';
-        echo ' value="nobypass">'. __( 'No bypass', 'owm-weather' ) .'</option>';
+        echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
         echo ' <option ';
-        if ('1' == $selected) echo 'selected="selected"';
-        echo ' value="1">'. __( 'mi/h', 'owm-weather' ) .'</option>';
+        if ('mi/h' == $selected) echo 'selected="selected"';
+        echo ' value="mi/h">'. esc_html__( 'mi/h', 'owm-weather' ) .'</option>';
         echo '<option ';
-        if ('2' == $selected) echo 'selected="selected"';
-        echo ' value="2">'. __( 'm/s', 'owm-weather' ) .'</option>';
+        if ('m/s' == $selected) echo 'selected="selected"';
+        echo ' value="m/s">'. esc_html__( 'm/s', 'owm-weather' ) .'</option>';
         echo '<option ';
-        if ('3' == $selected) echo 'selected="selected"';
-        echo ' value="3">'. __( 'km/h', 'owm-weather' ) .'</option>';
+        if ('km/h' == $selected) echo 'selected="selected"';
+        echo ' value="km/h">'. esc_html__( 'km/h', 'owm-weather' ) .'</option>';
         echo '<option ';
-        if ('4' == $selected) echo 'selected="selected"';
-        echo ' value="4">'. __( 'kt', 'owm-weather' ) .'</option>';
+        if ('kt' == $selected) echo 'selected="selected"';
+        echo ' value="kt">'. esc_html__( 'kt', 'owm-weather' ) .'</option>';
         echo '</select>';
     }
 
@@ -1268,10 +1257,10 @@ class owmw_options
     private function owmw_generate_hour_options($selected) {
    		$str = ' <option ';
    		$str .= selected( "nobypass", $selected, false );
-   		$str .= ' value="nobypass">'. __( "No bypass", 'owm-weather' ) .'</option>';
+   		$str .= ' value="nobypass">'. esc_html__( "No bypass", 'owm-weather' ) .'</option>';
    		$str .= ' <option ';
    		$str .= selected( "0", $selected, false );
-   		$str .= ' value="0">'. __( "None", 'owm-weather' ) .'</option>';
+   		$str .= ' value="0">'. esc_html__( "None", 'owm-weather' ) .'</option>';
 
         for ($i=1; $i<=48; $i++) {
             if ($i == 1) {
@@ -1284,7 +1273,7 @@ class owmw_options
 
     		$str .= ' <option ';
     		$str .= selected( $i, intval($selected), false );
-    		$str .= ' value="' . $i . '">'. __( $h, 'owm-weather' ) .'</option>';
+    		$str .= ' value="' . $i . '">'. esc_html__( $h, 'owm-weather' ) .'</option>';
         }
 
         return $str;
@@ -1307,34 +1296,34 @@ class owmw_options
 		echo ' <select id="owmw_forecast_no" name="owmw_option_name[owmw_forecast_no]"> ';
 		echo ' <option ';
 		if ('nobypass' == $selected) echo 'selected="selected"';
-		echo ' value="nobypass">'. __( 'No bypass', 'owm-weather' ) .'</option>';
+		echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
 		echo ' <option ';
 		if ('0' == $selected) echo 'selected="selected"';
-		echo ' value="0">'. __( 'None', 'owm-weather' ) .'</option>';
+		echo ' value="0">'. esc_html__( 'None', 'owm-weather' ) .'</option>';
 		echo ' <option ';
 		if ('1' == $selected) echo 'selected="selected"';
-		echo ' value="1">'. __( 'Today', 'owm-weather' ) .'</option>';
+		echo ' value="1">'. esc_html__( 'Today', 'owm-weather' ) .'</option>';
 		echo '<option ';
 		if ('2' == $selected) echo 'selected="selected"';
-		echo ' value="2">'. __( 'Today + 1 day', 'owm-weather' ) .'</option>';
+		echo ' value="2">'. esc_html__( 'Today + 1 day', 'owm-weather' ) .'</option>';
 		echo '<option ';
 		if ('3' == $selected) echo 'selected="selected"';
-		echo ' value="3">'. __( 'Today + 2 days', 'owm-weather' ) .'</option>';
+		echo ' value="3">'. esc_html__( 'Today + 2 days', 'owm-weather' ) .'</option>';
 		echo '<option ';
 		if ('4' == $selected) echo 'selected="selected"';
-		echo ' value="4">'. __( 'Today + 3 days', 'owm-weather' ) .'</option>';
+		echo ' value="4">'. esc_html__( 'Today + 3 days', 'owm-weather' ) .'</option>';
 		echo '<option ';
 		if ('5' == $selected) echo 'selected="selected"';
-		echo ' value="5">'. __( 'Today + 4 days', 'owm-weather' ) .'</option>';
+		echo ' value="5">'. esc_html__( 'Today + 4 days', 'owm-weather' ) .'</option>';
 		echo '<option ';
 		if ('6' == $selected) echo 'selected="selected"';
-		echo ' value="6">'. __( 'Today + 5 days', 'owm-weather' ) .'</option>';
+		echo ' value="6">'. esc_html__( 'Today + 5 days', 'owm-weather' ) .'</option>';
 		echo '<option ';
 		if ('7' == $selected) echo 'selected="selected"';
-		echo ' value="7">'. __( 'Today + 6 days', 'owm-weather' ) .'</option>';
+		echo ' value="7">'. esc_html__( 'Today + 6 days', 'owm-weather' ) .'</option>';
 		echo '<option ';
 		if ('8' == $selected) echo 'selected="selected"';
-		echo ' value="8">'. __( 'Today + 7 days', 'owm-weather' ) .'</option>';
+		echo ' value="8">'. esc_html__( 'Today + 7 days', 'owm-weather' ) .'</option>';
 		echo '</select>';
 	}
 
@@ -1350,21 +1339,21 @@ class owmw_options
         echo '<input id="owmw_display_length_days_names_nobypass" name="owmw_option_name[owmw_display_length_days_names]" type="radio"';
 		if ('nobypass' == $check) echo 'checked="yes"';
 		echo ' value="nobypass"/>';
-		echo '<label for="owmw_display_length_days_names_nobypass">'. __( 'No bypass', 'owm-weather' ) .'</label>';
+		echo '<label for="owmw_display_length_days_names_nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</label>';
 
 		echo '<br><br>';
 
         echo '<input id="owmw_display_length_days_names_short" name="owmw_option_name[owmw_display_length_days_names]" type="radio"';
 		if ('short' == $check) echo 'checked="yes"';
 		echo ' value="short"/>';
-		echo '<label for="owmw_display_length_days_names_short">'. __( 'Short days names', 'owm-weather' ) .'</label>';
+		echo '<label for="owmw_display_length_days_names_short">'. esc_html__( 'Short days names', 'owm-weather' ) .'</label>';
 
 		echo '<br><br>';
 
 		echo '<input id="owmw_display_length_days_names_normal" name="owmw_option_name[owmw_display_length_days_names]" type="radio"';
 		if ('normal' == $check) echo 'checked="yes"';
 		echo ' value="normal"/>';
-		echo '<label for="owmw_display_length_days_names_normal">'. __( 'Normal days names', 'owm-weather' ) .'</label>';
+		echo '<label for="owmw_display_length_days_names_normal">'. esc_html__( 'Normal days names', 'owm-weather' ) .'</label>';
     }
 
     public function owmw_display_owm_link_callback()
@@ -1404,8 +1393,8 @@ class owmw_options
     	echo '	<div class="background_image_preview_wrapper">';
     	echo '		<img id="background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_background_image']) ? '' : ' style="display: none;"') . '>';
     	echo '	</div>';
-    	echo '	<input id="select_background_image_button" type="button" class="button" value="' . __( 'Select image', 'owm-weather' ) . '" />';
-    	echo '	<input type="hidden" name="owmw_option_name[owmw_background_image]" id="background_image_attachment_id" value="' . ( $this->options['owmw_background_image'] ?? '' ) . '">';
+    	echo '	<input id="select_background_image_button" type="button" class="button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" />';
+    	echo '	<input type="hidden" name="owmw_option_name[owmw_background_image]" id="background_image_attachment_id" value="' . esc_attr( $this->options['owmw_background_image'] ?? '' ) . '">';
     	echo '	<input id="clear_background_image_button" type="button" class="button" value="Clear" />';
     }
 
@@ -1440,15 +1429,15 @@ class owmw_options
 	}
 
     private function owmw_borderStyleOptions($selected) {
-        echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. __( 'No bypass', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'solid', $selected, false ) . ' value="solid">'. __( 'Solid', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'dotted', $selected, false ) . ' value="dotted">'. __( 'Dotted', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'dashed', $selected, false ) . ' value="dashed">'. __( 'Dashed', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'double', $selected, false ) . ' value="double">'. __( 'Double', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'groove', $selected, false ) . ' value="groove">'. __( 'Groove', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'inset', $selected, false ) . ' value="inset">'. __( 'Inset', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'outset', $selected, false ) . ' value="outset">'. __( 'Outset', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'ridge', $selected, false ) . ' value="ridge">'. __( 'Ridge', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'solid', $selected, false ) . ' value="solid">'. esc_html__( 'Solid', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'dotted', $selected, false ) . ' value="dotted">'. esc_html__( 'Dotted', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'dashed', $selected, false ) . ' value="dashed">'. esc_html__( 'Dashed', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'double', $selected, false ) . ' value="double">'. esc_html__( 'Double', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'groove', $selected, false ) . ' value="groove">'. esc_html__( 'Groove', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'inset', $selected, false ) . ' value="inset">'. esc_html__( 'Inset', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'outset', $selected, false ) . ' value="outset">'. esc_html__( 'Outset', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'ridge', $selected, false ) . ' value="ridge">'. esc_html__( 'Ridge', 'owm-weather' ) .'</option>';
     }
 
 	public function owmw_layout_border_radius_callback()
@@ -1465,16 +1454,16 @@ class owmw_options
 		echo ' <select id="owmw_size" name="owmw_option_name[owmw_size]"> ';
 		echo ' <option ';
 		if ('nobypass' == $selected) echo 'selected="selected"';
-		echo ' value="nobypass">'. __( 'No bypass', 'owm-weather' ) .'</option>';
+		echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
 		echo ' <option ';
 		if ('small' == $selected) echo 'selected="selected"';
-		echo ' value="small">'. __( 'Small', 'owm-weather' ) .'</option>';
+		echo ' value="small">'. esc_html__( 'Small', 'owm-weather' ) .'</option>';
 		echo '<option ';
 		if ('medium' == $selected) echo 'selected="selected"';
-		echo ' value="medium">'. __( 'Medium', 'owm-weather' ) .'</option>';
+		echo ' value="medium">'. esc_html__( 'Medium', 'owm-weather' ) .'</option>';
 		echo '<option ';
 		if ('large' == $selected) echo 'selected="selected"';
-		echo ' value="large">'. __( 'Large', 'owm-weather' ) .'</option>';
+		echo ' value="large">'. esc_html__( 'Large', 'owm-weather' ) .'</option>';
 		echo '</select>';
 	}
 
@@ -1483,7 +1472,7 @@ class owmw_options
     {
         $check = $this->options['owmw_custom_css'] ?? '';
 
-        printf('<textarea name="owmw_option_name[owmw_custom_css]" style="width:100%%;height:300px;">%s</textarea>', esc_attr($check));
+        printf('<textarea name="owmw_option_name[owmw_custom_css]" style="width:100%%;height:300px;">%s</textarea>', esc_textarea($check));
     }
 
     public function owmw_layout_table_background_color_callback()
@@ -1537,23 +1526,23 @@ class owmw_options
         echo '<input id="owmw_advanced_disable_cache" name="owmw_option_name[owmw_advanced_disable_cache]" type="checkbox"';
 		if ('yes' == $check) echo 'checked="yes"';
 		echo ' value="yes"/>';
-		echo '<label for="owmw_advanced_disable_cache">'. __( 'Disable weather cache? (Not recommended!)', 'owm-weather' ) .'</label>';
+		echo '<label for="owmw_advanced_disable_cache">'. esc_html__( 'Disable weather cache? (Not recommended!)', 'owm-weather' ) .'</label>';
     }
 
 	public function owmw_advanced_cache_time_callback()
     {
         $check = $this->options['owmw_advanced_cache_time'] ?? '';
 
-        printf('<input type="number" min="10" name="owmw_option_name[owmw_advanced_cache_time]" value="%s" style="width:100%%" />', esc_html( $check ));
-        echo '<br /><br /><span class="dashicons dashicons-editor-help"></span>'.__('Default value: 30 minutes','owm-weather');
+        printf('<input type="number" min="10" name="owmw_option_name[owmw_advanced_cache_time]" value="%s" style="width:100%%" />', esc_attr( $check ));
+        echo '<br /><br /><span class="dashicons dashicons-editor-help"></span>'.esc_html__('Default value: 30 minutes','owm-weather');
 	}
 
     public function owmw_advanced_api_key_callback()
     {
         $check = $this->options['owmw_advanced_api_key'] ?? '';
 
-        printf('<input type="text" name="owmw_option_name[owmw_advanced_api_key]" value="%s" style="width:100%%" />', esc_html( $check ));
-        echo '<br /><br /><span class="dashicons dashicons-editor-help"></span>'.__('Strongly recommended: ','owm-weather').'<a href="https://openweathermap.org/appid" target="_blank">'.__('Get your free OWM API key here','owm-weather').'</a>';
+        printf('<input type="text" name="owmw_option_name[owmw_advanced_api_key]" value="%s" style="width:100%%" />', esc_attr( $check ));
+        echo '<br /><br /><span class="dashicons dashicons-editor-help"></span>'.esc_html__('Strongly recommended: ','owm-weather').'<a href="https://openweathermap.org/appid" target="_blank">'.esc_html__('Get your free OWM API key here','owm-weather').'</a>';
     }
 
     public function owmw_advanced_disable_modal_js_callback()
@@ -1563,7 +1552,7 @@ class owmw_options
         echo '<input id="owmw_advanced_disable_modal_js" name="owmw_option_name[owmw_advanced_disable_modal_js]" type="checkbox"';
         if ('yes' == $check) echo 'checked="yes"';
         echo ' value="yes"/>';
-        echo '<label for="owmw_advanced_disable_modal_js">'. __( 'Disable Bootstrap? (Check this if you already include Bootstrap in your theme)', 'owm-weather' ) .'</label>';
+        echo '<label for="owmw_advanced_disable_modal_js">'. esc_html__( 'Disable Bootstrap? (Check this if you already include Bootstrap in your theme)', 'owm-weather' ) .'</label>';
 	}
 
 	public function owmw_map_display_callback()
@@ -1730,56 +1719,56 @@ class owmw_options
     public function owmw_support_info_callback() //bugbug
     {
 		echo
-			'<h3>'. __("Problem with OWM Weather?", 'owm-weather').'</h3>
-			<p><a href="https://www.wpcloudy.com/support/faq/" target="_blank" title="'. __("FAQ", 'owm-weather').'">'. __("Read our FAQ", 'owm-weather').'</a></p>
-			<p><a href="https://www.wpcloudy.com/support/guides/" target="_blank" title="'. __("Guides", 'owm-weather').'">'.__("Read our Guides", 'owm-weather').'</a></p>
-			<p><a href="https://wordpress.org/plugins/owm-weather/" target="_blank" title="'. __("OWM Weather Forum on WordPress.org", 'owm-weather').'">'. __("OWM Weather Forum on WordPress.org", 'owm-weather').'</a></p>';
+			'<h3>'. esc_html__("Problem with OWM Weather?", 'owm-weather').'</h3>
+			<p><a href="https://www.wpcloudy.com/support/faq/" target="_blank" title="'. esc_attr__("FAQ", 'owm-weather').'">'. esc_html__("Read our FAQ", 'owm-weather').'</a></p>
+			<p><a href="https://www.wpcloudy.com/support/guides/" target="_blank" title="'. esc_attr__("Guides", 'owm-weather').'">'.esc_html__("Read our Guides", 'owm-weather').'</a></p>
+			<p><a href="https://wordpress.org/plugins/owm-weather/" target="_blank" title="'. esc_attr__("OWM Weather Forum on WordPress.org", 'owm-weather').'">'. esc_html__("OWM Weather Forum on WordPress.org", 'owm-weather').'</a></p>';
     }
 
     private function owmw_bypassRadioButtons($option) {
 		$value = $this->options[$option] ?? 'nobypass';
 
-        echo '<input id="' . $option . '_nobypass" name="owmw_option_name[' . $option . ']" type="radio"';
+        echo '<input id="' . esc_attr($option) . '_nobypass" name="owmw_option_name[' . esc_attr($option) . ']" type="radio"';
         if ('nobypass' == $value) echo 'checked="checked"';
         echo ' value="nobypass"/>';
-        echo '<label for="' . $option . '_nobypass">'. __( 'No bypass', 'owm-weather' ) .'</label>';
+        echo '<label for="' . esc_attr($option) . '_nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</label>';
 
         echo '<br><br>';
             
-        echo '<input id="' . $option . '_on" name="owmw_option_name[' . $option . ']" type="radio"';
+        echo '<input id="' . esc_attr($option) . '_on" name="owmw_option_name[' . esc_attr($option) . ']" type="radio"';
         if ('yes' == $value) echo 'checked="checked"';
         echo ' value="yes"/>';
-        echo '<label for="' . $option . '_on">'. __( 'Show on all weather', 'owm-weather' ) .'</label>';
+        echo '<label for="' . esc_attr($option) . '_on">'. esc_html__( 'Show on all weather', 'owm-weather' ) .'</label>';
 
         echo '<br><br>';
 
-        echo '<input id="' . $option . '_off" name="owmw_option_name[' . $option . ']" type="radio"';
+        echo '<input id="' . esc_attr($option) . '_off" name="owmw_option_name[' . esc_attr($option) . ']" type="radio"';
         if ('no' == $value) echo 'checked="checked"';
         echo ' value="no"/>';
-        echo '<label for="' . $option . '_off">'. __( 'Suppress on all weather', 'owm-weather' ) .'</label>';
+        echo '<label for="' . esc_attr($option) . '_off">'. esc_html__( 'Suppress on all weather', 'owm-weather' ) .'</label>';
     }
 
     private function owmw_bypassRadioButtonsDisable($option) {
 		$value = $this->options[$option] ?? 'nobypass';
 
-        echo '<input id="' . $option . '_nobypass" name="owmw_option_name[' . $option . ']" type="radio"';
+        echo '<input id="' . esc_attr($option) . '_nobypass" name="owmw_option_name[' . esc_attr($option) . ']" type="radio"';
         if ('nobypass' == $value) echo 'checked="checked"';
         echo ' value="nobypass"/>';
-        echo '<label for="' . $option . '_nobypass">'. __( 'No bypass', 'owm-weather' ) .'</label>';
+        echo '<label for="' . esc_attr($option) . '_nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</label>';
 
         echo '<br><br>';
             
-        echo '<input id="' . $option . '_on" name="owmw_option_name[' . $option . ']" type="radio"';
+        echo '<input id="' . esc_attr($option) . '_on" name="owmw_option_name[' . esc_attr($option) . ']" type="radio"';
         if ('no' == $value) echo 'checked="checked"';
         echo ' value="no"/>';
-        echo '<label for="' . $option . '_on">'. __( 'Show on all weather', 'owm-weather' ) .'</label>';
+        echo '<label for="' . esc_attr($option) . '_on">'. esc_html__( 'Show on all weather', 'owm-weather' ) .'</label>';
 
         echo '<br><br>';
 
-        echo '<input id="' . $option . '_off" name="owmw_option_name[' . $option . ']" type="radio"';
+        echo '<input id="' . esc_attr($option) . '_off" name="owmw_option_name[' . esc_attr($option) . ']" type="radio"';
         if ('yes' == $value) echo 'checked="checked"';
         echo ' value="yes"/>';
-        echo '<label for="' . $option . '_off">'. __( 'Suppress on all weather', 'owm-weather' ) .'</label>';
+        echo '<label for="' . esc_attr($option) . '_off">'. esc_html__( 'Suppress on all weather', 'owm-weather' ) .'</label>';
     }
 
 }
@@ -1794,13 +1783,13 @@ function owmw_help_tab() {//bugbug
 
     $screen->add_help_tab( array(
         'id'    => 'owmw_help_tab',
-        'title' => __('Setup OWM Weather', 'owm-weather'),
-        'content'   => '<p>' . __( 'Follow this video to setup OWM Weather:', 'owm-weather' ) . '<br>'.wp_oembed_get('https://www.youtube.com/watch?v=mRF_3VOz_OE', array('width'=>560)).'</p>',
+        'title' => esc_html__('Setup OWM Weather', 'owm-weather'),
+        'content'   => '<p>' . esc_html__( 'Follow this video to setup OWM Weather:', 'owm-weather' ) . '<br>'.wp_oembed_get('https://www.youtube.com/watch?v=mRF_3VOz_OE', array('width'=>560)).'</p>',
     ));
     $screen->add_help_tab( array(
         'id'    => 'owmw_help_tab2',
-        'title' => __('Create your first weather', 'owm-weather'),
-        'content'   => '<p>' . __( 'Follow this video to create your first weather with OWM Weather:', 'owm-weather' ) . '<br>'.wp_oembed_get('https://www.youtube.com/watch?v=xv4lrgsWkkk', array('width'=>560)).'</p>',
+        'title' => esc_html__('Create your first weather', 'owm-weather'),
+        'content'   => '<p>' . esc_html__( 'Follow this video to create your first weather with OWM Weather:', 'owm-weather' ) . '<br>'.wp_oembed_get('https://www.youtube.com/watch?v=xv4lrgsWkkk', array('width'=>560)).'</p>',
     ));
 }
 
@@ -1821,7 +1810,7 @@ function owmw_media_selector_print_scripts($id = null) {
 			// Uploading files
 			var image_frame;
 			var wp_media_post_id = wp.media.model.settings.post.id; // Store the old id
-			var set_to_post_id = <?php echo $my_saved_attachment_post_id; ?>; // Set this
+			var set_to_post_id = <?php echo wp_json_encode($my_saved_attachment_post_id); ?>; // Set this
 
 			$('#clear_background_image_button').on('click', function( event ){
 

@@ -24,23 +24,25 @@ function owmw_get_admin_bypass($setting) {
 
 //Get Bypass for Yes/No settings
 function owmw_get_bypass_yn($bypass, $setting, $id = null) {
+    global $owmw_params;
     $opt = owmw_get_admin_bypass("owmw_" . $setting);
 
 	if ($bypass && isset($opt) && $opt != 'nobypass') {
 		return $opt == 'yes' ? 'yes' : null;
 	} else {
-    	return get_post_meta($id ?? $_POST['owmw_params']['id'], '_owmweather_' . $setting, true);
+    	return get_post_meta($id ?? $owmw_params['id'], '_owmweather_' . $setting, true);
 	}
 }
 
 //Get Bypass for settings
 function owmw_get_bypass($bypass, $setting, $id = null) {
+    global $owmw_params;
     $opt = owmw_get_admin_bypass("owmw_" . $setting);
 
 	if ($bypass && isset($opt) && $opt != 'nobypass') {
 		return $opt;
 	} else {
-    	return get_post_meta($id ?? $_POST['owmw_params']['id'], '_owmweather_' . $setting, true);
+    	return get_post_meta($id ?? $owmw_params['id'], '_owmweather_' . $setting, true);
 	}
 }
 

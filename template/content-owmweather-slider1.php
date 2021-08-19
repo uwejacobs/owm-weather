@@ -131,27 +131,27 @@
 
 <script type="text/javascript" charset="utf-8">
 	jQuery(window).ready(function() {
-		jQuery('#<?php echo $owmw_opt["container_weather_div"] ?> .owmw-flexslider').flexslider({
-	        controlsContainer: jQuery("#<?php echo $owmw_opt["container_weather_div"] ?> .custom-controls-container"),
-            customDirectionNav: jQuery("#<?php echo $owmw_opt["container_weather_div"] ?> .custom-navigation a"),
+		jQuery('#<?php echo $owmw_html["container_weather_div"] ?> .owmw-flexslider').flexslider({
+	        controlsContainer: jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .custom-controls-container"),
+            customDirectionNav: jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .custom-navigation a"),
             animation: "slide",
             animationLoop: true,
             itemWidth: 250,
             itemMargin: 5,
             maxItems: 4
 		});
-		jQuery('#<?php echo $owmw_opt["container_weather_div"] ?> .owmw-flexslider-hours').flexslider({
-	        controlsContainer: jQuery("#<?php echo $owmw_opt["container_weather_div"] ?> .custom-controls-container"),
-            customDirectionNav: jQuery("#<?php echo $owmw_opt["container_weather_div"] ?> .custom-navigation a"),
+		jQuery('#<?php echo $owmw_html["container_weather_div"] ?> .owmw-flexslider-hours').flexslider({
+	        controlsContainer: jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .custom-controls-container"),
+            customDirectionNav: jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .custom-navigation a"),
             animation: "slide",
             animationLoop: true,
             itemWidth: 50,
             itemMargin: 5,
             maxItems: 8
     	});
-		jQuery('#<?php echo $owmw_opt["container_weather_div"] ?> .owmw-flexslider-forecast').flexslider({
-	        controlsContainer: jQuery("#<?php echo $owmw_opt["container_weather_div"] ?> .custom-controls-container"),
-            customDirectionNav: jQuery("#<?php echo $owmw_opt["container_weather_div"] ?> .custom-navigation a"),
+		jQuery('#<?php echo $owmw_html["container_weather_div"] ?> .owmw-flexslider-forecast').flexslider({
+	        controlsContainer: jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .custom-controls-container"),
+            customDirectionNav: jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .custom-navigation a"),
 		});
 	});
 </script>

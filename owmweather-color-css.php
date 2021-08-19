@@ -1,5 +1,7 @@
 <?php
 function owmw_generateColorCSS($hexColor, $name) {
+    $hexColor = sanitize_hex_color($hexColor);
+    $name = sanitize_html_class($name);
 
     $hsl = owmw_hex2hsl($hexColor);
     $rgb = owmw_hex2rgb($hexColor);
@@ -123,7 +125,7 @@ function owmw_generateColorCSS($hexColor, $name) {
 }
 
 function owmw_addStylesheetRule(&$s, $selector, $property, $value) {
-    $s[$selector][] = $property . ":" . $value . ' !important;';
+    $s[$selector][] = esc_attr($property) . ":" . esc_attr($value) . ' !important;';
 }
 
 function owmw_printStylesheetRules($s) {

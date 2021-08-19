@@ -9,38 +9,38 @@
 ?>
 <!-- Start #owm-weather styles -->
 <style>
-#<?php echo $owmw_opt["main_weather_div"] ?> {
+#<?php echo $owmw_html["main_weather_div"] ?> {
     width: 100%;
 }
-#<?php echo $owmw_opt["container_weather_div"] ?> {
+#<?php echo $owmw_html["container_weather_div"] ?> {
 	width: auto;
 }
-#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-current-infos {
+#<?php echo $owmw_html["main_weather_div"] ?> .owmw-current-infos {
     white-space: nowrap;
 }
-#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-infos-text {
+#<?php echo $owmw_html["main_weather_div"] ?> .owmw-infos-text {
     line-height: 1.5;
     margin-top: 20px;
     text-align: left;
 }
-#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-infos-text span.owmw-value,
-#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-temperature {
+#<?php echo $owmw_html["main_weather_div"] ?> .owmw-infos-text span.owmw-value,
+#<?php echo $owmw_html["main_weather_div"] ?> .owmw-temperature {
     font-size: 125%;
     font-weight: 700;
 }
-#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-infos-text svg {
+#<?php echo $owmw_html["main_weather_div"] ?> .owmw-infos-text svg {
     height: 28px;
     width: 29px;
 }
-#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-now .owmw-main-temperature {
+#<?php echo $owmw_html["main_weather_div"] ?> .owmw-now .owmw-main-temperature {
     font-size: 36px;
 }
-#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-today .owmw-sun-hours,
-#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-today .owmw-moon-hours {
+#<?php echo $owmw_html["main_weather_div"] ?> .owmw-today .owmw-sun-hours,
+#<?php echo $owmw_html["main_weather_div"] ?> .owmw-today .owmw-moon-hours {
     font-size: 12px;
 }
-#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-hours .card,
-#<?php echo $owmw_opt["main_weather_div"] ?> .owmw-forecast .card {
+#<?php echo $owmw_html["main_weather_div"] ?> .owmw-hours .card,
+#<?php echo $owmw_html["main_weather_div"] ?> .owmw-forecast .card {
     margin: 0 !important;
 }
 </style>
