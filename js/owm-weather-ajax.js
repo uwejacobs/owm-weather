@@ -10,23 +10,21 @@ jQuery(document).ready(function($){
 				owmw_params : $(owm_weather_id[i]).data(),
 				_ajax_nonce: owmwAjax.owmw_nonce,
 			},
+			dataType: 'json',
 			success : function( data ) {
-				if ( data.success ) {
-					$( '#' + data.data.weather ).append( data.data.html );
-				} else {
-					console.log("Error:" + data.data );
-				}
+				$('#' + data.data.weather).append(data.data.html);
 			},
-			failure : function(data) {
-				console.log("xxx");
+			error : function(response) {
+				var data = jQuery.parseJSON(response.responseText);
+				$('#' + data.data.weather).append(data.data.html);
 			},
 			beforeSend: function(){
-		       $(".owmw-loading-spinner").show();
-		       $("div[id^='owm-weather-container-']").hide();
-		    },
-		    complete: function(){
-		       $(".owmw-loading-spinner").hide();
-		       $("div[id^='owm-weather-container-']").show();
+		       		$(".owmw-loading-spinner").show();
+		   		$("div[id^='owm-weather-container-']").hide();
+		    	},
+		    	complete: function(){
+		       		$(".owmw-loading-spinner").hide();
+		       		$("div[id^='owm-weather-container-']").show();
 		    },
 		});
 	}

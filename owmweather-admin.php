@@ -956,6 +956,7 @@ class owmw_options
 		echo '<select id="owmw_custom_timezone" name="owmw_option_name[owmw_custom_timezone]"> ';
         echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. esc_html__( 'WordPress timezone', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'local', $selected, false ) . ' value="local">'. esc_html__( 'Local timezone', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( '-12', $selected, false ) . ' value="-12">'. esc_html__( 'UTC -12', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( '-11', $selected, false ) . ' value="-11">'. esc_html__( 'UTC -11', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( '-10', $selected, false ) . ' value="-10">'. esc_html__( 'UTC -10', 'owm-weather' ) .'</option>';

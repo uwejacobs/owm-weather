@@ -508,7 +508,7 @@ function owmw_basic($post){
                     <div id="fragment-3">
         				<p>
         					<label for="owmweather_zip_meta">'. esc_html__( 'Zip code?', 'owm-weather' ) .' <span class="mandatory">*</span></label>
-        					<input id="owmweather_zip_meta" type="number" min="1" max="99999" name="owmweather_zip" value="'.esc_attr($owmw_opt["zip"]).'" />
+        					<input id="owmweather_zip_meta" name="owmweather_zip" value="'.esc_attr($owmw_opt["zip"]).'" />
         				</p>
         				<p>
         					<label for="owmweather_zip_country_meta">'. esc_html__( '2-letter country code?', 'owm-weather' ) . ' (' . esc_html__("Default: US", 'owm-weather') . ')</label>
@@ -556,6 +556,7 @@ function owmw_basic($post){
 					<label for="owmweather_custom_timezone_meta">'. esc_html__( 'Custom timezone? (default: WordPress general settings)', 'owm-weather' ) .'</label>
 					<select name="owmweather_custom_timezone" id="owmweather_custom_timezone_meta">
 						<option ' . selected( 'Default', $owmw_opt["custom_timezone"], false ) . ' value="Default">'. esc_html__( 'WordPress timezone', 'owm-weather' ) .'</option>
+						<option ' . selected( 'local', $owmw_opt["custom_timezone"], false ) . ' value="local">'. esc_html__( 'Local timezone', 'owm-weather' ) .'</option>
 						<option ' . selected( '-12', $owmw_opt["custom_timezone"], false ) . ' value="-12">'. esc_html__( 'UTC -12', 'owm-weather' ) .'</option>
 						<option ' . selected( '-11', $owmw_opt["custom_timezone"], false ) . ' value="-11">'. esc_html__( 'UTC -11', 'owm-weather' ) .'</option>
 						<option ' . selected( '-10', $owmw_opt["custom_timezone"], false ) . ' value="-10">'. esc_html__( 'UTC -10', 'owm-weather' ) .'</option>
@@ -806,8 +807,6 @@ function owmw_basic($post){
 				<p>
 					<label for="owmweather_hours_forecast_no_meta">'. esc_html__( 'How many hours?', 'owm-weather' ) .'</label>
 					<select name="owmweather_hours_forecast_no">' . owmw_generate_hour_options($owmw_opt["hours_forecast_no"]) . '</select>
-					<br />
-					<span class="dashicons dashicons-editor-help"></span><a href="'.admin_url('options-general.php').'" target="_blank">'.esc_html__('Make sure you have properly set the date of your site in WordPress settings.','owm-weather').'</a> or set a Custom timezone under Basic.
 				</p>
 				<p>
 					<label for="owmweather_hours_time_icons_meta">
@@ -1641,7 +1640,7 @@ function owmw_get_my_weather($attr) {
 	  	$owmw_opt["id_owm"]          				= owmw_get_bypass($bypass, "id_owm");
 	  	$owmw_opt["longitude"]          				= owmw_get_bypass($bypass, "longitude");
 	  	$owmw_opt["latitude"]          				= owmw_get_bypass($bypass, "latitude");
-	  	$owmw_opt["zip"]          				    = owmw_get_bypass($bypass, "zip");
+	  	$owmw_opt["zip"]          				    = str_replace(' ', '+', owmw_get_bypass($bypass, "zip"));
 		$owmw_opt["zip_country_code"]          		= str_replace(' ', '+', owmw_get_bypass($bypass, "zip_country_code"));
 	  	$owmw_opt["city"]                			= str_replace(' ', '+', strtolower(owmw_get_bypass($bypass, "city")));
 		$owmw_opt["country_code"]            		= str_replace(' ', '+', owmw_get_bypass($bypass, "country_code"));
@@ -1806,14 +1805,22 @@ function owmw_get_my_weather($attr) {
 
         owmw_sanitize_api_response($owmweather_current);
 
-		$owmweather_time_php = $owmw_opt["time_format"] =='12' ? 'h:i A' : 'H:i';
-		$owmweather_hours_php = $owmw_opt["time_format"] =='12' ? 'h A' : 'H';
-        $utc_time_wp = $owmw_opt["custom_timezone"] != 'Default' ? intval($owmw_opt["custom_timezone"]) * 60 : get_option('gmt_offset') * 60;
 
         $owmw_data = [];
         $owmw_data["name"] = $owmweather_current->name ?? null;
         $owmw_data["id"] = $owmweather_current->id ?? null;
         $owmw_data["timezone"] = $owmweather_current->timezone ?? null;
+
+		$owmweather_time_php = $owmw_opt["time_format"] == '12' ? 'h:i A' : 'H:i';
+		$owmweather_hours_php = $owmw_opt["time_format"] == '12' ? 'h A' : 'H';
+        if ($owmw_opt["custom_timezone"] == 'Default') {
+            $utc_time_wp = get_option('gmt_offset') * 60;
+        } else if ($owmw_opt["custom_timezone"] == 'local') {
+            $utc_time_wp = intval($owmw_data["timezone"]) * 60;
+        } else {
+            $utc_time_wp = intval($owmw_opt["custom_timezone"]) * 60;
+        }
+
         $owmw_data["timestamp"] = $owmweather_current->dt ? $owmweather_current->dt + (60 * $utc_time_wp) : null;
         $owmw_data["last_update"] = esc_html__('Last updated: ','owm-weather').date($owmweather_time_php, $owmw_data["timestamp"]);
         $owmw_data["latitude"] = $owmweather_current->coord->lat ?? null;
@@ -2744,7 +2751,7 @@ $owmw_html["chart"]["daily"]["cmd"] =
 		}
 
 		if (!empty($owmw_opt["custom_css"])) {
-	    	$owmw_html["custom_css"] = '<style>'. $owmw_opt["custom_css"] . '</style>';
+	    	$owmw_html["custom_css"] = '<style type="text/css">'. $owmw_opt["custom_css"] . '</style>';
 		}
 
 	    $owmw_html["container"]["end"] .= '</div>';
@@ -3127,7 +3134,7 @@ function owmw_sanitize_validate_field($key, $value) {
 
             case "custom_timezone":
                 $value = sanitize_text_field($value);
-                if (!in_array($value, array("Default", "-12", "-11", "-10", "-9", "-8", "-7", "-6", "-5", "-4", "-3", "-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"))) {
+                if (!in_array($value, array("Default", "local", "-12", "-11", "-10", "-9", "-8", "-7", "-6", "-5", "-4", "-3", "-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"))) {
                     $value = "Default";
                 }
                 break;
