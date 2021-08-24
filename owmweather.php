@@ -1690,7 +1690,7 @@ function owmw_get_my_weather($attr) {
     	$owmw_opt["font"]    			            = owmw_get_bypass($bypass, "font");
     	$owmw_opt["iconpack"]  			            = owmw_get_bypass($bypass, "iconpack");
 	    $owmw_opt["template"]  			            = owmw_get_bypass($bypass, "template");
-        $owmw_opt["gtag"]                            = get_post_meta($owmw_opt["id"],'_owmweather_gtag',true);
+        $owmw_opt["gtag"]                            = owmw_get_bypass($bypass, "gtag");
 		$owmw_opt["custom_css"]                      = owmw_get_bypass($bypass, 'custom_css');
 		$owmw_opt["current_weather_symbol"]  		= owmw_get_bypass_yn($bypass, "current_weather_symbol");
 		$owmw_opt["current_city_name"]        		= owmw_get_bypass_yn($bypass, "current_city_name");
@@ -2440,9 +2440,17 @@ function owmw_get_my_weather($attr) {
 	        	jQuery(document).ready(function() {
                     dataLayer.push({
                       "weatherTemperature": "' . esc_attr($owmw_data["temperature"]) . '",
-                      "weatherCloudiness": "' . esc_attr($owmw_data["cloudiness"]) . '",
+                      "weatherFeelsLike": "' . esc_attr($owmw_data["feels_like"]) . '",
+                      "weatherCloudiness": "' . intval($owmw_data["cloudiness"]) . '",
                       "weatherDescription": "' . esc_attr($owmw_data["description"]) . '",
-                      "weatherCategory": "' . esc_attr($owmw_data["category"]) . '"
+                      "weatherCategory": "' . esc_attr($owmw_data["category"]) . '",
+                      "weatherWindSpeed": "' . intval($owmw_data["wind_speed"]) . '",
+                      "weatherWindDirection": "' . esc_attr($owmw_data["wind_direction"]) . '",
+                      "weatherHumidity": "' . intval($owmw_data["humidity"]) . '",
+                      "weatherPressure": "' . floatval($owmw_data["pressure"]) . '",
+                      "weatherPrecipitation": "' . floatval($owmw_data["precipitation_3h"]) . '",
+                      "weatherUVIndex": "' . floatval($owmw_data["uv_index"]) . '",
+                      "weatherDewPoint": "' . intval($owmw_data["dew_point"]) . '",
                   });
                 });';
         }
