@@ -575,8 +575,7 @@ function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack) {
     $str = '';
 	    if ($display_unit == 'yes') {
 	    	$str .=
-	    		'<style>
-	            	#'.esc_attr($id).' .owmw-now .owmw-main-temperature:after,
+	    		   '#'.esc_attr($id).' .owmw-now .owmw-main-temperature:after,
 	            	#'.esc_attr($id).' .owmw-now .owmw-main-feels-like:after,
 	            	#'.esc_attr($id).' .owmw-infos .owmw-temperature:after,
 	            	#'.esc_attr($id).' .owmw-infos-text .owmw-temperature:after,
@@ -644,8 +643,7 @@ function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack) {
 		    }
 
    	    	$str .=
-            '}
-            </style>';
+            '}';
         }
         
         return $str;
@@ -653,8 +651,8 @@ function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack) {
 
 function owmw_wind_direction_icon($degrees, $color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'" transform="rotate('.esc_attr(($degrees ?? 0) - 180).')">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'" transform="rotate('.esc_attr(($degrees ?? 0) - 180).')">
 <path d="M3.74,14.5c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16.03,3.74,14.5z M6.22,14.5
@@ -667,8 +665,8 @@ return
 
 function owmw_humidity_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M7.56,17.19c0-0.88,0.24-1.89,0.72-3.03s1.1-2.25,1.86-3.31c1.56-2.06,2.92-3.62,4.06-4.67l0.75-0.72
 	c0.25,0.26,0.53,0.5,0.83,0.72c0.41,0.42,1.04,1.11,1.88,2.09s1.57,1.85,2.17,2.65c0.71,1.01,1.32,2.1,1.81,3.25
 	s0.74,2.16,0.74,3.03c0,1-0.19,1.95-0.58,2.86c-0.39,0.91-0.91,1.7-1.57,2.36c-0.66,0.66-1.45,1.19-2.37,1.58
@@ -692,8 +690,8 @@ return
 
 function owmw_pressure_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M7.69,13.2c0-0.99,0.19-1.94,0.58-2.85c0.39-0.91,0.91-1.68,1.57-2.33s1.44-1.17,2.34-1.56c0.9-0.39,1.85-0.58,2.84-0.58
 	c0.99,0,1.94,0.19,2.85,0.58c0.9,0.39,1.68,0.91,2.33,1.56c0.65,0.65,1.17,1.43,1.56,2.33s0.58,1.85,0.58,2.85
 	c0,1.62-0.48,3.06-1.44,4.34c-0.96,1.27-2.2,2.14-3.71,2.61v3.29h-4.24v-3.25c-1.54-0.45-2.81-1.32-3.79-2.61S7.69,14.83,7.69,13.2z
@@ -709,8 +707,8 @@ return
 
 function owmw_cloudiness_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.89,17.6c0-0.99,0.31-1.88,0.93-2.65s1.41-1.27,2.38-1.49c0.26-1.17,0.85-2.14,1.78-2.88c0.93-0.75,2-1.12,3.22-1.12
 	c1.18,0,2.24,0.36,3.16,1.09c0.93,0.73,1.53,1.66,1.8,2.8h0.27c1.18,0,2.18,0.41,3.01,1.24s1.25,1.83,1.25,3
 	c0,1.18-0.42,2.18-1.25,3.01s-1.83,1.25-3.01,1.25H8.16c-0.58,0-1.13-0.11-1.65-0.34S5.52,21,5.14,20.62
@@ -729,8 +727,8 @@ return
 
 function owmw_precipitation_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M11.01,12.23c0-0.26,0.13-0.59,0.38-1.01c0.25-0.42,0.5-0.77,0.73-1.04c0.06-0.07,0.14-0.17,0.23-0.28s0.15-0.17,0.16-0.18
 	l0.37,0.43c0.28,0.31,0.53,0.66,0.76,1.07c0.23,0.41,0.35,0.74,0.35,1.01c0,0.41-0.14,0.77-0.43,1.06
 	c-0.28,0.29-0.63,0.44-1.05,0.44c-0.41,0-0.77-0.15-1.06-0.44C11.16,12.99,11.01,12.64,11.01,12.23z M14.13,16.38
@@ -744,8 +742,8 @@ return
 
 function owmw_visibility_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M4.93,20.97c0-0.26,0.09-0.47,0.28-0.62c0.14-0.16,0.35-0.23,0.63-0.23h18.34c0.25,0,0.46,0.08,0.64,0.24
 	c0.18,0.16,0.26,0.37,0.26,0.61c0,0.24-0.09,0.45-0.27,0.62s-0.39,0.27-0.63,0.27H5.84c-0.25,0-0.46-0.09-0.64-0.27
 	C5.02,21.42,4.93,21.21,4.93,20.97z M6.9,12.68c0-0.26,0.08-0.47,0.23-0.63c0.17-0.18,0.38-0.26,0.65-0.26
@@ -763,8 +761,8 @@ return
 
 function owmw_dew_point_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M9.81,15.25c0,0.92,0.23,1.78,0.7,2.57s1.1,1.43,1.9,1.9c0.8,0.47,1.66,0.71,2.59,0.71c0.93,0,1.8-0.24,2.61-0.71
 	c0.81-0.47,1.45-1.11,1.92-1.9c0.47-0.8,0.71-1.65,0.71-2.57c0-0.6-0.17-1.31-0.52-2.14c-0.35-0.83-0.77-1.6-1.26-2.3
 	c-0.44-0.57-0.96-1.2-1.56-1.88c-0.6-0.68-1.65-1.73-1.89-1.97l-1.28,1.29c-0.62,0.6-1.22,1.29-1.79,2.08
@@ -774,8 +772,8 @@ return
 
 function owmw_uv_index_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M4.37,14.62c0-0.24,0.08-0.45,0.25-0.62c0.17-0.16,0.38-0.24,0.6-0.24h2.04c0.23,0,0.42,0.08,0.58,0.25
 	c0.15,0.17,0.23,0.37,0.23,0.61S8,15.06,7.85,15.23c-0.15,0.17-0.35,0.25-0.58,0.25H5.23c-0.23,0-0.43-0.08-0.6-0.25
 	C4.46,15.06,4.37,14.86,4.37,14.62z M7.23,21.55c0-0.23,0.08-0.43,0.23-0.61l1.47-1.43c0.15-0.16,0.35-0.23,0.59-0.23
@@ -803,8 +801,8 @@ return
 
 function owmw_rain_chance_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M4.64,16.91c0-1.15,0.36-2.17,1.08-3.07c0.72-0.9,1.63-1.47,2.73-1.73c0.31-1.36,1.02-2.48,2.11-3.36s2.34-1.31,3.75-1.31
 	c1.38,0,2.6,0.43,3.68,1.28c1.08,0.85,1.78,1.95,2.1,3.29h0.32c0.89,0,1.72,0.22,2.48,0.65s1.37,1.03,1.81,1.78
 	c0.44,0.75,0.67,1.58,0.67,2.47c0,0.88-0.21,1.69-0.63,2.44c-0.42,0.75-1,1.35-1.73,1.8c-0.73,0.45-1.53,0.69-2.4,0.71
@@ -828,24 +826,23 @@ return
 
 function owmw_moonrise($color) {
 	return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="climacon climacon-moonrise" x="0px" y="0px" viewBox="0 0 1000 1000" style="fill:' . (!empty($color) ? esc_attr($color) : 'currentColor') . ';" xml:space="preserve">
+'<svg class="climacon climacon-moonrise" viewBox="0 0 1000 1000" style="fill:' . (!empty($color) ? esc_attr($color) : 'currentColor') . ';">
 <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
-<g><g><g><path d="M316.3,683.7l40.8-35.8c-71.5-40.8-117.4-112.3-117.4-199c0-101.9,66.4-183.8,153.1-214.2c0,5.1,0,10.1,0,10.1c0,153.1,127.5,280.7,280.7,280.7c5.1,0,10.1,0,10.1,0c-15.2,40.8-40.8,76.6-71.5,101.9l40.8,35.8c45.9-35.8,76.6-86.7,91.8-148.1c5.1-20.5,5.1-35.8,10.1-56c-30.7,10.1-56,15.2-81.6,15.2c-127.5,0-229.7-101.9-229.7-229.7c0-25.6,5.1-51,15.2-76.6c-20.3,0-35.8,5.1-56,10.1c-122.5,30.7-214.3,142.7-214.3,270.5C188.8,546,239.7,632.7,316.3,683.7z"/><path d="M954.2,780.8H673.6L495.1,627.7L316.6,780.8h-281C20.4,780.8,10,791,10,806.4c0,15.5,10.1,25.6,25.6,25.6H347l61.1-51l91.8-76.6l91.8,76.6l61.4,51h311.4c15.2,0,25.6-10.1,25.6-25.6C979.6,791,969.5,780.8,954.2,780.8z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g>
+<g><path d="M316.3,683.7l40.8-35.8c-71.5-40.8-117.4-112.3-117.4-199c0-101.9,66.4-183.8,153.1-214.2c0,5.1,0,10.1,0,10.1c0,153.1,127.5,280.7,280.7,280.7c5.1,0,10.1,0,10.1,0c-15.2,40.8-40.8,76.6-71.5,101.9l40.8,35.8c45.9-35.8,76.6-86.7,91.8-148.1c5.1-20.5,5.1-35.8,10.1-56c-30.7,10.1-56,15.2-81.6,15.2c-127.5,0-229.7-101.9-229.7-229.7c0-25.6,5.1-51,15.2-76.6c-20.3,0-35.8,5.1-56,10.1c-122.5,30.7-214.3,142.7-214.3,270.5C188.8,546,239.7,632.7,316.3,683.7z"/><path d="M954.2,780.8H673.6L495.1,627.7L316.6,780.8h-281C20.4,780.8,10,791,10,806.4c0,15.5,10.1,25.6,25.6,25.6H347l61.1-51l91.8-76.6l91.8,76.6l61.4,51h311.4c15.2,0,25.6-10.1,25.6-25.6C979.6,791,969.5,780.8,954.2,780.8z"/></g>
 </svg>';
 }
 
 function owmw_moonset($color) {
 	return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="climacon climacon-moonset" x="0px" y="0px" viewBox="0 0 1000 1000" style="fill:' . (!empty($color) ? esc_attr($color) : 'currentColor') . ';" xml:space="preserve">
+'<svg class="climacon climacon-moonset" viewBox="0 0 1000 1000" style="fill:' . (!empty($color) ? esc_attr($color) : 'currentColor') . ';">
 <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
-<g><g><g><path d="M964.4,731.8H649.7l-62,51.5l-92.8,77.4l-82.5-77.1l-61.8-51.5H35.9c-15.4,0-25.9,10.2-25.9,25.9c0,15.6,10.2,25.9,25.9,25.9h283.7L500,938.6l180.4-154.8h283.7c15.4,0,25.9-10.3,25.9-25.9C990,742.3,979.8,731.8,964.4,731.8z"/><path d="M474.4,628.8c134,0,242.4-92.8,273.4-216.6c5.1-20.5,5.1-36.1,10.3-56.6c-25.9,10.2-51.5,15.4-77.4,15.4c-128.9,0-232.2-103-232.2-232.2c0-25.9,5.1-51.5,15.4-77.4c-20.5,0-36.1,5.1-56.6,10.2c-123.8,31-216.5,144.3-216.5,273.4C190.7,499.9,319.6,628.8,474.4,628.8z M397,123.4c0,5.1,0,10.2,0,10.2c0,154.8,128.9,283.7,283.7,283.7c5.1,0,10.2,0,10.2,0c-31,92.8-118.7,154.8-216.5,154.8c-128.9,0-232.2-103-232.2-232.2C242.2,241.8,309.3,159.3,397,123.4z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g>
+<g><path d="M964.4,731.8H649.7l-62,51.5l-92.8,77.4l-82.5-77.1l-61.8-51.5H35.9c-15.4,0-25.9,10.2-25.9,25.9c0,15.6,10.2,25.9,25.9,25.9h283.7L500,938.6l180.4-154.8h283.7c15.4,0,25.9-10.3,25.9-25.9C990,742.3,979.8,731.8,964.4,731.8z"/><path d="M474.4,628.8c134,0,242.4-92.8,273.4-216.6c5.1-20.5,5.1-36.1,10.3-56.6c-25.9,10.2-51.5,15.4-77.4,15.4c-128.9,0-232.2-103-232.2-232.2c0-25.9,5.1-51.5,15.4-77.4c-20.5,0-36.1,5.1-56.6,10.2c-123.8,31-216.5,144.3-216.5,273.4C190.7,499.9,319.6,628.8,474.4,628.8z M397,123.4c0,5.1,0,10.2,0,10.2c0,154.8,128.9,283.7,283.7,283.7c5.1,0,10.2,0,10.2,0c-31,92.8-118.7,154.8-216.5,154.8c-128.9,0-232.2-103-232.2-232.2C242.2,241.8,309.3,159.3,397,123.4z"/></g>
 </svg>';
 }
 
 function owmw_sunrise($color) {
 	return
-'<svg class="climacon climacon-sunrise" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 512 512" style="fill:' . (!empty($color) ? esc_attr($color) : 'currentColor') . ';" xml:space="preserve">
+'<svg class="climacon climacon-sunrise" viewBox="0 0 512 512" style="fill:' . (!empty($color) ? esc_attr($color) : 'currentColor') . ';">
 <g>
 	<path d="M0,316c0-5.2,2.1-10,6.3-14.4c4.6-4,9.6-6.1,14.6-6.1h48.7c5.6,0,10.2,2.1,14,6.1s5.6,9,5.6,14.4c0,6.1-1.9,11.1-5.6,15
 		s-8.6,6.1-14,6.1H20.9c-5.6,0-10.4-2.1-14.6-6.3C2.1,326.4,0,321.4,0,316z M69.6,149.2c0-5.6,1.9-10.4,5.4-14.2
@@ -870,8 +867,7 @@ function owmw_sunrise($color) {
 
 function owmw_sunset($color) {
 	return
-'<svg class="climacon climacon-sunset" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 512 512" color="#fff" style="fill:' . (!empty($color) ? esc_attr($color) : 'currentColor') . ';" xml:space="preserve">
+'<svg class="climacon climacon-sunset" viewBox="0 0 512 512" color="#fff" style="fill:' . (!empty($color) ? esc_attr($color) : 'currentColor') . ';">
 <g>
 	<path d="M0,285.8c0-5.9,2.1-10.6,6.3-14.4c3.6-3.8,8.5-5.5,14.4-5.5h48.8c5.7,0,10.3,1.9,14.1,5.7c3.6,3.8,5.5,8.4,5.5,14.1
 		c0,5.9-1.9,11-5.7,15c-3.8,4-8.5,6.1-13.9,6.1H20.9c-5.7,0-10.6-2.1-14.6-6.3C2.1,296.4,0,291.5,0,285.8z M69.5,119.8
@@ -916,8 +912,8 @@ function owmw_hour_0_icon($color) {
 
 function owmw_hour_1_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16,3.74,14.47z M6.22,14.47
@@ -931,8 +927,8 @@ return
 
 function owmw_hour_2_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16,3.74,14.47z M6.22,14.47
@@ -946,8 +942,8 @@ return
 
 function owmw_hour_3_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16,3.74,14.47z M6.22,14.47
@@ -961,8 +957,8 @@ return
 
 function owmw_hour_4_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16,3.74,14.47z M6.22,14.47
@@ -976,8 +972,8 @@ return
 
 function owmw_hour_5_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16,3.74,14.47z M6.22,14.47
@@ -991,8 +987,8 @@ return
 
 function owmw_hour_6_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16,3.74,14.47z M6.22,14.47
@@ -1005,8 +1001,8 @@ return
 
 function owmw_hour_7_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16,3.74,14.47z M6.22,14.47
@@ -1020,8 +1016,8 @@ return
 
 function owmw_hour_8_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16,3.74,14.47z M6.22,14.47
@@ -1035,8 +1031,8 @@ return
 
 function owmw_hour_9_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16,3.74,14.47z M6.22,14.47
@@ -1050,8 +1046,8 @@ return
 
 function owmw_hour_10_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16,3.74,14.47z M6.22,14.47
@@ -1065,8 +1061,8 @@ return
 
 function owmw_hour_11_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16,3.74,14.47z M6.22,14.47
@@ -1080,8 +1076,8 @@ return
 
 function owmw_hour_12_icon($color) {
 return
-'<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 30 30" xml:space="preserve" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+'<svg
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16,3.74,14.47z M6.22,14.47

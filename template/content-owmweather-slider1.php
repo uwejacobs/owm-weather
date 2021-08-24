@@ -24,7 +24,7 @@
 }
 </style>
 <!-- Start #owm-weather -->
-<?php echo $owmw_html["container"]["start"]; ?>
+<?php echo wp_kses_post($owmw_html["container"]["start"]); ?>
 	<div class="custom-navigation d-none">
   	<a href="#" class="flex-prev">Prev</a>
   	<div class="custom-controls-container"></div>
@@ -32,16 +32,16 @@
 	</div>
 
 	<!-- Current weather -->
-	<?php echo $owmw_html["now"]["start"]; ?>
-		<?php echo $owmw_html["now"]["location_name"]; ?>
-		<?php echo $owmw_html["now"]["symbol"]; ?>
-		<?php echo $owmw_html["now"]["temperature"]; ?>
-		<?php echo $owmw_html["now"]["feels_like"]; ?>
-		<?php echo $owmw_html["now"]["weather_description"]; ?>
-	<?php echo $owmw_html["now"]["end"]; ?>
+	<?php echo wp_kses_post($owmw_html["now"]["start"]); ?>
+		<?php echo wp_kses_post($owmw_html["now"]["location_name"]); ?>
+		<?php echo wp_kses($owmw_html["now"]["symbol"], $owmw_opt['allowed_html']); ?>
+		<?php echo wp_kses_post($owmw_html["now"]["temperature"]); ?>
+		<?php echo wp_kses_post($owmw_html["now"]["feels_like"]); ?>
+		<?php echo wp_kses_post($owmw_html["now"]["weather_description"]); ?>
+	<?php echo wp_kses_post($owmw_html["now"]["end"]); ?>
 
 	<!-- Alert button -->
-   	<?php echo $owmw_html["alert_button"]; ?>
+   	<?php echo wp_kses_post($owmw_html["alert_button"]); ?>
 
 	<div class="owmw-toggle-infos">
 
@@ -49,35 +49,35 @@
 		<div class="owmw-infos">
 			<div class="owmw-flexslider flexslider carousel">
 				<ul class="slides">
-					<li><?php echo $owmw_html["info"]["wind"]; ?></li>
-					<li><?php echo $owmw_html["info"]["humidity"]; ?></li>
-					<li><?php echo $owmw_html["info"]["dew_point"]; ?></li>
-					<li><?php echo $owmw_html["info"]["pressure"]; ?></li>
-					<li><?php echo $owmw_html["info"]["cloudiness"]; ?></li>
-					<li><?php echo $owmw_html["info"]["precipitation"]; ?></li>
-					<li><?php echo $owmw_html["info"]["visibility"]; ?></li>
-					<li><?php echo $owmw_html["info"]["uv_index"]; ?></li>
-					<li><?php echo $owmw_html["today"]["sun_hor"]; ?></li>
-					<li><?php echo $owmw_html["today"]["moon_hor"]; ?></li>
+					<li><?php echo wp_kses_post($owmw_html["info"]["wind"]); ?></li>
+					<li><?php echo wp_kses_post($owmw_html["info"]["humidity"]); ?></li>
+					<li><?php echo wp_kses_post($owmw_html["info"]["dew_point"]); ?></li>
+					<li><?php echo wp_kses_post($owmw_html["info"]["pressure"]); ?></li>
+					<li><?php echo wp_kses_post($owmw_html["info"]["cloudiness"]); ?></li>
+					<li><?php echo wp_kses_post($owmw_html["info"]["precipitation"]); ?></li>
+					<li><?php echo wp_kses_post($owmw_html["info"]["visibility"]); ?></li>
+					<li><?php echo wp_kses_post($owmw_html["info"]["uv_index"]); ?></li>
+					<li><?php echo wp_kses($owmw_html["today"]["sun_hor"], $owmw_opt['allowed_html']); ?></li>
+					<li><?php echo wp_kses($owmw_html["today"]["moon_hor"], $owmw_opt['allowed_html']); ?></li>
 				</ul>
 			</div>
 		</div>
 
     	<?php if ($owmw_opt["hours_forecast_no"] > 0) { ?>
 	    	<!-- Hourly Forecast -->
-		    <?php echo $owmw_html["hour"]["start"]; ?>
+		    <?php echo wp_kses_post($owmw_html["hour"]["start"]); ?>
 			<div class="owmw-flexslider-hours flexslider carousel">
 	    		<ul class="slides">
     	    	<?php
 	    	    	for ($i = 0; $i < $owmw_opt["hours_forecast_no"]; $i++) {
 		    	        if (isset($owmw_html["hour"]["info"][$i])) {
 		    	            echo "<li>";
-    		    	    	echo $owmw_html["hour"]["info"][$i];
+    		    	    	echo wp_kses_post($owmw_html["hour"]["info"][$i]);
 		    	            echo "</li>";
         			    }
         			}
     	    	?>
-		        <?php echo $owmw_html["hour"]["end"]; ?>
+		        <?php echo wp_kses_post($owmw_html["hour"]["end"]); ?>
             	<?php
             	}
             	?>
@@ -87,7 +87,7 @@
 		<?php if ($owmw_opt["days_forecast_no"] > 0) { ?>
 			<!-- Daily Forecast -->
 			<div class="owmw-flexslider-forecast flexslider carousel">
-				<?php echo $owmw_html["forecast"]["start"]; ?>
+				<?php echo wp_kses_post($owmw_html["forecast"]["start"]); ?>
 				    <ul class="slides">
 					<?php
 					for ($i = 0; $i < $owmw_opt["days_forecast_no"]; $i++) {
@@ -95,7 +95,7 @@
 							echo '<li>';
 						}
 
-						echo $owmw_html["forecast"]["info"][$i];
+						echo wp_kses_post($owmw_html["forecast"]["info"][$i]);
 
 						if ($i % 3  == 2) {
 							echo '</li>';
@@ -103,55 +103,58 @@
 					};
 					?>
 					</ul>
-				<?php echo $owmw_html["forecast"]["end"]; ?>
+				<?php echo wp_kses_post($owmw_html["forecast"]["end"]); ?>
 			</div>
 		<?php } ?>
 	</div><!-- End .toggle-infos -->
 
 	<!-- Weather Map -->
-	<?php echo $owmw_html["map"]; ?>
+	<?php echo wp_kses_post($owmw_html["map"]); ?>
+	<?php echo '<script type="text/javascript">' . wp_kses_post($owmw_html["map_script"]) . '</script>'; ?>
+	<?php echo wp_kses_post($owmw_html["owm_link_last_update_start"]); ?>
 
-	<?php echo $owmw_html["owm_link_last_update_start"]; ?>
-		<!-- OWM Link -->
-		<?php echo $owmw_html["owm_link"]; ?>
-		<!-- OWM Last Update -->
-		<?php echo $owmw_html["last_update"]; ?>
-	<?php echo $owmw_html["owm_link_last_update_end"]; ?>
+	<!-- OWM Link -->
+	<?php echo wp_kses_post($owmw_html["owm_link"]); ?>
+	<!-- OWM Last Update -->
+	<?php echo wp_kses_post($owmw_html["last_update"]); ?>
+	<?php echo wp_kses_post($owmw_html["owm_link_last_update_end"]); ?>
 
 	<!-- Alert Modals -->
-	<?php echo $owmw_html["alert_modal"]; ?>
+	<?php echo wp_kses_post($owmw_html["alert_modal"]); ?>
 
 	<!-- CSS/Scripts -->
-	<?php echo $owmw_html["custom_css"]; ?>
-	<?php echo $owmw_html["temperature_unit"]; ?>
-	<?php echo $owmw_html["gtag"]; ?>
+	<?php echo '<style type="text/css">' . wp_kses_post($owmw_html["custom_css"]) . '</style>'; ?>
+	<?php echo '<style type="text/css">' . wp_kses_post($owmw_html["temperature_unit"]) . '</style>'; ?>
+
+	<!-- Google Tag Manager -->
+	<?php echo '<script type="text/javascript">' . wp_kses_post($owmw_html["gtag"]) . '</script>'; ?>
 
 <!-- End #owm-weather -->
-<?php echo $owmw_html["container"]["end"]; ?>
+<?php echo wp_kses_post($owmw_html["container"]["end"]); ?>
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
 	jQuery(window).ready(function() {
-		jQuery('#<?php echo $owmw_html["container_weather_div"] ?> .owmw-flexslider').flexslider({
-	        controlsContainer: jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .custom-controls-container"),
-            customDirectionNav: jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .custom-navigation a"),
+		jQuery('#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .owmw-flexslider').flexslider({
+	        controlsContainer: jQuery("#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .custom-controls-container"),
+            customDirectionNav: jQuery("#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .custom-navigation a"),
             animation: "slide",
             animationLoop: true,
             itemWidth: 250,
             itemMargin: 5,
             maxItems: 4
 		});
-		jQuery('#<?php echo $owmw_html["container_weather_div"] ?> .owmw-flexslider-hours').flexslider({
-	        controlsContainer: jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .custom-controls-container"),
-            customDirectionNav: jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .custom-navigation a"),
+		jQuery('#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .owmw-flexslider-hours').flexslider({
+	        controlsContainer: jQuery("#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .custom-controls-container"),
+            customDirectionNav: jQuery("#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .custom-navigation a"),
             animation: "slide",
             animationLoop: true,
             itemWidth: 50,
             itemMargin: 5,
             maxItems: 8
     	});
-		jQuery('#<?php echo $owmw_html["container_weather_div"] ?> .owmw-flexslider-forecast').flexslider({
-	        controlsContainer: jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .custom-controls-container"),
-            customDirectionNav: jQuery("#<?php echo $owmw_html["container_weather_div"] ?> .custom-navigation a"),
+		jQuery('#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .owmw-flexslider-forecast').flexslider({
+	        controlsContainer: jQuery("#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .custom-controls-container"),
+            customDirectionNav: jQuery("#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .custom-navigation a"),
 		});
 	});
 </script>

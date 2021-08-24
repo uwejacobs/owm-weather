@@ -9,8 +9,10 @@
 ?>
 <?php
 
-echo $owmw_html["container"]["start"];
-echo $owmw_html["chart"]["hourly"]["cmd"];
-echo $owmw_html["chart"]["daily"]["cmd"];
-echo $owmw_html["container"]["end"];
-echo $owmw_html["temperature_unit"];
+echo wp_kses_post($owmw_html["container"]["start"]);
+echo wp_kses($owmw_html["chart"]["hourly"]["container"], $owmw_opt['allowed_html']);
+echo '<script type="text/javascript">' . wp_kses_post($owmw_html["chart"]["hourly"]["script"]) . '</script>';
+echo wp_kses($owmw_html["chart"]["daily"]["container"], $owmw_opt['allowed_html']);
+echo '<script type="text/javascript">' . wp_kses_post($owmw_html["chart"]["daily"]["script"]) . '</script>';
+echo wp_kses_post($owmw_html["container"]["end"]);
+echo '<style type="text/css">' . wp_kses_post($owmw_html["temperature_unit"]) . '</style>';

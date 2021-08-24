@@ -1538,12 +1538,12 @@ function owmw_get_my_weather_id($atts) {
 	    return;
 	}
     if (get_post_type($owmw_params["id"]) != 'owm-weather') {
-	    echo "<p>OWM Weather Error: id '".$owmw_params["id"]."' is not type 'weather'</p>";
+	    echo "<p>OWM Weather Error: id '".esc_html($owmw_params["id"])."' is not type 'weather'</p>";
 	    return;
     }
 
     if (get_post_status($owmw_params["id"]) != 'publish') {
-	    echo "<p>OWM Weather Error: id '".$owmw_params["id"]."' is not published</p>";
+	    echo "<p>OWM Weather Error: id '".esc_html($owmw_params["id"])."' is not published</p>";
 	    return;
     }
 
@@ -1758,9 +1758,9 @@ function owmw_get_my_weather($attr) {
        	    if (!empty($owmw_opt["country_code"])) {
            	    $query .= ",".$owmw_opt["country_code"];
        	    }
-       	} else if (($ipData = owmw_IPtoLocation())){
-            $owmw_opt["latitude"] = $ipData["data"]["geo"]["latitude"];
-            $owmw_opt["longitude"] =  $ipData["data"]["geo"]["longitude"];
+       	} else if (($ipData = owmw_IPtoLocation())) {
+            $owmw_opt["latitude"] = $ipData->data->geo->latitude;
+            $owmw_opt["longitude"] =  $ipData->data->geo->longitude;
        	    $query = "lat=".$owmw_opt["latitude"]."&lon=".$owmw_opt["longitude"];
        	} else {
        	    return;
@@ -2098,6 +2098,7 @@ function owmw_get_my_weather($attr) {
 		$owmw_html["hour"]["start"]            	= '';
 		$owmw_html["hour"]["end"]              	= '';
 		$owmw_html["map"]                 		= '';
+		$owmw_html["map_script"]           		= '';
 		$owmw_html["today"]["end"]          		= '';
 		$owmw_html["forecast"]["start"]          = '';
 		$owmw_html["forecast"]["info"]           = '';
@@ -2304,9 +2305,9 @@ function owmw_get_my_weather($attr) {
 		      	$owmw_html["map"] =
 			        '<div id="' . $owmw_html["main_map_div"] . '" class="owmw-map">
 			        	<div id="' . esc_attr($owmw_html["container_map_div"]) . '" style="'.owmw_css_height($owmw_opt["map_height"]) .'"></div>
-			        </div>
-			        <script type="text/javascript">
-			        	jQuery(document).ready( function() {
+			        </div>';
+		      	$owmw_html["map_script"] =
+			        'jQuery(document).ready( function() {
 
 				        	var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 							maxZoom: 18, attribution: "OWM Weather" });
@@ -2323,13 +2324,12 @@ function owmw_get_my_weather($attr) {
 
 							var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-                            map.whenReady(() => {
+                            map.whenReady(function() {
                                	jQuery( "#' . esc_attr($owmw_html["container_map_div"]) . '").on("invalidSize", function() {
                                     map.invalidateSize();
                             	});
                             });
-			        	});
-			        </script>';
+			        	});';
 			}
 
 		$owmw_html["container"]["start"] = '<!-- OWM Weather : WordPress weather plugin v'.OWM_WEATHER_VERSION.' - https://github.com/uwejacobs/owm-weather -->';
@@ -2435,17 +2435,16 @@ function owmw_get_my_weather($attr) {
 
         //Google Tag Manager dataLayer
         if ($owmw_opt["gtag"] == 'yes') {
-            $owmw_html["gtag"] = '<script type="text/javascript">
-                var dataLayer = window.dataLayer = window.dataLayer || [];
+            $owmw_html["gtag"] = 
+                'var dataLayer = window.dataLayer = window.dataLayer || [];
 	        	jQuery(document).ready(function() {
                     dataLayer.push({
-                      "weatherTemperature": ' . esc_attr($owmw_data["temperature"]) . ',
-                      "weatherCloudiness": ' . esc_attr($owmw_data["cloudiness"]) . ',
+                      "weatherTemperature": "' . esc_attr($owmw_data["temperature"]) . '",
+                      "weatherCloudiness": "' . esc_attr($owmw_data["cloudiness"]) . '",
                       "weatherDescription": "' . esc_attr($owmw_data["description"]) . '",
                       "weatherCategory": "' . esc_attr($owmw_data["category"]) . '"
                   });
-                });
-            </script>';
+                });';
         }
 
 	    if ($owmw_opt["alerts"] == 'yes' && !empty($owmw_data["alerts"])) {
@@ -2569,9 +2568,10 @@ function owmw_get_my_weather($attr) {
                                                         var hourlyChart = new Chart(ctx, hourly_config_'.esc_attr($chart_id).');
                                                         });';
 
-$owmw_html["chart"]["hourly"]["cmd"] =
+$owmw_html["chart"]["hourly"]["container"] =
         '<div class="owmw-chart-container" style="position: relative; height:'.esc_attr($owmw_opt["chart_height"]).'px; width:100%">
-        <canvas id="'.$owmw_html["container_chart_hourly_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="Hourly Temperatures" role="img"></canvas></div><script>' .
+        <canvas id="'.$owmw_html["container_chart_hourly_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="Hourly Temperatures" role="img"></canvas></div>';
+$owmw_html["chart"]["hourly"]["script"] = 
         $owmw_html["chart"]["hourly"]["labels"] .
         $owmw_html["chart"]["hourly"]["dataset_temperature"] .
         $owmw_html["chart"]["hourly"]["dataset_feels_like"] .
@@ -2579,8 +2579,7 @@ $owmw_html["chart"]["hourly"]["cmd"] =
         $owmw_html["chart"]["hourly"]["data"] .
         $owmw_html["chart"]["hourly"]["options"] .
         $owmw_html["chart"]["hourly"]["config"] .
-        $owmw_html["chart"]["hourly"]["chart"] .
-        '</script>';
+        $owmw_html["chart"]["hourly"]["chart"];
 		}
         //daily
         $chart_id = owmw_unique_id_esc($owmw_opt["id"], '_');
@@ -2644,17 +2643,17 @@ $owmw_html["chart"]["hourly"]["cmd"] =
                                                         var dailyChart = new Chart(ctx, daily_config_'.esc_attr($chart_id).');
                                                         });';
 
-$owmw_html["chart"]["daily"]["cmd"] =
+$owmw_html["chart"]["daily"]["container"] =
         '<div class="owmw-chart-container" style="position: relative; height:'.esc_attr($owmw_opt["chart_height"]).'px; width:100%">
-        <canvas id="'.$owmw_html["container_chart_daily_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="Daily Temperatures" role="img"></canvas></div><script>' .
+        <canvas id="'.$owmw_html["container_chart_daily_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="Daily Temperatures" role="img"></canvas></div>';
+$owmw_html["chart"]["daily"]["script"] =
         $owmw_html["chart"]["daily"]["labels"] .
         $owmw_html["chart"]["daily"]["dataset_temperature"] .
         $owmw_html["chart"]["daily"]["dataset_feels_like"] .
         $owmw_html["chart"]["daily"]["data"] .
         $owmw_html["chart"]["daily"]["options"] .
         $owmw_html["chart"]["daily"]["config"] .
-        $owmw_html["chart"]["daily"]["chart"] .
-        '</script>';
+        $owmw_html["chart"]["daily"]["chart"];
 		}
 
 
@@ -2750,10 +2749,6 @@ $owmw_html["chart"]["daily"]["cmd"] =
             $owmw_html["table"]["daily"] .= '</div>';
 		}
 
-		if (!empty($owmw_opt["custom_css"])) {
-	    	$owmw_html["custom_css"] = '<style type="text/css">'. $owmw_opt["custom_css"] . '</style>';
-		}
-
 	    $owmw_html["container"]["end"] .= '</div>';
 	    owmw_deleteWhitespaces($owmw_html);
 
@@ -2762,6 +2757,24 @@ $owmw_html["chart"]["daily"]["cmd"] =
         }
 
         owmw_sanitize_api_response($owmw_data);
+
+        $owmw_opt['allowed_html'] = array_merge(wp_kses_allowed_html('post'),
+                                               array('svg' => array('class' => true, 'style' => true, 'viewbox' => true, 'transform' => true),
+                                               'clippath' => array('id' => true, 'd' => true, 'class' => true),
+                                               'path' => array('d'=>true, 'class' => true),
+                                               'g' => array('class' => true, 'clip-path' => true),
+                                               'circle' => array('class' => true, 'fill' => true, 'cx' => true, 'cy' => true, 'r' => true),
+                                               'rect' => array('class' => true, 'x' => true, 'y' => true, 'width' => true, 'height' => true),
+                                               'polygon' => array('class' => true, 'points' => true),
+                                               'metadata' => array(),
+                                               'canvas' => array('id' => true, 'style' => true, 'aria-label' => true, 'role' => true)
+                                            ));
+
+        add_filter( 'safe_style_css', function( $styles ) {
+            $styles[] = 'fill';
+            return $styles;
+        } );
+
 
     	ob_start();
 	    if ( locate_template('owm-weather/content-owmweather.php', false) != '' && $owmw_opt["template"] == 'Default' ) {
@@ -3329,14 +3342,30 @@ function owmw_sanitize_api_response_item(&$item, $key, $ta = []) {
 function owmw_IPtoLocation() {
     global $wp;
 
-    if (!empty($_SERVER['HTTP_CLIENT_IP'])){
-        //ip from share internet
-        $ip = sanitize_text_field($_SERVER['HTTP_CLIENT_IP']);
-    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-        //ip pass from proxy
-        $ip = sanitize_text_field($_SERVER['HTTP_X_FORWARDED_FOR']);
+    $client  = @$_SERVER["HTTP_CF_CONNECTING_IP"];
+    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+    $xforward = @$_SERVER['HTTP_X_FORWARDED'];
+    $forwardfor = @$_SERVER['HTTP_FORWARDED_FOR'];
+    $forwarded = @$_SERVER['HTTP_FORWARDED'];
+    $clientip = @$_SERVER['HTTP_CLIENT_IP'];
+    $remote  = @$_SERVER['REMOTE_ADDR'];
+
+    if (filter_var($client, FILTER_VALIDATE_IP)){
+       $ip = $client;
+    } else if(filter_var($forward, FILTER_VALIDATE_IP)){
+       $ip = $forward;
+    } else if(filter_var($xforward, FILTER_VALIDATE_IP)){
+       $ip = $xforward;
+    } else if(filter_var($forwardfor, FILTER_VALIDATE_IP)){
+       $ip = $forwardfor;
+    } else if(filter_var($forwarded, FILTER_VALIDATE_IP)){
+       $ip = $forwarded;
+    } else if(filter_var($clientip, FILTER_VALIDATE_IP)){
+       $ip = $clientip;
+    } else if(filter_var($remote, FILTER_VALIDATE_IP)){
+       $ip = $remote;
     } else {
-        $ip = sanitize_text_field($_SERVER['REMOTE_ADDR']);
+        return false;
     }
 
     $transient_key = 'owmweather_iplocation_' . $ip;
@@ -3346,21 +3375,20 @@ function owmw_IPtoLocation() {
         $request_headers = [];
         $request_headers[] = 'User-Agent: keycdn-tools:' . home_url($wp->request);
 
-    	$ch = curl_init($apiURL);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
-    	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    	$apiResponse = curl_exec($ch);
-    	if($apiResponse === false) {
-            $msg = curl_error($ch);
-            curl_close($ch);
-            return false;
-        }
-    	curl_close($ch);
+        $response = wp_remote_get( $apiURL,
+             array( 'timeout' => 10,
+            'headers' => array( 'User-Agent' => 'keycdn-tools:' .home_url($wp->request)) 
+             ));
 
-    	$ipData = json_decode($apiResponse, true);
+        if (is_wp_error($response)) {
+			return false;
+   		}
+
+        $ipData = json_decode(wp_remote_retrieve_body($response));
     	set_transient($transient_key, $ipData);
     }
 
     owmw_sanitize_api_response($ipData);
+
 	return !empty($ipData) ? $ipData : false;
 }

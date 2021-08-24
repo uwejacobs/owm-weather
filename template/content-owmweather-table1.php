@@ -8,58 +8,63 @@
  */
 ?>
 <!-- Start #owm-weather -->
-<?php echo $owmw_html["container"]["start"]; ?>
+<?php echo wp_kses_post($owmw_html["container"]["start"]); ?>
 	<!-- Current weather -->
-	<?php echo $owmw_html["now"]["start"]; ?>
-		<?php echo $owmw_html["now"]["location_name"]; ?>
-		<?php echo $owmw_html["now"]["symbol"]; ?>
-		<?php echo $owmw_html["now"]["temperature"]; ?>
-		<?php echo $owmw_html["now"]["feels_like"]; ?>
-		<?php echo $owmw_html["now"]["weather_description"]; ?>
-	<?php echo $owmw_html["now"]["end"]; ?>
+	<?php echo wp_kses_post($owmw_html["now"]["start"]); ?>
+		<?php echo wp_kses_post($owmw_html["now"]["location_name"]); ?>
+		<?php echo wp_kses($owmw_html["now"]["symbol"], $owmw_opt['allowed_html']); ?>
+		<?php echo wp_kses_post($owmw_html["now"]["temperature"]); ?>
+		<?php echo wp_kses_post($owmw_html["now"]["feels_like"]); ?>
+		<?php echo wp_kses_post($owmw_html["now"]["weather_description"]); ?>
+	<?php echo wp_kses_post($owmw_html["now"]["end"]); ?>
 
 	<!-- Alert button -->
-	<?php echo $owmw_html["alert_button"]; ?>
+	<?php echo wp_kses_post($owmw_html["alert_button"]); ?>
 
 	<!-- Today -->
-	<?php echo $owmw_html["today"]["start"]; ?>
-		<?php echo $owmw_html["today"]["day"]; ?>
-		<?php echo $owmw_html["today"]["sun"]; ?>
-		<?php echo $owmw_html["today"]["moon"]; ?>
-	<?php echo $owmw_html["today"]["end"]; ?>
+	<?php echo wp_kses_post($owmw_html["today"]["start"]); ?>
+		<?php echo wp_kses_post($owmw_html["today"]["day"]); ?>
+		<?php echo wp_kses($owmw_html["today"]["sun"], $owmw_opt['allowed_html']); ?>
+		<?php echo wp_kses($owmw_html["today"]["moon"], $owmw_opt['allowed_html']); ?>
+	<?php echo wp_kses_post($owmw_html["today"]["end"]); ?>
 	
 	<!-- Current infos: wind, humidity, dew point, pressure, cloudiness, precipitation, uv index -->
-	<?php echo $owmw_html["info"]["start"]; ?>
-		<?php echo $owmw_html["info"]["wind"]; ?>
-		<?php echo $owmw_html["info"]["humidity"]; ?>
-		<?php echo $owmw_html["info"]["dew_point"]; ?>
-		<?php echo $owmw_html["info"]["pressure"]; ?>
-		<?php echo $owmw_html["info"]["cloudiness"]; ?>
-		<?php echo $owmw_html["info"]["precipitation"]; ?>
-		<?php echo $owmw_html["info"]["visibility"]; ?>
-		<?php echo $owmw_html["info"]["uv_index"]; ?>
-	<?php echo $owmw_html["info"]["end"]; ?>
+	<?php echo wp_kses_post($owmw_html["info"]["start"]); ?>
+		<?php echo wp_kses_post($owmw_html["info"]["wind"]); ?>
+		<?php echo wp_kses_post($owmw_html["info"]["humidity"]); ?>
+		<?php echo wp_kses_post($owmw_html["info"]["dew_point"]); ?>
+		<?php echo wp_kses_post($owmw_html["info"]["pressure"]); ?>
+		<?php echo wp_kses_post($owmw_html["info"]["cloudiness"]); ?>
+		<?php echo wp_kses_post($owmw_html["info"]["precipitation"]); ?>
+		<?php echo wp_kses_post($owmw_html["info"]["visibility"]); ?>
+		<?php echo wp_kses_post($owmw_html["info"]["uv_index"]); ?>
+	<?php echo wp_kses_post($owmw_html["info"]["end"]); ?>
 
-	<?php echo $owmw_html["table"]["hourly"]; ?>
-	<?php echo $owmw_html["table"]["daily"]; ?>
+	<!-- Hourly Table -->
+	<?php echo wp_kses_post($owmw_html["table"]["hourly"]); ?>
+	<!-- Daily Table -->
+	<?php echo wp_kses_post($owmw_html["table"]["daily"]); ?>
 
 	<!-- Weather Map -->
-	<?php echo $owmw_html["map"]; ?>
-	
-	<?php echo $owmw_html["owm_link_last_update_start"]; ?>
-		<!-- OWM Link -->
-		<?php echo $owmw_html["owm_link"]; ?>
-		<!-- OWM Last Update -->
-		<?php echo $owmw_html["last_update"]; ?>
-	<?php echo $owmw_html["owm_link_last_update_end"]; ?>
+	<?php echo wp_kses_post($owmw_html["map"]); ?>
+	<?php echo '<script type="text/javascript">' . wp_kses_post($owmw_html["map_script"]) . '</script>'; ?>
+
+	<!-- OWM Link -->
+	<?php echo wp_kses_post($owmw_html["owm_link_last_update_start"]); ?>
+	<?php echo wp_kses_post($owmw_html["owm_link"]); ?>
+	<!-- OWM Last Update -->
+	<?php echo wp_kses_post($owmw_html["last_update"]); ?>
+	<?php echo wp_kses_post($owmw_html["owm_link_last_update_end"]); ?>
 
 	<!-- Alert Modals -->
-	<?php echo $owmw_html["alert_modal"]; ?>
+	<?php echo wp_kses_post($owmw_html["alert_modal"]); ?>
 
 	<!-- CSS/Scripts -->
-	<?php echo $owmw_html["custom_css"]; ?>
-	<?php echo $owmw_html["temperature_unit"]; ?>
-	<?php echo $owmw_html["gtag"]; ?>
+	<?php echo '<style type="text/css">' . wp_kses_post($owmw_html["custom_css"]) . '</style>'; ?>
+	<?php echo '<style type="text/css">' . wp_kses_post($owmw_html["temperature_unit"]) . '</style>'; ?>
+
+	<!-- Google Tag Manager -->
+	<?php echo '<script type="text/javascript">' . wp_kses_post($owmw_html["gtag"]) . '</script>'; ?>
 
 <!-- End #owm-weather -->
-<?php echo $owmw_html["container"]["end"]; ?>
+<?php echo wp_kses_post($owmw_html["container"]["end"]); ?>

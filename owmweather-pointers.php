@@ -36,7 +36,7 @@ function owmw_pointer_print_scripts() {
 	//<![CDATA[
 	jQuery(document).ready( function($) {
 		$('#menu-settings').pointer({
-			content:		'<?php echo $pointer_content; ?>',
+			content:		'<?php echo wp_kses_post($pointer_content); ?>',
 			position:		{
 								edge:	'left', // arrow direction
 								align:	'center' // vertical alignment
