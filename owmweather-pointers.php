@@ -29,7 +29,7 @@ add_action( 'admin_enqueue_scripts', 'owmw_enqueue_pointer_script_style' );
 function owmw_pointer_print_scripts() {
 
 	$pointer_content  = "<h3>OWM Weather</h3>";
-	$pointer_content .= '<p>'.esc_html__('<strong>Before starting:</strong> enter your own OpenWeatherMap API key in','owm-weather').' <a href="'.admin_url('options-general.php?page=owmw-settings-admin#tab_advanced').'">'. esc_html__('Advanced Settings!','owm-weather').'</a></p>';
+	$pointer_content .= '<p><strong>'.esc_html__('Before starting:','owm-weather').'</strong> '.esc_html__('Enter your own OpenWeatherMap API key in','owm-weather').' <a href="'.admin_url('options-general.php?page=owmw-settings-admin#tab_advanced').'">'. esc_html__('Advanced Settings!','owm-weather').'</a></p>';
 	?>
 	
 	<script type="text/javascript">
