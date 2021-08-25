@@ -2914,7 +2914,7 @@ function owmw_notice() {
 	if ( is_plugin_active( 'owm-weather/owmweather.php' ) && !isset($owmw_advanced_api_key['owmw_advanced_api_key'])) {
 	    ?>
 	    <div class="error notice">
-	        <p><a href="<?php echo admin_url('admin.php?page=owmw-settings-admin#tab_advanced'); ?>"><?php esc_html__e( 'OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits requests.', 'owm-weather' ); ?></a></p>
+	        <p><a href="<?php echo admin_url('admin.php?page=owmw-settings-admin#tab_advanced'); ?>"><?php esc_html_e( 'OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits requests.', 'owm-weather' ); ?></a></p>
 	    </div>
 	    <?php
 	}
