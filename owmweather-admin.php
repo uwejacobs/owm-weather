@@ -62,7 +62,7 @@ class owmw_options
                          <div id="wpcloudy-notice">
                             <div class="small">
                                 <span class="dashicons dashicons-wordpress"></span>
-                                <?php _e( 'Do you like WP OPM Weather? Don\'t forget to rate it 5 stars!', 'owm-weather' ); ?>
+                                <?php _e( 'Do you like OPM Weather? Don\'t forget to rate it 5 stars!', 'owm-weather' ); ?>
 
                                 <div class="wporg-ratings rating-stars">
                                     <a href="//wordpress.org/support/view/plugin-reviews/owm-weather?rate=1#postform" data-rating="1" title="" target="_blank"><span class="dashicons dashicons-star-filled" style="color:#e6b800 !important;"></span></a>
