@@ -2071,7 +2071,7 @@ function owmw_get_my_weather($attr) {
 		$owmw_html["now"]["feels_like"]          = '';
 		$owmw_html["now"]["weather_description"] = '';
 		$owmw_html["now"]["end"]               	= '';
-		$owmw_html["custom_css"]            		= '';
+		$owmw_html["custom_css"] = $owmw_opt["custom_css"] ?? '';
 		$owmw_html["today"]["start"]          	= '';
 		$owmw_html["today"]["day"]          		= '';
 		$owmw_html["today"]["sun"]             	= '';
@@ -2118,7 +2118,7 @@ function owmw_get_my_weather($attr) {
         $owmw_html["table"]["hourly"]            = '';
         $owmw_html["table"]["daily"]             = '';
 
-	  	$owmw_html["main_weather_div"]      = esc_attr($owmw_params["weather_id"]);
+	$owmw_html["main_weather_div"]      = esc_attr($owmw_params["weather_id"]);
         $owmw_html["container_weather_div"] = owmw_unique_id_esc('owm-weather-container-'.$owmw_opt["id"]);
         $owmw_html["main_map_div"]          = owmw_unique_id_esc('owmw-map-id-'.$owmw_opt["id"]);
         $owmw_html["container_map_div"]     = owmw_unique_id_esc('owmw-map-container-'.$owmw_opt["id"]);
@@ -2458,7 +2458,7 @@ function owmw_get_my_weather($attr) {
 	    if ($owmw_opt["alerts"] == 'yes' && !empty($owmw_data["alerts"])) {
     	    require_once dirname( __FILE__ ) . '/owmweather-color-css.php';
 
-   	        $owmw_opt["custom_css"] .= owmw_generateColorCSS($owmw_opt["alerts_button_color"] ?? '#000', "owmw-alert-" . esc_attr($owmw_opt["id"]));
+   	        $owmw_html["custom_css"] .= owmw_generateColorCSS($owmw_opt["alerts_button_color"] ?? '#000', "owmw-alert-" . esc_attr($owmw_opt["id"]));
             $owmw_html["alert_button"] .= '<div class="owmw-alert-buttons text-center">';
             foreach($owmw_data["alerts"] as $key => $value) {
                 $modal = owmw_unique_id_esc('owmw-modal-'.esc_attr($owmw_opt["id"]));
@@ -2667,7 +2667,7 @@ $owmw_html["chart"]["daily"]["script"] =
 
         //Table
         if (!empty($owmw_opt["table_border_color"])) {
-            $owmw_opt["custom_css"] .= '.owmw-table.table-bordered > tbody > tr > td, .owmw-table .table-bordered > tbody > tr > th, .owmw-table.table-bordered > tfoot > tr > td, .owmw-table.table-bordered > tfoot > tr > th, .owmw-table.table-bordered > thead > tr > td, .owmw-table.table-bordered > thead > tr > th { ' . owmw_css_border($owmw_opt["table_border_color"], $owmw_opt["table_border_width"],$owmw_opt["table_border_style"],$owmw_opt["table_border_radius"]) .'}';
+            $owmw_html["custom_css"] .= '.owmw-table.table-bordered > tbody > tr > td, .owmw-table .table-bordered > tbody > tr > th, .owmw-table.table-bordered > tfoot > tr > td, .owmw-table.table-bordered > tfoot > tr > th, .owmw-table.table-bordered > thead > tr > td, .owmw-table.table-bordered > thead > tr > th { ' . owmw_css_border($owmw_opt["table_border_color"], $owmw_opt["table_border_width"],$owmw_opt["table_border_style"],$owmw_opt["table_border_radius"]) .'}';
         }
         //Hourly
 	    if ($owmw_opt["hours_forecast_no"] > 0) {
@@ -2776,7 +2776,7 @@ $owmw_html["chart"]["daily"]["script"] =
                                                'polygon' => array('class' => true, 'points' => true),
                                                'metadata' => array(),
                                                'canvas' => array('id' => true, 'style' => true, 'aria-label' => true, 'role' => true)
-                                            ));
+				       ));
 
         add_filter( 'safe_style_css', function( $styles ) {
             $styles[] = 'fill';
