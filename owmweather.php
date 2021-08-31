@@ -374,7 +374,7 @@ function owmw_basic($post){
 
     $owmw_opt = [];
 	$owmw_opt["city"] 					    = get_post_meta($id,'_owmweather_city',true);
-	$owmw_opt["custom_city_name"]		    = get_post_meta($id,'_owmw_city_name',true);
+	$owmw_opt["custom_city_name"]		    = get_post_meta($id,'_owmweather_custom_city_name',true);
 	$owmw_opt["id_owm"]					    = get_post_meta($id,'_owmweather_id_owm',true);
 	$owmw_opt["longitude"] 			        = get_post_meta($id,'_owmweather_longitude',true);
 	$owmw_opt["latitude"] 		    	    = get_post_meta($id,'_owmweather_latitude',true);
@@ -535,8 +535,8 @@ function owmw_basic($post){
     			    Basic
 			    </p>
 				<p>
-					<label for="owmw_city_name_meta">'. esc_html__( 'Custom city title', 'owm-weather' ) .'</label>
-					<input id="owmw_city_name_meta" type="text" name="owmw_city_name" value="'.esc_attr($owmw_opt["custom_city_name"]).'" />
+					<label for="owmweather_custom_city_name_meta">'. esc_html__( 'Custom city title', 'owm-weather' ) .'</label>
+					<input id="owmweather_custom_city_name_meta" type="text" name="owmweather_custom_city_name" value="'.esc_attr($owmw_opt["custom_city_name"]).'" />
 				</p>
 				<p>
 					<label for="unit_meta">'. esc_html__( 'Measurement system?', 'owm-weather' ) .'</label>
@@ -1195,7 +1195,7 @@ function owmw_save_metabox($post_id){
         update_post_meta($post_id, '_owmweather_version', OWM_WEATHER_VERSION);
 
 		owmw_save_metabox_field('city', $post_id);
-		owmw_save_metabox_field('city_name', $post_id);
+		owmw_save_metabox_field('custom_city_name', $post_id);
 		owmw_save_metabox_field('id_owm', $post_id);
 		owmw_save_metabox_field('longitude', $post_id);
 		owmw_save_metabox_field('latitude', $post_id);
@@ -1454,7 +1454,7 @@ function owmw_get_my_weather_id($atts) {
         "zip_country_code"              => false,
         "city"                          => false,
         "country_code"                  => false,
-        "city_name"                     => false,
+        "custom_city_name"              => false,
         "custom_timezone"               => false,
         "owm_language"                  => false,
         "font"                          => false,
@@ -1644,7 +1644,7 @@ function owmw_get_my_weather($attr) {
 		$owmw_opt["zip_country_code"]          		= str_replace(' ', '+', owmw_get_bypass($bypass, "zip_country_code"));
 	  	$owmw_opt["city"]                			= str_replace(' ', '+', strtolower(owmw_get_bypass($bypass, "city")));
 		$owmw_opt["country_code"]            		= str_replace(' ', '+', owmw_get_bypass($bypass, "country_code"));
-		$owmw_opt["custom_city_name"]       			= owmw_get_bypass($bypass, "city_name");
+		$owmw_opt["custom_city_name"]       			= owmw_get_bypass($bypass, "custom_city_name");
 		$owmw_opt["temperature_unit"]       			= owmw_get_bypass($bypass, "unit");
     	$owmw_opt["map"]           		            = owmw_get_bypass_yn($bypass, "map");
 		$owmw_opt["map_height"]            			= owmw_get_bypass($bypass, "map_height");
@@ -3091,7 +3091,7 @@ function owmw_sanitize_validate_field($key, $value) {
             case "zip_country_code":
             case "city":
             case "country_code":
-            case "city_name":
+            case "custom_city_name":
                 $value = sanitize_text_field($value);
                 break;
 
