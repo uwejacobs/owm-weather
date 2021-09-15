@@ -13,7 +13,7 @@ OWM Weather is a powerful weather plugin for WordPress, based on the Open Weathe
 
 == Description ==
 
-<b>OWM Weather</b> is derived from the discontinued plugin WP Cloudy. It uses many of the same settings but is completely separate.
+<strong>OWM Weather</strong> is derived from the discontinued plugin WP Cloudy. It uses many of the same settings but is completely separate.
 
 ---
 
@@ -132,39 +132,51 @@ Templating system: The main advantage is that you can create a completely person
 == Frequently Asked Questions ==
 
 = How many cities are supported by OWM Weather? =
+
 Over 200,000 cities from 238 countries and territories. Every location on earth is also selectable via latitude/longitude.
 
 = How many differents weather can I create with OWM Weather? =
+
 Unlimited due to WordPress Custom Post Types.
 
 = In which languages is the weather data displayed? =
+
 The setup pages are displayed in English with partial translations in French, Italian, Hungarian, Hebrew, Polish, Russian, Danish, German, Portuguese. Open Weather Map provides the data in most languages.
 
 = How to define the unit Celsius or Fahrenheit? =
+
 When creating your weather, choose "Imperial" for Fahrenheit or "Metric" for Celsius from the drop down list "Measurement system".
 
 = How to define a custom title for my weather? =
+
 Simply enter text in the "Custom city title". If you leave it blank, the default title will correspond to the Open Weather Map "City" field.
 
 = Is it possible to add multiples weathers in a same page? =
+
 Yes. Each weather can have a completely different setup and layout.
 
 = What is the source of the datas? =
+
 Open Weather Map (https://openwweathermap.com)
 
 = Where is the global settings page? =
+
 In WordPress admin, Settings menu, OWM Weather.
 
 = Ads? =
+
 No.
 
 = Can I import/export weathers? =
+
 Yes, using the default WordPress importer/exporter tool (free).
 
 = Can I import/export global OWM Weather settings? =
+
 Yes, in Settings > OWM Weather > Import/Export/Reset tab.
 
 = Is OWM Weather compatible to WP Cloudy? =
+
 Although many settings look alike, OWM Weather uses completely different weather pages and system settings so both can be activate at the same time.
 
 == Screenshots ==
