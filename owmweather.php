@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.0.2
+Version: 5.0.3
 Author: Uwe Jacobs
 Author URI: https://github.com/uwejacobs
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.0.2' );
+define( 'OWM_WEATHER_VERSION', '5.0.3' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -543,99 +543,99 @@ function owmw_basic($post){
 			<p>
 				<label for="unit_meta"><?php esc_html_e( 'Measurement system?', 'owm-weather' ) ?></label>
 				<select name="owmweather_unit">
-					<option <?php selected( 'imperial', $owmw_opt["temperature_unit"], false ) ?>value="imperial"><?php esc_html_e( 'Imperial', 'owm-weather' ) ?></option>
-					<option <?php selected( 'metric', $owmw_opt["temperature_unit"], false ) ?>value="metric"><?php esc_html_e( 'Metric', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'imperial', $owmw_opt["temperature_unit"], false ) ?>value="imperial"><?php esc_html_e( 'Imperial', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'metric', $owmw_opt["temperature_unit"], false ) ?>value="metric"><?php esc_html_e( 'Metric', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
 				<label for="owmweather_time_format_meta"><?php esc_html_e( '12h / 24h time format?', 'owm-weather' ) ?></label>
 				<select name="owmweather_time_format">
-					<option <?php selected( '12', $owmw_opt["time_format"], false ) ?>value="12"><?php esc_html_e( '12 h', 'owm-weather' ) ?></option>
-					<option <?php selected( '24', $owmw_opt["time_format"], false ) ?>value="24"><?php esc_html_e( '24 h', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '12', $owmw_opt["time_format"], false ) ?>value="12"><?php esc_html_e( '12 h', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '24', $owmw_opt["time_format"], false ) ?>value="24"><?php esc_html_e( '24 h', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
 				<label for="owmweather_custom_timezone_meta"><?php esc_html_e( 'Custom timezone? (default: WordPress general settings)', 'owm-weather' ) ?></label>
 				<select name="owmweather_custom_timezone" id="owmweather_custom_timezone_meta">
-					<option <?php selected( 'Default', $owmw_opt["custom_timezone"], false ) ?>value="Default"><?php esc_html_e( 'WordPress timezone', 'owm-weather' ) ?></option>
-					<option <?php selected( 'local', $owmw_opt["custom_timezone"], false ) ?>value="local"><?php esc_html_e( 'Local timezone', 'owm-weather' ) ?></option>
-					<option <?php selected( '-12', $owmw_opt["custom_timezone"], false ) ?>value="-12"><?php esc_html_e( 'UTC -12', 'owm-weather' ) ?></option>
-					<option <?php selected( '-11', $owmw_opt["custom_timezone"], false ) ?>value="-11"><?php esc_html_e( 'UTC -11', 'owm-weather' ) ?></option>
-					<option <?php selected( '-10', $owmw_opt["custom_timezone"], false ) ?>value="-10"><?php esc_html_e( 'UTC -10', 'owm-weather' ) ?></option>
-					<option <?php selected( '-9', $owmw_opt["custom_timezone"], false ) ?>value="-9"><?php esc_html_e( 'UTC -9', 'owm-weather' ) ?></option>
-					<option <?php selected( '-8', $owmw_opt["custom_timezone"], false ) ?>value="-8"><?php esc_html_e( 'UTC -8', 'owm-weather' ) ?></option>
-					<option <?php selected( '-7', $owmw_opt["custom_timezone"], false ) ?>value="-7"><?php esc_html_e( 'UTC -7', 'owm-weather' ) ?></option>
-					<option <?php selected( '-6', $owmw_opt["custom_timezone"], false ) ?>value="-6"><?php esc_html_e( 'UTC -6', 'owm-weather' ) ?></option>
-					<option <?php selected( '-5', $owmw_opt["custom_timezone"], false ) ?>value="-5"><?php esc_html_e( 'UTC -5', 'owm-weather' ) ?></option>
-					<option <?php selected( '-4', $owmw_opt["custom_timezone"], false ) ?>value="-4"><?php esc_html_e( 'UTC -4', 'owm-weather' ) ?></option>
-					<option <?php selected( '-3', $owmw_opt["custom_timezone"], false ) ?>value="-3"><?php esc_html_e( 'UTC -3', 'owm-weather' ) ?></option>
-					<option <?php selected( '-2', $owmw_opt["custom_timezone"], false ) ?>value="-2"><?php esc_html_e( 'UTC -2', 'owm-weather' ) ?></option>
-					<option <?php selected( '-1', $owmw_opt["custom_timezone"], false ) ?>value="-1"><?php esc_html_e( 'UTC -1', 'owm-weather' ) ?></option>
-					<option <?php selected( '0', $owmw_opt["custom_timezone"], false ) ?>value="0"><?php esc_html_e( 'UTC 0', 'owm-weather' ) ?></option>
-					<option <?php selected( '1', $owmw_opt["custom_timezone"], false ) ?>value="1"><?php esc_html_e( 'UTC +1', 'owm-weather' ) ?></option>
-					<option <?php selected( '2', $owmw_opt["custom_timezone"], false ) ?>value="2"><?php esc_html_e( 'UTC +2', 'owm-weather' ) ?></option>
-					<option <?php selected( '3', $owmw_opt["custom_timezone"], false ) ?>value="3"><?php esc_html_e( 'UTC +3', 'owm-weather' ) ?></option>
-					<option <?php selected( '4', $owmw_opt["custom_timezone"], false ) ?>value="4"><?php esc_html_e( 'UTC +4', 'owm-weather' ) ?></option>
-					<option <?php selected( '5', $owmw_opt["custom_timezone"], false ) ?>value="5"><?php esc_html_e( 'UTC +5', 'owm-weather' ) ?></option>
-					<option <?php selected( '6', $owmw_opt["custom_timezone"], false ) ?>value="6"><?php esc_html_e( 'UTC +6', 'owm-weather' ) ?></option>
-					<option <?php selected( '7', $owmw_opt["custom_timezone"], false ) ?>value="7"><?php esc_html_e( 'UTC +7', 'owm-weather' ) ?></option>
-					<option <?php selected( '8', $owmw_opt["custom_timezone"], false ) ?>value="8"><?php esc_html_e( 'UTC +8', 'owm-weather' ) ?></option>
-					<option <?php selected( '9', $owmw_opt["custom_timezone"], false ) ?>value="9"><?php esc_html_e( 'UTC +9', 'owm-weather' ) ?></option>
-					<option <?php selected( '10', $owmw_opt["custom_timezone"], false ) ?>value="10"><?php esc_html_e( 'UTC +10', 'owm-weather' ) ?></option>
-					<option <?php selected( '11', $owmw_opt["custom_timezone"], false ) ?>value="11"><?php esc_html_e( 'UTC +11', 'owm-weather' ) ?></option>
-					<option <?php selected( '12', $owmw_opt["custom_timezone"], false ) ?>value="12"><?php esc_html_e( 'UTC +12', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Default', $owmw_opt["custom_timezone"], false ) ?>value="Default"><?php esc_html_e( 'WordPress timezone', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'local', $owmw_opt["custom_timezone"], false ) ?>value="local"><?php esc_html_e( 'Local timezone', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '-12', $owmw_opt["custom_timezone"], false ) ?>value="-12"><?php esc_html_e( 'UTC -12', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '-11', $owmw_opt["custom_timezone"], false ) ?>value="-11"><?php esc_html_e( 'UTC -11', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '-10', $owmw_opt["custom_timezone"], false ) ?>value="-10"><?php esc_html_e( 'UTC -10', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '-9', $owmw_opt["custom_timezone"], false ) ?>value="-9"><?php esc_html_e( 'UTC -9', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '-8', $owmw_opt["custom_timezone"], false ) ?>value="-8"><?php esc_html_e( 'UTC -8', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '-7', $owmw_opt["custom_timezone"], false ) ?>value="-7"><?php esc_html_e( 'UTC -7', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '-6', $owmw_opt["custom_timezone"], false ) ?>value="-6"><?php esc_html_e( 'UTC -6', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '-5', $owmw_opt["custom_timezone"], false ) ?>value="-5"><?php esc_html_e( 'UTC -5', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '-4', $owmw_opt["custom_timezone"], false ) ?>value="-4"><?php esc_html_e( 'UTC -4', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '-3', $owmw_opt["custom_timezone"], false ) ?>value="-3"><?php esc_html_e( 'UTC -3', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '-2', $owmw_opt["custom_timezone"], false ) ?>value="-2"><?php esc_html_e( 'UTC -2', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '-1', $owmw_opt["custom_timezone"], false ) ?>value="-1"><?php esc_html_e( 'UTC -1', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '0', $owmw_opt["custom_timezone"], false ) ?>value="0"><?php esc_html_e( 'UTC 0', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '1', $owmw_opt["custom_timezone"], false ) ?>value="1"><?php esc_html_e( 'UTC +1', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '2', $owmw_opt["custom_timezone"], false ) ?>value="2"><?php esc_html_e( 'UTC +2', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '3', $owmw_opt["custom_timezone"], false ) ?>value="3"><?php esc_html_e( 'UTC +3', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '4', $owmw_opt["custom_timezone"], false ) ?>value="4"><?php esc_html_e( 'UTC +4', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '5', $owmw_opt["custom_timezone"], false ) ?>value="5"><?php esc_html_e( 'UTC +5', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '6', $owmw_opt["custom_timezone"], false ) ?>value="6"><?php esc_html_e( 'UTC +6', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '7', $owmw_opt["custom_timezone"], false ) ?>value="7"><?php esc_html_e( 'UTC +7', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '8', $owmw_opt["custom_timezone"], false ) ?>value="8"><?php esc_html_e( 'UTC +8', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '9', $owmw_opt["custom_timezone"], false ) ?>value="9"><?php esc_html_e( 'UTC +9', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '10', $owmw_opt["custom_timezone"], false ) ?>value="10"><?php esc_html_e( 'UTC +10', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '11', $owmw_opt["custom_timezone"], false ) ?>value="11"><?php esc_html_e( 'UTC +11', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '12', $owmw_opt["custom_timezone"], false ) ?>value="12"><?php esc_html_e( 'UTC +12', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
 				<label for="owmweather_owm_language_meta"><?php esc_html_e( 'OpenWeatherMap language?', 'owm-weather' ) ?></label>
 				<select name="owmweather_owm_language" id="owmweather_owm_language_meta">
-					<option <?php selected( 'Default', $owmw_opt["owm_language"], false ) ?>value="Default"><?php esc_html_e( 'Default', 'owm-weather' ) ?></option>
-					<option <?php selected( 'af', $owmw_opt["owm_language"], false ) ?>value="af"><?php esc_html_e( 'Afrikaans', 'owm-weather' ) ?></option>
-					<option <?php selected( 'al', $owmw_opt["owm_language"], false ) ?>value="al"><?php esc_html_e( 'Albanian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'ar', $owmw_opt["owm_language"], false ) ?>value="ar"><?php esc_html_e( 'Arabic', 'owm-weather' ) ?></option>
-					<option <?php selected( 'az', $owmw_opt["owm_language"], false ) ?>value="az"><?php esc_html_e( 'Azerbaijani', 'owm-weather' ) ?></option>
-					<option <?php selected( 'eu', $owmw_opt["owm_language"], false ) ?>value="eu"><?php esc_html_e( 'Basque', 'owm-weather' ) ?></option>
-					<option <?php selected( 'bg', $owmw_opt["owm_language"], false ) ?>value="bg"><?php esc_html_e( 'Bulgarian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'ca', $owmw_opt["owm_language"], false ) ?>value="ca"><?php esc_html_e( 'Catalan', 'owm-weather' ) ?></option>
-					<option <?php selected( 'zh_cn', $owmw_opt["owm_language"], false ) ?>value="zh_cn"><?php esc_html_e( 'Chinese Simplified', 'owm-weather' ) ?></option>
-					<option <?php selected( 'zh_tw', $owmw_opt["owm_language"], false ) ?>value="zh_tw"><?php esc_html_e( 'Chinese Traditional', 'owm-weather' ) ?></option>
-					<option <?php selected( 'hr', $owmw_opt["owm_language"], false ) ?>value="hr"><?php esc_html_e( 'Croatian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'cz', $owmw_opt["owm_language"], false ) ?>value="cz"><?php esc_html_e( 'Czech', 'owm-weather' ) ?></option>
-					<option <?php selected( 'da', $owmw_opt["owm_language"], false ) ?>value="da"><?php esc_html_e( 'Danish', 'owm-weather' ) ?></option>
-					<option <?php selected( 'nl', $owmw_opt["owm_language"], false ) ?>value="nl"><?php esc_html_e( 'Dutch', 'owm-weather' ) ?></option>
-					<option <?php selected( 'en', $owmw_opt["owm_language"], false ) ?>value="en"><?php esc_html_e( 'English', 'owm-weather' ) ?></option>
-					<option <?php selected( 'fi', $owmw_opt["owm_language"], false ) ?>value="fi"><?php esc_html_e( 'Finnish', 'owm-weather' ) ?></option>
-					<option <?php selected( 'fr', $owmw_opt["owm_language"], false ) ?>value="fr"><?php esc_html_e( 'French', 'owm-weather' ) ?></option>
-					<option <?php selected( 'gl', $owmw_opt["owm_language"], false ) ?>value="gl"><?php esc_html_e( 'Galician', 'owm-weather' ) ?></option>
-					<option <?php selected( 'de', $owmw_opt["owm_language"], false ) ?>value="de"><?php esc_html_e( 'German', 'owm-weather' ) ?></option>
-					<option <?php selected( 'el', $owmw_opt["owm_language"], false ) ?>value="el"><?php esc_html_e( 'Greek', 'owm-weather' ) ?></option>
-					<option <?php selected( 'he', $owmw_opt["owm_language"], false ) ?>value="he"><?php esc_html_e( 'Hebrew', 'owm-weather' ) ?></option>
-					<option <?php selected( 'hi', $owmw_opt["owm_language"], false ) ?>value="hi"><?php esc_html_e( 'Hindi', 'owm-weather' ) ?></option>
-					<option <?php selected( 'hu', $owmw_opt["owm_language"], false ) ?>value="hu"><?php esc_html_e( 'Hungarian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'id', $owmw_opt["owm_language"], false ) ?>value="id"><?php esc_html_e( 'Indonesian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'it', $owmw_opt["owm_language"], false ) ?>value="it"><?php esc_html_e( 'Italian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'ja', $owmw_opt["owm_language"], false ) ?>value="ja"><?php esc_html_e( 'Japanese', 'owm-weather' ) ?></option>
-					<option <?php selected( 'kr', $owmw_opt["owm_language"], false ) ?>value="kr"><?php esc_html_e( 'Korean', 'owm-weather' ) ?></option>
-					<option <?php selected( 'la', $owmw_opt["owm_language"], false ) ?>value="la"><?php esc_html_e( 'Latvian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'lt', $owmw_opt["owm_language"], false ) ?>value="lt"><?php esc_html_e( 'Lithuanian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'mk', $owmw_opt["owm_language"], false ) ?>value="mk"><?php esc_html_e( 'Macedonian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'no', $owmw_opt["owm_language"], false ) ?>value="no"><?php esc_html_e( 'Norwegian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'fa', $owmw_opt["owm_language"], false ) ?>value="fa"><?php esc_html_e( 'Persian (Farsi)', 'owm-weather' ) ?></option>
-					<option <?php selected( 'pl', $owmw_opt["owm_language"], false ) ?>value="pl"><?php esc_html_e( 'Polish', 'owm-weather' ) ?></option>
-					<option <?php selected( 'pt', $owmw_opt["owm_language"], false ) ?>value="pt"><?php esc_html_e( 'Portuguese', 'owm-weather' ) ?></option>
-					<option <?php selected( 'pt', $owmw_opt["owm_language"], false ) ?>value="pt"><?php esc_html_e( 'Português Brasil', 'owm-weather' ) ?></option>
-					<option <?php selected( 'ro', $owmw_opt["owm_language"], false ) ?>value="ro"><?php esc_html_e( 'Romanian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'ru', $owmw_opt["owm_language"], false ) ?>value="ru"><?php esc_html_e( 'Russian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'sr', $owmw_opt["owm_language"], false ) ?>value="sr"><?php esc_html_e( 'Serbian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'sv', $owmw_opt["owm_language"], false ) ?>value="sv"><?php esc_html_e( 'Swedish', 'owm-weather' ) ?></option>
-					<option <?php selected( 'sk', $owmw_opt["owm_language"], false ) ?>value="sk"><?php esc_html_e( 'Slovak', 'owm-weather' ) ?></option>
-					<option <?php selected( 'sl', $owmw_opt["owm_language"], false ) ?>value="sl"><?php esc_html_e( 'Slovenian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'sp', $owmw_opt["owm_language"], false ) ?>value="sp"><?php esc_html_e( 'Spanish', 'owm-weather' ) ?></option>
-					<option <?php selected( 'th', $owmw_opt["owm_language"], false ) ?>value="th"><?php esc_html_e( 'Thai', 'owm-weather' ) ?></option>
-					<option <?php selected( 'tr', $owmw_opt["owm_language"], false ) ?>value="tr"><?php esc_html_e( 'Turkish', 'owm-weather' ) ?></option>
-					<option <?php selected( 'ua', $owmw_opt["owm_language"], false ) ?>value="ua"><?php esc_html_e( 'Ukrainian', 'owm-weather' ) ?></option>
-					<option <?php selected( 'vi', $owmw_opt["owm_language"], false ) ?>value="vi"><?php esc_html_e( 'Vietnamese', 'owm-weather' ) ?></option>
-					<option <?php selected( 'zu', $owmw_opt["owm_language"], false ) ?>value="zu"><?php esc_html_e( 'Zulu', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Default', $owmw_opt["owm_language"], false ) ?>value="Default"><?php esc_html_e( 'Default', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'af', $owmw_opt["owm_language"], false ) ?>value="af"><?php esc_html_e( 'Afrikaans', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'al', $owmw_opt["owm_language"], false ) ?>value="al"><?php esc_html_e( 'Albanian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'ar', $owmw_opt["owm_language"], false ) ?>value="ar"><?php esc_html_e( 'Arabic', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'az', $owmw_opt["owm_language"], false ) ?>value="az"><?php esc_html_e( 'Azerbaijani', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'eu', $owmw_opt["owm_language"], false ) ?>value="eu"><?php esc_html_e( 'Basque', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'bg', $owmw_opt["owm_language"], false ) ?>value="bg"><?php esc_html_e( 'Bulgarian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'ca', $owmw_opt["owm_language"], false ) ?>value="ca"><?php esc_html_e( 'Catalan', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'zh_cn', $owmw_opt["owm_language"], false ) ?>value="zh_cn"><?php esc_html_e( 'Chinese Simplified', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'zh_tw', $owmw_opt["owm_language"], false ) ?>value="zh_tw"><?php esc_html_e( 'Chinese Traditional', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'hr', $owmw_opt["owm_language"], false ) ?>value="hr"><?php esc_html_e( 'Croatian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'cz', $owmw_opt["owm_language"], false ) ?>value="cz"><?php esc_html_e( 'Czech', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'da', $owmw_opt["owm_language"], false ) ?>value="da"><?php esc_html_e( 'Danish', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'nl', $owmw_opt["owm_language"], false ) ?>value="nl"><?php esc_html_e( 'Dutch', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'en', $owmw_opt["owm_language"], false ) ?>value="en"><?php esc_html_e( 'English', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'fi', $owmw_opt["owm_language"], false ) ?>value="fi"><?php esc_html_e( 'Finnish', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'fr', $owmw_opt["owm_language"], false ) ?>value="fr"><?php esc_html_e( 'French', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'gl', $owmw_opt["owm_language"], false ) ?>value="gl"><?php esc_html_e( 'Galician', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'de', $owmw_opt["owm_language"], false ) ?>value="de"><?php esc_html_e( 'German', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'el', $owmw_opt["owm_language"], false ) ?>value="el"><?php esc_html_e( 'Greek', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'he', $owmw_opt["owm_language"], false ) ?>value="he"><?php esc_html_e( 'Hebrew', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'hi', $owmw_opt["owm_language"], false ) ?>value="hi"><?php esc_html_e( 'Hindi', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'hu', $owmw_opt["owm_language"], false ) ?>value="hu"><?php esc_html_e( 'Hungarian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'id', $owmw_opt["owm_language"], false ) ?>value="id"><?php esc_html_e( 'Indonesian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'it', $owmw_opt["owm_language"], false ) ?>value="it"><?php esc_html_e( 'Italian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'ja', $owmw_opt["owm_language"], false ) ?>value="ja"><?php esc_html_e( 'Japanese', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'kr', $owmw_opt["owm_language"], false ) ?>value="kr"><?php esc_html_e( 'Korean', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'la', $owmw_opt["owm_language"], false ) ?>value="la"><?php esc_html_e( 'Latvian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'lt', $owmw_opt["owm_language"], false ) ?>value="lt"><?php esc_html_e( 'Lithuanian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'mk', $owmw_opt["owm_language"], false ) ?>value="mk"><?php esc_html_e( 'Macedonian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'no', $owmw_opt["owm_language"], false ) ?>value="no"><?php esc_html_e( 'Norwegian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'fa', $owmw_opt["owm_language"], false ) ?>value="fa"><?php esc_html_e( 'Persian (Farsi)', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'pl', $owmw_opt["owm_language"], false ) ?>value="pl"><?php esc_html_e( 'Polish', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'pt', $owmw_opt["owm_language"], false ) ?>value="pt"><?php esc_html_e( 'Portuguese', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'pt', $owmw_opt["owm_language"], false ) ?>value="pt"><?php esc_html_e( 'Português Brasil', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'ro', $owmw_opt["owm_language"], false ) ?>value="ro"><?php esc_html_e( 'Romanian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'ru', $owmw_opt["owm_language"], false ) ?>value="ru"><?php esc_html_e( 'Russian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'sr', $owmw_opt["owm_language"], false ) ?>value="sr"><?php esc_html_e( 'Serbian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'sv', $owmw_opt["owm_language"], false ) ?>value="sv"><?php esc_html_e( 'Swedish', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'sk', $owmw_opt["owm_language"], false ) ?>value="sk"><?php esc_html_e( 'Slovak', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'sl', $owmw_opt["owm_language"], false ) ?>value="sl"><?php esc_html_e( 'Slovenian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'sp', $owmw_opt["owm_language"], false ) ?>value="sp"><?php esc_html_e( 'Spanish', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'th', $owmw_opt["owm_language"], false ) ?>value="th"><?php esc_html_e( 'Thai', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'tr', $owmw_opt["owm_language"], false ) ?>value="tr"><?php esc_html_e( 'Turkish', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'ua', $owmw_opt["owm_language"], false ) ?>value="ua"><?php esc_html_e( 'Ukrainian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'vi', $owmw_opt["owm_language"], false ) ?>value="vi"><?php esc_html_e( 'Vietnamese', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'zu', $owmw_opt["owm_language"], false ) ?>value="zu"><?php esc_html_e( 'Zulu', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p class="misc subsection-title">
@@ -643,13 +643,13 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_gtag_meta">
-					<input type="checkbox" name="owmweather_gtag" id="owmweather_gtag_meta" value="yes" <?php checked( $owmw_opt["gtag"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_gtag" id="owmweather_gtag_meta" value="yes" <?php echo checked( $owmw_opt["gtag"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Google Tag Manager dataLayer?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_bypass_exclude_meta">
-					<input type="checkbox" name="owmweather_bypass_exclude" id="owmweather_bypass_exclude_meta" value="yes" <?php checked( $owmw_opt["bypass_exclude"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_bypass_exclude" id="owmweather_bypass_exclude_meta" value="yes" <?php echo checked( $owmw_opt["bypass_exclude"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Exclude from System Settings and Parameter Bypass?', 'owm-weather' ) ?>
 				</label>
 			</p>
@@ -663,31 +663,31 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_current_city_name_meta">
-					<input type="checkbox" name="owmweather_current_city_name" id="owmweather_current_city_name_meta" value="yes" <?php checked( $owmw_opt["current_city_name"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_current_city_name" id="owmweather_current_city_name_meta" value="yes" <?php echo checked( $owmw_opt["current_city_name"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Current weather city name?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_current_weather_symbol_meta">
-					<input type="checkbox" name="owmweather_current_weather_symbol" id="owmweather_current_weather_symbol_meta" value="yes" <?php checked( $owmw_opt["current_weather_symbol"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_current_weather_symbol" id="owmweather_current_weather_symbol_meta" value="yes" <?php echo checked( $owmw_opt["current_weather_symbol"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Current weather symbol?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_current_temperature_meta">
-					<input type="checkbox" name="owmweather_current_temperature" id="owmweather_current_temperature_meta" value="yes" <?php checked( $owmw_opt["current_temperature"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_current_temperature" id="owmweather_current_temperature_meta" value="yes" <?php echo checked( $owmw_opt["current_temperature"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Current temperature?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_current_feels_like_meta">
-					<input type="checkbox" name="owmweather_current_feels_like" id="owmweather_current_feels_like_meta" value="yes" <?php checked( $owmw_opt["current_feels_like"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_current_feels_like" id="owmweather_current_feels_like_meta" value="yes" <?php echo checked( $owmw_opt["current_feels_like"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Current feels like temperature?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_current_weather_description_meta">
-					<input type="checkbox" name="owmweather_current_weather_description" id="owmweather_current_weather_description_meta" value="yes" <?php checked( $owmw_opt["current_weather_description"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_current_weather_description" id="owmweather_current_weather_description_meta" value="yes" <?php echo checked( $owmw_opt["current_weather_description"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Current weather short condition?', 'owm-weather' ) ?>
 				</label>
 			</p>
@@ -696,7 +696,7 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_display_temperature_unit_meta">
-					<input type="checkbox" name="owmweather_display_temperature_unit" id="owmweather_display_temperature_unit_meta" value="yes" <?php checked( $owmw_opt["display_temperature_unit"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_display_temperature_unit" id="owmweather_display_temperature_unit_meta" value="yes" <?php echo checked( $owmw_opt["display_temperature_unit"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Temperatures unit (C / F)?', 'owm-weather' ) ?>
 				</label>
 			</p>
@@ -705,31 +705,31 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_today_date_format_none_meta">
-					<input type="radio" name="owmweather_today_date_format" id="owmweather_today_date_format_none_meta" value="none" <?php checked( $owmw_opt["today_date_format"], 'none', false ) ?>/>
+					<input type="radio" name="owmweather_today_date_format" id="owmweather_today_date_format_none_meta" value="none" <?php echo checked( $owmw_opt["today_date_format"], 'none', false ) ?>/>
 						<?php esc_html_e( 'No date (default)?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_today_date_format_week_meta">
-					<input type="radio" name="owmweather_today_date_format" id="owmweather_today_date_format_week_meta" value="day" <?php checked( $owmw_opt["today_date_format"], 'day', false ) ?>/>
+					<input type="radio" name="owmweather_today_date_format" id="owmweather_today_date_format_week_meta" value="day" <?php echo checked( $owmw_opt["today_date_format"], 'day', false ) ?>/>
 						<?php esc_html_e( 'Day of the week (eg: Sunday)?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_today_date_format_calendar_meta">
-					<input type="radio" name="owmweather_today_date_format" id="owmweather_today_date_format_calendar_meta" value="date" <?php checked( $owmw_opt["today_date_format"], 'date', false ) ?>/>
+					<input type="radio" name="owmweather_today_date_format" id="owmweather_today_date_format_calendar_meta" value="date" <?php echo checked( $owmw_opt["today_date_format"], 'date', false ) ?>/>
 						<?php esc_html_e( 'Today\'s date (based on your WordPress General Settings)?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_sunrise_sunset_meta">
-					<input type="checkbox" name="owmweather_sunrise_sunset" id="owmweather_sunrise_sunset_meta" value="yes" <?php checked( $owmw_opt["sunrise_sunset"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_sunrise_sunset" id="owmweather_sunrise_sunset_meta" value="yes" <?php echo checked( $owmw_opt["sunrise_sunset"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Sunrise + sunset?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_moonrise_moonset_meta">
-					<input type="checkbox" name="owmweather_moonrise_moonset" id="owmweather_moonrise_moonset_meta" value="yes" <?php checked( $owmw_opt["moonrise_moonset"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_moonrise_moonset" id="owmweather_moonrise_moonset_meta" value="yes" <?php echo checked( $owmw_opt["moonrise_moonset"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Moonrise + moonset?', 'owm-weather' ) ?>
 				</label>
 			</p>
@@ -738,64 +738,64 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_wind_meta">
-					<input type="checkbox" name="owmweather_wind" id="owmweather_wind_meta" value="yes" <?php checked( $owmw_opt["wind"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_wind" id="owmweather_wind_meta" value="yes" <?php echo checked( $owmw_opt["wind"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Wind?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_wind_unit_meta"><?php esc_html_e( 'Wind unit: ', 'owm-weather' ) ?></label>
 				<select name="owmweather_wind_unit">
-					<option <?php selected( 'mi/h', $owmw_opt["wind_unit"], false ) ?>value="mi/h"><?php esc_html_e( 'mi/h', 'owm-weather' ) ?></option>
-					<option <?php selected( 'm/s', $owmw_opt["wind_unit"], false ) ?>value="m/s"><?php esc_html_e( 'm/s', 'owm-weather' ) ?></option>
-					<option <?php selected( 'km/h', $owmw_opt["wind_unit"], false ) ?>value="km/h"><?php esc_html_e( 'km/h', 'owm-weather' ) ?></option>
-					<option <?php selected( 'kt', $owmw_opt["wind_unit"], false ) ?>value="kt"><?php esc_html_e( 'kt', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'mi/h', $owmw_opt["wind_unit"], false ) ?>value="mi/h"><?php esc_html_e( 'mi/h', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'm/s', $owmw_opt["wind_unit"], false ) ?>value="m/s"><?php esc_html_e( 'm/s', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'km/h', $owmw_opt["wind_unit"], false ) ?>value="km/h"><?php esc_html_e( 'km/h', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'kt', $owmw_opt["wind_unit"], false ) ?>value="kt"><?php esc_html_e( 'kt', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
 				<label for="owmweather_humidity_meta">
-					<input type="checkbox" name="owmweather_humidity" id="owmweather_humidity_meta" value="yes" <?php checked( $owmw_opt["humidity"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_humidity" id="owmweather_humidity_meta" value="yes" <?php echo checked( $owmw_opt["humidity"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Humidity?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_dew_point_meta">
-					<input type="checkbox" name="owmweather_dew_point" id="owmweather_dew_point_meta" value="yes" <?php checked( $owmw_opt["dew_point"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_dew_point" id="owmweather_dew_point_meta" value="yes" <?php echo checked( $owmw_opt["dew_point"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Dew Point?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_pressure_meta">
-					<input type="checkbox" name="owmweather_pressure" id="owmweather_pressure_meta" value="yes" <?php checked( $owmw_opt["pressure"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_pressure" id="owmweather_pressure_meta" value="yes" <?php echo checked( $owmw_opt["pressure"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Pressure?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_cloudiness_meta">
-					<input type="checkbox" name="owmweather_cloudiness" id="owmweather_cloudiness_meta" value="yes" <?php checked( $owmw_opt["cloudiness"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_cloudiness" id="owmweather_cloudiness_meta" value="yes" <?php echo checked( $owmw_opt["cloudiness"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Cloudiness?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_precipitation_meta">
-					<input type="checkbox" name="owmweather_precipitation" id="owmweather_precipitation_meta" value="yes" <?php checked( $owmw_opt["precipitation"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_precipitation" id="owmweather_precipitation_meta" value="yes" <?php echo checked( $owmw_opt["precipitation"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Precipitation?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_visibility_meta">
-					<input type="checkbox" name="owmweather_visibility" id="owmweather_visibility_meta" value="yes" <?php checked( $owmw_opt["visibility"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_visibility" id="owmweather_visibility_meta" value="yes" <?php echo checked( $owmw_opt["visibility"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Visibility?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_uv_index_meta">
-					<input type="checkbox" name="owmweather_uv_index" id="owmweather_uv_index_meta" value="yes" <?php checked( $owmw_opt["uv_index"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_uv_index" id="owmweather_uv_index_meta" value="yes" <?php echo checked( $owmw_opt["uv_index"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'UV Index?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_alerts_meta">
-					<input type="checkbox" name="owmweather_alerts" id="owmweather_alerts_meta" value="yes" <?php checked( $owmw_opt["alerts"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_alerts" id="owmweather_alerts_meta" value="yes" <?php echo checked( $owmw_opt["alerts"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Alerts?', 'owm-weather' ) ?>
 				</label>
 			</p>
@@ -812,7 +812,7 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_hours_time_icons_meta">
-					<input type="checkbox" name="owmweather_hours_time_icons" id="owmweather_hours_time_icons_meta" value="yes" <?php checked( $owmw_opt["hours_time_icons"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_hours_time_icons" id="owmweather_hours_time_icons_meta" value="yes" <?php echo checked( $owmw_opt["hours_time_icons"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Display time icons?', 'owm-weather' ) ?>
 				</label>
 			</p>
@@ -822,32 +822,32 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_forecast_no_meta"><?php esc_html_e( 'How many days?', 'owm-weather' ) ?></label>
 				<select name="owmweather_forecast_no">
-					<option <?php selected( '0', $owmw_opt["days_forecast_no"], false ) ?>value="0"><?php esc_html_e( 'None', 'owm-weather' ) ?></option>
-					<option <?php selected( '1', $owmw_opt["days_forecast_no"], false ) ?>value="1"><?php esc_html_e( 'Today', 'owm-weather' ) ?></option>
-					<option <?php selected( '2', $owmw_opt["days_forecast_no"], false ) ?>value="2"><?php esc_html_e( 'Today + 1 day', 'owm-weather' ) ?></option>
-					<option <?php selected( '3', $owmw_opt["days_forecast_no"], false ) ?>value="3"><?php esc_html_e( 'Today + 2 days', 'owm-weather' ) ?></option>
-					<option <?php selected( '4', $owmw_opt["days_forecast_no"], false ) ?>value="4"><?php esc_html_e( 'Today + 3 days', 'owm-weather' ) ?></option>
-					<option <?php selected( '5', $owmw_opt["days_forecast_no"], false ) ?>value="5"><?php esc_html_e( 'Today + 4 days', 'owm-weather' ) ?></option>
-					<option <?php selected( '6', $owmw_opt["days_forecast_no"], false ) ?>value="6"><?php esc_html_e( 'Today + 5 days', 'owm-weather' ) ?></option>
-					<option <?php selected( '7', $owmw_opt["days_forecast_no"], false ) ?>value="7"><?php esc_html_e( 'Today + 6 days', 'owm-weather' ) ?></option>
-					<option <?php selected( '8', $owmw_opt["days_forecast_no"], false ) ?>value="8"><?php esc_html_e( 'Today + 7 days', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '0', $owmw_opt["days_forecast_no"], false ) ?>value="0"><?php esc_html_e( 'None', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '1', $owmw_opt["days_forecast_no"], false ) ?>value="1"><?php esc_html_e( 'Today', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '2', $owmw_opt["days_forecast_no"], false ) ?>value="2"><?php esc_html_e( 'Today + 1 day', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '3', $owmw_opt["days_forecast_no"], false ) ?>value="3"><?php esc_html_e( 'Today + 2 days', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '4', $owmw_opt["days_forecast_no"], false ) ?>value="4"><?php esc_html_e( 'Today + 3 days', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '5', $owmw_opt["days_forecast_no"], false ) ?>value="5"><?php esc_html_e( 'Today + 4 days', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '6', $owmw_opt["days_forecast_no"], false ) ?>value="6"><?php esc_html_e( 'Today + 5 days', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '7', $owmw_opt["days_forecast_no"], false ) ?>value="7"><?php esc_html_e( 'Today + 6 days', 'owm-weather' ) ?></option>
+					<option <?php echo selected( '8', $owmw_opt["days_forecast_no"], false ) ?>value="8"><?php esc_html_e( 'Today + 7 days', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
 				<label for="owmweather_forecast_precipitations_meta">
-					<input type="checkbox" name="owmweather_forecast_precipitations" id="owmweather_forecast_precipitations_meta" value="yes" <?php checked( $owmw_opt["forecast_precipitations"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_forecast_precipitations" id="owmweather_forecast_precipitations_meta" value="yes" <?php echo checked( $owmw_opt["forecast_precipitations"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Forecast Precipitations?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_display_length_days_names_short_meta">
-					<input type="radio" name="owmweather_display_length_days_names" id="owmweather_display_length_days_names_short_meta" value="short" <?php checked( $owmw_opt["display_length_days_names"], 'short', false ) ?>/>
+					<input type="radio" name="owmweather_display_length_days_names" id="owmweather_display_length_days_names_short_meta" value="short" <?php echo checked( $owmw_opt["display_length_days_names"], 'short', false ) ?>/>
 						<?php esc_html_e( 'Short days names?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_display_length_days_names_normal_meta">
-					<input type="radio" name="owmweather_display_length_days_names" id="owmweather_display_length_days_names_normal_meta" value="normal" <?php checked( $owmw_opt["display_length_days_names"], 'normal', false ) ?>/>
+					<input type="radio" name="owmweather_display_length_days_names" id="owmweather_display_length_days_names_normal_meta" value="normal" <?php echo checked( $owmw_opt["display_length_days_names"], 'normal', false ) ?>/>
 						<?php esc_html_e( 'Normal days names?', 'owm-weather' ) ?>
 				</label>
 			</p>
@@ -856,14 +856,14 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_owm_link_meta">
-					<input type="checkbox" name="owmweather_owm_link" id="owmweather_owm_link_meta" value="yes" <?php checked( $owmw_opt["owm_link"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_owm_link" id="owmweather_owm_link_meta" value="yes" <?php echo checked( $owmw_opt["owm_link"], 'yes', false ) ?>/>
 					<?php esc_html_e( 'Link to OpenWeatherMap?', 'owm-weather' ) ?>
 				</label>
 			</p>
 
 			<p>
 				<label for="owmweather_last_update_meta">
-					<input type="checkbox" name="owmweather_last_update" id="owmweather_last_update_meta" value="yes" <?php checked( $owmw_opt["last_update"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_last_update" id="owmweather_last_update_meta" value="yes" <?php echo checked( $owmw_opt["last_update"], 'yes', false ) ?>/>
 
 					<?php esc_html_e( 'Update date?', 'owm-weather' ) ?>
 				</label>
@@ -876,54 +876,54 @@ function owmw_basic($post){
 			<p>
 				<label for="template_meta"><?php esc_html_e( 'Template', 'owm-weather' ) ?></label>
 				<select name="owmweather_template">
-					<option <?php selected( 'Default', $owmw_opt["template"], false ) ?>value="Default"><?php esc_html_e( 'Default', 'owm-weather' ) ?></option>
-					<option <?php selected( 'card1', $owmw_opt["template"], false ) ?>value="card1"><?php esc_html_e( 'Card 1', 'owm-weather' ) ?></option>
-					<option <?php selected( 'card2', $owmw_opt["template"], false ) ?>value="card2"><?php esc_html_e( 'Card 2', 'owm-weather' ) ?></option>
-					<option <?php selected( 'chart1', $owmw_opt["template"], false ) ?>value="chart1"><?php esc_html_e( 'Chart 1', 'owm-weather' ) ?></option>
-					<option <?php selected( 'chart2', $owmw_opt["template"], false ) ?>value="chart2"><?php esc_html_e( 'Chart 2', 'owm-weather' ) ?></option>
-					<option <?php selected( 'table1', $owmw_opt["template"], false ) ?>value="table1"><?php esc_html_e( 'Table 1', 'owm-weather' ) ?></option>
-					<option <?php selected( 'table2', $owmw_opt["template"], false ) ?>value="table2"><?php esc_html_e( 'Table 2', 'owm-weather' ) ?></option>
-					<option <?php selected( 'slider1', $owmw_opt["template"], false ) ?>value="slider1"><?php esc_html_e( 'Slider 1', 'owm-weather' ) ?></option>
-					<option <?php selected( 'slider2', $owmw_opt["template"], false ) ?>value="slider2"><?php esc_html_e( 'Slider 2', 'owm-weather' ) ?></option>
-					<option <?php selected( 'custom1', $owmw_opt["template"], false ) ?>value="custom1"><?php esc_html_e( 'Custom 1', 'owm-weather' ) ?></option>
-					<option <?php selected( 'custom2', $owmw_opt["template"], false ) ?>value="custom2"><?php esc_html_e( 'Custom 2', 'owm-weather' ) ?></option>
-					<option <?php selected( 'debug', $owmw_opt["template"], false ) ?>value="debug"><?php esc_html_e( 'Debug', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Default', $owmw_opt["template"], false ) ?>value="Default"><?php esc_html_e( 'Default', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'card1', $owmw_opt["template"], false ) ?>value="card1"><?php esc_html_e( 'Card 1', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'card2', $owmw_opt["template"], false ) ?>value="card2"><?php esc_html_e( 'Card 2', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'chart1', $owmw_opt["template"], false ) ?>value="chart1"><?php esc_html_e( 'Chart 1', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'chart2', $owmw_opt["template"], false ) ?>value="chart2"><?php esc_html_e( 'Chart 2', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'table1', $owmw_opt["template"], false ) ?>value="table1"><?php esc_html_e( 'Table 1', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'table2', $owmw_opt["template"], false ) ?>value="table2"><?php esc_html_e( 'Table 2', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'slider1', $owmw_opt["template"], false ) ?>value="slider1"><?php esc_html_e( 'Slider 1', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'slider2', $owmw_opt["template"], false ) ?>value="slider2"><?php esc_html_e( 'Slider 2', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'custom1', $owmw_opt["template"], false ) ?>value="custom1"><?php esc_html_e( 'Custom 1', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'custom2', $owmw_opt["template"], false ) ?>value="custom2"><?php esc_html_e( 'Custom 2', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'debug', $owmw_opt["template"], false ) ?>value="debug"><?php esc_html_e( 'Debug', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
 				<label for="font_meta"><?php esc_html_e( 'Font', 'owm-weather' ) ?></label>
 				<select name="owmweather_font">
-					<option <?php selected( 'Default', $owmw_opt["font"], false ) ?>value="Default"><?php esc_html_e( 'Default', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Arvo', $owmw_opt["font"], false ) ?>value="Arvo"><?php esc_html_e( 'Arvo', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Asap', $owmw_opt["font"], false ) ?>value="Asap"><?php esc_html_e( 'Asap', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Bitter', $owmw_opt["font"], false ) ?>value="Bitter"><?php esc_html_e( 'Bitter', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Droid Serif', $owmw_opt["font"], false ) ?>value="Droid Serif"><?php esc_html_e( 'Droid Serif', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Exo 2', $owmw_opt["font"], false ) ?>value="Exo 2"><?php esc_html_e( 'Exo 2', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Francois One', $owmw_opt["font"], false ) ?>value="Francois One"><?php esc_html_e( 'Francois One', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Inconsolata', $owmw_opt["font"], false ) ?>value="Inconsolata"><?php esc_html_e( 'Inconsolata', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Josefin Sans', $owmw_opt["font"], false ) ?>value="Josefin Sans"><?php esc_html_e( 'Josefin Sans', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Lato', $owmw_opt["font"], false ) ?>value="Lato"><?php esc_html_e( 'Lato', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Merriweather Sans', $owmw_opt["font"], false ) ?>value="Merriweather Sans"><?php esc_html_e( 'Merriweather Sans', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Nunito', $owmw_opt["font"], false ) ?>value="Nunito"><?php esc_html_e( 'Nunito', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Open Sans', $owmw_opt["font"], false ) ?>value="Open Sans"><?php esc_html_e( 'Open Sans', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Oswald', $owmw_opt["font"], false ) ?>value="Oswald"><?php esc_html_e( 'Oswald', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Pacifico', $owmw_opt["font"], false ) ?>value="Pacifico"><?php esc_html_e( 'Pacifico', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Roboto', $owmw_opt["font"], false ) ?>value="Roboto"><?php esc_html_e( 'Roboto', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Signika', $owmw_opt["font"], false ) ?>value="Signika"><?php esc_html_e( 'Signika', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Source Sans Pro', $owmw_opt["font"], false ) ?>value="Source Sans Pro"><?php esc_html_e( 'Source Sans Pro', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Tangerine', $owmw_opt["font"], false ) ?>value="Tangerine"><?php esc_html_e( 'Tangerine', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Ubuntu', $owmw_opt["font"], false ) ?>value="Ubuntu"><?php esc_html_e( 'Ubuntu', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Default', $owmw_opt["font"], false ) ?>value="Default"><?php esc_html_e( 'Default', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Arvo', $owmw_opt["font"], false ) ?>value="Arvo"><?php esc_html_e( 'Arvo', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Asap', $owmw_opt["font"], false ) ?>value="Asap"><?php esc_html_e( 'Asap', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Bitter', $owmw_opt["font"], false ) ?>value="Bitter"><?php esc_html_e( 'Bitter', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Droid Serif', $owmw_opt["font"], false ) ?>value="Droid Serif"><?php esc_html_e( 'Droid Serif', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Exo 2', $owmw_opt["font"], false ) ?>value="Exo 2"><?php esc_html_e( 'Exo 2', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Francois One', $owmw_opt["font"], false ) ?>value="Francois One"><?php esc_html_e( 'Francois One', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Inconsolata', $owmw_opt["font"], false ) ?>value="Inconsolata"><?php esc_html_e( 'Inconsolata', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Josefin Sans', $owmw_opt["font"], false ) ?>value="Josefin Sans"><?php esc_html_e( 'Josefin Sans', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Lato', $owmw_opt["font"], false ) ?>value="Lato"><?php esc_html_e( 'Lato', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Merriweather Sans', $owmw_opt["font"], false ) ?>value="Merriweather Sans"><?php esc_html_e( 'Merriweather Sans', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Nunito', $owmw_opt["font"], false ) ?>value="Nunito"><?php esc_html_e( 'Nunito', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Open Sans', $owmw_opt["font"], false ) ?>value="Open Sans"><?php esc_html_e( 'Open Sans', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Oswald', $owmw_opt["font"], false ) ?>value="Oswald"><?php esc_html_e( 'Oswald', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Pacifico', $owmw_opt["font"], false ) ?>value="Pacifico"><?php esc_html_e( 'Pacifico', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Roboto', $owmw_opt["font"], false ) ?>value="Roboto"><?php esc_html_e( 'Roboto', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Signika', $owmw_opt["font"], false ) ?>value="Signika"><?php esc_html_e( 'Signika', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Source Sans Pro', $owmw_opt["font"], false ) ?>value="Source Sans Pro"><?php esc_html_e( 'Source Sans Pro', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Tangerine', $owmw_opt["font"], false ) ?>value="Tangerine"><?php esc_html_e( 'Tangerine', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Ubuntu', $owmw_opt["font"], false ) ?>value="Ubuntu"><?php esc_html_e( 'Ubuntu', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
 				<label for="iconpack_meta"><?php esc_html_e( 'Icon Pack', 'owm-weather' ) ?></label>
 				<select name="owmweather_iconpack">
-					<option <?php selected( 'Climacons', $owmw_opt["iconpack"], false ) ?>value="Climacons"><?php esc_html_e( 'Climacons', 'owm-weather' ) ?></option>
-					<option <?php selected( 'OpenWeatherMap', $owmw_opt["iconpack"], false ) ?>value="OpenWeatherMap"><?php esc_html_e( 'Open Weather Map', 'owm-weather' ) ?></option>
-					<option <?php selected( 'WeatherIcons', $owmw_opt["iconpack"], false ) ?>value="WeatherIcons"><?php esc_html_e( 'Weather Icons', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Forecast', $owmw_opt["iconpack"], false ) ?>value="Forecast"><?php esc_html_e( 'Forecast', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Dripicons', $owmw_opt["iconpack"], false ) ?>value="Dripicons"><?php esc_html_e( 'Dripicons', 'owm-weather' ) ?></option>
-					<option <?php selected( 'Pixeden', $owmw_opt["iconpack"], false ) ?>value="Pixeden"><?php esc_html_e( 'Pixeden', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Climacons', $owmw_opt["iconpack"], false ) ?>value="Climacons"><?php esc_html_e( 'Climacons', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'OpenWeatherMap', $owmw_opt["iconpack"], false ) ?>value="OpenWeatherMap"><?php esc_html_e( 'Open Weather Map', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'WeatherIcons', $owmw_opt["iconpack"], false ) ?>value="WeatherIcons"><?php esc_html_e( 'Weather Icons', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Forecast', $owmw_opt["iconpack"], false ) ?>value="Forecast"><?php esc_html_e( 'Forecast', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Dripicons', $owmw_opt["iconpack"], false ) ?>value="Dripicons"><?php esc_html_e( 'Dripicons', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'Pixeden', $owmw_opt["iconpack"], false ) ?>value="Pixeden"><?php esc_html_e( 'Pixeden', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p class="misc subsection-title">
@@ -957,14 +957,14 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_border_style"><?php esc_html_e( 'Border style', 'owm-weather' ) ?></label>
 				<select name="owmweather_border_style">
-					<option <?php selected( 'solid', $owmw_opt["border_style"], false ) ?>value="solid"><?php esc_html_e( 'Solid', 'owm-weather' ) ?></option>
-					<option <?php selected( 'dotted', $owmw_opt["border_style"], false ) ?>value="dotted"><?php esc_html_e( 'Dotted', 'owm-weather' ) ?></option>
-					<option <?php selected( 'dashed', $owmw_opt["border_style"], false ) ?>value="dashed"><?php esc_html_e( 'Dashed', 'owm-weather' ) ?></option>
-					<option <?php selected( 'double', $owmw_opt["border_style"], false ) ?>value="double"><?php esc_html_e( 'Double', 'owm-weather' ) ?></option>
-					<option <?php selected( 'groove', $owmw_opt["border_style"], false ) ?>value="groove"><?php esc_html_e( 'Groove', 'owm-weather' ) ?></option>
-					<option <?php selected( 'inset', $owmw_opt["border_style"], false ) ?>value="inset"><?php esc_html_e( 'Inset', 'owm-weather' ) ?></option>
-					<option <?php selected( 'outset', $owmw_opt["border_style"], false ) ?>value="outset"><?php esc_html_e( 'Outset', 'owm-weather' ) ?></option>
-					<option <?php selected( 'ridge', $owmw_opt["border_style"], false ) ?>value="ridge"><?php esc_html_e( 'Ridge', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'solid', $owmw_opt["border_style"], false ) ?>value="solid"><?php esc_html_e( 'Solid', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'dotted', $owmw_opt["border_style"], false ) ?>value="dotted"><?php esc_html_e( 'Dotted', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'dashed', $owmw_opt["border_style"], false ) ?>value="dashed"><?php esc_html_e( 'Dashed', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'double', $owmw_opt["border_style"], false ) ?>value="double"><?php esc_html_e( 'Double', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'groove', $owmw_opt["border_style"], false ) ?>value="groove"><?php esc_html_e( 'Groove', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'inset', $owmw_opt["border_style"], false ) ?>value="inset"><?php esc_html_e( 'Inset', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'outset', $owmw_opt["border_style"], false ) ?>value="outset"><?php esc_html_e( 'Outset', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'ridge', $owmw_opt["border_style"], false ) ?>value="ridge"><?php esc_html_e( 'Ridge', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
@@ -976,22 +976,22 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_disable_spinner_meta">
-					<input type="checkbox" name="owmweather_disable_spinner" id="owmweather_disable_spinner_meta" value="yes" <?php checked( $owmw_opt["disable_spinner"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_disable_spinner" id="owmweather_disable_spinner_meta" value="yes" <?php echo checked( $owmw_opt["disable_spinner"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Disable loading spinner?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_disable_anims_meta">
-					<input type="checkbox" name="owmweather_disable_anims" id="owmweather_disable_anims_meta" value="yes" <?php checked( $owmw_opt["disable_anims"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_disable_anims" id="owmweather_disable_anims_meta" value="yes" <?php echo checked( $owmw_opt["disable_anims"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Disable animations for main icon?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="size_meta"><?php esc_html_e( 'Weather size?', 'owm-weather' ) ?></label>
 				<select name="owmweather_size">
-					<option <?php selected( 'small', $owmw_opt["size"], false ) ?>value="small"><?php esc_html_e( 'Small', 'owm-weather' ) ?></option>
-					<option <?php selected( 'medium', $owmw_opt["size"], false ) ?>value="medium"><?php esc_html_e( 'Medium', 'owm-weather' ) ?></option>
-					<option <?php selected( 'large', $owmw_opt["size"], false ) ?>value="large"><?php esc_html_e( 'Large', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'small', $owmw_opt["size"], false ) ?>value="small"><?php esc_html_e( 'Small', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'medium', $owmw_opt["size"], false ) ?>value="medium"><?php esc_html_e( 'Medium', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'large', $owmw_opt["size"], false ) ?>value="large"><?php esc_html_e( 'Large', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
@@ -1021,14 +1021,14 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_table_border_style"><?php esc_html_e( 'Border style', 'owm-weather' ) ?></label>
 				<select name="owmweather_table_border_style">
-					<option <?php selected( 'solid', $owmw_opt["table_border_style"], false ) ?>value="solid"><?php esc_html_e( 'Solid', 'owm-weather' ) ?></option>
-					<option <?php selected( 'dotted', $owmw_opt["table_border_style"], false ) ?>value="dotted"><?php esc_html_e( 'Dotted', 'owm-weather' ) ?></option>
-					<option <?php selected( 'dashed', $owmw_opt["table_border_style"], false ) ?>value="dashed"><?php esc_html_e( 'Dashed', 'owm-weather' ) ?></option>
-					<option <?php selected( 'double', $owmw_opt["table_border_style"], false ) ?>value="double"><?php esc_html_e( 'Double', 'owm-weather' ) ?></option>
-					<option <?php selected( 'groove', $owmw_opt["table_border_style"], false ) ?>value="groove"><?php esc_html_e( 'Groove', 'owm-weather' ) ?></option>
-					<option <?php selected( 'inset', $owmw_opt["table_border_style"], false ) ?>value="inset"><?php esc_html_e( 'Inset', 'owm-weather' ) ?></option>
-					<option <?php selected( 'outset', $owmw_opt["table_border_style"], false ) ?>value="outset"><?php esc_html_e( 'Outset', 'owm-weather' ) ?></option>
-					<option <?php selected( 'ridge', $owmw_opt["table_border_style"], false ) ?>value="ridge"><?php esc_html_e( 'Ridge', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'solid', $owmw_opt["table_border_style"], false ) ?>value="solid"><?php esc_html_e( 'Solid', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'dotted', $owmw_opt["table_border_style"], false ) ?>value="dotted"><?php esc_html_e( 'Dotted', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'dashed', $owmw_opt["table_border_style"], false ) ?>value="dashed"><?php esc_html_e( 'Dashed', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'double', $owmw_opt["table_border_style"], false ) ?>value="double"><?php esc_html_e( 'Double', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'groove', $owmw_opt["table_border_style"], false ) ?>value="groove"><?php esc_html_e( 'Groove', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'inset', $owmw_opt["table_border_style"], false ) ?>value="inset"><?php esc_html_e( 'Inset', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'outset', $owmw_opt["table_border_style"], false ) ?>value="outset"><?php esc_html_e( 'Outset', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'ridge', $owmw_opt["table_border_style"], false ) ?>value="ridge"><?php esc_html_e( 'Ridge', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
@@ -1057,14 +1057,14 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_chart_border_style"><?php esc_html_e( 'Border style', 'owm-weather' ) ?></label>
 				<select name="owmweather_chart_border_style">
-					<option <?php selected( 'solid', $owmw_opt["chart_border_style"], false ) ?>value="solid"><?php esc_html_e( 'Solid', 'owm-weather' ) ?></option>
-					<option <?php selected( 'dotted', $owmw_opt["chart_border_style"], false ) ?>value="dotted"><?php esc_html_e( 'Dotted', 'owm-weather' ) ?></option>
-					<option <?php selected( 'dashed', $owmw_opt["chart_border_style"], false ) ?>value="dashed"><?php esc_html_e( 'Dashed', 'owm-weather' ) ?></option>
-					<option <?php selected( 'double', $owmw_opt["chart_border_style"], false ) ?>value="double"><?php esc_html_e( 'Double', 'owm-weather' ) ?></option>
-					<option <?php selected( 'groove', $owmw_opt["chart_border_style"], false ) ?>value="groove"><?php esc_html_e( 'Groove', 'owm-weather' ) ?></option>
-					<option <?php selected( 'inset', $owmw_opt["chart_border_style"], false ) ?>value="inset"><?php esc_html_e( 'Inset', 'owm-weather' ) ?></option>
-					<option <?php selected( 'outset', $owmw_opt["chart_border_style"], false ) ?>value="outset"><?php esc_html_e( 'Outset', 'owm-weather' ) ?></option>
-					<option <?php selected( 'ridge', $owmw_opt["chart_border_style"], false ) ?>value="ridge"><?php esc_html_e( 'Ridge', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'solid', $owmw_opt["chart_border_style"], false ) ?>value="solid"><?php esc_html_e( 'Solid', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'dotted', $owmw_opt["chart_border_style"], false ) ?>value="dotted"><?php esc_html_e( 'Dotted', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'dashed', $owmw_opt["chart_border_style"], false ) ?>value="dashed"><?php esc_html_e( 'Dashed', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'double', $owmw_opt["chart_border_style"], false ) ?>value="double"><?php esc_html_e( 'Double', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'groove', $owmw_opt["chart_border_style"], false ) ?>value="groove"><?php esc_html_e( 'Groove', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'inset', $owmw_opt["chart_border_style"], false ) ?>value="inset"><?php esc_html_e( 'Inset', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'outset', $owmw_opt["chart_border_style"], false ) ?>value="outset"><?php esc_html_e( 'Outset', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'ridge', $owmw_opt["chart_border_style"], false ) ?>value="ridge"><?php esc_html_e( 'Ridge', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
@@ -1090,7 +1090,7 @@ function owmw_basic($post){
 		    </p>
 			<p>
 				<label for="owmweather_map_meta">
-					<input type="checkbox" name="owmweather_map" id="owmweather_map_meta" value="yes" <?php checked( $owmw_opt["map"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_map" id="owmweather_map_meta" value="yes" <?php echo checked( $owmw_opt["map"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Display map?', 'owm-weather' ) ?>
 				</label>
 			</p>
@@ -1101,45 +1101,45 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_map_opacity_meta"><?php esc_html_e( 'Layers opacity', 'owm-weather' ) ?></label>
 				<select name="owmweather_map_opacity">
-					<option <?php selected( '0', $owmw_opt["map_opacity"], false ) ?>value="0">0%</option>
-					<option <?php selected( '0.1', $owmw_opt["map_opacity"], false ) ?>value="0.1">10%</option>
-					<option <?php selected( '0.2', $owmw_opt["map_opacity"], false ) ?>value="0.2">20%</option>
-					<option <?php selected( '0.3', $owmw_opt["map_opacity"], false ) ?>value="0.3">30%</option>
-					<option <?php selected( '0.4', $owmw_opt["map_opacity"], false ) ?>value="0.4">40%</option>
-					<option <?php selected( '0.5', $owmw_opt["map_opacity"], false ) ?>value="0.5">50%</option>
-					<option <?php selected( '0.6', $owmw_opt["map_opacity"], false ) ?>value="0.6">60%</option>
-					<option <?php selected( '0.7', $owmw_opt["map_opacity"], false ) ?>value="0.7">70%</option>
-					<option <?php selected( '0.8', $owmw_opt["map_opacity"], false ) ?>value="0.8">80%</option>
-					<option <?php selected( '0.9', $owmw_opt["map_opacity"], false ) ?>value="0.9">90%</option>
-					<option <?php selected( '1', $owmw_opt["map_opacity"], false ) ?>value="1">100%</option>
+					<option <?php echo selected( '0', $owmw_opt["map_opacity"], false ) ?>value="0">0%</option>
+					<option <?php echo selected( '0.1', $owmw_opt["map_opacity"], false ) ?>value="0.1">10%</option>
+					<option <?php echo selected( '0.2', $owmw_opt["map_opacity"], false ) ?>value="0.2">20%</option>
+					<option <?php echo selected( '0.3', $owmw_opt["map_opacity"], false ) ?>value="0.3">30%</option>
+					<option <?php echo selected( '0.4', $owmw_opt["map_opacity"], false ) ?>value="0.4">40%</option>
+					<option <?php echo selected( '0.5', $owmw_opt["map_opacity"], false ) ?>value="0.5">50%</option>
+					<option <?php echo selected( '0.6', $owmw_opt["map_opacity"], false ) ?>value="0.6">60%</option>
+					<option <?php echo selected( '0.7', $owmw_opt["map_opacity"], false ) ?>value="0.7">70%</option>
+					<option <?php echo selected( '0.8', $owmw_opt["map_opacity"], false ) ?>value="0.8">80%</option>
+					<option <?php echo selected( '0.9', $owmw_opt["map_opacity"], false ) ?>value="0.9">90%</option>
+					<option <?php echo selected( '1', $owmw_opt["map_opacity"], false ) ?>value="1">100%</option>
 				</select>
 			</p>
 			<p>
 				<label for="owmweather_map_zoom_meta"><?php esc_html_e( 'Zoom', 'owm-weather' ) ?></label>
 				<select name="owmweather_map_zoom">
-					<option <?php selected( '1', $owmw_opt["map_zoom"], false ) ?>value="1">1</option>
-					<option <?php selected( '2', $owmw_opt["map_zoom"], false ) ?>value="2">2</option>
-					<option <?php selected( '3', $owmw_opt["map_zoom"], false ) ?>value="3">3</option>
-					<option <?php selected( '4', $owmw_opt["map_zoom"], false ) ?>value="4">4</option>
-					<option <?php selected( '5', $owmw_opt["map_zoom"], false ) ?>value="5">5</option>
-					<option <?php selected( '6', $owmw_opt["map_zoom"], false ) ?>value="6">6</option>
-					<option <?php selected( '7', $owmw_opt["map_zoom"], false ) ?>value="7">7</option>
-					<option <?php selected( '8', $owmw_opt["map_zoom"], false ) ?>value="8">8</option>
-					<option <?php selected( '9', $owmw_opt["map_zoom"], false ) ?>value="9">9</option>
-					<option <?php selected( '10', $owmw_opt["map_zoom"], false ) ?>value="10">10</option>
-					<option <?php selected( '11', $owmw_opt["map_zoom"], false ) ?>value="11">11</option>
-					<option <?php selected( '12', $owmw_opt["map_zoom"], false ) ?>value="12">12</option>
-					<option <?php selected( '13', $owmw_opt["map_zoom"], false ) ?>value="13">13</option>
-					<option <?php selected( '14', $owmw_opt["map_zoom"], false ) ?>value="14">14</option>
-					<option <?php selected( '15', $owmw_opt["map_zoom"], false ) ?>value="15">15</option>
-					<option <?php selected( '16', $owmw_opt["map_zoom"], false ) ?>value="16">16</option>
-					<option <?php selected( '17', $owmw_opt["map_zoom"], false ) ?>value="17">17</option>
-					<option <?php selected( '18', $owmw_opt["map_zoom"], false ) ?>value="18">18</option>
+					<option <?php echo selected( '1', $owmw_opt["map_zoom"], false ) ?>value="1">1</option>
+					<option <?php echo selected( '2', $owmw_opt["map_zoom"], false ) ?>value="2">2</option>
+					<option <?php echo selected( '3', $owmw_opt["map_zoom"], false ) ?>value="3">3</option>
+					<option <?php echo selected( '4', $owmw_opt["map_zoom"], false ) ?>value="4">4</option>
+					<option <?php echo selected( '5', $owmw_opt["map_zoom"], false ) ?>value="5">5</option>
+					<option <?php echo selected( '6', $owmw_opt["map_zoom"], false ) ?>value="6">6</option>
+					<option <?php echo selected( '7', $owmw_opt["map_zoom"], false ) ?>value="7">7</option>
+					<option <?php echo selected( '8', $owmw_opt["map_zoom"], false ) ?>value="8">8</option>
+					<option <?php echo selected( '9', $owmw_opt["map_zoom"], false ) ?>value="9">9</option>
+					<option <?php echo selected( '10', $owmw_opt["map_zoom"], false ) ?>value="10">10</option>
+					<option <?php echo selected( '11', $owmw_opt["map_zoom"], false ) ?>value="11">11</option>
+					<option <?php echo selected( '12', $owmw_opt["map_zoom"], false ) ?>value="12">12</option>
+					<option <?php echo selected( '13', $owmw_opt["map_zoom"], false ) ?>value="13">13</option>
+					<option <?php echo selected( '14', $owmw_opt["map_zoom"], false ) ?>value="14">14</option>
+					<option <?php echo selected( '15', $owmw_opt["map_zoom"], false ) ?>value="15">15</option>
+					<option <?php echo selected( '16', $owmw_opt["map_zoom"], false ) ?>value="16">16</option>
+					<option <?php echo selected( '17', $owmw_opt["map_zoom"], false ) ?>value="17">17</option>
+					<option <?php echo selected( '18', $owmw_opt["map_zoom"], false ) ?>value="18">18</option>
 				</select>
 			</p>
 			<p>
 				<label for="owmweather_map_disable_zoom_wheel_meta">
-					<input type="checkbox" name="owmweather_map_disable_zoom_wheel" id="owmweather_map_disable_zoom_wheel_meta" value="yes" <?php checked( $owmw_opt["map_disable_zoom_wheel"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_map_disable_zoom_wheel" id="owmweather_map_disable_zoom_wheel_meta" value="yes" <?php echo checked( $owmw_opt["map_disable_zoom_wheel"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Disable zoom wheel on map?', 'owm-weather' ) ?>
 				</label>
 			</p>
@@ -1148,43 +1148,43 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_map_stations_meta">
-					<input type="checkbox" name="owmweather_map_stations" id="owmweather_map_stations_meta" value="yes" <?php checked( $owmw_opt["map_stations"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_map_stations" id="owmweather_map_stations_meta" value="yes" <?php echo checked( $owmw_opt["map_stations"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Display stations?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_map_clouds_meta">
-					<input type="checkbox" name="owmweather_map_clouds" id="owmweather_map_clouds_meta" value="yes" <?php checked( $owmw_opt["map_clouds"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_map_clouds" id="owmweather_map_clouds_meta" value="yes" <?php echo checked( $owmw_opt["map_clouds"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Display clouds?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_map_precipitation_meta">
-					<input type="checkbox" name="owmweather_map_precipitation" id="owmweather_map_precipitation_meta" value="yes" <?php checked( $owmw_opt["map_precipitation"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_map_precipitation" id="owmweather_map_precipitation_meta" value="yes" <?php echo checked( $owmw_opt["map_precipitation"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Display precipitation?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_map_snow_meta">
-					<input type="checkbox" name="owmweather_map_snow" id="owmweather_map_snow_meta" value="yes" <?php checked( $owmw_opt["map_snow"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_map_snow" id="owmweather_map_snow_meta" value="yes" <?php echo checked( $owmw_opt["map_snow"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Display snow?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_map_wind_meta">
-					<input type="checkbox" name="owmweather_map_wind" id="owmweather_map_wind_meta" value="yes" <?php checked( $owmw_opt["map_wind"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_map_wind" id="owmweather_map_wind_meta" value="yes" <?php echo checked( $owmw_opt["map_wind"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Display wind?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_map_temperature_meta">
-					<input type="checkbox" name="owmweather_map_temperature" id="owmweather_map_temperature_meta" value="yes" <?php checked( $owmw_opt["map_temperature"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_map_temperature" id="owmweather_map_temperature_meta" value="yes" <?php echo checked( $owmw_opt["map_temperature"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Display temperature?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_map_pressure_meta">
-					<input type="checkbox" name="owmweather_map_pressure" id="owmweather_map_pressure_meta" value="yes" <?php checked( $owmw_opt["map_pressure"], 'yes', false ) ?>/>
+					<input type="checkbox" name="owmweather_map_pressure" id="owmweather_map_pressure_meta" value="yes" <?php echo checked( $owmw_opt["map_pressure"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Display pressure?', 'owm-weather' ) ?>
 				</label>
 			</p>
@@ -1892,7 +1892,7 @@ function owmw_get_my_weather($attr) {
 
         //JSON : Onecall forecast weather (relies on lat and lon from current weather call)
         $url = "https://api.openweathermap.org/data/2.5/onecall?lon=".$owmw_data["longitude"]."&lat=".$owmw_data["latitude"]."&mode=json&exclude=minutely&lang=".$owmw_opt["owm_language"]."&units=".$owmw_opt["temperature_unit"]."&APPID=".$owmw_opt["api_key"];
-        if($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0 || $owmw_opt["alerts"] == 'yes' || $owmw_opt["moonrise_moonset"] == "yes" || $owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes") {
+        if($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0 || $owmw_opt["alerts"] == 'yes' || $owmw_opt["moonrise_moonset"] == "yes" || $owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes") {
     		if ($owmw_opt["disable_cache"] == 'yes') {
     			$response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 10));
                 if (!is_wp_error($response)) {
@@ -1932,7 +1932,7 @@ function owmw_get_my_weather($attr) {
 
         owmw_sanitize_api_response($owmweather, array("description"));
 
-        if ($owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes") {
+        if ($owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes") {
             $owmw_data["uv_index"] = $owmweather->current->uvi ?? null;
             $owmw_data["dew_point"] = $owmweather->current->dew_point ? ceil($owmweather->current->dew_point) : null;
         }
@@ -2519,17 +2519,23 @@ function owmw_get_my_weather($attr) {
         $owmw_html["chart"]["hourly"]["options"] = '';
         $owmw_html["chart"]["hourly"]["chart"] = '';
         $owmw_html["chart"]["hourly"]["cmd"] = '';
+        $owmw_html["chart"]["hourly"]["container"] = '';
+        $owmw_html["chart"]["hourly"]["script"] = '';
 
 	    if ($owmw_opt["hours_forecast_no"] > 0) {
             $owmw_html["chart"]["hourly"]["labels"] .= 'const hourly_labels_'.esc_attr($chart_id).' = [';
             $owmw_html["chart"]["hourly"]["dataset_temperature"] .= 'const hourly_temperature_dataset_'.esc_attr($chart_id).' = [';
             $owmw_html["chart"]["hourly"]["dataset_feels_like"] .= 'const hourly_feels_like_dataset_'.esc_attr($chart_id).' = [';
             $owmw_html["chart"]["hourly"]["dataset_dew_point"] .= 'const hourly_dew_point_dataset_'.esc_attr($chart_id).' = [';
+			$cnt = 0;
 			foreach ($owmw_data["hourly"] as $i => $value) {
-                $owmw_html["chart"]["hourly"]["labels"] .= '"' . esc_attr($value["time"] != 'Now' ? date('D', $value["timestamp"]) . ' ' : '') . $value["time"] . '",';
-                $owmw_html["chart"]["hourly"]["dataset_temperature"] .= '"' . esc_html($value["temperature"]) . '",';
-                $owmw_html["chart"]["hourly"]["dataset_feels_like"] .= '"' . esc_html($value["feels_like"]) . '",';
-                $owmw_html["chart"]["hourly"]["dataset_dew_point"] .= '"' . esc_html($value["dew_point"]) . '",';
+				if ($cnt < $owmw_opt["hours_forecast_no"]) {
+					$owmw_html["chart"]["hourly"]["labels"] .= '"' . esc_attr($value["time"] != 'Now' ? date('D', $value["timestamp"]) . ' ' : '') . $value["time"] . '",';
+					$owmw_html["chart"]["hourly"]["dataset_temperature"] .= '"' . esc_html($value["temperature"]) . '",';
+					$owmw_html["chart"]["hourly"]["dataset_feels_like"] .= '"' . esc_html($value["feels_like"]) . '",';
+					$owmw_html["chart"]["hourly"]["dataset_dew_point"] .= '"' . esc_html($value["dew_point"]) . '",';
+					++$cnt;
+				}
 			}
             $owmw_html["chart"]["hourly"]["labels"] .= '];';
             $owmw_html["chart"]["hourly"]["dataset_temperature"] .= '];';
@@ -2605,15 +2611,21 @@ $owmw_html["chart"]["hourly"]["script"] =
         $owmw_html["chart"]["daily"]["options"] = '';
         $owmw_html["chart"]["daily"]["chart"] = '';
         $owmw_html["chart"]["daily"]["cmd"] = '';
+        $owmw_html["chart"]["daily"]["container"] = '';
+        $owmw_html["chart"]["daily"]["script"] = '';
 
-	    if ($owmw_opt["hours_forecast_no"] > 0) {
+	    if ($owmw_opt["days_forecast_no"] > 0) {
             $owmw_html["chart"]["daily"]["labels"] .= 'const daily_labels_'.esc_attr($chart_id).' = [';
             $owmw_html["chart"]["daily"]["dataset_temperature"] .= 'const daily_temperature_dataset_'.esc_attr($chart_id).' = [';
             $owmw_html["chart"]["daily"]["dataset_feels_like"] .= 'const daily_feels_like_dataset_'.esc_attr($chart_id).' = [';
+			$cnt = 0;
 			foreach ($owmw_data["daily"] as $i => $value) {
-                $owmw_html["chart"]["daily"]["labels"] .= '"","' . esc_attr($value["day"]) . '","","",';
-                $owmw_html["chart"]["daily"]["dataset_temperature"] .= '"' . esc_attr($value["temperature_morning"]) . '","' . esc_attr($value["temperature_day"]) . '","' . esc_attr($value["temperature_evening"]) . '","' . esc_attr($value["temperature_night"]) . '",';
-                $owmw_html["chart"]["daily"]["dataset_feels_like"] .= '"' . esc_attr($value["feels_like_morning"]) . '","' . esc_attr($value["feels_like_day"]) . '","' . esc_attr($value["feels_like_evening"]) . '","' . esc_attr($value["feels_like_night"]) . '",';
+				if ($cnt < $owmw_opt["days_forecast_no"]) {
+					$owmw_html["chart"]["daily"]["labels"] .= '"","' . esc_attr($value["day"]) . '","","",';
+					$owmw_html["chart"]["daily"]["dataset_temperature"] .= '"' . esc_attr($value["temperature_morning"]) . '","' . esc_attr($value["temperature_day"]) . '","' . esc_attr($value["temperature_evening"]) . '","' . esc_attr($value["temperature_night"]) . '",';
+					$owmw_html["chart"]["daily"]["dataset_feels_like"] .= '"' . esc_attr($value["feels_like_morning"]) . '","' . esc_attr($value["feels_like_day"]) . '","' . esc_attr($value["feels_like_evening"]) . '","' . esc_attr($value["feels_like_night"]) . '",';
+					++$cnt;
+				}
 			}
             $owmw_html["chart"]["daily"]["labels"] .= '];';
             $owmw_html["chart"]["daily"]["dataset_temperature"] .= '];';
@@ -2695,23 +2707,27 @@ $owmw_html["chart"]["daily"]["script"] =
             $owmw_html["table"]["hourly"] .= '<th>'.esc_html__('UV Index', 'owm-weather').'</th>';
             $owmw_html["table"]["hourly"] .= '</tr></thead>';
             $owmw_html["table"]["hourly"] .= '<tbody>';
+			$cnt = 0;
 			foreach ($owmw_data["hourly"] as $i => $value) {
-                $owmw_html["table"]["hourly"] .= '<tr>';
-                $owmw_html["table"]["hourly"] .= '<td>' . date('D', $value["timestamp"]) . ($owmw_opt["hours_time_icons"] == 'yes' ? owmw_hour_icon($value["time"], $owmw_opt["table_text_color"]) : '<br>' . esc_html($value["time"])) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td class="border-right-0">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], $value["day_night"], $value["description"]) . '</td><td class="border-left-0 small">' . esc_html($value["description"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td class="owmw-temperature">' . esc_html($value["temperature"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td class="owmw-temperature">' . esc_html($value["feels_like"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["rain_chance"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["precipitation"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["cloudiness"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td class="owmw-temperature">' . esc_html($value["dew_point"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["humidity"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["wind_speed"] .' '. $value["wind_direction"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["wind_gust"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["pressure"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["visibility"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["uv_index"]) . '</td>';
-                $owmw_html["table"]["hourly"] .= '</tr>';
+				if ($cnt < $owmw_opt["hours_forecast_no"]) {
+					$owmw_html["table"]["hourly"] .= '<tr>';
+					$owmw_html["table"]["hourly"] .= '<td>' . date('D', $value["timestamp"]) . ($owmw_opt["hours_time_icons"] == 'yes' ? owmw_hour_icon($value["time"], $owmw_opt["table_text_color"]) : '<br>' . esc_html($value["time"])) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td class="border-right-0">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], $value["day_night"], $value["description"]) . '</td><td class="border-left-0 small">' . esc_html($value["description"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td class="owmw-temperature">' . esc_html($value["temperature"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td class="owmw-temperature">' . esc_html($value["feels_like"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["rain_chance"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["precipitation"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["cloudiness"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td class="owmw-temperature">' . esc_html($value["dew_point"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["humidity"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["wind_speed"] .' '. $value["wind_direction"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["wind_gust"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["pressure"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["visibility"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td>' . esc_html($value["uv_index"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '</tr>';
+					++$cnt;
+				}
 			}
             $owmw_html["table"]["hourly"] .= '</tbody>';
             $owmw_html["table"]["hourly"] .= '</table>';
@@ -2739,22 +2755,26 @@ $owmw_html["chart"]["daily"]["script"] =
             $owmw_html["table"]["daily"] .= '<th>'.esc_html__('UV Index', 'owm-weather').'</th>';
             $owmw_html["table"]["daily"] .= '</tr></thead>';
             $owmw_html["table"]["daily"] .= '<tbody>';
+			$cnt = 0;
 			foreach ($owmw_data["daily"] as $i => $value) {
-                $owmw_html["table"]["daily"] .= '<tr>';
-                $owmw_html["table"]["daily"] .= '<td>' . esc_html($value["day"]) . '</td>';
-                $owmw_html["table"]["daily"] .= '<td class="border-right-0">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], "day", $value["description"]) . '</td><td class="border-left-0 small">' . esc_html($value["description"]) . '</td>';
-                $owmw_html["table"]["daily"] .= '<td class="owmw-temperature">' . esc_html($value["temperature_minimum"]) . '</td>';
-                $owmw_html["table"]["daily"] .= '<td class="owmw-temperature">' . esc_html($value["temperature_maximum"]) . '</td>';
-                $owmw_html["table"]["daily"] .= '<td>' . esc_html($value["rain_chance"]) . '</td>';
-                $owmw_html["table"]["daily"] .= '<td>' . esc_html($value["precipitation"]) . '</td>';
-                $owmw_html["table"]["daily"] .= '<td>' . esc_html($value["cloudiness"]) . '</td>';
-                $owmw_html["table"]["daily"] .= '<td class="owmw-temperature">' . esc_html($value["dew_point"]) . '</td>';
-                $owmw_html["table"]["daily"] .= '<td>' . esc_html($value["humidity"]) . '</td>';
-                $owmw_html["table"]["daily"] .= '<td>' . esc_html($value["wind_speed"]) .' '. $value["wind_direction"] . '</td>';
-                $owmw_html["table"]["daily"] .= '<td>' . esc_html($value["wind_gust"]) . '</td>';
-                $owmw_html["table"]["daily"] .= '<td>' . esc_html($value["pressure"]) . '</td>';
-                $owmw_html["table"]["daily"] .= '<td>' . esc_html($value["uv_index"]) . '</td>';
-                $owmw_html["table"]["daily"] .= '</tr>';
+				if ($cnt < $owmw_opt["days_forecast_no"]) {
+					$owmw_html["table"]["daily"] .= '<tr>';
+					$owmw_html["table"]["daily"] .= '<td>' . esc_html($value["day"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '<td class="border-right-0">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], "day", $value["description"]) . '</td><td class="border-left-0 small">' . esc_html($value["description"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '<td class="owmw-temperature">' . esc_html($value["temperature_minimum"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '<td class="owmw-temperature">' . esc_html($value["temperature_maximum"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '<td>' . esc_html($value["rain_chance"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '<td>' . esc_html($value["precipitation"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '<td>' . esc_html($value["cloudiness"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '<td class="owmw-temperature">' . esc_html($value["dew_point"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '<td>' . esc_html($value["humidity"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '<td>' . esc_html($value["wind_speed"]) .' '. $value["wind_direction"] . '</td>';
+					$owmw_html["table"]["daily"] .= '<td>' . esc_html($value["wind_gust"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '<td>' . esc_html($value["pressure"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '<td>' . esc_html($value["uv_index"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '</tr>';
+					++$cnt;
+				}
 			}
             $owmw_html["table"]["daily"] .= '</tbody>';
             $owmw_html["table"]["daily"] .= '</table>';

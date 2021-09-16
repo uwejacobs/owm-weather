@@ -1,6 +1,6 @@
 <?php
 function owmw_weatherIcon($iconpack, $id, $day_night, $description) {
-    if ($iconpack == 'owmw_weatherIcons') {
+    if ($iconpack == 'WeatherIcons') {
         return '<div class="owmw-symbol"><i class="wi wi-owm-' . esc_attr($day_night) . '-' . esc_attr($id) . '" title="' . esc_attr($description) . '"></i></div>';
 	} else if ($iconpack == 'Forecast') {
         return owmw_weatherIconvault($id, $day_night, $description);
@@ -587,10 +587,10 @@ function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack) {
 	              	#'.esc_attr($id).' .owmw-table .owmw-temperature:after {';
 
 	        if ($unit == 'metric') {
-	            if ($iconpack == 'owmw_weatherIcons') {
+	            if ($iconpack == 'WeatherIcons') {
         	    	$str .=
 		                'content:"\f03c";
-		                font-family: "owmw_weatherIcons";
+		                font-family: "WeatherIcons";
                         margin-left: 2px;';
 	            } else if ($iconpack == 'Forecast') {
         	    	$str .=
@@ -614,10 +614,10 @@ function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack) {
                         margin-left: 2px;';
 		        }
             } else {
-	            if ($iconpack == 'owmw_weatherIcons') {
+	            if ($iconpack == 'WeatherIcons') {
         	    	$str .=
 		                'content:"\f045";
-		                font-family: "owmw_weatherIcons";
+		                font-family: "WeatherIcons";
                         margin-left: 2px;';
 	            } else if ($iconpack == 'Forecast') {
         	    	$str .=
