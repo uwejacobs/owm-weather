@@ -499,7 +499,7 @@ function owmw_basic($post){
                   <div id="fragment-2">
       				<p>
       					<label for="owmweather_latitude_meta"><?php esc_html_e( 'Latitude?', 'owm-weather' ) ?><span class="mandatory">*</span></label>
-      					<input id="owmweather_latitude_meta" type="number" min="90" max="90" step="0.0000001" name="owmweather_latitude" value="<?php esc_attr_e($owmw_opt["latitude"]) ?>" />
+      					<input id="owmweather_latitude_meta" type="number" min="-90" max="90" step="0.0000001" name="owmweather_latitude" value="<?php esc_attr_e($owmw_opt["latitude"]) ?>" />
       				</p>
       				<p>
       					<label for="owmweather_longitude_meta"><?php esc_html_e( 'Longitude?', 'owm-weather' ) ?><span class="mandatory">*</span></label>
@@ -2046,8 +2046,8 @@ function owmw_get_my_weather($attr) {
 
         //Moon rise and set
         if (!empty($owmw_data["daily"])) {
-            $owmw_data["timestamp_moonrise"] = $owmw_data["daily"][0]["timestamp_moonrise"] + (60 * $utc_time_wp);
-            $owmw_data["timestamp_moonset"] = $owmw_data["daily"][0]["timestamp_moonset"] + (60 * $utc_time_wp);
+            $owmw_data["timestamp_moonrise"] = $owmw_data["daily"][0]["timestamp_moonrise"];
+            $owmw_data["timestamp_moonset"] = $owmw_data["daily"][0]["timestamp_moonset"];
             $owmw_data["moonrise"] = (string)date($owmweather_time_php, $owmw_data["timestamp_moonrise"]);
             $owmw_data["moonset"] = (string)date($owmweather_time_php, $owmw_data["timestamp_moonset"]);
         }

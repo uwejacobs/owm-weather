@@ -43,19 +43,23 @@
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .owmw-forecast .card {
     margin: 0 !important;
 }
+#<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .full-card {
+    padding-left: 5px;
+    padding-right: 5px;
+}
 </style>
 <!-- Start #owm-weather -->
 <?php echo wp_kses_post($owmw_html["container"]["start"]); ?>
 
 <?php
     if ($owmw_opt["wind"] =='yes' || $owmw_opt["humidity"] =='yes' || $owmw_opt["dew_point"] =='yes' || $owmw_opt["pressure"] =='yes' || $owmw_opt["cloudiness"] =='yes' || $owmw_opt["precipitation"] =='yes' || $owmw_opt["visibility"] =='yes' || $owmw_opt["uv_index"] =='yes') {
-        $left_classes = "col-md-6 col-5";
+        $left_classes = "col-lg-6 col-12";
     } else {
         $left_classes = "col";
     }
 ?>
 
-    <div class="row">
+    <div class="row full-card">
         <div class="<?php echo esc_attr($left_classes); ?>">
 
         	<!-- Current weather -->
@@ -74,7 +78,7 @@
 	
         	<!-- Current infos: wind, humidity, pressure, cloudiness, precipitation -->
             <?php if ($owmw_opt["wind"] =='yes' || $owmw_opt["humidity"] =='yes' || $owmw_opt["dew_point"] =='yes' || $owmw_opt["pressure"] =='yes' || $owmw_opt["cloudiness"] =='yes' || $owmw_opt["precipitation"] =='yes' || $owmw_opt["visibility"] =='yes' || $owmw_opt["uv_index"] =='yes') { ?>
-                <div class="owmw-current-infos col-md-6 col-7">
+                <div class="owmw-current-infos col-lg-6 col-12">
             	<?php echo '<p class="owmw-infos-text">'; ?>
             	<?php if ($owmw_opt["wind"] =='yes') echo wp_kses($owmw_html["svg"]["wind"], $owmw_opt['allowed_html']) . 'Wind: <span class="owmw-value">' . esc_html($owmw_data["wind_speed"]) . ' ' . esc_html($owmw_data["wind_direction"]) . '</span><br>'; ?>
             	<?php if ($owmw_opt["humidity"] =='yes') echo wp_kses($owmw_html["svg"]["humidity"], $owmw_opt['allowed_html']) .'Humidity: <span class="owmw-value">' . esc_html($owmw_data["humidity"]) . '</span><br>'; ?>

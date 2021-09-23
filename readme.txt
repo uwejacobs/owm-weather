@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
 Tested up to: 5.8
-Stable tag: 5.0.2
+Stable tag: 5.0.3
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -192,6 +192,11 @@ Although many settings look alike, OWM Weather uses completely different weather
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.0.3 =
+* fixed latitude input value ranges
+* fixed moonrise and moonset times
+* fixed card1 template display on small screens
 
 = 5.0.2 =
 * fixed Laragon activation issue
