@@ -25,6 +25,7 @@ class owmw_options
      */
     public function owmw_add_plugin_page() {
         // This page will be under "Settings"
+
     $owmw_help_tab = add_options_page(
             'Settings Admin',
             'OWM Weather',
@@ -33,9 +34,7 @@ class owmw_options
             array( $this, 'owmw_create_admin_page' )
         );
     add_action('load-'.$owmw_help_tab, 'owmw_help_tab');
-
     }
-
 
 
     /**
@@ -59,8 +58,7 @@ class owmw_options
 				<span class="owmw-info-version"><?php print_r($owmw_info_version['Version']); ?></span>
 				<div id="owmweather-notice">
 					<div class="small">
-                         <div id="wpcloudy-notice">
-                            <div class="small">
+
                                 <span class="dashicons dashicons-wordpress"></span>
                                 <?php _e( 'Do you like WP OPM Weather? Don\'t forget to rate it 5 stars!', 'owm-weather' ); ?>
 
@@ -98,8 +96,6 @@ class owmw_options
                             <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                         </form>
 
-					</div>
-				</div>
 			</div>
 		</div>
 
@@ -171,7 +167,7 @@ class owmw_options
 						<li><a href="#tab_layout" class="nav-tab"><?php _e( 'Layout', 'owm-weather' ); ?></a></li>
 						<li><a href="#tab_map" class="nav-tab"><?php _e( 'Map', 'owm-weather' ); ?></a></li>
                         <li><a href="#tab_export" class="nav-tab"><?php _e( 'Import/Export/Reset', 'owm-weather' ); ?></a></li>
-						<!--li><a href="#tab_support" class="nav-tab"><?php _e( 'Support', 'owm-weather' ); ?></a></li bugbug-->
+						<li><a href="#tab_support" class="nav-tab"><?php _e( 'Support', 'owm-weather' ); ?></a></li>
                 	</ul>
 				</h2>
 
@@ -182,7 +178,7 @@ class owmw_options
 					<div class="owmw-tab" id="tab_layout"><?php do_settings_sections( 'owmw-settings-admin-layout' ); ?></div>
 					<div class="owmw-tab" id="tab_map"><?php do_settings_sections( 'owmw-settings-admin-map' ); ?></div>
                     <div class="owmw-tab" id="tab_export"></div>
-					<!--div class="owmw-tab" id="tab_support"><?php //bugbug do_settings_sections( 'owmw-settings-admin-support' ); ?></div bugbug-->
+					<div class="owmw-tab" id="tab_support"><?php do_settings_sections( 'owmw-settings-admin-support' ); ?></div>
 				</div>
             </div>
             <script>jQuery("#owmw_export_form").detach().appendTo('#tab_export')</script>
@@ -275,7 +271,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_custom_timezone', // ID
-           __("Bypass custom timezone?",'owm-weather'), // Title
+           __("Bypass timezone?",'owm-weather'), // Title
             array( $this, 'owmw_basic_custom_timezone_callback' ), // Callback
             'owmw-settings-admin-basic', // Page
             'owmw_setting_section_basic' // Section
@@ -1717,12 +1713,10 @@ class owmw_options
         $this->owmw_bypassRadioButtons('owmw_map_pressure');
     }
 
-    public function owmw_support_info_callback() //bugbug
+    public function owmw_support_info_callback()
     {
 		echo
-			'<h3>'. esc_html__("Problem with OWM Weather?", 'owm-weather').'</h3>
-			<p><a href="https://www.wpcloudy.com/support/faq/" target="_blank" title="'. esc_attr__("FAQ", 'owm-weather').'">'. esc_html__("Read our FAQ", 'owm-weather').'</a></p>
-			<p><a href="https://www.wpcloudy.com/support/guides/" target="_blank" title="'. esc_attr__("Guides", 'owm-weather').'">'.esc_html__("Read our Guides", 'owm-weather').'</a></p>
+			'<h3>'. esc_html__("Having a problem with OWM Weather?", 'owm-weather').'</h3>
 			<p><a href="https://wordpress.org/plugins/owm-weather/" target="_blank" title="'. esc_attr__("OWM Weather Forum on WordPress.org", 'owm-weather').'">'. esc_html__("OWM Weather Forum on WordPress.org", 'owm-weather').'</a></p>';
     }
 
@@ -1777,20 +1771,33 @@ class owmw_options
 if( is_admin() )
     $my_settings_page = new owmw_options();
 
-//Help Tab
-function owmw_help_tab() {//bugbug
+function owmw_help_tab() {
     global $owmw_help_tab;
     $screen = get_current_screen();
 
     $screen->add_help_tab( array(
         'id'    => 'owmw_help_tab',
         'title' => esc_html__('Setup OWM Weather', 'owm-weather'),
-        'content'   => '<p>' . esc_html__( 'Follow this video to setup OWM Weather:', 'owm-weather' ) . '<br>'.wp_oembed_get('https://www.youtube.com/watch?v=mRF_3VOz_OE', array('width'=>560)).'</p>',
+        'content'   => '<ol>
+<li>' . esc_html__('Goto Settings / OWM Weather.').'</li>
+<li>' . esc_html__('Enter your API key, if you have one.').'</li>
+<li>' . esc_html__('Check "Disable Bootstrap" if you already include Bootstrap in your theme.').'</li>
+<li>' . esc_html__('Leave all other settings as is for now and hit "Save changes".', 'owm-weather' ) . '</li>
+</ol>',
     ));
     $screen->add_help_tab( array(
         'id'    => 'owmw_help_tab2',
         'title' => esc_html__('Create your first weather', 'owm-weather'),
-        'content'   => '<p>' . esc_html__( 'Follow this video to create your first weather with OWM Weather:', 'owm-weather' ) . '<br>'.wp_oembed_get('https://www.youtube.com/watch?v=xv4lrgsWkkk', array('width'=>560)).'</p>',
+        'content'   => '<ol>
+<li>' . esc_html__('Click on the new custom post type called "Weather" and create a "New Weather"') . '</li>
+<li>' . esc_html__('Fill one of the tabs under "Get weather by..." or leave empty for user\'s location by ip address') . '</li>
+<li>' . esc_html__('Choose "Measurement System" Imperial for Fahrenheit and miles, or "Metric" for Celsius and kilometers.') . '</li>
+<li>' . esc_html__('Choose "12" or "24" hour time format.') . '</li>
+<li>' . esc_html__('Under the "Display" tab, select the fields you would like to display.') . '</li>
+<li>' . esc_html__('"Publish" your weather.') . '</li>
+<li>' . esc_html__('Put the shortcode "[owm-weather id="XXX"/]" on a page or post, and look at the page.') . '</li>
+<li>' . esc_html__('You just created your first weather! Now you can add additional fields under "Display", change the look-and-feel under "Layout" or add a map with layers under "Map".') . '</li>
+<ol>',
     ));
 }
 

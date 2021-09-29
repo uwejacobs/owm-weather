@@ -44,8 +44,8 @@
     margin: 0 !important;
 }
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .full-card {
-    padding-left: 5px;
-    padding-right: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 </style>
 <!-- Start #owm-weather -->

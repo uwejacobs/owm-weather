@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.0.4
+Version: 5.0.5
 Author: Uwe Jacobs
 Author URI: https://github.com/uwejacobs
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.0.4' );
+define( 'OWM_WEATHER_VERSION', '5.0.5' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -548,14 +548,14 @@ function owmw_basic($post){
 				</select>
 			</p>
 			<p>
-				<label for="owmweather_time_format_meta"><?php esc_html_e( '12h / 24h time format?', 'owm-weather' ) ?></label>
+				<label for="owmweather_time_format_meta"><?php esc_html_e( 'Time format?', 'owm-weather' ) ?></label>
 				<select name="owmweather_time_format">
 					<option <?php echo selected( '12', $owmw_opt["time_format"], false ) ?>value="12"><?php esc_html_e( '12 h', 'owm-weather' ) ?></option>
 					<option <?php echo selected( '24', $owmw_opt["time_format"], false ) ?>value="24"><?php esc_html_e( '24 h', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
-				<label for="owmweather_custom_timezone_meta"><?php esc_html_e( 'Custom timezone? (default: WordPress general settings)', 'owm-weather' ) ?></label>
+				<label for="owmweather_custom_timezone_meta"><?php esc_html_e( 'Timezone? (default: WordPress general settings)', 'owm-weather' ) ?></label>
 				<select name="owmweather_custom_timezone" id="owmweather_custom_timezone_meta">
 					<option <?php echo selected( 'Default', $owmw_opt["custom_timezone"], false ) ?>value="Default"><?php esc_html_e( 'WordPress timezone', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'local', $owmw_opt["custom_timezone"], false ) ?>value="local"><?php esc_html_e( 'Local timezone', 'owm-weather' ) ?></option>
@@ -996,7 +996,7 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_custom_css_meta"><?php esc_html_e( 'Custom CSS', 'owm-weather' ) ?></label>
-				<textarea id="owmweather_custom_css_meta" name="owmweather_custom_css">'.esc_textarea($owmw_opt["custom_css"]) ?></textarea>
+				<textarea id="owmweather_custom_css_meta" name="owmweather_custom_css"><?php esc_textarea($owmw_opt["custom_css"]) ?></textarea>
 			    <p>Preceed all CSS rules with .owmw-<?php esc_html_e($id) ?>if you are planning to use more than one weather shortcode on a page.</p>
 			</p>
 			<p class="subsection-title">
