@@ -1081,6 +1081,7 @@ class owmw_options
         echo '<option ' . selected( 'slider2', $selected, false ) . ' value="slider2">'. esc_html__( 'Slider 2', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'table1', $selected, false ) . ' value="table1">'. esc_html__( 'Table 1', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'table2', $selected, false ) . ' value="table2">'. esc_html__( 'Table 2', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'table3', $selected, false ) . ' value="table3">'. esc_html__( 'Table 3', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'custom1', $selected, false ) . ' value="custom1">'. esc_html__( 'Custom 1', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'custom2', $selected, false ) . ' value="custom2">'. esc_html__( 'Custom 2', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'debug', $selected, false ) . ' value="debug">'. esc_html__( 'Debug', 'owm-weather' ) .'</option>';
