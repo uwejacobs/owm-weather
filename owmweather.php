@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.0.6
+Version: 5.0.7
 Author: Uwe Jacobs
 Author URI: https://github.com/uwejacobs
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.0.6' );
+define( 'OWM_WEATHER_VERSION', '5.0.7' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -1839,8 +1839,22 @@ function owmw_get_my_weather($attr) {
         $owmw_data["wind_direction"] = owmw_getWindDirection($owmweather_current->wind->deg);
         $owmw_data["wind_gust"] = isset($owmweather_current->wind->gust) ? owmw_getConvertedWindSpeed($owmweather_current->wind->gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"])  . ' ' . $owmw_data["wind_speed_unit"] : null;
         $owmw_data["temperature"] = $owmweather_current->main->temp ? ceil($owmweather_current->main->temp) : null;
-        $owmw_data["temperature_unit_character"] = $owmw_opt["temperature_unit"] == 'metric' ? 'C' : 'F';
         $owmw_data["feels_like"] = $owmweather_current->main->feels_like ? ceil($owmweather_current->main->feels_like) : null;
+		if ($owmw_opt["temperature_unit"] == 'metric') {
+			$owmw_data["temperature_unit_character"] = "C";
+			$owmw_data["temperature_unit_text"] = 'Celsius';
+			$owmw_data["temperature_celsius"] = $owmw_data["temperature"];
+			$owmw_data["temperature_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["temperature"]);
+			$owmw_data["feels_like_celsius"] = $owmw_data["feels_like"];
+			$owmw_data["feels_like_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["feels_like"]);
+		} else {
+			$owmw_data["temperature_unit_character"] = "F";
+			$owmw_data["temperature_unit_text"] = 'Fahrenheit';
+			$owmw_data["temperature_fahrenheit"] = $owmw_data["temperature"];
+			$owmw_data["temperature_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["temperature"]);
+			$owmw_data["feels_like_fahrenheit"] = $owmw_data["feels_like"];
+			$owmw_data["feels_like_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["feels_like"]);
+		}
         $owmw_data["humidity"] = $owmweather_current->main->humidity ? $owmweather_current->main->humidity . '%' : null;
         $owmw_data["pressure_unit"] = $owmw_opt["temperature_unit"] == 'imperial' ? esc_html__('in','owm-weather') : esc_html__('hPa','owm-weather');
         $owmw_data["pressure"] = owmw_converthp2iom($owmw_opt["temperature_unit"], $owmweather_current->main->pressure) . ' ' . $owmw_data["pressure_unit"];
@@ -1936,6 +1950,13 @@ function owmw_get_my_weather($attr) {
         if ($owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes") {
             $owmw_data["uv_index"] = $owmweather->current->uvi ?? null;
             $owmw_data["dew_point"] = $owmweather->current->dew_point ? ceil($owmweather->current->dew_point) : null;
+			if ($owmw_opt["temperature_unit"] == 'metric') {
+				$owmw_data["dew_point_celsius"] = $owmw_data["dew_point"];
+				$owmw_data["dew_point_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["dew_point"]);
+			} else {
+				$owmw_data["dew_point_fahrenheit"] = $owmw_data["dew_point"];
+				$owmw_data["dew_point_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["dew_point"]);
+			}
         }
 
 		//Days loop
@@ -1992,9 +2013,58 @@ function owmw_get_my_weather($attr) {
                 $owmw_data["daily"][$i]["feels_like_day"] = $value->feels_like->day ? ceil($value->feels_like->day) : null;
                 $owmw_data["daily"][$i]["feels_like_evening"] = $value->feels_like->eve ? ceil($value->feels_like->eve) : null;
                 $owmw_data["daily"][$i]["feels_like_night"] = $value->feels_like->night ? ceil($value->feels_like->night) : null;
+                $owmw_data["daily"][$i]["dew_point"] = $value->dew_point ? ceil($value->dew_point) : null;
+				if ($owmw_opt["temperature_unit"] == 'metric') {
+					$owmw_data["daily"][$i]["temperature_morning_celsius"] = $owmw_data["daily"][$i]["temperature_morning"];
+					$owmw_data["daily"][$i]["temperature_morning_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["daily"][$i]["temperature_morning"]);
+					$owmw_data["daily"][$i]["temperature_day_celsius"] = $owmw_data["daily"][$i]["temperature_day"];
+					$owmw_data["daily"][$i]["temperature_day_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["daily"][$i]["temperature_day"]);
+					$owmw_data["daily"][$i]["temperature_evening_celsius"] = $owmw_data["daily"][$i]["temperature_evening"];
+					$owmw_data["daily"][$i]["temperature_evening_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["daily"][$i]["temperature_evening"]);
+					$owmw_data["daily"][$i]["temperature_evening_celsius"] = $owmw_data["daily"][$i]["temperature_evening"];
+					$owmw_data["daily"][$i]["temperature_evening_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["daily"][$i]["temperature_evening"]);
+					$owmw_data["daily"][$i]["temperature_night_celsius"] = $owmw_data["daily"][$i]["temperature_night"];
+					$owmw_data["daily"][$i]["temperature_night_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["daily"][$i]["temperature_night"]);
+					$owmw_data["daily"][$i]["temperature_minimum_celsius"] = $owmw_data["daily"][$i]["temperature_minimum"];
+					$owmw_data["daily"][$i]["temperature_minimum_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["daily"][$i]["temperature_minimum"]);
+					$owmw_data["daily"][$i]["temperature_maximum_celsius"] = $owmw_data["daily"][$i]["temperature_maximum"];
+					$owmw_data["daily"][$i]["temperature_maximum_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["daily"][$i]["temperature_maximum"]);
+					$owmw_data["daily"][$i]["feels_like_morning_celsius"] = $owmw_data["daily"][$i]["feels_like_morning"];
+					$owmw_data["daily"][$i]["feels_like_morning_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["daily"][$i]["feels_like_morning"]);
+					$owmw_data["daily"][$i]["feels_like_day_celsius"] = $owmw_data["daily"][$i]["feels_like_day"];
+					$owmw_data["daily"][$i]["feels_like_day_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["daily"][$i]["feels_like_day"]);
+					$owmw_data["daily"][$i]["feels_like_evening_celsius"] = $owmw_data["daily"][$i]["feels_like_evening"];
+					$owmw_data["daily"][$i]["feels_like_evening_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["daily"][$i]["feels_like_evening"]);
+					$owmw_data["daily"][$i]["feels_like_night_celsius"] = $owmw_data["daily"][$i]["feels_like_night"];
+					$owmw_data["daily"][$i]["feels_like_night_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["daily"][$i]["feels_like_night"]);
+					$owmw_data["daily"][$i]["dew_point_celsius"] = $owmw_data["daily"][$i]["dew_point"];
+					$owmw_data["daily"][$i]["dew_point_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["daily"][$i]["dew_point_celsius"]);
+				} else {
+					$owmw_data["daily"][$i]["temperature_morning_fahrenheit"] = $owmw_data["daily"][$i]["temperature_morning"];
+					$owmw_data["daily"][$i]["temperature_morning_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["temperature_morning"]);
+					$owmw_data["daily"][$i]["temperature_day_fahrenheit"] = $owmw_data["daily"][$i]["temperature_day"];
+					$owmw_data["daily"][$i]["temperature_day_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["temperature_day"]);
+					$owmw_data["daily"][$i]["temperature_evening_fahrenheit"] = $owmw_data["daily"][$i]["temperature_evening"];
+					$owmw_data["daily"][$i]["temperature_evening_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["temperature_evening"]);
+					$owmw_data["daily"][$i]["temperature_night_fahrenheit"] = $owmw_data["daily"][$i]["temperature_night"];
+					$owmw_data["daily"][$i]["temperature_night_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["temperature_night"]);
+					$owmw_data["daily"][$i]["temperature_minimum_fahrenheit"] = $owmw_data["daily"][$i]["temperature_minimum"];
+					$owmw_data["daily"][$i]["temperature_minimum_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["temperature_minimum"]);
+					$owmw_data["daily"][$i]["temperature_maximum_fahrenheit"] = $owmw_data["daily"][$i]["temperature_maximum"];
+					$owmw_data["daily"][$i]["temperature_maximum_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["temperature_maximum"]);
+					$owmw_data["daily"][$i]["feels_like_morning_fahrenheit"] = $owmw_data["daily"][$i]["feels_like_morning"];
+					$owmw_data["daily"][$i]["feels_like_morning_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["feels_like_morning"]);
+					$owmw_data["daily"][$i]["feels_like_day_fahrenheit"] = $owmw_data["daily"][$i]["feels_like_day"];
+					$owmw_data["daily"][$i]["feels_like_day_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["feels_like_day"]);
+					$owmw_data["daily"][$i]["feels_like_evening_fahrenheit"] = $owmw_data["daily"][$i]["feels_like_evening"];
+					$owmw_data["daily"][$i]["feels_like_evening_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["feels_like_evening"]);
+					$owmw_data["daily"][$i]["feels_like_night_fahrenheit"] = $owmw_data["daily"][$i]["feels_like_night"];
+					$owmw_data["daily"][$i]["feels_like_night_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["feels_like_night"]);
+					$owmw_data["daily"][$i]["dew_point_fahrenheit"] = $owmw_data["daily"][$i]["dew_point"];
+					$owmw_data["daily"][$i]["dew_point_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["dew_point"]);
+				}
                 $owmw_data["daily"][$i]["humidity"] = $value->humidity ? $value->humidity . '%' : null;
                 $owmw_data["daily"][$i]["pressure"] = owmw_converthp2iom($owmw_opt["temperature_unit"], $value->pressure) . ' ' . $owmw_data["pressure_unit"];
-                $owmw_data["daily"][$i]["dew_point"] = $value->dew_point ? ceil($value->dew_point) : null;
                 $owmw_data["daily"][$i]["cloudiness"] = $value->clouds ? $value->clouds . '%' : '0%';
                 $owmw_data["daily"][$i]["uv_index"] = $value->uvi ?? null;
                 $owmw_data["daily"][$i]["rain_chance"] = $value->pop ? number_format($value->pop * 100, 0) . '%' : '0%';
@@ -2024,6 +2094,17 @@ function owmw_get_my_weather($attr) {
                     $owmw_data["hourly"][$cnt]["wind_gust"] = isset($value->wind_gust) ? owmw_getConvertedWindSpeed($value->wind_gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $owmw_data["wind_speed_unit"] : null;
                     $owmw_data["hourly"][$cnt]["temperature"] = $value->temp ? ceil($value->temp) : null;
                     $owmw_data["hourly"][$cnt]["feels_like"] = $value->feels_like ? ceil($value->feels_like) : null;
+					if ($owmw_opt["temperature_unit"] == 'metric') {
+						$owmw_data["hourly"][$cnt]["temperature_celsius"] = $owmw_data["hourly"][$cnt]["temperature"];
+						$owmw_data["hourly"][$cnt]["temperature_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["hourly"][$cnt]["temperature"]);
+						$owmw_data["hourly"][$cnt]["feels_like_celsius"] = $owmw_data["hourly"][$cnt]["feels_like"];
+						$owmw_data["hourly"][$cnt]["feels_like_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["hourly"][$cnt]["feels_like"]);
+					}else {
+						$owmw_data["hourly"][$cnt]["temperature_fahrenheit"] = $owmw_data["hourly"][$cnt]["temperature"];
+						$owmw_data["hourly"][$cnt]["temperature_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["hourly"][$cnt]["temperature"]);
+						$owmw_data["hourly"][$cnt]["feels_like_fahrenheit"] = $owmw_data["hourly"][$cnt]["feels_like"];
+						$owmw_data["hourly"][$cnt]["feels_like_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["hourly"][$cnt]["feels_like"]);
+					}
                     $owmw_data["hourly"][$cnt]["humidity"] = $value->humidity ? $value->humidity . '%' : null;
                     $owmw_data["hourly"][$cnt]["pressure"] = owmw_converthp2iom($owmw_opt["temperature_unit"], $value->pressure) . ' ' . $owmw_data["pressure_unit"];
                     $owmw_data["hourly"][$cnt]["dew_point"] = $value->dew_point ? ceil($value->dew_point) : null;
@@ -2099,7 +2180,7 @@ function owmw_get_my_weather($attr) {
 		}
 
 		//Forecast loop
-		if(!empty($owmforecast)) {
+		if (!empty($owmforecast)) {
             $cnt = 0;
             foreach ($owmforecast->list as $i => $value) {
                 if ($value->dt > (time()-3600)) {
@@ -2123,6 +2204,25 @@ function owmw_get_my_weather($attr) {
 						$owmw_data["forecast"]["temperature_maximum"][$owmw_data["forecast"][$cnt]["day"]] = $temp_max;
 					}
                     $owmw_data["forecast"][$cnt]["feels_like"] = $value->main->feels_like ? ceil($value->main->feels_like) : null;
+					if ($owmw_opt["temperature_unit"] == 'metric') {
+						$owmw_data["forecast"][$cnt]["temperature_celsius"] = $owmw_data["forecast"][$cnt]["temperature"];
+						$owmw_data["forecast"][$cnt]["temperature_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["forecast"][$cnt]["temperature"]);
+						$owmw_data["forecast"]["temperature_minimum_celsius"] = $owmw_data["forecast"]["temperature_minimum"][$owmw_data["forecast"][$cnt]["day"]];
+						$owmw_data["forecast"]["temperature_minimum_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["forecast"]["temperature_minimum_celsius"]);
+						$owmw_data["forecast"]["temperature_maximum_celsius"] = $owmw_data["forecast"]["temperature_maximum"][$owmw_data["forecast"][$cnt]["day"]];
+						$owmw_data["forecast"]["temperature_maximum_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["forecast"]["temperature_maximum_celsius"]);
+						$owmw_data["forecast"][$cnt]["feels_like_celsius"] = $owmw_data["forecast"][$cnt]["feels_like"];
+						$owmw_data["forecast"][$cnt]["feels_like_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["forecast"][$cnt]["feels_like"]);
+					}else {
+						$owmw_data["forecast"][$cnt]["temperature_fahrenheit"] = $owmw_data["forecast"][$cnt]["temperature"];
+						$owmw_data["forecast"][$cnt]["temperature_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["forecast"][$cnt]["temperature"]);
+						$owmw_data["forecast"]["temperature_minimum_fahrenheit"] = $owmw_data["forecast"]["temperature_minimum"][$owmw_data["forecast"][$cnt]["day"]];
+						$owmw_data["forecast"]["temperature_minimum_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["forecast"]["temperature_minimum_fahrenheit"]);
+						$owmw_data["forecast"]["temperature_maximum_fahrenheit"] = $owmw_data["forecast"]["temperature_maximum"][$owmw_data["forecast"][$cnt]["day"]];
+						$owmw_data["forecast"]["temperature_maximum_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["forecast"]["temperature_maximum_fahrenheit"]);
+						$owmw_data["forecast"][$cnt]["feels_like_fahrenheit"] = $owmw_data["forecast"][$cnt]["feels_like"];
+						$owmw_data["forecast"][$cnt]["feels_like_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["forecast"][$cnt]["feels_like"]);
+					}
                     $owmw_data["forecast"][$cnt]["humidity"] = $value->main->humidity ? $value->main->humidity . '%' : null;
                     $owmw_data["forecast"][$cnt]["pressure"] = owmw_converthp2iom($owmw_opt["temperature_unit"], $value->main->pressure) . ' ' . $owmw_data["pressure_unit"];
                     $owmw_data["forecast"][$cnt]["cloudiness"] = $value->clouds->all ? $value->clouds->all . '%' : "0%";
@@ -2143,7 +2243,11 @@ function owmw_get_my_weather($attr) {
 		$owmw_html["now"]["location_name"]       = '';
 		$owmw_html["now"]["symbol"]       	    = '';
 		$owmw_html["now"]["temperature"]         = '';
+		$owmw_html["now"]["temperature_celsius"]  = '';
+		$owmw_html["now"]["temperature_fahrenheit"]   = '';
 		$owmw_html["now"]["feels_like"]          = '';
+		$owmw_html["now"]["feels_like_celsius"]          = '';
+		$owmw_html["now"]["feels_like_fahrenheit"]          = '';
 		$owmw_html["now"]["weather_description"] = '';
 		$owmw_html["now"]["end"]               	= '';
 		$owmw_html["custom_css"] = $owmw_opt["custom_css"] ?? '';
@@ -2155,6 +2259,8 @@ function owmw_get_my_weather($attr) {
 		$owmw_html["info"]["wind"]            	= '';
 		$owmw_html["info"]["humidity"]          	= '';
 		$owmw_html["info"]["dew_point"]         	= '';
+		$owmw_html["info"]["dew_point_celsius"]    	= '';
+		$owmw_html["info"]["dew_point_fahrenheit"] 	= '';
 		$owmw_html["info"]["pressure"]           = '';
 		$owmw_html["info"]["cloudiness"]         = '';
 		$owmw_html["info"]["precipitation"]      = '';
@@ -2194,7 +2300,7 @@ function owmw_get_my_weather($attr) {
         $owmw_html["table"]["daily"]             = '';
         $owmw_html["table"]["forecast"]          = '';
 
-	$owmw_html["main_weather_div"]      = esc_attr($owmw_params["weather_id"]);
+		$owmw_html["main_weather_div"]      = esc_attr($owmw_params["weather_id"]);
         $owmw_html["container_weather_div"] = owmw_unique_id_esc('owm-weather-container-'.$owmw_opt["id"]);
         $owmw_html["main_map_div"]          = owmw_unique_id_esc('owmw-map-id-'.$owmw_opt["id"]);
         $owmw_html["container_map_div"]     = owmw_unique_id_esc('owmw-map-container-'.$owmw_opt["id"]);
@@ -2221,7 +2327,11 @@ function owmw_get_my_weather($attr) {
     		$display_now_symbol = '<div class="owmw-main-symbol owmw-symbol-alt" style="'. esc_attr(owmw_css_color("fill", $owmw_opt["text_color"])) .'"><span title="'.esc_attr($owmw_data["description"]).'">'. $owmw_html["current"]["symbol_alt"] .'</span></div>';
     	}
 		$display_now_temperature = '<div class="owmw-main-temperature">'. esc_html($owmw_data["temperature"]) .'</div>';
+		$display_now_temperature_celsius = '<div class="owmw-main-temperature">'. esc_html($owmw_data["temperature_celsius"]) .'</div>';
+		$display_now_temperature_fahrenheit = '<div class="owmw-main-temperature">'. esc_html($owmw_data["temperature_fahrenheit"]) .'</div>';
 		$display_now_feels_like = '<div class="owmw-main-feels-like">Feels like '. esc_html($owmw_data["feels_like"]) .'</div>';
+		$display_now_feels_like_celsius = '<div class="owmw-main-feels-like">Feels like '. esc_html($owmw_data["feels_like_celsius"]) .'</div>';
+		$display_now_feels_like_fahrenheit = '<div class="owmw-main-feels-like">Feels like '. esc_html($owmw_data["feels_like_fahrenheit"]) .'</div>';
 		$display_now_end = '</div>';
 
 		//Hours loop
@@ -2301,9 +2411,6 @@ function owmw_get_my_weather($attr) {
    					</div>';
 			}
 		}
-
-      	$temperature_unit_character = $owmw_opt["temperature_unit"] == "metric" ? 'C' : 'F';
-      	$temperature_unit_text = $owmw_opt["temperature_unit"] == "metric" ? 'Celsius' : 'Fahrenheit';
 
 	    //Map
 
@@ -2388,7 +2495,7 @@ function owmw_get_my_weather($attr) {
 				        	var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 							maxZoom: 18, attribution: "OWM Weather" });
 
-							var city = L.OWM.current({intervall: '.esc_attr($owmw_opt["cache_time"]??30).', lang: "en", appId: "'.esc_attr($owmw_opt["api_key"]) . '",temperatureDigits:0,temperatureUnit:"' . esc_attr($temperature_unit_character) . '",speedUnit:"' . esc_attr($map_speed) . '"});'.
+							var city = L.OWM.current({intervall: '.esc_attr($owmw_opt["cache_time"]??30).', lang: "en", appId: "'.esc_attr($owmw_opt["api_key"]) . '",temperatureDigits:0,temperatureUnit:"' . esc_attr($owmw_opt["temperature_unit_character"]) . '",speedUnit:"' . esc_attr($map_speed) . '"});'.
 
 							$display_map_options .
 
@@ -2432,9 +2539,13 @@ function owmw_get_my_weather($attr) {
         	}
             if ($owmw_opt["current_temperature"] =='yes') {
        	        $owmw_html["now"]["temperature"]    = $display_now_temperature;
+       	        $owmw_html["now"]["temperature_celsius"]    = $display_now_temperature_celsius;
+       	        $owmw_html["now"]["temperature_fahrenheit"]    = $display_now_temperature_fahrenheit;
         	}
             if ($owmw_opt["current_feels_like"] =='yes') {
        	        $owmw_html["now"]["feels_like"]    = $display_now_feels_like;
+       	        $owmw_html["now"]["feels_like_celsius"]    = $display_now_feels_like_celsius;
+       	        $owmw_html["now"]["feels_like_fahrenheit"]    = $display_now_feels_like_fahrenheit;
         	}
     	    if( $owmw_opt["current_weather_description"] == 'yes' ) {
 	        	$owmw_html["now"]["weather_description"] = '<div class="owmw-short-condition">'. esc_html($owmw_data["description"]) .'</div>';
@@ -2465,6 +2576,8 @@ function owmw_get_my_weather($attr) {
 
 	        if( $owmw_opt["dew_point"] == 'yes' ) {
 	        	$owmw_html["info"]["dew_point"]       = '<div class="owmw-dew-point col">'.$owmw_html["svg"]["dew_point"]. esc_html__( 'Dew Point', 'owm-weather' ) .'<span class="owmw-highlight owmw-temperature">'. esc_html($owmw_data["dew_point"]) .'</span></div>';
+	        	$owmw_html["info"]["dew_point_celsius"]       = '<div class="owmw-dew-point col">'.$owmw_html["svg"]["dew_point"]. esc_html__( 'Dew Point', 'owm-weather' ) .'<span class="owmw-highlight owmw-temperature">'. esc_html($owmw_data["dew_point_celsius"]) .'</span></div>';
+	        	$owmw_html["info"]["dew_point_fahrenheit"]       = '<div class="owmw-dew-point col">'.$owmw_html["svg"]["dew_point"]. esc_html__( 'Dew Point', 'owm-weather' ) .'<span class="owmw-highlight owmw-temperature">'. esc_html($owmw_data["dew_point_fahrenheit"]) .'</span></div>';
 	        }
 
 	        if( $owmw_opt["pressure"]  == 'yes') {
@@ -2621,9 +2734,9 @@ function owmw_get_my_weather($attr) {
                     interaction: { intersect: false, mode: "index" },
                     plugins: {title: {display: true, text: "Hourly Temperatures" },
                         tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
-                        if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_html($temperature_unit_character).'"; }
+                        if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_html($owmw_opt["temperature_unit_character"]).'"; }
                         return label; } } } },
-                    scales: { y: { title: { display: true, text: "'.esc_html($temperature_unit_text).'" } } }
+                    scales: { y: { title: { display: true, text: "'.esc_html($owmw_opt["temperature_unit_text"]).'" } } }
                     };';
             $owmw_html["chart"]["hourly"]["data"] .= 'const hourly_data_'.esc_attr($chart_id).' = {
                                                                       labels: hourly_labels_'.esc_attr($chart_id).',
@@ -2711,9 +2824,9 @@ $owmw_html["chart"]["hourly"]["script"] =
                     interaction: { intersect: false, mode: "index" },
                     plugins: {title: {display: true, text: "Daily Temperatures" },
                         tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
-                        if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_attr($temperature_unit_character).'"; }
+                        if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_attr($owmw_opt["temperature_unit_character"]).'"; }
                         return label; } } } },
-                    scales: { y: { title: { display: true, text: "'.esc_attr($temperature_unit_text).'" } } }
+                    scales: { y: { title: { display: true, text: "'.esc_attr($owmw_opt["temperature_unit_text"]).'" } } }
                     };';
             $owmw_html["chart"]["daily"]["data"] .= 'const daily_data_'.esc_attr($chart_id).' = {
                                                                       labels: daily_labels_'.esc_attr($chart_id).',
@@ -2946,7 +3059,7 @@ $owmw_html["chart"]["daily"]["script"] =
 			$cnt = 0;
 			foreach ($owmw_data["forecast"] as $i => $value) {
 //				if ($cnt < $owmw_opt["hours_forecast_no"]) {
-				if (!($i == "temperature_minimum" || $i == "temperature_maximum")) {
+				if (!in_array($i, array("temperature_minimum", "temperature_minimum_celsius", "temperature_minimum_fahrenheit", "temperature_maximum", "temperature_maximum_celsius", "temperature_maximum_fahrenheit"))) {
 					$owmw_html["table"]["forecast"] .= '<tr>';
 					$owmw_html["table"]["forecast"] .= '<td>' . date('D', $value["timestamp"]) . ($owmw_opt["hours_time_icons"] == 'yes' ? owmw_hour_icon($value["time"], $owmw_opt["table_text_color"]) : '<br>' . esc_html($value["time"])) . '</td>';
 					$owmw_html["table"]["forecast"] .= '<td class="border-right-0">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], $value["day_night"], $value["description"]) . '</td><td class="border-left-0 small">' . esc_html($value["description"]) . '</td>';
@@ -3620,4 +3733,20 @@ function owmw_IPtoLocation() {
     owmw_sanitize_api_response($ipData);
 
 	return !empty($ipData) ? $ipData : false;
+}
+
+function owmw_celsius_to_fahrenheit($t) {
+	if ($t !== null) {
+		return ceil(($t * 9/5) + 32);
+	}
+		
+	return null;
+}
+
+function owmw_fahrenheit_to_celsius($t) {
+	if ($t !== null) {
+		return ceil(($t - 32) * 5/9);
+	}
+		
+	return null;
 }
