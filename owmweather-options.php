@@ -46,7 +46,7 @@ function owmw_get_bypass($bypass, $setting, $id = null) {
 	}
 }
 
-//Disables weather cache
+//Disable weather cache
 function owmw_get_admin_disable_cache() {
     return $owmw_admin_disable_cache_option['owmw_advanced_disable_cache'] ?? null;
 }

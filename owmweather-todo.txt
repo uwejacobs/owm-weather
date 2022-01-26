@@ -1,4 +1,5 @@
 Must:
+CSS and HTML for celsius and fahrenheit
 
 Nice:
 more charts

@@ -569,22 +569,22 @@ function owmw_weatherPixeden($id, $day_night, $description) {
     return '<span class="owmw-symbol pe pe-is-w-'. esc_attr($icon ?? '') .'" title="' . esc_attr($description) . '"></span>';
 }
 
-function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack) {
+function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack, $extension = '') {
     $id = sanitize_html_class($id);
     
     $str = '';
 	    if ($display_unit == 'yes') {
 	    	$str .=
-	    		   '#'.esc_attr($id).' .owmw-now .owmw-main-temperature:after,
-	            	#'.esc_attr($id).' .owmw-now .owmw-main-feels-like:after,
-	            	#'.esc_attr($id).' .owmw-infos .owmw-temperature:after,
-	            	#'.esc_attr($id).' .owmw-infos-text .owmw-temperature:after,
-	              	#'.esc_attr($id).' .owmw-forecast .owmw-temp-max:after,
-	              	#'.esc_attr($id).' .owmw-forecast .owmw-temp-min:after,
-	              	#'.esc_attr($id).' .owmw-hours .owmw-temperature:after,
-	              	#'.esc_attr($id).' .owmw-today .owmw-main-temperature_max:after,
-	              	#'.esc_attr($id).' .owmw-today .owmw-main-temperature_min:after,
-	              	#'.esc_attr($id).' .owmw-table .owmw-temperature:after {';
+	    		   '#'.esc_attr($id).' .owmw-now .owmw-main-temperature'.esc_attr($extension).':after,
+	            	#'.esc_attr($id).' .owmw-now .owmw-main-feels-like'.esc_attr($extension).':after,
+	            	#'.esc_attr($id).' .owmw-infos .owmw-temperature'.esc_attr($extension).':after,
+	            	#'.esc_attr($id).' .owmw-infos-text .owmw-temperature'.esc_attr($extension).':after,
+	              	#'.esc_attr($id).' .owmw-forecast .owmw-temp-max'.esc_attr($extension).':after,
+	              	#'.esc_attr($id).' .owmw-forecast .owmw-temp-min'.esc_attr($extension).':after,
+	              	#'.esc_attr($id).' .owmw-hours .owmw-temperature'.esc_attr($extension).':after,
+	              	#'.esc_attr($id).' .owmw-today .owmw-main-temperature-max'.esc_attr($extension).':after,
+	              	#'.esc_attr($id).' .owmw-today .owmw-main-temperature-min'.esc_attr($extension).':after,
+	              	#'.esc_attr($id).' .owmw-table .owmw-temperature'.esc_attr($extension).':after {';
 
 	        if ($unit == 'metric') {
 	            if ($iconpack == 'WeatherIcons') {
@@ -649,10 +649,15 @@ function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack) {
         return $str;
 }
 
-function owmw_wind_direction_icon($degrees, $color) {
+function owmw_wind_direction_icon($degrees, $color, $direction) {
+	if (!empty($direction) && $direction == "from") {
+		$rotation = 0;
+	} else {
+		$rotation = 180;
+	}
 return
 '<svg
-	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'" transform="rotate('.esc_attr(($degrees ?? 0) - 180).')">
+	 viewBox="0 0 30 30" style="fill: '.(!empty($color) ? esc_attr($color) : 'currentColor').'" transform="rotate('.esc_attr(($degrees ?? 0) - $rotation).')">
 <path d="M3.74,14.5c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
 	s-2.84,0.89-4.37,0.89c-1.53,0-3-0.3-4.39-0.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58S3.74,16.03,3.74,14.5z M6.22,14.5

@@ -108,20 +108,28 @@ div[id^='owm-weather'] {
 	height: 100px;
 }
 
-.owmw-small .owmw-now .owmw-main-temperature {
+.owmw-small .owmw-now .owmw-main-temperature,
+.owmw-small .owmw-now .owmw-main-temperature-celsius,
+.owmw-small .owmw-now .owmw-main-temperature-fahrenheit {
 	font-size: 14px;
 }
 
-.owmw-medium .owmw-now .owmw-main-temperature {
+.owmw-medium .owmw-now .owmw-main-temperature,
+.owmw-medium .owmw-now .owmw-main-temperature-celsius,
+.owmw-medium .owmw-now .owmw-main-temperature-fahrenheit {
 	font-size: 24px;
 }
 
-.owmw-large .owmw-now .owmw-main-temperature {
+.owmw-large .owmw-now .owmw-main-temperature,
+.owmw-large .owmw-now .owmw-main-temperature-celsius,
+.owmw-large .owmw-now .owmw-main-temperature-fahrenheit {
 	font-size: 34px;
 	margin: 0;
 }
 
-.owmw-now .owmw-main-temperature {
+.owmw-now .owmw-main-temperature,
+.owmw-now .owmw-main-temperature-celsius,
+.owmw-now .owmw-main-temperature-fahrenheit {
     text-align: center;
 }
 
@@ -133,7 +141,7 @@ div[id^='owm-weather'] {
 	width: 100%;
 }
 
-.owmw-day, .owmw-sun-hours, .owmw-moon-hours, .owmw-main-feels-like {
+.owmw-day, .owmw-sun-hours, .owmw-moon-hours, .owmw-main-feels-like, .owmw-main-feels-like-celsius, .owmw-main-feels-like-fahrenheit {
     text-align: center;
 }
 

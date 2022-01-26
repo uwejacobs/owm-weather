@@ -381,6 +381,14 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
+        add_settings_field(
+            'owmw_wind_icon_direction', // ID
+            __("Wind icon pointer direction?",'owm-weather'), // Title
+            array( $this, 'owmw_display_wind_icon_direction_callback' ), // Callback
+            'owmw-settings-admin-display', // Page
+            'owmw_setting_section_display' // Section
+        );
+
 		add_settings_field(
             'owmw_humidity', // ID
             __("Humidity?",'owm-weather'), // Title
@@ -1188,6 +1196,23 @@ class owmw_options
         echo '<option ';
         if ('kt' == $selected) echo 'selected="selected"';
         echo ' value="kt">'. esc_html__( 'kt', 'owm-weather' ) .'</option>';
+        echo '</select>';
+    }
+
+    public function owmw_display_wind_icon_direction_callback()
+    {
+        $selected = $this->options['owmw_wind_icon_direction'] ?? "nobypass";
+
+        echo ' <select id="owmw_wind_icon_direction" name="owmw_option_name[owmw_wind_icon_direction]"> ';
+        echo ' <option ';
+        if ('nobypass' == $selected) echo 'selected="selected"';
+        echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
+        echo ' <option ';
+        if ('to' == $selected) echo 'selected="selected"';
+        echo ' value="to">'. esc_html__( 'direction of the wind', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('from' == $selected) echo 'selected="selected"';
+        echo ' value="from">'. esc_html__( 'source of the wind flow', 'owm-weather' ) .'</option>';
         echo '</select>';
     }
 

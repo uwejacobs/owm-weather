@@ -3,8 +3,8 @@ Contributors: rainbowgeek, uwejacobs
 Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
-Tested up to: 5.8.3
-Stable tag: 5.0.7
+Tested up to: 5.9
+Stable tag: 5.0.8
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -139,6 +139,9 @@ Our plugin will never display any advertising on your site. Did we mention it's 
   Show current wind speed and direction.
 * <strong>Wind unit [wind_unit]</strong>
   Choose between mi/h, m/s, km/h or kt.
+* <strong>Wind icon direction [wind_icon_direction]</strong>
+   * "to" the icon points in the direction the wind is flowing (default)
+   * "from" the icon points towards the source of the wind flow
 * <strong>Humidity [humidity]</strong>
   Show current humidity percentage.
 * <strong>Dew Point [dew_point]</strong>
@@ -587,8 +590,13 @@ Although many settings look alike, OWM Weather uses completely different weather
 
 == Changelog ==
 
+= 5.0.8 =
+* added display option for the direction the wind icons should point (default: direction of the wind)
+* added additional html ready celsius/fahrenheit temperature fields for main and main feels like temperature
+* fixed temperature unit character and text for maps and charts
+
 = 5.0.7 =
-* Added additional temperature fields with celsius and fahrenheit for custom templates
+* added additional temperature fields with celsius and fahrenheit for custom templates
 
 = 5.0.6 =
 * fixed custom css lost after editing weather again

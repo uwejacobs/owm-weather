@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.0.7
+Version: 5.0.8
 Author: Uwe Jacobs
 Author URI: https://github.com/uwejacobs
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.0.7' );
+define( 'OWM_WEATHER_VERSION', '5.0.8' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -395,6 +395,7 @@ function owmw_basic($post){
 	$owmw_opt["moonrise_moonset"] 	    	= get_post_meta($id,'_owmweather_moonrise_moonset',true);
 	$owmw_opt["wind"] 				    	= get_post_meta($id,'_owmweather_wind',true);
 	$owmw_opt["wind_unit"] 				    = get_post_meta($id,'_owmweather_wind_unit',true);
+	$owmw_opt["wind_icon_direction"] 	    = get_post_meta($id,'_owmweather_wind_icon_direction',true);
 	$owmw_opt["humidity"] 				    = get_post_meta($id,'_owmweather_humidity',true);
 	$owmw_opt["dew_point"] 				    = get_post_meta($id,'_owmweather_dew_point',true);
 	$owmw_opt["pressure"]				    = get_post_meta($id,'_owmweather_pressure',true);
@@ -750,6 +751,17 @@ function owmw_basic($post){
 					<option <?php echo selected( 'km/h', $owmw_opt["wind_unit"], false ) ?>value="km/h"><?php esc_html_e( 'km/h', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'kt', $owmw_opt["wind_unit"], false ) ?>value="kt"><?php esc_html_e( 'kt', 'owm-weather' ) ?></option>
 				</select>
+			</p>
+			<p>
+				<label for="owmweather_wind_icon_meta"><?php esc_html_e( 'Wind icons show ', 'owm-weather' ) ?></label>
+				<label for="owmweather_wind_icon_to_meta">
+					<input type="radio" name="owmweather_wind_icon_direction" id="owmweather_wind_icon_to_meta" value="to" <?php echo checked( $owmw_opt["wind_icon_direction"], 'to', false ) ?>/>
+						<?php esc_html_e( ' direction of the wind', 'owm-weather' ) ?>
+				</label>
+				<label for="owmweather_wind_icon_from_meta">
+					<input type="radio" name="owmweather_wind_icon_direction" id="owmweather_wind_icon_from_meta" value="to" <?php echo checked( $owmw_opt["wind_icon_direction"], 'from', false ) ?>/>
+						<?php esc_html_e( 'source of wind flow', 'owm-weather' ) ?>
+				</label>
 			</p>
 			<p>
 				<label for="owmweather_humidity_meta">
@@ -1212,6 +1224,7 @@ function owmw_save_metabox($post_id){
 		owmw_save_metabox_field('custom_timezone', $post_id);
 		owmw_save_metabox_field('today_date_format', $post_id);
 		owmw_save_metabox_field('wind_unit', $post_id);
+		owmw_save_metabox_field('wind_icon_direction', $post_id);
 		owmw_save_metabox_field('hours_forecast_no', $post_id);
 		owmw_save_metabox_field('display_length_days_names', $post_id);
 		owmw_save_metabox_field('forecast_no', $post_id);
@@ -1475,6 +1488,7 @@ function owmw_get_my_weather_id($atts) {
         "time_format"                   => false,
         "today_date_format"             => false,
         "wind_unit"                     => false,
+        "wind_icon_direction"           => false,
         "display_length_days_names"     => false,
         "background_color"              => false,
         "text_color"                    => false,
@@ -1702,6 +1716,7 @@ function owmw_get_my_weather($attr) {
 		$owmw_opt["current_weather_description"]     = owmw_get_bypass_yn($bypass, "current_weather_description");
 		$owmw_opt["wind"]          					= owmw_get_bypass_yn($bypass, "wind");
         $owmw_opt["wind_unit"]                       = owmw_get_bypass($bypass, "wind_unit");
+        $owmw_opt["wind_icon_direction"]            = owmw_get_bypass($bypass, "wind_icon_direction");
         $owmw_opt["humidity"]        				= owmw_get_bypass_yn($bypass, "humidity");
         $owmw_opt["dew_point"]        				= owmw_get_bypass_yn($bypass, "dew_point");
 		$owmw_opt["pressure"]        				= owmw_get_bypass_yn($bypass, "pressure");
@@ -2305,7 +2320,7 @@ function owmw_get_my_weather($attr) {
         $owmw_html["main_map_div"]          = owmw_unique_id_esc('owmw-map-id-'.$owmw_opt["id"]);
         $owmw_html["container_map_div"]     = owmw_unique_id_esc('owmw-map-container-'.$owmw_opt["id"]);
 
-       	$owmw_html["svg"]["wind"]          = owmw_wind_direction_icon($owmw_data["wind_degrees"], $owmw_opt["text_color"]);
+       	$owmw_html["svg"]["wind"]          = owmw_wind_direction_icon($owmw_data["wind_degrees"], $owmw_opt["text_color"], $owmw_opt["wind_icon_direction"]);
        	$owmw_html["svg"]["humidity"]      = owmw_humidity_icon($owmw_opt["text_color"]);
       	$owmw_html["svg"]["dew_point"]     = owmw_dew_point_icon($owmw_opt["text_color"]);
        	$owmw_html["svg"]["pressure"]      = owmw_pressure_icon($owmw_opt["text_color"]);
@@ -2327,11 +2342,11 @@ function owmw_get_my_weather($attr) {
     		$display_now_symbol = '<div class="owmw-main-symbol owmw-symbol-alt" style="'. esc_attr(owmw_css_color("fill", $owmw_opt["text_color"])) .'"><span title="'.esc_attr($owmw_data["description"]).'">'. $owmw_html["current"]["symbol_alt"] .'</span></div>';
     	}
 		$display_now_temperature = '<div class="owmw-main-temperature">'. esc_html($owmw_data["temperature"]) .'</div>';
-		$display_now_temperature_celsius = '<div class="owmw-main-temperature">'. esc_html($owmw_data["temperature_celsius"]) .'</div>';
-		$display_now_temperature_fahrenheit = '<div class="owmw-main-temperature">'. esc_html($owmw_data["temperature_fahrenheit"]) .'</div>';
+		$display_now_temperature_celsius = '<div class="owmw-main-temperature-celsius">'. esc_html($owmw_data["temperature_celsius"]) .'</div>';
+		$display_now_temperature_fahrenheit = '<div class="owmw-main-temperature-fahrenheit">'. esc_html($owmw_data["temperature_fahrenheit"]) .'</div>';
 		$display_now_feels_like = '<div class="owmw-main-feels-like">Feels like '. esc_html($owmw_data["feels_like"]) .'</div>';
-		$display_now_feels_like_celsius = '<div class="owmw-main-feels-like">Feels like '. esc_html($owmw_data["feels_like_celsius"]) .'</div>';
-		$display_now_feels_like_fahrenheit = '<div class="owmw-main-feels-like">Feels like '. esc_html($owmw_data["feels_like_fahrenheit"]) .'</div>';
+		$display_now_feels_like_celsius = '<div class="owmw-main-feels-like-celsius">Feels like '. esc_html($owmw_data["feels_like_celsius"]) .'</div>';
+		$display_now_feels_like_fahrenheit = '<div class="owmw-main-feels-like-fahrenheit">Feels like '. esc_html($owmw_data["feels_like_fahrenheit"]) .'</div>';
 		$display_now_end = '</div>';
 
 		//Hours loop
@@ -2382,7 +2397,7 @@ function owmw_get_my_weather($attr) {
        				        </div>
        				        <div class="owmw-infos-text">';
        				            if ($owmw_opt["wind"] == 'yes') {
-               				        $display_forecast_card[$i] .= '<div>'.owmw_wind_direction_icon($value["wind_degrees"], $owmw_opt["text_color"]).'Wind: <span class="owmw-value">' .esc_html($value["wind_speed"].' '.$value["wind_direction"]).'</span></div>';
+               				        $display_forecast_card[$i] .= '<div>'.owmw_wind_direction_icon($value["wind_degrees"], $owmw_opt["text_color"], $owmw_opt["wind_icon_direction"]).'Wind: <span class="owmw-value">' .esc_html($value["wind_speed"].' '.$value["wind_direction"]).'</span></div>';
            				        }
        				            if ($owmw_opt["humidity"] == 'yes') {
                				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["humidity"].'Humidity: <span class="owmw-value">' .esc_html($value["humidity"]). '</span></div>';
@@ -2495,7 +2510,7 @@ function owmw_get_my_weather($attr) {
 				        	var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 							maxZoom: 18, attribution: "OWM Weather" });
 
-							var city = L.OWM.current({intervall: '.esc_attr($owmw_opt["cache_time"]??30).', lang: "en", appId: "'.esc_attr($owmw_opt["api_key"]) . '",temperatureDigits:0,temperatureUnit:"' . esc_attr($owmw_opt["temperature_unit_character"]) . '",speedUnit:"' . esc_attr($map_speed) . '"});'.
+							var city = L.OWM.current({intervall: '.esc_attr($owmw_opt["cache_time"]??30).', lang: "en", appId: "'.esc_attr($owmw_opt["api_key"]) . '",temperatureDigits:0,temperatureUnit:"' . esc_attr($owmw_data["temperature_unit_character"]) . '",speedUnit:"' . esc_attr($map_speed) . '"});'.
 
 							$display_map_options .
 
@@ -2677,6 +2692,8 @@ function owmw_get_my_weather($attr) {
 	    }
 
     	$owmw_html["temperature_unit"] = owmw_temperatureUnitSymbol($owmw_html["container_weather_div"], $owmw_opt["display_temperature_unit"], $owmw_opt["temperature_unit"], $owmw_opt["iconpack"]);
+    	$owmw_html["temperature_unit"] .= owmw_temperatureUnitSymbol($owmw_html["container_weather_div"], $owmw_opt["display_temperature_unit"], "metric", $owmw_opt["iconpack"], "-celsius");
+    	$owmw_html["temperature_unit"] .= owmw_temperatureUnitSymbol($owmw_html["container_weather_div"], $owmw_opt["display_temperature_unit"], "imperial", $owmw_opt["iconpack"], "-fahrenheit");
 
         if ($owmw_opt["owm_link"] == 'yes' || $owmw_opt["last_update"] == 'yes') {
 	    	$owmw_html["owm_link_last_update_start"] .= '<div class="owmw-owm-link-last-update clearfix">';
@@ -2684,7 +2701,7 @@ function owmw_get_my_weather($attr) {
         }
 
 	    if ($owmw_opt["owm_link"] == 'yes') {
-	    	$owmw_html["owm_link"] = '<div class="owmw-link-owm"><a href="' . esc_url($owmw_data["owm_link"]) . '" target="_blank" title="'.esc_attr__('Full weather on OpenWeatherMap','owm-weather').'">'.esc_html__('Full weather','owm-weather').'</a></div>';
+	    	$owmw_html["owm_link"] = '<div class="owmw-link-owm"><a rel="noopener" href="' . esc_url($owmw_data["owm_link"]) . '" target="_blank" title="'.esc_attr__('Full weather on OpenWeatherMap','owm-weather').'">'.esc_html__('Full weather','owm-weather').'</a></div>';
 	    }
 	    if ($owmw_opt["last_update"] == 'yes') {
 	    	$owmw_html["last_update"] = '<div class="owmw-last-update">'.esc_html($owmw_data["last_update"]).'</div>';
@@ -2734,9 +2751,9 @@ function owmw_get_my_weather($attr) {
                     interaction: { intersect: false, mode: "index" },
                     plugins: {title: {display: true, text: "Hourly Temperatures" },
                         tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
-                        if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_html($owmw_opt["temperature_unit_character"]).'"; }
+                        if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_html($owmw_data["temperature_unit_character"]).'"; }
                         return label; } } } },
-                    scales: { y: { title: { display: true, text: "'.esc_html($owmw_opt["temperature_unit_text"]).'" } } }
+                    scales: { y: { title: { display: true, text: "'.esc_html($owmw_data["temperature_unit_text"]).'" } } }
                     };';
             $owmw_html["chart"]["hourly"]["data"] .= 'const hourly_data_'.esc_attr($chart_id).' = {
                                                                       labels: hourly_labels_'.esc_attr($chart_id).',
@@ -2824,9 +2841,9 @@ $owmw_html["chart"]["hourly"]["script"] =
                     interaction: { intersect: false, mode: "index" },
                     plugins: {title: {display: true, text: "Daily Temperatures" },
                         tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
-                        if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_attr($owmw_opt["temperature_unit_character"]).'"; }
+                        if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_attr($owmw_data["temperature_unit_character"]).'"; }
                         return label; } } } },
-                    scales: { y: { title: { display: true, text: "'.esc_attr($owmw_opt["temperature_unit_text"]).'" } } }
+                    scales: { y: { title: { display: true, text: "'.esc_attr($owmw_data["temperature_unit_text"]).'" } } }
                     };';
             $owmw_html["chart"]["daily"]["data"] .= 'const daily_data_'.esc_attr($chart_id).' = {
                                                                       labels: daily_labels_'.esc_attr($chart_id).',
@@ -3447,6 +3464,13 @@ function owmw_sanitize_validate_field($key, $value) {
                 $value = sanitize_text_field($value);
                 if (!in_array($value, array("mi/h", "m/s", "km/h", "kt"))) {
                     $value = "mi/h";
+                }
+                break;
+
+            case "wind_icon_direction":
+                $value = sanitize_text_field($value);
+                if (!in_array($value, array("to", "from"))) {
+                    $value = "to";
                 }
                 break;
 
