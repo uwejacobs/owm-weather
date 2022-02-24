@@ -3,8 +3,8 @@ Contributors: rainbowgeek, uwejacobs
 Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
-Tested up to: 5.9
-Stable tag: 5.0.8
+Tested up to: 5.9.1
+Stable tag: 5.0.9
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -589,6 +589,11 @@ Although many settings look alike, OWM Weather uses completely different weather
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.0.9 =
+* fixed map layer opacity (was always 0 unless set to 100%)
+* added map layer windrose
+* deleted discontinued map layer stations
 
 = 5.0.8 =
 * added display option for the direction the wind icons should point (default: direction of the wind)

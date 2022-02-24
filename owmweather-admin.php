@@ -776,14 +776,6 @@ class owmw_options
         );
 
         add_settings_field(
-            'owmw_map_stations', // ID
-            __("Stations Layer?",'owm-weather'), // Title
-            array( $this, 'owmw_map_layers_stations_callback' ), // Callback
-            'owmw-settings-admin-map', // Page
-            'owmw_setting_section_map' // Section
-        );
-
-        add_settings_field(
             'owmw_map_clouds', // ID
             __("Clouds Layer?",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_clouds_callback' ), // Callback
@@ -827,6 +819,14 @@ class owmw_options
             'owmw_map_pressure', // ID
             __("Pressure Layer?",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_pressure_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_windrose', // ID
+            __("Windrose Layer?",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_windrose_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
         );
@@ -1704,11 +1704,6 @@ class owmw_options
         $this->owmw_bypassRadioButtonsDisable('owmw_map_disable_zoom_wheel');
     }
 
-	public function owmw_map_layers_stations_callback()
-    {
-        $this->owmw_bypassRadioButtons('owmw_map_stations');
-    }
-
 	public function owmw_map_layers_clouds_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_clouds');
@@ -1737,6 +1732,11 @@ class owmw_options
     public function owmw_map_layers_pressure_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_pressure');
+    }
+
+    public function owmw_map_layers_windrose_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_windrose');
     }
 
     public function owmw_support_info_callback()

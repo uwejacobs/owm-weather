@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.0.8
+Version: 5.0.9
 Author: Uwe Jacobs
 Author URI: https://github.com/uwejacobs
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.0.8' );
+define( 'OWM_WEATHER_VERSION', '5.0.9' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -431,16 +431,16 @@ function owmw_basic($post){
 	$owmw_opt["iconpack"]     			    = get_post_meta($id,'_owmweather_iconpack',true);
 	$owmw_opt["map"] 	    				= get_post_meta($id,'_owmweather_map',true);
 	$owmw_opt["map_height"]	    			= get_post_meta($id,'_owmweather_map_height',true);
-	$owmw_opt["map_opacity"]		    		= owmw_getDefault($id,'_owmweather_map_opacity', "0.5");
+	$owmw_opt["map_opacity"]		    	= owmw_getDefault($id,'_owmweather_map_opacity', "0.8");
 	$owmw_opt["map_zoom"]			    	= owmw_getDefault($id,'_owmweather_map_zoom', '9');
 	$owmw_opt["map_disable_zoom_wheel"]		= get_post_meta($id,'_owmweather_map_disable_zoom_wheel',true);
-	$owmw_opt["map_stations"]			    = get_post_meta($id,'_owmweather_map_stations',true);
 	$owmw_opt["map_clouds"]				    = get_post_meta($id,'_owmweather_map_clouds',true);
 	$owmw_opt["map_precipitation"]		    = get_post_meta($id,'_owmweather_map_precipitation',true);
 	$owmw_opt["map_snow"]    				= get_post_meta($id,'_owmweather_map_snow',true);
 	$owmw_opt["map_wind"]	    			= get_post_meta($id,'_owmweather_map_wind',true);
 	$owmw_opt["map_temperature"]	    		= get_post_meta($id,'_owmweather_map_temperature',true);
 	$owmw_opt["map_pressure"]		    	= get_post_meta($id,'_owmweather_map_pressure',true);
+	$owmw_opt["map_windrose"]		    	= get_post_meta($id,'_owmweather_map_windrose',true);
 
 	$owmw_opt["chart_height"]	    		= owmw_getDefault($id,'_owmweather_chart_height', '400');
 	$owmw_opt["chart_background_color"]		= owmw_getDefault($id, '_owmweather_chart_background_color', '#fff');
@@ -1160,12 +1160,6 @@ function owmw_basic($post){
 				<?php esc_html_e( 'Layers', 'owm-weather' ) ?>
 			</p>
 			<p>
-				<label for="owmweather_map_stations_meta">
-					<input type="checkbox" name="owmweather_map_stations" id="owmweather_map_stations_meta" value="yes" <?php echo checked( $owmw_opt["map_stations"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display stations?', 'owm-weather' ) ?>
-				</label>
-			</p>
-			<p>
 				<label for="owmweather_map_clouds_meta">
 					<input type="checkbox" name="owmweather_map_clouds" id="owmweather_map_clouds_meta" value="yes" <?php echo checked( $owmw_opt["map_clouds"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Display clouds?', 'owm-weather' ) ?>
@@ -1199,6 +1193,12 @@ function owmw_basic($post){
 				<label for="owmweather_map_pressure_meta">
 					<input type="checkbox" name="owmweather_map_pressure" id="owmweather_map_pressure_meta" value="yes" <?php echo checked( $owmw_opt["map_pressure"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Display pressure?', 'owm-weather' ) ?>
+				</label>
+			</p>
+			<p>
+				<label for="owmweather_map_windrose_meta">
+					<input type="checkbox" name="owmweather_map_windrose" id="owmweather_map_windrose_meta" value="yes" <?php echo checked( $owmw_opt["map_windrose"], 'yes', false ) ?>/>
+						<?php esc_html_e( 'Display windrose?', 'owm-weather' ) ?>
 				</label>
 			</p>
 		</div>
@@ -1283,13 +1283,13 @@ function owmw_save_metabox($post_id){
 		owmw_save_metabox_field_yn('owm_link', $post_id);
 		owmw_save_metabox_field_yn('last_update', $post_id);
 		owmw_save_metabox_field_yn('map_disable_zoom_wheel', $post_id);
-		owmw_save_metabox_field_yn('map_stations', $post_id);
 		owmw_save_metabox_field_yn('map_clouds', $post_id);
 		owmw_save_metabox_field_yn('map_precipitation', $post_id);
 		owmw_save_metabox_field_yn('map_snow', $post_id);
 		owmw_save_metabox_field_yn('map_wind', $post_id);
 		owmw_save_metabox_field_yn('map_temperature', $post_id);
 		owmw_save_metabox_field_yn('map_pressure', $post_id);
+		owmw_save_metabox_field_yn('map_windrose', $post_id);
 		owmw_save_metabox_field_yn('gtag', $post_id);
 		owmw_save_metabox_field_yn('bypass_exclude', $post_id);
 		owmw_save_metabox_field_yn('map', $post_id);
@@ -1400,6 +1400,7 @@ function owmw_city_name($custom_city_name, $owm_city_name) {
 }
 
 function owmw_display_today_sunrise_sunset($owmweather_sunrise_sunset, $sun_rise, $sun_set, $color, $elem) {
+	// bugbug insert &nbsp;
 	if( $owmweather_sunrise_sunset == 'yes' ) {
 		return '<div class="owmw-sun-hours col">
 					<' . esc_attr($elem) . ' class="owmw-sunrise" title="'.esc_attr__('Sunrise','owm-weather').'">'. owmw_sunrise($color) . '<span class="font-weight-bold">' . esc_html($sun_rise) .'</span></' . esc_attr($elem) . '><' . esc_attr($elem) . ' class="owmw-sunset" title="'.esc_attr__('Sunset','owm-weather').'">'. owmw_sunset($color) . '<span class="font-weight-bold">' . esc_html($sun_set) .'</span></' . esc_attr($elem) . '>
@@ -1410,6 +1411,7 @@ function owmw_display_today_sunrise_sunset($owmweather_sunrise_sunset, $sun_rise
 }
 
 function owmw_display_today_moonrise_moonset($owmweather_moonrise_moonset, $moon_rise, $moon_set, $color, $elem) {
+	// bugbug insert &nbsp;
 	if( $owmweather_moonrise_moonset == 'yes' ) {
 		return '<div class="owmw-moon-hours col">
 					<' . esc_attr($elem) . ' class="owmw-moonrise" title="'.esc_attr__('Moonrise','owm-weather').'">'. owmw_moonrise($color) . '<span class="font-weight-bold">' . esc_html($moon_rise) .'</span></' . esc_attr($elem) . '><' . esc_attr($elem) . ' class="owmw-moonset" title="'.esc_attr__('Moonset','owm-weather').'">'. owmw_moonset($color) . '<span class="font-weight-bold">' . esc_html($moon_set) .'</span></' . esc_attr($elem) . '>
@@ -1537,13 +1539,13 @@ function owmw_get_my_weather_id($atts) {
         "last_update"                   => false,
         "map"                           => false,
         "map_disable_zoom_wheel"        => false,
-        "map_stations"                  => false,
         "map_clouds"                    => false,
         "map_precipitation"             => false,
         "map_snow"                      => false,
         "map_wind"                      => false,
         "map_temperature"               => false,
         "map_pressure"                  => false,
+        "map_windrose"                  => false,
         "gtag"                          => false,
         "bypass_exclude"                => false,
         "alerts"                        => false,
@@ -1670,13 +1672,13 @@ function owmw_get_my_weather($attr) {
 		$owmw_opt["map_opacity"]          			= owmw_get_bypass($bypass, "map_opacity");
 		$owmw_opt["map_zoom"]              			= owmw_get_bypass($bypass, "map_zoom");
 		$owmw_opt["map_disable_zoom_wheel"]     		= owmw_get_bypass_yn($bypass, "map_disable_zoom_wheel");
-		$owmw_opt["map_stations"]            		= owmw_get_bypass_yn($bypass, "map_stations");
 		$owmw_opt["map_clouds"]            			= owmw_get_bypass_yn($bypass, "map_clouds");
 		$owmw_opt["map_precipitation"]         		= owmw_get_bypass_yn($bypass, "map_precipitation");
 		$owmw_opt["map_snow"]              			= owmw_get_bypass_yn($bypass, "map_snow");
 		$owmw_opt["map_wind"]              			= owmw_get_bypass_yn($bypass, "map_wind");
 		$owmw_opt["map_temperature"]         		= owmw_get_bypass_yn($bypass, "map_temperature");
 		$owmw_opt["map_pressure"]            		= owmw_get_bypass_yn($bypass, "map_pressure");
+		$owmw_opt["map_windrose"]            		= owmw_get_bypass_yn($bypass, "map_windrose");
 		$owmw_opt["border_color"]             		= owmw_get_bypass($bypass, "border_color");
 		$owmw_opt["border_width"]             		= owmw_getBypassDefault($bypass, 'border_width', $owmw_opt["border_color"] == '' ? '0' : '1');
 		$owmw_opt["border_style"]             		= owmw_get_bypass($bypass, "border_style");
@@ -2432,16 +2434,10 @@ function owmw_get_my_weather($attr) {
 	      	if ($owmw_opt['map'] == 'yes') {
 
 		    	//Layers opacity
-	    		$display_map_layers_opacity = intval($owmw_opt["map_opacity"]);
+	    		$display_map_layers_opacity = floatval($owmw_opt["map_opacity"]);
 
                 $display_map_layers  = '';
                 $display_map_options = '';
-
-		    	//Stations
-		    	if ( $owmw_opt["map_stations"] == 'yes' ) {
-		        	$display_map_options         	.= 'var station = L.OWM.current({type: "station", appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"Stations": station,';
-		      	}
 
 		      	//Clouds
 		      	if ( $owmw_opt["map_clouds"] == 'yes' ) {
@@ -2489,6 +2485,12 @@ function owmw_get_my_weather($attr) {
 		        	$display_map_layers             .= '"Pressure Contour": pressurecntr,';
 		      	}
 
+				//Wind Rose
+		      	if ( $owmw_opt["map_windrose"] == 'yes' ) {
+					$display_map_options .= 'var windrose = L.OWM.current({intervall: 15, imageLoadingUrl: "leaflet/owmloading.gif", lang: "en", minZoom: 4, appId: "'.esc_attr($owmw_opt["api_key"]).'", markerFunction: myWindroseMarker, popup: false, clusterSize: 50, imageLoadingBgUrl: "https://openweathermap.org/img/w0/iwind.png" });	windrose.on("owmlayeradd", windroseAdded, windrose);';
+					$display_map_layers             .= '"Windrose": windrose,';
+				}
+				
 		      	//Scroll wheel
 		      	$display_map_scroll_wheel = ($owmw_opt["map_disable_zoom_wheel"] == 'yes') ? "false" : "true";
 
@@ -2508,9 +2510,9 @@ function owmw_get_my_weather($attr) {
 			        'jQuery(document).ready( function() {
 
 				        	var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-							maxZoom: 18, attribution: "OWM Weather" });
+							maxZoom: 18, attribution: \'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>\' });
 
-							var city = L.OWM.current({intervall: '.esc_attr($owmw_opt["cache_time"]??30).', lang: "en", appId: "'.esc_attr($owmw_opt["api_key"]) . '",temperatureDigits:0,temperatureUnit:"' . esc_attr($owmw_data["temperature_unit_character"]) . '",speedUnit:"' . esc_attr($map_speed) . '"});'.
+							var city = L.OWM.current({intervall: '.esc_attr($owmw_opt["cache_time"]??30).', lang: "en", minZoom: 5, appId: "'.esc_attr($owmw_opt["api_key"]) . '",temperatureDigits:0,temperatureUnit:"' . esc_attr($owmw_data["temperature_unit_character"]) . '",speedUnit:"' . esc_attr($map_speed) . '"});'.
 
 							$display_map_options .
 
@@ -2528,7 +2530,7 @@ function owmw_get_my_weather($attr) {
                             	});
                             });
 			        	});';
-			}
+		}
 
 		$owmw_html["container"]["start"] = '<!-- OWM Weather : WordPress weather plugin v'.OWM_WEATHER_VERSION.' - https://github.com/uwejacobs/owm-weather -->';
 		$owmw_html["container"]["start"] .= '<div id="' . $owmw_html["container_weather_div"] . '" class="owmw-'.esc_attr($owmw_opt["id"]).' owm-weather-'.esc_attr($owmw_data["condition_id"]).' owmw-'. $owmw_opt["size"] .' owmw-template-'. $owmw_opt["template"] .'"';
@@ -3627,13 +3629,13 @@ function owmw_sanitize_validate_field($key, $value) {
             case "last_update":
             case "map":
             case "map_disable_zoom_wheel":
-            case "map_stations":
             case "map_clouds":
             case "map_precipitation":
             case "map_snow":
             case "map_wind":
             case "map_temperature":
             case "map_pressure":
+            case "map_windrose":
             case "gtag":
             case "bypass_exclude":
             case "alerts":
