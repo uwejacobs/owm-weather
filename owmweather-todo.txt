@@ -1,10 +1,7 @@
 Must:
-CSS and HTML for celsius and fahrenheit
 
 Nice:
 more charts
 tabbed settings
 background type gradient/video
-moon phase icons
-Translations
 openweathermap keys

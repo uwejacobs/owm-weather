@@ -485,6 +485,8 @@ Allows to delete all cached OpenWeatherMap data and retrieve fresh data with the
 * Dutch (thanks to Age de Jong)
 * Persian (thanks to @mARYAm)
 
+Add yours with PoEdit. The latest .pot file can be found under /wp-content/plugins/own/weather/lang/. Place your .po/.mo files into the same folder. We will gladly add them in future releases.
+
 == For developers ==
 Templating system: The main advantage is that you can create a completely personalized weather without changing the core of the plugin. In addition, your changes will not be overwritten at each plugin update.
 
@@ -662,4 +664,4 @@ Although many settings look alike, OWM Weather uses completely different weather
 * Restarted WP Cloudy under OWM Weather
 
 == Upgrade Notice ==
-* WP Cloudy users who want to upgrade to OWM Weather need to reenter their weathers and system settings.
+* WP Cloudy users who want to upgrade to OWM Weather need to reenter their weather pages and system settings.
