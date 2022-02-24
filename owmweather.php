@@ -1199,7 +1199,7 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_map_windrose_meta">
 					<input type="checkbox" name="owmweather_map_windrose" id="owmweather_map_windrose_meta" value="yes" <?php echo checked( $owmw_opt["map_windrose"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display windrose?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Display wind rose?', 'owm-weather' ) ?>
 				</label>
 			</p>
 		</div>
@@ -2489,7 +2489,7 @@ function owmw_get_my_weather($attr) {
 				//Wind Rose
 		      	if ( $owmw_opt["map_windrose"] == 'yes' ) {
 					$display_map_options .= 'var windrose = L.OWM.current({intervall: 15, imageLoadingUrl: "leaflet/owmloading.gif", lang: "en", minZoom: 4, appId: "'.esc_attr($owmw_opt["api_key"]).'", markerFunction: myWindroseMarker, popup: false, clusterSize: 50, imageLoadingBgUrl: "https://openweathermap.org/img/w0/iwind.png" });	windrose.on("owmlayeradd", windroseAdded, windrose);';
-					$display_map_layers             .= '"'.esc_attr__("Windrose", "owm-weather").'": windrose,';
+					$display_map_layers             .= '"'.esc_attr__("Wind rose", "owm-weather").'": windrose,';
 				}
 				
 		      	//Scroll wheel

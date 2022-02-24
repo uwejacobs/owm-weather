@@ -249,8 +249,8 @@ Our plugin will never display any advertising on your site. Did we mention it's 
   The initial zoom level (1-18) for the map. Default is 9.
 * <strong>Disable zoom wheel on map [map_disable_zoom_wheel]</strong>
   Check to disable the zoom wheel on the map.
-* <strong>Display Windrose [map_windrose]</strong>
-  Add a layer option for windrose.
+* <strong>Display Wind rose [map_windrose]</strong>
+  Add a layer option for wind rose.
 * <strong>Display clouds [map_clouds]</strong>
   Add a layer option for cloud cover.
 * <strong>Display precipitation [map_precipitation]</strong>
@@ -599,7 +599,7 @@ Although many settings look alike, OWM Weather uses completely different weather
 
 = 5.0.9 =
 * fixed map layer opacity (was always 0 unless set to 100%)
-* added map layer windrose
+* added map layer wind rose
 * deleted discontinued map layer stations
 
 = 5.0.8 =

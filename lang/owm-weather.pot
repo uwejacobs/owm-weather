@@ -429,7 +429,7 @@ msgid "Pressure Layer?"
 msgstr ""
 
 #: owmweather-admin.php:828
-msgid "Windrose Layer?"
+msgid "Wind rose Layer?"
 msgstr ""
 
 #: owmweather-admin.php:888
@@ -1663,7 +1663,7 @@ msgid "Display pressure?"
 msgstr ""
 
 #: owmweather.php:1202
-msgid "Display windrose?"
+msgid "Display wind rose?"
 msgstr ""
 
 #: owmweather.php:1407
@@ -1821,7 +1821,7 @@ msgid "Pressure Contour"
 msgstr ""
 
 #: owmweather.php:2492
-msgid "Windrose"
+msgid "Wind rose"
 msgstr ""
 
 #: owmweather.php:2592

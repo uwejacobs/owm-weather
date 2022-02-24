@@ -825,7 +825,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_map_windrose', // ID
-            esc_html__("Windrose Layer?",'owm-weather'), // Title
+            esc_html__("Wind rose Layer?",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_windrose_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
