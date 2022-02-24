@@ -494,39 +494,39 @@ function owmw_basic($post){
                   <div id="fragment-1">
         				<p>
       					<label for="owmweather_id_owm_meta"><?php esc_html_e( 'OpenWeatherMap City Id', 'owm-weather' ) ?><span class="mandatory">*</span> <a href="https://openweathermap.org/find?q=" target="_blank"> <?php esc_html_e('Find my City Id','owm-weather') ?></a><span class="dashicons dashicons-external"></span></label>
-      					<input id="owmweather_id_owm" type="number" name="owmweather_id_owm" value="<?php esc_attr_e($owmw_opt["id_owm"]) ?>" />
+      					<input id="owmweather_id_owm" type="number" name="owmweather_id_owm" value="<?php echo esc_attr($owmw_opt["id_owm"]) ?>" />
       				</p>
                   </div>
                   <div id="fragment-2">
       				<p>
       					<label for="owmweather_latitude_meta"><?php esc_html_e( 'Latitude?', 'owm-weather' ) ?><span class="mandatory">*</span></label>
-      					<input id="owmweather_latitude_meta" type="number" min="-90" max="90" step="0.0000001" name="owmweather_latitude" value="<?php esc_attr_e($owmw_opt["latitude"]) ?>" />
+      					<input id="owmweather_latitude_meta" type="number" min="-90" max="90" step="0.0000001" name="owmweather_latitude" value="<?php echo esc_attr($owmw_opt["latitude"]) ?>" />
       				</p>
       				<p>
       					<label for="owmweather_longitude_meta"><?php esc_html_e( 'Longitude?', 'owm-weather' ) ?><span class="mandatory">*</span></label>
-      					<input id="owmweather_longitude_meta" type="number" min="-180" max="180" step="0.000001" name="owmweather_longitude" value="<?php esc_attr_e($owmw_opt["longitude"]) ?>" />
+      					<input id="owmweather_longitude_meta" type="number" min="-180" max="180" step="0.000001" name="owmweather_longitude" value="<?php echo esc_attr($owmw_opt["longitude"]) ?>" />
       				</p>
-      				<p><em><?php esc_html_e('If you enter an OpenWeatherMap City Id, it will automatically bypass the  Latitude/Longitude fields.','owm-weather') ?></em></p>
+      				<p><em><?php esc_html_e('If you enter an OpenWeatherMap City Id, it will automatically bypass the Latitude/Longitude fields.','owm-weather') ?></em></p>
                   </div>
                   <div id="fragment-3">
       				<p>
       					<label for="owmweather_zip_meta"><?php esc_html_e( 'Zip code?', 'owm-weather' ) ?><span class="mandatory">*</span></label>
-      					<input id="owmweather_zip_meta" name="owmweather_zip" value="<?php esc_attr_e($owmw_opt["zip"]) ?>" />
+      					<input id="owmweather_zip_meta" name="owmweather_zip" value="<?php echo esc_attr($owmw_opt["zip"]) ?>" />
       				</p>
       				<p>
       					<label for="owmweather_zip_country_meta"><?php esc_html_e( '2-letter country code?', 'owm-weather' ) ?>(<?php esc_html_e("Default: US", 'owm-weather') ?>)</label>
-      					<input id="owmweather_zip_country_meta" class="countrycodes typeahead" type="text" name="owmweather_zip_country_code" maxlength="2" value="<?php esc_attr_e($owmw_opt["zip_country_code"]) ?>" />
+      					<input id="owmweather_zip_country_meta" class="countrycodes typeahead" type="text" name="owmweather_zip_country_code" maxlength="2" value="<?php echo esc_attr($owmw_opt["zip_country_code"]) ?>" />
       				</p>
       				<p><em><?php esc_html_e('If you enter an OpenWeatherMap City Id or Latitude/Longitude, it will automatically bypass the Zip and Country fields.','owm-weather') ?></em></p>
                   </div>
                   <div id="fragment-4">
       				<p>
       					<label for="owmweather_city_meta"><?php esc_html_e( 'City', 'owm-weather' ) ?><span class="mandatory">*</span></label>
-      					<input id="owmweather_city_meta" data_appid="<?php esc_attr_e(owmw_get_admin_api_key2()) ?>" class="cities typeahead" type="text" name="owmweather_city" placeholder="<?php esc_attr_e('Enter your city','owm-weather') ?>" value="<?php esc_attr_e($owmw_opt["city"]) ?>" />
+      					<input id="owmweather_city_meta" data_appid="<?php echo esc_attr_e(owmw_get_admin_api_key2()) ?>" class="cities typeahead" type="text" name="owmweather_city" placeholder="<?php esc_attr_e('Enter your city','owm-weather') ?>" value="<?php echo esc_attr($owmw_opt["city"]) ?>" />
       				</p>
       				<p>
-      					<label for="owmweather_country_meta"><?php esc_html_e( 'Country?', 'owm-weather' ) ?><span class="mandatory">*</span></label>
-      					<input id="owmweather_country_meta" class="countries typeahead" type="text" name="owmweather_country_code" value="<?php esc_attr_e($owmw_opt["country_code"]) ?>" />
+      					<label for="owmweather_country_meta"><?php esc_html_e( 'Country', 'owm-weather' ) ?><span class="mandatory">*</span></label>
+      					<input id="owmweather_country_meta" class="countries typeahead" type="text" name="owmweather_country_code" value="<?php echo esc_attr($owmw_opt["country_code"]) ?>" />
       				</p>
       				<p><em><?php esc_html_e('If you enter an OpenWeatherMap City Id, Latitude/Longitude or Zip/Country, it will automatically bypass the City and Country fields.','owm-weather') ?></em></p>
                   </div>
@@ -539,7 +539,7 @@ function owmw_basic($post){
 		    </p>
 			<p>
 				<label for="owmweather_custom_city_name_meta"><?php esc_html_e( 'Custom city title', 'owm-weather' ) ?></label>
-				<input id="owmweather_custom_city_name_meta" type="text" name="owmweather_custom_city_name" value="<?php esc_attr_e($owmw_opt["custom_city_name"]) ?>" />
+				<input id="owmweather_custom_city_name_meta" type="text" name="owmweather_custom_city_name" value="<?php echo esc_attr($owmw_opt["custom_city_name"]) ?>" />
 			</p>
 			<p>
 				<label for="unit_meta"><?php esc_html_e( 'Measurement system?', 'owm-weather' ) ?></label>
@@ -640,7 +640,7 @@ function owmw_basic($post){
 				</select>
 			</p>
 			<p class="misc subsection-title">
-				<?php esc_html_e( 'Misc', 'owm-weather' ) ?>
+				<?php esc_html_e( 'Miscellaneous', 'owm-weather' ) ?>
 			</p>
 			<p>
 				<label for="owmweather_gtag_meta">
@@ -683,7 +683,7 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_current_feels_like_meta">
 					<input type="checkbox" name="owmweather_current_feels_like" id="owmweather_current_feels_like_meta" value="yes" <?php echo checked( $owmw_opt["current_feels_like"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Current feels like temperature?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Current feels-like temperature?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
@@ -698,7 +698,7 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_display_temperature_unit_meta">
 					<input type="checkbox" name="owmweather_display_temperature_unit" id="owmweather_display_temperature_unit_meta" value="yes" <?php echo checked( $owmw_opt["display_temperature_unit"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Temperatures unit (C / F)?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Temperature unit (C / F)?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p class="owmw-dates subsection-title">
@@ -735,7 +735,7 @@ function owmw_basic($post){
 				</label>
 			</p>
 			<p class="owmw-misc subsection-title">
-				<?php esc_html_e( 'Misc', 'owm-weather' ) ?>
+				<?php esc_html_e( 'Miscellaneous', 'owm-weather' ) ?>
 			</p>
 			<p>
 				<label for="owmweather_wind_meta">
@@ -813,7 +813,7 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_alerts_button_color"><?php esc_html_e( 'Alert Button color', 'owm-weather' ) ?></label>
-				<input name="owmweather_alerts_button_color" type="text" value="<?php esc_attr_e($owmw_opt["alerts_button_color"]) ?>" class="owmweather_color_picker" />
+				<input name="owmweather_alerts_button_color" type="text" value="<?php echo esc_attr($owmw_opt["alerts_button_color"]) ?>" class="owmweather_color_picker" />
 			</p>
 			<p class="hour subsection-title">
 				<?php esc_html_e( 'Hourly Forecast', 'owm-weather' ) ?>
@@ -854,13 +854,13 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_display_length_days_names_short_meta">
 					<input type="radio" name="owmweather_display_length_days_names" id="owmweather_display_length_days_names_short_meta" value="short" <?php echo checked( $owmw_opt["display_length_days_names"], 'short', false ) ?>/>
-						<?php esc_html_e( 'Short days names?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Short day names?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_display_length_days_names_normal_meta">
 					<input type="radio" name="owmweather_display_length_days_names" id="owmweather_display_length_days_names_normal_meta" value="normal" <?php echo checked( $owmw_opt["display_length_days_names"], 'normal', false ) ?>/>
-						<?php esc_html_e( 'Normal days names?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Normal day names?', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p class="footer subsection-title">
@@ -877,7 +877,7 @@ function owmw_basic($post){
 				<label for="owmweather_last_update_meta">
 					<input type="checkbox" name="owmweather_last_update" id="owmweather_last_update_meta" value="yes" <?php echo checked( $owmw_opt["last_update"], 'yes', false ) ?>/>
 
-					<?php esc_html_e( 'Update date?', 'owm-weather' ) ?>
+					<?php esc_html_e( 'Update date/time?', 'owm-weather' ) ?>
 				</label>
 			</p>
 		</div>
@@ -930,6 +930,7 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="iconpack_meta"><?php esc_html_e( 'Icon Pack', 'owm-weather' ) ?></label>
+				<p><i><?php esc_html_e('The main icon is always an animated SVG. If you want the icon from the icon pack instead, you need to select "Disable animations for main icon?" below.', 'owm-weather') ?></i></p>
 				<select name="owmweather_iconpack">
 					<option <?php echo selected( 'Climacons', $owmw_opt["iconpack"], false ) ?>value="Climacons"><?php esc_html_e( 'Climacons', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'OpenWeatherMap', $owmw_opt["iconpack"], false ) ?>value="OpenWeatherMap"><?php esc_html_e( 'Open Weather Map', 'owm-weather' ) ?></option>
@@ -944,7 +945,7 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_background_color"><?php esc_html_e( 'Background color', 'owm-weather' ) ?></label>
-				<input name="owmweather_background_color" type="text" value="<?php esc_attr_e($owmw_opt["background_color"]) ?>" class="owmweather_color_picker" />
+				<input name="owmweather_background_color" type="text" value="<?php echo esc_attr($owmw_opt["background_color"]) ?>" class="owmweather_color_picker" />
 			</p>
 			<p>
 				<label><?php esc_html_e( 'Background image', 'owm-weather' ) ?></label>
@@ -952,20 +953,20 @@ function owmw_basic($post){
                   	<img id="background_image_preview" src="<?php echo wp_get_attachment_url( ($owmw_opt["background_image"] ?? '' ) ) ?>" height="100px"<?php echo (!empty($owmw_opt["background_image"]) ? '' : ' style="display: none;"') ?>>
                   </div>
                   <input id="select_background_image_button" type="button" class="button" value="<?php esc_html_e( 'Select image', 'owm-weather' ) ?>" />
-                  <input type="hidden" name="owmweather_background_image" id="background_image_attachment_id" value="<?php esc_attr_e($owmw_opt["background_image"] ?? '') ?>">
+                  <input type="hidden" name="owmweather_background_image" id="background_image_attachment_id" value="<?php echo esc_attr($owmw_opt["background_image"] ?? '') ?>">
                   <input id="clear_background_image_button" type="button" class="button" value="Clear" />
               </p>
 			<p>
 				<label for="owmweather_text_color"><?php esc_html_e( 'Text color', 'owm-weather' ) ?></label>
-				<input name="owmweather_text_color" type="text" value="<?php esc_attr_e($owmw_opt["text_color"]) ?>" class="owmweather_color_picker" />
+				<input name="owmweather_text_color" type="text" value="<?php echo esc_attr($owmw_opt["text_color"]) ?>" class="owmweather_color_picker" />
 			</p>
 			<p>
 				<label for="owmweather_border_color"><?php esc_html_e( 'Border color', 'owm-weather' ) ?></label>
-				<input name="owmweather_border_color" type="text" value="<?php esc_attr_e($owmw_opt["border_color"]) ?>" class="owmweather_color_picker" />
+				<input name="owmweather_border_color" type="text" value="<?php echo esc_attr($owmw_opt["border_color"]) ?>" class="owmweather_color_picker" />
 			</p>
 			<p>
 				<label for="owmweather_border_width"><?php esc_html_e( 'Border width (px)', 'owm-weather' ) ?></label>
-				<input name="owmweather_border_width" type="number" min="0" value="<?php esc_attr_e($owmw_opt["border_width"]) ?>" />
+				<input name="owmweather_border_width" type="number" min="0" value="<?php echo esc_attr($owmw_opt["border_width"]) ?>" />
 			</p>
 			<p>
 				<label for="owmweather_border_style"><?php esc_html_e( 'Border style', 'owm-weather' ) ?></label>
@@ -982,10 +983,10 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_border_radius"><?php esc_html_e( 'Border radius (px)', 'owm-weather' ) ?></label>
-				<input name="owmweather_border_radius" type="number" min="0" value="<?php esc_attr_e($owmw_opt["border_radius"]) ?>" />
+				<input name="owmweather_border_radius" type="number" min="0" value="<?php echo esc_attr($owmw_opt["border_radius"]) ?>" />
 			</p>
 			<p class="misc subsection-title">
-				<?php esc_html_e( 'Misc', 'owm-weather' ) ?>
+				<?php esc_html_e( 'Miscellaneous', 'owm-weather' ) ?>
 			</p>
 			<p>
 				<label for="owmweather_disable_spinner_meta">
@@ -1010,26 +1011,26 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_custom_css_meta"><?php esc_html_e( 'Custom CSS', 'owm-weather' ) ?></label>
 				<textarea id="owmweather_custom_css_meta" name="owmweather_custom_css"><?php echo esc_textarea($owmw_opt["custom_css"]) ?></textarea>
-			    <p>Preceed all CSS rules with .owmw-<?php esc_html_e($id) ?> if you are planning to use more than one weather shortcode on a page.</p>
+			    <p>Preceed all CSS rules with .owmw-<?php echo esc_html($id) ?> if you are planning to use more than one weather shortcode on a page.</p>
 			</p>
 			<p class="subsection-title">
 				<?php esc_html_e( 'Tables', 'owm-weather' ) ?>
 			</p>
 			<p>
 				<label for="owmweather_table_background_color"><?php esc_html_e( 'Background color', 'owm-weather' ) ?></label>
-				<input name="owmweather_table_background_color" type="text" value="<?php esc_attr_e($owmw_opt["table_background_color"]) ?>" class="owmweather_color_picker" />
+				<input name="owmweather_table_background_color" type="text" value="<?php echo esc_attr($owmw_opt["table_background_color"]) ?>" class="owmweather_color_picker" />
 			</p>
 			<p>
 				<label for="owmweather_table_text_color"><?php esc_html_e( 'Text color', 'owm-weather' ) ?></label>
-				<input name="owmweather_table_text_color" type="text" value="<?php esc_attr_e($owmw_opt["table_text_color"]) ?>" class="owmweather_color_picker" />
+				<input name="owmweather_table_text_color" type="text" value="<?php echo esc_attr($owmw_opt["table_text_color"]) ?>" class="owmweather_color_picker" />
 			</p>
 			<p>
 				<label for="owmweather_table_border_color"><?php esc_html_e( 'Border color', 'owm-weather' ) ?></label>
-				<input name="owmweather_table_border_color" type="text" value="<?php esc_attr_e($owmw_opt["table_border_color"]) ?>" class="owmweather_color_picker" />
+				<input name="owmweather_table_border_color" type="text" value="<?php echo esc_attr($owmw_opt["table_border_color"]) ?>" class="owmweather_color_picker" />
 			</p>
 			<p>
 				<label for="owmweather_table_border_width"><?php esc_html_e( 'Border width (px)', 'owm-weather' ) ?></label>
-				<input name="owmweather_table_border_width" type="number" min="0" value="<?php esc_attr_e($owmw_opt["table_border_width"]) ?>" />
+				<input name="owmweather_table_border_width" type="number" min="0" value="<?php echo esc_attr($owmw_opt["table_border_width"]) ?>" />
 			</p>
 			<p>
 				<label for="owmweather_table_border_style"><?php esc_html_e( 'Border style', 'owm-weather' ) ?></label>
@@ -1046,26 +1047,26 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_table_border_radius"><?php esc_html_e( 'Border radius (px)', 'owm-weather' ) ?></label>
-				<input name="owmweather_table_border_radius" type="number" min="0" value="<?php esc_attr_e($owmw_opt["table_border_radius"]) ?>" />
+				<input name="owmweather_table_border_radius" type="number" min="0" value="<?php echo esc_attr($owmw_opt["table_border_radius"]) ?>" />
 			</p>
 			<p class="subsection-title">
 				<?php esc_html_e( 'Charts', 'owm-weather' ) ?>
 			</p>
 			<p>
 				<label for="owmweather_chart_height_meta"><?php esc_html_e( 'Height (in px)', 'owm-weather' ) ?></label>
-				<input id="owmweather_charet_height_meta" type="text" name="owmweather_chart_height" value="<?php esc_attr_e($owmw_opt["chart_height"]) ?>" />
+				<input id="owmweather_charet_height_meta" type="text" name="owmweather_chart_height" value="<?php echo esc_attr($owmw_opt["chart_height"]) ?>" />
 			</p>
 			<p>
 				<label for="owmweather_chart_background_color"><?php esc_html_e( 'Background color', 'owm-weather' ) ?></label>
-				<input name="owmweather_chart_background_color" type="text" value="<?php esc_attr_e($owmw_opt["chart_background_color"]) ?>" class="owmweather_color_picker" />
+				<input name="owmweather_chart_background_color" type="text" value="<?php echo esc_attr($owmw_opt["chart_background_color"]) ?>" class="owmweather_color_picker" />
 			</p>
 			<p>
 				<label for="owmweather_chart_border_color"><?php esc_html_e( 'Border color', 'owm-weather' ) ?></label>
-				<input name="owmweather_chart_border_color" type="text" value="<?php esc_attr_e($owmw_opt["chart_border_color"]) ?>" class="owmweather_color_picker" />
+				<input name="owmweather_chart_border_color" type="text" value="<?php echo esc_attr($owmw_opt["chart_border_color"]) ?>" class="owmweather_color_picker" />
 			</p>
 			<p>
 				<label for="owmweather_chart_border_width"><?php esc_html_e( 'Border width (px)', 'owm-weather' ) ?></label>
-				<input name="owmweather_chart_border_width" type="number" min="0" value="<?php esc_attr_e($owmw_opt["chart_border_width"]) ?>" />
+				<input name="owmweather_chart_border_width" type="number" min="0" value="<?php echo esc_attr($owmw_opt["chart_border_width"]) ?>" />
 			</p>
 			<p>
 				<label for="owmweather_chart_border_style"><?php esc_html_e( 'Border style', 'owm-weather' ) ?></label>
@@ -1082,19 +1083,19 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_chart_border_radius"><?php esc_html_e( 'Border radius (px)', 'owm-weather' ) ?></label>
-				<input name="owmweather_chart_border_radius" type="number" min="0" value="<?php esc_attr_e($owmw_opt["chart_border_radius"]) ?>" />
+				<input name="owmweather_chart_border_radius" type="number" min="0" value="<?php echo esc_attr($owmw_opt["chart_border_radius"]) ?>" />
 			</p>
 			<p>
 				<label for="owmweather_chart_temperature_color"><?php esc_html_e( 'Temperature color', 'owm-weather' ) ?></label>
-				<input name="owmweather_chart_temperature_color" type="text" value="<?php esc_attr_e($owmw_opt["chart_temperature_color"]) ?>" class="owmweather_color_picker" />
+				<input name="owmweather_chart_temperature_color" type="text" value="<?php echo esc_attr($owmw_opt["chart_temperature_color"]) ?>" class="owmweather_color_picker" />
 			</p>
 			<p>
 				<label for="owmweather_chart_feels_like_color"><?php esc_html_e( 'Feels like color', 'owm-weather' ) ?></label>
-				<input name="owmweather_chart_feels_like_color" type="text" value="<?php esc_attr_e($owmw_opt["chart_feels_like_color"]) ?>" class="owmweather_color_picker" />
+				<input name="owmweather_chart_feels_like_color" type="text" value="<?php echo esc_attr($owmw_opt["chart_feels_like_color"]) ?>" class="owmweather_color_picker" />
 			</p>
 			<p>
 				<label for="owmweather_chart_dew_point_color"><?php esc_html_e( 'Dew point color', 'owm-weather' ) ?></label>
-				<input name="owmweather_chart_dew_point_color" type="text" value="<?php esc_attr_e($owmw_opt["chart_dew_point_color"]) ?>" class="owmweather_color_picker" />
+				<input name="owmweather_chart_dew_point_color" type="text" value="<?php echo esc_attr($owmw_opt["chart_dew_point_color"]) ?>" class="owmweather_color_picker" />
 			</p>
 		</div>
 		<div id="tabs-4">
@@ -1109,7 +1110,7 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_map_height_meta"><?php esc_html_e( 'Map height (in px)', 'owm-weather' ) ?></label>
-				<input id="owmweather_map_height_meta" type="number" min="300" name="owmweather_map_height" value="<?php esc_attr_e($owmw_opt["map_height"]) ?>" />
+				<input id="owmweather_map_height_meta" type="number" min="300" name="owmweather_map_height" value="<?php echo esc_attr($owmw_opt["map_height"]) ?>" />
 			</p>
 			<p>
 				<label for="owmweather_map_opacity_meta"><?php esc_html_e( 'Layers opacity', 'owm-weather' ) ?></label>
@@ -2442,53 +2443,53 @@ function owmw_get_my_weather($attr) {
 		      	//Clouds
 		      	if ( $owmw_opt["map_clouds"] == 'yes' ) {
 		        	$display_map_options         	.= 'var clouds = L.OWM.clouds({showLegend: false, opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"Clouds": clouds,';
+		        	$display_map_layers             .= '"'.esc_attr__("Clouds", "owm-weather").'": clouds,';
 		        	$display_map_options         	.= 'var cloudscls = L.OWM.cloudsClassic({showLegend: false, opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"Clouds Classic": cloudscls,';
+		        	$display_map_layers             .= '"i'.esc_attr__("Clouds Classic", "owm-weather").'": cloudscls,';
 		      	}
 
 		      	//Precipitations and Rain
 		      	if ( $owmw_opt["map_precipitation"] == 'yes' ) {
 		        	$display_map_options         	.= 'var rain = L.OWM.rain({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"Rain": rain,';
+		        	$display_map_layers             .= '"'.esc_attr__("Rain", "owm-weather").'": rain,';
 		        	$display_map_options         	.= 'var raincls = L.OWM.rainClassic({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"Rain Classic": raincls,';
+		        	$display_map_layers             .= '"'.esc_attr__("Rain Classic", "owm-weather").'": raincls,';
 		        	$display_map_options         	.= 'var precipitation = L.OWM.precipitation({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"Precipitation": precipitation,';
+		        	$display_map_layers             .= '"'.esc_attr__("Precipitation", "owm-weather").'": precipitation,';
 		        	$display_map_options         	.= 'var precipitationcls = L.OWM.precipitationClassic({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"Precipitation Classic": precipitationcls,';
+		        	$display_map_layers             .= '"'.esc_attr__("Precipitation Classic", "owm-weather").'": precipitationcls,';
 		      	}
 
 		      	//Snow
 		      	if ( $owmw_opt["map_snow"] == 'yes' ) {
 		        	$display_map_options         	.= 'var snow = L.OWM.snow({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"Snow": snow,';
+		        	$display_map_layers             .= '"'.esc_attr__("Snow", "owm-weather").'": snow,';
 		      	}
 
 		      	//Wind
 		      	if ( $owmw_opt["map_wind"] == 'yes' ) {
 		        	$display_map_options         	.= 'var wind = L.OWM.wind({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"Wind": wind,';
+		        	$display_map_layers             .= '"'.esc_attr__("Wind", "owm-weather").'": wind,';
 		      	}
 
 		      	//Temperature
 		      	if ( $owmw_opt["map_temperature"] == 'yes' ) {
 		        	$display_map_options         	.= 'var temp = L.OWM.temperature({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"Temperature": temp,';
+		        	$display_map_layers             .= '"'.esc_attr__("Temperature", "owm-weather").'": temp,';
 		      	}
 
 		      	//Pressure
 		      	if ( $owmw_opt["map_pressure"] == 'yes' ) {
 		        	$display_map_options         	.= 'var pressure = L.OWM.pressure({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"Pressure": pressure,';
+		        	$display_map_layers             .= '"'.esc_attr__("Pressure", "owm-weather").'": pressure,';
 		        	$display_map_options         	.= 'var pressurecntr = L.OWM.pressureContour({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"Pressure Contour": pressurecntr,';
+		        	$display_map_layers             .= '"'.esc_attr__("Pressure Contour", "owm-weather").'": pressurecntr,';
 		      	}
 
 				//Wind Rose
 		      	if ( $owmw_opt["map_windrose"] == 'yes' ) {
 					$display_map_options .= 'var windrose = L.OWM.current({intervall: 15, imageLoadingUrl: "leaflet/owmloading.gif", lang: "en", minZoom: 4, appId: "'.esc_attr($owmw_opt["api_key"]).'", markerFunction: myWindroseMarker, popup: false, clusterSize: 50, imageLoadingBgUrl: "https://openweathermap.org/img/w0/iwind.png" });	windrose.on("owmlayeradd", windroseAdded, windrose);';
-					$display_map_layers             .= '"Windrose": windrose,';
+					$display_map_layers             .= '"'.esc_attr__("Windrose", "owm-weather").'": windrose,';
 				}
 				
 		      	//Scroll wheel
@@ -3267,7 +3268,7 @@ function owmw_notice() {
 	if ( is_plugin_active( 'owm-weather/owmweather.php' ) && !isset($owmw_advanced_api_key['owmw_advanced_api_key'])) {
 	    ?>
 	    <div class="error notice">
-	        <p><a href="<?php echo admin_url('admin.php?page=owmw-settings-admin#tab_advanced'); ?>"><?php esc_html_e( 'OWM Weather: Please enter your own OpenWeatherMap API key to avoid limits requests.', 'owm-weather' ); ?></a></p>
+	        <p><a href="<?php echo admin_url('admin.php?page=owmw-settings-admin#tab_advanced'); ?>"><?php esc_html_e( 'OWM Weather: Please enter your own OpenWeatherMap API key to avoid exceeding daily API call limits.', 'owm-weather' ); ?></a></p>
 	    </div>
 	    <?php
 	}
@@ -3282,20 +3283,30 @@ function owmw_generate_hour_options($current) {
 
     for ($i=1; $i<=48; $i++) {
         if ($i == 1) {
-            $h = 'Now';
+            $h = __('Now', 'owm-weather');
         } else if ($i == 2) {
-            $h = 'Now + 1 hour';
+            $h = __('Now + 1 hour', 'owm-weather');
         } else {
-            $h = 'Now + ' . ($i-1) . ' hours';
+            $h = __('Now + ', 'owm-weather') . ($i-1) . __(' hours', 'owm-weather');
         }
-		$str .= '<option ' . selected( $i, intval($current), false ) . ' value="' . esc_attr($i) . '">' . esc_html__( $h, 'owm-weather' ) . '</option>';
+		$str .= '<option ' . selected( $i, intval($current), false ) . ' value="' . esc_attr($i) . '">' . esc_html($h) . '</option>';
     }
 
     return $str;
 }
 
 function owmw_getWindDirection($deg) {
-    $dirs = array('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N');
+    $dirs = array(
+		__('N', 'owm-weather'),
+		__('NE', 'owm-weather'),
+		__('E', 'owm-weather'),
+		__('SE', 'owm-weather'),
+		__('S', 'owm-weather'),
+		__('SW', 'owm-weather'),
+		__('W', 'owm-weather'),
+		__('NW', 'owm-weather'),
+		__('N', 'owm-weather'));
+		
     return $dirs[round($deg/45)];
 }
 

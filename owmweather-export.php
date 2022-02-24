@@ -19,7 +19,7 @@ function owmw_export_settings() {
     ignore_user_abort( true );
     nocache_headers();
     header('Content-Type: application/octet-stream; charset=' . $charset);
-    header('Content-Disposition: attachment; filename=owmw-settings-export-' . date( 'Y-m-d' ) . '.dat' );
+    header('Content-Disposition: attachment; filename=owmw-settings-export-' . date( 'Y-m-d' ) . '.json' );
     header('Expires: 0');
     echo serialize($data);
     die();
@@ -43,7 +43,7 @@ function owmw_import_settings() {
     $overrides   = array( 'test_form' => false, 'test_type' => false, 'mimes' => array('dat' => 'text/plain') );
     $owmw_import_file = wp_handle_upload($_FILES['owmw_import_file'], $overrides);
     if (isset($owmw_import_file['error'])) {
-        add_action( 'admin_notices', 'owmw_no_dat_file_selected_action' );
+        add_action( 'admin_notices', 'owmw_no_json_file_selected_action' );
         return;
     }
     if (!file_exists($owmw_import_file['file'])) {
@@ -100,8 +100,8 @@ function owmw_no_file_selected_action() {
     add_settings_error('no_file_selected', '', $message, 'error');
 }
 
-function owmw_no_dat_file_selected_action() {
-        $message = esc_html__( 'Please upload a valid .dat file', 'owm-weather' );
+function owmw_no_json_file_selected_action() {
+        $message = esc_html__( 'Please upload a valid .json file', 'owm-weather' );
         add_settings_error('no_dat_file_selected', '', $message, 'error');
 }
 ?>

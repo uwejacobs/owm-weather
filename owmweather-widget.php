@@ -29,7 +29,7 @@ function owmw_dashboard_widget_function() {
     if ( $my_weather = get_option( 'owmw_dashboard_widget_option' ) ) {
 		echo do_shortcode('[owm-weather id="'.esc_attr($my_weather['weather_db']).'"]');
 	} else {
-		esc_html_e('Please select a weather via configure link','owm-weather');
+		esc_html_e('Please select a weather via the configure link','owm-weather');
 	}
 }
 /**

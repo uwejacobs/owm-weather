@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
 Tested up to: 5.9.1
-Stable tag: 5.0.9
+Stable tag: 5.0.10
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -121,7 +121,7 @@ Our plugin will never display any advertising on your site. Did we mention it's 
   Show current weather condition icon.
 * <strong>Current temperature [current_temperature]</strong>
   Show current temperature value.
-* <strong>Current feels like temperature [current_feels_like]</strong>
+* <strong>Current feels-like temperature [current_feels_like]</strong>
   Show current feels-like temperature value.
 * <strong>Current weather short condition [current_weather_description]</strong>
   Show short current weather condition text.
@@ -169,11 +169,11 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 * <strong>Forecast Precipitations [forecast_precipitations]</strong>
   Show the precipitation amount in the daily forecast.
 * <strong>Day labels [display_length_days_names]:</strong>
-   * <strong>Short days names</strong>: Sun - Sat
-   * <strong>Normal days names</strong>: Sunday - Saturday
+   * <strong>Short day names</strong>: Sun - Sat
+   * <strong>Normal day names</strong>: Sunday - Saturday
 * <strong>Link to OpenWeatherMap [owm_link]</strong>
   Add OpenWeatherMap link for location in footer.
-* <strong>Update date [last_update]</strong>
+* <strong>Update date/time [last_update]</strong>
   Add OpenWeatherMap last data update timestamp in footer.
 
 = Layout =
@@ -249,8 +249,8 @@ Our plugin will never display any advertising on your site. Did we mention it's 
   The initial zoom level (1-18) for the map. Default is 9.
 * <strong>Disable zoom wheel on map [map_disable_zoom_wheel]</strong>
   Check to disable the zoom wheel on the map.
-* <strong>Display stations [map_stations]</strong>
-  Add a layer option for weather station locations.
+* <strong>Display Windrose [map_windrose]</strong>
+  Add a layer option for windrose.
 * <strong>Display clouds [map_clouds]</strong>
   Add a layer option for cloud cover.
 * <strong>Display precipitation [map_precipitation]</strong>
@@ -590,6 +590,11 @@ Although many settings look alike, OWM Weather uses completely different weather
 
 == Changelog ==
 
+= 5.1 =
+* revised grammar on several label descriptions
+* reviewed all translation stubs
+* create .pot file in lang sub-directory
+
 = 5.0.9 =
 * fixed map layer opacity (was always 0 unless set to 100%)
 * added map layer windrose
@@ -597,7 +602,7 @@ Although many settings look alike, OWM Weather uses completely different weather
 
 = 5.0.8 =
 * added display option for the direction the wind icons should point (default: direction of the wind)
-* added additional html ready celsius/fahrenheit temperature fields for main and main feels like temperature
+* added additional html ready celsius/fahrenheit temperature fields for main and main feels-like temperature
 * fixed temperature unit character and text for maps and charts
 
 = 5.0.7 =
