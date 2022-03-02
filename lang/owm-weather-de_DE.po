@@ -1749,6 +1749,7 @@ msgid "Weather"
 msgstr "Wetter"
 
 #: owmweather.php:3196
+msgctxt "Post Type Menu Name"
 msgid "Weather"
 msgstr "Wetter"
 

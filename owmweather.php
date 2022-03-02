@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.1.1
+Version: 5.1.2
 Author: Uwe Jacobs
 Author URI: https://github.com/uwejacobs
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.1.1' );
+define( 'OWM_WEATHER_VERSION', '5.1.2' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -75,10 +75,16 @@ function owmw_plugin_action_links($links, $file) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Translation
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-function owmw_init() {
-	load_plugin_textdomain( 'owm-weather', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+function owmw_textdomain() {
+	$loaded = load_plugin_textdomain( 'owm-weather', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+}
+	
+add_action('init', 'owmw_textdomain', 10);
 
-	//Admin panel + Dashboard widget
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//Admin panel + Dashboard widget
+///////////////////////////////////////////////////////////////////////////////////////////////////
+function owmw_init() {
 	if ( is_admin() ) {
 		require_once dirname( __FILE__ ) . '/owmweather-admin.php';
 		require_once dirname( __FILE__ ) . '/owmweather-export.php';
@@ -3193,7 +3199,7 @@ function owmw_posttype_weather() {
 	$labels = array(
 		'name'                => _x( 'Weather', 'Post Type General Name', 'owm-weather' ),
 		'singular_name'       => _x( 'Weather', 'Post Type Singular Name', 'owm-weather' ),
-		'menu_name'           => __( 'Weather', 'owm-weather' ),
+		'menu_name'           => _x( 'Weather', 'Post Type Menu Name','owm-weather' ),
 		'parent_item_colon'   => __( 'Parent Weather:', 'owm-weather' ),
 		'all_items'           => __( 'All Weather', 'owm-weather' ),
 		'view_item'           => __( 'View Weather', 'owm-weather' ),
@@ -3229,8 +3235,8 @@ function owmw_posttype_weather() {
 	register_post_type( 'owm-weather', $args );
 }
 
-// Hook into the 'init' action
-add_action( 'init', 'owmw_posttype_weather', 0 );
+// Hook into the 'init' action, must be after loading textdomain
+add_action( 'init', 'owmw_posttype_weather', 11 );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Weather Custom Post Type Messages
