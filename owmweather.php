@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.1.3
+Version: 5.1.4
 Author: Uwe Jacobs
 Author URI: https://github.com/uwejacobs
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.1.3' );
+define( 'OWM_WEATHER_VERSION', '5.1.4' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -505,22 +505,22 @@ function owmw_basic($post){
                   </div>
                   <div id="fragment-2">
       				<p>
-      					<label for="owmweather_latitude_meta"><?php esc_html_e( 'Latitude?', 'owm-weather' ) ?><span class="mandatory">*</span></label>
+      					<label for="owmweather_latitude_meta"><?php esc_html_e( 'Latitude', 'owm-weather' ) ?><span class="mandatory">*</span></label>
       					<input id="owmweather_latitude_meta" type="number" min="-90" max="90" step="0.0000001" name="owmweather_latitude" value="<?php echo esc_attr($owmw_opt["latitude"]) ?>" />
       				</p>
       				<p>
-      					<label for="owmweather_longitude_meta"><?php esc_html_e( 'Longitude?', 'owm-weather' ) ?><span class="mandatory">*</span></label>
+      					<label for="owmweather_longitude_meta"><?php esc_html_e( 'Longitude', 'owm-weather' ) ?><span class="mandatory">*</span></label>
       					<input id="owmweather_longitude_meta" type="number" min="-180" max="180" step="0.000001" name="owmweather_longitude" value="<?php echo esc_attr($owmw_opt["longitude"]) ?>" />
       				</p>
       				<p><em><?php esc_html_e('If you enter an OpenWeatherMap City Id, it will automatically bypass the Latitude/Longitude fields.','owm-weather') ?></em></p>
                   </div>
                   <div id="fragment-3">
       				<p>
-      					<label for="owmweather_zip_meta"><?php esc_html_e( 'Zip code?', 'owm-weather' ) ?><span class="mandatory">*</span></label>
+      					<label for="owmweather_zip_meta"><?php esc_html_e( 'Zip code', 'owm-weather' ) ?><span class="mandatory">*</span></label>
       					<input id="owmweather_zip_meta" name="owmweather_zip" value="<?php echo esc_attr($owmw_opt["zip"]) ?>" />
       				</p>
       				<p>
-      					<label for="owmweather_zip_country_meta"><?php esc_html_e( '2-letter country code?', 'owm-weather' ) ?>(<?php esc_html_e("Default: US", 'owm-weather') ?>)</label>
+      					<label for="owmweather_zip_country_meta"><?php esc_html_e( '2-letter country code', 'owm-weather' ) ?>(<?php esc_html_e("Default: US", 'owm-weather') ?>)</label>
       					<input id="owmweather_zip_country_meta" class="countrycodes typeahead" type="text" name="owmweather_zip_country_code" maxlength="2" value="<?php echo esc_attr($owmw_opt["zip_country_code"]) ?>" />
       				</p>
       				<p><em><?php esc_html_e('If you enter an OpenWeatherMap City Id or Latitude/Longitude, it will automatically bypass the Zip and Country fields.','owm-weather') ?></em></p>
@@ -548,21 +548,21 @@ function owmw_basic($post){
 				<input id="owmweather_custom_city_name_meta" type="text" name="owmweather_custom_city_name" value="<?php echo esc_attr($owmw_opt["custom_city_name"]) ?>" />
 			</p>
 			<p>
-				<label for="unit_meta"><?php esc_html_e( 'Measurement system?', 'owm-weather' ) ?></label>
+				<label for="unit_meta"><?php esc_html_e( 'Measurement system', 'owm-weather' ) ?></label>
 				<select name="owmweather_unit">
 					<option <?php echo selected( 'imperial', $owmw_opt["temperature_unit"], false ) ?>value="imperial"><?php esc_html_e( 'Imperial', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'metric', $owmw_opt["temperature_unit"], false ) ?>value="metric"><?php esc_html_e( 'Metric', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
-				<label for="owmweather_time_format_meta"><?php esc_html_e( 'Time format?', 'owm-weather' ) ?></label>
+				<label for="owmweather_time_format_meta"><?php esc_html_e( 'Time format', 'owm-weather' ) ?></label>
 				<select name="owmweather_time_format">
 					<option <?php echo selected( '12', $owmw_opt["time_format"], false ) ?>value="12"><?php esc_html_e( '12 h', 'owm-weather' ) ?></option>
 					<option <?php echo selected( '24', $owmw_opt["time_format"], false ) ?>value="24"><?php esc_html_e( '24 h', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p>
-				<label for="owmweather_custom_timezone_meta"><?php esc_html_e( 'Timezone? (default: WordPress general settings)', 'owm-weather' ) ?></label>
+				<label for="owmweather_custom_timezone_meta"><?php esc_html_e( 'Timezone (default: WordPress general settings)', 'owm-weather' ) ?></label>
 				<select name="owmweather_custom_timezone" id="owmweather_custom_timezone_meta">
 					<option <?php echo selected( 'Default', $owmw_opt["custom_timezone"], false ) ?>value="Default"><?php esc_html_e( 'WordPress timezone', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'local', $owmw_opt["custom_timezone"], false ) ?>value="local"><?php esc_html_e( 'Local timezone', 'owm-weather' ) ?></option>
@@ -594,7 +594,7 @@ function owmw_basic($post){
 				</select>
 			</p>
 			<p>
-				<label for="owmweather_owm_language_meta"><?php esc_html_e( 'OpenWeatherMap language?', 'owm-weather' ) ?></label>
+				<label for="owmweather_owm_language_meta"><?php esc_html_e( 'OpenWeatherMap language', 'owm-weather' ) ?></label>
 				<p><i><?php esc_html_e('This is the language for the data from OpenWeatherMap, not for this plugin. If set to Default, it will try to use the WordPress site language first with fallback to English.', 'owm-weather') ?></i></p>
 				<select name="owmweather_owm_language" id="owmweather_owm_language_meta">
 					<option <?php echo selected( 'Default', $owmw_opt["owm_language"], false ) ?>value="Default"><?php esc_html_e( 'Default', 'owm-weather' ) ?></option>
@@ -652,13 +652,13 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_gtag_meta">
 					<input type="checkbox" name="owmweather_gtag" id="owmweather_gtag_meta" value="yes" <?php echo checked( $owmw_opt["gtag"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Google Tag Manager dataLayer?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Google Tag Manager dataLayer', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_bypass_exclude_meta">
 					<input type="checkbox" name="owmweather_bypass_exclude" id="owmweather_bypass_exclude_meta" value="yes" <?php echo checked( $owmw_opt["bypass_exclude"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Exclude from System Settings and Parameter Bypass?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Exclude from System Settings and Parameter Bypass', 'owm-weather' ) ?>
 				</label>
 			</p>
 		</div>
@@ -672,31 +672,31 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_current_city_name_meta">
 					<input type="checkbox" name="owmweather_current_city_name" id="owmweather_current_city_name_meta" value="yes" <?php echo checked( $owmw_opt["current_city_name"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Current weather city name?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Current weather city name', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_current_weather_symbol_meta">
 					<input type="checkbox" name="owmweather_current_weather_symbol" id="owmweather_current_weather_symbol_meta" value="yes" <?php echo checked( $owmw_opt["current_weather_symbol"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Current weather symbol?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Current weather symbol', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_current_temperature_meta">
 					<input type="checkbox" name="owmweather_current_temperature" id="owmweather_current_temperature_meta" value="yes" <?php echo checked( $owmw_opt["current_temperature"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Current temperature?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Current temperature', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_current_feels_like_meta">
 					<input type="checkbox" name="owmweather_current_feels_like" id="owmweather_current_feels_like_meta" value="yes" <?php echo checked( $owmw_opt["current_feels_like"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Current feels-like temperature?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Current feels-like temperature', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_current_weather_description_meta">
 					<input type="checkbox" name="owmweather_current_weather_description" id="owmweather_current_weather_description_meta" value="yes" <?php echo checked( $owmw_opt["current_weather_description"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Current weather short condition?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Current weather short condition', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p class="temperatures subsection-title">
@@ -705,7 +705,7 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_display_temperature_unit_meta">
 					<input type="checkbox" name="owmweather_display_temperature_unit" id="owmweather_display_temperature_unit_meta" value="yes" <?php echo checked( $owmw_opt["display_temperature_unit"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Temperature unit (C / F)?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Temperature unit (C / F)', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p class="owmw-dates subsection-title">
@@ -714,31 +714,31 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_today_date_format_none_meta">
 					<input type="radio" name="owmweather_today_date_format" id="owmweather_today_date_format_none_meta" value="none" <?php echo checked( $owmw_opt["today_date_format"], 'none', false ) ?>/>
-						<?php esc_html_e( 'No date (default)?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'No date (default)', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_today_date_format_week_meta">
 					<input type="radio" name="owmweather_today_date_format" id="owmweather_today_date_format_week_meta" value="day" <?php echo checked( $owmw_opt["today_date_format"], 'day', false ) ?>/>
-						<?php esc_html_e( 'Day of the week (eg: Sunday)?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Day of the week (eg: Sunday)', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_today_date_format_calendar_meta">
 					<input type="radio" name="owmweather_today_date_format" id="owmweather_today_date_format_calendar_meta" value="date" <?php echo checked( $owmw_opt["today_date_format"], 'date', false ) ?>/>
-						<?php esc_html_e( 'Today\'s date (based on your WordPress General Settings)?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Today\'s date (based on your WordPress General Settings)', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_sunrise_sunset_meta">
 					<input type="checkbox" name="owmweather_sunrise_sunset" id="owmweather_sunrise_sunset_meta" value="yes" <?php echo checked( $owmw_opt["sunrise_sunset"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Sunrise + sunset?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Sunrise + sunset', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_moonrise_moonset_meta">
 					<input type="checkbox" name="owmweather_moonrise_moonset" id="owmweather_moonrise_moonset_meta" value="yes" <?php echo checked( $owmw_opt["moonrise_moonset"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Moonrise + moonset?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Moonrise + moonset', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p class="owmw-misc subsection-title">
@@ -747,7 +747,7 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_wind_meta">
 					<input type="checkbox" name="owmweather_wind" id="owmweather_wind_meta" value="yes" <?php echo checked( $owmw_opt["wind"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Wind?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Wind', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
@@ -773,49 +773,49 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_humidity_meta">
 					<input type="checkbox" name="owmweather_humidity" id="owmweather_humidity_meta" value="yes" <?php echo checked( $owmw_opt["humidity"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Humidity?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Humidity', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_dew_point_meta">
 					<input type="checkbox" name="owmweather_dew_point" id="owmweather_dew_point_meta" value="yes" <?php echo checked( $owmw_opt["dew_point"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Dew Point?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Dew Point', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_pressure_meta">
 					<input type="checkbox" name="owmweather_pressure" id="owmweather_pressure_meta" value="yes" <?php echo checked( $owmw_opt["pressure"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Pressure?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Pressure', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_cloudiness_meta">
 					<input type="checkbox" name="owmweather_cloudiness" id="owmweather_cloudiness_meta" value="yes" <?php echo checked( $owmw_opt["cloudiness"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Cloudiness?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Cloudiness', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_precipitation_meta">
 					<input type="checkbox" name="owmweather_precipitation" id="owmweather_precipitation_meta" value="yes" <?php echo checked( $owmw_opt["precipitation"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Precipitation?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Precipitation', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_visibility_meta">
 					<input type="checkbox" name="owmweather_visibility" id="owmweather_visibility_meta" value="yes" <?php echo checked( $owmw_opt["visibility"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Visibility?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Visibility', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_uv_index_meta">
 					<input type="checkbox" name="owmweather_uv_index" id="owmweather_uv_index_meta" value="yes" <?php echo checked( $owmw_opt["uv_index"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'UV Index?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'UV Index', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_alerts_meta">
 					<input type="checkbox" name="owmweather_alerts" id="owmweather_alerts_meta" value="yes" <?php echo checked( $owmw_opt["alerts"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Alerts?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Alerts', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
@@ -826,20 +826,20 @@ function owmw_basic($post){
 				<?php esc_html_e( 'Hourly Forecast', 'owm-weather' ) ?>
 			</p>
 			<p>
-				<label for="owmweather_hours_forecast_no_meta"><?php esc_html_e( 'How many hours?', 'owm-weather' ) ?></label>
+				<label for="owmweather_hours_forecast_no_meta"><?php esc_html_e( 'Number of hours', 'owm-weather' ) ?></label>
 				<select name="owmweather_hours_forecast_no"><?php echo owmw_generate_hour_options($owmw_opt["hours_forecast_no"]) ?></select>
 			</p>
 			<p>
 				<label for="owmweather_hours_time_icons_meta">
 					<input type="checkbox" name="owmweather_hours_time_icons" id="owmweather_hours_time_icons_meta" value="yes" <?php echo checked( $owmw_opt["hours_time_icons"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display time icons?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Display time icons', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p class="forecast subsection-title">
 				<?php esc_html_e( 'Daily Forecast', 'owm-weather' ) ?>
 			</p>
 			<p>
-				<label for="owmweather_forecast_no_meta"><?php esc_html_e( 'How many days?', 'owm-weather' ) ?></label>
+				<label for="owmweather_forecast_no_meta"><?php esc_html_e( 'Number of days', 'owm-weather' ) ?></label>
 				<select name="owmweather_forecast_no">
 					<option <?php echo selected( '0', $owmw_opt["days_forecast_no"], false ) ?>value="0"><?php esc_html_e( 'None', 'owm-weather' ) ?></option>
 					<option <?php echo selected( '1', $owmw_opt["days_forecast_no"], false ) ?>value="1"><?php esc_html_e( 'Today', 'owm-weather' ) ?></option>
@@ -855,19 +855,19 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_forecast_precipitations_meta">
 					<input type="checkbox" name="owmweather_forecast_precipitations" id="owmweather_forecast_precipitations_meta" value="yes" <?php echo checked( $owmw_opt["forecast_precipitations"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Forecast Precipitations?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Forecast Precipitations', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_display_length_days_names_short_meta">
 					<input type="radio" name="owmweather_display_length_days_names" id="owmweather_display_length_days_names_short_meta" value="short" <?php echo checked( $owmw_opt["display_length_days_names"], 'short', false ) ?>/>
-						<?php esc_html_e( 'Short day names?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Short day names', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_display_length_days_names_normal_meta">
 					<input type="radio" name="owmweather_display_length_days_names" id="owmweather_display_length_days_names_normal_meta" value="normal" <?php echo checked( $owmw_opt["display_length_days_names"], 'normal', false ) ?>/>
-						<?php esc_html_e( 'Normal day names?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Normal day names', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p class="footer subsection-title">
@@ -876,15 +876,14 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_owm_link_meta">
 					<input type="checkbox" name="owmweather_owm_link" id="owmweather_owm_link_meta" value="yes" <?php echo checked( $owmw_opt["owm_link"], 'yes', false ) ?>/>
-					<?php esc_html_e( 'Link to OpenWeatherMap?', 'owm-weather' ) ?>
+					<?php esc_html_e( 'Link to OpenWeatherMap', 'owm-weather' ) ?>
 				</label>
 			</p>
 
 			<p>
 				<label for="owmweather_last_update_meta">
 					<input type="checkbox" name="owmweather_last_update" id="owmweather_last_update_meta" value="yes" <?php echo checked( $owmw_opt["last_update"], 'yes', false ) ?>/>
-
-					<?php esc_html_e( 'Update date/time?', 'owm-weather' ) ?>
+					<?php esc_html_e( 'Data Update Time', 'owm-weather' ) ?>
 				</label>
 			</p>
 		</div>
@@ -937,7 +936,7 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="iconpack_meta"><?php esc_html_e( 'Icon Pack', 'owm-weather' ) ?></label>
-				<p><i><?php esc_html_e('The main icon is always an animated SVG. If you want the icon from the icon pack instead, you need to select "Disable animations for main icon?" below.', 'owm-weather') ?></i></p>
+				<p><i><?php esc_html_e('The main icon is always an animated SVG. If you want the icon from the icon pack instead, you need to select "Disable animations for main icon" below.', 'owm-weather') ?></i></p>
 				<select name="owmweather_iconpack">
 					<option <?php echo selected( 'Climacons', $owmw_opt["iconpack"], false ) ?>value="Climacons"><?php esc_html_e( 'Climacons', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'OpenWeatherMap', $owmw_opt["iconpack"], false ) ?>value="OpenWeatherMap"><?php esc_html_e( 'Open Weather Map', 'owm-weather' ) ?></option>
@@ -998,17 +997,17 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_disable_spinner_meta">
 					<input type="checkbox" name="owmweather_disable_spinner" id="owmweather_disable_spinner_meta" value="yes" <?php echo checked( $owmw_opt["disable_spinner"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Disable loading spinner?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Disable loading spinner', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_disable_anims_meta">
 					<input type="checkbox" name="owmweather_disable_anims" id="owmweather_disable_anims_meta" value="yes" <?php echo checked( $owmw_opt["disable_anims"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Disable animations for main icon?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Disable animations for main icon', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
-				<label for="size_meta"><?php esc_html_e( 'Weather size?', 'owm-weather' ) ?></label>
+				<label for="size_meta"><?php esc_html_e( 'Weather size', 'owm-weather' ) ?></label>
 				<select name="owmweather_size">
 					<option <?php echo selected( 'small', $owmw_opt["size"], false ) ?>value="small"><?php esc_html_e( 'Small', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'medium', $owmw_opt["size"], false ) ?>value="medium"><?php esc_html_e( 'Medium', 'owm-weather' ) ?></option>
@@ -1112,7 +1111,7 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_map_meta">
 					<input type="checkbox" name="owmweather_map" id="owmweather_map_meta" value="yes" <?php echo checked( $owmw_opt["map"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display map?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Display map', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
@@ -1161,7 +1160,7 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_map_disable_zoom_wheel_meta">
 					<input type="checkbox" name="owmweather_map_disable_zoom_wheel" id="owmweather_map_disable_zoom_wheel_meta" value="yes" <?php echo checked( $owmw_opt["map_disable_zoom_wheel"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Disable zoom wheel on map?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Disable zoom wheel on map', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p class="subsection-title">
@@ -1170,43 +1169,43 @@ function owmw_basic($post){
 			<p>
 				<label for="owmweather_map_clouds_meta">
 					<input type="checkbox" name="owmweather_map_clouds" id="owmweather_map_clouds_meta" value="yes" <?php echo checked( $owmw_opt["map_clouds"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display clouds?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Display clouds', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_map_precipitation_meta">
 					<input type="checkbox" name="owmweather_map_precipitation" id="owmweather_map_precipitation_meta" value="yes" <?php echo checked( $owmw_opt["map_precipitation"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display precipitation?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Display precipitation', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_map_snow_meta">
 					<input type="checkbox" name="owmweather_map_snow" id="owmweather_map_snow_meta" value="yes" <?php echo checked( $owmw_opt["map_snow"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display snow?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Display snow', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_map_wind_meta">
 					<input type="checkbox" name="owmweather_map_wind" id="owmweather_map_wind_meta" value="yes" <?php echo checked( $owmw_opt["map_wind"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display wind?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Display wind', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_map_temperature_meta">
 					<input type="checkbox" name="owmweather_map_temperature" id="owmweather_map_temperature_meta" value="yes" <?php echo checked( $owmw_opt["map_temperature"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display temperature?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Display temperature', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_map_pressure_meta">
 					<input type="checkbox" name="owmweather_map_pressure" id="owmweather_map_pressure_meta" value="yes" <?php echo checked( $owmw_opt["map_pressure"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display pressure?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Display pressure', 'owm-weather' ) ?>
 				</label>
 			</p>
 			<p>
 				<label for="owmweather_map_windrose_meta">
 					<input type="checkbox" name="owmweather_map_windrose" id="owmweather_map_windrose_meta" value="yes" <?php echo checked( $owmw_opt["map_windrose"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display wind rose?', 'owm-weather' ) ?>
+						<?php esc_html_e( 'Display wind rose', 'owm-weather' ) ?>
 				</label>
 			</p>
 		</div>

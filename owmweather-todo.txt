@@ -1,6 +1,10 @@
 Must:
 pot file: wp  --allow-root i18n make-pot . lang/owm-weather.pot
 
+Redo all po files
+https://github.com/buche/leaflet-openweathermap/blob/master/leaflet-openweathermap.js
+
+
 Nice:
 more charts
 tabbed settings

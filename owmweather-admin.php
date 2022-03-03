@@ -255,7 +255,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_unit', // ID
-           esc_html__("Bypass measurement system?",'owm-weather'), // Title
+           esc_html__("Bypass measurement system",'owm-weather'), // Title
             array( $this, 'owmw_basic_unit_callback' ), // Callback
             'owmw-settings-admin-basic', // Page
             'owmw_setting_section_basic' // Section
@@ -263,7 +263,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_time_format', // ID
-           esc_html__("Bypass time format?",'owm-weather'), // Title
+           esc_html__("Bypass time format",'owm-weather'), // Title
             array( $this, 'owmw_basic_time_format_callback' ), // Callback
             'owmw-settings-admin-basic', // Page
             'owmw_setting_section_basic' // Section
@@ -271,7 +271,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_custom_timezone', // ID
-           esc_html__("Bypass timezone?",'owm-weather'), // Title
+           esc_html__("Bypass timezone",'owm-weather'), // Title
             array( $this, 'owmw_basic_custom_timezone_callback' ), // Callback
             'owmw-settings-admin-basic', // Page
             'owmw_setting_section_basic' // Section
@@ -279,7 +279,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_owm_language', // ID
-           esc_html__("Bypass OpenWeatherMap language?",'owm-weather'), // Title
+           esc_html__("Bypass OpenWeatherMap language",'owm-weather'), // Title
             array( $this, 'owmw_basic_owm_language_callback' ), // Callback
             'owmw-settings-admin-basic', // Page
             'owmw_setting_section_basic' // Section
@@ -295,7 +295,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_current_city_name', // ID
-            esc_html__("Current City Name?",'owm-weather'), // Title
+            esc_html__("Current City Name",'owm-weather'), // Title
             array( $this, 'owmw_display_current_city_name_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -303,7 +303,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_current_weather_symbol', // ID
-            esc_html__("Current weather symbol?",'owm-weather'), // Title
+            esc_html__("Current weather symbol",'owm-weather'), // Title
             array( $this, 'owmw_display_current_weather_symbol_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -311,7 +311,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_current_temperature', // ID
-			esc_html__("Current temperature?",'owm-weather'), // Title
+			esc_html__("Current temperature",'owm-weather'), // Title
             array( $this, 'owmw_display_current_temperature_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -319,7 +319,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_current_feels_like', // ID
-			esc_html__("Current feels-like temperature?",'owm-weather'), // Title
+			esc_html__("Current feels-like temperature",'owm-weather'), // Title
             array( $this, 'owmw_display_current_feels_like_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -327,7 +327,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_current_weather_description', // ID
-            esc_html__("Current short condition?",'owm-weather'), // Title
+            esc_html__("Current short condition",'owm-weather'), // Title
             array( $this, 'owmw_display_weather_description_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -335,7 +335,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_display_temperature_unit', // ID
-            esc_html__("Temperature unit (C / F)?",'owm-weather'), // Title
+            esc_html__("Temperature unit (C / F)",'owm-weather'), // Title
             array( $this, 'owmw_display_date_temp_unit_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -343,7 +343,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_today_date_format', // ID
-            esc_html__("Date?",'owm-weather'), // Title
+            esc_html__("Date",'owm-weather'), // Title
             array( $this, 'owmw_display_today_date_format_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -351,7 +351,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_sunrise_sunset', // ID
-            esc_html__("Sunrise + sunset?",'owm-weather'), // Title
+            esc_html__("Sunrise + sunset",'owm-weather'), // Title
             array( $this, 'owmw_display_sunrise_sunset_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -359,7 +359,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_moonrise_moonset', // ID
-            esc_html__("Moonrise + moonset?",'owm-weather'), // Title
+            esc_html__("Moonrise + moonset",'owm-weather'), // Title
             array( $this, 'owmw_display_moonrise_moonset_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -367,7 +367,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_wind', // ID
-            esc_html__("Wind?",'owm-weather'), // Title
+            esc_html__("Wind",'owm-weather'), // Title
             array( $this, 'owmw_display_wind_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -375,7 +375,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_wind_unit', // ID
-            esc_html__("Wind unit?",'owm-weather'), // Title
+            esc_html__("Wind unit",'owm-weather'), // Title
             array( $this, 'owmw_display_wind_unit_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -383,7 +383,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_wind_icon_direction', // ID
-            esc_html__("Wind icon pointer direction?",'owm-weather'), // Title
+            esc_html__("Wind icon pointer direction",'owm-weather'), // Title
             array( $this, 'owmw_display_wind_icon_direction_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -391,7 +391,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_humidity', // ID
-            esc_html__("Humidity?",'owm-weather'), // Title
+            esc_html__("Humidity",'owm-weather'), // Title
             array( $this, 'owmw_display_humidity_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -399,7 +399,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_dew_point', // ID
-            esc_html__("Dew Point?",'owm-weather'), // Title
+            esc_html__("Dew Point",'owm-weather'), // Title
             array( $this, 'owmw_display_dew_point_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -407,7 +407,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_pressure', // ID
-           esc_html__("Pressure?",'owm-weather'), // Title
+           esc_html__("Pressure",'owm-weather'), // Title
             array( $this, 'owmw_display_pressure_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -415,7 +415,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_cloudiness', // ID
-            esc_html__("Cloudiness?",'owm-weather'), // Title
+            esc_html__("Cloudiness",'owm-weather'), // Title
             array( $this, 'owmw_display_cloudiness_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -423,7 +423,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_precipitation', // ID
-            esc_html__("Precipitation?",'owm-weather'), // Title
+            esc_html__("Precipitation",'owm-weather'), // Title
             array( $this, 'owmw_display_precipitation_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -431,7 +431,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_visibility', // ID
-            esc_html__("Visibility?",'owm-weather'), // Title
+            esc_html__("Visibility",'owm-weather'), // Title
             array( $this, 'owmw_display_visibility_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -439,7 +439,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_uv_index', // ID
-            esc_html__("UV Index?",'owm-weather'), // Title
+            esc_html__("UV Index",'owm-weather'), // Title
             array( $this, 'owmw_display_uv_index_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -447,7 +447,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_alerts', // ID
-            esc_html__("Alerts?",'owm-weather'), // Title
+            esc_html__("Alerts",'owm-weather'), // Title
             array( $this, 'owmw_display_alerts_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -455,7 +455,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_alerts_button_color', // ID
-            esc_html__("Alerts Button Color?",'owm-weather'), // Title
+            esc_html__("Alerts Button Color",'owm-weather'), // Title
             array( $this, 'owmw_display_alerts_button_color_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -463,7 +463,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_hours_forecast_no', // ID
-            esc_html__("Number of hours forecast?",'owm-weather'), // Title
+            esc_html__("Number of forecast hours",'owm-weather'), // Title
             array( $this, 'owmw_display_hour_forecast_no_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -471,7 +471,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_hours_time_icons', // ID
-            esc_html__("Display time icons?",'owm-weather'), // Title
+            esc_html__("Display time icons",'owm-weather'), // Title
             array( $this, 'owmw_display_hour_time_icons_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -479,7 +479,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_forecast_no', // ID
-            esc_html__("Number of days forecast",'owm-weather'), // Title
+            esc_html__("Number of forecast days",'owm-weather'), // Title
             array( $this, 'owmw_display_forecast_no_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -487,7 +487,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_forecast_precipitations', // ID
-            esc_html__("Precipitations forecast?",'owm-weather'), // Title
+            esc_html__("Precipitations forecast",'owm-weather'), // Title
             array( $this, 'owmw_display_forecast_precipitations_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -503,7 +503,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_owm_link', // ID
-			esc_html__("Link to OpenWeatherMap?",'owm-weather'), // Title
+			esc_html__("Link to OpenWeatherMap",'owm-weather'), // Title
             array( $this, 'owmw_display_owm_link_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -511,7 +511,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_last_update', // ID
-            esc_html__("Update date/time?",'owm-weather'), // Title
+            esc_html__("Data Update Time",'owm-weather'), // Title
             array( $this, 'owmw_display_last_update_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -527,7 +527,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_template', // ID
-            esc_html__("Template?"), // Title
+            esc_html__("Template"), // Title
             array( $this, 'owmw_layout_template_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -535,7 +535,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_font', // ID
-            esc_html__("Font?"), // Title
+            esc_html__("Font"), // Title
             array( $this, 'owmw_layout_font_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -543,7 +543,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_iconpack', // ID
-            esc_html__("Icon Pack?"), // Title
+            esc_html__("Icon Pack"), // Title
             array( $this, 'owmw_layout_iconpack_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -551,7 +551,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_disable_spinner', // ID
-            esc_html__("Spinner?",'owm-weather'), // Title
+            esc_html__("Spinner",'owm-weather'), // Title
             array( $this, 'owmw_layout_disable_spinner_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -559,7 +559,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_disable_anims', // ID
-            esc_html__("Disable animations for main icon?",'owm-weather'), // Title
+            esc_html__("Disable animations for main icon",'owm-weather'), // Title
             array( $this, 'owmw_layout_disable_anims_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -567,7 +567,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_background_color', // ID
-            esc_html__("Background color?",'owm-weather'), // Title
+            esc_html__("Background color",'owm-weather'), // Title
             array( $this, 'owmw_layout_background_color_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -575,7 +575,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_background_image', // ID
-            esc_html__("Background Image?",'owm-weather'), // Title
+            esc_html__("Background Image",'owm-weather'), // Title
             array( $this, 'owmw_media_selector_settings_page_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -583,7 +583,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_text_color', // ID
-            esc_html__("Text color?",'owm-weather'), // Title
+            esc_html__("Text color",'owm-weather'), // Title
             array( $this, 'owmw_layout_text_color_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -591,7 +591,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_border_color', // ID
-            esc_html__("Border color?",'owm-weather'), // Title
+            esc_html__("Border color",'owm-weather'), // Title
             array( $this, 'owmw_layout_border_color_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -599,7 +599,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_border_width', // ID
-            esc_html__("Border width (in px)?",'owm-weather'), // Title
+            esc_html__("Border width (in px)",'owm-weather'), // Title
             array( $this, 'owmw_layout_border_width_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -607,7 +607,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_border_style', // ID
-            esc_html__("Border style?",'owm-weather'), // Title
+            esc_html__("Border style",'owm-weather'), // Title
             array( $this, 'owmw_layout_border_style_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -615,7 +615,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_border_radius', // ID
-            esc_html__("Border radius?",'owm-weather'), // Title
+            esc_html__("Border radius",'owm-weather'), // Title
             array( $this, 'owmw_layout_border_radius_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -623,7 +623,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_size', // ID
-           esc_html__("Weather size?",'owm-weather'), // Title
+           esc_html__("Weather size",'owm-weather'), // Title
             array( $this, 'owmw_layout_size_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -632,7 +632,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_custom_css', // ID
-           esc_html__("Custom CSS?",'owm-weather'), // Title
+           esc_html__("Custom CSS",'owm-weather'), // Title
             array( $this, 'owmw_layout_custom_css_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -640,7 +640,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_table_background_color', // ID
-            esc_html__("Table background color?",'owm-weather'), // Title
+            esc_html__("Table background color",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_background_color_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -648,7 +648,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_table_text_color', // ID
-            esc_html__("Table text color?",'owm-weather'), // Title
+            esc_html__("Table text color",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_text_color_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -656,7 +656,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_table_border_color', // ID
-            esc_html__("Table border color?",'owm-weather'), // Title
+            esc_html__("Table border color",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_border_color_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -664,7 +664,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_table_border_width', // ID
-            esc_html__("Table border width (in px)?",'owm-weather'), // Title
+            esc_html__("Table border width (in px)",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_border_width_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -672,7 +672,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_table_border_style', // ID
-            esc_html__("Table border style?",'owm-weather'), // Title
+            esc_html__("Table border style",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_border_style_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -680,7 +680,7 @@ class owmw_options
 
 		add_settings_field(
             'owmw_table_border_radius', // ID
-            esc_html__("Table border radius?",'owm-weather'), // Title
+            esc_html__("Table border radius",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_border_radius_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
@@ -696,7 +696,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_advanced_disable_cache', // ID
-           esc_html__("Disable cache?",'owm-weather'), // Title
+           esc_html__("Disable cache",'owm-weather'), // Title
             array( $this, 'owmw_advanced_disable_cache_callback' ), // Callback
             'owmw-settings-admin-advanced', // Page
             'owmw_setting_section_advanced' // Section
@@ -704,7 +704,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_advanced_cache_time', // ID
-           esc_html__("Time until cache refresh (in minutes)?",'owm-weather'), // Title
+           esc_html__("Time until cache refresh (in minutes)",'owm-weather'), // Title
             array( $this, 'owmw_advanced_cache_time_callback' ), // Callback
             'owmw-settings-admin-advanced', // Page
             'owmw_setting_section_advanced' // Section
@@ -712,7 +712,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_advanced_api_key', // ID
-           esc_html__("Open Weather Map API key?",'owm-weather'), // Title
+           esc_html__("Open Weather Map API key",'owm-weather'), // Title
             array( $this, 'owmw_advanced_api_key_callback' ), // Callback
             'owmw-settings-admin-advanced', // Page
             'owmw_setting_section_advanced' // Section
@@ -720,7 +720,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_advanced_disable_modal_js', // ID
-           esc_html__("Disable Bootstrap Modal JS?",'owm-weather'), // Title
+           esc_html__("Disable Bootstrap Modal JS",'owm-weather'), // Title
             array( $this, 'owmw_advanced_disable_modal_js_callback' ), // Callback
             'owmw-settings-admin-advanced', // Page
             'owmw_setting_section_advanced' // Section
@@ -737,7 +737,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_map', // ID
-            esc_html__("Map?",'owm-weather'), // Title
+            esc_html__("Map",'owm-weather'), // Title
             array( $this, 'owmw_map_display_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
@@ -745,7 +745,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_map_height', // ID
-            esc_html__("Map height?",'owm-weather'), // Title
+            esc_html__("Map height",'owm-weather'), // Title
             array( $this, 'owmw_map_height_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
@@ -753,7 +753,7 @@ class owmw_options
 
        add_settings_field(
             'owmw_map_opacity', // ID
-            esc_html__("Layers opacity?",'owm-weather'), // Title
+            esc_html__("Layers opacity",'owm-weather'), // Title
             array( $this, 'owmw_map_opacity_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
@@ -761,7 +761,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_map_zoom', // ID
-            esc_html__("Zoom?",'owm-weather'), // Title
+            esc_html__("Zoom",'owm-weather'), // Title
             array( $this, 'owmw_map_zoom_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
@@ -769,7 +769,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_map_disable_zoom_wheel', // ID
-            esc_html__("Disable zoom wheel?",'owm-weather'), // Title
+            esc_html__("Disable zoom wheel",'owm-weather'), // Title
             array( $this, 'owmw_map_disable_zoom_wheel_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
@@ -777,7 +777,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_map_clouds', // ID
-            esc_html__("Cloud Layer?",'owm-weather'), // Title
+            esc_html__("Cloud Layer",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_clouds_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
@@ -785,7 +785,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_map_precipitation', // ID
-            esc_html__("Precipitation Layer?",'owm-weather'), // Title
+            esc_html__("Precipitation Layer",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_precipitation_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
@@ -793,7 +793,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_map_snow', // ID
-            esc_html__("Snow Layer?",'owm-weather'), // Title
+            esc_html__("Snow Layer",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_snow_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
@@ -801,7 +801,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_map_wind', // ID
-            esc_html__("Wind Layer?",'owm-weather'), // Title
+            esc_html__("Wind Layer",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_wind_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
@@ -809,7 +809,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_map_temperature', // ID
-            esc_html__("Temperature Layer?",'owm-weather'), // Title
+            esc_html__("Temperature Layer",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_temperature_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
@@ -817,7 +817,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_map_pressure', // ID
-            esc_html__("Pressure Layer?",'owm-weather'), // Title
+            esc_html__("Pressure Layer",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_pressure_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
@@ -825,7 +825,7 @@ class owmw_options
 
         add_settings_field(
             'owmw_map_windrose', // ID
-            esc_html__("Wind rose Layer?",'owm-weather'), // Title
+            esc_html__("Wind rose Layer",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_windrose_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
@@ -1550,7 +1550,7 @@ class owmw_options
         echo '<input id="owmw_advanced_disable_cache" name="owmw_option_name[owmw_advanced_disable_cache]" type="checkbox"';
 		if ('yes' == $check) echo 'checked="yes"';
 		echo ' value="yes"/>';
-		echo '<label for="owmw_advanced_disable_cache">'. esc_html__( 'Disable weather cache? (Not recommended!)', 'owm-weather' ) .'</label>';
+		echo '<label for="owmw_advanced_disable_cache"><strong>'. esc_html__( '(Not recommended!)', 'owm-weather' ) .'</strong></label>';
     }
 
 	public function owmw_advanced_cache_time_callback()
@@ -1576,7 +1576,7 @@ class owmw_options
         echo '<input id="owmw_advanced_disable_modal_js" name="owmw_option_name[owmw_advanced_disable_modal_js]" type="checkbox"';
         if ('yes' == $check) echo 'checked="yes"';
         echo ' value="yes"/>';
-        echo '<label for="owmw_advanced_disable_modal_js">'. esc_html__( 'Disable Bootstrap? (Check this if you already include Bootstrap in your theme)', 'owm-weather' ) .'</label>';
+        echo '<label for="owmw_advanced_disable_modal_js">'. esc_html__( '(Check this if you already include Bootstrap in your theme)', 'owm-weather' ) .'</label>';
 	}
 
 	public function owmw_map_display_callback()
