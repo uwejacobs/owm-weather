@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.1.2
+Version: 5.1.3
 Author: Uwe Jacobs
 Author URI: https://github.com/uwejacobs
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.1.2' );
+define( 'OWM_WEATHER_VERSION', '5.1.3' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -76,7 +76,7 @@ function owmw_plugin_action_links($links, $file) {
 //Translation
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function owmw_textdomain() {
-	$loaded = load_plugin_textdomain( 'owm-weather', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+	load_plugin_textdomain( 'owm-weather', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
 }
 	
 add_action('init', 'owmw_textdomain', 10);
@@ -487,8 +487,8 @@ function owmw_basic($post){
 
 		<div id="tabs-1">
 		    <p class=" subsection-title">
-  			    Get weather by ...
-		    </p>
+				<?php esc_html_e( 'Get weather by ...', 'owm-weather' ) ?>
+			</p>
               <div id="owmweather-owm-param">
       			<ul>
   	    			<li><a href="#fragment-1"><?php esc_html_e( 'City Id', 'owm-weather' ) ?></a></li>
@@ -541,7 +541,7 @@ function owmw_basic($post){
                   </div>
               </div>
 		    <p class=" subsection-title">
-  			    Basic
+				<?php esc_html_e( 'Basic', 'owm-weather' ) ?>
 		    </p>
 			<p>
 				<label for="owmweather_custom_city_name_meta"><?php esc_html_e( 'Custom city title', 'owm-weather' ) ?></label>
@@ -595,6 +595,7 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="owmweather_owm_language_meta"><?php esc_html_e( 'OpenWeatherMap language?', 'owm-weather' ) ?></label>
+				<p><i><?php esc_html_e('This is the language for the data from OpenWeatherMap, not for this plugin. If set to Default, it will try to use the WordPress site language first with fallback to English.', 'owm-weather') ?></i></p>
 				<select name="owmweather_owm_language" id="owmweather_owm_language_meta">
 					<option <?php echo selected( 'Default', $owmw_opt["owm_language"], false ) ?>value="Default"><?php esc_html_e( 'Default', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'af', $owmw_opt["owm_language"], false ) ?>value="af"><?php esc_html_e( 'Afrikaans', 'owm-weather' ) ?></option>
@@ -634,13 +635,13 @@ function owmw_basic($post){
 					<option <?php echo selected( 'ro', $owmw_opt["owm_language"], false ) ?>value="ro"><?php esc_html_e( 'Romanian', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'ru', $owmw_opt["owm_language"], false ) ?>value="ru"><?php esc_html_e( 'Russian', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'sr', $owmw_opt["owm_language"], false ) ?>value="sr"><?php esc_html_e( 'Serbian', 'owm-weather' ) ?></option>
-					<option <?php echo selected( 'sv', $owmw_opt["owm_language"], false ) ?>value="sv"><?php esc_html_e( 'Swedish', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'sv', $owmw_opt["owm_language"], false ) ?>value="se"><?php esc_html_e( 'Swedish', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'sk', $owmw_opt["owm_language"], false ) ?>value="sk"><?php esc_html_e( 'Slovak', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'sl', $owmw_opt["owm_language"], false ) ?>value="sl"><?php esc_html_e( 'Slovenian', 'owm-weather' ) ?></option>
-					<option <?php echo selected( 'sp', $owmw_opt["owm_language"], false ) ?>value="sp"><?php esc_html_e( 'Spanish', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'sp', $owmw_opt["owm_language"], false ) ?>value="es"><?php esc_html_e( 'Spanish', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'th', $owmw_opt["owm_language"], false ) ?>value="th"><?php esc_html_e( 'Thai', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'tr', $owmw_opt["owm_language"], false ) ?>value="tr"><?php esc_html_e( 'Turkish', 'owm-weather' ) ?></option>
-					<option <?php echo selected( 'ua', $owmw_opt["owm_language"], false ) ?>value="ua"><?php esc_html_e( 'Ukrainian', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'ua', $owmw_opt["owm_language"], false ) ?>value="uk"><?php esc_html_e( 'Ukrainian', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'vi', $owmw_opt["owm_language"], false ) ?>value="vi"><?php esc_html_e( 'Vietnamese', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'zu', $owmw_opt["owm_language"], false ) ?>value="zu"><?php esc_html_e( 'Zulu', 'owm-weather' ) ?></option>
 				</select>
@@ -663,7 +664,7 @@ function owmw_basic($post){
 		</div>
 		<div id="tabs-2">
 		    <p style="border: 2px solid;padding: 5px;">
-  			    Select the information you would like to show on your weather shortcode.
+  			    <?php esc_html_e( 'Select the information you would like to show on your weather shortcode.', 'owm-weather' ) ?>
 		    </p>
 			<p class="owmw-dates subsection-title">
 				<?php esc_html_e( 'Current weather', 'owm-weather' ) ?>
@@ -889,7 +890,7 @@ function owmw_basic($post){
 		</div>
 		<div id="tabs-3">
 		    <p style="border: 2px solid;padding: 5px;">
-  			    Select the layout styling for your weather shortcode.
+  			    <?php esc_html_e( 'Select the layout styling for your weather shortcode.', 'owm-weather' ) ?>
 		    </p>
 			<p>
 				<label for="template_meta"><?php esc_html_e( 'Template', 'owm-weather' ) ?></label>
@@ -1106,7 +1107,7 @@ function owmw_basic($post){
 		</div>
 		<div id="tabs-4">
 		    <p style="border: 2px solid;padding: 5px;">
-  			    Select the information and layout styling for the optional map on your weather shortcode.
+  			    <?php esc_html_e( 'Select the information and layout styling for the optional map on your weather shortcode.', 'owm-weather' ) ?>
 		    </p>
 			<p>
 				<label for="owmweather_map_meta">
@@ -1713,7 +1714,12 @@ function owmw_get_my_weather($attr) {
 		$owmw_opt["alerts_button_color"]             = owmw_get_bypass($bypass, "alerts_button_color");
 		$owmw_opt["owm_language"]                    = owmw_get_bypass($bypass, "owm_language");
 		if ($owmw_opt["owm_language"] == 'Default') {
-		    $owmw_opt["owm_language"] = 'en';
+			$localeLang = substr(get_locale(), 0, 2);
+            if (owmw_checkLanguage($localeLang)) {
+				$owmw_opt["owm_language"] = $localeLang;
+			} else {
+				$owmw_opt["owm_language"] = 'en';
+			}
 		}
     	$owmw_opt["font"]    			            = owmw_get_bypass($bypass, "font");
     	$owmw_opt["iconpack"]  			            = owmw_get_bypass($bypass, "iconpack");
@@ -1840,7 +1846,6 @@ function owmw_get_my_weather($attr) {
         $owmw_data["id"] = $owmweather_current->id ?? null;
         $owmw_data["timezone"] = $owmweather_current->timezone ?? null;
 
-		$owmweather_time_php = $owmw_opt["time_format"] == '12' ? 'h:i A' : 'H:i';
 		$owmweather_hours_php = $owmw_opt["time_format"] == '12' ? 'h A' : 'H';
         if ($owmw_opt["custom_timezone"] == 'Default') {
             $utc_time_wp = get_option('gmt_offset') * 60;
@@ -1851,12 +1856,12 @@ function owmw_get_my_weather($attr) {
         }
 
         $owmw_data["timestamp"] = $owmweather_current->dt ? $owmweather_current->dt + (60 * $utc_time_wp) : null;
-        $owmw_data["last_update"] = esc_html__('Last updated: ','owm-weather').date($owmweather_time_php, $owmw_data["timestamp"]);
+        $owmw_data["last_update"] = esc_html__('Last updated: ','owm-weather').date_i18n(get_option('time_format'), $owmw_data["timestamp"]);
         $owmw_data["latitude"] = $owmweather_current->coord->lat ?? null;
         $owmw_data["longitude"] = $owmweather_current->coord->lon ?? null;
         $owmw_data["condition_id"] = $owmweather_current->weather[0]->id ?? null;
         $owmw_data["category"] = $owmweather_current->weather[0]->main ?? null;
-        $owmw_data["description"] = $owmweather_current->weather[0]->description ?? null;
+        $owmw_data["description"] = owmw_getConditionText($owmw_data["condition_id"]);
         $owmw_data["wind_speed_unit"] = owmw_getWindSpeedUnit($owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]);
         $owmw_data["wind_speed"] = owmw_getConvertedWindSpeed($owmweather_current->wind->speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $owmw_data["wind_speed_unit"];
         $owmw_data["wind_degrees"] = $owmweather_current->wind->deg ?? null;
@@ -1894,8 +1899,8 @@ function owmw_get_my_weather($attr) {
         $owmw_data["owm_link"] = 'https://openweathermap.org/city/'.($owmweather_current->id ?? "");
         $owmw_data["timestamp_sunrise"] = $owmweather_current->sys->sunrise ? $owmweather_current->sys->sunrise + (60 * $utc_time_wp) : null;
         $owmw_data["timestamp_sunset"] = $owmweather_current->sys->sunset ? $owmweather_current->sys->sunset + (60 * $utc_time_wp) : null;
-        $owmw_data["sunrise"] = (string)date($owmweather_time_php, $owmw_data["timestamp_sunrise"]);
-        $owmw_data["sunset"] = (string)date($owmweather_time_php, $owmw_data["timestamp_sunset"]);
+        $owmw_data["sunrise"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_sunrise"]);
+        $owmw_data["sunset"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_sunset"]);
         $owmw_data["moonrise"] = '';
         $owmw_data["moonset"] = '';
 
@@ -2013,16 +2018,16 @@ function owmw_get_my_weather($attr) {
                 $owmw_data["daily"][$i]["timestamp"] = $value->dt ? $value->dt + (60 * $utc_time_wp) : null;
                 $owmw_data["daily"][$i]["timestamp_sunrise"] = $value->sunrise ? $value->sunrise + (60 * $utc_time_wp) : null;
                 $owmw_data["daily"][$i]["timestamp_sunset"] = $value->sunset ? $value->sunset + (60 * $utc_time_wp) : null;
-                $owmw_data["daily"][$i]["sunrise"] = (string)date($owmweather_time_php, $owmw_data["daily"][$i]["timestamp_sunrise"]);
-                $owmw_data["daily"][$i]["sunset"] = (string)date($owmweather_time_php, $owmw_data["daily"][$i]["timestamp_sunset"]);
+                $owmw_data["daily"][$i]["sunrise"] = (string)date_i18n(get_option("time_format"), $owmw_data["daily"][$i]["timestamp_sunrise"]);
+                $owmw_data["daily"][$i]["sunset"] = (string)date_i18n(get_option("time_format"), $owmw_data["daily"][$i]["timestamp_sunset"]);
                 $owmw_data["daily"][$i]["timestamp_moonrise"] = $value->moonrise ? $value->moonrise + (60 * $utc_time_wp) : null;
                 $owmw_data["daily"][$i]["timestamp_moonset"] = $value->moonset ? $value->moonset + (60 * $utc_time_wp) : null;
-                $owmw_data["daily"][$i]["moonrise"] = (string)date($owmweather_time_php, $owmw_data["daily"][$i]["timestamp_moonrise"]);
-                $owmw_data["daily"][$i]["moonset"] = (string)date($owmweather_time_php, $owmw_data["daily"][$i]["timestamp_moonset"]);
+                $owmw_data["daily"][$i]["moonrise"] = (string)date_i18n(get_option("time_format"), $owmw_data["daily"][$i]["timestamp_moonrise"]);
+                $owmw_data["daily"][$i]["moonset"] = (string)date_i18n(get_option("time_format"), $owmw_data["daily"][$i]["timestamp_moonset"]);
                 $owmw_data["daily"][$i]["moon_phase"] = $value->moon_phase ?? null;
                 $owmw_data["daily"][$i]["condition_id"] = $value->weather[0]->id ?? null;
                 $owmw_data["daily"][$i]["category"] = $value->weather[0]->main ?? null;
-                $owmw_data["daily"][$i]["description"] = $value->weather[0]->description ?? null;
+                $owmw_data["daily"][$i]["description"] = owmw_getConditionText($owmw_data["daily"][$i]["condition_id"]);
                 $owmw_data["daily"][$i]["wind_speed"] = owmw_getConvertedWindSpeed($value->wind_speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $owmw_data["wind_speed_unit"];
                 $owmw_data["daily"][$i]["wind_degrees"] = $value->wind_deg ?? null;
                 $owmw_data["daily"][$i]["wind_direction"] = owmw_getWindDirection($value->wind_deg);
@@ -2111,7 +2116,7 @@ function owmw_get_my_weather($attr) {
                     $owmw_data["hourly"][$cnt]["time"] = (string)date($owmweather_hours_php, $value->dt + (60*$utc_time_wp));
                     $owmw_data["hourly"][$cnt]["condition_id"] = $value->weather[0]->id ?? null;
                     $owmw_data["hourly"][$cnt]["category"] = $value->weather[0]->main ?? null;
-                    $owmw_data["hourly"][$cnt]["description"] = $value->weather[0]->description ?? null;
+                    $owmw_data["hourly"][$cnt]["description"] = owmw_getConditionText($owmw_data["hourly"][$cnt]["condition_id"]);
                     $owmw_data["hourly"][$cnt]["wind_speed"] = owmw_getConvertedWindSpeed($value->wind_speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $owmw_data["wind_speed_unit"];
                     $owmw_data["hourly"][$cnt]["wind_degrees"] = $value->wind_deg ?? null;
                     $owmw_data["hourly"][$cnt]["wind_direction"] = owmw_getWindDirection($value->wind_deg);
@@ -2154,8 +2159,8 @@ function owmw_get_my_weather($attr) {
         if (!empty($owmw_data["daily"])) {
             $owmw_data["timestamp_moonrise"] = $owmw_data["daily"][0]["timestamp_moonrise"];
             $owmw_data["timestamp_moonset"] = $owmw_data["daily"][0]["timestamp_moonset"];
-            $owmw_data["moonrise"] = (string)date($owmweather_time_php, $owmw_data["timestamp_moonrise"]);
-            $owmw_data["moonset"] = (string)date($owmweather_time_php, $owmw_data["timestamp_moonset"]);
+            $owmw_data["moonrise"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_moonrise"]);
+            $owmw_data["moonset"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_moonset"]);
         }
 
 		//Alerts loop
@@ -2210,10 +2215,10 @@ function owmw_get_my_weather($attr) {
                 if ($value->dt > (time()-3600)) {
                     $owmw_data["forecast"][$cnt]["timestamp"] = $value->dt ? $value->dt + (60 * $utc_time_wp) : null;
                     $owmw_data["forecast"][$cnt]["time"] = (string)date($owmweather_hours_php, $value->dt + (60*$utc_time_wp));
-                    $owmw_data["forecast"][$cnt]["day"] = (string)date('D', $value->dt + (60*$utc_time_wp));
+                    $owmw_data["forecast"][$cnt]["day"] = (string)date_i18n('D', $value->dt + (60*$utc_time_wp));
                     $owmw_data["forecast"][$cnt]["condition_id"] = $value->weather[0]->id ?? null;
                     $owmw_data["forecast"][$cnt]["category"] = $value->weather[0]->main ?? null;
-                    $owmw_data["forecast"][$cnt]["description"] = $value->weather[0]->description ?? null;
+                    $owmw_data["forecast"][$cnt]["description"] = owmw_getConditionText($owmw_data["forecast"][$cnt]["condition_id"]);
                     $owmw_data["forecast"][$cnt]["wind_speed"] = owmw_getConvertedWindSpeed($value->wind->speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $owmw_data["wind_speed_unit"];
                     $owmw_data["forecast"][$cnt]["wind_degrees"] = $value->wind->deg ?? null;
                     $owmw_data["forecast"][$cnt]["wind_direction"] = owmw_getWindDirection($value->wind->deg);
@@ -2353,9 +2358,9 @@ function owmw_get_my_weather($attr) {
 		$display_now_temperature = '<div class="owmw-main-temperature">'. esc_html($owmw_data["temperature"]) .'</div>';
 		$display_now_temperature_celsius = '<div class="owmw-main-temperature-celsius">'. esc_html($owmw_data["temperature_celsius"]) .'</div>';
 		$display_now_temperature_fahrenheit = '<div class="owmw-main-temperature-fahrenheit">'. esc_html($owmw_data["temperature_fahrenheit"]) .'</div>';
-		$display_now_feels_like = '<div class="owmw-main-feels-like">Feels like '. esc_html($owmw_data["feels_like"]) .'</div>';
-		$display_now_feels_like_celsius = '<div class="owmw-main-feels-like-celsius">Feels like '. esc_html($owmw_data["feels_like_celsius"]) .'</div>';
-		$display_now_feels_like_fahrenheit = '<div class="owmw-main-feels-like-fahrenheit">Feels like '. esc_html($owmw_data["feels_like_fahrenheit"]) .'</div>';
+		$display_now_feels_like = '<div class="owmw-main-feels-like">'.esc_html__('Feels Like', 'owm-weather').' '. esc_html($owmw_data["feels_like"]) .'</div>';
+		$display_now_feels_like_celsius = '<div class="owmw-main-feels-like-celsius">'.esc_html__('Feels Like', 'owm-weather').' '. esc_html($owmw_data["feels_like_celsius"]) .'</div>';
+		$display_now_feels_like_fahrenheit = '<div class="owmw-main-feels-like-fahrenheit">'.esc_html__('Feels Like', 'owm-weather').' '. esc_html($owmw_data["feels_like_fahrenheit"]) .'</div>';
 		$display_now_end = '</div>';
 
 		//Hours loop
@@ -2367,7 +2372,7 @@ function owmw_get_my_weather($attr) {
 				$display_hours[$i] =
    					'<div class="owmw-'. $owmweather_class_hours[$i].' card">
    						<div class="card-body">
-   						    <div class="owmw-hour">'. date('D', $value["timestamp"]) . '<br>' .
+   						    <div class="owmw-hour">'. date_i18n('D', $value["timestamp"]) . '<br>' .
        						    ($owmw_opt["hours_time_icons"] == 'yes' ? owmw_hour_icon($value["time"], $owmw_opt["text_color"]) : esc_html($value["time"])) .
        				        '</div>' .
        				        $display_hours_icon[$i] .
@@ -2387,7 +2392,7 @@ function owmw_get_my_weather($attr) {
 				$esc_display_forecasticon = owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], "day", $value["description"]);
 				$display_forecast[$i] =
 			   		'<div class="owmw-'. esc_attr($owmweather_class_days[$i]).' row">
-			      		<div class="owmw-day col">'. ($i == 0 ? "Today" : esc_html($value["day"])) .'</div>' . '<div class="col">' . $esc_display_forecasticon . '</div>';
+			      		<div class="owmw-day col">'. ($i == 0 ? esc_html__('Today', 'owm-weather') : esc_html($value["day"])) .'</div>' . '<div class="col">' . $esc_display_forecasticon . '</div>';
 
 			      		if ($owmw_opt["forecast_precipitations"] == 'yes') {
 		      				$display_forecast[$i] .= '<div class="owmw-rain col">'. esc_html($value["precipitation"]) . '</div>';
@@ -2400,7 +2405,7 @@ function owmw_get_my_weather($attr) {
         		$display_forecast_card[$i] =
    					'<div class="owmw-'. esc_attr($owmweather_class_days[$i]).' card">
    						<div class="card-body">
-					        <div class="owmw-day">'. ($i == 0 ? "Today" : esc_html($value["day"])) .'</div>' . $esc_display_forecasticon .
+					        <div class="owmw-day">'. ($i == 0 ? esc_html__('Today', 'owm-weather') : esc_html($value["day"])) .'</div>' . $esc_display_forecasticon .
        				        '<div class="owmw-temperature">
        				            <span class="owmw-temp-min">' . esc_html($value["temperature_minimum"]) . '</span> - <span class="owmw-temp-max">' . esc_html($value["temperature_maximum"]) . '</span>
        				        </div>
@@ -2409,25 +2414,25 @@ function owmw_get_my_weather($attr) {
                				        $display_forecast_card[$i] .= '<div>'.owmw_wind_direction_icon($value["wind_degrees"], $owmw_opt["text_color"], $owmw_opt["wind_icon_direction"]).'Wind: <span class="owmw-value">' .esc_html($value["wind_speed"].' '.$value["wind_direction"]).'</span></div>';
            				        }
        				            if ($owmw_opt["humidity"] == 'yes') {
-               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["humidity"].'Humidity: <span class="owmw-value">' .esc_html($value["humidity"]). '</span></div>';
+               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["humidity"].esc_html__('Humidity', 'owm-weather').': <span class="owmw-value">' .esc_html($value["humidity"]). '</span></div>';
                				    }
        				            if ($owmw_opt["dew_point"] == 'yes') {
-               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["dew_point"].'Dew point: <span class="owmw-value owmw-temperature">' .esc_html($value["dew_point"]). '</span></div>';
+               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["dew_point"].esc_html__('Dew Point', 'owm-weather').': <span class="owmw-value owmw-temperature">' .esc_html($value["dew_point"]). '</span></div>';
                				    }
        				            if ($owmw_opt["pressure"] == 'yes') {
-               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["pressure"].'Pressure: <span class="owmw-value">' .esc_html($value["pressure"]). '</span></div>';
+               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["pressure"].esc_html__('Pressure', 'owm-weather').': <span class="owmw-value">' .esc_html($value["pressure"]). '</span></div>';
                				    }
        				            if ($owmw_opt["cloudiness"] == 'yes') {
-               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["cloudiness"].'Clouds: <span class="owmw-value">' .esc_html($value["cloudiness"]). '</span></div>';
+               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["cloudiness"].esc_html__('Clouds', 'owm-weather').': <span class="owmw-value">' .esc_html($value["cloudiness"]). '</span></div>';
                				    }
        				            if ($owmw_opt["precipitation"] == 'yes') {
-               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["rain_chance"].'Rain Chance: <span class="owmw-value">' .esc_html($value["rain_chance"]). '</span></div>';
+               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["rain_chance"].esc_html__('Rain Chance', 'owm-weather').': <span class="owmw-value">' .esc_html($value["rain_chance"]). '</span></div>';
                				    }
        				            if ($owmw_opt["precipitation"] == 'yes') {
-               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["precipitation"].'Precipitation: <span class="owmw-value">' .esc_html($value["precipitation"]). '</span></div>';
+               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["precipitation"].esc_html__('Precipitation', 'owm-weather').': <span class="owmw-value">' .esc_html($value["precipitation"]). '</span></div>';
                				    }
        				            if ($owmw_opt["uv_index"] == 'yes') {
-               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["uv_index"].'UV index: <span class="owmw-value">' .esc_html($value["uv_index"]). '</span></div>';
+               				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["uv_index"].esc_html__('UV Index', 'owm-weather').': <span class="owmw-value">' .esc_html($value["uv_index"]). '</span></div>';
                				    }
         		$display_forecast_card[$i] .=
            				    '</div>
@@ -2451,7 +2456,7 @@ function owmw_get_my_weather($attr) {
 		        	$display_map_options         	.= 'var clouds = L.OWM.clouds({showLegend: false, opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
 		        	$display_map_layers             .= '"'.esc_attr__("Clouds", "owm-weather").'": clouds,';
 		        	$display_map_options         	.= 'var cloudscls = L.OWM.cloudsClassic({showLegend: false, opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"i'.esc_attr__("Clouds Classic", "owm-weather").'": cloudscls,';
+		        	$display_map_layers             .= '"'.esc_attr__("Clouds Classic", "owm-weather").'": cloudscls,';
 		      	}
 
 		      	//Precipitations and Rain
@@ -2683,7 +2688,7 @@ function owmw_get_my_weather($attr) {
                         		owmw_css_color('background-color', $owmw_opt["background_color"]) . owmw_css_color("color",$owmw_opt["text_color"]) . '">
                           <div class="modal-header">
                             <h5 class="modal-title" id="' . esc_attr($modal) . '-label">' . esc_html($value["event"]) . '</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="'.esc_html__('Close', 'owm-weather').'">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
@@ -2741,7 +2746,7 @@ function owmw_get_my_weather($attr) {
 			$cnt = 0;
 			foreach ($owmw_data["hourly"] as $i => $value) {
 				if ($cnt < $owmw_opt["hours_forecast_no"]) {
-					$owmw_html["chart"]["hourly"]["labels"] .= '"' . esc_attr($value["time"] != 'Now' ? date('D', $value["timestamp"]) . ' ' : '') . $value["time"] . '",';
+					$owmw_html["chart"]["hourly"]["labels"] .= '"' . esc_attr($value["time"] != 'Now' ? date_i18n('D', $value["timestamp"]) . ' ' : '') . $value["time"] . '",';
 					$owmw_html["chart"]["hourly"]["dataset_temperature"] .= '"' . esc_html($value["temperature"]) . '",';
 					$owmw_html["chart"]["hourly"]["dataset_feels_like"] .= '"' . esc_html($value["feels_like"]) . '",';
 					$owmw_html["chart"]["hourly"]["dataset_dew_point"] .= '"' . esc_html($value["dew_point"]) . '",';
@@ -2758,7 +2763,7 @@ function owmw_get_my_weather($attr) {
                     responsive: true,
                     maintainAspectRatio: false,
                     interaction: { intersect: false, mode: "index" },
-                    plugins: {title: {display: true, text: "Hourly Temperatures" },
+                    plugins: {title: {display: true, text: "'.esc_attr__('Hourly Temperatures', 'owm-weather').'" },
                         tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
                         if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_html($owmw_data["temperature_unit_character"]).'"; }
                         return label; } } } },
@@ -2767,7 +2772,7 @@ function owmw_get_my_weather($attr) {
             $owmw_html["chart"]["hourly"]["data"] .= 'const hourly_data_'.esc_attr($chart_id).' = {
                                                                       labels: hourly_labels_'.esc_attr($chart_id).',
                                                                       datasets: [{
-                                                                        label: "Temperature",
+                                                                        label: "'.esc_attr__('Temperature', 'owm-weather').'",
                                                                         data: hourly_temperature_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_temperature_color"]).'",
@@ -2775,7 +2780,7 @@ function owmw_get_my_weather($attr) {
                                                                         tension: 0.3,
                                                                         pointBorderWidth: 0,
                                                                         },{
-                                                                        label: "Feels Like",
+                                                                        label: "'.esc_attr__('Feels Like', 'owm-weather').'",
                                                                         data: hourly_feels_like_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_feels_like_color"]).'",
@@ -2783,7 +2788,7 @@ function owmw_get_my_weather($attr) {
                                                                         tension: 0.3,
                                                                         pointBorderWidth: 0,
                                                                         },{
-                                                                        label: "Dew Point",
+                                                                        label: "'.esc_attr__('Dew Point', 'owm-weather').'",
                                                                         data: hourly_dew_point_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_dew_point_color"]).'",
@@ -2799,7 +2804,7 @@ function owmw_get_my_weather($attr) {
 
 $owmw_html["chart"]["hourly"]["container"] =
         '<div class="owmw-chart-container" style="position: relative; height:'.esc_attr($owmw_opt["chart_height"]).'px; width:100%">
-        <canvas id="'.$owmw_html["container_chart_hourly_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="Hourly Temperatures" role="img"></canvas></div>';
+        <canvas id="'.$owmw_html["container_chart_hourly_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="'.esc_attr__('Hourly Temperatures', 'owm-weather').'" role="img"></canvas></div>';
 $owmw_html["chart"]["hourly"]["script"] = 
         $owmw_html["chart"]["hourly"]["labels"] .
         $owmw_html["chart"]["hourly"]["dataset_temperature"] .
@@ -2848,7 +2853,7 @@ $owmw_html["chart"]["hourly"]["script"] =
                     responsive: true,
                     maintainAspectRatio: false,
                     interaction: { intersect: false, mode: "index" },
-                    plugins: {title: {display: true, text: "Daily Temperatures" },
+                    plugins: {title: {display: true, text: "'.esc_attr__('Daily Temperatures', 'owm-weather').'" },
                         tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
                         if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_attr($owmw_data["temperature_unit_character"]).'"; }
                         return label; } } } },
@@ -2857,7 +2862,7 @@ $owmw_html["chart"]["hourly"]["script"] =
             $owmw_html["chart"]["daily"]["data"] .= 'const daily_data_'.esc_attr($chart_id).' = {
                                                                       labels: daily_labels_'.esc_attr($chart_id).',
                                                                       datasets: [{
-                                                                        label: "Temperature",
+                                                                        label: "'.esc_attr__('Temperature', 'owm-weather').'",
                                                                         data: daily_temperature_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_temperature_color"]).'",
@@ -2865,7 +2870,7 @@ $owmw_html["chart"]["hourly"]["script"] =
                                                                         tension: 0.3,
                                                                         pointBorderWidth: 0,
                                                                         },{
-                                                                        label: "Feels Like",
+                                                                        label: "'.esc_attr__('Feels Like', 'owm-weather').'",
                                                                         data: daily_feels_like_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_feels_like_color"]).'",
@@ -2881,7 +2886,7 @@ $owmw_html["chart"]["hourly"]["script"] =
 
 $owmw_html["chart"]["daily"]["container"] =
         '<div class="owmw-chart-container" style="position: relative; height:'.esc_attr($owmw_opt["chart_height"]).'px; width:100%">
-        <canvas id="'.$owmw_html["container_chart_daily_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="Daily Temperatures" role="img"></canvas></div>';
+        <canvas id="'.$owmw_html["container_chart_daily_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="'.esc_attr__('Daily Temperatures', 'owm-weather').'" role="img"></canvas></div>';
 $owmw_html["chart"]["daily"]["script"] =
         $owmw_html["chart"]["daily"]["labels"] .
         $owmw_html["chart"]["daily"]["dataset_temperature"] .
@@ -2939,7 +2944,7 @@ $owmw_html["chart"]["daily"]["script"] =
 			foreach ($owmw_data["hourly"] as $i => $value) {
 				if ($cnt < $owmw_opt["hours_forecast_no"]) {
 					$owmw_html["table"]["hourly"] .= '<tr>';
-					$owmw_html["table"]["hourly"] .= '<td>' . date('D', $value["timestamp"]) . ($owmw_opt["hours_time_icons"] == 'yes' ? owmw_hour_icon($value["time"], $owmw_opt["table_text_color"]) : '<br>' . esc_html($value["time"])) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td>' . date_i18n('D', $value["timestamp"]) . ($owmw_opt["hours_time_icons"] == 'yes' ? owmw_hour_icon($value["time"], $owmw_opt["table_text_color"]) : '<br>' . esc_html($value["time"])) . '</td>';
 					$owmw_html["table"]["hourly"] .= '<td class="border-right-0">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], $value["day_night"], $value["description"]) . '</td><td class="border-left-0 small">' . esc_html($value["description"]) . '</td>';
 					$owmw_html["table"]["hourly"] .= '<td class="owmw-temperature">' . esc_html($value["temperature"]) . '</td>';
 					$owmw_html["table"]["hourly"] .= '<td class="owmw-temperature">' . esc_html($value["feels_like"]) . '</td>';
@@ -3087,7 +3092,7 @@ $owmw_html["chart"]["daily"]["script"] =
 //				if ($cnt < $owmw_opt["hours_forecast_no"]) {
 				if (!in_array($i, array("temperature_minimum", "temperature_minimum_celsius", "temperature_minimum_fahrenheit", "temperature_maximum", "temperature_maximum_celsius", "temperature_maximum_fahrenheit"))) {
 					$owmw_html["table"]["forecast"] .= '<tr>';
-					$owmw_html["table"]["forecast"] .= '<td>' . date('D', $value["timestamp"]) . ($owmw_opt["hours_time_icons"] == 'yes' ? owmw_hour_icon($value["time"], $owmw_opt["table_text_color"]) : '<br>' . esc_html($value["time"])) . '</td>';
+					$owmw_html["table"]["forecast"] .= '<td>' . date_i18n('D', $value["timestamp"]) . ($owmw_opt["hours_time_icons"] == 'yes' ? owmw_hour_icon($value["time"], $owmw_opt["table_text_color"]) : '<br>' . esc_html($value["time"])) . '</td>';
 					$owmw_html["table"]["forecast"] .= '<td class="border-right-0">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], $value["day_night"], $value["description"]) . '</td><td class="border-left-0 small">' . esc_html($value["description"]) . '</td>';
 					$owmw_html["table"]["forecast"] .= '<td class="owmw-temperature">' . esc_html($value["temperature"]) . '</td>';
 					$owmw_html["table"]["forecast"] .= '<td class="owmw-temperature">' . esc_html($value["feels_like"]) . '</td>';
@@ -3467,7 +3472,7 @@ function owmw_sanitize_validate_field($key, $value) {
 
             case "owm_language":
                 $value = sanitize_text_field($value);
-                if (!in_array($value, array("Default", "af", "al", "ar", "az", "eu", "bg", "ca", "zh_cn", "zh_tw", "hr", "cz", "da", "nl", "en", "fi", "fr", "gl", "de", "el", "he", "hi", "hu", "id", "it", "ja", "kr", "la", "lt", "mk", "no", "fa", "pl", "pt", "pt", "ro", "ru", "sr", "sv", "sk", "sl", "sp", "th", "tr", "ua", "vi", "zu"))) {
+                if (!owmw_checkLanguage($value)) {
                     $value = "Default";
                 }
                 break;
@@ -3792,4 +3797,74 @@ function owmw_fahrenheit_to_celsius($t) {
 	}
 		
 	return null;
+}
+
+function owmw_checkLanguage($lang) {
+	return (in_array($lang, array("Default", "af", "al", "ar", "az", "eu", "bg", "ca", "zh_cn", "zh_tw", "hr", "cz", "da", "nl", "en", "fi", "fr", "gl", "de", "el", "he", "hi", "hu", "id", "it", "ja", "kr", "la", "lt", "mk", "no", "fa", "pl", "pt", "ro", "ru", "sr", "se", "sk", "sl", "es", "th", "tr", "uk", "vi", "zh", "zu")));
+}
+
+function owmw_getConditionText($condition) {
+	$conditionText = array(
+		200 => __("Thunderstorm with Light Rain", 'owm-weather'),
+		201 => __("Thunderstorm with Rain", 'owm-weather'),
+		202 => __("Thunderstorm with Heavy Rain", 'owm-weather'),
+		210 => __("Light Thunderstorm", 'owm-weather'),
+		211 => __("Thunderstorm", 'owm-weather'),
+		212 => __("Heavy Thunderstorm", 'owm-weather'),
+		221 => __("Ragged Thunderstorm", 'owm-weather'),
+		230 => __("Thunderstorm with Light Drizzle", 'owm-weather'),
+		231 => __("Thunderstorm with Drizzle", 'owm-weather'),
+		232 => __("Thunderstorm with Heavy Drizzle", 'owm-weather'),
+		300 => __("Light Intensity Drizzle", 'owm-weather'),
+		301 => __("Drizzle", 'owm-weather'),
+		302 => __("Heavy Intensity Drizzle", 'owm-weather'),
+		310 => __("Light Intensity Drizzle Rain", 'owm-weather'),
+		311 => __("Drizzle Rain", 'owm-weather'),
+		312 => __("Heavy Intensity Drizzle Rain", 'owm-weather'),
+		313 => __("Shower Rain and Drizzle", 'owm-weather'),
+		314 => __("Heavy Shower Rain and Drizzle", 'owm-weather'),
+		321 => __("Shower Drizzle", 'owm-weather'),
+		500 => __("Light Rain", 'owm-weather'),
+		501 => __("Moderate Rain", 'owm-weather'),
+		502 => __("Heavy Intensity Rain", 'owm-weather'),
+		503 => __("Very Heavy Rain", 'owm-weather'),
+		504 => __("Extreme Rain", 'owm-weather'),
+		511 => __("Freezing Rain", 'owm-weather'),
+		520 => __("Light Intensity Shower Rain", 'owm-weather'),
+		521 => __("Shower Rain", 'owm-weather'),
+		522 => __("Heavy Intensity Shower Rain", 'owm-weather'),
+		531 => __("Ragged Shower Rain", 'owm-weather'),
+		600 => __("Light Snow", 'owm-weather'),
+		601 => __("Snow", 'owm-weather'),
+		602 => __("Heavy Snow", 'owm-weather'),
+		611 => __("Sleet", 'owm-weather'),
+		612 => __("Light Shower Sleet", 'owm-weather'),
+		613 => __("Shower Sleet", 'owm-weather'),
+		615 => __("Light Rain and Snow", 'owm-weather'),
+		616 => __("Rain and Snow", 'owm-weather'),
+		620 => __("Light Shower Snow", 'owm-weather'),
+		621 => __("Shower Snow", 'owm-weather'),
+		622 => __("Heavy Shower Snow", 'owm-weather'),
+		701 => __("Mist", 'owm-weather'),
+		711 => __("Smoke", 'owm-weather'),
+		721 => __("Haze", 'owm-weather'),
+		731 => __("Sand / Dust Whirls", 'owm-weather'),
+		741 => __("Fog", 'owm-weather'),
+		751 => __("Sand", 'owm-weather'),
+		761 => __("Dust", 'owm-weather'),
+		762 => __("Volcanic Ash", 'owm-weather'),
+		771 => __("Squalls", 'owm-weather'),
+		781 => __("Tornado", 'owm-weather'),
+		800 => __("Clear sky", 'owm-weather'),
+		801 => __("Few Clouds", 'owm-weather'),
+		802 => __("Scattered Clouds", 'owm-weather'),
+		803 => __("Broken Clouds", 'owm-weather'),
+		804 => __("Overcast Clouds", 'owm-weather')
+	);
+	
+	if (!empty($conditionText[$condition])) {
+		return $conditionText[$condition];
+	}
+	
+	return "";
 }

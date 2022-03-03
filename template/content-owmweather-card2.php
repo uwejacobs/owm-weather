@@ -109,14 +109,14 @@
                     <div class="<?php echo esc_attr($info_class); ?>">
                 <?php } ?>
             	<?php echo '<p class="owmw-infos-text">'; ?>
-            	<?php if ($owmw_opt["wind"] =='yes') echo wp_kses($owmw_html["svg"]["wind"], $owmw_opt['allowed_html']) . 'Wind: <span class="owmw-value">' . wp_kses_post($owmw_data["wind_speed"]) . ' ' . wp_kses_post($owmw_data["wind_direction"]) . '</span><br>'; ?>
-            	<?php if ($owmw_opt["humidity"] =='yes') echo wp_kses($owmw_html["svg"]["humidity"], $owmw_opt['allowed_html']) .'Humidity: <span class="owmw-value">' . wp_kses_post($owmw_data["humidity"]) . '</span><br>'; ?>
-            	<?php if ($owmw_opt["dew_point"] =='yes') echo wp_kses($owmw_html["svg"]["dew_point"], $owmw_opt['allowed_html']) .'Dew Point: <span class="owmw-value owmw-temperature">' . wp_kses_post($owmw_data["dew_point"]) . '</span><br>'; ?>
-            	<?php if ($owmw_opt["pressure"] =='yes') echo wp_kses($owmw_html["svg"]["pressure"], $owmw_opt['allowed_html']) .'Pressure: <span class="owmw-value">' . wp_kses_post($owmw_data["pressure"]) . '</span><br>'; ?>
-            	<?php if ($owmw_opt["cloudiness"] =='yes') echo wp_kses($owmw_html["svg"]["cloudiness"], $owmw_opt['allowed_html']) .'Cloudiness: <span class="owmw-value">' . wp_kses_post($owmw_data["cloudiness"]) . '</span><br>'; ?>
-            	<?php if ($owmw_opt["precipitation"] =='yes') echo wp_kses($owmw_html["svg"]["precipitation"], $owmw_opt['allowed_html']) .'Precipitation: <span class="owmw-value">' . wp_kses_post($owmw_data["precipitation_1h"]) . '</span><br>'; ?>
-            	<?php if ($owmw_opt["visibility"] =='yes') echo wp_kses($owmw_html["svg"]["visibility"], $owmw_opt['allowed_html']) . 'Visibility: <span class="owmw-value">' . wp_kses_post($owmw_data["visibility"]) . '</span><br>'; ?>
-            	<?php if ($owmw_opt["uv_index"] =='yes') echo wp_kses($owmw_html["svg"]["uv_index"], $owmw_opt['allowed_html']) . 'UV Index: <span class="owmw-value">' . wp_kses_post($owmw_data["uv_index"]) . '</span><br>'; ?>
+            	<?php if ($owmw_opt["wind"] =='yes') echo wp_kses($owmw_html["svg"]["wind"], $owmw_opt['allowed_html']) . esc_html__('Wind', 'owm-weather') . ': <span class="owmw-value">' . wp_kses_post($owmw_data["wind_speed"]) . ' ' . wp_kses_post($owmw_data["wind_direction"]) . '</span><br>'; ?>
+            	<?php if ($owmw_opt["humidity"] =='yes') echo wp_kses($owmw_html["svg"]["humidity"], $owmw_opt['allowed_html']) . esc_html__('Humidity', 'owm-weather') . ': <span class="owmw-value">' . wp_kses_post($owmw_data["humidity"]) . '</span><br>'; ?>
+            	<?php if ($owmw_opt["dew_point"] =='yes') echo wp_kses($owmw_html["svg"]["dew_point"], $owmw_opt['allowed_html']) . esc_html__('Dew Point', 'owm-weather') . ': <span class="owmw-value owmw-temperature">' . wp_kses_post($owmw_data["dew_point"]) . '</span><br>'; ?>
+            	<?php if ($owmw_opt["pressure"] =='yes') echo wp_kses($owmw_html["svg"]["pressure"], $owmw_opt['allowed_html']) . esc_html__('Pressure', 'owm-weather') . ': <span class="owmw-value">' . wp_kses_post($owmw_data["pressure"]) . '</span><br>'; ?>
+            	<?php if ($owmw_opt["cloudiness"] =='yes') echo wp_kses($owmw_html["svg"]["cloudiness"], $owmw_opt['allowed_html']) . esc_html__('Cloudiness', 'owm-weather') . ': <span class="owmw-value">' . wp_kses_post($owmw_data["cloudiness"]) . '</span><br>'; ?>
+            	<?php if ($owmw_opt["precipitation"] =='yes') echo wp_kses($owmw_html["svg"]["precipitation"], $owmw_opt['allowed_html']) . esc_html__('Precipitation', 'owm-weather') . ': <span class="owmw-value">' . wp_kses_post($owmw_data["precipitation_1h"]) . '</span><br>'; ?>
+            	<?php if ($owmw_opt["visibility"] =='yes') echo wp_kses($owmw_html["svg"]["visibility"], $owmw_opt['allowed_html']) . esc_html__('Visibility', 'owm-weather') . ': <span class="owmw-value">' . wp_kses_post($owmw_data["visibility"]) . '</span><br>'; ?>
+            	<?php if ($owmw_opt["uv_index"] =='yes') echo wp_kses($owmw_html["svg"]["uv_index"], $owmw_opt['allowed_html']) . esc_html__('UV Index', 'owm-weather') . ': <span class="owmw-value">' . wp_kses_post($owmw_data["uv_index"]) . '</span><br>'; ?>
             	<?php echo "</p>"; ?>
             <?php } ?>
 

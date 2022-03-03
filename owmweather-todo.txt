@@ -1,4 +1,5 @@
 Must:
+pot file: wp  --allow-root i18n make-pot . lang/owm-weather.pot
 
 Nice:
 more charts

@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
 Tested up to: 5.9.1
-Stable tag: 5.1.2
+Stable tag: 5.1.3
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -540,7 +540,7 @@ Unlimited due to WordPress Custom Post Types.
 
 = In which languages is the weather data displayed? =
 
-The setup pages are displayed in English with partial translations in French, Italian, Hungarian, Hebrew, Polish, Russian, Danish, German, Portuguese. Open Weather Map provides the data in most languages.
+OWM Weather has been fully translated into German. There are partial translations in French, Italian, Hungarian, Hebrew, Polish, Russian, Danish, Spanish, and Portuguese. Open Weather Map itself provides the data in most languages.
 
 = How to define the unit Celsius or Fahrenheit? =
 
@@ -591,6 +591,12 @@ Although many settings look alike, OWM Weather uses completely different weather
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.1.3 =
+* added translation hooks for OpenWeatherMap condition descriptions to allow localization for more countries
+* OpenWeatherMap language will now default to the WordPress locale language and fall back to English if not available
+* fixed missing translation hooks for several labels
+* fixed date and time not being localized
 
 = 5.1.2 =
 * fixed translations not showing up in WordPress menu

@@ -26,9 +26,9 @@
 <!-- Start #owm-weather -->
 <?php echo wp_kses_post($owmw_html["container"]["start"]); ?>
 	<div class="custom-navigation d-none">
-  	<a href="#" class="flex-prev">Prev</a>
+  	<a href="#" class="flex-prev"><?php esc_html_e('Prev', 'owm-weather') ?></a>
   	<div class="custom-controls-container"></div>
-  	<a href="#" class="flex-next">Next</a>
+  	<a href="#" class="flex-next"><<?php esc_html_e('Next', 'owm-weather') ?>/a>
 	</div>
 
 	<!-- Current weather -->

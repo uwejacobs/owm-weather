@@ -993,6 +993,7 @@ class owmw_options
     {
         $selected = $this->options['owmw_owm_language'] ?? "nobypass";
 
+		echo '<p><i>' . esc_html_e('This is the language for the data from OpenWeatherMap, not for this plugin. If set to Default, it will try to use the WordPress site language first with fallback to English.', 'owm-weather') . '</i></p>';
 		echo '<select id="owmw_owm_language" name="owmw_option_name[owmw_owm_language]"> ';
         echo '<option ' . ('nobypass' == $selected ? 'selected="selected"' : '') . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. esc_html__( 'Default', 'owm-weather' ) .'</option>';
@@ -1033,13 +1034,13 @@ class owmw_options
         echo '<option ' . selected( 'ro', $selected, false ) . ' value="ro">'. esc_html__( 'Romanian', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'ru', $selected, false ) . ' value="ru">'. esc_html__( 'Russian', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'sr', $selected, false ) . ' value="sr">'. esc_html__( 'Serbian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'sv', $selected, false ) . ' value="sv">'. esc_html__( 'Swedish', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'sv', $selected, false ) . ' value="se">'. esc_html__( 'Swedish', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'sk', $selected, false ) . ' value="sk">'. esc_html__( 'Slovak', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'sl', $selected, false ) . ' value="sl">'. esc_html__( 'Slovenian', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'sp', $selected, false ) . ' value="sp">'. esc_html__( 'Spanish', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'sp', $selected, false ) . ' value="es">'. esc_html__( 'Spanish', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'th', $selected, false ) . ' value="th">'. esc_html__( 'Thai', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'tr', $selected, false ) . ' value="tr">'. esc_html__( 'Turkish', 'owm-weather' ) .'</option>';
-        echo '<option ' . selected( 'ua', $selected, false ) . ' value="ua">'. esc_html__( 'Ukrainian', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'ua', $selected, false ) . ' value="uk">'. esc_html__( 'Ukrainian', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'vi', $selected, false ) . ' value="vi">'. esc_html__( 'Vietnamese', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'zu', $selected, false ) . ' value="zu">'. esc_html__( 'Zulu', 'owm-weather' ) .'</option>';
 		echo '</select>';
