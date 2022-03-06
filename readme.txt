@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
 Tested up to: 5.9.1
-Stable tag: 5.1.4
+Stable tag: 5.1.5
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -591,6 +591,11 @@ Although many settings look alike, OWM Weather uses completely different weather
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.1.5 =
+* fixed one occurence of phrase 'Wind' not translatable
+* added partial Estonian translation
+* updated and pre-translated all locale files with PoEdit Pro
 
 = 5.1.4 =
 * created complete Spanish and French translations with PoEdit Pro

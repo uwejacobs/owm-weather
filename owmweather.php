@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.1.4
+Version: 5.1.5
 Author: Uwe Jacobs
 Author URI: https://github.com/uwejacobs
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.1.4' );
+define( 'OWM_WEATHER_VERSION', '5.1.5' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -2410,7 +2410,7 @@ function owmw_get_my_weather($attr) {
        				        </div>
        				        <div class="owmw-infos-text">';
        				            if ($owmw_opt["wind"] == 'yes') {
-               				        $display_forecast_card[$i] .= '<div>'.owmw_wind_direction_icon($value["wind_degrees"], $owmw_opt["text_color"], $owmw_opt["wind_icon_direction"]).'Wind: <span class="owmw-value">' .esc_html($value["wind_speed"].' '.$value["wind_direction"]).'</span></div>';
+               				        $display_forecast_card[$i] .= '<div>'.owmw_wind_direction_icon($value["wind_degrees"], $owmw_opt["text_color"], $owmw_opt["wind_icon_direction"]).esc_html__('Wind', 'owm-weather').': <span class="owmw-value">' .esc_html($value["wind_speed"].' '.$value["wind_direction"]).'</span></div>';
            				        }
        				            if ($owmw_opt["humidity"] == 'yes') {
                				        $display_forecast_card[$i] .= '<div>'.$owmw_html["svg"]["humidity"].esc_html__('Humidity', 'owm-weather').': <span class="owmw-value">' .esc_html($value["humidity"]). '</span></div>';

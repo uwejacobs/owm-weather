@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OWM Weather\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/owm-weather\n"
-"POT-Creation-Date: 2022-03-03T10:28:12-05:00\n"
-"PO-Revision-Date: 2022-03-03 11:18-0500\n"
+"POT-Creation-Date: 2022-03-03T16:46:04-05:00\n"
+"PO-Revision-Date: 2022-03-04 09:51-0500\n"
 "Last-Translator: \n"
 "Language-Team: RomeAdvisor.com <ra@romeadvisor.com>\n"
 "Language: ru\n"
@@ -26,7 +26,7 @@ msgstr "OWM Weather"
 
 #. Plugin URI of the plugin
 msgid "https://github.com/uwejacobs/owm-weather"
-msgstr ""
+msgstr "https://github.com/uwejacobs/owm-weather"
 
 #. Description of the plugin
 msgid ""
@@ -37,51 +37,55 @@ msgstr ""
 
 #. Author of the plugin
 msgid "Uwe Jacobs"
-msgstr ""
+msgstr "Uwe Jacobs"
 
 #. Author URI of the plugin
 msgid "https://github.com/uwejacobs"
-msgstr ""
+msgstr "https://github.com/uwejacobs"
 
 #: owmweather-admin.php:63
 msgid "Do you like WP OPM Weather? Don't forget to rate it 5 stars!"
-msgstr ""
+msgstr "Вам нравится ПОГОДА WP OPM? Не забудьте оценить его на 5 звезд!"
 
 #: owmweather-admin.php:93
 msgid "Consider a donation"
-msgstr ""
+msgstr "Рассмотрите возможность пожертвования"
 
 #: owmweather-admin.php:107
 msgid "Export Settings"
-msgstr ""
+msgstr "Экспорт настроек"
 
 #: owmweather-admin.php:109
 msgid ""
 "Export the plugin settings for this site as a .json file. This allows you to "
 "easily import the configuration into another site."
 msgstr ""
+"Экспортируйте настройки плагина для этого сайта в виде файла .json. Это "
+"позволяет легко импортировать конфигурацию на другой сайт."
 
 #: owmweather-admin.php:114
 msgid "Export"
-msgstr ""
+msgstr "Экспорт"
 
 #: owmweather-admin.php:121
 msgid "Import Settings"
-msgstr ""
+msgstr "Импорт настроек"
 
 #: owmweather-admin.php:123
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
 msgstr ""
+"Импортируйте настройки плагина из файла .json. Этот файл можно получить, "
+"экспортируя настройки на другой сайт, используя форму выше."
 
 #: owmweather-admin.php:131
 msgid "Import"
-msgstr ""
+msgstr "Импорт"
 
 #: owmweather-admin.php:138
 msgid "Reset Settings"
-msgstr ""
+msgstr "Сбросить настройки"
 
 #: owmweather-admin.php:140
 msgid ""
@@ -91,39 +95,39 @@ msgstr ""
 
 #: owmweather-admin.php:145
 msgid "Reset settings"
-msgstr ""
+msgstr "Сбросить настройки"
 
 #: owmweather-admin.php:164
 msgid "System"
-msgstr ""
+msgstr "Система"
 
 #: owmweather-admin.php:165 owmweather.php:482 owmweather.php:544
 msgid "Basic"
-msgstr ""
+msgstr "Базовый"
 
 #: owmweather-admin.php:166 owmweather.php:483
 msgid "Display"
-msgstr ""
+msgstr "Показать"
 
 #: owmweather-admin.php:167 owmweather.php:484
 msgid "Layout"
-msgstr ""
+msgstr "Макет"
 
-#: owmweather-admin.php:168 owmweather.php:485
+#: owmweather-admin.php:168 owmweather-admin.php:740 owmweather.php:485
 msgid "Map"
-msgstr ""
+msgstr "Карта"
 
 #: owmweather-admin.php:169
 msgid "Import/Export/Reset"
-msgstr ""
+msgstr "Импорт/Экспорт/Сброс"
 
 #: owmweather-admin.php:170
 msgid "Support"
-msgstr ""
+msgstr "Поддержка"
 
 #: owmweather-admin.php:185
 msgid "Save changes"
-msgstr ""
+msgstr "Сохранить изменения"
 
 #: owmweather-admin.php:190
 msgid "OWM Weather cache"
@@ -143,289 +147,337 @@ msgstr ""
 
 #: owmweather-admin.php:251
 msgid "Basic settings"
-msgstr ""
+msgstr "Основные настройки"
 
 #: owmweather-admin.php:258
-msgid "Bypass measurement system?"
+msgid "Bypass measurement system"
 msgstr ""
 
 #: owmweather-admin.php:266
-msgid "Bypass time format?"
+msgid "Bypass time format"
 msgstr ""
 
 #: owmweather-admin.php:274
-msgid "Bypass timezone?"
+msgid "Bypass timezone"
 msgstr ""
 
 #: owmweather-admin.php:282
-msgid "Bypass OpenWeatherMap language?"
-msgstr ""
+#, fuzzy
+#| msgid "OWM Weather"
+msgid "Bypass OpenWeatherMap language"
+msgstr "OWM Weather"
 
 #: owmweather-admin.php:291
 msgid "Display settings"
-msgstr ""
+msgstr "Настройки отображения"
 
 #: owmweather-admin.php:298
-msgid "Current City Name?"
-msgstr ""
+#, fuzzy
+#| msgid "Parent Weather:"
+msgid "Current City Name"
+msgstr "Источник Погоды:"
 
 #: owmweather-admin.php:306 owmweather.php:681
-msgid "Current weather symbol?"
-msgstr ""
+#, fuzzy
+#| msgid "Parent Weather:"
+msgid "Current weather symbol"
+msgstr "Источник Погоды:"
 
 #: owmweather-admin.php:314 owmweather.php:687
-msgid "Current temperature?"
-msgstr ""
+#, fuzzy
+#| msgid "Parent Weather:"
+msgid "Current temperature"
+msgstr "Источник Погоды:"
 
 #: owmweather-admin.php:322 owmweather.php:693
-msgid "Current feels-like temperature?"
+msgid "Current feels-like temperature"
 msgstr ""
 
 #: owmweather-admin.php:330
-msgid "Current short condition?"
+msgid "Current short condition"
 msgstr ""
 
 #: owmweather-admin.php:338 owmweather.php:708
-msgid "Temperature unit (C / F)?"
+msgid "Temperature unit (C / F)"
 msgstr ""
 
 #: owmweather-admin.php:346
-msgid "Date?"
-msgstr ""
+msgid "Date"
+msgstr "Дата"
 
 #: owmweather-admin.php:354 owmweather.php:735
-msgid "Sunrise + sunset?"
+msgid "Sunrise + sunset"
 msgstr ""
 
 #: owmweather-admin.php:362 owmweather.php:741
-msgid "Moonrise + moonset?"
+msgid "Moonrise + moonset"
 msgstr ""
 
-#: owmweather-admin.php:370 owmweather.php:750
-msgid "Wind?"
-msgstr ""
+#: owmweather-admin.php:370 owmweather.php:750 owmweather.php:2413
+#: owmweather.php:2482 owmweather.php:2598 owmweather.php:2928
+#: owmweather.php:3009 owmweather.php:3078
+#: template/content-owmweather-card1.php:83
+#: template/content-owmweather-card2.php:112
+msgid "Wind"
+msgstr "Ветер"
 
 #: owmweather-admin.php:378
-msgid "Wind unit?"
-msgstr ""
+#, fuzzy
+#| msgid "Wind"
+msgid "Wind unit"
+msgstr "Ветер"
 
 #: owmweather-admin.php:386
-msgid "Wind icon pointer direction?"
+msgid "Wind icon pointer direction"
 msgstr ""
 
-#: owmweather-admin.php:394 owmweather.php:776
-msgid "Humidity?"
-msgstr ""
+#: owmweather-admin.php:394 owmweather.php:776 owmweather.php:2416
+#: owmweather.php:2602 owmweather.php:2925 owmweather.php:3006
+#: owmweather.php:3075 template/content-owmweather-card1.php:84
+#: template/content-owmweather-card2.php:113
+msgid "Humidity"
+msgstr "Влажность"
 
-#: owmweather-admin.php:402 owmweather.php:782
-msgid "Dew Point?"
-msgstr ""
+#: owmweather-admin.php:402 owmweather.php:782 owmweather.php:2419
+#: owmweather.php:2606 owmweather.php:2607 owmweather.php:2608
+#: owmweather.php:2790 owmweather.php:2922 owmweather.php:3003
+#: template/content-owmweather-card1.php:85
+#: template/content-owmweather-card2.php:114
+msgid "Dew Point"
+msgstr "Точка Росы"
 
-#: owmweather-admin.php:410 owmweather.php:788
-msgid "Pressure?"
-msgstr ""
+#: owmweather-admin.php:410 owmweather.php:788 owmweather.php:2422
+#: owmweather.php:2494 owmweather.php:2612 owmweather.php:2932
+#: owmweather.php:3013 owmweather.php:3082
+#: template/content-owmweather-card1.php:86
+#: template/content-owmweather-card2.php:115
+msgid "Pressure"
+msgstr "Давление"
 
-#: owmweather-admin.php:418 owmweather.php:794
-msgid "Cloudiness?"
-msgstr ""
+#: owmweather-admin.php:418 owmweather.php:794 owmweather.php:2616
+#: template/content-owmweather-card1.php:87
+#: template/content-owmweather-card2.php:116
+msgid "Cloudiness"
+msgstr "Облачность"
 
-#: owmweather-admin.php:426 owmweather.php:800
-msgid "Precipitation?"
-msgstr ""
+#: owmweather-admin.php:426 owmweather.php:800 owmweather.php:2431
+#: owmweather.php:2468 owmweather.php:2620 owmweather.php:2915
+#: owmweather.php:2997 owmweather.php:3071
+#: template/content-owmweather-card1.php:88
+#: template/content-owmweather-card2.php:117
+msgid "Precipitation"
+msgstr "Атмосферные осадки"
 
-#: owmweather-admin.php:434 owmweather.php:806
-msgid "Visibility?"
-msgstr ""
+#: owmweather-admin.php:434 owmweather.php:806 owmweather.php:2624
+#: owmweather.php:2935 owmweather.php:3085
+#: template/content-owmweather-card1.php:89
+#: template/content-owmweather-card2.php:118
+msgid "Visibility"
+msgstr "Видимость"
 
-#: owmweather-admin.php:442 owmweather.php:812
-msgid "UV Index?"
-msgstr ""
+#: owmweather-admin.php:442 owmweather.php:812 owmweather.php:2434
+#: owmweather.php:2628 owmweather.php:2938 owmweather.php:3016
+#: template/content-owmweather-card1.php:90
+#: template/content-owmweather-card2.php:119
+msgid "UV Index"
+msgstr "UV индекс"
 
 #: owmweather-admin.php:450 owmweather.php:818
-msgid "Alerts?"
-msgstr ""
+msgid "Alerts"
+msgstr "Оповещения"
 
 #: owmweather-admin.php:458
-msgid "Alerts Button Color?"
+msgid "Alerts Button Color"
 msgstr ""
 
 #: owmweather-admin.php:466
-msgid "Number of hours forecast?"
+msgid "Number of forecast hours"
 msgstr ""
 
 #: owmweather-admin.php:474 owmweather.php:835
-msgid "Display time icons?"
+msgid "Display time icons"
 msgstr ""
 
 #: owmweather-admin.php:482
-msgid "Number of days forecast"
+msgid "Number of forecast days"
 msgstr ""
 
 #: owmweather-admin.php:490
-msgid "Precipitations forecast?"
-msgstr ""
+#, fuzzy
+#| msgid "Precipitation"
+msgid "Precipitations forecast"
+msgstr "Атмосферные осадки"
 
 #: owmweather-admin.php:498
 msgid "Length day names:"
 msgstr ""
 
 #: owmweather-admin.php:506 owmweather.php:879
-msgid "Link to OpenWeatherMap?"
-msgstr ""
+#, fuzzy
+#| msgid "OWM Weather"
+msgid "Link to OpenWeatherMap"
+msgstr "OWM Weather"
 
-#: owmweather-admin.php:514 owmweather.php:887
+#: owmweather-admin.php:514 owmweather.php:886
 #, fuzzy
 #| msgid "Update Weather"
-msgid "Update date/time?"
+msgid "Data Update Time"
 msgstr "Обновить Погоду"
 
 #: owmweather-admin.php:523
 msgid "Layout settings"
-msgstr ""
+msgstr "Настройки макета"
 
 #: owmweather-admin.php:554
-msgid "Spinner?"
+msgid "Spinner"
+msgstr "Спиннер"
+
+#: owmweather-admin.php:562 owmweather.php:1006
+msgid "Disable animations for main icon"
 msgstr ""
 
-#: owmweather-admin.php:562 owmweather.php:1007
-msgid "Disable animations for main icon?"
-msgstr ""
-
-#: owmweather-admin.php:570
-msgid "Background color?"
-msgstr ""
+#: owmweather-admin.php:570 owmweather.php:953 owmweather.php:1026
+#: owmweather.php:1066
+msgid "Background color"
+msgstr "Цвет фона"
 
 #: owmweather-admin.php:578
-msgid "Background Image?"
-msgstr ""
+msgid "Background Image"
+msgstr "Фоновое изображение"
 
-#: owmweather-admin.php:586
-msgid "Text color?"
-msgstr ""
+#: owmweather-admin.php:586 owmweather.php:966 owmweather.php:1030
+msgid "Text color"
+msgstr "Цвет текста"
 
-#: owmweather-admin.php:594
-msgid "Border color?"
-msgstr ""
+#: owmweather-admin.php:594 owmweather.php:970 owmweather.php:1034
+#: owmweather.php:1070
+msgid "Border color"
+msgstr "Цвет границы"
 
 #: owmweather-admin.php:602
-msgid "Border width (in px)?"
+msgid "Border width (in px)"
 msgstr ""
 
-#: owmweather-admin.php:610
-msgid "Border style?"
-msgstr ""
+#: owmweather-admin.php:610 owmweather.php:978 owmweather.php:1042
+#: owmweather.php:1078
+msgid "Border style"
+msgstr "Стиль границ"
 
 #: owmweather-admin.php:618
-msgid "Border radius?"
-msgstr ""
+msgid "Border radius"
+msgstr "Радиус границы"
 
-#: owmweather-admin.php:626 owmweather.php:1011
-msgid "Weather size?"
-msgstr ""
+#: owmweather-admin.php:626 owmweather.php:1010
+#, fuzzy
+#| msgid "Weather"
+msgid "Weather size"
+msgstr "Погода"
 
-#: owmweather-admin.php:635
-msgid "Custom CSS?"
-msgstr ""
+#: owmweather-admin.php:635 owmweather.php:1018
+msgid "Custom CSS"
+msgstr "Пользовательский CSS"
 
 #: owmweather-admin.php:643
-msgid "Table background color?"
+msgid "Table background color"
 msgstr ""
 
 #: owmweather-admin.php:651
-msgid "Table text color?"
+msgid "Table text color"
 msgstr ""
 
 #: owmweather-admin.php:659
-msgid "Table border color?"
+msgid "Table border color"
 msgstr ""
 
 #: owmweather-admin.php:667
-msgid "Table border width (in px)?"
+msgid "Table border width (in px)"
 msgstr ""
 
 #: owmweather-admin.php:675
-msgid "Table border style?"
+msgid "Table border style"
 msgstr ""
 
 #: owmweather-admin.php:683
-msgid "Table border radius?"
+msgid "Table border radius"
 msgstr ""
 
 #: owmweather-admin.php:692
 msgid "Advanced settings"
-msgstr ""
+msgstr "Расширенные настройки"
 
 #: owmweather-admin.php:699
-msgid "Disable cache?"
-msgstr ""
+msgid "Disable cache"
+msgstr "Отключить кэш"
 
 #: owmweather-admin.php:707
-msgid "Time until cache refresh (in minutes)?"
+msgid "Time until cache refresh (in minutes)"
 msgstr ""
 
 #: owmweather-admin.php:715
-msgid "Open Weather Map API key?"
-msgstr ""
+msgid "Open Weather Map API key"
+msgstr "Open Weather Map API key"
 
 #: owmweather-admin.php:723
-msgid "Disable Bootstrap Modal JS?"
+msgid "Disable Bootstrap Modal JS"
 msgstr ""
 
 #: owmweather-admin.php:733
 msgid "Map settings"
-msgstr ""
-
-#: owmweather-admin.php:740
-msgid "Map?"
-msgstr ""
+msgstr "Настройки карты"
 
 #: owmweather-admin.php:748
-msgid "Map height?"
+msgid "Map height"
+msgstr "Высота карты"
+
+#: owmweather-admin.php:756 owmweather.php:1122
+msgid "Layers opacity"
 msgstr ""
 
-#: owmweather-admin.php:756
-msgid "Layers opacity?"
-msgstr ""
-
-#: owmweather-admin.php:764
-msgid "Zoom?"
-msgstr ""
+#: owmweather-admin.php:764 owmweather.php:1138
+msgid "Zoom"
+msgstr "Увеличить"
 
 #: owmweather-admin.php:772
-msgid "Disable zoom wheel?"
+msgid "Disable zoom wheel"
 msgstr ""
 
 #: owmweather-admin.php:780
-msgid "Cloud Layer?"
-msgstr ""
+msgid "Cloud Layer"
+msgstr "Облачность"
 
 #: owmweather-admin.php:788
 #, fuzzy
 #| msgid "Precipitation"
-msgid "Precipitation Layer?"
+msgid "Precipitation Layer"
 msgstr "Атмосферные осадки"
 
 #: owmweather-admin.php:796
-msgid "Snow Layer?"
+msgid "Snow Layer"
 msgstr ""
 
 #: owmweather-admin.php:804
-msgid "Wind Layer?"
-msgstr ""
+#, fuzzy
+#| msgid "Wind"
+msgid "Wind Layer"
+msgstr "Ветер"
 
 #: owmweather-admin.php:812
-msgid "Temperature Layer?"
-msgstr ""
+#, fuzzy
+#| msgid "Pressure"
+msgid "Temperature Layer"
+msgstr "Давление"
 
 #: owmweather-admin.php:820
 #, fuzzy
 #| msgid "Pressure"
-msgid "Pressure Layer?"
+msgid "Pressure Layer"
 msgstr "Давление"
 
 #: owmweather-admin.php:828
-msgid "Wind rose Layer?"
-msgstr ""
+#, fuzzy
+#| msgid "Wind"
+msgid "Wind rose Layer"
+msgstr "Ветер"
 
 #: owmweather-admin.php:888
 msgid "Basic settings to bypass on all weather:"
@@ -449,7 +501,7 @@ msgstr ""
 
 #: owmweather-admin.php:914
 msgid "&nbsp;"
-msgstr ""
+msgstr "&nbsp;"
 
 #: owmweather-admin.php:928 owmweather-admin.php:945 owmweather-admin.php:961
 #: owmweather-admin.php:998 owmweather-admin.php:1054 owmweather-admin.php:1083
@@ -464,19 +516,19 @@ msgstr ""
 
 #: owmweather-admin.php:931 owmweather.php:553
 msgid "Imperial"
-msgstr ""
+msgstr "В милях"
 
 #: owmweather-admin.php:934 owmweather.php:554
 msgid "Metric"
-msgstr ""
+msgstr "Метрический"
 
 #: owmweather-admin.php:949 owmweather.php:560
 msgid "12 h"
-msgstr ""
+msgstr "12 ч"
 
 #: owmweather-admin.php:952 owmweather.php:561
 msgid "24 h"
-msgstr ""
+msgstr "24 ч"
 
 #: owmweather-admin.php:962 owmweather.php:567
 msgid "WordPress timezone"
@@ -484,7 +536,7 @@ msgstr ""
 
 #: owmweather-admin.php:963 owmweather.php:568
 msgid "Local timezone"
-msgstr ""
+msgstr "Местный часовой пояс"
 
 #: owmweather-admin.php:964 owmweather.php:569
 msgid "UTC -12"
@@ -594,63 +646,61 @@ msgid ""
 msgstr ""
 
 #: owmweather-admin.php:999 owmweather-admin.php:1055 owmweather-admin.php:1084
-#: owmweather.php:600 owmweather.php:898 owmweather.php:916
+#: owmweather.php:600 owmweather.php:897 owmweather.php:915
 msgid "Default"
-msgstr ""
+msgstr "По умолчанию"
 
 #: owmweather-admin.php:1000 owmweather.php:601
 msgid "Afrikaans"
-msgstr ""
+msgstr "Африкаанс"
 
 #: owmweather-admin.php:1001 owmweather.php:602
 msgid "Albanian"
-msgstr ""
+msgstr "Албанский"
 
 #: owmweather-admin.php:1002 owmweather.php:603
 msgid "Arabic"
-msgstr ""
+msgstr "Арабский"
 
 #: owmweather-admin.php:1003 owmweather.php:604
 msgid "Azerbaijani"
-msgstr ""
+msgstr "Азербайджанский"
 
 #: owmweather-admin.php:1004 owmweather.php:605
 msgid "Basque"
-msgstr ""
+msgstr "Баскский"
 
 #: owmweather-admin.php:1005 owmweather.php:606
 msgid "Bulgarian"
-msgstr ""
+msgstr "Болгарский"
 
 #: owmweather-admin.php:1006 owmweather.php:607
 msgid "Catalan"
-msgstr ""
+msgstr "Каталонский"
 
 #: owmweather-admin.php:1007 owmweather.php:608
 msgid "Chinese Simplified"
-msgstr ""
+msgstr "Китайский упрощенный"
 
 #: owmweather-admin.php:1008 owmweather.php:609
 msgid "Chinese Traditional"
-msgstr ""
+msgstr "Китайский Традиционный"
 
 #: owmweather-admin.php:1009 owmweather.php:610
 msgid "Croatian"
-msgstr ""
+msgstr "Хорватский"
 
 #: owmweather-admin.php:1010 owmweather.php:611
 msgid "Czech"
-msgstr ""
+msgstr "Чешский"
 
 #: owmweather-admin.php:1011 owmweather.php:612
-#, fuzzy
-#| msgid "Spanish"
 msgid "Danish"
-msgstr "Испанский"
+msgstr "Датский"
 
 #: owmweather-admin.php:1012 owmweather.php:613
 msgid "Dutch"
-msgstr ""
+msgstr "Голландский"
 
 #: owmweather-admin.php:1013 owmweather.php:614
 msgid "English"
@@ -658,7 +708,7 @@ msgstr "Английский"
 
 #: owmweather-admin.php:1014 owmweather.php:615
 msgid "Finnish"
-msgstr ""
+msgstr "Финский"
 
 #: owmweather-admin.php:1015 owmweather.php:616
 msgid "French"
@@ -666,31 +716,31 @@ msgstr "Французский"
 
 #: owmweather-admin.php:1016 owmweather.php:617
 msgid "Galician"
-msgstr ""
+msgstr "Галисийский"
 
 #: owmweather-admin.php:1017 owmweather.php:618
 msgid "German"
-msgstr ""
+msgstr "Немецкий"
 
 #: owmweather-admin.php:1018 owmweather.php:619
 msgid "Greek"
-msgstr ""
+msgstr "Греческий"
 
 #: owmweather-admin.php:1019 owmweather.php:620
 msgid "Hebrew"
-msgstr ""
+msgstr "Иврит"
 
 #: owmweather-admin.php:1020 owmweather.php:621
 msgid "Hindi"
-msgstr ""
+msgstr "Хинди"
 
 #: owmweather-admin.php:1021 owmweather.php:622
 msgid "Hungarian"
-msgstr ""
+msgstr "Венгерский"
 
 #: owmweather-admin.php:1022 owmweather.php:623
 msgid "Indonesian"
-msgstr ""
+msgstr "Индонезийский"
 
 #: owmweather-admin.php:1023 owmweather.php:624
 msgid "Italian"
@@ -698,31 +748,31 @@ msgstr "Итальянский"
 
 #: owmweather-admin.php:1024 owmweather.php:625
 msgid "Japanese"
-msgstr ""
+msgstr "Японский"
 
 #: owmweather-admin.php:1025 owmweather.php:626
 msgid "Korean"
-msgstr ""
+msgstr "Корейский"
 
 #: owmweather-admin.php:1026 owmweather.php:627
 msgid "Latvian"
-msgstr ""
+msgstr "Латвийский"
 
 #: owmweather-admin.php:1027 owmweather.php:628
 msgid "Lithuanian"
-msgstr ""
+msgstr "Литовский"
 
 #: owmweather-admin.php:1028 owmweather.php:629
 msgid "Macedonian"
-msgstr ""
+msgstr "Македонский"
 
 #: owmweather-admin.php:1029 owmweather.php:630
 msgid "Norwegian"
-msgstr ""
+msgstr "Норвежский"
 
 #: owmweather-admin.php:1030 owmweather.php:631
 msgid "Persian (Farsi)"
-msgstr ""
+msgstr "Персидский (фарси)"
 
 #: owmweather-admin.php:1031 owmweather.php:632
 msgid "Polish"
@@ -730,7 +780,7 @@ msgstr "Польский"
 
 #: owmweather-admin.php:1032 owmweather.php:633
 msgid "Portuguese"
-msgstr ""
+msgstr "Португальский"
 
 #: owmweather-admin.php:1033 owmweather.php:634
 msgid "Português Brasil"
@@ -738,7 +788,7 @@ msgstr ""
 
 #: owmweather-admin.php:1034 owmweather.php:635
 msgid "Romanian"
-msgstr ""
+msgstr "Румынский"
 
 #: owmweather-admin.php:1035 owmweather.php:636
 msgid "Russian"
@@ -746,19 +796,19 @@ msgstr "Русский"
 
 #: owmweather-admin.php:1036 owmweather.php:637
 msgid "Serbian"
-msgstr ""
+msgstr "Сербский"
 
 #: owmweather-admin.php:1037 owmweather.php:638
 msgid "Swedish"
-msgstr ""
+msgstr "Шведский"
 
 #: owmweather-admin.php:1038 owmweather.php:639
 msgid "Slovak"
-msgstr ""
+msgstr "Словацкий"
 
 #: owmweather-admin.php:1039 owmweather.php:640
 msgid "Slovenian"
-msgstr ""
+msgstr "Словенский"
 
 #: owmweather-admin.php:1040 owmweather.php:641
 msgid "Spanish"
@@ -766,200 +816,196 @@ msgstr "Испанский"
 
 #: owmweather-admin.php:1041 owmweather.php:642
 msgid "Thai"
-msgstr ""
+msgstr "Тайский"
 
 #: owmweather-admin.php:1042 owmweather.php:643
 msgid "Turkish"
-msgstr ""
+msgstr "Турецкий"
 
 #: owmweather-admin.php:1043 owmweather.php:644
 msgid "Ukrainian"
-msgstr ""
+msgstr "Украинский"
 
 #: owmweather-admin.php:1044 owmweather.php:645
 msgid "Vietnamese"
-msgstr ""
+msgstr "Вьетнамский"
 
 #: owmweather-admin.php:1045 owmweather.php:646
 msgid "Zulu"
-msgstr ""
+msgstr "Зулусский"
 
-#: owmweather-admin.php:1056 owmweather.php:917
+#: owmweather-admin.php:1056 owmweather.php:916
 msgid "Arvo"
-msgstr ""
+msgstr "Arvo"
 
-#: owmweather-admin.php:1057 owmweather.php:918
+#: owmweather-admin.php:1057 owmweather.php:917
 msgid "Asap"
-msgstr ""
+msgstr "Срочно"
 
-#: owmweather-admin.php:1058 owmweather.php:919
+#: owmweather-admin.php:1058 owmweather.php:918
 msgid "Bitter"
-msgstr ""
+msgstr "Bitter"
 
-#: owmweather-admin.php:1059 owmweather.php:920
+#: owmweather-admin.php:1059 owmweather.php:919
 msgid "Droid Serif"
-msgstr ""
+msgstr "Droid Serif"
 
-#: owmweather-admin.php:1060 owmweather.php:921
+#: owmweather-admin.php:1060 owmweather.php:920
 msgid "Exo 2"
-msgstr ""
+msgstr "Exo 2"
 
-#: owmweather-admin.php:1061 owmweather.php:922
+#: owmweather-admin.php:1061 owmweather.php:921
 msgid "Francois One"
-msgstr ""
+msgstr "Francois One"
 
-#: owmweather-admin.php:1062 owmweather.php:923
+#: owmweather-admin.php:1062 owmweather.php:922
 msgid "Inconsolata"
-msgstr ""
+msgstr "Inconsolata"
 
-#: owmweather-admin.php:1063 owmweather.php:924
+#: owmweather-admin.php:1063 owmweather.php:923
 msgid "Josefin Sans"
-msgstr ""
+msgstr "Josefin Sans"
 
-#: owmweather-admin.php:1064 owmweather.php:925
+#: owmweather-admin.php:1064 owmweather.php:924
 msgid "Lato"
-msgstr ""
+msgstr "Lato"
 
-#: owmweather-admin.php:1065 owmweather.php:926
+#: owmweather-admin.php:1065 owmweather.php:925
 msgid "Merriweather Sans"
-msgstr ""
+msgstr "Merriweather Sans"
 
-#: owmweather-admin.php:1066 owmweather.php:927
+#: owmweather-admin.php:1066 owmweather.php:926
 msgid "Nunito"
 msgstr ""
 
-#: owmweather-admin.php:1067 owmweather.php:928
+#: owmweather-admin.php:1067 owmweather.php:927
 msgid "Open Sans"
-msgstr ""
+msgstr "Open Sans"
 
-#: owmweather-admin.php:1068 owmweather.php:929
+#: owmweather-admin.php:1068 owmweather.php:928
 msgid "Oswald"
-msgstr ""
+msgstr "Oswald"
 
-#: owmweather-admin.php:1069 owmweather.php:930
+#: owmweather-admin.php:1069 owmweather.php:929
 msgid "Pacifico"
-msgstr ""
+msgstr "Pacifico"
 
-#: owmweather-admin.php:1070 owmweather.php:931
+#: owmweather-admin.php:1070 owmweather.php:930
 msgid "Roboto"
-msgstr ""
+msgstr "Автоматически"
 
-#: owmweather-admin.php:1071 owmweather.php:932
+#: owmweather-admin.php:1071 owmweather.php:931
 msgid "Signika"
 msgstr ""
 
-#: owmweather-admin.php:1072 owmweather.php:933
+#: owmweather-admin.php:1072 owmweather.php:932
 msgid "Source Sans Pro"
-msgstr ""
+msgstr "Source Sans Pro"
 
-#: owmweather-admin.php:1073 owmweather.php:934
+#: owmweather-admin.php:1073 owmweather.php:933
 msgid "Tangerine"
-msgstr ""
+msgstr "Мандарин"
 
-#: owmweather-admin.php:1074 owmweather.php:935
+#: owmweather-admin.php:1074 owmweather.php:934
 msgid "Ubuntu"
-msgstr ""
+msgstr "Ubuntu"
 
-#: owmweather-admin.php:1085 owmweather.php:899
+#: owmweather-admin.php:1085 owmweather.php:898
 msgid "Card 1"
 msgstr ""
 
-#: owmweather-admin.php:1086 owmweather.php:900
+#: owmweather-admin.php:1086 owmweather.php:899
 msgid "Card 2"
 msgstr ""
 
-#: owmweather-admin.php:1087 owmweather.php:901
+#: owmweather-admin.php:1087 owmweather.php:900
 msgid "Chart 1"
 msgstr ""
 
-#: owmweather-admin.php:1088 owmweather.php:902
+#: owmweather-admin.php:1088 owmweather.php:901
 msgid "Chart 2"
 msgstr ""
 
-#: owmweather-admin.php:1089 owmweather.php:906
+#: owmweather-admin.php:1089 owmweather.php:905
 msgid "Slider 1"
-msgstr ""
+msgstr "Слайдер 1"
 
-#: owmweather-admin.php:1090 owmweather.php:907
+#: owmweather-admin.php:1090 owmweather.php:906
 msgid "Slider 2"
-msgstr ""
+msgstr "Слайдер 2"
 
-#: owmweather-admin.php:1091 owmweather.php:903
+#: owmweather-admin.php:1091 owmweather.php:902
 msgid "Table 1"
-msgstr ""
+msgstr "Таблица 1"
 
-#: owmweather-admin.php:1092 owmweather.php:904
+#: owmweather-admin.php:1092 owmweather.php:903
 msgid "Table 2"
 msgstr ""
 
-#: owmweather-admin.php:1093 owmweather.php:905
+#: owmweather-admin.php:1093 owmweather.php:904
 msgid "Table 3"
 msgstr ""
 
-#: owmweather-admin.php:1094 owmweather.php:908
+#: owmweather-admin.php:1094 owmweather.php:907
 msgid "Custom 1"
-msgstr ""
+msgstr "Пользовательский 1"
 
-#: owmweather-admin.php:1095 owmweather.php:909
+#: owmweather-admin.php:1095 owmweather.php:908
 msgid "Custom 2"
-msgstr ""
+msgstr "Пользовательский 2"
 
-#: owmweather-admin.php:1096 owmweather.php:910
+#: owmweather-admin.php:1096 owmweather.php:909
 msgid "Debug"
-msgstr ""
+msgstr "Отладка"
 
-#: owmweather-admin.php:1106 owmweather.php:942
+#: owmweather-admin.php:1106 owmweather.php:941
 msgid "Climacons"
 msgstr ""
 
-#: owmweather-admin.php:1107 owmweather.php:943
-#, fuzzy
-#| msgid "OWM Weather"
+#: owmweather-admin.php:1107 owmweather.php:942
 msgid "Open Weather Map"
-msgstr "OWM Weather"
+msgstr "Открыть Карту Погоды"
 
-#: owmweather-admin.php:1108 owmweather.php:944
-#, fuzzy
-#| msgid "Weather"
+#: owmweather-admin.php:1108 owmweather.php:943
 msgid "Weather Icons"
-msgstr "Погода"
+msgstr "Иконки Погоды"
 
-#: owmweather-admin.php:1109 owmweather.php:945
+#: owmweather-admin.php:1109 owmweather.php:944
 msgid "Forecast"
-msgstr ""
+msgstr "Прогноз"
 
-#: owmweather-admin.php:1110 owmweather.php:946
+#: owmweather-admin.php:1110 owmweather.php:945
 msgid "Dripicons"
-msgstr ""
+msgstr "Dripicons"
 
-#: owmweather-admin.php:1111 owmweather.php:947
+#: owmweather-admin.php:1111 owmweather.php:946
 msgid "Pixeden"
 msgstr ""
 
 #: owmweather-admin.php:1143 owmweather-admin.php:1287
-#: owmweather-admin.php:1326 owmweather.php:844 owmweather.php:3293
+#: owmweather-admin.php:1326 owmweather.php:844 owmweather.php:3292
 msgid "None"
-msgstr ""
+msgstr "Нет"
 
-#: owmweather-admin.php:1150
+#: owmweather-admin.php:1150 owmweather.php:723
 msgid "Day of the week (eg: Sunday)"
 msgstr ""
 
 #: owmweather-admin.php:1157
 msgid "Today's date"
-msgstr ""
+msgstr "Текущая дата"
 
 #: owmweather-admin.php:1190 owmweather.php:756
 msgid "mi/h"
-msgstr ""
+msgstr "М/ч"
 
 #: owmweather-admin.php:1193 owmweather.php:757
 msgid "m/s"
-msgstr ""
+msgstr "м/с"
 
 #: owmweather-admin.php:1196 owmweather.php:758
 msgid "km/h"
-msgstr ""
+msgstr "км/ч"
 
 #: owmweather-admin.php:1199 owmweather.php:759
 msgid "kt"
@@ -973,8 +1019,8 @@ msgstr ""
 msgid "source of the wind flow"
 msgstr ""
 
-#: owmweather-admin.php:1329 owmweather.php:845 owmweather.php:2395
-#: owmweather.php:2408
+#: owmweather-admin.php:1329 owmweather.php:845 owmweather.php:2394
+#: owmweather.php:2407
 msgid "Today"
 msgstr "Сегодня"
 
@@ -1014,64 +1060,64 @@ msgstr ""
 msgid "Normal days names"
 msgstr ""
 
-#: owmweather-admin.php:1420 owmweather.php:962
+#: owmweather-admin.php:1420 owmweather.php:961
 msgid "Select image"
-msgstr ""
+msgstr "Выбрать изображение"
 
-#: owmweather-admin.php:1457 owmweather.php:981 owmweather.php:1045
-#: owmweather.php:1081
+#: owmweather-admin.php:1457 owmweather.php:980 owmweather.php:1044
+#: owmweather.php:1080
 msgid "Solid"
-msgstr ""
+msgstr "Сплошная"
 
-#: owmweather-admin.php:1458 owmweather.php:982 owmweather.php:1046
-#: owmweather.php:1082
+#: owmweather-admin.php:1458 owmweather.php:981 owmweather.php:1045
+#: owmweather.php:1081
 msgid "Dotted"
 msgstr ""
 
-#: owmweather-admin.php:1459 owmweather.php:983 owmweather.php:1047
-#: owmweather.php:1083
+#: owmweather-admin.php:1459 owmweather.php:982 owmweather.php:1046
+#: owmweather.php:1082
 msgid "Dashed"
-msgstr ""
+msgstr "Пунктирная"
 
-#: owmweather-admin.php:1460 owmweather.php:984 owmweather.php:1048
-#: owmweather.php:1084
+#: owmweather-admin.php:1460 owmweather.php:983 owmweather.php:1047
+#: owmweather.php:1083
 msgid "Double"
-msgstr ""
+msgstr "Двойная"
 
-#: owmweather-admin.php:1461 owmweather.php:985 owmweather.php:1049
-#: owmweather.php:1085
+#: owmweather-admin.php:1461 owmweather.php:984 owmweather.php:1048
+#: owmweather.php:1084
 msgid "Groove"
-msgstr ""
+msgstr "Паз"
 
-#: owmweather-admin.php:1462 owmweather.php:986 owmweather.php:1050
-#: owmweather.php:1086
+#: owmweather-admin.php:1462 owmweather.php:985 owmweather.php:1049
+#: owmweather.php:1085
 msgid "Inset"
-msgstr ""
+msgstr "Вставка"
 
-#: owmweather-admin.php:1463 owmweather.php:987 owmweather.php:1051
-#: owmweather.php:1087
+#: owmweather-admin.php:1463 owmweather.php:986 owmweather.php:1050
+#: owmweather.php:1086
 msgid "Outset"
-msgstr ""
+msgstr "Боковик"
 
-#: owmweather-admin.php:1464 owmweather.php:988 owmweather.php:1052
-#: owmweather.php:1088
+#: owmweather-admin.php:1464 owmweather.php:987 owmweather.php:1051
+#: owmweather.php:1087
 msgid "Ridge"
-msgstr ""
+msgstr "Край"
 
-#: owmweather-admin.php:1484 owmweather.php:1013
+#: owmweather-admin.php:1484 owmweather.php:1012
 msgid "Small"
-msgstr ""
+msgstr "Маленький"
 
-#: owmweather-admin.php:1487 owmweather.php:1014
+#: owmweather-admin.php:1487 owmweather.php:1013
 msgid "Medium"
-msgstr ""
+msgstr "Средний"
 
-#: owmweather-admin.php:1490 owmweather.php:1015
+#: owmweather-admin.php:1490 owmweather.php:1014
 msgid "Large"
-msgstr ""
+msgstr "Большой"
 
 #: owmweather-admin.php:1553
-msgid "Disable weather cache? (Not recommended!)"
+msgid "(Not recommended!)"
 msgstr ""
 
 #: owmweather-admin.php:1561
@@ -1087,9 +1133,7 @@ msgid "Get your free OWM API key here"
 msgstr ""
 
 #: owmweather-admin.php:1579
-msgid ""
-"Disable Bootstrap? (Check this if you already include Bootstrap in your "
-"theme)"
+msgid "(Check this if you already include Bootstrap in your theme)"
 msgstr ""
 
 #: owmweather-admin.php:1746
@@ -1124,11 +1168,11 @@ msgstr ""
 
 #: owmweather-export.php:99
 msgid "Please upload a file to import"
-msgstr ""
+msgstr "Пожалуйста, загрузите файл для импорта настроек"
 
 #: owmweather-export.php:104
 msgid "Please upload a valid .json file"
-msgstr ""
+msgstr "Пожалуйста, загрузите корректный файл .json"
 
 #: owmweather-pointers.php:32
 msgid "Before starting:"
@@ -1152,15 +1196,15 @@ msgstr ""
 
 #: owmweather.php:68
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: owmweather.php:345
 msgid "Duplicate this item"
-msgstr ""
+msgstr "Дублировать этот пункт"
 
 #: owmweather.php:345
 msgid "Duplicate"
-msgstr ""
+msgstr "Дублировать"
 
 #: owmweather.php:356
 #, fuzzy
@@ -1215,12 +1259,12 @@ msgid "Find my City Id"
 msgstr ""
 
 #: owmweather.php:508
-msgid "Latitude?"
-msgstr ""
+msgid "Latitude"
+msgstr "Широта"
 
 #: owmweather.php:512
-msgid "Longitude?"
-msgstr ""
+msgid "Longitude"
+msgstr "Долгота"
 
 #: owmweather.php:515
 msgid ""
@@ -1229,11 +1273,11 @@ msgid ""
 msgstr ""
 
 #: owmweather.php:519
-msgid "Zip code?"
-msgstr ""
+msgid "Zip code"
+msgstr "Индекс"
 
 #: owmweather.php:523
-msgid "2-letter country code?"
+msgid "2-letter country code"
 msgstr ""
 
 #: owmweather.php:523
@@ -1248,15 +1292,15 @@ msgstr ""
 
 #: owmweather.php:530
 msgid "City"
-msgstr ""
+msgstr "Город"
 
 #: owmweather.php:531
 msgid "Enter your city"
-msgstr ""
+msgstr "Введите свой город"
 
 #: owmweather.php:534
 msgid "Country"
-msgstr ""
+msgstr "Страна"
 
 #: owmweather.php:537
 msgid ""
@@ -1275,31 +1319,33 @@ msgid "Custom city title"
 msgstr ""
 
 #: owmweather.php:551
-msgid "Measurement system?"
-msgstr ""
+msgid "Measurement system"
+msgstr "Система измерения"
 
 #: owmweather.php:558
-msgid "Time format?"
-msgstr ""
+msgid "Time format"
+msgstr "Формат времени"
 
 #: owmweather.php:565
-msgid "Timezone? (default: WordPress general settings)"
+msgid "Timezone (default: WordPress general settings)"
 msgstr ""
 
 #: owmweather.php:597
-msgid "OpenWeatherMap language?"
-msgstr ""
+#, fuzzy
+#| msgid "OWM Weather"
+msgid "OpenWeatherMap language"
+msgstr "OWM Weather"
 
-#: owmweather.php:650 owmweather.php:745 owmweather.php:996
+#: owmweather.php:650 owmweather.php:745 owmweather.php:995
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Разное"
 
 #: owmweather.php:655
-msgid "Google Tag Manager dataLayer?"
+msgid "Google Tag Manager dataLayer"
 msgstr ""
 
 #: owmweather.php:661
-msgid "Exclude from System Settings and Parameter Bypass?"
+msgid "Exclude from System Settings and Parameter Bypass"
 msgstr ""
 
 #: owmweather.php:667
@@ -1314,31 +1360,31 @@ msgid "Current weather"
 msgstr "Источник Погоды:"
 
 #: owmweather.php:675
-msgid "Current weather city name?"
-msgstr ""
+#, fuzzy
+#| msgid "Parent Weather:"
+msgid "Current weather city name"
+msgstr "Источник Погоды:"
 
 #: owmweather.php:699
-msgid "Current weather short condition?"
-msgstr ""
+#, fuzzy
+#| msgid "Parent Weather:"
+msgid "Current weather short condition"
+msgstr "Источник Погоды:"
 
 #: owmweather.php:703
 msgid "Temperatures"
-msgstr ""
+msgstr "Температура"
 
 #: owmweather.php:712
 msgid "Date, Sunrise/Sunset and Moonrise/Moonset"
 msgstr ""
 
 #: owmweather.php:717
-msgid "No date (default)?"
-msgstr ""
-
-#: owmweather.php:723
-msgid "Day of the week (eg: Sunday)?"
+msgid "No date (default)"
 msgstr ""
 
 #: owmweather.php:729
-msgid "Today's date (based on your WordPress General Settings)?"
+msgid "Today's date (based on your WordPress General Settings)"
 msgstr ""
 
 #: owmweather.php:754
@@ -1366,7 +1412,7 @@ msgid "Hourly Forecast"
 msgstr ""
 
 #: owmweather.php:829
-msgid "How many hours?"
+msgid "Number of hours"
 msgstr ""
 
 #: owmweather.php:839
@@ -1374,854 +1420,742 @@ msgid "Daily Forecast"
 msgstr ""
 
 #: owmweather.php:842
-msgid "How many days?"
-msgstr ""
+msgid "Number of days"
+msgstr "Количество дней"
 
 #: owmweather.php:858
-msgid "Forecast Precipitations?"
-msgstr ""
+#, fuzzy
+#| msgid "Precipitation"
+msgid "Forecast Precipitations"
+msgstr "Атмосферные осадки"
 
 #: owmweather.php:864
-msgid "Short day names?"
-msgstr ""
+msgid "Short day names"
+msgstr "Короткие имена дней"
 
 #: owmweather.php:870
-msgid "Normal day names?"
+msgid "Normal day names"
 msgstr ""
 
 #: owmweather.php:874
 msgid "Footer"
 msgstr ""
 
-#: owmweather.php:893
+#: owmweather.php:892
 msgid "Select the layout styling for your weather shortcode."
 msgstr ""
 
-#: owmweather.php:896
+#: owmweather.php:895
 msgid "Template"
-msgstr ""
+msgstr "Шаблон"
 
-#: owmweather.php:914
+#: owmweather.php:913
 msgid "Font"
-msgstr ""
+msgstr "Шрифт"
+
+#: owmweather.php:938
+msgid "Icon Pack"
+msgstr "Icon Pack"
 
 #: owmweather.php:939
-msgid "Icon Pack"
-msgstr ""
-
-#: owmweather.php:940
 msgid ""
 "The main icon is always an animated SVG. If you want the icon from the icon "
-"pack instead, you need to select \"Disable animations for main icon?\" below."
+"pack instead, you need to select \"Disable animations for main icon\" below."
 msgstr ""
 
-#: owmweather.php:951
+#: owmweather.php:950
 msgid "Colors and Borders"
 msgstr ""
 
-#: owmweather.php:954 owmweather.php:1027 owmweather.php:1067
-msgid "Background color"
-msgstr ""
-
-#: owmweather.php:958
+#: owmweather.php:957
 msgid "Background image"
-msgstr ""
+msgstr "Фоновое изображение"
 
-#: owmweather.php:967 owmweather.php:1031
-msgid "Text color"
-msgstr ""
-
-#: owmweather.php:971 owmweather.php:1035 owmweather.php:1071
-msgid "Border color"
-msgstr ""
-
-#: owmweather.php:975 owmweather.php:1039 owmweather.php:1075
+#: owmweather.php:974 owmweather.php:1038 owmweather.php:1074
 msgid "Border width (px)"
-msgstr ""
+msgstr "Ширина рамки (px)"
 
-#: owmweather.php:979 owmweather.php:1043 owmweather.php:1079
-msgid "Border style"
-msgstr ""
-
-#: owmweather.php:992 owmweather.php:1056 owmweather.php:1092
+#: owmweather.php:991 owmweather.php:1055 owmweather.php:1091
 msgid "Border radius (px)"
+msgstr "Радиус границы (в пикселях)"
+
+#: owmweather.php:1000
+msgid "Disable loading spinner"
 msgstr ""
 
-#: owmweather.php:1001
-msgid "Disable loading spinner?"
-msgstr ""
-
-#: owmweather.php:1019
-msgid "Custom CSS"
-msgstr ""
-
-#: owmweather.php:1024
+#: owmweather.php:1023
 msgid "Tables"
-msgstr ""
+msgstr "Таблицы"
 
-#: owmweather.php:1060
+#: owmweather.php:1059
 msgid "Charts"
-msgstr ""
+msgstr "Диаграммы"
 
-#: owmweather.php:1063
+#: owmweather.php:1062
 msgid "Height (in px)"
-msgstr ""
+msgstr "Высота (в px)"
 
-#: owmweather.php:1096
+#: owmweather.php:1095
 msgid "Temperature color"
 msgstr ""
 
-#: owmweather.php:1100
+#: owmweather.php:1099
 msgid "Feels like color"
 msgstr ""
 
-#: owmweather.php:1104
+#: owmweather.php:1103
 msgid "Dew point color"
 msgstr ""
 
-#: owmweather.php:1110
+#: owmweather.php:1109
 msgid ""
 "Select the information and layout styling for the optional map on your "
 "weather shortcode."
 msgstr ""
 
-#: owmweather.php:1115
-msgid "Display map?"
+#: owmweather.php:1114
+msgid "Display map"
 msgstr ""
 
-#: owmweather.php:1119
+#: owmweather.php:1118
 msgid "Map height (in px)"
 msgstr ""
 
-#: owmweather.php:1123
-msgid "Layers opacity"
+#: owmweather.php:1163
+msgid "Disable zoom wheel on map"
 msgstr ""
 
-#: owmweather.php:1139
-msgid "Zoom"
-msgstr ""
-
-#: owmweather.php:1164
-msgid "Disable zoom wheel on map?"
-msgstr ""
-
-#: owmweather.php:1168
+#: owmweather.php:1167
 msgid "Layers"
+msgstr "Слои"
+
+#: owmweather.php:1172
+msgid "Display clouds"
 msgstr ""
 
-#: owmweather.php:1173
-msgid "Display clouds?"
+#: owmweather.php:1178
+#, fuzzy
+#| msgid "Precipitation"
+msgid "Display precipitation"
+msgstr "Атмосферные осадки"
+
+#: owmweather.php:1184
+msgid "Display snow"
 msgstr ""
 
-#: owmweather.php:1179
-msgid "Display precipitation?"
+#: owmweather.php:1190
+msgid "Display wind"
 msgstr ""
 
-#: owmweather.php:1185
-msgid "Display snow?"
+#: owmweather.php:1196
+msgid "Display temperature"
 msgstr ""
 
-#: owmweather.php:1191
-msgid "Display wind?"
+#: owmweather.php:1202
+msgid "Display pressure"
 msgstr ""
 
-#: owmweather.php:1197
-msgid "Display temperature?"
-msgstr ""
+#: owmweather.php:1208
+#, fuzzy
+#| msgid "Wind"
+msgid "Display wind rose"
+msgstr "Ветер"
 
-#: owmweather.php:1203
-msgid "Display pressure?"
-msgstr ""
-
-#: owmweather.php:1209
-msgid "Display wind rose?"
-msgstr ""
-
-#: owmweather.php:1414
+#: owmweather.php:1413
 msgid "Sunrise"
-msgstr ""
+msgstr "Восход"
 
-#: owmweather.php:1414
+#: owmweather.php:1413
 msgid "Sunset"
-msgstr ""
+msgstr "Закат"
 
-#: owmweather.php:1425
+#: owmweather.php:1424
 msgid "Moonrise"
 msgstr ""
 
-#: owmweather.php:1425
+#: owmweather.php:1424
 msgid "Moonset"
 msgstr ""
 
-#: owmweather.php:1859
-#, fuzzy
-#| msgid "Last update: "
+#: owmweather.php:1858
 msgid "Last updated: "
-msgstr "Последнее обновление:"
+msgstr "Последнее обновление: "
 
-#: owmweather.php:1888 owmweather.php:1891
-#, fuzzy
-#| msgid "Wind"
+#: owmweather.php:1887 owmweather.php:1890
 msgid "in"
-msgstr "Ветер"
+msgstr "в"
 
-#: owmweather.php:1888
+#: owmweather.php:1887
 msgid "hPa"
-msgstr ""
+msgstr "гПа"
 
-#: owmweather.php:1891
+#: owmweather.php:1890
 msgid "mm"
-msgstr ""
+msgstr "мм"
 
-#: owmweather.php:1912 owmweather.php:1996
+#: owmweather.php:1911 owmweather.php:1995
 msgid "Sunday"
 msgstr "Воскресенье"
 
-#: owmweather.php:1915 owmweather.php:1999
+#: owmweather.php:1914 owmweather.php:1998
 msgid "Monday"
 msgstr "Понедельник"
 
-#: owmweather.php:1918 owmweather.php:2002
+#: owmweather.php:1917 owmweather.php:2001
 msgid "Tuesday"
 msgstr "Вторник"
 
-#: owmweather.php:1921 owmweather.php:2005
+#: owmweather.php:1920 owmweather.php:2004
 msgid "Wednesday"
 msgstr "Среда"
 
-#: owmweather.php:1924 owmweather.php:2008
+#: owmweather.php:1923 owmweather.php:2007
 msgid "Thursday"
 msgstr "Четверг"
 
-#: owmweather.php:1927 owmweather.php:2011
+#: owmweather.php:1926 owmweather.php:2010
 msgid "Friday"
 msgstr "Пятница"
 
-#: owmweather.php:1930 owmweather.php:2014
+#: owmweather.php:1929 owmweather.php:2013
 msgid "Saturday"
 msgstr "Суббота"
 
-#: owmweather.php:1996
+#: owmweather.php:1995
 msgid "Sun"
 msgstr "Вс"
 
-#: owmweather.php:1999
+#: owmweather.php:1998
 msgid "Mon"
 msgstr "Пн"
 
-#: owmweather.php:2002
+#: owmweather.php:2001
 msgid "Tue"
 msgstr "Вт"
 
-#: owmweather.php:2005
+#: owmweather.php:2004
 msgid "Wed"
 msgstr "Ср"
 
-#: owmweather.php:2008
+#: owmweather.php:2007
 msgid "Thu"
 msgstr "Чт"
 
-#: owmweather.php:2011
+#: owmweather.php:2010
 msgid "Fri"
 msgstr "Пт"
 
-#: owmweather.php:2014
+#: owmweather.php:2013
 msgid "Sat"
 msgstr "Сб"
 
-#: owmweather.php:2361 owmweather.php:2362 owmweather.php:2363
-#: owmweather.php:2783 owmweather.php:2873 owmweather.php:2914
-#: owmweather.php:3070
+#: owmweather.php:2360 owmweather.php:2361 owmweather.php:2362
+#: owmweather.php:2782 owmweather.php:2872 owmweather.php:2913
+#: owmweather.php:3069
 msgid "Feels Like"
-msgstr ""
+msgstr "Комфорт"
 
-#: owmweather.php:2417 owmweather.php:2603 owmweather.php:2926
-#: owmweather.php:3007 owmweather.php:3076
-#: template/content-owmweather-card1.php:84
-#: template/content-owmweather-card2.php:113
-msgid "Humidity"
-msgstr "Влажность"
-
-#: owmweather.php:2420 owmweather.php:2607 owmweather.php:2608
-#: owmweather.php:2609 owmweather.php:2791 owmweather.php:2923
-#: owmweather.php:3004 template/content-owmweather-card1.php:85
-#: template/content-owmweather-card2.php:114
-msgid "Dew Point"
-msgstr ""
-
-#: owmweather.php:2423 owmweather.php:2495 owmweather.php:2613
-#: owmweather.php:2933 owmweather.php:3014 owmweather.php:3083
-#: template/content-owmweather-card1.php:86
-#: template/content-owmweather-card2.php:115
-msgid "Pressure"
-msgstr "Давление"
-
-#: owmweather.php:2426 owmweather.php:2457
-#, fuzzy
-#| msgid "Cloudiness"
+#: owmweather.php:2425 owmweather.php:2456
 msgid "Clouds"
-msgstr "Облачность"
+msgstr "Облака"
 
-#: owmweather.php:2429 owmweather.php:2997
+#: owmweather.php:2428 owmweather.php:2996
 msgid "Rain Chance"
 msgstr ""
 
-#: owmweather.php:2432 owmweather.php:2469 owmweather.php:2621
-#: owmweather.php:2916 owmweather.php:2998 owmweather.php:3072
-#: template/content-owmweather-card1.php:88
-#: template/content-owmweather-card2.php:117
-msgid "Precipitation"
-msgstr "Атмосферные осадки"
-
-#: owmweather.php:2435 owmweather.php:2629 owmweather.php:2939
-#: owmweather.php:3017 template/content-owmweather-card1.php:90
-#: template/content-owmweather-card2.php:119
-msgid "UV Index"
-msgstr ""
-
-#: owmweather.php:2459
+#: owmweather.php:2458
 msgid "Clouds Classic"
 msgstr ""
 
-#: owmweather.php:2465
+#: owmweather.php:2464
 msgid "Rain"
-msgstr ""
+msgstr "Дождь"
 
-#: owmweather.php:2467
+#: owmweather.php:2466
 msgid "Rain Classic"
 msgstr ""
 
-#: owmweather.php:2471
+#: owmweather.php:2470
 #, fuzzy
 #| msgid "Precipitation"
 msgid "Precipitation Classic"
 msgstr "Атмосферные осадки"
 
-#: owmweather.php:2477 owmweather.php:3838
+#: owmweather.php:2476 owmweather.php:3837
 msgid "Snow"
-msgstr ""
+msgstr "Снег"
 
-#: owmweather.php:2483 owmweather.php:2599 owmweather.php:2929
-#: owmweather.php:3010 owmweather.php:3079
-#: template/content-owmweather-card1.php:83
-#: template/content-owmweather-card2.php:112
-msgid "Wind"
-msgstr "Ветер"
-
-#: owmweather.php:2489 owmweather.php:2775 owmweather.php:2865
-#: owmweather.php:2913 owmweather.php:3069
+#: owmweather.php:2488 owmweather.php:2774 owmweather.php:2864
+#: owmweather.php:2912 owmweather.php:3068
 msgid "Temperature"
-msgstr ""
+msgstr "Температура"
 
-#: owmweather.php:2497
+#: owmweather.php:2496
 #, fuzzy
 #| msgid "Pressure"
 msgid "Pressure Contour"
 msgstr "Давление"
 
-#: owmweather.php:2503
+#: owmweather.php:2502
 #, fuzzy
 #| msgid "Wind"
 msgid "Wind rose"
 msgstr "Ветер"
 
-#: owmweather.php:2617 template/content-owmweather-card1.php:87
-#: template/content-owmweather-card2.php:116
-msgid "Cloudiness"
-msgstr "Облачность"
-
-#: owmweather.php:2625 owmweather.php:2936 owmweather.php:3086
-#: template/content-owmweather-card1.php:89
-#: template/content-owmweather-card2.php:118
-msgid "Visibility"
-msgstr ""
-
-#: owmweather.php:2691
+#: owmweather.php:2690
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
-#: owmweather.php:2718
+#: owmweather.php:2717
 msgid "Full weather on OpenWeatherMap"
 msgstr ""
 
-#: owmweather.php:2718
+#: owmweather.php:2717
 msgid "Full weather"
 msgstr ""
 
-#: owmweather.php:2766 owmweather.php:2807
+#: owmweather.php:2765 owmweather.php:2806
 msgid "Hourly Temperatures"
 msgstr ""
 
-#: owmweather.php:2856 owmweather.php:2889
+#: owmweather.php:2855 owmweather.php:2888
 msgid "Daily Temperatures"
 msgstr ""
 
-#: owmweather.php:2911 owmweather.php:3067
+#: owmweather.php:2910 owmweather.php:3066
 msgid "Time"
-msgstr ""
+msgstr "Время"
 
-#: owmweather.php:2912 owmweather.php:2993 owmweather.php:3068
+#: owmweather.php:2911 owmweather.php:2992 owmweather.php:3067
 msgid "Conditions"
-msgstr ""
+msgstr "Условия"
 
-#: owmweather.php:2917
+#: owmweather.php:2916
 msgid "Amount"
-msgstr ""
+msgstr "Сумма"
 
-#: owmweather.php:2920 owmweather.php:3001 owmweather.php:3073
+#: owmweather.php:2919 owmweather.php:3000 owmweather.php:3072
 msgid "Cloud Cover"
-msgstr ""
+msgstr "Облачность"
 
-#: owmweather.php:2930 owmweather.php:3011 owmweather.php:3080
+#: owmweather.php:2929 owmweather.php:3010 owmweather.php:3079
 msgid "Gust"
 msgstr ""
 
-#: owmweather.php:2992
+#: owmweather.php:2991
 msgid "Day"
-msgstr ""
+msgstr "День"
 
-#: owmweather.php:2994
+#: owmweather.php:2993
 msgid "Min Temperature"
 msgstr ""
 
-#: owmweather.php:2995
+#: owmweather.php:2994
 msgid "Max Temperature"
 msgstr ""
 
-#: owmweather.php:3188
+#: owmweather.php:3187
 msgid "Shortcode"
 msgstr "Обозначение"
 
-#: owmweather.php:3205
-#, fuzzy
-#| msgid "Weather"
+#: owmweather.php:3204
 msgctxt "Post Type General Name"
 msgid "Weather"
 msgstr "Погода"
 
-#: owmweather.php:3206
-#, fuzzy
-#| msgid "Weather"
+#: owmweather.php:3205
 msgctxt "Post Type Singular Name"
 msgid "Weather"
 msgstr "Погода"
 
-#: owmweather.php:3207
-#, fuzzy
-#| msgid "Weather"
+#: owmweather.php:3206
 msgctxt "Post Type Menu Name"
 msgid "Weather"
 msgstr "Погода"
 
-#: owmweather.php:3208
+#: owmweather.php:3207
 msgid "Parent Weather:"
 msgstr "Источник Погоды:"
 
-#: owmweather.php:3209
+#: owmweather.php:3208
 msgid "All Weather"
 msgstr "Вся Погода"
 
-#: owmweather.php:3210
+#: owmweather.php:3209
 msgid "View Weather"
 msgstr "Посмотреть Погоду"
 
-#: owmweather.php:3211
+#: owmweather.php:3210
 msgid "Add New Weather"
 msgstr "Добавить Погоду"
 
-#: owmweather.php:3212
+#: owmweather.php:3211
 msgid "New Weather"
 msgstr "Новая Погода"
 
-#: owmweather.php:3213
+#: owmweather.php:3212
 msgid "Edit Weather"
 msgstr "Изменить Погоду"
 
-#: owmweather.php:3214
+#: owmweather.php:3213
 msgid "Update Weather"
 msgstr "Обновить Погоду"
 
-#: owmweather.php:3215
+#: owmweather.php:3214
 msgid "Search Weather"
 msgstr "Поиск Погоды"
 
-#: owmweather.php:3216
+#: owmweather.php:3215
 msgid "No weather found"
 msgstr "Погодные данные не найдены"
 
-#: owmweather.php:3217
+#: owmweather.php:3216
 msgid "No weather found in Trash"
 msgstr "Погодные данные найдены в Корзине"
 
-#: owmweather.php:3221
+#: owmweather.php:3220
 msgid "weather"
 msgstr "погода"
 
-#: owmweather.php:3222
+#: owmweather.php:3221
 msgid "Listing weather"
 msgstr "Погодный листинг"
 
-#: owmweather.php:3282
+#: owmweather.php:3281
 msgid ""
 "OWM Weather: Please enter your own OpenWeatherMap API key to avoid exceeding "
 "daily API call limits."
 msgstr ""
 
-#: owmweather.php:3297
+#: owmweather.php:3296
 msgid "Now"
 msgstr "Сейчас"
 
-#: owmweather.php:3299
+#: owmweather.php:3298
 msgid "Now + 1 hour"
 msgstr ""
 
-#: owmweather.php:3301
+#: owmweather.php:3300
 msgid "Now + "
 msgstr ""
 
-#: owmweather.php:3301
+#: owmweather.php:3300
 msgid " hours"
-msgstr ""
+msgstr " часов"
 
-#: owmweather.php:3311 owmweather.php:3319
+#: owmweather.php:3310 owmweather.php:3318
 msgid "N"
-msgstr ""
+msgstr "С"
+
+#: owmweather.php:3311
+msgid "NE"
+msgstr "СВ"
 
 #: owmweather.php:3312
-msgid "NE"
-msgstr ""
+msgid "E"
+msgstr "E"
 
 #: owmweather.php:3313
-msgid "E"
-msgstr ""
+msgid "SE"
+msgstr "ЮВ"
 
 #: owmweather.php:3314
-msgid "SE"
-msgstr ""
+msgid "S"
+msgstr "S"
 
 #: owmweather.php:3315
-msgid "S"
-msgstr ""
+msgid "SW"
+msgstr "ЮЗ"
 
 #: owmweather.php:3316
-msgid "SW"
-msgstr ""
+msgid "W"
+msgstr "W"
 
 #: owmweather.php:3317
-msgid "W"
-msgstr ""
-
-#: owmweather.php:3318
 msgid "NW"
-msgstr ""
+msgstr "СЗ"
 
-#: owmweather.php:3808
+#: owmweather.php:3807
 #, fuzzy
 #| msgid "thunderstorm with light rain"
 msgid "Thunderstorm with Light Rain"
 msgstr "гроза, небольшой дождь"
 
-#: owmweather.php:3809
+#: owmweather.php:3808
 #, fuzzy
 #| msgid "thunderstorm with rain"
 msgid "Thunderstorm with Rain"
 msgstr "гроза с дождем"
 
-#: owmweather.php:3810
+#: owmweather.php:3809
 #, fuzzy
 #| msgid "thunderstorm with heavy rain"
 msgid "Thunderstorm with Heavy Rain"
 msgstr "гроза с сильным дождем"
 
-#: owmweather.php:3811
-#, fuzzy
-#| msgid "light thunderstorm"
+#: owmweather.php:3810
 msgid "Light Thunderstorm"
-msgstr "небольшая гроза"
+msgstr "Гроза с молниями"
+
+#: owmweather.php:3811
+msgid "Thunderstorm"
+msgstr "Грозы"
 
 #: owmweather.php:3812
-#, fuzzy
-#| msgid "thunderstorm"
-msgid "Thunderstorm"
-msgstr "гроза"
+msgid "Heavy Thunderstorm"
+msgstr "Обильные Грозы"
 
 #: owmweather.php:3813
-#, fuzzy
-#| msgid "heavy thunderstorm"
-msgid "Heavy Thunderstorm"
-msgstr "сильная гроза"
-
-#: owmweather.php:3814
 #, fuzzy
 #| msgid "ragged thunderstorm"
 msgid "Ragged Thunderstorm"
 msgstr "временами грозы"
 
-#: owmweather.php:3815
+#: owmweather.php:3814
 #, fuzzy
 #| msgid "thunderstorm with light drizzle"
 msgid "Thunderstorm with Light Drizzle"
 msgstr "гроза с легкой изморосью"
 
-#: owmweather.php:3816
+#: owmweather.php:3815
 #, fuzzy
 #| msgid "thunderstorm with drizzle"
 msgid "Thunderstorm with Drizzle"
 msgstr "гроза с изморосью"
 
-#: owmweather.php:3817
+#: owmweather.php:3816
 #, fuzzy
 #| msgid "thunderstorm with heavy drizzle"
 msgid "Thunderstorm with Heavy Drizzle"
 msgstr "гроза с сильной изморосью"
 
-#: owmweather.php:3818
-#, fuzzy
-#| msgid "light intensity drizzle"
+#: owmweather.php:3817
 msgid "Light Intensity Drizzle"
-msgstr "легкая изморось"
+msgstr "Легкая интенсивность"
+
+#: owmweather.php:3818
+msgid "Drizzle"
+msgstr "Морось"
 
 #: owmweather.php:3819
-#, fuzzy
-#| msgid "drizzle"
-msgid "Drizzle"
-msgstr "изморось"
+msgid "Heavy Intensity Drizzle"
+msgstr "Сильная интенсивная"
 
 #: owmweather.php:3820
-#, fuzzy
-#| msgid "heavy intensity drizzle"
-msgid "Heavy Intensity Drizzle"
-msgstr "сильная изморось"
-
-#: owmweather.php:3821
 #, fuzzy
 #| msgid "light intensity drizzle rain"
 msgid "Light Intensity Drizzle Rain"
 msgstr "легкий моросящий дождь"
 
-#: owmweather.php:3822
+#: owmweather.php:3821
 #, fuzzy
 #| msgid "drizzle rain"
 msgid "Drizzle Rain"
 msgstr "моросящий дождь"
 
-#: owmweather.php:3823
+#: owmweather.php:3822
 #, fuzzy
 #| msgid "heavy intensity drizzle rain"
 msgid "Heavy Intensity Drizzle Rain"
 msgstr "сильный моросящий дождь"
 
-#: owmweather.php:3824
+#: owmweather.php:3823
 #, fuzzy
 #| msgid "shower rain and drizzle"
 msgid "Shower Rain and Drizzle"
 msgstr "проливной дождь и изморось"
 
-#: owmweather.php:3825
+#: owmweather.php:3824
 #, fuzzy
 #| msgid "heavy shower rain and drizzle"
 msgid "Heavy Shower Rain and Drizzle"
 msgstr "сильный ливень и изморось"
 
-#: owmweather.php:3826
+#: owmweather.php:3825
 #, fuzzy
 #| msgid "shower drizzle"
 msgid "Shower Drizzle"
 msgstr "проливной мелкий дождь"
 
-#: owmweather.php:3827
-#, fuzzy
-#| msgid "light rain"
+#: owmweather.php:3826
 msgid "Light Rain"
-msgstr "легкий дождь"
+msgstr "Слабый Дождь"
 
-#: owmweather.php:3828
+#: owmweather.php:3827
 #, fuzzy
 #| msgid "moderate rain"
 msgid "Moderate Rain"
 msgstr "небольшой дождь"
 
-#: owmweather.php:3829
+#: owmweather.php:3828
 #, fuzzy
 #| msgid "heavy intensity rain"
 msgid "Heavy Intensity Rain"
 msgstr "сильный дождь"
 
-#: owmweather.php:3830
+#: owmweather.php:3829
 #, fuzzy
 #| msgid "very heavy rain"
 msgid "Very Heavy Rain"
 msgstr "ливень"
 
-#: owmweather.php:3831
+#: owmweather.php:3830
 #, fuzzy
 #| msgid "extreme rain"
 msgid "Extreme Rain"
 msgstr "сильный ливень"
 
-#: owmweather.php:3832
-#, fuzzy
-#| msgid "freezing rain"
+#: owmweather.php:3831
 msgid "Freezing Rain"
-msgstr "ледяной дождь"
+msgstr "Ледяной Дождь"
 
-#: owmweather.php:3833
+#: owmweather.php:3832
 #, fuzzy
 #| msgid "light intensity shower rain"
 msgid "Light Intensity Shower Rain"
 msgstr "легкий проливной дождь"
 
-#: owmweather.php:3834
+#: owmweather.php:3833
 #, fuzzy
 #| msgid "shower rain"
 msgid "Shower Rain"
 msgstr "проливной дождь"
 
-#: owmweather.php:3835
+#: owmweather.php:3834
 #, fuzzy
 #| msgid "heavy intensity shower rain"
 msgid "Heavy Intensity Shower Rain"
 msgstr "сильный проливной дождь"
 
-#: owmweather.php:3836
+#: owmweather.php:3835
 #, fuzzy
 #| msgid "ragged shower rain"
 msgid "Ragged Shower Rain"
 msgstr "временами проливной дождь"
 
-#: owmweather.php:3837
-#, fuzzy
-#| msgid "light snow"
+#: owmweather.php:3836
 msgid "Light Snow"
-msgstr "небольшой снег"
+msgstr "Слабый Снег"
 
-#: owmweather.php:3839
+#: owmweather.php:3838
 #, fuzzy
 #| msgid "heavy snow"
 msgid "Heavy Snow"
 msgstr "сильный снег"
 
-#: owmweather.php:3840
-#, fuzzy
-#| msgid "sleet"
+#: owmweather.php:3839
 msgid "Sleet"
-msgstr "дождь со снегом"
+msgstr "Мокрый снег"
 
-#: owmweather.php:3841
+#: owmweather.php:3840
 #, fuzzy
 #| msgid "shower sleet"
 msgid "Light Shower Sleet"
 msgstr "проливной дождь со снегом"
 
-#: owmweather.php:3842
+#: owmweather.php:3841
 #, fuzzy
 #| msgid "shower sleet"
 msgid "Shower Sleet"
 msgstr "проливной дождь со снегом"
 
-#: owmweather.php:3843
+#: owmweather.php:3842
 #, fuzzy
 #| msgid "light rain and snow"
 msgid "Light Rain and Snow"
 msgstr "легкий дождь со снегом"
 
-#: owmweather.php:3844
-#, fuzzy
-#| msgid "rain and snow"
+#: owmweather.php:3843
 msgid "Rain and Snow"
-msgstr "дождь со снегом"
+msgstr "Дождь и Снег"
 
-#: owmweather.php:3845
+#: owmweather.php:3844
 #, fuzzy
 #| msgid "light shower snow"
 msgid "Light Shower Snow"
 msgstr "легкий снегопад"
 
-#: owmweather.php:3846
+#: owmweather.php:3845
 #, fuzzy
 #| msgid "shower snow"
 msgid "Shower Snow"
 msgstr "снегопад"
 
-#: owmweather.php:3847
+#: owmweather.php:3846
 #, fuzzy
 #| msgid "heavy shower snow"
 msgid "Heavy Shower Snow"
 msgstr "сильный снегопад"
 
-#: owmweather.php:3848
+#: owmweather.php:3847
 msgid "Mist"
-msgstr ""
+msgstr "Туман"
+
+#: owmweather.php:3848
+msgid "Smoke"
+msgstr "Смог"
 
 #: owmweather.php:3849
-#, fuzzy
-#| msgid "smoke"
-msgid "Smoke"
-msgstr "дымка"
+msgid "Haze"
+msgstr "Дымка"
 
 #: owmweather.php:3850
-msgid "Haze"
-msgstr ""
-
-#: owmweather.php:3851
 #, fuzzy
 #| msgid "sand, dust whirls"
 msgid "Sand / Dust Whirls"
 msgstr "песок, пыль"
 
-#: owmweather.php:3852
-#, fuzzy
-#| msgid "fog"
+#: owmweather.php:3851
 msgid "Fog"
-msgstr "туман"
+msgstr "Туман"
+
+#: owmweather.php:3852
+msgid "Sand"
+msgstr "Песочный"
 
 #: owmweather.php:3853
-msgid "Sand"
-msgstr ""
+msgid "Dust"
+msgstr "Пыль"
 
 #: owmweather.php:3854
-msgid "Dust"
-msgstr ""
-
-#: owmweather.php:3855
 msgid "Volcanic Ash"
 msgstr ""
 
-#: owmweather.php:3856
+#: owmweather.php:3855
 msgid "Squalls"
-msgstr ""
+msgstr "Шквалистый"
 
-#: owmweather.php:3857
+#: owmweather.php:3856
 #, fuzzy
 #| msgid "tornado"
 msgid "Tornado"
 msgstr "торнадо"
 
-#: owmweather.php:3858
+#: owmweather.php:3857
 #, fuzzy
 #| msgid "clear sky"
 msgid "Clear sky"
 msgstr "ясно"
 
-#: owmweather.php:3859
+#: owmweather.php:3858
 #, fuzzy
 #| msgid "few clouds"
 msgid "Few Clouds"
 msgstr "малооблачно"
 
-#: owmweather.php:3860
+#: owmweather.php:3859
 #, fuzzy
 #| msgid "scattered clouds"
 msgid "Scattered Clouds"
 msgstr "рассеянные облака"
 
-#: owmweather.php:3861
+#: owmweather.php:3860
 #, fuzzy
 #| msgid "broken clouds"
 msgid "Broken Clouds"
 msgstr "кучевые облака"
 
-#: owmweather.php:3862
+#: owmweather.php:3861
 #, fuzzy
 #| msgid "overcast clouds"
 msgid "Overcast Clouds"
@@ -2231,13 +2165,13 @@ msgstr "пасмурно"
 #: template/content-owmweather-slider2.php:23
 #: template/content-owmweather-table2.php:13
 msgid "Prev"
-msgstr ""
+msgstr "Назад"
 
 #: template/content-owmweather-slider1.php:31
 #: template/content-owmweather-slider2.php:25
 #: template/content-owmweather-table2.php:15
 msgid "Next"
-msgstr ""
+msgstr "Следующий"
 
 #~ msgid "snow"
 #~ msgstr "снег"

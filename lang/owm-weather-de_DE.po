@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OWM Weather\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/owm-weather\n"
-"POT-Creation-Date: 2022-03-03T14:28:40-05:00\n"
-"PO-Revision-Date: 2022-03-03 14:38-0500\n"
+"POT-Creation-Date: 2022-03-03T16:46:04-05:00\n"
+"PO-Revision-Date: 2022-03-04 09:25-0500\n"
 "Last-Translator: \n"
 "Language-Team: Lutz Bennert <lutz@benlu.de>\n"
 "Language: de_DE\n"
@@ -212,9 +212,10 @@ msgstr "Sonnenauf und -untergang"
 msgid "Moonrise + moonset"
 msgstr "Mondauf und -untergang"
 
-#: owmweather-admin.php:370 owmweather.php:750 owmweather.php:2482
-#: owmweather.php:2598 owmweather.php:2928 owmweather.php:3009
-#: owmweather.php:3078 template/content-owmweather-card1.php:83
+#: owmweather-admin.php:370 owmweather.php:750 owmweather.php:2413
+#: owmweather.php:2482 owmweather.php:2598 owmweather.php:2928
+#: owmweather.php:3009 owmweather.php:3078
+#: template/content-owmweather-card1.php:83
 #: template/content-owmweather-card2.php:112
 msgid "Wind"
 msgstr "Wind"
