@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OWM Weather 5.1.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/owm-weather\n"
 "POT-Creation-Date: 2022-03-03T16:46:04-05:00\n"
-"PO-Revision-Date: 2022-03-06 15:40-0500\n"
+"PO-Revision-Date: 2022-03-07 15:27-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: et\n"
@@ -1642,7 +1642,7 @@ msgstr "Lumesadu"
 #: owmweather.php:2488 owmweather.php:2774 owmweather.php:2864
 #: owmweather.php:2912 owmweather.php:3068
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatuur"
 
 #: owmweather.php:2496
 msgid "Pressure Contour"
@@ -1666,11 +1666,11 @@ msgstr ""
 
 #: owmweather.php:2765 owmweather.php:2806
 msgid "Hourly Temperatures"
-msgstr ""
+msgstr "Tunni temperatuurid"
 
 #: owmweather.php:2855 owmweather.php:2888
 msgid "Daily Temperatures"
-msgstr ""
+msgstr "Igapäevased temperatuurid"
 
 #: owmweather.php:2910 owmweather.php:3066
 msgid "Time"
@@ -1686,11 +1686,11 @@ msgstr "Summa"
 
 #: owmweather.php:2919 owmweather.php:3000 owmweather.php:3072
 msgid "Cloud Cover"
-msgstr ""
+msgstr "Pilvekate"
 
 #: owmweather.php:2929 owmweather.php:3010 owmweather.php:3079
 msgid "Gust"
-msgstr ""
+msgstr "Puhanguline"
 
 #: owmweather.php:2991
 msgid "Day"
@@ -1698,11 +1698,11 @@ msgstr "Päev"
 
 #: owmweather.php:2993
 msgid "Min Temperature"
-msgstr ""
+msgstr "Minimaalne temperatuur"
 
 #: owmweather.php:2994
 msgid "Max Temperature"
-msgstr ""
+msgstr "Maksimaalne temperatuur"
 
 #: owmweather.php:3187
 msgid "Shortcode"
