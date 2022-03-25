@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.1.6
+Version: 5.1.7
 Author: Uwe Jacobs
 Author URI: https://github.com/uwejacobs
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.1.6' );
+define( 'OWM_WEATHER_VERSION', '5.1.7' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -1886,7 +1886,7 @@ function owmw_get_my_weather($attr) {
         $owmw_data["humidity"] = $owmweather_current->main->humidity ? $owmweather_current->main->humidity . '%' : null;
         $owmw_data["pressure_unit"] = $owmw_opt["temperature_unit"] == 'imperial' ? esc_html__('in','owm-weather') : esc_html__('hPa','owm-weather');
         $owmw_data["pressure"] = owmw_converthp2iom($owmw_opt["temperature_unit"], $owmweather_current->main->pressure) . ' ' . $owmw_data["pressure_unit"];
-        $owmw_data["cloudiness"] = $owmweather_current->clouds->all ? $owmweather_current->clouds->all . '%' : null;
+        $owmw_data["cloudiness"] = $owmweather_current->clouds->all ? $owmweather_current->clouds->all . '%' : "0%";
         $owmw_data["precipitation_unit"] = $owmw_opt["temperature_unit"] == 'imperial' ? esc_html__('in','owm-weather') : esc_html__('mm','owm-weather');
         $owmw_data["rain_1h"] = owmw_getConvertedPrecipitation($owmw_opt["temperature_unit"], $owmweather_current->rain->{"1h"} ?? 0) . ' ' . $owmw_data["precipitation_unit"];
         $owmw_data["rain_3h"] = owmw_getConvertedPrecipitation($owmw_opt["temperature_unit"], $owmweather_current->rain->{"3h"} ?? 0) . ' ' . $owmw_data["precipitation_unit"];

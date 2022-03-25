@@ -6,7 +6,11 @@ https://github.com/buche/leaflet-openweathermap/blob/master/leaflet-openweatherm
 
 
 Nice:
+widget
+turn on map layers automatically
 more charts
 tabbed settings
 background type gradient/video
 openweathermap keys
+get rid of bootstrap dependency?
+DIVI or Elementor?

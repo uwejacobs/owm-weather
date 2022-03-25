@@ -3,8 +3,8 @@ Contributors: rainbowgeek, uwejacobs
 Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
-Tested up to: 5.9.1
-Stable tag: 5.1.6
+Tested up to: 5.9.2
+Stable tag: 5.1.7
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -470,20 +470,21 @@ Allows to delete all cached OpenWeatherMap data and retrieve fresh data with the
 
 == Languages ==
 * English
-* German (thanks to Lutz Bennert)
+* Chilean (thanks to Wladimir Espinoza Durán)
 * French (thanks to Benjamin DENIS)
+* German (thanks to Lutz Bennert)
 * Spanish (thanks to Wladimir Espinoza Durán)
 = Partial translations: =
-* Italian (thanks to <a href="www.tosolini.info" target="_blank">www.tosolini.info</a>)
+* Danish (thanks to Carsten Klingenberg)
+* Dutch (thanks to Age de Jong)
+* Estonian (PoEdit)
 * Hungarian (thanks to Tom)
 * Hebrew (thanks to Ben Klinger)
-* Polish (thanks to Marcello/Rafal Wronowski)
-* Russian (thanks to Andrea)
-* Danish (thanks to Carsten Klingenberg)
-* Portuguese (thanks to Deoclides Neto)
-* Chilean (thanks to Wladimir Espinoza Durán)
-* Dutch (thanks to Age de Jong)
+* Italian (thanks to <a href="www.tosolini.info" target="_blank">www.tosolini.info</a>)
 * Persian (thanks to @mARYAm)
+* Polish (thanks to Marcello/Rafal Wronowski)
+* Portuguese (thanks to Deoclides Neto)
+* Russian (thanks to Andrea)
 
 Add yours with PoEdit. The latest .pot file can be found under /wp-content/plugins/own/weather/lang/. Place your .po/.mo files into the same folder. We will gladly add them in future releases.
 
@@ -591,6 +592,10 @@ Although many settings look alike, OWM Weather uses completely different weather
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.1.7 =
+* fixed empty cloudiness value for current conditions
+* more translations
 
 = 5.1.6 =
 * added all Estonian phrases for the weather output to the translation

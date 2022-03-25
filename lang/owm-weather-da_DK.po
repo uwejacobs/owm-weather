@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OWM Weather\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/owm-weather\n"
 "POT-Creation-Date: 2022-03-03T16:46:04-05:00\n"
-"PO-Revision-Date: 2022-03-04 09:24-0500\n"
+"PO-Revision-Date: 2022-03-09 07:25-0500\n"
 "Last-Translator: \n"
 "Language-Team: Benjamin DENIS <contact@wpcloudy.com>\n"
 "Language: da_DK\n"
@@ -25,7 +25,7 @@ msgstr "OWM Weather"
 
 #. Plugin URI of the plugin
 msgid "https://github.com/uwejacobs/owm-weather"
-msgstr ""
+msgstr "https://github.com/uwejacobs/owm-weather"
 
 #. Description of the plugin
 msgid ""
@@ -163,10 +163,8 @@ msgid "Bypass timezone"
 msgstr ""
 
 #: owmweather-admin.php:282
-#, fuzzy
-#| msgid "Open Weather Map"
 msgid "Bypass OpenWeatherMap language"
-msgstr "Open Weather Map"
+msgstr "Spring OpenWeatherMap-sprog over"
 
 #: owmweather-admin.php:291
 msgid "Display settings"
@@ -181,10 +179,8 @@ msgid "Current weather symbol"
 msgstr ""
 
 #: owmweather-admin.php:314 owmweather.php:687
-#, fuzzy
-#| msgid "Temperature"
 msgid "Current temperature"
-msgstr "Temperatur"
+msgstr "Aktuel temperatur"
 
 #: owmweather-admin.php:322 owmweather.php:693
 msgid "Current feels-like temperature"
@@ -195,26 +191,20 @@ msgid "Current short condition"
 msgstr ""
 
 #: owmweather-admin.php:338 owmweather.php:708
-#, fuzzy
-#| msgid "Temperature"
 msgid "Temperature unit (C / F)"
-msgstr "Temperatur"
+msgstr "Temperaturenhed (C / F)"
 
 #: owmweather-admin.php:346
 msgid "Date"
 msgstr "Dato"
 
 #: owmweather-admin.php:354 owmweather.php:735
-#, fuzzy
-#| msgid "Sunrise"
 msgid "Sunrise + sunset"
-msgstr "Solopgang"
+msgstr "Solopgang + solnedgang"
 
 #: owmweather-admin.php:362 owmweather.php:741
-#, fuzzy
-#| msgid "Moonrise"
 msgid "Moonrise + moonset"
-msgstr "Månen står op"
+msgstr "Moonrise + månesæt"
 
 #: owmweather-admin.php:370 owmweather.php:750 owmweather.php:2413
 #: owmweather.php:2482 owmweather.php:2598 owmweather.php:2928
@@ -225,10 +215,8 @@ msgid "Wind"
 msgstr "Vind"
 
 #: owmweather-admin.php:378
-#, fuzzy
-#| msgid "Wind unit?"
 msgid "Wind unit"
-msgstr "Vind enhed?"
+msgstr "Vind enhed"
 
 #: owmweather-admin.php:386
 msgid "Wind icon pointer direction"
@@ -247,7 +235,7 @@ msgstr "Luftfugtighed"
 #: template/content-owmweather-card1.php:85
 #: template/content-owmweather-card2.php:114
 msgid "Dew Point"
-msgstr ""
+msgstr "Dugpunkt"
 
 #: owmweather-admin.php:410 owmweather.php:788 owmweather.php:2422
 #: owmweather.php:2494 owmweather.php:2612 owmweather.php:2932
@@ -298,30 +286,24 @@ msgid "Number of forecast hours"
 msgstr ""
 
 #: owmweather-admin.php:474 owmweather.php:835
-#, fuzzy
-#| msgid "Display settings"
 msgid "Display time icons"
-msgstr "Visningsindstillinger"
+msgstr "Vis tidsikoner"
 
 #: owmweather-admin.php:482
 msgid "Number of forecast days"
 msgstr ""
 
 #: owmweather-admin.php:490
-#, fuzzy
-#| msgid "Precipitation Classic"
 msgid "Precipitations forecast"
-msgstr "Nedbør Classic"
+msgstr "Nedbør prognose"
 
 #: owmweather-admin.php:498
 msgid "Length day names:"
 msgstr ""
 
 #: owmweather-admin.php:506 owmweather.php:879
-#, fuzzy
-#| msgid "Open Weather Map"
 msgid "Link to OpenWeatherMap"
-msgstr "Open Weather Map"
+msgstr "Link til OpenWeatherMap"
 
 #: owmweather-admin.php:514 owmweather.php:886
 msgid "Data Update Time"
@@ -358,10 +340,8 @@ msgid "Border color"
 msgstr ""
 
 #: owmweather-admin.php:602
-#, fuzzy
-#| msgid "Border radius (px)"
 msgid "Border width (in px)"
-msgstr "Ramme radius (i px)"
+msgstr "Kantbredde (i px)"
 
 #: owmweather-admin.php:610 owmweather.php:978 owmweather.php:1042
 #: owmweather.php:1078
@@ -369,33 +349,24 @@ msgid "Border style"
 msgstr "Kantstil"
 
 #: owmweather-admin.php:618
-#, fuzzy
-#| msgid "Border radius (px)"
 msgid "Border radius"
-msgstr "Ramme radius (i px)"
+msgstr "Kantradius"
 
 #: owmweather-admin.php:626 owmweather.php:1010
-#, fuzzy
-#| msgctxt "Post Type General Name"
-#| msgid "Weather"
 msgid "Weather size"
-msgstr "Vejrudsigt"
+msgstr "Vejrstørrelse"
 
 #: owmweather-admin.php:635 owmweather.php:1018
 msgid "Custom CSS"
 msgstr "Brugerdefineret CSS"
 
 #: owmweather-admin.php:643
-#, fuzzy
-#| msgid "Background color"
 msgid "Table background color"
-msgstr "Baggrundsfarve"
+msgstr "Tabelbaggrundsfarve"
 
 #: owmweather-admin.php:651
-#, fuzzy
-#| msgid "Text color"
 msgid "Table text color"
-msgstr "Tekstfarve"
+msgstr "Tabeltekstfarve"
 
 #: owmweather-admin.php:659
 msgid "Table border color"
@@ -406,16 +377,12 @@ msgid "Table border width (in px)"
 msgstr ""
 
 #: owmweather-admin.php:675
-#, fuzzy
-#| msgid "Border style"
 msgid "Table border style"
-msgstr "Kantstil"
+msgstr "Tabelkanttypografi"
 
 #: owmweather-admin.php:683
-#, fuzzy
-#| msgid "Border radius (px)"
 msgid "Table border radius"
-msgstr "Ramme radius (i px)"
+msgstr "Tabelkantradius"
 
 #: owmweather-admin.php:692
 msgid "Advanced settings"
@@ -430,10 +397,8 @@ msgid "Time until cache refresh (in minutes)"
 msgstr ""
 
 #: owmweather-admin.php:715
-#, fuzzy
-#| msgid "Open Weather Map"
 msgid "Open Weather Map API key"
-msgstr "Open Weather Map"
+msgstr ""
 
 #: owmweather-admin.php:723
 msgid "Disable Bootstrap Modal JS"
@@ -461,43 +426,31 @@ msgstr ""
 
 #: owmweather-admin.php:780
 msgid "Cloud Layer"
-msgstr ""
+msgstr "Skylag"
 
 #: owmweather-admin.php:788
-#, fuzzy
-#| msgid "Precipitation"
 msgid "Precipitation Layer"
-msgstr "Nedbør"
+msgstr "Nedbørslag"
 
 #: owmweather-admin.php:796
-#, fuzzy
-#| msgid "Layers"
 msgid "Snow Layer"
-msgstr "Layers"
+msgstr "Snelag"
 
 #: owmweather-admin.php:804
-#, fuzzy
-#| msgid "Wind rose"
 msgid "Wind Layer"
-msgstr "Vind steg"
+msgstr "Vindlag"
 
 #: owmweather-admin.php:812
-#, fuzzy
-#| msgid "Temperature"
 msgid "Temperature Layer"
-msgstr "Temperatur"
+msgstr "Temperaturlag"
 
 #: owmweather-admin.php:820
-#, fuzzy
-#| msgid "Pressure"
 msgid "Pressure Layer"
-msgstr "Lufttryk"
+msgstr "Tryklag"
 
 #: owmweather-admin.php:828
-#, fuzzy
-#| msgid "Wind rose"
 msgid "Wind rose Layer"
-msgstr "Vind steg"
+msgstr "Vindroselag"
 
 #: owmweather-admin.php:888
 msgid "Basic settings to bypass on all weather:"
@@ -1166,11 +1119,11 @@ msgstr ""
 
 #: owmweather-admin.php:1763 owmweather-admin.php:1786
 msgid "Show on all weather"
-msgstr ""
+msgstr "Vis på alt vejr"
 
 #: owmweather-admin.php:1770 owmweather-admin.php:1793
 msgid "Suppress on all weather"
-msgstr ""
+msgstr "Undertryk på alt vejr"
 
 #: owmweather-admin.php:1807
 msgid "Setup OWM Weather"
@@ -1347,10 +1300,8 @@ msgid "Timezone (default: WordPress general settings)"
 msgstr ""
 
 #: owmweather.php:597
-#, fuzzy
-#| msgid "Open Weather Map"
 msgid "OpenWeatherMap language"
-msgstr "Open Weather Map"
+msgstr "OpenWeatherMap-sprog"
 
 #: owmweather.php:650 owmweather.php:745 owmweather.php:995
 msgid "Miscellaneous"
@@ -1434,10 +1385,8 @@ msgid "Number of days"
 msgstr "Antal dage"
 
 #: owmweather.php:858
-#, fuzzy
-#| msgid "Precipitation"
 msgid "Forecast Precipitations"
-msgstr "Nedbør"
+msgstr "Prognose nedbør"
 
 #: owmweather.php:864
 msgid "Short day names"
@@ -1524,10 +1473,8 @@ msgid ""
 msgstr ""
 
 #: owmweather.php:1114
-#, fuzzy
-#| msgid "Display"
 msgid "Display map"
-msgstr "Vis"
+msgstr "Vis kort"
 
 #: owmweather.php:1118
 msgid "Map height (in px)"
@@ -1542,46 +1489,32 @@ msgid "Layers"
 msgstr "Layers"
 
 #: owmweather.php:1172
-#, fuzzy
-#| msgid "Display"
 msgid "Display clouds"
-msgstr "Vis"
+msgstr "Vis skyer"
 
 #: owmweather.php:1178
-#, fuzzy
-#| msgid "Precipitation"
 msgid "Display precipitation"
-msgstr "Nedbør"
+msgstr "Vis nedbør"
 
 #: owmweather.php:1184
-#, fuzzy
-#| msgid "Display"
 msgid "Display snow"
-msgstr "Vis"
+msgstr "Vis sne"
 
 #: owmweather.php:1190
-#, fuzzy
-#| msgid "Display"
 msgid "Display wind"
-msgstr "Vis"
+msgstr "Vis vind"
 
 #: owmweather.php:1196
-#, fuzzy
-#| msgid "Temperature"
 msgid "Display temperature"
-msgstr "Temperatur"
+msgstr "Vis temperatur"
 
 #: owmweather.php:1202
-#, fuzzy
-#| msgid "Display settings"
 msgid "Display pressure"
-msgstr "Visningsindstillinger"
+msgstr "Vis tryk"
 
 #: owmweather.php:1208
-#, fuzzy
-#| msgid "Display settings"
 msgid "Display wind rose"
-msgstr "Visningsindstillinger"
+msgstr "Display vind steg"
 
 #: owmweather.php:1413
 msgid "Sunrise"
@@ -1609,7 +1542,7 @@ msgstr "i"
 
 #: owmweather.php:1887
 msgid "hPa"
-msgstr ""
+msgstr "hPa"
 
 #: owmweather.php:1890
 msgid "mm"
@@ -1675,7 +1608,7 @@ msgstr "Lør"
 #: owmweather.php:2782 owmweather.php:2872 owmweather.php:2913
 #: owmweather.php:3069
 msgid "Feels Like"
-msgstr ""
+msgstr "Føles som"
 
 #: owmweather.php:2425 owmweather.php:2456
 msgid "Clouds"
@@ -1683,11 +1616,11 @@ msgstr "Skyer"
 
 #: owmweather.php:2428 owmweather.php:2996
 msgid "Rain Chance"
-msgstr ""
+msgstr "Regn chance"
 
 #: owmweather.php:2458
 msgid "Clouds Classic"
-msgstr ""
+msgstr "Skyer Classic"
 
 #: owmweather.php:2464
 msgid "Rain"
@@ -1695,7 +1628,7 @@ msgstr "Regn"
 
 #: owmweather.php:2466
 msgid "Rain Classic"
-msgstr ""
+msgstr "Regn Classic"
 
 #: owmweather.php:2470
 msgid "Precipitation Classic"
@@ -1724,19 +1657,19 @@ msgstr "Luk"
 
 #: owmweather.php:2717
 msgid "Full weather on OpenWeatherMap"
-msgstr ""
+msgstr "Fuld vejr på OpenWeatherMap"
 
 #: owmweather.php:2717
 msgid "Full weather"
-msgstr ""
+msgstr "Fuld vejr"
 
 #: owmweather.php:2765 owmweather.php:2806
 msgid "Hourly Temperatures"
-msgstr ""
+msgstr "Timetemperaturer"
 
 #: owmweather.php:2855 owmweather.php:2888
 msgid "Daily Temperatures"
-msgstr ""
+msgstr "Daglige temperaturer"
 
 #: owmweather.php:2910 owmweather.php:3066
 msgid "Time"
@@ -1752,7 +1685,7 @@ msgstr "Beløb"
 
 #: owmweather.php:2919 owmweather.php:3000 owmweather.php:3072
 msgid "Cloud Cover"
-msgstr ""
+msgstr "Skydække"
 
 #: owmweather.php:2929 owmweather.php:3010 owmweather.php:3079
 msgid "Gust"
@@ -1764,11 +1697,11 @@ msgstr "Dag"
 
 #: owmweather.php:2993
 msgid "Min Temperature"
-msgstr ""
+msgstr "Min Temperatur"
 
 #: owmweather.php:2994
 msgid "Max Temperature"
-msgstr ""
+msgstr "Maksimal temperatur"
 
 #: owmweather.php:3187
 msgid "Shortcode"
@@ -1849,11 +1782,11 @@ msgstr "Nu"
 
 #: owmweather.php:3298
 msgid "Now + 1 hour"
-msgstr ""
+msgstr "Nu + 1 time"
 
 #: owmweather.php:3300
 msgid "Now + "
-msgstr ""
+msgstr "Nu + "
 
 #: owmweather.php:3300
 msgid " hours"
@@ -1861,11 +1794,11 @@ msgstr " timer"
 
 #: owmweather.php:3310 owmweather.php:3318
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: owmweather.php:3311
 msgid "NE"
-msgstr "HA"
+msgstr "NØ"
 
 #: owmweather.php:3312
 msgid "E"
@@ -1900,248 +1833,172 @@ msgid "Thunderstorm with Rain"
 msgstr "Tordenvejr med regn"
 
 #: owmweather.php:3809
-#, fuzzy
-#| msgid "thunderstorm with heavy rain"
 msgid "Thunderstorm with Heavy Rain"
-msgstr "tordenvejr med kraftig regn"
+msgstr "Tordenvejr med kraftig regn"
 
 #: owmweather.php:3810
-#, fuzzy
-#| msgid "light thunderstorm"
 msgid "Light Thunderstorm"
-msgstr "let tordenvejr"
+msgstr "Let tordenvejr"
 
 #: owmweather.php:3811
 msgid "Thunderstorm"
 msgstr "Tordenvejr"
 
 #: owmweather.php:3812
-#, fuzzy
-#| msgid "heavy thunderstorm"
 msgid "Heavy Thunderstorm"
-msgstr "kraftigt tordenvejr"
+msgstr "Kraftigt tordenvejr"
 
 #: owmweather.php:3813
-#, fuzzy
-#| msgid "ragged thunderstorm"
 msgid "Ragged Thunderstorm"
-msgstr "tordenvejr"
+msgstr "Laset tordenvejr"
 
 #: owmweather.php:3814
-#, fuzzy
-#| msgid "thunderstorm with light drizzle"
 msgid "Thunderstorm with Light Drizzle"
-msgstr "tordenvejr med let støvregn"
+msgstr "Tordenvejr med let støvregn"
 
 #: owmweather.php:3815
-#, fuzzy
-#| msgid "thunderstorm with drizzle"
 msgid "Thunderstorm with Drizzle"
-msgstr "tordenvejr med støvregn"
+msgstr "Tordenvejr med støvregn"
 
 #: owmweather.php:3816
-#, fuzzy
-#| msgid "thunderstorm with heavy drizzle"
 msgid "Thunderstorm with Heavy Drizzle"
-msgstr "tordenvejr med kraftig støvregn"
+msgstr "Tordenvejr med kraftig støvregn"
 
 #: owmweather.php:3817
-#, fuzzy
-#| msgid "light intensity drizzle"
 msgid "Light Intensity Drizzle"
-msgstr "let støvregn"
+msgstr "Lysintensitet støvregn"
 
 #: owmweather.php:3818
 msgid "Drizzle"
 msgstr "Støvregn"
 
 #: owmweather.php:3819
-#, fuzzy
-#| msgid "heavy intensity drizzle"
 msgid "Heavy Intensity Drizzle"
-msgstr "kraftig støvregn"
+msgstr "Kraftig intensitet støvregn"
 
 #: owmweather.php:3820
-#, fuzzy
-#| msgid "light intensity drizzle rain"
 msgid "Light Intensity Drizzle Rain"
-msgstr "let støvregn"
+msgstr "Lysintensitet støvregn Regn"
 
 #: owmweather.php:3821
-#, fuzzy
-#| msgid "drizzle rain"
 msgid "Drizzle Rain"
-msgstr "støvregn"
+msgstr "Støvregn Regn"
 
 #: owmweather.php:3822
-#, fuzzy
-#| msgid "heavy intensity drizzle rain"
 msgid "Heavy Intensity Drizzle Rain"
-msgstr "intens støvregn"
+msgstr "Kraftig kraftig kraftig støvregn Regn"
 
 #: owmweather.php:3823
-#, fuzzy
-#| msgid "shower rain and drizzle"
 msgid "Shower Rain and Drizzle"
-msgstr "regn og støvregn"
+msgstr "Regn og støvregn"
 
 #: owmweather.php:3824
-#, fuzzy
-#| msgid "heavy shower rain and drizzle"
 msgid "Heavy Shower Rain and Drizzle"
-msgstr "kraftig regn og støvregn"
+msgstr "Kraftig regn regn og støvregn"
 
 #: owmweather.php:3825
-#, fuzzy
-#| msgid "shower drizzle"
 msgid "Shower Drizzle"
-msgstr "støvregn"
+msgstr "Bruser støvregn"
 
 #: owmweather.php:3826
-#, fuzzy
-#| msgid "light rain"
 msgid "Light Rain"
-msgstr "let regn"
+msgstr "Let regn"
 
 #: owmweather.php:3827
-#, fuzzy
-#| msgid "moderate rain"
 msgid "Moderate Rain"
-msgstr "moderat regn"
+msgstr "Moderat regn"
 
 #: owmweather.php:3828
-#, fuzzy
-#| msgid "heavy intensity rain"
 msgid "Heavy Intensity Rain"
-msgstr "kraftig regn"
+msgstr "Kraftig kraftig regn"
 
 #: owmweather.php:3829
-#, fuzzy
-#| msgid "very heavy rain"
 msgid "Very Heavy Rain"
-msgstr "meget kraftig regn"
+msgstr "Meget kraftig regn"
 
 #: owmweather.php:3830
-#, fuzzy
-#| msgid "extreme rain"
 msgid "Extreme Rain"
-msgstr "skybrud"
+msgstr "Ekstrem regn"
 
 #: owmweather.php:3831
-#, fuzzy
-#| msgid "freezing rain"
 msgid "Freezing Rain"
-msgstr "isslag"
+msgstr "Isslag"
 
 #: owmweather.php:3832
-#, fuzzy
-#| msgid "light intensity shower rain"
 msgid "Light Intensity Shower Rain"
-msgstr "lette regnbyger"
+msgstr "Lysintensitetsregn regn"
 
 #: owmweather.php:3833
-#, fuzzy
-#| msgid "shower rain"
 msgid "Shower Rain"
-msgstr "regnbyger"
+msgstr "Regn i byge"
 
 #: owmweather.php:3834
-#, fuzzy
-#| msgid "heavy intensity shower rain"
 msgid "Heavy Intensity Shower Rain"
-msgstr "kraftige regnbyger"
+msgstr "Kraftig intensitet bruser regn"
 
 #: owmweather.php:3835
-#, fuzzy
-#| msgid "ragged shower rain"
 msgid "Ragged Shower Rain"
-msgstr "spredte regnbyger"
+msgstr "Laset bruser regn"
 
 #: owmweather.php:3836
-#, fuzzy
-#| msgid "light snow"
 msgid "Light Snow"
-msgstr "let sne"
+msgstr "Let sne"
 
 #: owmweather.php:3838
-#, fuzzy
-#| msgid "heavy snow"
 msgid "Heavy Snow"
-msgstr "kraftig sne"
+msgstr "Kraftig sne"
 
 #: owmweather.php:3839
-#, fuzzy
-#| msgid "sleet"
 msgid "Sleet"
-msgstr "slud"
+msgstr "Slud"
 
 #: owmweather.php:3840
-#, fuzzy
-#| msgid "shower sleet"
 msgid "Light Shower Sleet"
-msgstr "sludbyger"
+msgstr "Let bruser slud"
 
 #: owmweather.php:3841
-#, fuzzy
-#| msgid "shower sleet"
 msgid "Shower Sleet"
-msgstr "sludbyger"
+msgstr "Bruser slud"
 
 #: owmweather.php:3842
-#, fuzzy
-#| msgid "light rain and snow"
 msgid "Light Rain and Snow"
-msgstr "let regn og sne"
+msgstr "Let regn og sne"
 
 #: owmweather.php:3843
-#, fuzzy
-#| msgid "rain and snow"
 msgid "Rain and Snow"
-msgstr "regn og sne"
+msgstr "Regn og sne"
 
 #: owmweather.php:3844
-#, fuzzy
-#| msgid "light shower snow"
 msgid "Light Shower Snow"
-msgstr "lette snebyger"
+msgstr "Let brusesne"
 
 #: owmweather.php:3845
-#, fuzzy
-#| msgid "shower snow"
 msgid "Shower Snow"
-msgstr "snebyger"
+msgstr "Bruser Sne"
 
 #: owmweather.php:3846
-#, fuzzy
-#| msgid "heavy shower snow"
 msgid "Heavy Shower Snow"
-msgstr "kraftigt snebyger"
+msgstr "Kraftig brusesnene"
 
 #: owmweather.php:3847
 msgid "Mist"
-msgstr ""
+msgstr "Tåge"
 
 #: owmweather.php:3848
-#, fuzzy
-#| msgid "smoke"
 msgid "Smoke"
-msgstr "smoke"
+msgstr "Røg"
 
 #: owmweather.php:3849
 msgid "Haze"
-msgstr ""
+msgstr "Tåge"
 
 #: owmweather.php:3850
-#, fuzzy
-#| msgid "sand, dust whirls"
 msgid "Sand / Dust Whirls"
-msgstr "støv hvirvler"
+msgstr "Sand / Støv hvirvler"
 
 #: owmweather.php:3851
-#, fuzzy
-#| msgid "fog"
 msgid "Fog"
-msgstr "tåge"
+msgstr "Tåge"
 
 #: owmweather.php:3852
 msgid "Sand"
@@ -2149,51 +2006,39 @@ msgstr "Sand"
 
 #: owmweather.php:3853
 msgid "Dust"
-msgstr ""
+msgstr "Støv"
 
 #: owmweather.php:3854
 msgid "Volcanic Ash"
-msgstr ""
+msgstr "Vulkansk aske"
 
 #: owmweather.php:3855
 msgid "Squalls"
-msgstr ""
+msgstr "Byger"
 
 #: owmweather.php:3856
-#, fuzzy
-#| msgid "tornado"
 msgid "Tornado"
-msgstr "tornado"
+msgstr "Tornado"
 
 #: owmweather.php:3857
-#, fuzzy
-#| msgid "clear sky"
 msgid "Clear sky"
-msgstr "skyfrit"
+msgstr "Klar himmel"
 
 #: owmweather.php:3858
-#, fuzzy
-#| msgid "few clouds"
 msgid "Few Clouds"
-msgstr "let skyet"
+msgstr "Få skyer"
 
 #: owmweather.php:3859
-#, fuzzy
-#| msgid "scattered clouds"
 msgid "Scattered Clouds"
-msgstr "spredte skyer"
+msgstr "Spredte skyer"
 
 #: owmweather.php:3860
-#, fuzzy
-#| msgid "broken clouds"
 msgid "Broken Clouds"
-msgstr "skyet"
+msgstr "Brudte skyer"
 
 #: owmweather.php:3861
-#, fuzzy
-#| msgid "overcast clouds"
 msgid "Overcast Clouds"
-msgstr "overskyet"
+msgstr "Overskyede skyer"
 
 #: template/content-owmweather-slider1.php:29
 #: template/content-owmweather-slider2.php:23

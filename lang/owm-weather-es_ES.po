@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OWM Weather\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/owm-weather\n"
 "POT-Creation-Date: 2022-03-03T16:46:04-05:00\n"
-"PO-Revision-Date: 2022-03-04 09:26-0500\n"
+"PO-Revision-Date: 2022-03-09 07:58-0500\n"
 "Last-Translator: \n"
 "Language-Team: Wladimir Espinoza <contact@wpcloudy.com>\n"
 "Language: es_ES\n"
@@ -458,11 +458,11 @@ msgstr "Capa de rosa de los vientos"
 
 #: owmweather-admin.php:888
 msgid "Basic settings to bypass on all weather:"
-msgstr "Ajustes básicos para omitir en cualquier clima:"
+msgstr "Ajustes básicos para omitir en cualquier tiempo:"
 
 #: owmweather-admin.php:894
 msgid "Display settings to bypass on all weather:"
-msgstr "Configuración de pantalla para omitir en cualquier clima:"
+msgstr "Configuración de pantalla para omitir en cualquier tiempo:"
 
 #: owmweather-admin.php:899
 msgid "Layout settings to bypass on all weather:"
@@ -1168,7 +1168,7 @@ msgstr "¡Configuración avanzada!"
 
 #: owmweather-widget.php:32
 msgid "Please select a weather via the configure link"
-msgstr "Seleccione un clima a través del enlace de configuración"
+msgstr "Seleccione un tiempo a través del enlace de configuración"
 
 #: owmweather-widget.php:54
 msgid "Select the weather to display:"
@@ -1340,7 +1340,7 @@ msgstr "Excluir de la configuración del sistema y omitir parámetros"
 msgid ""
 "Select the information you would like to show on your weather shortcode."
 msgstr ""
-"Seleccione la información que desea mostrar en su código corto del clima."
+"Seleccione la información que desea mostrar en su código corto del tiempo."
 
 #: owmweather.php:670
 msgid "Current weather"
@@ -1753,7 +1753,7 @@ msgstr "Tiempo"
 
 #: owmweather.php:3207
 msgid "Parent Weather:"
-msgstr "Clima Padre:"
+msgstr "Tiempo Padre:"
 
 #: owmweather.php:3208
 msgid "All Weather"
