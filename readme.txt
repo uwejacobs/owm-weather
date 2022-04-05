@@ -598,7 +598,7 @@ Although many settings look alike, OWM Weather uses completely different weather
 = 5.1.8 =
 * fixed alert modal popup and closure
 * added support for Bootstrap 5
-* tested up to WordPress 5.8.3
+* tested up to WordPress 5.9.3
 
 = 5.1.7 =
 * fixed empty cloudiness value for current conditions
