@@ -720,8 +720,16 @@ class owmw_options
 
         add_settings_field(
             'owmw_advanced_disable_modal_js', // ID
-           esc_html__("Disable Bootstrap Modal JS",'owm-weather'), // Title
-            array( $this, 'owmw_advanced_disable_modal_js_callback' ), // Callback
+           esc_html__("Disable Bootstrap",'owm-weather'), // Title
+            array( $this, 'owmw_advanced_disable_bootstrap_callback' ), // Callback
+            'owmw-settings-admin-advanced', // Page
+            'owmw_setting_section_advanced' // Section
+        );
+
+        add_settings_field(
+            'owmw_advanced_bootstrap_version', // ID
+           esc_html__("Bootstrap Version",'owm-weather'), // Title
+            array( $this, 'owmw_advanced_bootstrap_version_callback' ), // Callback
             'owmw-settings-admin-advanced', // Page
             'owmw_setting_section_advanced' // Section
         );
@@ -1569,14 +1577,34 @@ class owmw_options
         echo '<br /><br /><span class="dashicons dashicons-editor-help"></span>'.esc_html__('Strongly recommended: ','owm-weather').'<a href="https://openweathermap.org/appid" target="_blank">'.esc_html__('Get your free OWM API key here','owm-weather').'</a>';
     }
 
-    public function owmw_advanced_disable_modal_js_callback()
+    public function owmw_advanced_disable_bootstrap_callback()
     {
         $check = $this->options['owmw_advanced_disable_modal_js'] ?? null;
+		if ($check == null) {
+			$check = $this->options['owmw_advanced_disable_modal_js'] ?? null;
+		}
 
         echo '<input id="owmw_advanced_disable_modal_js" name="owmw_option_name[owmw_advanced_disable_modal_js]" type="checkbox"';
         if ('yes' == $check) echo 'checked="yes"';
         echo ' value="yes"/>';
         echo '<label for="owmw_advanced_disable_modal_js">'. esc_html__( '(Check this if you already include Bootstrap in your theme)', 'owm-weather' ) .'</label>';
+	}
+
+    public function owmw_advanced_bootstrap_version_callback()
+    {
+        $check = $this->options['owmw_advanced_bootstrap_version'] ?? '4';
+
+        echo '<input id="owmw_advanced_bootstrap_version4" name="owmw_option_name[owmw_advanced_bootstrap_version]" type="radio"';
+		if ('4' == $check) echo 'checked="yes"';
+		echo ' value="4"/>';
+		echo '<label for="owmw_advanced_bootstrap_version4">'. esc_html__( '4', 'owm-weather' ) .'</label>';
+
+		echo '<br><br>';
+
+        echo '<input id="owmw_advanced_bootstrap_version5" name="owmw_option_name[owmw_advanced_bootstrap_version]" type="radio"';
+		if ('5' == $check) echo 'checked="yes"';
+		echo ' value="5"/>';
+		echo '<label for="owmw_advanced_bootstrap_version5">'. esc_html__( '5', 'owm-weather' ) .'</label>';
 	}
 
 	public function owmw_map_display_callback()

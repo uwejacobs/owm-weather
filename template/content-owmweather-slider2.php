@@ -41,7 +41,7 @@ div[class^="owmw-flexslider"] {
 	
 	<div class="owmw-toggle-infos owmw-hide">
     	<!-- Alert button -->
-   	    <?php echo wp_kses_post($owmw_html["alert_button"]); ?>
+   	    <?php echo wp_kses($owmw_html["alert_button"], $owmw_opt['allowed_html']); ?>
 
 		<!-- Current infos: wind, humidity, dew point, pressure, cloudiness, precipitation, visibility, uv index -->
 		<div class="owmw-infos">
@@ -120,7 +120,7 @@ div[class^="owmw-flexslider"] {
 	</div><!-- End .toggle-infos -->
 
 	<!-- Alert Modals -->
-	<?php echo wp_kses_post($owmw_html["alert_modal"]); ?>
+	<?php echo wp_kses($owmw_html["alert_modal"], $owmw_opt['allowed_html']); ?>
 
 	<!-- CSS/Scripts -->
 	<?php echo '<style type="text/css">' . wp_kses_post($owmw_html["custom_css"]) . '</style>'; ?>

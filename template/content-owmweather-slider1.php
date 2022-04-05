@@ -41,7 +41,7 @@
 	<?php echo wp_kses_post($owmw_html["now"]["end"]); ?>
 
 	<!-- Alert button -->
-   	<?php echo wp_kses_post($owmw_html["alert_button"]); ?>
+   	<?php echo wp_kses($owmw_html["alert_button"], $owmw_opt['allowed_html']); ?>
 
 	<div class="owmw-toggle-infos">
 
@@ -120,7 +120,7 @@
 	<?php echo wp_kses_post($owmw_html["owm_link_last_update_end"]); ?>
 
 	<!-- Alert Modals -->
-	<?php echo wp_kses_post($owmw_html["alert_modal"]); ?>
+	<?php echo wp_kses($owmw_html["alert_modal"], $owmw_opt['allowed_html']); ?>
 
 	<!-- CSS/Scripts -->
 	<?php echo '<style type="text/css">' . wp_kses_post($owmw_html["custom_css"]) . '</style>'; ?>

@@ -3,9 +3,9 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.1.7
+Version: 5.1.8
 Author: Uwe Jacobs
-Author URI: https://github.com/uwejacobs
+Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
 Original Author URI: https://wpcloudy.com/
 License: GPLv2
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.1.7' );
+define( 'OWM_WEATHER_VERSION', '5.1.8' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -131,6 +131,8 @@ function owmw_add_themes_scripts() {
 	wp_register_script( 'owmw-flexslider-js', plugins_url( 'js/jquery.flexslider-min.js#async', __FILE__ ));
 	wp_register_style( 'bootstrap-css', plugins_url( 'css/bootstrap.min.css', __FILE__ ));
 	wp_register_script( 'bootstrap-js', plugins_url( 'js/bootstrap.bundle.min.js#async', __FILE__ ));
+	wp_register_style( 'bootstrap5-css', plugins_url( 'css/bootstrap5.min.css', __FILE__ ));
+	wp_register_script( 'bootstrap5-js', plugins_url( 'js/bootstrap5.bundle.min.js#async', __FILE__ ));
 	wp_register_script( 'chart-js', plugins_url( 'js/chart.min.js#async', __FILE__ ));
 }
 add_action( 'wp_enqueue_scripts', 'owmw_add_themes_scripts', 10, 1 );
@@ -154,8 +156,14 @@ function owmw_add_dashboard_scripts() {
 
 	wp_register_style('owmweather-anim-css', plugins_url('css/owmweather-anim.min.css', __FILE__));
 
-	wp_register_style( 'bootstrap-css', plugins_url( 'css/bootstrap.min.css', __FILE__ ));
-	wp_enqueue_style('bootstrap-css');
+	$options = get_option("owmw_option_name");
+	if (!empty($options['owmw_advanced_bootstrap_version']) && $options['owmw_advanced_bootstrap_version'] == '5') {
+		wp_enqueue_style('bootstrap5-css');
+		wp_enqueue_script('bootstrap5-js');
+	} else {
+		wp_register_style( 'bootstrap-css', plugins_url( 'css/bootstrap.min.css', __FILE__ ));
+		wp_enqueue_style('bootstrap-css');
+	}
 	wp_register_script( 'bootstrap-js', plugins_url( 'js/bootstrap.bundle.min.js#async', __FILE__ ));
 	wp_enqueue_script('bootstrap-js');
 }
@@ -1595,10 +1603,15 @@ function owmw_get_my_weather_id($atts) {
 		wp_enqueue_script('chart-js');
 	}
 
-    if (owmw_get_admin_bypass('owmw_advanced_disable_modal_js') != 'yes') {
-		wp_enqueue_script('jquery');
-		wp_enqueue_style('bootstrap-css');
-		wp_enqueue_script('bootstrap-js');
+	if (owmw_get_admin_bypass('owmw_advanced_disable_modal_js') != 'yes') {
+		if (owmw_get_admin_bypass('owmw_advanced_bootstrap_version') == '5') {
+			wp_enqueue_style('bootstrap5-css');
+			wp_enqueue_script('bootstrap5-js');
+		} else {
+			wp_enqueue_script('jquery');
+			wp_enqueue_style('bootstrap-css');
+			wp_enqueue_script('bootstrap-js');
+		}
     }
 
 	if ($owmw_opt["disable_anims"] != 'yes') {
@@ -1763,6 +1776,9 @@ function owmw_get_my_weather($attr) {
     	$owmw_opt["table_border_width"]	            = owmw_getBypassDefault($bypass, 'table_border_width', $owmw_opt["table_border_color"] == '' ? '0' : '1');
     	$owmw_opt["table_border_style"]	            = owmw_getBypassDefault($bypass, 'table_border_style', "solid");
     	$owmw_opt["table_border_radius"]	            = owmw_getBypassDefault($bypass, 'table_border_radius', "0");
+		
+		$owmw_opt["bootstrap_version"]              = owmw_get_admin_bypass('owmw_advanced_bootstrap_version') ?? '4';
+		$owmw_opt["bootstrap_data"]              = $owmw_opt["bootstrap_version"] == '5' ? 'bs-' : '';
 /* bugbug
 		if ($owmw_opt["image_bg_cover"] == 'yes') {
 			$owmw_opt["image_bg_cover_e"] = 'cover';
@@ -2679,7 +2695,7 @@ function owmw_get_my_weather($attr) {
             $owmw_html["alert_button"] .= '<div class="owmw-alert-buttons text-center">';
             foreach($owmw_data["alerts"] as $key => $value) {
                 $modal = owmw_unique_id_esc('owmw-modal-'.esc_attr($owmw_opt["id"]));
-                $owmw_html["alert_button"] .= '<button class="owmw-alert-button btn btn-outline-owmw-alert-' . esc_attr($owmw_opt["id"]) . ' m-1" data-toggle="modal" data-target="#' . esc_attr($modal) . '">' . esc_html($value["event"]) . '</button>';
+                $owmw_html["alert_button"] .= '<button class="owmw-alert-button btn btn-outline-owmw-alert-' . esc_attr($owmw_opt["id"]) . ' m-1" data-' . $owmw_opt["bootstrap_data"] . 'toggle="modal" data-' . $owmw_opt["bootstrap_data"] . 'target="#' . esc_attr($modal) . '">' . esc_html($value["event"]) . '</button>';
                 $owmw_html["alert_modal"] .=
                     '<div class="modal fade" id="' . esc_attr($modal) . '" tabindex="-1" role="dialog" aria-labelledby="' . esc_attr($modal) . '-label" aria-hidden="true">
                       <div class="modal-dialog" role="document">
@@ -2687,7 +2703,7 @@ function owmw_get_my_weather($attr) {
                         		owmw_css_color('background-color', $owmw_opt["background_color"]) . owmw_css_color("color",$owmw_opt["text_color"]) . '">
                           <div class="modal-header">
                             <h5 class="modal-title" id="' . esc_attr($modal) . '-label">' . esc_html($value["event"]) . '</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="'.esc_html__('Close', 'owm-weather').'">
+                            <button type="button" class="close" data-' . $owmw_opt["bootstrap_data"] . 'dismiss="modal" aria-label="'.esc_html__('Close', 'owm-weather').'">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
@@ -2695,7 +2711,7 @@ function owmw_get_my_weather($attr) {
                             <p>' . esc_html($value["sender"]) . '<br>' . esc_html($value["start"]) . ' until ' . esc_html($value["end"]) .'</p>
                             <p>' . nl2br($value["text"]) . '</p></div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-' . $owmw_opt["bootstrap_data"] . 'dismiss="modal">Close</button>
                           </div>
                         </div>
                       </div>
@@ -3141,6 +3157,9 @@ $owmw_html["chart"]["daily"]["script"] =
                                                'metadata' => array(),
                                                'canvas' => array('id' => true, 'style' => true, 'aria-label' => true, 'role' => true)
 				       ));
+	$owmw_opt['allowed_html']['button']['data-' . $owmw_opt["bootstrap_data"] . 'target'] = 1;
+	$owmw_opt['allowed_html']['button']['data-' . $owmw_opt["bootstrap_data"] . 'toggle'] = 1;
+	$owmw_opt['allowed_html']['button']['data-' . $owmw_opt["bootstrap_data"] . 'dismiss'] = 1;
 
         add_filter( 'safe_style_css', function( $styles ) {
             $styles[] = 'fill';

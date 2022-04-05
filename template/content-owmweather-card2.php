@@ -100,7 +100,7 @@
         	<?php echo wp_kses_post($owmw_html["today"]["end"]); ?>
 
         	<!-- Alert button -->
-        	<?php echo wp_kses_post($owmw_html["alert_button"]); ?>
+        	<?php echo wp_kses($owmw_html["alert_button"], $owmw_opt['allowed_html']); ?>
 
         	<!-- Current infos: wind, humidity, pressure, cloudiness, precipitation -->
             <?php if ($owmw_opt["wind"] =='yes' || $owmw_opt["humidity"] =='yes' || $owmw_opt["dew_point"] =='yes' || $owmw_opt["pressure"] =='yes' || $owmw_opt["cloudiness"] =='yes' || $owmw_opt["precipitation"] =='yes' || $owmw_opt["visibility"] =='yes' || $owmw_opt["uv_index"] =='yes') { ?>
@@ -177,7 +177,7 @@
 	<?php echo wp_kses_post($owmw_html["owm_link_last_update_end"]); ?>
 
 	<!-- Alert Modals -->
-	<?php echo wp_kses_post($owmw_html["alert_modal"]); ?>
+	<?php echo wp_kses($owmw_html["alert_modal"], $owmw_opt['allowed_html']); ?>
 
 	<!-- CSS/Scripts -->
 	<?php echo '<style type="text/css">' . wp_kses_post($owmw_html["custom_css"]) . '</style>'; ?>

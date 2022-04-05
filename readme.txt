@@ -3,8 +3,8 @@ Contributors: rainbowgeek, uwejacobs
 Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
-Tested up to: 5.9.2
-Stable tag: 5.1.7
+Tested up to: 5.9.3
+Stable tag: 5.1.8
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -24,6 +24,8 @@ Create a weather, select your location, choose the data and customize the look-a
 Embed it anywhere with the automatically generated shortcode via copy and paste in posts, pages, text widgets, or directly in the PHP files of your theme.
 
 With Custom Post Types, you minimize the maintenance: Override certain settings in the system setup and thereby change all weather posts automatically.
+
+Check out the layout examples and comparisons at the [OWM Weather Blog](https://ujsoftware.com/owm-weather-blog/).
 
 == Features ==
 
@@ -592,6 +594,11 @@ Although many settings look alike, OWM Weather uses completely different weather
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.1.8 =
+* fixed alert modal popup and closure
+* added support for Bootstrap 5
+* tested up to WordPress 5.8.3
 
 = 5.1.7 =
 * fixed empty cloudiness value for current conditions
