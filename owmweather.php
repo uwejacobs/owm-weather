@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.1.8
+Version: 5.1.9
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.1.8' );
+define( 'OWM_WEATHER_VERSION', '5.1.9' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -88,9 +88,11 @@ function owmw_init() {
 	if ( is_admin() ) {
 		require_once dirname( __FILE__ ) . '/owmweather-admin.php';
 		require_once dirname( __FILE__ ) . '/owmweather-export.php';
-	    require_once dirname( __FILE__ ) . '/owmweather-widget.php';
-	    require_once dirname( __FILE__ ) . '/owmweather-pointers.php';
+		require_once dirname( __FILE__ ) . '/owmweather-widget.php';
+		require_once dirname( __FILE__ ) . '/owmweather-pointers.php';
 	}
+
+	require_once dirname( __FILE__ ) . '/owm-widget.php';
 }
 add_action('plugins_loaded', 'owmw_init');
 

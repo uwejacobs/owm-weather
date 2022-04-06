@@ -1597,9 +1597,9 @@ class owmw_options
         echo '<input id="owmw_advanced_bootstrap_version4" name="owmw_option_name[owmw_advanced_bootstrap_version]" type="radio"';
 		if ('4' == $check) echo 'checked="yes"';
 		echo ' value="4"/>';
-		echo '<label for="owmw_advanced_bootstrap_version4">'. esc_html__( '4', 'owm-weather' ) .'</label>';
+		echo '<label for="owmw_advanced_bootstrap_version4" style="margin-right: 30px;">'. esc_html__( '4', 'owm-weather' ) .'</label>';
 
-		echo '<br><br>';
+		//echo '<br><br>';
 
         echo '<input id="owmw_advanced_bootstrap_version5" name="owmw_option_name[owmw_advanced_bootstrap_version]" type="radio"';
 		if ('5' == $check) echo 'checked="yes"';
@@ -1772,6 +1772,7 @@ class owmw_options
     {
 		echo
 			'<h3>'. esc_html__("Having a problem with OWM Weather?", 'owm-weather').'</h3>
+			<p><a href="https://ujsoftware.com/owm-weather-blog/" target="_blank" title="'. esc_attr__("OWM Weather Blog", 'owm-weather').'">'. esc_html__("OWM Weather Blog", 'owm-weather').'</a></p><br>
 			<p><a href="https://wordpress.org/plugins/owm-weather/" target="_blank" title="'. esc_attr__("OWM Weather Forum on WordPress.org", 'owm-weather').'">'. esc_html__("OWM Weather Forum on WordPress.org", 'owm-weather').'</a></p>';
     }
 
