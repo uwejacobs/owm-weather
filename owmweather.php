@@ -3467,7 +3467,12 @@ function owmw_getPressureUnit($unit, $bypass_unit) {
         case "hPa": //Hectopascals
         	return $bypass_unit;
         default:
-			return $unit;
+			if (in_array($unit, array("inHg", "mmHg", "mb", "hPa"))) {
+				return $unit;
+			} else {
+				return "inHg";
+			}
+			break;
 	}
 }
 
