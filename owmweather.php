@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.1.9
+Version: 5.2.0
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.1.9' );
+define( 'OWM_WEATHER_VERSION', '5.2.0' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -415,12 +415,14 @@ function owmw_basic($post){
 	$owmw_opt["humidity"] 				    = get_post_meta($id,'_owmweather_humidity',true);
 	$owmw_opt["dew_point"] 				    = get_post_meta($id,'_owmweather_dew_point',true);
 	$owmw_opt["pressure"]				    = get_post_meta($id,'_owmweather_pressure',true);
+	$owmw_opt["pressure_unit"] 			    = get_post_meta($id,'_owmweather_pressure_unit',true);
 	$owmw_opt["cloudiness"]				    = get_post_meta($id,'_owmweather_cloudiness',true);
 	$owmw_opt["precipitation"]			    = get_post_meta($id,'_owmweather_precipitation',true);
 	$owmw_opt["visibility"]			        = get_post_meta($id,'_owmweather_visibility',true);
 	$owmw_opt["uv_index"]			        = get_post_meta($id,'_owmweather_uv_index',true);
 	$owmw_opt["alerts"]    				    = get_post_meta($id,'_owmweather_alerts',true);
-	$owmw_opt["alerts_button_color"]         = get_post_meta($id,'_owmweather_alerts_button_color',true);
+	$owmw_opt["alerts_popup"]				= owmw_getDefault($id,'_owmweather_alerts_popup', 'modal');
+	$owmw_opt["alerts_button_color"]        = get_post_meta($id,'_owmweather_alerts_button_color',true);
 	$owmw_opt["hours_forecast_no"]		    = get_post_meta($id,'_owmweather_hours_forecast_no',true);
 	$owmw_opt["hours_time_icons"]		    = get_post_meta($id,'_owmweather_hours_time_icons',true);
 	$owmw_opt["current_temperature"]		    = get_post_meta($id,'_owmweather_current_temperature',true);
@@ -799,6 +801,15 @@ function owmw_basic($post){
 				</label>
 			</p>
 			<p>
+				<label for="owmweather_pressure_unit_meta"><?php esc_html_e( 'Pressure unit: ', 'owm-weather' ) ?></label>
+				<select name="owmweather_pressure_unit">
+					<option <?php echo selected( 'inHg', $owmw_opt["pressure_unit"], false ) ?>value="inHg"><?php esc_html_e( 'Inches of Mercury', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'mmHg', $owmw_opt["pressure_unit"], false ) ?>value="mmHg"><?php esc_html_e( 'Millimeter of Mercury', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'hPa', $owmw_opt["pressure_unit"], false ) ?>value="hPa"><?php esc_html_e( 'Hectopascal', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'mb', $owmw_opt["pressure_unit"], false ) ?>value="mb"><?php esc_html_e( 'Millibar', 'owm-weather' ) ?></option>
+				</select>
+			</p>
+			<p>
 				<label for="owmweather_cloudiness_meta">
 					<input type="checkbox" name="owmweather_cloudiness" id="owmweather_cloudiness_meta" value="yes" <?php echo checked( $owmw_opt["cloudiness"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Cloudiness', 'owm-weather' ) ?>
@@ -828,6 +839,20 @@ function owmw_basic($post){
 						<?php esc_html_e( 'Alerts', 'owm-weather' ) ?>
 				</label>
 			</p>
+			<div class="form-inline">
+			<p>
+				<label for="owmweather_alerts_popup_modal_meta">
+					<input type="radio" name="owmweather_alerts_popup" id="owmweather_alerts_popup_modal_meta" value="modal" <?php echo checked( $owmw_opt["alerts_popup"], 'modal', false ) ?>/>
+						<?php esc_html_e( 'Modal', 'owm-weather' ) ?>
+				</label>
+			</p>
+			<p>
+				<label for="owmweather_display_alert_inline_meta">
+					<input type="radio" name="owmweather_alerts_popup" id="owmweather_display_alert_inline_meta" value="inline" <?php echo checked( $owmw_opt["alerts_popup"], 'inline', false ) ?>/>
+						<?php esc_html_e( 'Inline', 'owm-weather' ) ?>
+				</label>
+			</p>
+			</div>
 			<p>
 				<label for="owmweather_alerts_button_color"><?php esc_html_e( 'Alert Button color', 'owm-weather' ) ?></label>
 				<input name="owmweather_alerts_button_color" type="text" value="<?php echo esc_attr($owmw_opt["alerts_button_color"]) ?>" class="owmweather_color_picker" />
@@ -1225,6 +1250,10 @@ function owmw_basic($post){
 }
 
 function owmw_save_metabox($post_id){
+	if ($_POST['action'] == 'inline-save') {
+		return;
+	}
+
 	if ( 'owm-weather' === get_post_type($post_id) ) {
         update_post_meta($post_id, '_owmweather_version', OWM_WEATHER_VERSION);
 
@@ -1242,7 +1271,9 @@ function owmw_save_metabox($post_id){
 		owmw_save_metabox_field('today_date_format', $post_id);
 		owmw_save_metabox_field('wind_unit', $post_id);
 		owmw_save_metabox_field('wind_icon_direction', $post_id);
+		owmw_save_metabox_field('pressure_unit', $post_id);
 		owmw_save_metabox_field('hours_forecast_no', $post_id);
+		owmw_save_metabox_field('alerts_popup', $post_id);
 		owmw_save_metabox_field('display_length_days_names', $post_id);
 		owmw_save_metabox_field('forecast_no', $post_id);
 		owmw_save_metabox_field('background_color', $post_id);
@@ -1335,8 +1366,9 @@ function owmw_save_metabox_field_yn($field, $post_id) {
 function owmw_clear_cache_current() {
 	if ( 'owm-weather' === get_post_type() ) {
         global $wpdb;
-		$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmweather%' ");
-		$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmweather%' ");
+		global $post;
+		$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmweather_".$post->ID."_%' ");
+		$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmweather_".$post->ID."_%' ");
     }
 }
 add_action('save_post','owmw_clear_cache_current');
@@ -1508,6 +1540,8 @@ function owmw_get_my_weather_id($atts) {
         "today_date_format"             => false,
         "wind_unit"                     => false,
         "wind_icon_direction"           => false,
+        "pressure_unit"                 => false,
+        "alerts_popup"				    => false,
         "display_length_days_names"     => false,
         "background_color"              => false,
         "text_color"                    => false,
@@ -1725,6 +1759,7 @@ function owmw_get_my_weather($attr) {
 		$owmw_opt["custom_timezone"]			    	= owmw_get_bypass($bypass, "custom_timezone");
 		$owmw_opt["today_date_format"]      			= owmw_get_bypass($bypass, "today_date_format");
 		$owmw_opt["alerts"]                          = owmw_get_bypass_yn($bypass, "alerts");
+		$owmw_opt["alerts_popup"]     				= owmw_get_bypass($bypass, "alerts_popup");
 		$owmw_opt["alerts_button_color"]             = owmw_get_bypass($bypass, "alerts_button_color");
 		$owmw_opt["owm_language"]                    = owmw_get_bypass($bypass, "owm_language");
 		if ($owmw_opt["owm_language"] == 'Default') {
@@ -1749,6 +1784,7 @@ function owmw_get_my_weather($attr) {
         $owmw_opt["humidity"]        				= owmw_get_bypass_yn($bypass, "humidity");
         $owmw_opt["dew_point"]        				= owmw_get_bypass_yn($bypass, "dew_point");
 		$owmw_opt["pressure"]        				= owmw_get_bypass_yn($bypass, "pressure");
+        $owmw_opt["pressure_unit"]                  = owmw_get_bypass($bypass, "pressure_unit");
 		$owmw_opt["cloudiness"]      				= owmw_get_bypass_yn($bypass, "cloudiness");
 		$owmw_opt["precipitation"]     				= owmw_get_bypass_yn($bypass, "precipitation");
 		$owmw_opt["visibility"]     				    = owmw_get_bypass_yn($bypass, "visibility");
@@ -1831,7 +1867,8 @@ function owmw_get_my_weather($attr) {
                 return;
     		}
         } else {
-            $transient_key = 'owmweather_current_' . $query . $owmw_opt["owm_language"] . $owmw_opt["temperature_unit"];
+			global $post;
+            $transient_key = 'owmweather_' . $id . '_current_' . $query . $owmw_opt["owm_language"] . $owmw_opt["temperature_unit"];
            	if (false === ( $owmweather_current = get_transient( $transient_key ) ) ) {
     			$response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 10));
                 if (!is_wp_error($response)) {
@@ -1902,8 +1939,8 @@ function owmw_get_my_weather($attr) {
 			$owmw_data["feels_like_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["feels_like"]);
 		}
         $owmw_data["humidity"] = $owmweather_current->main->humidity ? $owmweather_current->main->humidity . '%' : null;
-        $owmw_data["pressure_unit"] = $owmw_opt["temperature_unit"] == 'imperial' ? esc_html__('in','owm-weather') : esc_html__('hPa','owm-weather');
-        $owmw_data["pressure"] = owmw_converthp2iom($owmw_opt["temperature_unit"], $owmweather_current->main->pressure) . ' ' . $owmw_data["pressure_unit"];
+        $owmw_data["pressure_unit"] = owmw_getPressureUnit($owmw_opt["temperature_unit"], $owmw_opt["pressure_unit"]);
+        $owmw_data["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $owmweather_current->main->pressure, $owmw_data["pressure_unit"]);
         $owmw_data["cloudiness"] = $owmweather_current->clouds->all ? $owmweather_current->clouds->all . '%' : "0%";
         $owmw_data["precipitation_unit"] = $owmw_opt["temperature_unit"] == 'imperial' ? esc_html__('in','owm-weather') : esc_html__('mm','owm-weather');
         $owmw_data["rain_1h"] = owmw_getConvertedPrecipitation($owmw_opt["temperature_unit"], $owmweather_current->rain->{"1h"} ?? 0) . ' ' . $owmw_data["precipitation_unit"];
@@ -1966,7 +2003,8 @@ function owmw_get_my_weather($attr) {
                     return;
         		}
         	} else {
-        	    $transient_key = 'owmweather_' . $owmw_data["longitude"] . $owmw_data["latitude"] . $owmw_opt["temperature_unit"] . $owmw_opt["owm_language"];
+				global $post;
+        	    $transient_key = 'owmweather_' . $id . '_' . $owmw_data["longitude"] . $owmw_data["latitude"] . $owmw_opt["temperature_unit"] . $owmw_opt["owm_language"];
               	if (false === ( $owmweather = get_transient( $transient_key))) {
     			    $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 10));
                     if (!is_wp_error($response)) {
@@ -2110,7 +2148,7 @@ function owmw_get_my_weather($attr) {
 					$owmw_data["daily"][$i]["dew_point_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["dew_point"]);
 				}
                 $owmw_data["daily"][$i]["humidity"] = $value->humidity ? $value->humidity . '%' : null;
-                $owmw_data["daily"][$i]["pressure"] = owmw_converthp2iom($owmw_opt["temperature_unit"], $value->pressure) . ' ' . $owmw_data["pressure_unit"];
+                $owmw_data["daily"][$i]["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $value->pressure, $owmw_data["pressure_unit"]);
                 $owmw_data["daily"][$i]["cloudiness"] = $value->clouds ? $value->clouds . '%' : '0%';
                 $owmw_data["daily"][$i]["uv_index"] = $value->uvi ?? null;
                 $owmw_data["daily"][$i]["rain_chance"] = $value->pop ? number_format($value->pop * 100, 0) . '%' : '0%';
@@ -2152,7 +2190,7 @@ function owmw_get_my_weather($attr) {
 						$owmw_data["hourly"][$cnt]["feels_like_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["hourly"][$cnt]["feels_like"]);
 					}
                     $owmw_data["hourly"][$cnt]["humidity"] = $value->humidity ? $value->humidity . '%' : null;
-                    $owmw_data["hourly"][$cnt]["pressure"] = owmw_converthp2iom($owmw_opt["temperature_unit"], $value->pressure) . ' ' . $owmw_data["pressure_unit"];
+                    $owmw_data["hourly"][$cnt]["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $value->pressure, $owmw_data["pressure_unit"]);
                     $owmw_data["hourly"][$cnt]["dew_point"] = $value->dew_point ? ceil($value->dew_point) : null;
                     $owmw_data["hourly"][$cnt]["cloudiness"] = $value->clouds ? $value->clouds . '%' : "0%";
                     $owmw_data["hourly"][$cnt]["uv_index"] = $value->uvi ?? null;
@@ -2208,7 +2246,8 @@ function owmw_get_my_weather($attr) {
                     return;
         		}
         	} else {
-        	    $transient_key = 'owmweather_5day_' . $owmw_data["longitude"] . $owmw_data["latitude"] . $owmw_opt["temperature_unit"] . $owmw_opt["owm_language"];
+				global $post;
+        	    $transient_key = 'owmweather_' . $id . '_5day_' . $owmw_data["longitude"] . $owmw_data["latitude"] . $owmw_opt["temperature_unit"] . $owmw_opt["owm_language"];
               	if (false === ( $owmforecast = get_transient( $transient_key))) {
     			    $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 10));
                     if (!is_wp_error($response)) {
@@ -2270,7 +2309,7 @@ function owmw_get_my_weather($attr) {
 						$owmw_data["forecast"][$cnt]["feels_like_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["forecast"][$cnt]["feels_like"]);
 					}
                     $owmw_data["forecast"][$cnt]["humidity"] = $value->main->humidity ? $value->main->humidity . '%' : null;
-                    $owmw_data["forecast"][$cnt]["pressure"] = owmw_converthp2iom($owmw_opt["temperature_unit"], $value->main->pressure) . ' ' . $owmw_data["pressure_unit"];
+                    $owmw_data["forecast"][$cnt]["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $value->main->pressure, $owmw_data["pressure_unit"]);
                     $owmw_data["forecast"][$cnt]["cloudiness"] = $value->clouds->all ? $value->clouds->all . '%' : "0%";
                     $owmw_data["forecast"][$cnt]["rain_chance"] = $value->pop ? number_format($value->pop * 100, 0) .'%': '0%';
                     $owmw_data["forecast"][$cnt]["visibility"] = owmw_getConvertedDistance($owmw_opt["temperature_unit"], $value->visibility);
@@ -2341,7 +2380,9 @@ function owmw_get_my_weather($attr) {
     	$owmw_html["owm_link_last_update_end"]   = '';
         $owmw_html["gtag"]                       = '';
         $owmw_html["alert_button"]               = '';
+        $owmw_html["alert_script"]               = '';
         $owmw_html["alert_modal"]                = '';
+        $owmw_html["alert_inline"]               = '';
         $owmw_html["table"]["hourly"]            = '';
         $owmw_html["table"]["daily"]             = '';
         $owmw_html["table"]["forecast"]          = '';
@@ -2695,30 +2736,47 @@ function owmw_get_my_weather($attr) {
 
    	        $owmw_html["custom_css"] .= owmw_generateColorCSS($owmw_opt["alerts_button_color"] ?? '#000', "owmw-alert-" . esc_attr($owmw_opt["id"]));
             $owmw_html["alert_button"] .= '<div class="owmw-alert-buttons text-center">';
-            foreach($owmw_data["alerts"] as $key => $value) {
-                $modal = owmw_unique_id_esc('owmw-modal-'.esc_attr($owmw_opt["id"]));
-                $owmw_html["alert_button"] .= '<button class="owmw-alert-button btn btn-outline-owmw-alert-' . esc_attr($owmw_opt["id"]) . ' m-1" data-' . $owmw_opt["bootstrap_data"] . 'toggle="modal" data-' . $owmw_opt["bootstrap_data"] . 'target="#' . esc_attr($modal) . '">' . esc_html($value["event"]) . '</button>';
-                $owmw_html["alert_modal"] .=
-                    '<div class="modal fade" id="' . esc_attr($modal) . '" tabindex="-1" role="dialog" aria-labelledby="' . esc_attr($modal) . '-label" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content" style="' .
-                        		owmw_css_color('background-color', $owmw_opt["background_color"]) . owmw_css_color("color",$owmw_opt["text_color"]) . '">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="' . esc_attr($modal) . '-label">' . esc_html($value["event"]) . '</h5>
-                            <button type="button" class="close" data-' . $owmw_opt["bootstrap_data"] . 'dismiss="modal" aria-label="'.esc_html__('Close', 'owm-weather').'">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <p>' . esc_html($value["sender"]) . '<br>' . esc_html($value["start"]) . ' until ' . esc_html($value["end"]) .'</p>
-                            <p>' . nl2br($value["text"]) . '</p></div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-' . $owmw_opt["bootstrap_data"] . 'dismiss="modal">Close</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>';
-            }
+
+			foreach($owmw_data["alerts"] as $key => $value) {
+				if ($owmw_opt["alerts_popup"] === "modal") {
+					$modal = owmw_unique_id_esc('owmw-modal-'.esc_attr($owmw_opt["id"]));
+					$owmw_html["alert_button"] .= '<button class="owmw-alert-button btn btn-outline-owmw-alert-' . esc_attr($owmw_opt["id"]) . ' m-1" data-' . $owmw_opt["bootstrap_data"] . 'toggle="modal" data-' . $owmw_opt["bootstrap_data"] . 'target="#' . esc_attr($modal) . '">' . esc_html($value["event"]) . '</button>';
+					$owmw_html["alert_modal"] .=
+						'<div class="modal fade" id="' . esc_attr($modal) . '" tabindex="-1" role="dialog" aria-labelledby="' . esc_attr($modal) . '-label" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+							<div class="modal-content" style="' .
+									owmw_css_color('background-color', $owmw_opt["background_color"]) . owmw_css_color("color",$owmw_opt["text_color"]) . '">
+							  <div class="modal-header">
+								<h5 class="modal-title" id="' . esc_attr($modal) . '-label">' . esc_html($value["event"]) . '</h5>
+								<button type="button" class="close" data-' . $owmw_opt["bootstrap_data"] . 'dismiss="modal" aria-label="'.esc_html__('Close', 'owm-weather').'">
+								  <span aria-hidden="true">&times;</span>
+								</button>
+							  </div>
+							  <div class="modal-body">
+								<p>' . esc_html($value["sender"]) . '<br>' . esc_html($value["start"]) . ' until ' . esc_html($value["end"]) .'</p>
+								<p>' . nl2br($value["text"]) . '</p></div>
+							  <div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-' . $owmw_opt["bootstrap_data"] . 'dismiss="modal">Close</button>
+							  </div>
+							</div>
+						  </div>
+						</div>';
+				} else {
+					$card = str_replace('-', '_', owmw_unique_id_esc('owmw_card_'.esc_attr($owmw_opt["id"])));
+					$owmw_html["alert_button"] .= '<button class="owmw-alert-button btn btn-outline-owmw-alert-' . esc_attr($owmw_opt["id"]) . ' m-1" onclick="toggleAlert_'.esc_attr($card).'();">' . esc_html($value["event"]) . '</button>';
+					$owmw_html["alert_script"] .= 'function toggleAlert_'.esc_attr($card).'() { var div = document.getElementById("'.esc_html($card).'"); div.style.display = div.style.display == "none" ? "block" : "none"; }';
+					$owmw_html["alert_inline"] .= '<div id="'.esc_attr($card).'" class="card" style="display: none;' .
+									owmw_css_color('background-color', $owmw_opt["background_color"]) . owmw_css_color("color",$owmw_opt["text_color"]) . '">';
+					$owmw_html["alert_inline"] .= '<div class="card-header">';
+					$owmw_html["alert_inline"] .= '<h5>' . esc_html($value["event"]) . '</h5>';
+					$owmw_html["alert_inline"] .= '<div class="card-header">';
+					$owmw_html["alert_inline"] .= '<p>' . esc_html($value["sender"]) . '<br>' . esc_html($value["start"]) . ' until ' . esc_html($value["end"]) .'</p>';
+					$owmw_html["alert_inline"] .= '<p>' . nl2br($value["text"]) . '</p>';
+					$owmw_html["alert_inline"] .= '</div>';
+					$owmw_html["alert_inline"] .= '</div>';
+					$owmw_html["alert_inline"] .= '</div>';
+				}
+			}
             $owmw_html["alert_button"] .= '</div>';
 	    }
 
@@ -2921,7 +2979,7 @@ $owmw_html["chart"]["daily"]["script"] =
         }
         //Hourly
 	    if ($owmw_opt["hours_forecast_no"] > 0) {
-	        $owmw_html["container_table_hourly_div"] = owmw_unique_id_esc('owmw-table_hourly-container-'.esc_attr($owmw_opt["id"]));
+	        $owmw_html["container_table_hourly_div"] = owmw_unique_id_esc('owmw-table-hourly-container-'.esc_attr($owmw_opt["id"]));
             $owmw_html["table"]["hourly"] = '<div class="table-responsive owmw-table owmw-table-hours"><table class="table table-sm table-bordered" style="'.owmw_css_color('background-color', $owmw_opt["table_background_color"]).owmw_css_color("color",$owmw_opt["table_text_color"]).
 		                                    owmw_css_border($owmw_opt["table_border_color"],$owmw_opt["table_border_width"],$owmw_opt["table_border_style"], $owmw_opt["table_border_radius"]).'">';
             $owmw_html["table"]["hourly"] .= '<thead><tr>';
@@ -3002,7 +3060,7 @@ $owmw_html["chart"]["daily"]["script"] =
 
         //daily
 	    if ($owmw_opt["days_forecast_no"] > 0) {
-	        $owmw_html["container_table_daily_div"] = owmw_unique_id_esc('owmw-table_daily-container-'.esc_attr($owmw_opt["id"]));
+	        $owmw_html["container_table_daily_div"] = owmw_unique_id_esc('owmw-table-daily-container-'.esc_attr($owmw_opt["id"]));
             $owmw_html["table"]["daily"] = '<div class="table-responsive owmw-table owmw-table-hours"><table class="table table-sm table-bordered" style="'.owmw_css_color('background-color', $owmw_opt["table_background_color"]).owmw_css_color("color",$owmw_opt["table_text_color"]).
 		                                    owmw_css_border($owmw_opt["table_border_color"],$owmw_opt["table_border_width"],$owmw_opt["table_border_style"], $owmw_opt["table_border_radius"]).'">';
             $owmw_html["table"]["daily"] .= '<thead><tr>';
@@ -3077,7 +3135,7 @@ $owmw_html["chart"]["daily"]["script"] =
 
         //5 days / 3 hours
 //	    if ($owmw_opt["hours_forecast_no"] > 0) {
-	        $owmw_html["container_table_forecast_div"] = owmw_unique_id_esc('owmw-table_forecast-container-'.esc_attr($owmw_opt["id"]));
+	        $owmw_html["container_table_forecast_div"] = owmw_unique_id_esc('owmw-table-forecast-container-'.esc_attr($owmw_opt["id"]));
             $owmw_html["table"]["forecast"] = '<div class="table-responsive owmw-table owmw-table-hours"><table class="table table-sm table-bordered" style="'.owmw_css_color('background-color', $owmw_opt["table_background_color"]).owmw_css_color("color",$owmw_opt["table_text_color"]).
 		                                    owmw_css_border($owmw_opt["table_border_color"],$owmw_opt["table_border_width"],$owmw_opt["table_border_style"], $owmw_opt["table_border_radius"]).'">';
             $owmw_html["table"]["forecast"] .= '<thead><tr>';
@@ -3162,6 +3220,7 @@ $owmw_html["chart"]["daily"]["script"] =
 	$owmw_opt['allowed_html']['button']['data-' . $owmw_opt["bootstrap_data"] . 'target'] = 1;
 	$owmw_opt['allowed_html']['button']['data-' . $owmw_opt["bootstrap_data"] . 'toggle'] = 1;
 	$owmw_opt['allowed_html']['button']['data-' . $owmw_opt["bootstrap_data"] . 'dismiss'] = 1;
+	$owmw_opt['allowed_html']['button']['onclick'] = 1;
 
         add_filter( 'safe_style_css', function( $styles ) {
             $styles[] = 'fill';
@@ -3400,6 +3459,18 @@ function owmw_getWindSpeedUnit($unit, $bypass_unit) {
 	}
 }
 
+function owmw_getPressureUnit($unit, $bypass_unit) {
+	switch ($bypass_unit) {
+        case "inHg": //Inches of Mercury
+        case "mmHg": //Millimeter of Mercury
+        case "mb": //millibar
+        case "hPa": //Hectopascals
+        	return $bypass_unit;
+        default:
+			return $unit;
+	}
+}
+
 function owmw_getConvertedPrecipitation($unit, $p) {
     if ($unit == 'imperial') {
         return number_format($p / 25.4, 1);
@@ -3416,12 +3487,33 @@ function owmw_getConvertedDistance($unit, $p) {
     return ($p ? number_format($p / 1000, 1)." km" : "");
 }
 
-function owmw_converthp2iom($unit, $p) {
-    if ($unit == 'imperial') {
-        return number_format($p / 33.86389, 2);
-    }
+function owmw_converthPa($unit, $p, $punit) {
+	$precision = 2;
+	switch ($punit) {
+        case "inHg": //Inches of Mercury
+			$p *= 0.029529983071445;
+          	break;
+        case "mmHg": //Millimeter of Mercury
+			$precision = 1;
+			$p *= 0.75006157584566;
+          	break;
+        case "mb": //millibar
+			$precision = 0;
+          	break;
+        case "hPa": //Hectopascals
+			$precision = 0;
+          	break;
+        default:
+        	if ($unit =='metric') {
+				$precision = 1;
+				$p /= 0.75006157584566;//mmHg
+			} else {
+				$p /= 0.029529983071445;//inHg
+			}
+			break;
+	}
 
-    return number_format($p,0);
+    return number_format($p,$precision) . " " . $punit;
 }
 
 function owmw_getDefault($id, $field, $default) {
@@ -3515,6 +3607,20 @@ function owmw_sanitize_validate_field($key, $value) {
                 $value = sanitize_text_field($value);
                 if (!in_array($value, array("to", "from"))) {
                     $value = "to";
+                }
+                break;
+
+            case "pressure_unit":
+                $value = sanitize_text_field($value);
+                if (!in_array($value, array("inHg", "mmHg", "mb", "hPa"))) {
+                    $value = "inHg";
+                }
+                break;
+
+            case "alerts_popup":
+                $value = sanitize_text_field($value);
+                if (!in_array($value, array("modal", "inline"))) {
+                    $value = "modal";
                 }
                 break;
 

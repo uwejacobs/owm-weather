@@ -25,12 +25,6 @@
 </style>
 <!-- Start #owm-weather -->
 <?php echo wp_kses_post($owmw_html["container"]["start"]); ?>
-	<div class="custom-navigation d-none">
-  	<a href="#" class="flex-prev"><?php esc_html_e('Prev', 'owm-weather') ?></a>
-  	<div class="custom-controls-container"></div>
-  	<a href="#" class="flex-next"><<?php esc_html_e('Next', 'owm-weather') ?>/a>
-	</div>
-
 	<!-- Current weather -->
 	<?php echo wp_kses_post($owmw_html["now"]["start"]); ?>
 		<?php echo wp_kses_post($owmw_html["now"]["location_name"]); ?>
@@ -42,6 +36,7 @@
 
 	<!-- Alert button -->
    	<?php echo wp_kses($owmw_html["alert_button"], $owmw_opt['allowed_html']); ?>
+   	<?php echo wp_kses($owmw_html["alert_inline"], $owmw_opt['allowed_html']); ?>
 
 	<div class="owmw-toggle-infos">
 
@@ -119,8 +114,9 @@
 	<?php echo wp_kses_post($owmw_html["last_update"]); ?>
 	<?php echo wp_kses_post($owmw_html["owm_link_last_update_end"]); ?>
 
-	<!-- Alert Modals -->
+	<!-- Alert Modals and Scripts -->
 	<?php echo wp_kses($owmw_html["alert_modal"], $owmw_opt['allowed_html']); ?>
+	<?php echo '<script type="text/javascript">' . wp_kses_post($owmw_html["alert_script"]) . '</script>'; ?>
 
 	<!-- CSS/Scripts -->
 	<?php echo '<style type="text/css">' . wp_kses_post($owmw_html["custom_css"]) . '</style>'; ?>

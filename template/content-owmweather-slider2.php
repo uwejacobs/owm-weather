@@ -19,11 +19,11 @@ div[class^="owmw-flexslider"] {
 
 <!-- Start #owm-weather -->
 <?php echo wp_kses_post($owmw_html["container"]["start"]); ?>
-	<div class="custom-navigation d-none">
+	<!--div class="custom-navigation d-none">
   		<a href="#" class="flex-prev"><?php esc_html_e('Prev', 'owm-weather') ?></a>
   		<div class="custom-controls-container"></div>
   		<a href="#" class="flex-next"><?php esc_html_e('Next', 'owm-weather') ?></a>
-	</div>
+	</div-->
 
 	<button class="owmw-btn-toggle-infos btn btn-info">+</button>
 
@@ -42,6 +42,7 @@ div[class^="owmw-flexslider"] {
 	<div class="owmw-toggle-infos owmw-hide">
     	<!-- Alert button -->
    	    <?php echo wp_kses($owmw_html["alert_button"], $owmw_opt['allowed_html']); ?>
+   	    <?php echo wp_kses($owmw_html["alert_inline"], $owmw_opt['allowed_html']); ?>
 
 		<!-- Current infos: wind, humidity, dew point, pressure, cloudiness, precipitation, visibility, uv index -->
 		<div class="owmw-infos">
@@ -119,8 +120,9 @@ div[class^="owmw-flexslider"] {
 
 	</div><!-- End .toggle-infos -->
 
-	<!-- Alert Modals -->
+	<!-- Alert Modals and Scripts -->
 	<?php echo wp_kses($owmw_html["alert_modal"], $owmw_opt['allowed_html']); ?>
+    	<?php echo '<script type="text/javascript">' . wp_kses_post($owmw_html["alert_script"]) . '</script>'; ?>
 
 	<!-- CSS/Scripts -->
 	<?php echo '<style type="text/css">' . wp_kses_post($owmw_html["custom_css"]) . '</style>'; ?>

@@ -1653,7 +1653,7 @@ msgstr "Сб"
 #: owmweather.php:2782 owmweather.php:2872 owmweather.php:2913
 #: owmweather.php:3069
 msgid "Feels Like"
-msgstr "Комфорт"
+msgstr "Чувствует себя как"
 
 #: owmweather.php:2425 owmweather.php:2456
 msgid "Clouds"

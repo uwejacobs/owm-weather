@@ -414,6 +414,14 @@ class owmw_options
         );
 
 		add_settings_field(
+            'owmw_pressure_unit', // ID
+           esc_html__("Pressure unit",'owm-weather'), // Title
+            array( $this, 'owmw_display_pressure_unit_callback' ), // Callback
+            'owmw-settings-admin-display', // Page
+            'owmw_setting_section_display' // Section
+        );
+
+		add_settings_field(
             'owmw_cloudiness', // ID
             esc_html__("Cloudiness",'owm-weather'), // Title
             array( $this, 'owmw_display_cloudiness_callback' ), // Callback
@@ -452,6 +460,15 @@ class owmw_options
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
         );
+
+		add_settings_field(
+            'owmw_alerts_popup', // ID
+			esc_html__("Alerts Popup:",'owm-weather'), // Title
+            array( $this, 'owmw_display_alerts_popup_callback' ), // Callback
+            'owmw-settings-admin-display', // Page
+            'owmw_setting_section_display' // Section
+        );
+
 
         add_settings_field(
             'owmw_alerts_button_color', // ID
@@ -1240,6 +1257,29 @@ class owmw_options
         $this->owmw_bypassRadioButtons('owmw_pressure');
     }
 
+    public function owmw_display_pressure_unit_callback()
+    {
+        $selected = $this->options['owmw_pressure_unit'] ?? "nobypass";
+
+        echo ' <select id="owmw_pressure_unit" name="owmw_option_name[owmw_pressure_unit]"> ';
+        echo ' <option ';
+        if ('nobypass' == $selected) echo 'selected="selected"';
+        echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
+        echo ' <option ';
+        if ('inHg' == $selected) echo 'selected="selected"';
+        echo ' value="inHg">'. esc_html__( 'Inches of Mercury', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('mmHg' == $selected) echo 'selected="selected"';
+        echo ' value="mmHg">'. esc_html__( 'Millimeter of Mercury', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('hPa' == $selected) echo 'selected="selected"';
+        echo ' value="hPa">'. esc_html__( 'Hectopascal', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('mb' == $selected) echo 'selected="selected"';
+        echo ' value="mb">'. esc_html__( 'Millibar', 'owm-weather' ) .'</option>';
+        echo '</select>';
+    }
+
 	public function owmw_display_cloudiness_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_cloudiness');
@@ -1358,6 +1398,30 @@ class owmw_options
 		echo ' value="8">'. esc_html__( 'Today + 7 days', 'owm-weather' ) .'</option>';
 		echo '</select>';
 	}
+
+	public function owmw_display_alerts_popup_callback()
+    {
+   		$check = $this->options['owmw_alerts_popup'] ?? "nobypass";
+
+        echo '<input id="owmw_alerts_popup_nobypass" name="owmw_option_name[owmw_alerts_popup]" type="radio"';
+		if ('nobypass' == $check) echo 'checked="yes"';
+		echo ' value="nobypass"/>';
+		echo '<label for="owmw_alerts_popup_nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</label>';
+
+		echo '<br><br>';
+
+        echo '<input id="owmw_alerts_popup_modal" name="owmw_option_name[owmw_alerts_popup]" type="radio"';
+		if ('modal' == $check) echo 'checked="yes"';
+		echo ' value="modal"/>';
+		echo '<label for="owmw_alerts_popup_modal">'. esc_html__( 'Modal', 'owm-weather' ) .'</label>';
+
+		echo '<br><br>';
+
+		echo '<input id="owmw_alerts_popup_inline" name="owmw_option_name[owmw_alerts_popup]" type="radio"';
+		if ('inline' == $check) echo 'checked="yes"';
+		echo ' value="inline"/>';
+		echo '<label for="owmw_alerts_popup_inline">'. esc_html__( 'Inline', 'owm-weather' ) .'</label>';
+    }
 
     public function owmw_display_forecast_precipitations_callback()
     {

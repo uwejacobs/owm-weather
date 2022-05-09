@@ -73,6 +73,7 @@
 
         	<!-- Alert button -->
         	<?php echo wp_kses($owmw_html["alert_button"], $owmw_opt['allowed_html']); ?>
+        	<?php echo wp_kses($owmw_html["alert_inline"], $owmw_opt['allowed_html']); ?>
 
         </div>
 	
@@ -137,8 +138,9 @@
 	<?php echo wp_kses_post($owmw_html["last_update"]); ?>
 	<?php echo wp_kses_post($owmw_html["owm_link_last_update_end"]); ?>
 
-	<!-- Alert Modals -->
+	<!-- Alert Modals and Scripts -->
 	<?php echo wp_kses($owmw_html["alert_modal"], $owmw_opt['allowed_html']); ?>
+	<?php echo '<script type="text/javascript">' . wp_kses_post($owmw_html["alert_script"]) . '</script>'; ?>
 
 	<!-- CSS/Scripts -->
 	<?php echo '<style type="text/css">' . wp_kses_post($owmw_html["custom_css"]) . '</style>'; ?>
