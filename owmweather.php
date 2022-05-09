@@ -2738,7 +2738,7 @@ function owmw_get_my_weather($attr) {
             $owmw_html["alert_button"] .= '<div class="owmw-alert-buttons text-center">';
 
 			foreach($owmw_data["alerts"] as $key => $value) {
-				if ($owmw_opt["alerts_popup"] === "modal") {
+				if (empty($owmw_opt["alerts_popup"]) || $owmw_opt["alerts_popup"] === "modal") {
 					$modal = owmw_unique_id_esc('owmw-modal-'.esc_attr($owmw_opt["id"]));
 					$owmw_html["alert_button"] .= '<button class="owmw-alert-button btn btn-outline-owmw-alert-' . esc_attr($owmw_opt["id"]) . ' m-1" data-' . $owmw_opt["bootstrap_data"] . 'toggle="modal" data-' . $owmw_opt["bootstrap_data"] . 'target="#' . esc_attr($modal) . '">' . esc_html($value["event"]) . '</button>';
 					$owmw_html["alert_modal"] .=
