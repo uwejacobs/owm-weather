@@ -42,7 +42,7 @@
 	<?php echo wp_kses_post($owmw_html["info"]["end"]); ?>
 
 	<!-- Hourly Table -->
-	<?php echo wp_kses_post($owmw_html["table"]["hourly"]); ?>
+	<?php echo wp_kses($owmw_html["table"]["hourly"], $owmw_opt['allowed_html']); ?>
 	<!-- Daily Table -->
 	<?php echo wp_kses_post($owmw_html["table"]["daily"]); ?>
 

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OWM Weather\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/owm-weather\n"
 "POT-Creation-Date: 2022-03-03T16:46:04-05:00\n"
-"PO-Revision-Date: 2022-03-04 09:45-0500\n"
+"PO-Revision-Date: 2022-05-18 14:09-0400\n"
 "Last-Translator: Walter Tosolini <waltertosolini@outlook.it>\n"
 "Language-Team: Benjamin DENIS <contact@wpcloudy.com>\n"
 "Language: it\n"
@@ -110,7 +110,7 @@ msgstr "Resetta le impostazioni"
 
 #: owmweather-admin.php:164
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: owmweather-admin.php:165 owmweather.php:482 owmweather.php:544
 msgid "Basic"
@@ -122,7 +122,7 @@ msgstr "Mostra"
 
 #: owmweather-admin.php:167 owmweather.php:484
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: owmweather-admin.php:168 owmweather-admin.php:740 owmweather.php:485
 msgid "Map"
@@ -244,7 +244,7 @@ msgstr "Unità eolica"
 
 #: owmweather-admin.php:386
 msgid "Wind icon pointer direction"
-msgstr ""
+msgstr "Direzione puntatore dell'icona del vento"
 
 #: owmweather-admin.php:394 owmweather.php:776 owmweather.php:2416
 #: owmweather.php:2602 owmweather.php:2925 owmweather.php:3006
@@ -259,7 +259,7 @@ msgstr "Umidità"
 #: template/content-owmweather-card1.php:85
 #: template/content-owmweather-card2.php:114
 msgid "Dew Point"
-msgstr ""
+msgstr "Punto di rugiada"
 
 #: owmweather-admin.php:410 owmweather.php:788 owmweather.php:2422
 #: owmweather.php:2494 owmweather.php:2612 owmweather.php:2932
@@ -288,22 +288,22 @@ msgstr "Precipitazioni"
 #: template/content-owmweather-card1.php:89
 #: template/content-owmweather-card2.php:118
 msgid "Visibility"
-msgstr ""
+msgstr "Visibilità"
 
 #: owmweather-admin.php:442 owmweather.php:812 owmweather.php:2434
 #: owmweather.php:2628 owmweather.php:2938 owmweather.php:3016
 #: template/content-owmweather-card1.php:90
 #: template/content-owmweather-card2.php:119
 msgid "UV Index"
-msgstr ""
+msgstr "Indice UV"
 
 #: owmweather-admin.php:450 owmweather.php:818
 msgid "Alerts"
-msgstr ""
+msgstr "Avvisi"
 
 #: owmweather-admin.php:458
 msgid "Alerts Button Color"
-msgstr ""
+msgstr "Colore pulsante Avvisi"
 
 #: owmweather-admin.php:466
 #, fuzzy
@@ -532,7 +532,7 @@ msgstr "Impostazioni mappa da aggirare:"
 
 #: owmweather-admin.php:904
 msgid "OWM Weather System settings:"
-msgstr "OWM Weather configurazione globale"
+msgstr "OWM Weather configurazione globale:"
 
 #: owmweather-admin.php:909
 #, fuzzy
@@ -1966,11 +1966,13 @@ msgstr "Nessun Tempo atmosferico nel cestino"
 
 #: owmweather.php:3220
 msgid "weather"
-msgstr "Tempo atmosferico"
+msgstr "tempo atmosferico"
 
 #: owmweather.php:3221
 msgid "Listing weather"
-msgstr "lista di Tempo atmosferici"
+msgstr ""
+"L\n"
+"ista di Tempo atmosferici"
 
 #: owmweather.php:3281
 #, fuzzy
@@ -2034,139 +2036,143 @@ msgstr ""
 
 #: owmweather.php:3807
 msgid "Thunderstorm with Light Rain"
-msgstr "temporale con pioggerella"
+msgstr "Temporale con pioggerella"
 
 #: owmweather.php:3808
 msgid "Thunderstorm with Rain"
-msgstr "temporale con pioggia"
+msgstr "Temporale con pioggia"
 
 #: owmweather.php:3809
 msgid "Thunderstorm with Heavy Rain"
-msgstr "temporale con pioggia forte"
+msgstr "Temporale con pioggia forte"
 
 #: owmweather.php:3810
 msgid "Light Thunderstorm"
-msgstr "temporale"
+msgstr "Temporale"
 
 #: owmweather.php:3811
 msgid "Thunderstorm"
-msgstr "temporale"
+msgstr "Temporale"
 
 #: owmweather.php:3812
 msgid "Heavy Thunderstorm"
-msgstr "temporale forte"
+msgstr "Temporale forte"
 
 #: owmweather.php:3813
 msgid "Ragged Thunderstorm"
-msgstr "temporale"
+msgstr "Temporale"
 
 #: owmweather.php:3814
 msgid "Thunderstorm with Light Drizzle"
-msgstr "temporale con pioggerella"
+msgstr "Temporale con pioggerella"
 
 #: owmweather.php:3815
 msgid "Thunderstorm with Drizzle"
-msgstr "temporale con pioggerella"
+msgstr "Temporale con pioggerella"
 
 #: owmweather.php:3816
 msgid "Thunderstorm with Heavy Drizzle"
-msgstr "temporale con pioggerella"
+msgstr "Temporale con pioggerella"
 
 #: owmweather.php:3817
 msgid "Light Intensity Drizzle"
-msgstr "pioggerella"
+msgstr "Pioggerella"
 
 #: owmweather.php:3818
 msgid "Drizzle"
-msgstr "pioggerella"
+msgstr "Pioggerella"
 
 #: owmweather.php:3819
 msgid "Heavy Intensity Drizzle"
-msgstr "pioggerella"
+msgstr "Pioggerella"
 
 #: owmweather.php:3820
 msgid "Light Intensity Drizzle Rain"
-msgstr "pioggerella"
+msgstr "Pioggerella"
 
 #: owmweather.php:3821
 msgid "Drizzle Rain"
-msgstr "pioggerella"
+msgstr "Pioggerella"
 
 #: owmweather.php:3822
 msgid "Heavy Intensity Drizzle Rain"
-msgstr "forte pioggerella"
+msgstr "Forte pioggerella"
 
 #: owmweather.php:3823
 msgid "Shower Rain and Drizzle"
-msgstr "pioggerella con rovesci torrenziali improvvisi"
+msgstr ""
+"P\n"
+"ioggerella con rovesci torrenziali improvvisi"
 
 #: owmweather.php:3824
 msgid "Heavy Shower Rain and Drizzle"
-msgstr "pioggia forte"
+msgstr ""
+"P\n"
+"ioggia forte"
 
 #: owmweather.php:3825
 msgid "Shower Drizzle"
-msgstr "acquazzone"
+msgstr "Acquazzone"
 
 #: owmweather.php:3826
 msgid "Light Rain"
-msgstr "pioggia leggera"
+msgstr "Pioggia leggera"
 
 #: owmweather.php:3827
 msgid "Moderate Rain"
-msgstr "pioggia moderata"
+msgstr "Pioggia moderata"
 
 #: owmweather.php:3828
 msgid "Heavy Intensity Rain"
-msgstr "forte pioggia"
+msgstr "Forte pioggia"
 
 #: owmweather.php:3829
 msgid "Very Heavy Rain"
-msgstr "pioggia fortissima"
+msgstr "Pioggia fortissima"
 
 #: owmweather.php:3830
 msgid "Extreme Rain"
-msgstr "pioggia estrema"
+msgstr "Pioggia estrema"
 
 #: owmweather.php:3831
 msgid "Freezing Rain"
-msgstr "pioggia gelata"
+msgstr "Pioggia gelata"
 
 #: owmweather.php:3832
 msgid "Light Intensity Shower Rain"
-msgstr "pioggerella"
+msgstr "Pioggerella"
 
 #: owmweather.php:3833
 msgid "Shower Rain"
-msgstr "acquazzone"
+msgstr "Acquazzone"
 
 #: owmweather.php:3834
 msgid "Heavy Intensity Shower Rain"
-msgstr "acquazzone"
+msgstr "Acquazzone"
 
 #: owmweather.php:3835
 msgid "Ragged Shower Rain"
-msgstr "pioggia torrenziale"
+msgstr "Pioggia torrenziale"
 
 #: owmweather.php:3836
 msgid "Light Snow"
-msgstr "neve"
+msgstr "Neve"
 
 #: owmweather.php:3838
 msgid "Heavy Snow"
-msgstr "forte nevicata"
+msgstr "Forte nevicata"
 
 #: owmweather.php:3839
 msgid "Sleet"
-msgstr "nevischio"
+msgstr "Nevischio"
 
 #: owmweather.php:3840
 msgid "Light Shower Sleet"
-msgstr "pioggerella"
+msgstr "Pioggerella"
 
 #: owmweather.php:3841
 msgid "Shower Sleet"
-msgstr "pioggerella"
+msgstr "Pioggerella"
 
 #: owmweather.php:3842
 msgid "Light Rain and Snow"
@@ -2174,19 +2180,19 @@ msgstr "Leggero nevischio"
 
 #: owmweather.php:3843
 msgid "Rain and Snow"
-msgstr "nevischio misto pioggia"
+msgstr "Nevischio misto pioggia"
 
 #: owmweather.php:3844
 msgid "Light Shower Snow"
-msgstr "neve leggera"
+msgstr "Neve leggera"
 
 #: owmweather.php:3845
 msgid "Shower Snow"
-msgstr "forte nevicata"
+msgstr "Forte nevicata"
 
 #: owmweather.php:3846
 msgid "Heavy Shower Snow"
-msgstr "nevicata forte"
+msgstr "Nevicata forte"
 
 #: owmweather.php:3847
 msgid "Mist"
@@ -2194,7 +2200,7 @@ msgstr ""
 
 #: owmweather.php:3848
 msgid "Smoke"
-msgstr "fumo"
+msgstr "Fumo"
 
 #: owmweather.php:3849
 msgid "Haze"
@@ -2202,11 +2208,11 @@ msgstr ""
 
 #: owmweather.php:3850
 msgid "Sand / Dust Whirls"
-msgstr "mulinelli di sabbia/polvere"
+msgstr "Mulinelli di sabbia/polvere"
 
 #: owmweather.php:3851
 msgid "Fog"
-msgstr "nebbia"
+msgstr "Nebbia"
 
 #: owmweather.php:3852
 msgid "Sand"
@@ -2226,27 +2232,27 @@ msgstr ""
 
 #: owmweather.php:3856
 msgid "Tornado"
-msgstr "tornado"
+msgstr "Tornado"
 
 #: owmweather.php:3857
 msgid "Clear sky"
-msgstr "cielo sereno"
+msgstr "Cielo sereno"
 
 #: owmweather.php:3858
 msgid "Few Clouds"
-msgstr "poche nuvole"
+msgstr "Poche nuvole"
 
 #: owmweather.php:3859
 msgid "Scattered Clouds"
-msgstr "nubi sparse"
+msgstr "Nubi sparse"
 
 #: owmweather.php:3860
 msgid "Broken Clouds"
-msgstr "nubi sparse"
+msgstr "Nubi sparse"
 
 #: owmweather.php:3861
 msgid "Overcast Clouds"
-msgstr "cielo coperto"
+msgstr "Cielo coperto"
 
 #: template/content-owmweather-slider1.php:29
 #: template/content-owmweather-slider2.php:23

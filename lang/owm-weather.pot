@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: OWM Weather 5.2.0\n"
+"Project-Id-Version: OWM Weather 5.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/owm-weather\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-05-09T18:33:05-04:00\n"
+"POT-Creation-Date: 2022-05-18T14:10:00-04:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: owm-weather\n"
@@ -1929,7 +1929,7 @@ msgid "Precipitation Classic"
 msgstr ""
 
 #: owmweather.php:2535
-#: owmweather.php:3964
+#: owmweather.php:3969
 msgid "Snow"
 msgstr ""
 
@@ -2130,219 +2130,219 @@ msgstr ""
 msgid "NW"
 msgstr ""
 
-#: owmweather.php:3934
+#: owmweather.php:3939
 msgid "Thunderstorm with Light Rain"
 msgstr ""
 
-#: owmweather.php:3935
+#: owmweather.php:3940
 msgid "Thunderstorm with Rain"
 msgstr ""
 
-#: owmweather.php:3936
+#: owmweather.php:3941
 msgid "Thunderstorm with Heavy Rain"
 msgstr ""
 
-#: owmweather.php:3937
+#: owmweather.php:3942
 msgid "Light Thunderstorm"
 msgstr ""
 
-#: owmweather.php:3938
+#: owmweather.php:3943
 msgid "Thunderstorm"
 msgstr ""
 
-#: owmweather.php:3939
+#: owmweather.php:3944
 msgid "Heavy Thunderstorm"
 msgstr ""
 
-#: owmweather.php:3940
+#: owmweather.php:3945
 msgid "Ragged Thunderstorm"
 msgstr ""
 
-#: owmweather.php:3941
+#: owmweather.php:3946
 msgid "Thunderstorm with Light Drizzle"
 msgstr ""
 
-#: owmweather.php:3942
+#: owmweather.php:3947
 msgid "Thunderstorm with Drizzle"
 msgstr ""
 
-#: owmweather.php:3943
+#: owmweather.php:3948
 msgid "Thunderstorm with Heavy Drizzle"
 msgstr ""
 
-#: owmweather.php:3944
+#: owmweather.php:3949
 msgid "Light Intensity Drizzle"
 msgstr ""
 
-#: owmweather.php:3945
+#: owmweather.php:3950
 msgid "Drizzle"
 msgstr ""
 
-#: owmweather.php:3946
+#: owmweather.php:3951
 msgid "Heavy Intensity Drizzle"
 msgstr ""
 
-#: owmweather.php:3947
+#: owmweather.php:3952
 msgid "Light Intensity Drizzle Rain"
 msgstr ""
 
-#: owmweather.php:3948
+#: owmweather.php:3953
 msgid "Drizzle Rain"
 msgstr ""
 
-#: owmweather.php:3949
+#: owmweather.php:3954
 msgid "Heavy Intensity Drizzle Rain"
 msgstr ""
 
-#: owmweather.php:3950
+#: owmweather.php:3955
 msgid "Shower Rain and Drizzle"
 msgstr ""
 
-#: owmweather.php:3951
+#: owmweather.php:3956
 msgid "Heavy Shower Rain and Drizzle"
 msgstr ""
 
-#: owmweather.php:3952
+#: owmweather.php:3957
 msgid "Shower Drizzle"
 msgstr ""
 
-#: owmweather.php:3953
+#: owmweather.php:3958
 msgid "Light Rain"
 msgstr ""
 
-#: owmweather.php:3954
+#: owmweather.php:3959
 msgid "Moderate Rain"
 msgstr ""
 
-#: owmweather.php:3955
+#: owmweather.php:3960
 msgid "Heavy Intensity Rain"
 msgstr ""
 
-#: owmweather.php:3956
+#: owmweather.php:3961
 msgid "Very Heavy Rain"
 msgstr ""
 
-#: owmweather.php:3957
+#: owmweather.php:3962
 msgid "Extreme Rain"
 msgstr ""
 
-#: owmweather.php:3958
+#: owmweather.php:3963
 msgid "Freezing Rain"
 msgstr ""
 
-#: owmweather.php:3959
+#: owmweather.php:3964
 msgid "Light Intensity Shower Rain"
 msgstr ""
 
-#: owmweather.php:3960
+#: owmweather.php:3965
 msgid "Shower Rain"
 msgstr ""
 
-#: owmweather.php:3961
+#: owmweather.php:3966
 msgid "Heavy Intensity Shower Rain"
 msgstr ""
 
-#: owmweather.php:3962
+#: owmweather.php:3967
 msgid "Ragged Shower Rain"
 msgstr ""
 
-#: owmweather.php:3963
+#: owmweather.php:3968
 msgid "Light Snow"
 msgstr ""
 
-#: owmweather.php:3965
+#: owmweather.php:3970
 msgid "Heavy Snow"
 msgstr ""
 
-#: owmweather.php:3966
+#: owmweather.php:3971
 msgid "Sleet"
 msgstr ""
 
-#: owmweather.php:3967
+#: owmweather.php:3972
 msgid "Light Shower Sleet"
 msgstr ""
 
-#: owmweather.php:3968
+#: owmweather.php:3973
 msgid "Shower Sleet"
 msgstr ""
 
-#: owmweather.php:3969
+#: owmweather.php:3974
 msgid "Light Rain and Snow"
 msgstr ""
 
-#: owmweather.php:3970
+#: owmweather.php:3975
 msgid "Rain and Snow"
 msgstr ""
 
-#: owmweather.php:3971
+#: owmweather.php:3976
 msgid "Light Shower Snow"
 msgstr ""
 
-#: owmweather.php:3972
+#: owmweather.php:3977
 msgid "Shower Snow"
 msgstr ""
 
-#: owmweather.php:3973
+#: owmweather.php:3978
 msgid "Heavy Shower Snow"
 msgstr ""
 
-#: owmweather.php:3974
+#: owmweather.php:3979
 msgid "Mist"
 msgstr ""
 
-#: owmweather.php:3975
+#: owmweather.php:3980
 msgid "Smoke"
 msgstr ""
 
-#: owmweather.php:3976
+#: owmweather.php:3981
 msgid "Haze"
 msgstr ""
 
-#: owmweather.php:3977
+#: owmweather.php:3982
 msgid "Sand / Dust Whirls"
 msgstr ""
 
-#: owmweather.php:3978
+#: owmweather.php:3983
 msgid "Fog"
 msgstr ""
 
-#: owmweather.php:3979
+#: owmweather.php:3984
 msgid "Sand"
 msgstr ""
 
-#: owmweather.php:3980
+#: owmweather.php:3985
 msgid "Dust"
 msgstr ""
 
-#: owmweather.php:3981
+#: owmweather.php:3986
 msgid "Volcanic Ash"
 msgstr ""
 
-#: owmweather.php:3982
+#: owmweather.php:3987
 msgid "Squalls"
 msgstr ""
 
-#: owmweather.php:3983
+#: owmweather.php:3988
 msgid "Tornado"
 msgstr ""
 
-#: owmweather.php:3984
+#: owmweather.php:3989
 msgid "Clear sky"
 msgstr ""
 
-#: owmweather.php:3985
+#: owmweather.php:3990
 msgid "Few Clouds"
 msgstr ""
 
-#: owmweather.php:3986
+#: owmweather.php:3991
 msgid "Scattered Clouds"
 msgstr ""
 
-#: owmweather.php:3987
+#: owmweather.php:3992
 msgid "Broken Clouds"
 msgstr ""
 
-#: owmweather.php:3988
+#: owmweather.php:3993
 msgid "Overcast Clouds"
 msgstr ""
 

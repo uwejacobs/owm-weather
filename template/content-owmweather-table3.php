@@ -11,7 +11,7 @@
 <?php echo wp_kses_post($owmw_html["container"]["start"]); ?>
 	
 	<!-- Hourly Table -->
-	<?php echo wp_kses_post($owmw_html["table"]["forecast"]); ?>
+	<?php echo wp_kses($owmw_html["table"]["forecast"], $owmw_opt['allowed_html']); ?>
 
 	<!-- OWM Link -->
 	<?php echo wp_kses_post($owmw_html["owm_link_last_update_start"]); ?>

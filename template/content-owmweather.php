@@ -47,7 +47,7 @@
 		<?php
 			for ($i = 0; $i < $owmw_opt["hours_forecast_no"]; $i++) {
 			    if (isset($owmw_html["hour"]["info"][$i])) {
-    				echo wp_kses_post($owmw_html["hour"]["info"][$i]);
+    				echo wp_kses($owmw_html["hour"]["info"][$i], $owmw_opt['allowed_html']);
     			    }
 			}
 		?>
