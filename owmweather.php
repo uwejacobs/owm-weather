@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.2.1
+Version: 5.2.2
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.2.1' );
+define( 'OWM_WEATHER_VERSION', '5.2.2' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -452,13 +452,33 @@ function owmw_basic($post){
 	$owmw_opt["map_opacity"]		    	= owmw_getDefault($id,'_owmweather_map_opacity', "0.8");
 	$owmw_opt["map_zoom"]			    	= owmw_getDefault($id,'_owmweather_map_zoom', '9');
 	$owmw_opt["map_disable_zoom_wheel"]		= get_post_meta($id,'_owmweather_map_disable_zoom_wheel',true);
+	$owmw_opt["map_cities"]				    = get_post_meta($id,'_owmweather_map_cities',true);
+	$owmw_opt["map_cities_legend"]			= get_post_meta($id,'_owmweather_map_cities_legend',true);
+	$owmw_opt["map_cities_on"]				= get_post_meta($id,'_owmweather_map_cities_on',true);
 	$owmw_opt["map_clouds"]				    = get_post_meta($id,'_owmweather_map_clouds',true);
+	$owmw_opt["map_clouds_legend"]			= get_post_meta($id,'_owmweather_map_clouds_legend',true);
+	$owmw_opt["map_clouds_on"]				= get_post_meta($id,'_owmweather_map_clouds_on',true);
 	$owmw_opt["map_precipitation"]		    = get_post_meta($id,'_owmweather_map_precipitation',true);
+	$owmw_opt["map_precipitation_legend"]	= get_post_meta($id,'_owmweather_map_precipitation_legend',true);
+	$owmw_opt["map_precipitation_on"]		= get_post_meta($id,'_owmweather_map_precipitation_on',true);
+	$owmw_opt["map_rain"]    				= get_post_meta($id,'_owmweather_map_rain',true);
+	$owmw_opt["map_rain_legend"]    		= get_post_meta($id,'_owmweather_map_rain_legend',true);
+	$owmw_opt["map_rain_on"]    		    = get_post_meta($id,'_owmweather_map_rain_on',true);
 	$owmw_opt["map_snow"]    				= get_post_meta($id,'_owmweather_map_snow',true);
+	$owmw_opt["map_snow_legend"]    		= get_post_meta($id,'_owmweather_map_snow_legend',true);
+	$owmw_opt["map_snow_on"]    		    = get_post_meta($id,'_owmweather_map_snow_on',true);
 	$owmw_opt["map_wind"]	    			= get_post_meta($id,'_owmweather_map_wind',true);
-	$owmw_opt["map_temperature"]	    		= get_post_meta($id,'_owmweather_map_temperature',true);
+	$owmw_opt["map_wind_legend"]	    	= get_post_meta($id,'_owmweather_map_wind_legend',true);
+	$owmw_opt["map_wind_on"]	    		= get_post_meta($id,'_owmweather_map_wind_on',true);
+	$owmw_opt["map_temperature"]	    	= get_post_meta($id,'_owmweather_map_temperature',true);
+	$owmw_opt["map_temperature_legend"]	    = get_post_meta($id,'_owmweather_map_temperature_legend',true);
+	$owmw_opt["map_temperature_on"]	    	= get_post_meta($id,'_owmweather_map_temperature_on',true);
 	$owmw_opt["map_pressure"]		    	= get_post_meta($id,'_owmweather_map_pressure',true);
+	$owmw_opt["map_pressure_legend"]		= get_post_meta($id,'_owmweather_map_pressure_legend',true);
+	$owmw_opt["map_pressure_on"]		    = get_post_meta($id,'_owmweather_map_pressure_on',true);
 	$owmw_opt["map_windrose"]		    	= get_post_meta($id,'_owmweather_map_windrose',true);
+	$owmw_opt["map_windrose_legend"]		= get_post_meta($id,'_owmweather_map_windrose_legend',true);
+	$owmw_opt["map_windrose_on"]		    = get_post_meta($id,'_owmweather_map_windrose_on',true);
 
 	$owmw_opt["chart_height"]	    		= owmw_getDefault($id,'_owmweather_chart_height', '400');
 	$owmw_opt["chart_background_color"]		= owmw_getDefault($id, '_owmweather_chart_background_color', '#fff');
@@ -1201,48 +1221,71 @@ function owmw_basic($post){
 			<p class="subsection-title">
 				<?php esc_html_e( 'Layers', 'owm-weather' ) ?>
 			</p>
-			<p>
-				<label for="owmweather_map_clouds_meta">
-					<input type="checkbox" name="owmweather_map_clouds" id="owmweather_map_clouds_meta" value="yes" <?php echo checked( $owmw_opt["map_clouds"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display clouds', 'owm-weather' ) ?>
-				</label>
-			</p>
-			<p>
-				<label for="owmweather_map_precipitation_meta">
-					<input type="checkbox" name="owmweather_map_precipitation" id="owmweather_map_precipitation_meta" value="yes" <?php echo checked( $owmw_opt["map_precipitation"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display precipitation', 'owm-weather' ) ?>
-				</label>
-			</p>
-			<p>
-				<label for="owmweather_map_snow_meta">
-					<input type="checkbox" name="owmweather_map_snow" id="owmweather_map_snow_meta" value="yes" <?php echo checked( $owmw_opt["map_snow"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display snow', 'owm-weather' ) ?>
-				</label>
-			</p>
-			<p>
-				<label for="owmweather_map_wind_meta">
-					<input type="checkbox" name="owmweather_map_wind" id="owmweather_map_wind_meta" value="yes" <?php echo checked( $owmw_opt["map_wind"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display wind', 'owm-weather' ) ?>
-				</label>
-			</p>
-			<p>
-				<label for="owmweather_map_temperature_meta">
-					<input type="checkbox" name="owmweather_map_temperature" id="owmweather_map_temperature_meta" value="yes" <?php echo checked( $owmw_opt["map_temperature"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display temperature', 'owm-weather' ) ?>
-				</label>
-			</p>
-			<p>
-				<label for="owmweather_map_pressure_meta">
-					<input type="checkbox" name="owmweather_map_pressure" id="owmweather_map_pressure_meta" value="yes" <?php echo checked( $owmw_opt["map_pressure"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display pressure', 'owm-weather' ) ?>
-				</label>
-			</p>
-			<p>
-				<label for="owmweather_map_windrose_meta">
-					<input type="checkbox" name="owmweather_map_windrose" id="owmweather_map_windrose_meta" value="yes" <?php echo checked( $owmw_opt["map_windrose"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display wind rose', 'owm-weather' ) ?>
-				</label>
-			</p>
+			<style>#map-layers th, #map-layers td { padding: 5px 15px; } #map-layers td + td {text-align:center;}</style>
+			<table id="map-layers">
+			<thead><tr>
+				<th style="text-align:left;"><?php esc_html_e( 'Layer', 'owm-weather' ) ?></th>
+				<th><?php esc_html_e( 'Display?', 'owm-weather' ) ?></th>
+				<th><?php esc_html_e( 'Legend On?', 'owm-weather' ) ?></th>
+				<th><?php esc_html_e( 'Turned On?', 'owm-weather' ) ?></th>
+			</tr></thead>
+			<tbody>
+			<tr>
+				<td><?php esc_html_e( 'Cities', 'owm-weather' ) ?></td>
+				<td><input type="checkbox" name="owmweather_map_cities" id="owmweather_map_cities_meta" value="yes" <?php echo checked( $owmw_opt["map_cities"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_cities_legend" id="owmweather_map_cities_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_cities_legend"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_cities_on" id="owmweather_map_cities_on_meta" value="yes" <?php echo checked( $owmw_opt["map_cities_on"], 'yes', false ) ?>/></td>
+			</tr>
+			<tr>
+				<td><?php esc_html_e( 'Clouds', 'owm-weather' ) ?></td>
+				<td><input type="checkbox" name="owmweather_map_clouds" id="owmweather_map_clouds_meta" value="yes" <?php echo checked( $owmw_opt["map_clouds"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_clouds_legend" id="owmweather_map_clouds_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_clouds_legend"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_clouds_on" id="owmweather_map_clouds_on_meta" value="yes" <?php echo checked( $owmw_opt["map_clouds_on"], 'yes', false ) ?>/></td>
+			</tr>
+			<tr>
+				<td><?php esc_html_e( 'Precipitation', 'owm-weather' ) ?></td>
+				<td><input type="checkbox" name="owmweather_map_precipitation" id="owmweather_map_precipitation_meta" value="yes" <?php echo checked( $owmw_opt["map_precipitation"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_precipitation_legend" id="owmweather_map_precipitation_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_precipitation_legend"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_precipitation_on" id="owmweather_map_precipitation_on_meta" value="yes" <?php echo checked( $owmw_opt["map_precipitation_on"], 'yes', false ) ?>/></td>
+			</tr>
+			<tr>
+				<td><?php esc_html_e( 'Rain', 'owm-weather' ) ?></td>
+				<td><input type="checkbox" name="owmweather_map_rain" id="owmweather_map_rain_meta" value="yes" <?php echo checked( $owmw_opt["map_rain"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_rain_legend" id="owmweather_map_rain_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_rain_legend"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_rain_on" id="owmweather_map_rain_on_meta" value="yes" <?php echo checked( $owmw_opt["map_rain_on"], 'yes', false ) ?>/></td>
+			</tr>
+			<tr>
+				<td><?php esc_html_e( 'Snow', 'owm-weather' ) ?></td>
+				<td><input type="checkbox" name="owmweather_map_snow" id="owmweather_map_snow_meta" value="yes" <?php echo checked( $owmw_opt["map_snow"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_snow_legend" id="owmweather_map_snow_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_snow_legend"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_snow_on" id="owmweather_map_snow_on_meta" value="yes" <?php echo checked( $owmw_opt["map_snow_on"], 'yes', false ) ?>/></td>
+			</tr>
+			<tr>
+				<td><?php esc_html_e( 'Wind', 'owm-weather' ) ?></td>
+				<td><input type="checkbox" name="owmweather_map_wind" id="owmweather_map_wind_meta" value="yes" <?php echo checked( $owmw_opt["map_wind"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_wind_legend" id="owmweather_map_wind_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_wind_legend"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_wind_on" id="owmweather_map_wind_on_meta" value="yes" <?php echo checked( $owmw_opt["map_wind_on"], 'yes', false ) ?>/></td>
+			</tr>
+			<tr>
+				<td><?php esc_html_e( 'Temperature', 'owm-weather' ) ?></td>
+				<td><input type="checkbox" name="owmweather_map_temperature" id="owmweather_map_temperature_meta" value="yes" <?php echo checked( $owmw_opt["map_temperature"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_temperature_legend" id="owmweather_map_temperature_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_temperature_legend"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_temperature_on" id="owmweather_map_temperature_on_meta" value="yes" <?php echo checked( $owmw_opt["map_temperature_on"], 'yes', false ) ?>/></td>
+			</tr>
+			<tr>
+				<td><?php esc_html_e( 'Pressure', 'owm-weather' ) ?></td>
+				<td><input type="checkbox" name="owmweather_map_pressure" id="owmweather_map_pressure_meta" value="yes" <?php echo checked( $owmw_opt["map_pressure"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_pressure_legend" id="owmweather_map_pressure_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_pressure_legend"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_pressure_on" id="owmweather_map_pressure_on_meta" value="yes" <?php echo checked( $owmw_opt["map_pressure_on"], 'yes', false ) ?>/></td>
+			</tr>
+			<tr>
+				<td><?php esc_html_e( 'Windrose', 'owm-weather' ) ?></td>
+				<td><input type="checkbox" name="owmweather_map_windrose" id="owmweather_map_windrose_meta" value="yes" <?php echo checked( $owmw_opt["map_windrose"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_windrose_legend" id="owmweather_map_windrose_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_windrose_legend"], 'yes', false ) ?>/></td>
+				<td><input type="checkbox" name="owmweather_map_windrose_on" id="owmweather_map_windrose_on_meta" value="yes" <?php echo checked( $owmw_opt["map_windrose_on"], 'yes', false ) ?>/></td>
+			</tr>
+			</tbody>
+			</table>
 		</div>
 </div>
 <?php
@@ -1331,13 +1374,33 @@ function owmw_save_metabox($post_id){
 		owmw_save_metabox_field_yn('owm_link', $post_id);
 		owmw_save_metabox_field_yn('last_update', $post_id);
 		owmw_save_metabox_field_yn('map_disable_zoom_wheel', $post_id);
+		owmw_save_metabox_field_yn('map_cities', $post_id);
+		owmw_save_metabox_field_yn('map_cities_legend', $post_id);
+		owmw_save_metabox_field_yn('map_cities_on', $post_id);
 		owmw_save_metabox_field_yn('map_clouds', $post_id);
+		owmw_save_metabox_field_yn('map_clouds_legend', $post_id);
+		owmw_save_metabox_field_yn('map_clouds_on', $post_id);
 		owmw_save_metabox_field_yn('map_precipitation', $post_id);
+		owmw_save_metabox_field_yn('map_precipitation_legend', $post_id);
+		owmw_save_metabox_field_yn('map_precipitation_on', $post_id);
+		owmw_save_metabox_field_yn('map_rain', $post_id);
+		owmw_save_metabox_field_yn('map_rain_legend', $post_id);
+		owmw_save_metabox_field_yn('map_rain_on', $post_id);
 		owmw_save_metabox_field_yn('map_snow', $post_id);
+		owmw_save_metabox_field_yn('map_snow_legend', $post_id);
+		owmw_save_metabox_field_yn('map_snow_on', $post_id);
 		owmw_save_metabox_field_yn('map_wind', $post_id);
+		owmw_save_metabox_field_yn('map_wind_legend', $post_id);
+		owmw_save_metabox_field_yn('map_wind_on', $post_id);
 		owmw_save_metabox_field_yn('map_temperature', $post_id);
+		owmw_save_metabox_field_yn('map_temperature_legend', $post_id);
+		owmw_save_metabox_field_yn('map_temperature_on', $post_id);
 		owmw_save_metabox_field_yn('map_pressure', $post_id);
+		owmw_save_metabox_field_yn('map_pressure_legend', $post_id);
+		owmw_save_metabox_field_yn('map_pressure_on', $post_id);
 		owmw_save_metabox_field_yn('map_windrose', $post_id);
+		owmw_save_metabox_field_yn('map_windrose_legend', $post_id);
+		owmw_save_metabox_field_yn('map_windrose_on', $post_id);
 		owmw_save_metabox_field_yn('gtag', $post_id);
 		owmw_save_metabox_field_yn('bypass_exclude', $post_id);
 		owmw_save_metabox_field_yn('map', $post_id);
@@ -1590,13 +1653,33 @@ function owmw_get_my_weather_id($atts) {
         "last_update"                   => false,
         "map"                           => false,
         "map_disable_zoom_wheel"        => false,
+        "map_cities"                    => false,
+        "map_cities_legend"             => false,
+        "map_cities_on"                 => false,
         "map_clouds"                    => false,
+        "map_clouds_legend"             => false,
+        "map_clouds_on"                 => false,
         "map_precipitation"             => false,
+        "map_precipitation_legend"      => false,
+        "map_precipitation_on"          => false,
+        "map_rain"                      => false,
+        "map_rain_legend"               => false,
+        "map_rain_on"                   => false,
         "map_snow"                      => false,
+        "map_snow_legend"               => false,
+        "map_snow_on"                   => false,
         "map_wind"                      => false,
+        "map_wind_legend"               => false,
+        "map_wind_on"                   => false,
         "map_temperature"               => false,
+        "map_temperature_legend"        => false,
+        "map_temperature_on"            => false,
         "map_pressure"                  => false,
+        "map_pressure_legend"           => false,
+        "map_pressure_on"               => false,
         "map_windrose"                  => false,
+        "map_windrose_legend"           => false,
+        "map_windrose_on"               => false,
         "gtag"                          => false,
         "bypass_exclude"                => false,
         "alerts"                        => false,
@@ -1727,21 +1810,41 @@ function owmw_get_my_weather($attr) {
 		$owmw_opt["map_height"]            			= owmw_get_bypass($bypass, "map_height");
 		$owmw_opt["map_opacity"]          			= owmw_get_bypass($bypass, "map_opacity");
 		$owmw_opt["map_zoom"]              			= owmw_get_bypass($bypass, "map_zoom");
-		$owmw_opt["map_disable_zoom_wheel"]     		= owmw_get_bypass_yn($bypass, "map_disable_zoom_wheel");
+		$owmw_opt["map_disable_zoom_wheel"]     	= owmw_get_bypass_yn($bypass, "map_disable_zoom_wheel");
+		$owmw_opt["map_cities"]            			= owmw_get_bypass_yn($bypass, "map_cities");
+		$owmw_opt["map_cities_legend"]            	= owmw_get_bypass_yn($bypass, "map_cities_legend");
+		$owmw_opt["map_cities_on"]            		= owmw_get_bypass_yn($bypass, "map_cities_on");
 		$owmw_opt["map_clouds"]            			= owmw_get_bypass_yn($bypass, "map_clouds");
+		$owmw_opt["map_clouds_legend"]            	= owmw_get_bypass_yn($bypass, "map_clouds_legend");
+		$owmw_opt["map_clouds_on"]            		= owmw_get_bypass_yn($bypass, "map_clouds_on");
 		$owmw_opt["map_precipitation"]         		= owmw_get_bypass_yn($bypass, "map_precipitation");
+		$owmw_opt["map_precipitation_legend"]       = owmw_get_bypass_yn($bypass, "map_precipitation_legend");
+		$owmw_opt["map_precipitation_on"]         	= owmw_get_bypass_yn($bypass, "map_precipitation_on");
+		$owmw_opt["map_rain"]              			= owmw_get_bypass_yn($bypass, "map_rain");
+		$owmw_opt["map_rain_legend"]              	= owmw_get_bypass_yn($bypass, "map_rain_legend");
+		$owmw_opt["map_rain_on"]              		= owmw_get_bypass_yn($bypass, "map_rain_on");
 		$owmw_opt["map_snow"]              			= owmw_get_bypass_yn($bypass, "map_snow");
+		$owmw_opt["map_snow_legend"]              	= owmw_get_bypass_yn($bypass, "map_snow_legend");
+		$owmw_opt["map_snow_on"]              		= owmw_get_bypass_yn($bypass, "map_snow_on");
 		$owmw_opt["map_wind"]              			= owmw_get_bypass_yn($bypass, "map_wind");
+		$owmw_opt["map_wind_legend"]              	= owmw_get_bypass_yn($bypass, "map_wind_legend");
+		$owmw_opt["map_wind_on"]              		= owmw_get_bypass_yn($bypass, "map_wind_on");
 		$owmw_opt["map_temperature"]         		= owmw_get_bypass_yn($bypass, "map_temperature");
+		$owmw_opt["map_temperature_legend"]         = owmw_get_bypass_yn($bypass, "map_temperature_legend");
+		$owmw_opt["map_temperature_on"]         	= owmw_get_bypass_yn($bypass, "map_temperature_on");
 		$owmw_opt["map_pressure"]            		= owmw_get_bypass_yn($bypass, "map_pressure");
+		$owmw_opt["map_pressure_legend"]            = owmw_get_bypass_yn($bypass, "map_pressure_legend");
+		$owmw_opt["map_pressure_on"]            	= owmw_get_bypass_yn($bypass, "map_pressure_on");
 		$owmw_opt["map_windrose"]            		= owmw_get_bypass_yn($bypass, "map_windrose");
+		$owmw_opt["map_windrose_legend"]            = owmw_get_bypass_yn($bypass, "map_windrose_legend");
+		$owmw_opt["map_windrose_on"]            	= owmw_get_bypass_yn($bypass, "map_windrose_on");
 		$owmw_opt["border_color"]             		= owmw_get_bypass($bypass, "border_color");
 		$owmw_opt["border_width"]             		= owmw_getBypassDefault($bypass, 'border_width', $owmw_opt["border_color"] == '' ? '0' : '1');
 		$owmw_opt["border_style"]             		= owmw_get_bypass($bypass, "border_style");
 		$owmw_opt["border_radius"]             		= owmw_get_bypass($bypass, "border_radius");
-		$owmw_opt["background_color"]   	          	= owmw_get_bypass($bypass, "background_color");
-		$owmw_opt["background_image"]   	          	= owmw_get_bypass($bypass, "background_image");
-		$owmw_opt["text_color"]         		        = owmw_get_bypass($bypass, "text_color");
+		$owmw_opt["background_color"]   	        = owmw_get_bypass($bypass, "background_color");
+		$owmw_opt["background_image"]   	        = owmw_get_bypass($bypass, "background_image");
+		$owmw_opt["text_color"]         		    = owmw_get_bypass($bypass, "text_color");
 		$owmw_opt["time_format"]          			= owmw_get_bypass($bypass, "time_format");
 		$owmw_opt["sunrise_sunset"]          		= owmw_get_bypass_yn($bypass, "sunrise_sunset");
 		$owmw_opt["moonrise_moonset"]         		= owmw_get_bypass_yn($bypass, "moonrise_moonset");
@@ -2511,66 +2614,75 @@ function owmw_get_my_weather($attr) {
 
 		      	//Clouds
 		      	if ( $owmw_opt["map_clouds"] == 'yes' ) {
-		        	$display_map_options         	.= 'var clouds = L.OWM.clouds({showLegend: false, opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
+		        	$display_map_options         	.= 'var clouds = L.OWM.clouds({showLegend: '.($owmw_opt["map_clouds_legend"] == 'yes' ? "true" : "false") .', opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
 		        	$display_map_layers             .= '"'.esc_attr__("Clouds", "owm-weather").'": clouds,';
-		        	$display_map_options         	.= 'var cloudscls = L.OWM.cloudsClassic({showLegend: false, opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
+		        	$display_map_options         	.= 'var cloudscls = L.OWM.cloudsClassic({showLegend: '.($owmw_opt["map_clouds_legend"] == 'yes' ? "true" : "false") .', opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
 		        	$display_map_layers             .= '"'.esc_attr__("Clouds Classic", "owm-weather").'": cloudscls,';
 		      	}
 
-		      	//Precipitations and Rain
+		      	//Precipitation
 		      	if ( $owmw_opt["map_precipitation"] == 'yes' ) {
-		        	$display_map_options         	.= 'var rain = L.OWM.rain({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"'.esc_attr__("Rain", "owm-weather").'": rain,';
-		        	$display_map_options         	.= 'var raincls = L.OWM.rainClassic({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
-		        	$display_map_layers             .= '"'.esc_attr__("Rain Classic", "owm-weather").'": raincls,';
-		        	$display_map_options         	.= 'var precipitation = L.OWM.precipitation({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
+		        	$display_map_options         	.= 'var precipitation = L.OWM.precipitation({showLegend: '.($owmw_opt["map_precipitation_legend"] == 'yes' ? "true" : "false") .', opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
 		        	$display_map_layers             .= '"'.esc_attr__("Precipitation", "owm-weather").'": precipitation,';
-		        	$display_map_options         	.= 'var precipitationcls = L.OWM.precipitationClassic({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
+		        	$display_map_options         	.= 'var precipitationcls = L.OWM.precipitationClassic({showLegend: '.($owmw_opt["map_precipitation_legend"] == 'yes' ? "true" : "false") .', opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
 		        	$display_map_layers             .= '"'.esc_attr__("Precipitation Classic", "owm-weather").'": precipitationcls,';
 		      	}
 
+		      	//Rain
+		      	if ( $owmw_opt["map_rain"] == 'yes' ) {
+		        	$display_map_options         	.= 'var rain = L.OWM.rain({showLegend: '.($owmw_opt["map_rain_legend"] == 'yes' ? "true" : "false") .', opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
+		        	$display_map_layers             .= '"'.esc_attr__("Rain", "owm-weather").'": rain,';
+		        	$display_map_options         	.= 'var raincls = L.OWM.rainClassic({showLegend: '.($owmw_opt["map_rain_legend"] == 'yes' ? "true" : "false") .', opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
+		        	$display_map_layers             .= '"'.esc_attr__("Rain Classic", "owm-weather").'": raincls,';
+				}
+
 		      	//Snow
 		      	if ( $owmw_opt["map_snow"] == 'yes' ) {
-		        	$display_map_options         	.= 'var snow = L.OWM.snow({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
+		        	$display_map_options         	.= 'var snow = L.OWM.snow({showLegend: '.($owmw_opt["map_snow_legend"] == 'yes' ? "true" : "false") .', opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
 		        	$display_map_layers             .= '"'.esc_attr__("Snow", "owm-weather").'": snow,';
 		      	}
 
 		      	//Wind
 		      	if ( $owmw_opt["map_wind"] == 'yes' ) {
-		        	$display_map_options         	.= 'var wind = L.OWM.wind({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
+		        	$display_map_options         	.= 'var wind = L.OWM.wind({showLegend: '.($owmw_opt["map_wind_legend"] == 'yes' ? "true" : "false") .', opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
 		        	$display_map_layers             .= '"'.esc_attr__("Wind", "owm-weather").'": wind,';
 		      	}
 
 		      	//Temperature
 		      	if ( $owmw_opt["map_temperature"] == 'yes' ) {
-		        	$display_map_options         	.= 'var temp = L.OWM.temperature({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
+		        	$display_map_options         	.= 'var temp = L.OWM.temperature({'.($owmw_opt["temperature_unit"] == 'imperial' ? 'legendImagePath: "' .esc_url( plugins_url( 'img/Legend_Fahrenheit.png', __FILE__ )) . '",' : ''). 'showLegend: '.($owmw_opt["map_temperature_legend"] == 'yes' ? "true" : "false") .', opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'",temperatureUnit:"F"});';
 		        	$display_map_layers             .= '"'.esc_attr__("Temperature", "owm-weather").'": temp,';
 		      	}
 
 		      	//Pressure
 		      	if ( $owmw_opt["map_pressure"] == 'yes' ) {
-		        	$display_map_options         	.= 'var pressure = L.OWM.pressure({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
+		        	$display_map_options         	.= 'var pressure = L.OWM.pressure({showLegend: '.($owmw_opt["map_pressure_legend"] == 'yes' ? "true" : "false") .', opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
 		        	$display_map_layers             .= '"'.esc_attr__("Pressure", "owm-weather").'": pressure,';
-		        	$display_map_options         	.= 'var pressurecntr = L.OWM.pressureContour({opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
+		        	$display_map_options         	.= 'var pressurecntr = L.OWM.pressureContour({showLegend: '.($owmw_opt["map_pressure_legend"] == 'yes' ? "true" : "false") .', opacity: '.esc_attr($display_map_layers_opacity).', appId: "'.esc_attr($owmw_opt["api_key"]).'"});';
 		        	$display_map_layers             .= '"'.esc_attr__("Pressure Contour", "owm-weather").'": pressurecntr,';
 		      	}
 
 				//Wind Rose
 		      	if ( $owmw_opt["map_windrose"] == 'yes' ) {
-					$display_map_options .= 'var windrose = L.OWM.current({intervall: 15, imageLoadingUrl: "leaflet/owmloading.gif", lang: "en", minZoom: 4, appId: "'.esc_attr($owmw_opt["api_key"]).'", markerFunction: myWindroseMarker, popup: false, clusterSize: 50, imageLoadingBgUrl: "https://openweathermap.org/img/w0/iwind.png" });	windrose.on("owmlayeradd", windroseAdded, windrose);';
+					$display_map_options .= 'var windrose = L.OWM.current({showLegend: '.($owmw_opt["map_windrose_legend"] == 'yes' ? "true" : "false") .', intervall: 15, lang: "en", minZoom: 4, appId: "'.esc_attr($owmw_opt["api_key"]).'", markerFunction: myWindroseMarker, popup: false, clusterSize: 50, imageLoadingBgUrl: "https://openweathermap.org/img/w0/iwind.png" });	windrose.on("owmlayeradd", windroseAdded, windrose);';
 					$display_map_layers             .= '"'.esc_attr__("Wind rose", "owm-weather").'": windrose,';
 				}
 				
+				//Cities
+		      	if ( $owmw_opt["map_windrose"] == 'yes' ) {
+					if ($owmw_opt["wind_unit"] == "m/s") {
+						$map_speed = 'ms';
+					} else if ($owmw_opt["wind_unit"] == "km/h") {
+						$map_speed = 'kmh';
+					} else {
+						$map_speed = 'mph';
+					}
+					$display_map_options .= 'var city = L.OWM.current({showLegend: '.($owmw_opt["map_cities_legend"] == 'yes' ? "true" : "false") .', intervall: '.esc_attr($owmw_opt["cache_time"]??30).', lang: "en", minZoom: 5, appId: "'.esc_attr($owmw_opt["api_key"]) . '",temperatureDigits:0,temperatureUnit:"' . esc_attr($owmw_data["temperature_unit_character"]) . '",speedUnit:"' . esc_attr($map_speed) . '"});';
+					$display_map_layers             .= '"'.esc_attr__("Cities", "owm-weather").'": city,';
+				}
+
 		      	//Scroll wheel
 		      	$display_map_scroll_wheel = ($owmw_opt["map_disable_zoom_wheel"] == 'yes') ? "false" : "true";
-
-                if ($owmw_opt["wind_unit"] == "m/s") {
-    		      	$map_speed = 'ms';
-				} else if ($owmw_opt["wind_unit"] == "km/h") {
-    		      	$map_speed = 'kmh';
-                } else {
-    		      	$map_speed = 'mph';
-                }
 
 		      	$owmw_html["map"] =
 			        '<div id="' . $owmw_html["main_map_div"] . '" class="owmw-map">
@@ -2580,19 +2692,25 @@ function owmw_get_my_weather($attr) {
 			        'jQuery(document).ready( function() {
 
 				        	var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-							maxZoom: 18, attribution: \'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>\' });
+							maxZoom: 18, attribution: \'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>\' });'
 
-							var city = L.OWM.current({intervall: '.esc_attr($owmw_opt["cache_time"]??30).', lang: "en", minZoom: 5, appId: "'.esc_attr($owmw_opt["api_key"]) . '",temperatureDigits:0,temperatureUnit:"' . esc_attr($owmw_data["temperature_unit_character"]) . '",speedUnit:"' . esc_attr($map_speed) . '"});'.
-
-							$display_map_options .
+							. $display_map_options .
 
 							'var map = L.map("' . esc_attr($owmw_html["container_map_div"]) . '", { center: new L.LatLng('. esc_attr($owmw_data["latitude"]) .', '. esc_attr($owmw_data["longitude"]) .'), zoom: '. esc_attr($owmw_opt["map_zoom"]) .', layers: [osm], scrollWheelZoom: '.esc_attr($display_map_scroll_wheel).' });
 
 							var baseMaps = { "OSM Standard": osm };
-
-							var overlayMaps = {'.$display_map_layers.'"Cities": city};
-
+							var overlayMaps = {'.$display_map_layers.'};
 							var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+							' . ($owmw_opt["map_clouds"] == 'yes' && $owmw_opt["map_clouds_on"] == 'yes' ? "clouds.addTo(map);cloudscls.addTo(map);" : "") . '
+							' . ($owmw_opt["map_precipitation"] == 'yes' && $owmw_opt["map_precipitation_on"] == 'yes' ? "precipitation.addTo(map);precipitationcls.addTo(map);" : "") . '
+							' . ($owmw_opt["map_rain"] == 'yes' && $owmw_opt["map_rain_on"] == 'yes' ? "rain.addTo(map);raincls.addTo(map);" : "") . '
+							' . ($owmw_opt["map_snow"] == 'yes' && $owmw_opt["map_snow_on"] == 'yes' ? "snow.addTo(map);" : "") . '
+							' . ($owmw_opt["map_wind"] == 'yes' && $owmw_opt["map_wind_on"] == 'yes' ? "wind.addTo(map);" : "") . '
+							' . ($owmw_opt["map_temperature"] == 'yes' && $owmw_opt["map_temperature_on"] == 'yes' ? "temp.addTo(map);" : "") . '
+							' . ($owmw_opt["map_pressure"] == 'yes' && $owmw_opt["map_pressure_on"] == 'yes' ? "pressure.addTo(map);pressurecntr.addTo(map);" : "") . '
+							' . ($owmw_opt["map_windrose"] == 'yes' && $owmw_opt["map_windrose_on"] == 'yes' ? "windrose.addTo(map);" : "") . '
+							' . ($owmw_opt["map_cities"] == 'yes' && $owmw_opt["map_cities_on"] == 'yes' ? "city.addTo(map);" : "") . '
 
                             map.whenReady(function() {
                                	jQuery( "#' . esc_attr($owmw_html["container_map_div"]) . '").on("invalidSize", function() {
@@ -3782,13 +3900,33 @@ function owmw_sanitize_validate_field($key, $value) {
             case "last_update":
             case "map":
             case "map_disable_zoom_wheel":
+            case "map_cities":
+            case "map_cities_legend":
+            case "map_cities_on":
             case "map_clouds":
+            case "map_clouds_legend":
+            case "map_clouds_on":
             case "map_precipitation":
+            case "map_precipitation_legend":
+            case "map_precipitation_on":
+            case "map_rain":
+            case "map_rain_legend":
+            case "map_rain_on":
             case "map_snow":
+            case "map_snow_legend":
+            case "map_snow_on":
             case "map_wind":
+            case "map_wind_legend":
+            case "map_wind_on":
             case "map_temperature":
+            case "map_temperature_legend":
+            case "map_temperature_on":
             case "map_pressure":
+            case "map_pressure_legend":
+            case "map_pressure_on":
             case "map_windrose":
+            case "map_windrose_legend":
+            case "map_windrose_on":
             case "gtag":
             case "bypass_exclude":
             case "alerts":

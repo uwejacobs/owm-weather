@@ -1,11 +1,7 @@
 Must:
 pot file: wp  --allow-root i18n make-pot . lang/owm-weather.pot
 
-https://github.com/buche/leaflet-openweathermap/blob/master/leaflet-openweathermap.js
-
-
 Nice:
-turn on map layers automatically
 more charts
 tabbed settings
 background type gradient/video

@@ -801,9 +801,49 @@ class owmw_options
         );
 
         add_settings_field(
+            'owmw_map_cities', // ID
+            esc_html__("Cities Layer",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_cities_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_cities_legend', // ID
+            esc_html__("Cities Layer Legend",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_cities_legend_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_cities_on', // ID
+            esc_html__("Cities Layer On",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_cities_on_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
             'owmw_map_clouds', // ID
             esc_html__("Cloud Layer",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_clouds_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_clouds_legend', // ID
+            esc_html__("Cloud Layer Legend",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_clouds_legend_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_clouds_on', // ID
+            esc_html__("Cloud Layer On",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_clouds_on_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
         );
@@ -817,9 +857,65 @@ class owmw_options
         );
 
         add_settings_field(
+            'owmw_map_precipitation_legend', // ID
+            esc_html__("Precipitation Layer Legend",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_precipitation_legend_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_precipitation_on', // ID
+            esc_html__("Precipitation Layer On",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_precipitation_on_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_rain', // ID
+            esc_html__("Rain Layer",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_rain_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_rain_legend', // ID
+            esc_html__("Rain Layer Legend",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_rain_legend_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_rain_on', // ID
+            esc_html__("Rain Layer On",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_rain_on_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
             'owmw_map_snow', // ID
             esc_html__("Snow Layer",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_snow_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_snow_legend', // ID
+            esc_html__("Snow Layer Legend",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_snow_legend_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_snow_on', // ID
+            esc_html__("Snow Layer On",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_snow_on_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
         );
@@ -833,9 +929,41 @@ class owmw_options
         );
 
         add_settings_field(
+            'owmw_map_wind_legend', // ID
+            esc_html__("Wind Layer Legend",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_wind_legend_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_wind_on', // ID
+            esc_html__("Wind Layer On",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_wind_on_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
             'owmw_map_temperature', // ID
             esc_html__("Temperature Layer",'owm-weather'), // Title
             array( $this, 'owmw_map_layers_temperature_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_temperature_legend', // ID
+            esc_html__("Temperature Layer Legend",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_temperature_legend_callback' ), // Callback
+            'owmw-settings-admin-map', // Page
+            'owmw_setting_section_map' // Section
+        );
+
+        add_settings_field(
+            'owmw_map_temperature_on', // ID
+            esc_html__("Temperature Layer On",'owm-weather'), // Title
+            array( $this, 'owmw_map_layers_temperature_on_callback' ), // Callback
             'owmw-settings-admin-map', // Page
             'owmw_setting_section_map' // Section
         );
@@ -1797,9 +1925,34 @@ class owmw_options
         $this->owmw_bypassRadioButtonsDisable('owmw_map_disable_zoom_wheel');
     }
 
+	public function owmw_map_layers_cities_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_cities');
+    }
+
+	public function owmw_map_layers_cities_legend_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_cities_legend');
+    }
+
+	public function owmw_map_layers_cities_on_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_cities_on');
+    }
+
 	public function owmw_map_layers_clouds_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_clouds');
+    }
+
+	public function owmw_map_layers_clouds_legend_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_clouds_legend');
+    }
+
+	public function owmw_map_layers_clouds_on_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_clouds_on');
     }
 
 	public function owmw_map_layers_precipitation_callback()
@@ -1807,9 +1960,44 @@ class owmw_options
         $this->owmw_bypassRadioButtons('owmw_map_precipitation');
     }
 
+	public function owmw_map_layers_precipitation_legend_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_precipitation_legend');
+    }
+
+	public function owmw_map_layers_precipitation_on_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_precipitation_on');
+    }
+
+	public function owmw_map_layers_rain_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_rain');
+    }
+
+	public function owmw_map_layers_rain_legend_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_rain_legend');
+    }
+
+	public function owmw_map_layers_rain_on_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_rain_on');
+    }
+
 	public function owmw_map_layers_snow_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_snow');
+    }
+
+	public function owmw_map_layers_snow_legend_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_snow_legend');
+    }
+
+	public function owmw_map_layers_snow_on_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_snow_on');
     }
 
 	public function owmw_map_layers_wind_callback()
@@ -1817,9 +2005,29 @@ class owmw_options
         $this->owmw_bypassRadioButtons('owmw_map_wind');
     }
 
+	public function owmw_map_layers_wind_legend_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_wind_legend');
+    }
+
+	public function owmw_map_layers_wind_on_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_wind_legend');
+    }
+
 	public function owmw_map_layers_temperature_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_temperature');
+    }
+
+	public function owmw_map_layers_temperature_legend_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_temperature_legend');
+    }
+
+	public function owmw_map_layers_temperature_on_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_temperature_on');
     }
 
     public function owmw_map_layers_pressure_callback()
@@ -1827,9 +2035,29 @@ class owmw_options
         $this->owmw_bypassRadioButtons('owmw_map_pressure');
     }
 
+    public function owmw_map_layers_pressure_legend_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_pressure_legend');
+    }
+
+    public function owmw_map_layers_pressure_on_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_pressure_on');
+    }
+
     public function owmw_map_layers_windrose_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_windrose');
+    }
+
+    public function owmw_map_layers_windrose_legend_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_windrose_legend');
+    }
+
+    public function owmw_map_layers_windrose_on_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_map_windrose_on');
     }
 
     public function owmw_support_info_callback()
