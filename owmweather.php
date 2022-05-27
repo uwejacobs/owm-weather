@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.2.2
+Version: 5.2.3
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.2.2' );
+define( 'OWM_WEATHER_VERSION', '5.2.3' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -80,6 +80,18 @@ function owmw_textdomain() {
 }
 	
 add_action('init', 'owmw_textdomain', 10);
+
+$pressureLabel = [];
+$pressureLabel["inHg"] = __('inHg','owm-weather');
+$pressureLabel["mmHg"] = __('mmHg','owm-weather');
+$pressureLabel["mb"] = __('mb','owm-weather');
+$pressureLabel["hPa"] = __('hPa','owm-weather');
+
+$windspeedLabel = [];
+$windspeedLabel["mi/h"] = __('mi/h','owm-weather');
+$windspeedLabel["m/s"] = __('m/s','owm-weather');
+$windspeedLabel["km/h"] = __('km/h','owm-weather');
+$windspeedLabel["kt"] = __('kt','owm-weather');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Admin panel + Dashboard widget
@@ -1604,7 +1616,7 @@ function owmw_get_my_weather_id($atts) {
         "wind_unit"                     => false,
         "wind_icon_direction"           => false,
         "pressure_unit"                 => false,
-        "alerts_popup"				    => false,
+        "alerts_popup"			=> false,
         "display_length_days_names"     => false,
         "background_color"              => false,
         "text_color"                    => false,
@@ -1775,7 +1787,9 @@ function owmw_get_my_weather_id($atts) {
 add_shortcode("owm-weather", 'owmw_get_my_weather_id');
 
 function owmw_get_my_weather($attr) {
-    global $owmw_params;
+	global $owmw_params;
+	global $pressureLabel;
+	global $windspeedLabel;
 
     $owmw_params = [];
     if (isset($_POST['owmw_params'])) {
@@ -1965,7 +1979,7 @@ function owmw_get_my_weather($attr) {
     		} else {
            	  	$response = array();
    	          	$response['weather'] = $owmw_params["weather_id"];
-           	  	$response['html'] = "<p>OWM Weather id '" . esc_attr($owmw_opt["id"]) . "': OWM Error " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
+           	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
    	        	wp_send_json_error($response, 400);
                 return;
     		}
@@ -1980,7 +1994,7 @@ function owmw_get_my_weather($attr) {
         		} else {
             	  	$response = array();
     	          	$response['weather'] = $owmw_params["weather_id"];
-            	  	$response['html'] = "<p>OWM Weather id '" . esc_attr($owmw_opt["id"]) . "': OWM Error " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
+            	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
     	        	wp_send_json_error($response, 400);
                     return;
         		}
@@ -1990,7 +2004,7 @@ function owmw_get_my_weather($attr) {
         if (!empty($owmweather_current->cod) && $owmweather_current->cod != "200") {
     	  	$response = array();
     	  	$response['weather'] = $owmw_params["weather_id"];
-    	  	$response['html'] = "<p>OWM Weather id '" . esc_attr($owmw_opt["id"]) . "': OWM Error " . esc_html($owmweather_current->cod . (!empty($owmweather_current->message) ? " (" . $owmweather_current->message . ")" : "")) . "</p>";
+    	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_html($owmweather_current->cod . (!empty($owmweather_current->message) ? " (" . $owmweather_current->message . ")" : "")) . "</p>";
     		wp_send_json_error($response, $owmweather_current->cod);
     		return;
         }
@@ -2020,22 +2034,22 @@ function owmw_get_my_weather($attr) {
         $owmw_data["category"] = $owmweather_current->weather[0]->main ?? null;
         $owmw_data["description"] = owmw_getConditionText($owmw_data["condition_id"]);
         $owmw_data["wind_speed_unit"] = owmw_getWindSpeedUnit($owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]);
-        $owmw_data["wind_speed"] = owmw_getConvertedWindSpeed($owmweather_current->wind->speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $owmw_data["wind_speed_unit"];
+        $owmw_data["wind_speed"] = owmw_getConvertedWindSpeed($owmweather_current->wind->speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]];
         $owmw_data["wind_degrees"] = $owmweather_current->wind->deg ?? null;
         $owmw_data["wind_direction"] = owmw_getWindDirection($owmweather_current->wind->deg);
-        $owmw_data["wind_gust"] = isset($owmweather_current->wind->gust) ? owmw_getConvertedWindSpeed($owmweather_current->wind->gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"])  . ' ' . $owmw_data["wind_speed_unit"] : null;
+        $owmw_data["wind_gust"] = isset($owmweather_current->wind->gust) ? owmw_getConvertedWindSpeed($owmweather_current->wind->gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"])  . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]] : null;
         $owmw_data["temperature"] = $owmweather_current->main->temp ? ceil($owmweather_current->main->temp) : null;
         $owmw_data["feels_like"] = $owmweather_current->main->feels_like ? ceil($owmweather_current->main->feels_like) : null;
 		if ($owmw_opt["temperature_unit"] == 'metric') {
-			$owmw_data["temperature_unit_character"] = "C";
-			$owmw_data["temperature_unit_text"] = 'Celsius';
+			$owmw_data["temperature_unit_character"] = __("C", 'owm-weather');
+			$owmw_data["temperature_unit_text"] = __('Celsius', 'owm-weather');
 			$owmw_data["temperature_celsius"] = $owmw_data["temperature"];
 			$owmw_data["temperature_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["temperature"]);
 			$owmw_data["feels_like_celsius"] = $owmw_data["feels_like"];
 			$owmw_data["feels_like_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["feels_like"]);
 		} else {
-			$owmw_data["temperature_unit_character"] = "F";
-			$owmw_data["temperature_unit_text"] = 'Fahrenheit';
+			$owmw_data["temperature_unit_character"] = __("F", 'owm-weather');
+			$owmw_data["temperature_unit_text"] = __('Fahrenheit','owm-weather');
 			$owmw_data["temperature_fahrenheit"] = $owmw_data["temperature"];
 			$owmw_data["temperature_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["temperature"]);
 			$owmw_data["feels_like_fahrenheit"] = $owmw_data["feels_like"];
@@ -2043,7 +2057,7 @@ function owmw_get_my_weather($attr) {
 		}
         $owmw_data["humidity"] = $owmweather_current->main->humidity ? $owmweather_current->main->humidity . '%' : null;
         $owmw_data["pressure_unit"] = owmw_getPressureUnit($owmw_opt["temperature_unit"], $owmw_opt["pressure_unit"]);
-        $owmw_data["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $owmweather_current->main->pressure, $owmw_data["pressure_unit"]);
+        $owmw_data["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $owmweather_current->main->pressure, $pressureLabel[$owmw_data["pressure_unit"]]);
         $owmw_data["cloudiness"] = $owmweather_current->clouds->all ? $owmweather_current->clouds->all . '%' : "0%";
         $owmw_data["precipitation_unit"] = $owmw_opt["temperature_unit"] == 'imperial' ? esc_html__('in','owm-weather') : esc_html__('mm','owm-weather');
         $owmw_data["rain_1h"] = owmw_getConvertedPrecipitation($owmw_opt["temperature_unit"], $owmweather_current->rain->{"1h"} ?? 0) . ' ' . $owmw_data["precipitation_unit"];
@@ -2101,7 +2115,7 @@ function owmw_get_my_weather($attr) {
         		} else {
                	  	$response = array();
        	          	$response['weather'] = $owmw_params["weather_id"];
-               	  	$response['html'] = "<p>OWM Weather id '" . esc_attr($owmw_opt["id"]) . "': OWM Error " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
+               	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
        	        	wp_send_json_error($response, 400);
                     return;
         		}
@@ -2116,7 +2130,7 @@ function owmw_get_my_weather($attr) {
             		} else {
                 	  	$response = array();
         	          	$response['weather'] = $owmw_params["weather_id"];
-                	  	$response['html'] = "<p>OWM Weather id '" . esc_attr($owmw_opt["id"]) . "': OWM Error " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
+                	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
         	        	wp_send_json_error($response, 400);
                         return;
             		}
@@ -2127,10 +2141,11 @@ function owmw_get_my_weather($attr) {
         if (!empty($owmweather->cod) && $owmweather->cod != "200") {
     	  	$response = array();
     	  	$response['weather'] = $owmw_params["weather_id"];
-    	  	$response['html'] = "<p>OWM Weather id '" . $owmw_opt["id"] . "': OWM Error " . $owmweather->cod . (!empty($owmweather->message) ? " (" . $owmweather->message . ")" : "") . "</p>";
+    	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . $owmw_opt["id"] . "': " . esc_html__("OWM Error", 'owm-weather') . " " . $owmweather->cod . (!empty($owmweather->message) ? " (" . $owmweather->message . ")" : "") . "</p>";
     		wp_send_json_success($response);
     		return;
         }
+
 
         owmw_sanitize_api_response($owmweather, array("description"));
 
@@ -2186,10 +2201,10 @@ function owmw_get_my_weather($attr) {
                 $owmw_data["daily"][$i]["condition_id"] = $value->weather[0]->id ?? null;
                 $owmw_data["daily"][$i]["category"] = $value->weather[0]->main ?? null;
                 $owmw_data["daily"][$i]["description"] = owmw_getConditionText($owmw_data["daily"][$i]["condition_id"]);
-                $owmw_data["daily"][$i]["wind_speed"] = owmw_getConvertedWindSpeed($value->wind_speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $owmw_data["wind_speed_unit"];
+                $owmw_data["daily"][$i]["wind_speed"] = owmw_getConvertedWindSpeed($value->wind_speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]];
                 $owmw_data["daily"][$i]["wind_degrees"] = $value->wind_deg ?? null;
                 $owmw_data["daily"][$i]["wind_direction"] = owmw_getWindDirection($value->wind_deg);
-                $owmw_data["daily"][$i]["wind_gust"] = isset($value->wind_gust) ? owmw_getConvertedWindSpeed($value->wind_gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"])  . ' ' . $owmw_data["wind_speed_unit"] : null;
+                $owmw_data["daily"][$i]["wind_gust"] = isset($value->wind_gust) ? owmw_getConvertedWindSpeed($value->wind_gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"])  . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]] : null;
                 $owmw_data["daily"][$i]["temperature_morning"] = $value->temp->morn ? ceil($value->temp->morn) : null;
                 $owmw_data["daily"][$i]["temperature_day"] = $value->temp->day ? ceil($value->temp->day) : null;
                 $owmw_data["daily"][$i]["temperature_evening"] = $value->temp->eve ? ceil($value->temp->eve) : null;
@@ -2251,7 +2266,7 @@ function owmw_get_my_weather($attr) {
 					$owmw_data["daily"][$i]["dew_point_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["daily"][$i]["dew_point"]);
 				}
                 $owmw_data["daily"][$i]["humidity"] = $value->humidity ? $value->humidity . '%' : null;
-                $owmw_data["daily"][$i]["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $value->pressure, $owmw_data["pressure_unit"]);
+                $owmw_data["daily"][$i]["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $value->pressure, $pressureLabel[$owmw_data["pressure_unit"]]);
                 $owmw_data["daily"][$i]["cloudiness"] = $value->clouds ? $value->clouds . '%' : '0%';
                 $owmw_data["daily"][$i]["uv_index"] = $value->uvi ?? null;
                 $owmw_data["daily"][$i]["rain_chance"] = $value->pop ? number_format($value->pop * 100, 0) . '%' : '0%';
@@ -2275,10 +2290,10 @@ function owmw_get_my_weather($attr) {
                     $owmw_data["hourly"][$cnt]["condition_id"] = $value->weather[0]->id ?? null;
                     $owmw_data["hourly"][$cnt]["category"] = $value->weather[0]->main ?? null;
                     $owmw_data["hourly"][$cnt]["description"] = owmw_getConditionText($owmw_data["hourly"][$cnt]["condition_id"]);
-                    $owmw_data["hourly"][$cnt]["wind_speed"] = owmw_getConvertedWindSpeed($value->wind_speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $owmw_data["wind_speed_unit"];
+                    $owmw_data["hourly"][$cnt]["wind_speed"] = owmw_getConvertedWindSpeed($value->wind_speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]];
                     $owmw_data["hourly"][$cnt]["wind_degrees"] = $value->wind_deg ?? null;
                     $owmw_data["hourly"][$cnt]["wind_direction"] = owmw_getWindDirection($value->wind_deg);
-                    $owmw_data["hourly"][$cnt]["wind_gust"] = isset($value->wind_gust) ? owmw_getConvertedWindSpeed($value->wind_gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $owmw_data["wind_speed_unit"] : null;
+                    $owmw_data["hourly"][$cnt]["wind_gust"] = isset($value->wind_gust) ? owmw_getConvertedWindSpeed($value->wind_gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]] : null;
                     $owmw_data["hourly"][$cnt]["temperature"] = $value->temp ? ceil($value->temp) : null;
                     $owmw_data["hourly"][$cnt]["feels_like"] = $value->feels_like ? ceil($value->feels_like) : null;
 					if ($owmw_opt["temperature_unit"] == 'metric') {
@@ -2293,7 +2308,7 @@ function owmw_get_my_weather($attr) {
 						$owmw_data["hourly"][$cnt]["feels_like_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["hourly"][$cnt]["feels_like"]);
 					}
                     $owmw_data["hourly"][$cnt]["humidity"] = $value->humidity ? $value->humidity . '%' : null;
-                    $owmw_data["hourly"][$cnt]["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $value->pressure, $owmw_data["pressure_unit"]);
+                    $owmw_data["hourly"][$cnt]["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $value->pressure, $pressureLabel[$owmw_data["pressure_unit"]]);
                     $owmw_data["hourly"][$cnt]["dew_point"] = $value->dew_point ? ceil($value->dew_point) : null;
                     $owmw_data["hourly"][$cnt]["cloudiness"] = $value->clouds ? $value->clouds . '%' : "0%";
                     $owmw_data["hourly"][$cnt]["uv_index"] = $value->uvi ?? null;
@@ -2344,7 +2359,7 @@ function owmw_get_my_weather($attr) {
         		} else {
                	  	$response = array();
        	          	$response['weather'] = $owmw_params["weather_id"];
-               	  	$response['html'] = "<p>OWM Weather id '" . esc_attr($owmw_opt["id"]) . "': OWM Error " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
+               	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
        	        	wp_send_json_error($response, 400);
                     return;
         		}
@@ -2359,7 +2374,7 @@ function owmw_get_my_weather($attr) {
             		} else {
                 	  	$response = array();
         	          	$response['weather'] = $owmw_params["weather_id"];
-                	  	$response['html'] = "<p>OWM Weather id '" . esc_attr($owmw_opt["id"]) . "': OWM Error " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
+                	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
         	        	wp_send_json_error($response, 400);
                         return;
             		}
@@ -2378,10 +2393,10 @@ function owmw_get_my_weather($attr) {
                     $owmw_data["forecast"][$cnt]["condition_id"] = $value->weather[0]->id ?? null;
                     $owmw_data["forecast"][$cnt]["category"] = $value->weather[0]->main ?? null;
                     $owmw_data["forecast"][$cnt]["description"] = owmw_getConditionText($owmw_data["forecast"][$cnt]["condition_id"]);
-                    $owmw_data["forecast"][$cnt]["wind_speed"] = owmw_getConvertedWindSpeed($value->wind->speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $owmw_data["wind_speed_unit"];
+                    $owmw_data["forecast"][$cnt]["wind_speed"] = owmw_getConvertedWindSpeed($value->wind->speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]];
                     $owmw_data["forecast"][$cnt]["wind_degrees"] = $value->wind->deg ?? null;
                     $owmw_data["forecast"][$cnt]["wind_direction"] = owmw_getWindDirection($value->wind->deg);
-                    $owmw_data["forecast"][$cnt]["wind_gust"] = isset($value->wind->gust) ? owmw_getConvertedWindSpeed($value->wind->gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $owmw_data["wind_speed_unit"] : null;
+                    $owmw_data["forecast"][$cnt]["wind_gust"] = isset($value->wind->gust) ? owmw_getConvertedWindSpeed($value->wind->gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]] : null;
                     $owmw_data["forecast"][$cnt]["temperature"] = $value->main->temp ? ceil($value->main->temp) : null;
 					$temp_min = $value->main->temp_min ? ceil($value->main->temp_min) : null;
 					if (empty($owmw_data["forecast"]["temperature_minimum"][$owmw_data["forecast"][$cnt]["day"]]) || $owmw_data["forecast"]["temperature_minimum"][$owmw_data["forecast"][$cnt]["day"]] > $temp_min) {
@@ -2412,7 +2427,7 @@ function owmw_get_my_weather($attr) {
 						$owmw_data["forecast"][$cnt]["feels_like_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["forecast"][$cnt]["feels_like"]);
 					}
                     $owmw_data["forecast"][$cnt]["humidity"] = $value->main->humidity ? $value->main->humidity . '%' : null;
-                    $owmw_data["forecast"][$cnt]["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $value->main->pressure, $owmw_data["pressure_unit"]);
+                    $owmw_data["forecast"][$cnt]["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $value->main->pressure, $pressureLabel[$owmw_data["pressure_unit"]]);
                     $owmw_data["forecast"][$cnt]["cloudiness"] = $value->clouds->all ? $value->clouds->all . '%' : "0%";
                     $owmw_data["forecast"][$cnt]["rain_chance"] = $value->pop ? number_format($value->pop * 100, 0) .'%': '0%';
                     $owmw_data["forecast"][$cnt]["visibility"] = owmw_getConvertedDistance($owmw_opt["temperature_unit"], $value->visibility);
@@ -3604,10 +3619,10 @@ function owmw_getConvertedPrecipitation($unit, $p) {
 
 function owmw_getConvertedDistance($unit, $p) {
     if ($unit == 'imperial') {
-        return ($p ? number_format($p / 1609.344, 1)." mi" : "");
+        return ($p ? number_format($p / 1609.344, 1)." ".__("mi",'owm-weather') : "");
     }
 
-    return ($p ? number_format($p / 1000, 1)." km" : "");
+    return ($p ? number_format($p / 1000, 1)." ".__("km",'owm-weather') : "");
 }
 
 function owmw_converthPa($unit, $p, $punit) {

@@ -1,6 +1,11 @@
 Must:
 pot file: wp  --allow-root i18n make-pot . lang/owm-weather.pot
 
+Should:
+manual button with ‘retry weather reload’ 
+WordPress Multi-Site environment
+cache end result, not just API
+
 Nice:
 more charts
 tabbed settings
