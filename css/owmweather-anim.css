@@ -105,23 +105,23 @@
 	-o-animation-name: rotate;
 	animation-name: rotate;
 }
-
+/*
 .owmw-main-symbol .climacon-iconWrap-sun .climacon-component-stroke_sunSpoke,.owmw-main-symbol .climacon-iconWrap-sunFill .climacon-component-stroke_sunSpoke {
 	fill-opacity: 1;
 	-webkit-animation-name: scale;
 	-moz-animation-name: scale;
 	-o-animation-name: scale;
 	animation-name: scale;
-	-webkit-animation-direction: alternate;
-	-moz-animation-direction: alternate;
-	-o-animation-direction: alternate;
-	animation-direction: alternate;
+	-webkit-animation-direction: alternate-reverse;
+	-moz-animation-direction: alternate-reverse;
+	-o-animation-direction: alternate-reverse;
+	animation-direction: alternate-reverse;
 	-webkit-animation-duration: 3s;
 	-moz-animation-duration: 3s;
 	-o-animation-duration: 3s;
 	animation-duration: 3s;
 }
-
+*/
 .owmw-main-symbol .climacon-iconWrap .climacon-component-stroke_sunSpoke:nth-child(even) {
 	-webkit-animation-delay: 3s;
 	-moz-animation-delay: 3s;
@@ -192,7 +192,7 @@
 	-o-animation-duration: 3s,12s;
 	animation-duration: 3s,12s;
 }
-
+/*
 .owmw-main-symbol .climacon-component-stroke_sunSpoke {
 	fill-opacity: 0;
 	-webkit-animation-name: fillOpacity,scale;
@@ -220,7 +220,7 @@
 	-o-animation-fill-mode: both;
 	animation-fill-mode: both;
 }
-
+*/
 .owmw-main-symbol .climacon-component-stroke_sunSpoke:nth-child(even) {
 	-webkit-animation-delay: 3s;
 	-moz-animation-delay: 3s;
@@ -781,7 +781,7 @@
 		transform: rotate(0);
 	}
 }
-
+/*
 @-webkit-keyframes scale {
 	0 {
 		-webkit-transform: scale(1,1);
@@ -821,7 +821,7 @@
 		transform: scale(.5,.5);
 	}
 }
-
+*/
 @-webkit-keyframes behindCloudMove {
 	0 {
 		-webkit-transform: translateX(-1.75px) translateY(1.75px);

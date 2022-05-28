@@ -491,14 +491,15 @@ function owmw_cloudDrizzleAlt() {
 }
 
 function owmw_cloudDrizzleSunAlt() {
-    $id = owmw_unique_id_esc("cloudFillClip");
-    $id1 = owmw_unique_id_esc("sunCloudFillClip");
+    $id = owmw_unique_id_esc("cloudSunFillClip");
+    $id1 = owmw_unique_id_esc("cloudFillClip");
+    $id2 = owmw_unique_id_esc("sunCloudFillClip");
 	return '
 		<svg
         id="cloudDrizzleSunAlt"
         class="climacon climacon-cloudDrizzleSunAlt"
         viewBox="15 10 80 65">
-        <clipPath id="'.esc_attr($id1).'">
+        <clipPath id="'.esc_attr($id2).'">
             <path
             d="M15,15v70h70V15H15z M57.945,49.641c-4.417,0-8-3.582-8-7.999c0-4.418,3.582-7.999,8-7.999s7.998,3.581,7.998,7.999C65.943,46.059,62.362,49.641,57.945,49.641z"/>
         </clipPath>
@@ -535,7 +536,7 @@ function owmw_cloudDrizzleSunAlt() {
                         class="climacon-component climacon-component-stroke climacon-component-stroke_sunSpoke climacon-component-stroke_sunSpoke-north"
                         d="M72.174,52.925l2.828,2.828c0.779,0.78,0.779,2.047,0,2.827c-0.781,0.781-2.049,0.781-2.828,0l-2.828-2.827c-0.781-0.781-0.781-2.048,0-2.828C70.125,52.144,71.391,52.144,72.174,52.925z"/>
                     </g>
-                    <g class="climacon-wrapperComponent climacon-wrapperComponent-sunBody" clip-path="url(#'.esc_attr($id1).')">
+                    <g class="climacon-wrapperComponent climacon-wrapperComponent-sunBody" clip-path="url(#'.esc_attr($id2).')">
                         <circle
                         class="climacon-component climacon-component-stroke climacon-component-stroke_sunBody"
                         cx="58.033"
@@ -555,7 +556,7 @@ function owmw_cloudDrizzleSunAlt() {
                 class="climacon-component climacon-component-stroke climacon-component-stroke_drizzle climacon-component-stroke_drizzle-right"
                 d="M43.033,57.672l-2.121,2.121c-1.172,1.172-1.172,3.07,0,4.242s3.07,1.172,4.244,0c1.172-1.172,1.172-3.07,0-4.242L43.033,57.672z"/>
             </g>
-            <g class="climacon-wrapperComponent climacon-wrapperComponent-cloud" clip-path="url(#'.esc_attr($id).')">
+            <g class="climacon-wrapperComponent climacon-wrapperComponent-cloud" clip-path="url(#'.esc_attr($id1).')">
                 <path
                 class="climacon-component climacon-component-stroke climacon-component-stroke_cloud"
                 d="M63.999,64.944v-4.381c2.387-1.386,3.998-3.961,3.998-6.92c0-4.418-3.58-8-7.998-8c-1.603,0-3.084,0.481-4.334,1.291c-1.232-5.316-5.973-9.29-11.664-9.29c-6.628,0-11.999,5.372-11.999,12c0,3.549,1.55,6.729,3.998,8.926v4.914c-4.776-2.769-7.998-7.922-7.998-13.84c0-8.836,7.162-15.999,15.999-15.999c6.004,0,11.229,3.312,13.965,8.203c0.664-0.113,1.336-0.205,2.033-0.205c6.627,0,11.998,5.373,11.998,12C71.997,58.864,68.655,63.296,63.999,64.944z"/>
@@ -708,7 +709,7 @@ function owmw_cloudRainSun() {
             d="M15,15v70h20.947V63.481c-4.778-2.767-8-7.922-8-13.84c0-8.836,7.163-15.998,15.998-15.998c6.004,0,11.229,3.312,13.965,8.203c0.664-0.113,1.338-0.205,2.033-0.205c6.627,0,11.998,5.373,11.998,12c0,5.262-3.394,9.723-8.107,11.341V85H85V15H15z"/>
         </clipPath>
         <g class="climacon-iconWrap climacon-iconWrap-cloudRainSun">
-            <g clip-path="url(#cloudSunFillClip)">
+            <g clip-path="url(#'.esc_attr($id2).')">
                 <g class="climacon-componentWrap climacon-componentWrap-sun climacon-componentWrap-sun_cloud">
                     <g class="climacon-componentWrap climacon-componentWrap_sunSpoke">
                         <path

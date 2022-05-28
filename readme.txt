@@ -167,6 +167,10 @@ Although many settings look alike, OWM Weather uses completely different weather
 
 == Changelog ==
 
+= 5.2.4 =
+* The rotating sun at the main icons will now stay in place for all browsers
+* fixed 2 animated icons
+
 = 5.2.3 =
 * added several missing translation hooks, namely pressure units, wind speed units, visibility units, vertical scale of graphs
 * fixed typo in plugin name
