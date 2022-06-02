@@ -11,7 +11,7 @@ jQuery(document).ready(function($){
 				_ajax_nonce: owmwAjax.owmw_nonce,
 			},
 			dataType: 'json',
-			timeout: 7000,
+			timeout: 20000,
 			success : function( xhr ) {
 				$('#' + xhr.data.weather).html(xhr.data.html);
 			},
@@ -40,7 +40,7 @@ function owmw_refresh_weather(id) {
                         _ajax_nonce: owmwAjax.owmw_nonce,
                 },
                 dataType: 'json',
-                timeout: 7000,
+                timeout: 20000,
                 success : function( xhr ) {
                         jQuery('#' + xhr.data.weather).html(xhr.data.html);
                 },
