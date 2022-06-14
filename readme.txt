@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
 Tested up to: 6.0.0
-Stable tag: 5.2.5
+Stable tag: 5.2.6
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -70,7 +70,8 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 * English
 * Chilean (thanks to Wladimir Espinoza Durán)
 * French (thanks to Benjamin DENIS)
-* German (thanks to Lutz Bennert)
+* German
+* Russian (thanks to @laguna34)
 * Spanish (thanks to Wladimir Espinoza Durán)
 = Partial translations: =
 * Danish (thanks to Carsten Klingenberg)
@@ -82,7 +83,6 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 * Persian (thanks to @mARYAm)
 * Polish (thanks to Marcello/Rafal Wronowski)
 * Portuguese (thanks to Deoclides Neto)
-* Russian (thanks to Andrea)
 
 Add yours with PoEdit. The latest .pot file can be found under /wp-content/plugins/own/weather/lang/. Place your .po/.mo files into the same folder. We will gladly add them in future releases.
 
@@ -166,6 +166,10 @@ Although many settings look alike, OWM Weather uses completely different weather
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.2.6 =
+* Fixed wind direction icon for Safari browser
+* Added Russian translation (thanks to laguna34); finalized German and French translations
 
 = 5.2.5 =
 * Improved ajax "endless spinner" error handling; errors will now show up in console log

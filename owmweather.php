@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.2.5
+Version: 5.2.6
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.2.5' );
+define( 'OWM_WEATHER_VERSION', '5.2.6' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -2105,27 +2105,6 @@ function owmw_get_my_weather($attr) {
 			$today_day ='';
 		}
 
-
-
-
-
-/* bugbug
-		$transient_key = 'owmweather_html_' . $id . '_' . $owmw_data["longitude"] . $owmw_data["latitude"] . $owmw_opt["temperature_unit"] . $owmw_opt["owm_language"];
-		if ($html = get_transient($transient_key)) {
-			$response = array();
-			$response['weather'] = $owmw_params["weather_id"];
-			$response['html'] = $html;
-			wp_send_json_success($response);
-		}
-*/
-
-
-
-
-
-
-
-
         //JSON : Onecall forecast weather (relies on lat and lon from current weather call)
         $url = "https://api.openweathermap.org/data/2.5/onecall?lon=".$owmw_data["longitude"]."&lat=".$owmw_data["latitude"]."&mode=json&exclude=minutely&lang=".$owmw_opt["owm_language"]."&units=".$owmw_opt["temperature_unit"]."&APPID=".$owmw_opt["api_key"];
         if($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0 || $owmw_opt["alerts"] == 'yes' || $owmw_opt["moonrise_moonset"] == "yes" || $owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes") {
@@ -3361,9 +3340,9 @@ $owmw_html["chart"]["daily"]["script"] =
         owmw_sanitize_api_response($owmw_data);
 
         $owmw_opt['allowed_html'] = array_merge(wp_kses_allowed_html('post'),
-                                               array('svg' => array('class' => true, 'style' => true, 'viewbox' => true, 'transform' => true),
+                                               array('svg' => array('class' => true, 'style' => true, 'viewbox' => true, 'fill' => true),
                                                'clippath' => array('id' => true, 'd' => true, 'class' => true),
-                                               'path' => array('d'=>true, 'class' => true),
+                                               'path' => array('d'=>true, 'class' => true, 'transform' => true, 'transform-origin' => true ),
                                                'g' => array('class' => true, 'clip-path' => true),
                                                'circle' => array('class' => true, 'fill' => true, 'cx' => true, 'cy' => true, 'r' => true),
                                                'rect' => array('class' => true, 'x' => true, 'y' => true, 'width' => true, 'height' => true),
@@ -3395,20 +3374,6 @@ $owmw_html["chart"]["daily"]["script"] =
 	    	include ( dirname( __FILE__ ) . '/template/content-owmweather.php');
 	    }
     	$owmw_html["html"] = ob_get_clean();
-
-
-
-
-/* bugbug
-		$transient_key = 'owmweather_html_' . $id . '_' . $owmw_data["longitude"] . $owmw_data["latitude"] . $owmw_opt["temperature_unit"] . $owmw_opt["owm_language"];
-		if (false === get_transient($transient_key)) {
-			set_transient($transient_key, $owmw_html['html']);
-		}
-*/
-
-
-
-
 
 	  	$response = array();
 	  	$response['weather'] = $owmw_params["weather_id"];
