@@ -1,4 +1,5 @@
 yc climacons-font.css -o climacons-font.min.css 
+yc colorAnimated.css -o colorAnimated.min.css 
 yc dripicons.css -o dripicons.min.css 
 yc iconvault.css -o iconvault.min.css 
 yc pe-icon-set-weather.css -o pe-icon-set-weather.min.css 
@@ -8,3 +9,4 @@ yc owmweather-admin.css -o owmweather-admin.min.css
 yc owmweather-anim.css -o owmweather-anim.min.css 
 yc owmweather.css -o owmweather.min.css 
 yc owmweather-map.css -o owmweather-map.min.css 
+yc bootstrap5.stripped.css -o bootstrap5.stripped.min.css

@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.2.6
+Version: 5.3.0
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -49,7 +49,7 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.2.6' );
+define( 'OWM_WEATHER_VERSION', '5.3.0' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -143,13 +143,12 @@ add_action('wp_enqueue_scripts', 'owmw_styles');
 function owmw_add_themes_scripts() {
 	wp_register_style( 'owmw-flexslider-css', plugins_url( 'css/flexslider.css', __FILE__ ));
 	wp_register_script( 'owmw-flexslider-js', plugins_url( 'js/jquery.flexslider-min.js#async', __FILE__ ));
-	wp_register_style( 'bootstrap-css', plugins_url( 'css/bootstrap.min.css', __FILE__ ));
-	wp_register_script( 'bootstrap-js', plugins_url( 'js/bootstrap.bundle.min.js#async', __FILE__ ));
-	wp_register_style( 'bootstrap5-css', plugins_url( 'css/bootstrap5.min.css', __FILE__ ));
+	wp_register_style( 'bootstrap5-css', plugins_url( 'css/bootstrap5.stripped.min.css', __FILE__ ));
 	wp_register_script( 'bootstrap5-js', plugins_url( 'js/bootstrap5.bundle.min.js#async', __FILE__ ));
 	wp_register_script( 'chart-js', plugins_url( 'js/chart.min.js#async', __FILE__ ));
 }
 add_action( 'wp_enqueue_scripts', 'owmw_add_themes_scripts', 10, 1 );
+add_action( 'admin_enqueue_scripts', 'owmw_add_themes_scripts', 10, 1 );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Loads the JS/CSS in admin
@@ -170,18 +169,10 @@ function owmw_add_dashboard_scripts() {
 
 	wp_register_style('owmweather-anim-css', plugins_url('css/owmweather-anim.min.css', __FILE__));
 
-	$options = get_option("owmw_option_name");
-	if (!empty($options['owmw_advanced_bootstrap_version']) && $options['owmw_advanced_bootstrap_version'] == '5') {
-		wp_enqueue_style('bootstrap5-css');
-		wp_enqueue_script('bootstrap5-js');
-	} else {
-		wp_register_style( 'bootstrap-css', plugins_url( 'css/bootstrap.min.css', __FILE__ ));
-		wp_enqueue_style('bootstrap-css');
-	}
-	wp_register_script( 'bootstrap-js', plugins_url( 'js/bootstrap.bundle.min.js#async', __FILE__ ));
-	wp_enqueue_script('bootstrap-js');
+	wp_enqueue_style('bootstrap5-css');
+	wp_enqueue_script('bootstrap5-js');
 }
-add_action('admin_head-index.php', 'owmw_add_dashboard_scripts');
+add_action('admin_head', 'owmw_add_dashboard_scripts');
 
 //Admin + Custom Post Type (new, listing)
 function owmw_add_admin_scripts( $hook ) {
@@ -866,25 +857,27 @@ function owmw_basic($post){
 				</label>
 			</p>
 			<p>
+                            <span>
 				<label for="owmweather_alerts_meta">
 					<input type="checkbox" name="owmweather_alerts" id="owmweather_alerts_meta" value="yes" <?php echo checked( $owmw_opt["alerts"], 'yes', false ) ?>/>
 						<?php esc_html_e( 'Alerts', 'owm-weather' ) ?>
 				</label>
-			</p>
-			<div class="form-inline">
-			<p>
+                            </span>
+                            <span>&nbsp;</span>
+			    <span>
 				<label for="owmweather_alerts_popup_modal_meta">
 					<input type="radio" name="owmweather_alerts_popup" id="owmweather_alerts_popup_modal_meta" value="modal" <?php echo checked( $owmw_opt["alerts_popup"], 'modal', false ) ?>/>
 						<?php esc_html_e( 'Modal', 'owm-weather' ) ?>
 				</label>
-			</p>
-			<p>
+			    </span>
+                            <span>&nbsp;</span>
+			    <span>
 				<label for="owmweather_display_alert_inline_meta">
 					<input type="radio" name="owmweather_alerts_popup" id="owmweather_display_alert_inline_meta" value="inline" <?php echo checked( $owmw_opt["alerts_popup"], 'inline', false ) ?>/>
 						<?php esc_html_e( 'Inline', 'owm-weather' ) ?>
 				</label>
+			    </span>
 			</p>
-			</div>
 			<p>
 				<label for="owmweather_alerts_button_color"><?php esc_html_e( 'Alert Button color', 'owm-weather' ) ?></label>
 				<input name="owmweather_alerts_button_color" type="text" value="<?php echo esc_attr($owmw_opt["alerts_button_color"]) ?>" class="owmweather_color_picker" />
@@ -1011,6 +1004,7 @@ function owmw_basic($post){
 					<option <?php echo selected( 'Forecast', $owmw_opt["iconpack"], false ) ?>value="Forecast"><?php esc_html_e( 'Forecast', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'Dripicons', $owmw_opt["iconpack"], false ) ?>value="Dripicons"><?php esc_html_e( 'Dripicons', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'Pixeden', $owmw_opt["iconpack"], false ) ?>value="Pixeden"><?php esc_html_e( 'Pixeden', 'owm-weather' ) ?></option>
+					<option <?php echo selected( 'ColorAnimated', $owmw_opt["iconpack"], false ) ?>value="ColorAnimated"><?php esc_html_e( 'Color Animated', 'owm-weather' ) ?></option>
 				</select>
 			</p>
 			<p class="misc subsection-title">
@@ -1571,6 +1565,13 @@ function owmw_icons_pack($bypass, $id) {
     } else if ($iconpack == 'Pixeden') {
       	wp_register_style("pe-icon-set-weather-css", plugins_url('css/pe-icon-set-weather.min.css', __FILE__));
       	wp_enqueue_style("pe-icon-set-weather-css");
+    } else if ($iconpack == 'ColorAnimated') {
+      	wp_register_style("ca-animate-min-css", plugins_url('css/animate.min.css', __FILE__));
+      	wp_enqueue_style("ca-animate-min-css");
+      	wp_register_style("ca-colorAnimated-min-css", plugins_url('css/colorAnimated.min.css', __FILE__));
+      	wp_enqueue_style("ca-colorAnimated-min-css");
+      	wp_register_style("climacons-css", plugins_url('css/climacons-font.min.css', __FILE__));
+      	wp_enqueue_style("climacons-css");
     } else {
       	wp_register_style("climacons-css", plugins_url('css/climacons-font.min.css', __FILE__));
       	wp_enqueue_style("climacons-css");
@@ -1735,14 +1736,8 @@ function owmw_get_my_weather_id($atts) {
 	}
 
 	if (owmw_get_admin_bypass('owmw_advanced_disable_modal_js') != 'yes') {
-		if (owmw_get_admin_bypass('owmw_advanced_bootstrap_version') == '5') {
 			wp_enqueue_style('bootstrap5-css');
 			wp_enqueue_script('bootstrap5-js');
-		} else {
-			wp_enqueue_script('jquery');
-			wp_enqueue_style('bootstrap-css');
-			wp_enqueue_script('bootstrap-js');
-		}
     }
 
 	if ($owmw_opt["disable_anims"] != 'yes') {
@@ -1931,9 +1926,14 @@ function owmw_get_my_weather($attr) {
     	$owmw_opt["table_border_width"]	            = owmw_getBypassDefault($bypass, 'table_border_width', $owmw_opt["table_border_color"] == '' ? '0' : '1');
     	$owmw_opt["table_border_style"]	            = owmw_getBypassDefault($bypass, 'table_border_style', "solid");
     	$owmw_opt["table_border_radius"]	            = owmw_getBypassDefault($bypass, 'table_border_radius', "0");
-		
-		$owmw_opt["bootstrap_version"]              = owmw_get_admin_bypass('owmw_advanced_bootstrap_version') ?? '4';
-		$owmw_opt["bootstrap_data"]              = $owmw_opt["bootstrap_version"] == '5' ? 'bs-' : '';
+
+	if (owmw_get_admin_bypass('owmw_advanced_disable_modal_js') != 'yes') {
+		$owmw_opt["bootstrap_version"] = owmw_get_admin_bypass('owmw_advanced_bootstrap_version') ?? '4';
+	} else {
+		$owmw_opt["bootstrap_version"] = '5';
+	}
+	$owmw_opt["bootstrap_data"]              = $owmw_opt["bootstrap_version"] == '5' ? 'bs-' : '';
+	$owmw_opt["bootstrap_modal_close"]              = $owmw_opt["bootstrap_version"] == '5' ? '<button type="button" class="btn-close" data-bs-dismiss="modal"></button>' : '<button type="button" class="close" data-dismiss="modal">&times;</button>';
 /* bugbug
 		if ($owmw_opt["image_bg_cover"] == 'yes') {
 			$owmw_opt["image_bg_cover_e"] = 'cover';
@@ -2521,7 +2521,7 @@ function owmw_get_my_weather($attr) {
        	$owmw_html["svg"]["uv_index"]      = owmw_uv_index_icon($owmw_opt["text_color"]);
 
 	    $owmw_html["current"]["day_night"] = ($owmw_data["timestamp"] > $owmw_data["timestamp_sunrise"] && $owmw_data["timestamp"] < $owmw_data["timestamp_sunset"]) ? 'day' : 'night';
-        $owmw_html["current"]["symbol_svg"] = owmw_weatherSVG($owmw_data["condition_id"], $owmw_html["current"]["day_night"]);
+        $owmw_html["current"]["symbol_svg"] = owmw_weatherSVG($owmw_opt["iconpack"], $owmw_data["condition_id"], $owmw_html["current"]["day_night"]);
         $owmw_html["current"]["symbol_alt"] = owmw_weatherIcon($owmw_opt["iconpack"], $owmw_data["condition_id"], $owmw_html["current"]["day_night"], $owmw_data["description"]);
 
 		$display_now_start = '<div class="owmw-now">';
@@ -2873,7 +2873,7 @@ function owmw_get_my_weather($attr) {
 			foreach($owmw_data["alerts"] as $key => $value) {
 				if (empty($owmw_opt["alerts_popup"]) || $owmw_opt["alerts_popup"] === "modal") {
 					$modal = owmw_unique_id_esc('owmw-modal-'.esc_attr($owmw_opt["id"]));
-					$owmw_html["alert_button"] .= '<button class="owmw-alert-button btn btn-outline-owmw-alert-' . esc_attr($owmw_opt["id"]) . ' m-1" data-' . $owmw_opt["bootstrap_data"] . 'toggle="modal" data-' . $owmw_opt["bootstrap_data"] . 'target="#' . esc_attr($modal) . '">' . esc_html($value["event"]) . '</button>';
+					$owmw_html["alert_button"] .= '<button class="owmw-alert-button btn btn-outline-owmw-alert-' . esc_attr($owmw_opt["id"]) . '" style="margin: 0.25rem !important;"  data-' . $owmw_opt["bootstrap_data"] . 'toggle="modal" data-' . $owmw_opt["bootstrap_data"] . 'target="#' . esc_attr($modal) . '">' . esc_html($value["event"]) . '</button>';
 					$owmw_html["alert_modal"] .=
 						'<div class="modal fade" id="' . esc_attr($modal) . '" tabindex="-1" role="dialog" aria-labelledby="' . esc_attr($modal) . '-label" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
@@ -2881,9 +2881,7 @@ function owmw_get_my_weather($attr) {
 									owmw_css_color('background-color', $owmw_opt["background_color"]) . owmw_css_color("color",$owmw_opt["text_color"]) . '">
 							  <div class="modal-header">
 								<h5 class="modal-title" id="' . esc_attr($modal) . '-label">' . esc_html($value["event"]) . '</h5>
-								<button type="button" class="close" data-' . $owmw_opt["bootstrap_data"] . 'dismiss="modal" aria-label="'.esc_html__('Close', 'owm-weather').'">
-								  <span aria-hidden="true">&times;</span>
-								</button>
+								' . $owmw_opt["bootstrap_modal_close"] . '
 							  </div>
 							  <div class="modal-body">
 								<p>' . esc_html($value["sender"]) . '<br>' . esc_html($value["start"]) . ' until ' . esc_html($value["end"]) .'</p>
@@ -3153,7 +3151,7 @@ $owmw_html["chart"]["daily"]["script"] =
 				if ($cnt < $owmw_opt["hours_forecast_no"]) {
 					$owmw_html["table"]["hourly"] .= '<tr>';
 					$owmw_html["table"]["hourly"] .= '<td>' . date_i18n('D', $value["timestamp"]) . ($owmw_opt["hours_time_icons"] == 'yes' ? owmw_hour_icon($value["time"], $owmw_opt["table_text_color"]) : '<br>' . esc_html($value["time"])) . '</td>';
-					$owmw_html["table"]["hourly"] .= '<td class="border-right-0">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], $value["day_night"], $value["description"]) . '</td><td class="border-left-0 small">' . esc_html($value["description"]) . '</td>';
+					$owmw_html["table"]["hourly"] .= '<td style="border-right: 0 !important;">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], $value["day_night"], $value["description"]) . '</td><td class="small" style="border-left: 0 !important">' . esc_html($value["description"]) . '</td>';
 					$owmw_html["table"]["hourly"] .= '<td class="owmw-temperature">' . esc_html($value["temperature"]) . '</td>';
 					$owmw_html["table"]["hourly"] .= '<td class="owmw-temperature">' . esc_html($value["feels_like"]) . '</td>';
 					if ($owmw_opt["precipitation"] == 'yes') {
@@ -3231,7 +3229,7 @@ $owmw_html["chart"]["daily"]["script"] =
 				if ($cnt < $owmw_opt["days_forecast_no"]) {
 					$owmw_html["table"]["daily"] .= '<tr>';
 					$owmw_html["table"]["daily"] .= '<td>' . esc_html($value["day"]) . '</td>';
-					$owmw_html["table"]["daily"] .= '<td class="border-right-0">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], "day", $value["description"]) . '</td><td class="border-left-0 small">' . esc_html($value["description"]) . '</td>';
+					$owmw_html["table"]["daily"] .= '<td style="border-right: 0 !important;">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], "day", $value["description"]) . '</td><td class="small" style="border-left: 0 !important">' . esc_html($value["description"]) . '</td>';
 					$owmw_html["table"]["daily"] .= '<td class="owmw-temperature">' . esc_html($value["temperature_minimum"]) . '</td>';
 					$owmw_html["table"]["daily"] .= '<td class="owmw-temperature">' . esc_html($value["temperature_maximum"]) . '</td>';
 					if ($owmw_opt["precipitation"] == 'yes') {
@@ -3301,7 +3299,7 @@ $owmw_html["chart"]["daily"]["script"] =
 				if (!in_array($i, array("temperature_minimum", "temperature_minimum_celsius", "temperature_minimum_fahrenheit", "temperature_maximum", "temperature_maximum_celsius", "temperature_maximum_fahrenheit"))) {
 					$owmw_html["table"]["forecast"] .= '<tr>';
 					$owmw_html["table"]["forecast"] .= '<td>' . date_i18n('D', $value["timestamp"]) . ($owmw_opt["hours_time_icons"] == 'yes' ? owmw_hour_icon($value["time"], $owmw_opt["table_text_color"]) : '<br>' . esc_html($value["time"])) . '</td>';
-					$owmw_html["table"]["forecast"] .= '<td class="border-right-0">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], $value["day_night"], $value["description"]) . '</td><td class="border-left-0 small">' . esc_html($value["description"]) . '</td>';
+					$owmw_html["table"]["forecast"] .= '<td style="border-right: 0 !important;">' . owmw_weatherIcon($owmw_opt["iconpack"], $value["condition_id"], $value["day_night"], $value["description"]) . '</td><td class="small" style="border-left: 0 !important">' . esc_html($value["description"]) . '</td>';
 					$owmw_html["table"]["forecast"] .= '<td class="owmw-temperature">' . esc_html($value["temperature"]) . '</td>';
 					$owmw_html["table"]["forecast"] .= '<td class="owmw-temperature">' . esc_html($value["feels_like"]) . '</td>';
 					if ($owmw_opt["precipitation"] == 'yes') {
@@ -3340,16 +3338,24 @@ $owmw_html["chart"]["daily"]["script"] =
         owmw_sanitize_api_response($owmw_data);
 
         $owmw_opt['allowed_html'] = array_merge(wp_kses_allowed_html('post'),
-                                               array('svg' => array('class' => true, 'style' => true, 'viewbox' => true, 'fill' => true),
+                                               array('svg' => array('class' => true, 'style' => true, 'viewbox' => true, 'fill' => true, 'width' => true, 'height' => true),
+                                               'defs' => array(),
                                                'clippath' => array('id' => true, 'd' => true, 'class' => true),
-                                               'path' => array('d'=>true, 'class' => true, 'transform' => true, 'transform-origin' => true ),
+                                               'path' => array('d'=>true, 'class' => true, 'transform' => true, 'transform-origin' => true, 'fill' => true),
                                                'g' => array('class' => true, 'clip-path' => true),
                                                'circle' => array('class' => true, 'fill' => true, 'cx' => true, 'cy' => true, 'r' => true),
                                                'rect' => array('class' => true, 'x' => true, 'y' => true, 'width' => true, 'height' => true),
-                                               'polygon' => array('class' => true, 'points' => true),
+                                               'polygon' => array('class' => true, 'points' => true, 'style' => true),
                                                'metadata' => array(),
-                                               'canvas' => array('id' => true, 'style' => true, 'aria-label' => true, 'role' => true)
-				       ));
+                                               'canvas' => array('id' => true, 'style' => true, 'aria-label' => true, 'role' => true),
+                                               'radialgradient' => array('id' => true, 'cx' => true, 'cy' => true, 'r' => true, 'fx' => true, 'fy' => true),
+                                               'lineargradient' => array('id' => true, 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true),
+                                               'stop' => array('offset' => true, 'style' => true, 'class' => true),
+                                               'symbol' => array('id' => true),
+                                               'line' => array('x1' => true, 'y1' => true, 'x2' => true, 'y2' => true, 'class' => true),
+                                               'use' => array('xlink:href' => true, 'class' => true, 'fill' => true, 'x' => true, 'y' => true)
+                                                ));
+
 	$owmw_opt['allowed_html']['button']['data-' . $owmw_opt["bootstrap_data"] . 'target'] = 1;
 	$owmw_opt['allowed_html']['button']['data-' . $owmw_opt["bootstrap_data"] . 'toggle'] = 1;
 	$owmw_opt['allowed_html']['button']['data-' . $owmw_opt["bootstrap_data"] . 'dismiss'] = 1;
@@ -3787,7 +3793,7 @@ function owmw_sanitize_validate_field($key, $value) {
 
             case "iconpack":
                 $value = sanitize_text_field($value);
-                if (!in_array($value, array("Climacons", "OpenWeatherMap", "WeatherIcons", "Forecast", "Dripicons", "Pixeden"))) {
+                if (!in_array($value, array("Climacons", "OpenWeatherMap", "WeatherIcons", "Forecast", "Dripicons", "Pixeden", "ColorAnimated"))) {
                     $value = "Climacons";
                 }
                 break;

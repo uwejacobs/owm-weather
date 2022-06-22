@@ -59,7 +59,7 @@
     }
 ?>
 
-    <div class="row full-card">
+    <div class="row full-card flex-nowrap">
         <div class="<?php echo esc_attr($left_classes); ?>">
 
         	<!-- Current weather -->

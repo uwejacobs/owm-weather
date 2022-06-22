@@ -80,7 +80,7 @@
 <!-- Start #owm-weather -->
 <?php echo wp_kses_post($owmw_html["container"]["start"]); ?>
 
-    <div class="row">
+    <div class="row flex-nowrap">
         <div class="owmw-current <?php echo esc_attr($main_class); ?>">
 
         	<!-- Current weather -->

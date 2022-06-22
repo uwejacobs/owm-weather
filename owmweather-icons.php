@@ -10,12 +10,24 @@ function owmw_weatherIcon($iconpack, $id, $day_night, $description) {
         return owmw_weatherPixeden($id, $day_night, $description);
 	} else if ($iconpack == 'OpenWeatherMap') {
         return owmw_weatherOpenWeatherMap($id, $day_night, $description);
+	} else if ($iconpack == 'ColorAnimated') {
+        return owmw_ColorAnimated($id, $day_night, $description);
 	} else {
    		return '<div class="owmw-symbol climacon w' . esc_attr($id) . ' ' . esc_attr($day_night)  .'" title="' . esc_attr($description) . '"></div>';
 	}
 }
 
-function owmw_weatherSVG($id, $dayNight) {
+function owmw_weatherSVG($iconpack, $id, $dayNight) {
+    if ($iconpack == 'ColorAnimated') {
+        $str = owmw_colorAnimatedConfig();
+        $str .= owmw_ColorAnimated($id, $dayNight, "");
+        return $str;
+    } else {
+        return  owmw_weatherSVGclimacons($id, $dayNight);
+    }
+}
+
+function owmw_weatherSVGclimacons($id, $dayNight) {
 	switch ($id) {
 
 		//sun
@@ -567,6 +579,100 @@ function owmw_weatherPixeden($id, $day_night, $description) {
     }
 
     return '<span class="owmw-symbol pe pe-is-w-'. esc_attr($icon ?? '') .'" title="' . esc_attr($description) . '"></span>';
+}
+
+function owmw_ColorAnimated($id, $dayNight, $description) {
+	switch ($id) {
+        case "200": /* Thunderstorm thunderstorm with light rain */
+        case "201": /* Thunderstorm thunderstorm with rain */
+        case "202": /* Thunderstorm thunderstorm with heavy rain */
+        case "210": /* Thunderstorm light thunderstorm */
+        case "211": /* Thunderstorm thunderstorm */
+        case "212": /* Thunderstorm heavy thunderstorm */
+        case "221": /* Thunderstorm ragged thunderstorm */
+        case "230": /* Thunderstorm thunderstorm with light drizzle */
+        case "231": /* Thunderstorm thunderstorm with drizzle */
+        case "232": /* Thunderstorm thunderstorm with heavy drizzle */
+       		return owmw_colorAnimated_Thunderstorm();
+            break;
+        case "300": /* Drizzle light intensity drizzle */
+        case "301": /* Drizzle drizzle */
+        case "310": /* Drizzle light intensity drizzle rain */
+       		return $dayNight == "day" ? owmw_colorAnimated_Patchy_Drizzle_Day() : owmw_colorAnimated_Patchy_Drizzle_Night();
+          break;
+        case "302": /* Drizzle heavy intensity drizzle */
+        case "311": /* Drizzle drizzle rain */
+        case "312": /* Drizzle heavy intensity drizzle rain */
+        case "313": /* Drizzle shower rain and drizzle */
+        case "314": /* Drizzle heavy shower rain and drizzle */
+        case "321": /* Drizzle shower drizzle */
+       		return owmw_colorAnimated_Drizzle();
+          break;
+        case "500": /* Rain light rain */
+        case "520": /* Rain light intensity shower rain */
+       		return $dayNight == "day" ? owmw_colorAnimated_Patchy_Rain_Day() : owmw_colorAnimated_Patchy_Rain_Night();
+          break;
+        case "501": /* Rain moderate rain */
+        case "502": /* Rain heavy intensity rain */
+        case "503": /* Rain very heavy rain */
+        case "504": /* Rain extreme rain */
+        case "521": /* Rain shower rain */
+        case "522": /* Rain heavy intensity shower rain */
+        case "531": /* Rain ragged shower rain */
+       		return owmw_colorAnimated_Rain();
+          break;
+        case "511": /* Rain freezing rain */
+       		return owmw_colorAnimated_Hail();
+          break;
+        case "600": /* Snow light snow */
+        case "615": /* Snow Light rain and snow */
+        case "620": /* Snow Light shower snow */
+       		return $dayNight == "day" ? owmw_colorAnimated_Patchy_Snow_Day() : owmw_colorAnimated_Patchy_Snow_Night();
+          break;
+        case "601": /* Snow Snow */
+        case "602": /* Snow Heavy snow */
+        case "616": /* Snow Rain and snow */
+        case "621": /* Snow Shower snow */
+        case "622": /* Snow Heavy shower snow */
+       		return owmw_colorAnimated_Snow();
+          break;
+        case "612": /* Snow Light shower sleet */
+       		return $dayNight == "day" ? owmw_colorAnimated_Patchy_Sleet_Day() : owmw_colorAnimated_Patchy_Sleet_Night();
+          break;
+        case "611": /* Snow Sleet */
+        case "613": /* Snow Shower sleet */
+       		return owmw_colorAnimated_Sleet();
+          break;
+        case "701": /* Mist mist */
+        case "711": /* Smoke Smoke */
+        case "721": /* Haze Haze */
+        case "731": /* Dust sand/ dust whirls */
+        case "741": /* Fog fog */
+        case "751": /* Sand sand */
+        case "761": /* Dust dust */
+        case "762": /* Ash volcanic ash */
+        case "771": /* Squall squalls */
+       		return owmw_colorAnimated_Mist_Cloud();
+            break;
+        case "781": /* Tornado tornado */
+       		return owmw_colorAnimated_Tornado();
+            break;
+        case "800": /* Clear clear sky */
+       		return $dayNight == "day" ? owmw_colorAnimated_Sun() : owmw_colorAnimated_Moon();
+		  break;
+        case "801": /* Clouds few clouds: 11-25% */
+        case "802": /* Clouds scattered clouds: 25-50% */
+       		return $dayNight == "day" ? owmw_colorAnimated_Partly_Cloudy_Day() : owmw_colorAnimated_Partly_Cloudy_Night();
+		  break;
+        case "803": /* Clouds broken clouds: 51-84% */
+       		return owmw_colorAnimated_Few_Clouds();
+          break;
+        case "804": /* Clouds overcast clouds: 85-100% */
+       		return owmw_colorAnimated_Dark_Clouds();
+          break;
+    }
+    
+    return "";
 }
 
 function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack, $extension = '') {

@@ -1791,12 +1791,10 @@ class owmw_options
 		echo ' value="4"/>';
 		echo '<label for="owmw_advanced_bootstrap_version4" style="margin-right: 30px;">'. esc_html__( '4', 'owm-weather' ) .'</label>';
 
-		//echo '<br><br>';
-
         echo '<input id="owmw_advanced_bootstrap_version5" name="owmw_option_name[owmw_advanced_bootstrap_version]" type="radio"';
 		if ('5' == $check) echo 'checked="yes"';
 		echo ' value="5"/>';
-		echo '<label for="owmw_advanced_bootstrap_version5">'. esc_html__( '5', 'owm-weather' ) .'</label>';
+		echo '<label for="owmw_advanced_bootstrap_version5">'. esc_html__( '5', 'owm-weather') . " " . esc_html__( '(Ignored when Disable Bootstrap is unchecked)') .'</label>';
 	}
 
 	public function owmw_map_display_callback()

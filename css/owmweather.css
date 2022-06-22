@@ -408,3 +408,5 @@ i.wi, span.pe {
     top: 5px !important;
     left: 5px !important;
 }
+
+.font-weight-bold { font-weight: 700 !important; }

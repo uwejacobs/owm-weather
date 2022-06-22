@@ -1,4 +1,6 @@
 Must:
+https://github.com/atiyahaider/Animated-SVG-Weather-Icons
+
 pot file: wp  --allow-root i18n make-pot . lang/owm-weather.pot
 
 Should:
@@ -9,6 +11,4 @@ more charts
 tabbed settings
 background type gradient/video
 openweathermap keys
-get rid of bootstrap dependency?
-DIVI or Elementor?
 allow users to enter city

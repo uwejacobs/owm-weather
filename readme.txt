@@ -167,6 +167,11 @@ Although many settings look alike, OWM Weather uses completely different weather
 
 == Changelog ==
 
+= 5.3.0 =
+* Fixed layout shifts due to internal Bootstrap CSS
+  OWM Weather will now only load a subset of the Bootstrap 5 CSS should the template not already include Bootstrap. This prevents unexpected changes to the template styles and navigation bar.
+* Added a new animated iconpack
+
 = 5.2.6 =
 * Fixed wind direction icon for Safari browser
 * Added Russian translation (thanks to laguna34); finalized German and French translations
