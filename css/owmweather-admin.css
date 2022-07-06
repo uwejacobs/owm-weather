@@ -43,7 +43,6 @@
 
 #owmweather_basic #tabs-1 label,#owmweather_basic #tabs-1 .misc,#owmweather_basic #tabs-2 .hour,#owmweather_basic #tabs-2 .temperatures,#owmweather_basic #tabs-2 .owmw-misc,#owmweather_basic #tabs-2 .owmw-dates,#owmweather_basic #tabs-2 .forecast,#owmweather_basic #tabs-2 .footer,#owmweather_basic #tabs-3 label,#owmweather_basic .subsection-title,#owmweather_basic label[for=owmweather_map_height_meta],#owmweather_basic label[for=owmweather_map_zoom_meta],#owmweather_basic label[for=owmweather_map_opacity_meta] {
 	border-bottom: 1px solid #ddd;
-	display: block;
 	margin: 20px 0 5px;
 }
 
@@ -395,3 +394,6 @@
 	background: #f1f1f1;
 	color: #333;
 }
+
+.owmweather-settings th, .owmweather-settings td { padding: 10px!important}
+.owmweather-settings  tr { border: 1px solid black}

@@ -181,8 +181,10 @@ class owmw_options
 					<div class="owmw-tab" id="tab_support"><?php do_settings_sections( 'owmw-settings-admin-support' ); ?></div>
 				</div>
             </div>
-            <script>jQuery("#owmw_export_form").detach().appendTo('#tab_export')</script>
+	    <script>jQuery("#owmw_export_form").detach().appendTo('#tab_export')</script>
+	    <div style="padding-top: 15px;">
              <?php submit_button( esc_html__( 'Save changes', 'owm-weather' ), 'primary', 'submit', false ); ?>
+	    </div>
         </form>
 
         <div class="owmweather-sidebar">
@@ -502,15 +504,7 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-        add_settings_field(
-            'owmw_forecast_precipitations', // ID
-            esc_html__("Precipitations forecast",'owm-weather'), // Title
-            array( $this, 'owmw_display_forecast_precipitations_callback' ), // Callback
-            'owmw-settings-admin-display', // Page
-            'owmw_setting_section_display' // Section
-        );
-
-		add_settings_field(
+	add_settings_field(
             'owmw_display_length_days_names', // ID
 			esc_html__("Length day names:",'owm-weather'), // Title
             array( $this, 'owmw_display_display_length_days_names_callback' ), // Callback
@@ -1023,7 +1017,7 @@ class owmw_options
     public function sanitize($input) {
     	if (!empty($input)) {
             foreach($input as $k => &$v) {
-        		if (!in_array($v, array('yes', 'nobypass'))) {
+        		if (!in_array($v, array('yes', 'on', 'nobypass'))) {
     	        	$v = owmw_sanitize_validate_field(substr($k, 5), $v);
             	}
 	        }
@@ -1551,11 +1545,6 @@ class owmw_options
 		echo '<label for="owmw_alerts_popup_inline">'. esc_html__( 'Inline', 'owm-weather' ) .'</label>';
     }
 
-    public function owmw_display_forecast_precipitations_callback()
-    {
-        $this->owmw_bypassRadioButtons('owmw_forecast_precipitations');
-    }
-
 	public function owmw_display_display_length_days_names_callback()
     {
    		$check = $this->options['owmw_display_length_days_names'] ?? "nobypass";
@@ -1745,12 +1734,14 @@ class owmw_options
 
 	public function owmw_advanced_disable_cache_callback()
     {
-		$check = $this->options['owmw_advanced_disable_cache'] ?? null;
-
-        echo '<input id="owmw_advanced_disable_cache" name="owmw_option_name[owmw_advanced_disable_cache]" type="checkbox"';
-		if ('yes' == $check) echo 'checked="yes"';
-		echo ' value="yes"/>';
-		echo '<label for="owmw_advanced_disable_cache"><strong>'. esc_html__( '(Not recommended!)', 'owm-weather' ) .'</strong></label>';
+	$check = $this->options['owmw_advanced_disable_cache'] ?? null;
+	echo '<label class="toggle-switchy" for="owmw_advanced_disable_cache" data-size="sm" data-text="false" data-color="red">
+              <input '.(!empty($check) ? ' checked="checked"' : '').' type="checkbox" id="owmw_advanced_disable_cache" name="owmw_option_name[owmw_advanced_disable_cache]"/>
+              <span class="toggle">
+                <span class="switch"></span>
+              </span>
+              <span class="label"><strong>'. esc_html__( '(Not recommended!)', 'owm-weather' ) .'</strong></span>
+              </label>';
     }
 
 	public function owmw_advanced_cache_time_callback()
@@ -1772,14 +1763,13 @@ class owmw_options
     public function owmw_advanced_disable_bootstrap_callback()
     {
         $check = $this->options['owmw_advanced_disable_modal_js'] ?? null;
-		if ($check == null) {
-			$check = $this->options['owmw_advanced_disable_modal_js'] ?? null;
-		}
-
-        echo '<input id="owmw_advanced_disable_modal_js" name="owmw_option_name[owmw_advanced_disable_modal_js]" type="checkbox"';
-        if ('yes' == $check) echo 'checked="yes"';
-        echo ' value="yes"/>';
-        echo '<label for="owmw_advanced_disable_modal_js">'. esc_html__( '(Check this if you already include Bootstrap in your theme)', 'owm-weather' ) .'</label>';
+	echo '<label class="toggle-switchy" for="owmw_advanced_disable_modal_js" data-size="sm" data-text="false">
+              <input '.(!empty($check) ? ' checked="checked"' : '').' type="checkbox" id="owmw_advanced_disable_modal_js" name="owmw_option_name[owmw_advanced_disable_modal_js]"/>
+              <span class="toggle">
+                <span class="switch"></span>
+              </span>
+              <span class="label"><strong>'. esc_html__( '(Check this if you already include Bootstrap in your theme)', 'owm-weather' ) .'</strong></span>
+              </label>';
 	}
 
     public function owmw_advanced_bootstrap_version_callback()
@@ -2061,7 +2051,9 @@ class owmw_options
     public function owmw_support_info_callback()
     {
 		echo
-			'<h3>'. esc_html__("Having a problem with OWM Weather?", 'owm-weather').'</h3>
+			'<h3>'. esc_html__("Get started with OWM Weather", 'owm-weather').'</h3>
+			<p><a href="https://ujsoftware.com/owm-weather-blog/owm-weather-create-your-first-weather/" target="_blank" title="'. esc_attr__("Create your first weather", 'owm-weather').'">'. esc_html__("Create your first weather", 'owm-weather').'</a></p><br>
+			<h3>'. esc_html__("Having a problem with OWM Weather?", 'owm-weather').'</h3>
 			<p><a href="https://ujsoftware.com/owm-weather-blog/" target="_blank" title="'. esc_attr__("OWM Weather Blog", 'owm-weather').'">'. esc_html__("OWM Weather Blog", 'owm-weather').'</a></p><br>
 			<p><a href="https://wordpress.org/plugins/owm-weather/" target="_blank" title="'. esc_attr__("OWM Weather Forum on WordPress.org", 'owm-weather').'">'. esc_html__("OWM Weather Forum on WordPress.org", 'owm-weather').'</a></p>';
     }

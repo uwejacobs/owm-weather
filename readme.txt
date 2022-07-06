@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
 Tested up to: 6.0.0
-Stable tag: 5.3.1
+Stable tag: 5.3.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -66,6 +66,73 @@ Weather information (current temperature, cloudiness, short description, and cat
 = No ads. Free =
 Our plugin will never display any advertising on your site. Did we mention it's a free WordPress plugin? We kindly ask for a donation should you like the plugin.
 
+== All features ==
+
+* Completely Free! No Ads! Donations are welcome. Thanks for your consideration.
+* Data provided by OpenWeatherMap with 200,000 cities worldwide and for any coordinates around the globe.
+* Built-in OpenWeatherMap API key for immediate testing.
+* Caching of OpenWeatherMap data for faster access and to avoid exceeding the dayly API key call limit.
+* Configurable cache time.
+* Export, Import and Reset System settings.
+* Export and Import weather posts via the free default WordPress importer/exporter tool.
+* Fully responsive & mobile friendly.
+* Multiple output templates (Standard, horizontal or vertical Card, Sliders, Tables, Charts).
+* Built-in Debug template.
+* Custom PHP templates for complete output control.
+* Display weather by 5 location types: City Id, Longitude/Latitude, Zip/Country, City/Country, and Visitor’s HTML5 Geo Location (fallback by IP address).
+* 48-hour weather forecast with Wind Speed and Direction, Humidity, Dew Point, Pressure, Cloudiness, Precipitation, Visibility, and UV Index. The number of
+* hours selectable.
+* 8-day weather forecast with Wind, Humidity, Dew Point, Pressure, Cloudiness, Precipitation, Visibility, and UV Index. The number of days selectable.
+* National weather alerts.
+* Unlimited weather widgets and forecasts on the same page.
+* All individual weather options can be bypassed via system options for all weathers at once.
+* Weather posts can be excluded from System Settings and Parameter Bypass.
+* Custom location name that overrides the OWM location name.
+* 12 and 24-hour time formats.
+* Temperature unit metric (°C) and imperial (°F).
+* Pressure unit (inHg, mmHg, hPA, mb).
+* Wind speed unit (mi/h, m/s, km/h, kt).
+* Wind speed indicators can show the direction of the wind or the source of wind flow.
+* Selectable Timezone to display local times for other locations.
+* Selectable OpenWeatherMap API language.
+* Push weather data to Google Tag Manager dataLayer (Temperature, Feels Like, Cloudiness, Short Description, Category, Wind Speed, Wind Direction, Humidity,
+* Pressure, Precipitation, UV Index, and DewPoint).
+* Show/hide weather city name.
+* Show/hide the current weather icon.
+* Show/hide current weather temperature.
+* Show/hide current weather feels-like temperature.
+* Show/hide current weather conditions short description.
+* Show/hide temperature unit at temperatures.
+* Show/hide date and time format, day of the week, or today’s date.
+* Show/hide weather condition icon.
+* Show/hide link to OpenWeatherMap.
+* Show/hide the last OpenWeatherMap update time.
+* Show short or long day names.
+* Selectable icon packs, some with animated weather condition icons.
+* Selectable fonts.
+* Display the highest and lowest temperatures.
+* Show/hide sunrise and sunset.
+* Show/hide moonrise and moonset.
+* Custom CSS per widget.
+* Select small, medium, or large weather sizes.
+* Show/hide loading spinner. Spinner doubles as a refresh button.
+* Show/hide OpenLayers-based map via Leaflet bases script.
+* Show/hide map layers for Cities, Clouds, Precipitation, Rain, Snow, Wind, Temperature, Pressure, and Windrose.
+* Adjust map height, layers opacity, initial zoom, and zoom wheel.
+* Unlimited colors for the text, background, border, and overlay.
+* Adjust the widget’s text color, background color, border color, border width, border style, and border radius.
+* Adjust the table’s text color, background color, border color, border width, border style, and border radius.
+* Adjust the chart’s text color, background color, border color, border width, border style, and border radius.
+* Adjust chart line color for temperature, feels-like, and dew point.
+* Use any image or video from the media library for the background.
+* Clean minimal background for flat UI design.
+* Widget ready.
+* Fully localized language support.
+* Fully translation ready with PoEdit, WPML, Polylang, Loco Translate, and more.
+* Compatible with themes and page builders like Elementor, Divi, WPBakery, and more.
+* Support via WordPress support forum.
+* Regular updates.
+
 == Languages ==
 * English
 * Chilean (thanks to Wladimir Espinoza Durán)
@@ -115,7 +182,7 @@ Unlimited due to WordPress Custom Post Types.
 
 = In which languages is the weather data displayed? =
 
-OWM Weather has been fully translated into German. There are partial translations in French, Italian, Hungarian, Hebrew, Polish, Russian, Danish, Spanish, and Portuguese. Open Weather Map itself provides the data in most languages.
+OWM Weather has been fully translated into Chilean, French, German, Russian, and Spanish. There are partial translations in Estonian, Italian, Hungarian, Hebrew, Polish, Danish, and Portuguese. Open Weather Map itself provides some of the data in most languages.
 
 = How to define the unit Celsius or Fahrenheit? =
 
@@ -166,6 +233,15 @@ Although many settings look alike, OWM Weather uses completely different weather
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.3.2 =
+* Added HTML5 Geo Location for visitor's location with IP address as the fallback.
+* Added borders in system setup to increase readability
+* Changed all yes/no checkboxes to toggle switches
+* Added plugin system messages and links to direct new users to the blog and first step information
+* When pulling up a weather post for editing, the tab with the active weather location will be shown
+* Reworded the features list
+* Fixed the Ajax error message when the OpenWeatherMap API call fails
 
 = 5.3.1 =
 * Fixed javascript issues in admin when loading the Bootstrap 5 JS

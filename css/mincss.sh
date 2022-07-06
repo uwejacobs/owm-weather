@@ -10,3 +10,4 @@ yc owmweather-anim.css -o owmweather-anim.min.css
 yc owmweather.css -o owmweather.min.css 
 yc owmweather-map.css -o owmweather-map.min.css 
 yc bootstrap5.stripped.css -o bootstrap5.stripped.min.css
+yc toggle-switchy.css -o toggle-switchy.min.css

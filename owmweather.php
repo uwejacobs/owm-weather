@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.3.1
+Version: 5.3.2
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -40,8 +40,8 @@ $GLOBALS['owmw_params'] = [];
 
 function owmw_activation() {
     global $wpdb;
-	$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmweather%' ");
-	$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmweather%' ");
+    $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmweather%' ");
+    $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmweather%' ");
 }
 register_activation_hook(__FILE__, 'owmw_activation');
 
@@ -49,7 +49,17 @@ function owmw_deactivation() {
 }
 register_deactivation_hook(__FILE__, 'owmw_deactivation');
 
-define( 'OWM_WEATHER_VERSION', '5.3.1' );
+add_filter('plugin_row_meta', 'plugin_row_meta', 10, 2);
+
+function plugin_row_meta($links, $file) {
+    if ($file == plugin_basename(dirname(__FILE__) .'/owmweather.php')) {
+        $links[] = '<a target="_blank" href="https://ujsoftware.com/owm-weather-blog/">' . esc_html__('Blog', 'owm-weather') . '</a>';
+    }
+
+    return $links;
+}
+
+define( 'OWM_WEATHER_VERSION', '5.3.2' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -187,6 +197,8 @@ global $post;
         if ( 'owm-weather' === $post->post_type ) {
 			wp_register_style( 'owmweather-admin-css', plugins_url('css/owmweather-admin.min.css', __FILE__));
 			wp_enqueue_style( 'owmweather-admin-css' );
+			wp_register_style( 'owmweather-toggle-switchy-css', plugins_url('css/toggle-switchy.min.css', __FILE__));
+			wp_enqueue_style( 'owmweather-toggle-switchy-css' );
 
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_script( 'color-picker-js', plugins_url('js/color-picker.js', __FILE__), array( 'wp-color-picker' ) );
@@ -205,6 +217,8 @@ add_action( 'admin_enqueue_scripts', 'owmw_add_admin_scripts', 10, 1 );
 function owmw_add_admin_options_scripts() {
 			wp_register_style( 'owmweather-admin-css', plugins_url('css/owmweather-admin.min.css', __FILE__));
 			wp_enqueue_style( 'owmweather-admin-css' );
+			wp_register_style( 'owmweather-toggle-switchy-css', plugins_url('css/toggle-switchy.min.css', __FILE__));
+			wp_enqueue_style( 'owmweather-toggle-switchy-css' );
 
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_script( 'color-picker-js', plugins_url('js/color-picker.js', __FILE__), array( 'wp-color-picker' ) );
@@ -417,7 +431,7 @@ function owmw_basic($post){
 	$owmw_opt["moonrise_moonset"] 	    	= get_post_meta($id,'_owmweather_moonrise_moonset',true);
 	$owmw_opt["wind"] 				    	= get_post_meta($id,'_owmweather_wind',true);
 	$owmw_opt["wind_unit"] 				    = get_post_meta($id,'_owmweather_wind_unit',true);
-	$owmw_opt["wind_icon_direction"] 	    = get_post_meta($id,'_owmweather_wind_icon_direction',true);
+	$owmw_opt["wind_icon_direction"] 	    = owmw_getDefault($id,'_owmweather_wind_icon_direction', 'to');
 	$owmw_opt["humidity"] 				    = get_post_meta($id,'_owmweather_humidity',true);
 	$owmw_opt["dew_point"] 				    = get_post_meta($id,'_owmweather_dew_point',true);
 	$owmw_opt["pressure"]				    = get_post_meta($id,'_owmweather_pressure',true);
@@ -435,7 +449,6 @@ function owmw_basic($post){
 	$owmw_opt["current_feels_like"]		    = get_post_meta($id,'_owmweather_current_feels_like',true);
 	$owmw_opt["display_temperature_unit"]	= get_post_meta($id,'_owmweather_display_temperature_unit',true);
 	$owmw_opt["days_forecast_no"]		    = get_post_meta($id,'_owmweather_forecast_no',true);
-	$owmw_opt["forecast_precipitations"]     = get_post_meta($id,'_owmweather_forecast_precipitations',true);
 	$owmw_opt["display_length_days_names"]	= owmw_getDefault($id,'_owmweather_display_length_days_names', 'short');
  	$owmw_opt["disable_spinner"]   			= get_post_meta($id,'_owmweather_disable_spinner',true);
  	$owmw_opt["disable_anims"]   			= get_post_meta($id,'_owmweather_disable_anims',true);
@@ -522,23 +535,36 @@ function owmw_basic($post){
 			<li><a href="#tabs-3"><?php esc_html_e( 'Layout', 'owm-weather' ) ?></a></li>
 			<li><a href="#tabs-4"><?php esc_html_e( 'Map', 'owm-weather' ) ?></a></li>
 		</ul>
-
 		<div id="tabs-1">
 		    <p class=" subsection-title">
 				<?php esc_html_e( 'Get weather by ...', 'owm-weather' ) ?>
 			</p>
-              <div id="owmweather-owm-param">
+<?php
+            if (!empty($owmw_opt["id_owm"])) {
+                $fragment_active = 0;
+            } else if (!empty($owmw_opt["latitude"]) || !empty($owmw_opt["longitude"])) {
+                $fragment_active = 1;
+            } else if (!empty($owmw_opt["zip"]) || !empty($owmw_opt["zip_country_code"])) {
+                $fragment_active = 2;
+            } else if (!empty($owmw_opt["city"]) || !empty($owmw_opt["country_code"])) {
+                $fragment_active = 3;
+            } else {
+                $fragment_active = 4;
+            }
+?>
+            <div id="owmweather-owm-param" data-active-tab="<?php echo $fragment_active ?>">
       			<ul>
-  	    			<li><a href="#fragment-1"><?php esc_html_e( 'City Id', 'owm-weather' ) ?></a></li>
-  		    		<li><a href="#fragment-2"><?php esc_html_e( 'Longitude/Latitude', 'owm-weather' ) ?></a></li>
-  				    <li><a href="#fragment-3"><?php esc_html_e( 'Zip/Country', 'owm-weather' ) ?></a></li>
-  			    	<li><a href="#fragment-4"><?php esc_html_e( 'City/Country', 'owm-weather' ) ?></a></li>
-  				    <li><a href="#fragment-5"><?php esc_html_e( 'Visitor\'s Location', 'owm-weather' ) ?></a></li>
+  	    			<li class="<?php echo $fragment_active == 0 ? "fw-bold" : ""; ?>"><a href="#fragment-1"><?php esc_html_e( 'City Id', 'owm-weather' ) ?></a></li>
+  		    		<li class="<?php echo $fragment_active == 1 ? "fw-bold" : ""; ?>"><a href="#fragment-2"><?php esc_html_e( 'Longitude/Latitude', 'owm-weather' ) ?></a></li>
+  				    <li class="<?php echo $fragment_active == 2 ? "fw-bold" : ""; ?>"><a href="#fragment-3"><?php esc_html_e( 'Zip/Country', 'owm-weather' ) ?></a></li>
+  			    	<li class="<?php echo $fragment_active == 3 ? "fw-bold" : ""; ?>"><a href="#fragment-4"><?php esc_html_e( 'City/Country', 'owm-weather' ) ?></a></li>
+  				    <li class="<?php echo $fragment_active == 4 ? "fw-bold" : ""; ?>"><a href="#fragment-5"><?php esc_html_e( 'Visitor\'s Location', 'owm-weather' ) ?></a></li>
       			</ul>
                   <div id="fragment-1">
         				<p>
       					<label for="owmweather_id_owm_meta"><?php esc_html_e( 'OpenWeatherMap City Id', 'owm-weather' ) ?><span class="mandatory">*</span> <a href="https://openweathermap.org/find?q=" target="_blank"> <?php esc_html_e('Find my City Id','owm-weather') ?></a><span class="dashicons dashicons-external"></span></label>
-      					<input id="owmweather_id_owm" type="number" name="owmweather_id_owm" value="<?php echo esc_attr($owmw_opt["id_owm"]) ?>" />
+      					<p></p>
+                        <input id="owmweather_id_owm" type="number" name="owmweather_id_owm" value="<?php echo esc_attr($owmw_opt["id_owm"]) ?>" />
       				</p>
                   </div>
                   <div id="fragment-2">
@@ -550,7 +576,6 @@ function owmw_basic($post){
       					<label for="owmweather_longitude_meta"><?php esc_html_e( 'Longitude', 'owm-weather' ) ?><span class="mandatory">*</span></label>
       					<input id="owmweather_longitude_meta" type="number" min="-180" max="180" step="0.000001" name="owmweather_longitude" value="<?php echo esc_attr($owmw_opt["longitude"]) ?>" />
       				</p>
-      				<p><em><?php esc_html_e('If you enter an OpenWeatherMap City Id, it will automatically bypass the Latitude/Longitude fields.','owm-weather') ?></em></p>
                   </div>
                   <div id="fragment-3">
       				<p>
@@ -561,7 +586,6 @@ function owmw_basic($post){
       					<label for="owmweather_zip_country_meta"><?php esc_html_e( '2-letter country code', 'owm-weather' ) ?>(<?php esc_html_e("Default: US", 'owm-weather') ?>)</label>
       					<input id="owmweather_zip_country_meta" class="countrycodes typeahead" type="text" name="owmweather_zip_country_code" maxlength="2" value="<?php echo esc_attr($owmw_opt["zip_country_code"]) ?>" />
       				</p>
-      				<p><em><?php esc_html_e('If you enter an OpenWeatherMap City Id or Latitude/Longitude, it will automatically bypass the Zip and Country fields.','owm-weather') ?></em></p>
                   </div>
                   <div id="fragment-4">
       				<p>
@@ -572,7 +596,6 @@ function owmw_basic($post){
       					<label for="owmweather_country_meta"><?php esc_html_e( 'Country', 'owm-weather' ) ?><span class="mandatory">*</span></label>
       					<input id="owmweather_country_meta" class="countries typeahead" type="text" name="owmweather_country_code" value="<?php echo esc_attr($owmw_opt["country_code"]) ?>" />
       				</p>
-      				<p><em><?php esc_html_e('If you enter an OpenWeatherMap City Id, Latitude/Longitude or Zip/Country, it will automatically bypass the City and Country fields.','owm-weather') ?></em></p>
                   </div>
                   <div id="fragment-5">
       				<p><em><?php esc_html_e('Leave City Id, Longitude/Latitude, Zip/Country and City/Country empty to use the visitor\'s location.','owm-weather') ?></em></p>
@@ -688,16 +711,22 @@ function owmw_basic($post){
 				<?php esc_html_e( 'Miscellaneous', 'owm-weather' ) ?>
 			</p>
 			<p>
-				<label for="owmweather_gtag_meta">
-					<input type="checkbox" name="owmweather_gtag" id="owmweather_gtag_meta" value="yes" <?php echo checked( $owmw_opt["gtag"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Google Tag Manager dataLayer', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_gtag_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["gtag"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_gtag_meta" name="owmweather_gtag"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Google Tag Manager dataLayer', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
-				<label for="owmweather_bypass_exclude_meta">
-					<input type="checkbox" name="owmweather_bypass_exclude" id="owmweather_bypass_exclude_meta" value="yes" <?php echo checked( $owmw_opt["bypass_exclude"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Exclude from System Settings and Parameter Bypass', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_bypass_exclude_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["bypass_exclude"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_bypass_exclude_meta" name="owmweather_bypass_exclude"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Exclude from System Settings and Parameter Bypass', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 		</div>
 		<div id="tabs-2">
@@ -708,46 +737,64 @@ function owmw_basic($post){
 				<?php esc_html_e( 'Current weather', 'owm-weather' ) ?>
 			</p>
 			<p>
-				<label for="owmweather_current_city_name_meta">
-					<input type="checkbox" name="owmweather_current_city_name" id="owmweather_current_city_name_meta" value="yes" <?php echo checked( $owmw_opt["current_city_name"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Current weather city name', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_current_city_name_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["current_city_name"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_current_city_name_meta" name="owmweather_current_city_name"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Current weather city name', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
-				<label for="owmweather_current_weather_symbol_meta">
-					<input type="checkbox" name="owmweather_current_weather_symbol" id="owmweather_current_weather_symbol_meta" value="yes" <?php echo checked( $owmw_opt["current_weather_symbol"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Current weather symbol', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_current_weather_symbol_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["current_weather_symbol"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_current_weather_symbol_meta" name="owmweather_current_weather_symbol"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Current weather symbol', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
-				<label for="owmweather_current_temperature_meta">
-					<input type="checkbox" name="owmweather_current_temperature" id="owmweather_current_temperature_meta" value="yes" <?php echo checked( $owmw_opt["current_temperature"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Current temperature', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_current_temperature_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["current_temperature"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_current_temperature_meta" name="owmweather_current_temperature"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Current temperature', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
-				<label for="owmweather_current_feels_like_meta">
-					<input type="checkbox" name="owmweather_current_feels_like" id="owmweather_current_feels_like_meta" value="yes" <?php echo checked( $owmw_opt["current_feels_like"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Current feels-like temperature', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_current_feels_like_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["current_feels_like"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_current_feels_like_meta" name="owmweather_current_feels_like"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Current feels-like temperature', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
-				<label for="owmweather_current_weather_description_meta">
-					<input type="checkbox" name="owmweather_current_weather_description" id="owmweather_current_weather_description_meta" value="yes" <?php echo checked( $owmw_opt["current_weather_description"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Current weather short condition', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_current_weather_description_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["current_weather_description"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_current_weather_description_meta" name="owmweather_current_weather_description"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Current weather short condition', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p class="temperatures subsection-title">
 				<?php esc_html_e( 'Temperatures', 'owm-weather' ) ?>
 			</p>
 			<p>
-				<label for="owmweather_display_temperature_unit_meta">
-					<input type="checkbox" name="owmweather_display_temperature_unit" id="owmweather_display_temperature_unit_meta" value="yes" <?php echo checked( $owmw_opt["display_temperature_unit"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Temperature unit (C / F)', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_display_temperature_unit_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["display_temperature_unit"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_display_temperature_unit_meta" name="owmweather_display_temperature_unit"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Temperature unit (C / F)', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p class="owmw-dates subsection-title">
-				<?php esc_html_e( 'Date, Sunrise/Sunset and Moonrise/Moonset', 'owm-weather' ) ?>
+				<?php esc_html_e( 'Date', 'owm-weather' ) ?>
 			</p>
 			<p>
 				<label for="owmweather_today_date_format_none_meta">
@@ -767,27 +814,38 @@ function owmw_basic($post){
 						<?php esc_html_e( 'Today\'s date (based on your WordPress General Settings)', 'owm-weather' ) ?>
 				</label>
 			</p>
-			<p>
-				<label for="owmweather_sunrise_sunset_meta">
-					<input type="checkbox" name="owmweather_sunrise_sunset" id="owmweather_sunrise_sunset_meta" value="yes" <?php echo checked( $owmw_opt["sunrise_sunset"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Sunrise + sunset', 'owm-weather' ) ?>
-				</label>
+			<p class="owmw-dates subsection-title">
+				<?php esc_html_e( 'Sunrise/Sunset and Moonrise/Moonset', 'owm-weather' ) ?>
 			</p>
 			<p>
-				<label for="owmweather_moonrise_moonset_meta">
-					<input type="checkbox" name="owmweather_moonrise_moonset" id="owmweather_moonrise_moonset_meta" value="yes" <?php echo checked( $owmw_opt["moonrise_moonset"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Moonrise + moonset', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_sunrise_sunset_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["sunrise_sunset"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_sunrise_sunset_meta" name="owmweather_sunrise_sunset"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Sunrise + sunset', 'owm-weather' ) ?></span>
+                </label>
+			</p>
+			<p>
+                <label class="toggle-switchy" for="owmweather_moonrise_moonset_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["moonrise_moonset"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_moonrise_moonset_meta" name="owmweather_moonrise_moonset"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Moonrise + moonset', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p class="owmw-misc subsection-title">
-				<?php esc_html_e( 'Miscellaneous', 'owm-weather' ) ?>
+				<?php esc_html_e( 'Additional Weather Data', 'owm-weather' ) ?>
 			</p>
 			<p>
-				<label for="owmweather_wind_meta">
-					<input type="checkbox" name="owmweather_wind" id="owmweather_wind_meta" value="yes" <?php echo checked( $owmw_opt["wind"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Wind', 'owm-weather' ) ?>
-				</label>
-			</p>
+                <label class="toggle-switchy" for="owmweather_wind_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["wind"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_wind_meta" name="owmweather_wind"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Wind', 'owm-weather' ) ?></span>
+                </label>			</p>
 			<p>
 				<label for="owmweather_wind_unit_meta"><?php esc_html_e( 'Wind unit: ', 'owm-weather' ) ?></label>
 				<select name="owmweather_wind_unit">
@@ -798,7 +856,7 @@ function owmw_basic($post){
 				</select>
 			</p>
 			<p>
-				<label for="owmweather_wind_icon_meta"><?php esc_html_e( 'Wind icons show ', 'owm-weather' ) ?></label>
+				<span><?php esc_html_e( 'Wind icons show ', 'owm-weather' ) ?></span>
 				<label for="owmweather_wind_icon_to_meta">
 					<input type="radio" name="owmweather_wind_icon_direction" id="owmweather_wind_icon_to_meta" value="to" <?php echo checked( $owmw_opt["wind_icon_direction"], 'to', false ) ?>/>
 						<?php esc_html_e( ' direction of the wind', 'owm-weather' ) ?>
@@ -809,22 +867,31 @@ function owmw_basic($post){
 				</label>
 			</p>
 			<p>
-				<label for="owmweather_humidity_meta">
-					<input type="checkbox" name="owmweather_humidity" id="owmweather_humidity_meta" value="yes" <?php echo checked( $owmw_opt["humidity"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Humidity', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_humidity_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["humidity"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_humidity_meta" name="owmweather_humidity"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Humidity', 'owm-weather' ) ?></span>
+                </label>
+            </p>
+			<p>
+                <label class="toggle-switchy" for="owmweather_dew_point_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["dew_point"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_dew_point_meta" name="owmweather_dew_point"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Dew Point', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
-				<label for="owmweather_dew_point_meta">
-					<input type="checkbox" name="owmweather_dew_point" id="owmweather_dew_point_meta" value="yes" <?php echo checked( $owmw_opt["dew_point"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Dew Point', 'owm-weather' ) ?>
-				</label>
-			</p>
-			<p>
-				<label for="owmweather_pressure_meta">
-					<input type="checkbox" name="owmweather_pressure" id="owmweather_pressure_meta" value="yes" <?php echo checked( $owmw_opt["pressure"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Pressure', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_pressure_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["pressure"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_pressure_meta" name="owmweather_pressure"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Pressure', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
 				<label for="owmweather_pressure_unit_meta"><?php esc_html_e( 'Pressure unit: ', 'owm-weather' ) ?></label>
@@ -836,37 +903,52 @@ function owmw_basic($post){
 				</select>
 			</p>
 			<p>
-				<label for="owmweather_cloudiness_meta">
-					<input type="checkbox" name="owmweather_cloudiness" id="owmweather_cloudiness_meta" value="yes" <?php echo checked( $owmw_opt["cloudiness"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Cloudiness', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_cloudiness_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["cloudiness"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_cloudiness_meta" name="owmweather_cloudiness"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Cloudiness', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
-				<label for="owmweather_precipitation_meta">
-					<input type="checkbox" name="owmweather_precipitation" id="owmweather_precipitation_meta" value="yes" <?php echo checked( $owmw_opt["precipitation"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Precipitation', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_precipitation_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["precipitation"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_precipitation_meta" name="owmweather_precipitation"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Precipitation', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
-				<label for="owmweather_visibility_meta">
-					<input type="checkbox" name="owmweather_visibility" id="owmweather_visibility_meta" value="yes" <?php echo checked( $owmw_opt["visibility"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Visibility', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_visibility_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["visibility"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_visibility_meta" name="owmweather_visibility"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Visibility', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
-				<label for="owmweather_uv_index_meta">
-					<input type="checkbox" name="owmweather_uv_index" id="owmweather_uv_index_meta" value="yes" <?php echo checked( $owmw_opt["uv_index"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'UV Index', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_uv_index_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["uv_index"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_uv_index_meta" name="owmweather_uv_index"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'UV Index', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
-                            <span>
-				<label for="owmweather_alerts_meta">
-					<input type="checkbox" name="owmweather_alerts" id="owmweather_alerts_meta" value="yes" <?php echo checked( $owmw_opt["alerts"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Alerts', 'owm-weather' ) ?>
-				</label>
-                            </span>
-                            <span>&nbsp;</span>
+                <span>
+                    <label class="toggle-switchy" for="owmweather_alerts_meta" data-size="sm" data-text="false" data-color="green">
+                      <input <?php echo checked( $owmw_opt["alerts"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_alerts_meta" name="owmweather_alerts"/>
+                      <span class="toggle">
+                        <span class="switch"></span>
+                      </span>
+                      <span class="label"><?php esc_html_e( 'Alerts', 'owm-weather' ) ?></span>
+                    </label>
+                </span>
+                <span>&nbsp;</span>
 			    <span>
 				<label for="owmweather_alerts_popup_modal_meta">
 					<input type="radio" name="owmweather_alerts_popup" id="owmweather_alerts_popup_modal_meta" value="modal" <?php echo checked( $owmw_opt["alerts_popup"], 'modal', false ) ?>/>
@@ -893,10 +975,13 @@ function owmw_basic($post){
 				<select name="owmweather_hours_forecast_no"><?php echo owmw_generate_hour_options($owmw_opt["hours_forecast_no"]) ?></select>
 			</p>
 			<p>
-				<label for="owmweather_hours_time_icons_meta">
-					<input type="checkbox" name="owmweather_hours_time_icons" id="owmweather_hours_time_icons_meta" value="yes" <?php echo checked( $owmw_opt["hours_time_icons"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display time icons', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_hours_time_icons_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["hours_time_icons"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_hours_time_icons_meta" name="owmweather_hours_time_icons"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Display time icons', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p class="forecast subsection-title">
 				<?php esc_html_e( 'Daily Forecast', 'owm-weather' ) ?>
@@ -916,12 +1001,6 @@ function owmw_basic($post){
 				</select>
 			</p>
 			<p>
-				<label for="owmweather_forecast_precipitations_meta">
-					<input type="checkbox" name="owmweather_forecast_precipitations" id="owmweather_forecast_precipitations_meta" value="yes" <?php echo checked( $owmw_opt["forecast_precipitations"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Forecast Precipitations', 'owm-weather' ) ?>
-				</label>
-			</p>
-			<p>
 				<label for="owmweather_display_length_days_names_short_meta">
 					<input type="radio" name="owmweather_display_length_days_names" id="owmweather_display_length_days_names_short_meta" value="short" <?php echo checked( $owmw_opt["display_length_days_names"], 'short', false ) ?>/>
 						<?php esc_html_e( 'Short day names', 'owm-weather' ) ?>
@@ -937,17 +1016,23 @@ function owmw_basic($post){
 				<?php esc_html_e( 'Footer', 'owm-weather' ) ?>
 			</p>
 			<p>
-				<label for="owmweather_owm_link_meta">
-					<input type="checkbox" name="owmweather_owm_link" id="owmweather_owm_link_meta" value="yes" <?php echo checked( $owmw_opt["owm_link"], 'yes', false ) ?>/>
-					<?php esc_html_e( 'Link to OpenWeatherMap', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_owm_link_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["owm_link"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_owm_link_meta" name="owmweather_owm_link"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Link to OpenWeatherMap', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 
 			<p>
-				<label for="owmweather_last_update_meta">
-					<input type="checkbox" name="owmweather_last_update" id="owmweather_last_update_meta" value="yes" <?php echo checked( $owmw_opt["last_update"], 'yes', false ) ?>/>
-					<?php esc_html_e( 'Data Update Time', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_last_update_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["last_update"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_last_update_meta" name="owmweather_last_update"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Data Update Time', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 		</div>
 		<div id="tabs-3">
@@ -999,7 +1084,7 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label for="iconpack_meta"><?php esc_html_e( 'Icon Pack', 'owm-weather' ) ?></label>
-				<p><i><?php esc_html_e('The main icon is always an animated SVG. If you want the icon from the icon pack instead, you need to select "Disable animations for main icon" below.', 'owm-weather') ?></i></p>
+				<p><i><?php esc_html_e('The main icon is always an animated Climacons SVG. If you want to display the icon from the selected icon pack instead, you need to select "Disable animations for main icon" below.', 'owm-weather') ?></i></p>
 				<select name="owmweather_iconpack">
 					<option <?php echo selected( 'Climacons', $owmw_opt["iconpack"], false ) ?>value="Climacons"><?php esc_html_e( 'Climacons', 'owm-weather' ) ?></option>
 					<option <?php echo selected( 'OpenWeatherMap', $owmw_opt["iconpack"], false ) ?>value="OpenWeatherMap"><?php esc_html_e( 'Open Weather Map', 'owm-weather' ) ?></option>
@@ -1010,6 +1095,15 @@ function owmw_basic($post){
 					<option <?php echo selected( 'ColorAnimated', $owmw_opt["iconpack"], false ) ?>value="ColorAnimated"><?php esc_html_e( 'Color Animated', 'owm-weather' ) ?></option>
 				</select>
 			</p>
+			<p>
+                <label class="toggle-switchy" for="owmweather_disable_anims_meta" data-size="sm" data-text="false" data-color="red">
+                  <input <?php echo checked( $owmw_opt["disable_anims"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_disable_anims_meta" name="owmweather_disable_anims"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Disable animations for main icon', 'owm-weather' ) ?></span>
+                </label>
+            </p>
 			<p class="misc subsection-title">
 				<?php esc_html_e( 'Colors and Borders', 'owm-weather' ) ?>
 			</p>
@@ -1059,16 +1153,13 @@ function owmw_basic($post){
 				<?php esc_html_e( 'Miscellaneous', 'owm-weather' ) ?>
 			</p>
 			<p>
-				<label for="owmweather_disable_spinner_meta">
-					<input type="checkbox" name="owmweather_disable_spinner" id="owmweather_disable_spinner_meta" value="yes" <?php echo checked( $owmw_opt["disable_spinner"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Disable loading spinner', 'owm-weather' ) ?>
-				</label>
-			</p>
-			<p>
-				<label for="owmweather_disable_anims_meta">
-					<input type="checkbox" name="owmweather_disable_anims" id="owmweather_disable_anims_meta" value="yes" <?php echo checked( $owmw_opt["disable_anims"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Disable animations for main icon', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_disable_spinner_meta" data-size="sm" data-text="false" data-color="red">
+                  <input <?php echo checked( $owmw_opt["disable_spinner"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_disable_spinner_meta" name="owmweather_disable_spinner"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Disable loading spinner', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
 				<label for="size_meta"><?php esc_html_e( 'Weather size', 'owm-weather' ) ?></label>
@@ -1173,10 +1264,13 @@ function owmw_basic($post){
   			    <?php esc_html_e( 'Select the information and layout styling for the optional map on your weather shortcode.', 'owm-weather' ) ?>
 		    </p>
 			<p>
-				<label for="owmweather_map_meta">
-					<input type="checkbox" name="owmweather_map" id="owmweather_map_meta" value="yes" <?php echo checked( $owmw_opt["map"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Display map', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_map_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["map"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_meta" name="owmweather_map"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Display map', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p>
 				<label for="owmweather_map_height_meta"><?php esc_html_e( 'Map height (in px)', 'owm-weather' ) ?></label>
@@ -1222,10 +1316,13 @@ function owmw_basic($post){
 				</select>
 			</p>
 			<p>
-				<label for="owmweather_map_disable_zoom_wheel_meta">
-					<input type="checkbox" name="owmweather_map_disable_zoom_wheel" id="owmweather_map_disable_zoom_wheel_meta" value="yes" <?php echo checked( $owmw_opt["map_disable_zoom_wheel"], 'yes', false ) ?>/>
-						<?php esc_html_e( 'Disable zoom wheel on map', 'owm-weather' ) ?>
-				</label>
+                <label class="toggle-switchy" for="owmweather_map_disable_zoom_wheel_meta" data-size="sm" data-text="false" data-color="red">
+                  <input <?php echo checked( $owmw_opt["map_disable_zoom_wheel"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_disable_zoom_wheel_meta" name="owmweather_map_disable_zoom_wheel"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Disable zoom wheel on map', 'owm-weather' ) ?></span>
+                </label>
 			</p>
 			<p class="subsection-title">
 				<?php esc_html_e( 'Layers', 'owm-weather' ) ?>
@@ -1241,57 +1338,246 @@ function owmw_basic($post){
 			<tbody>
 			<tr>
 				<td><?php esc_html_e( 'Cities', 'owm-weather' ) ?></td>
-				<td><input type="checkbox" name="owmweather_map_cities" id="owmweather_map_cities_meta" value="yes" <?php echo checked( $owmw_opt["map_cities"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_cities_legend" id="owmweather_map_cities_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_cities_legend"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_cities_on" id="owmweather_map_cities_on_meta" value="yes" <?php echo checked( $owmw_opt["map_cities_on"], 'yes', false ) ?>/></td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_cities"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_cities_meta" name="owmweather_map_cities"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+                </td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_cities_legend"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_cities_legend_meta" name="owmweather_map_cities_legend"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
+                <td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_cities_on"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_cities_on_meta" name="owmweather_map_cities_on"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
 			</tr>
 			<tr>
 				<td><?php esc_html_e( 'Clouds', 'owm-weather' ) ?></td>
-				<td><input type="checkbox" name="owmweather_map_clouds" id="owmweather_map_clouds_meta" value="yes" <?php echo checked( $owmw_opt["map_clouds"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_clouds_legend" id="owmweather_map_clouds_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_clouds_legend"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_clouds_on" id="owmweather_map_clouds_on_meta" value="yes" <?php echo checked( $owmw_opt["map_clouds_on"], 'yes', false ) ?>/></td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_clouds"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_clouds_meta" name="owmweather_map_clouds"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+                </td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_clouds_legend"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_clouds_legend_meta" name="owmweather_map_clouds_legend"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
+                <td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_clouds_on"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_clouds_on_meta" name="owmweather_map_clouds_on"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
 			</tr>
 			<tr>
 				<td><?php esc_html_e( 'Precipitation', 'owm-weather' ) ?></td>
-				<td><input type="checkbox" name="owmweather_map_precipitation" id="owmweather_map_precipitation_meta" value="yes" <?php echo checked( $owmw_opt["map_precipitation"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_precipitation_legend" id="owmweather_map_precipitation_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_precipitation_legend"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_precipitation_on" id="owmweather_map_precipitation_on_meta" value="yes" <?php echo checked( $owmw_opt["map_precipitation_on"], 'yes', false ) ?>/></td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_precipitation"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_precipitation_meta" name="owmweather_map_precipitation"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+                </td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_precipitation_legend"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_precipitation_legend_meta" name="owmweather_map_precipitation_legend"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
+                <td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_precipitation_on"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_precipitation_on_meta" name="owmweather_map_precipitation_on"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
 			</tr>
 			<tr>
 				<td><?php esc_html_e( 'Rain', 'owm-weather' ) ?></td>
-				<td><input type="checkbox" name="owmweather_map_rain" id="owmweather_map_rain_meta" value="yes" <?php echo checked( $owmw_opt["map_rain"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_rain_legend" id="owmweather_map_rain_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_rain_legend"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_rain_on" id="owmweather_map_rain_on_meta" value="yes" <?php echo checked( $owmw_opt["map_rain_on"], 'yes', false ) ?>/></td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_rain"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_rain_meta" name="owmweather_map_rain"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+                </td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_rain_legend"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_rain_legend_meta" name="owmweather_map_rain_legend"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
+                <td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_rain_on"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_rain_on_meta" name="owmweather_map_rain_on"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
 			</tr>
 			<tr>
 				<td><?php esc_html_e( 'Snow', 'owm-weather' ) ?></td>
-				<td><input type="checkbox" name="owmweather_map_snow" id="owmweather_map_snow_meta" value="yes" <?php echo checked( $owmw_opt["map_snow"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_snow_legend" id="owmweather_map_snow_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_snow_legend"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_snow_on" id="owmweather_map_snow_on_meta" value="yes" <?php echo checked( $owmw_opt["map_snow_on"], 'yes', false ) ?>/></td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_snow"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_snow_meta" name="owmweather_map_snow"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+                </td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_snow_legend"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_snow_legend_meta" name="owmweather_map_snow_legend"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
+                <td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_snow_on"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_snow_on_meta" name="owmweather_map_snow_on"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
 			</tr>
 			<tr>
 				<td><?php esc_html_e( 'Wind', 'owm-weather' ) ?></td>
-				<td><input type="checkbox" name="owmweather_map_wind" id="owmweather_map_wind_meta" value="yes" <?php echo checked( $owmw_opt["map_wind"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_wind_legend" id="owmweather_map_wind_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_wind_legend"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_wind_on" id="owmweather_map_wind_on_meta" value="yes" <?php echo checked( $owmw_opt["map_wind_on"], 'yes', false ) ?>/></td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_wind"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_wind_meta" name="owmweather_map_wind"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+                </td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_wind_legend"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_wind_legend_meta" name="owmweather_map_wind_legend"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
+                <td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_wind_on"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_wind_on_meta" name="owmweather_map_wind_on"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
 			</tr>
 			<tr>
 				<td><?php esc_html_e( 'Temperature', 'owm-weather' ) ?></td>
-				<td><input type="checkbox" name="owmweather_map_temperature" id="owmweather_map_temperature_meta" value="yes" <?php echo checked( $owmw_opt["map_temperature"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_temperature_legend" id="owmweather_map_temperature_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_temperature_legend"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_temperature_on" id="owmweather_map_temperature_on_meta" value="yes" <?php echo checked( $owmw_opt["map_temperature_on"], 'yes', false ) ?>/></td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_temperature"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_temperature_meta" name="owmweather_map_temperature"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+                </td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_temperature_legend"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_temperature_legend_meta" name="owmweather_map_temperature_legend"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
+                <td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_temperature_on"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_temperature_on_meta" name="owmweather_map_temperature_on"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
 			</tr>
 			<tr>
 				<td><?php esc_html_e( 'Pressure', 'owm-weather' ) ?></td>
-				<td><input type="checkbox" name="owmweather_map_pressure" id="owmweather_map_pressure_meta" value="yes" <?php echo checked( $owmw_opt["map_pressure"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_pressure_legend" id="owmweather_map_pressure_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_pressure_legend"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_pressure_on" id="owmweather_map_pressure_on_meta" value="yes" <?php echo checked( $owmw_opt["map_pressure_on"], 'yes', false ) ?>/></td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_pressure"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_pressure_meta" name="owmweather_map_pressure"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+                </td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_pressure_legend"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_pressure_legend_meta" name="owmweather_map_pressure_legend"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
+                <td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_pressure_on"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_pressure_on_meta" name="owmweather_map_pressure_on"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
 			</tr>
 			<tr>
 				<td><?php esc_html_e( 'Windrose', 'owm-weather' ) ?></td>
-				<td><input type="checkbox" name="owmweather_map_windrose" id="owmweather_map_windrose_meta" value="yes" <?php echo checked( $owmw_opt["map_windrose"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_windrose_legend" id="owmweather_map_windrose_legend_meta" value="yes" <?php echo checked( $owmw_opt["map_windrose_legend"], 'yes', false ) ?>/></td>
-				<td><input type="checkbox" name="owmweather_map_windrose_on" id="owmweather_map_windrose_on_meta" value="yes" <?php echo checked( $owmw_opt["map_windrose_on"], 'yes', false ) ?>/></td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_windrose"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_windrose_meta" name="owmweather_map_windrose"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+                </td>
+				<td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_windrose_legend"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_windrose_legend_meta" name="owmweather_map_windrose_legend"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
+                <td>
+                  <label class="toggle-switchy" data-size="sm" data-text="false" data-color="green">
+                    <input <?php echo checked( $owmw_opt["map_windrose_on"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_map_windrose_on_meta" name="owmweather_map_windrose_on"/>
+                    <span class="toggle">
+                      <span class="switch"></span>
+                    </span>
+                  </label>
+				</td>
 			</tr>
 			</tbody>
 			</table>
@@ -1377,7 +1663,6 @@ function owmw_save_metabox($post_id){
 		owmw_save_metabox_field_yn('uv_index', $post_id);
 		owmw_save_metabox_field_yn('current_temperature', $post_id);
 		owmw_save_metabox_field_yn('current_feels_like', $post_id);
-		owmw_save_metabox_field_yn('forecast_precipitations', $post_id);
 		owmw_save_metabox_field_yn('disable_spinner', $post_id);
 		owmw_save_metabox_field_yn('disable_anims', $post_id);
 		owmw_save_metabox_field_yn('owm_link', $post_id);
@@ -1664,7 +1949,6 @@ function owmw_get_my_weather_id($atts) {
         "precipitation"                 => false,
         "visibility"                    => false,
         "uv_index"                      => false,
-        "forecast_precipitations"       => false,
         "owm_link"                      => false,
         "last_update"                   => false,
         "map"                           => false,
@@ -1726,7 +2010,12 @@ function owmw_get_my_weather_id($atts) {
 	$owmw_opt["map"]           		= owmw_get_bypass_yn($bypass, "map", $owmw_opt["id"]);
 	$owmw_opt["template"]  			= owmw_get_bypass($bypass, "template", $owmw_opt["id"]);
 	$owmw_opt["disable_spinner"] 	= owmw_get_bypass_yn($bypass, "disable_spinner", $owmw_opt["id"]);
-
+    $owmw_opt["id_owm"] 	        = owmw_get_bypass($bypass, "id_owm", $owmw_opt["id"]);
+    $owmw_opt["longitude"] 	        = owmw_get_bypass($bypass, "longitude", $owmw_opt["id"]);
+    $owmw_opt["latitude"] 	        = owmw_get_bypass($bypass, "latitude", $owmw_opt["id"]);
+    $owmw_opt["zip"] 	            = owmw_get_bypass($bypass, "zip", $owmw_opt["id"]);
+    $owmw_opt["city"] 	            = owmw_get_bypass($bypass, "city", $owmw_opt["id"]);
+        
 	owmw_webfont($bypass, $owmw_opt["id"]);
 	owmw_icons_pack($bypass, $owmw_opt["id"]);
 
@@ -1769,6 +2058,10 @@ function owmw_get_my_weather_id($atts) {
         if ($value !== false) {
             $data_attributes_esc[] = 'data-' . esc_attr($key) . '="' . esc_attr($value) . '"';
         }
+    }
+
+    if (empty($owmw_opt["id_owm"]) && empty($owmw_opt["longitude"]) && empty($owmw_opt["latitude"]) && empty($owmw_opt["zip"]) && empty($owmw_opt["city"])) {
+        $data_attributes_esc[] = 'data-geo-location="true"';
     }
 
     $div_id_esc = owmw_unique_id_esc("owm-weather-id-".$owmw_opt["id"]);
@@ -1870,7 +2163,6 @@ function owmw_get_my_weather($attr) {
 		$owmw_opt["hours_forecast_no"]  				= owmw_get_bypass($bypass, "hours_forecast_no");
 		$owmw_opt["hours_time_icons"]  				= owmw_get_bypass($bypass, "hours_time_icons");
 		$owmw_opt["days_forecast_no"]     			= owmw_get_bypass($bypass, "forecast_no");
-		$owmw_opt["forecast_precipitations"]			= owmw_get_bypass_yn($bypass, "forecast_precipitations");
 		$owmw_opt["custom_timezone"]			    	= owmw_get_bypass($bypass, "custom_timezone");
 		$owmw_opt["today_date_format"]      			= owmw_get_bypass($bypass, "today_date_format");
 		$owmw_opt["alerts"]                          = owmw_get_bypass_yn($bypass, "alerts");
@@ -1966,6 +2258,8 @@ function owmw_get_my_weather($attr) {
        	    if (!empty($owmw_opt["country_code"])) {
            	    $query .= ",".$owmw_opt["country_code"];
        	    }
+       	} else if ($_POST["longitude"] != '' && $_POST["latitude"] != '') {
+       	    $query = "lat=".$_POST["latitude"]."&lon=".$_POST["longitude"];
        	} else if (($ipData = owmw_IPtoLocation())) {
             $owmw_opt["latitude"] = $ipData->data->geo->latitude;
             $owmw_opt["longitude"] =  $ipData->data->geo->longitude;
@@ -2572,11 +2866,7 @@ function owmw_get_my_weather($attr) {
 				$display_forecast[$i] =
 			   		'<div class="owmw-'. esc_attr($owmweather_class_days[$i]).' row">
 			      		<div class="owmw-day col">'. ($i == 0 ? esc_html__('Today', 'owm-weather') : esc_html($value["day"])) .'</div>' . '<div class="col">' . $esc_display_forecasticon . '</div>';
-
-			      		if ($owmw_opt["forecast_precipitations"] == 'yes') {
-		      				$display_forecast[$i] .= '<div class="owmw-rain col">'. esc_html($value["precipitation"]) . '</div>';
-			      		}
-
+	      				$display_forecast[$i] .= '<div class="owmw-rain col">'. esc_html($value["precipitation"]) . '</div>';
 			      		$display_forecast[$i] .=
 			      		'<div class="owmw-temp-min col">'. esc_html($value["temperature_minimum"]) .'</div>
 			      		<div class="owmw-temp-max col"><span class="font-weight-bold">'. esc_html($value["temperature_maximum"]) .'</span></div>
@@ -3502,6 +3792,9 @@ function owmw_notice() {
 	    <div class="error notice">
 	        <p><a href="<?php echo admin_url('admin.php?page=owmw-settings-admin#tab_advanced'); ?>"><?php esc_html_e( 'OWM Weather: Please enter your own OpenWeatherMap API key to avoid exceeding daily API call limits.', 'owm-weather' ); ?></a></p>
 	    </div>
+	    <div class="notice">
+	        <p><a href="<?php echo admin_url('admin.php?page=owmw-settings-admin#tab_support'); ?>"><?php esc_html_e( 'OWM Weather: Create my first weather.', 'owm-weather' ); ?></a></p>
+	    </div>
 	    <?php
 	}
 }
@@ -3919,7 +4212,6 @@ function owmw_sanitize_validate_field($key, $value) {
             case "precipitation":
             case "visibility":
             case "uv_index":
-            case "forecast_precipitations":
             case "owm_link":
             case "last_update":
             case "map":

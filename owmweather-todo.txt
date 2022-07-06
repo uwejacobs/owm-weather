@@ -8,7 +8,8 @@ WordPress Multi-Site environment
 
 Nice:
 more charts
-tabbed settings
 background type gradient/video
 openweathermap keys
-allow users to enter city
+HTML5 video(.mp4, .webm, .ogg) or YouTube background.
+Weather-based different image backgrounds for 7 weather conditions.
+Gutenberg block
