@@ -11,5 +11,4 @@ more charts
 background type gradient/video
 openweathermap keys
 HTML5 video(.mp4, .webm, .ogg) or YouTube background.
-Weather-based different image backgrounds for 7 weather conditions.
 Gutenberg block

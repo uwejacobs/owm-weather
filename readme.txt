@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
 Tested up to: 6.0.0
-Stable tag: 5.3.2
+Stable tag: 5.3.3
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -44,6 +44,9 @@ The worldwide location can be specified by the OWM city id (available for over 2
 
 = Unlimited weathers =
 OWM Weather uses WordPress Custom Post Types which allows for an unlimited number of weathers.
+
+= Weather-based Backgrounds =
+Define up to 7 different background colors or images depending on the weather condition.
 
 = Cache system =
 Weather data is cached at a frequency defined by you. The data is then loaded from your server and you no longer depend on external sources. This avoids slowdowns and blocked page rendering.
@@ -125,6 +128,7 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 * Adjust the chart’s text color, background color, border color, border width, border style, and border radius.
 * Adjust chart line color for temperature, feels-like, and dew point.
 * Use any image or video from the media library for the background.
+* Set weather-based backgrounds or images (Sunny, Cloudy, Drizzly, Rainy, Snowy, Stormy, and Foggy).
 * Clean minimal background for flat UI design.
 * Widget ready.
 * Fully localized language support.
@@ -233,6 +237,13 @@ Although many settings look alike, OWM Weather uses completely different weather
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.3.3 =
+* Added option to define weather-based text color and background color / image for condition groups sunny, cloudy, drizzly, rainy, snowy, stormy and foggy
+* Added Date and Time option to the Date setting
+* Removed the alerts button color option; it will now use the text color. Changed colors for alert modal to fixed white background and black text.
+* Fixed OWM Weather system settings for yes/no sliders.
+  Note: This was introduced with 5.3.2. Please check the OWM Weather advanced system setting "Disable Bootstrap" in case you changed the system settings with that version.
 
 = 5.3.2 =
 * Added HTML5 Geo Location for visitor's location with IP address as the fallback.
