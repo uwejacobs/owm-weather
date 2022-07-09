@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.3.3
+Version: 5.3.4
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -59,7 +59,7 @@ function plugin_row_meta($links, $file) {
     return $links;
 }
 
-define( 'OWM_WEATHER_VERSION', '5.3.3' );
+define( 'OWM_WEATHER_VERSION', '5.3.4' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -112,9 +112,9 @@ function owmw_init() {
 		require_once dirname( __FILE__ ) . '/owmweather-export.php';
 		require_once dirname( __FILE__ ) . '/owmweather-widget.php';
 		require_once dirname( __FILE__ ) . '/owmweather-pointers.php';
+		require_once dirname( __FILE__ ) . '/owm-widget.php';
 	}
 
-	require_once dirname( __FILE__ ) . '/owm-widget.php';
 }
 add_action('plugins_loaded', 'owmw_init');
 
@@ -229,31 +229,6 @@ if (isset($_GET['page']) && ($_GET['page'] == 'owmw-settings-admin')) {
 
 	add_action('admin_enqueue_scripts', 'owmw_add_admin_options_scripts', 10, 1);
 }
-
-//Gutenberg
-/* BE + FE */
-// function capitainewp_block_assets() {
-
-// 	// CSS des blocs
-// 	wp_enqueue_style(
-// 		'capitainewp-blocks',
-// 		plugins_url( 'dist/blocks.style.build.css',  __FILE__ ),
-// 		array( 'wp-blocks' )  // Dépendances
-// 	);
-
-// 	// Possibilité de charger un JS supplémentaire pour le front si besoin
-// }
-// add_action( 'enqueue_block_assets', 'capitainewp_block_assets' );
-
-/*BE*/
-// function owmw_gutenberg_boilerplate_block() {
-//     wp_register_script('gutenberg-owmweather-js', plugins_url( 'js/blocks.build.js', __FILE__ ), array( 'wp-blocks', 'wp-element' ));
-
-//     register_block_type( 'gutenberg-owmweather/owmweather', array('editor_script' => 'gutenberg-owmweather'));
-
-//     wp_enqueue_script('gutenberg-owmweather');
-// }
-// add_action( 'enqueue_block_editor_assets', 'owmw_gutenberg_boilerplate_block' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Get all registered post types
@@ -2280,6 +2255,12 @@ function owmw_get_my_weather_id($atts) {
 
     owmw_sanitize_atts($owmw_params);
 
+    foreach($owmw_params as $key => $value) {
+        if(empty($value)) {
+            unset($owmw_params[$key]);
+        }
+    }
+
 	if (empty($owmw_params["id"])) {
 	    echo "<p>OWM Weather Error: owm-weather shortcode without 'id' parameter</p>";
 	    return;
@@ -2302,7 +2283,7 @@ function owmw_get_my_weather_id($atts) {
 	$owmw_opt["map"]           	 = $owmw_params["map"] ?? owmw_get_bypass_yn($bypass, "map", $owmw_opt["id"]);
 	$owmw_opt["template"]  		 = $owmw_params["template"] ?? owmw_get_bypass($bypass, "template", $owmw_opt["id"]);
 	$owmw_opt["disable_spinner"] = $owmw_params["disable_spinner"] ?? owmw_get_bypass_yn($bypass, "disable_spinner", $owmw_opt["id"]);
-    $owmw_opt["id_owm"] 	     = $owmw_params["id_owm"] ?? owmw_get_bypass($bypass, "id_owm", $owmw_opt["id"]);
+	$owmw_opt["id_owm"] 	     = $owmw_params["id_owm"] ?? owmw_get_bypass($bypass, "id_owm", $owmw_opt["id"]);
     $owmw_opt["longitude"] 	     = $owmw_params["longitude"] ?? owmw_get_bypass($bypass, "longitude", $owmw_opt["id"]);
     $owmw_opt["latitude"] 	     = $owmw_params["latitude"] ?? owmw_get_bypass($bypass, "latitude", $owmw_opt["id"]);
     $owmw_opt["zip"] 	         = $owmw_params["zip"] ?? owmw_get_bypass($bypass, "zip", $owmw_opt["id"]);
@@ -2353,7 +2334,7 @@ function owmw_get_my_weather_id($atts) {
     }
 
     if (empty($owmw_opt["id_owm"]) && empty($owmw_opt["longitude"]) && empty($owmw_opt["latitude"]) && empty($owmw_opt["zip"]) && empty($owmw_opt["city"])) {
-        $data_attributes_esc[] = 'data-geo-location="true"';
+        $data_attributes_esc[] = 'data-geo_location="true"';
     }
 
     $div_id_esc = owmw_unique_id_esc("owm-weather-id-".$owmw_opt["id"]);

@@ -13,7 +13,7 @@ jQuery(document).ready(function($){
 	var owm_weather_id = document.getElementsByClassName('owm-weather-id');
 	var use_geo_location = false;
         for(var i = 0; i < owm_weather_id.length; i++) {
-		if (jQuery(owm_weather_id[i]).data("geoLocation")) {
+		if (jQuery(owm_weather_id[i]).data("geo_location")) {
 			use_geo_location = true;
 		}
 	}
