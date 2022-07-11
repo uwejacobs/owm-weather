@@ -4,11 +4,11 @@ https://github.com/atiyahaider/Animated-SVG-Weather-Icons
 pot file: wp  --allow-root i18n make-pot . lang/owm-weather.pot
 
 Should:
+Better templates
 WordPress Multi-Site environment
 
 Nice:
 more charts
-background type gradient/video
-openweathermap keys
-HTML5 video(.mp4, .webm, .ogg) or YouTube background.
-Gutenberg block
+background type video
+YouTube background.
+Gutenberg block rendering

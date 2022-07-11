@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.3.4
+Version: 5.3.5
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -59,7 +59,7 @@ function plugin_row_meta($links, $file) {
     return $links;
 }
 
-define( 'OWM_WEATHER_VERSION', '5.3.4' );
+define( 'OWM_WEATHER_VERSION', '5.3.5' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -112,9 +112,10 @@ function owmw_init() {
 		require_once dirname( __FILE__ ) . '/owmweather-export.php';
 		require_once dirname( __FILE__ ) . '/owmweather-widget.php';
 		require_once dirname( __FILE__ ) . '/owmweather-pointers.php';
-		require_once dirname( __FILE__ ) . '/owm-widget.php';
+		require_once dirname( __FILE__ ) . '/owmweather-block.php';
 	}
 
+	require_once dirname( __FILE__ ) . '/owm-widget.php';
 }
 add_action('plugins_loaded', 'owmw_init');
 
@@ -2261,8 +2262,12 @@ function owmw_get_my_weather_id($atts) {
         }
     }
 
-	if (empty($owmw_params["id"])) {
-	    echo "<p>OWM Weather Error: owm-weather shortcode without 'id' parameter</p>";
+	if (empty($owmw_params)) {
+        return;
+    }
+
+    if (empty($owmw_params["id"])) {
+        echo "<p>OWM Weather Error: owm-weather shortcode without 'id' parameter</p>";
 	    return;
 	}
     if (get_post_type($owmw_params["id"]) != 'owm-weather') {

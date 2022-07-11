@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
 Tested up to: 6.0.0
-Stable tag: 5.3.4
+Stable tag: 5.3.5
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -37,7 +37,7 @@ Data items can be selected and styled individually. Pick your measurement system
 Developers have access through custom templates to the raw Open Weather Map data - converted to the selected measurement system, time format, and zone - to build a completely customized layout. A built-in debug template shows all options, data, and generated Html snippets.
 
 = Shortcode Placement =
-Use in content and/or sidebar, or as a widget on the admin dashboard. Multiple completely different kinds of Weather can be shown on the same page.
+Use via Gutenberg block, as a widget or via shortcode in content and/or sidebar. Multiple completely different kinds of Weather can be shown on the same page.
 
 = Weather Location =
 The worldwide location can be specified by the OWM city id (available for over 200,000 cities), the city/country name via dynamic search, the zip code, the latitude/longitude, or the IP address of the user (geolocation).
@@ -130,6 +130,7 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 * Use any image or video from the media library for the background.
 * Set weather-based backgrounds or images (Sunny, Cloudy, Drizzly, Rainy, Snowy, Stormy, and Foggy).
 * Clean minimal background for flat UI design.
+* Gutenberg block
 * Widget ready.
 * Fully localized language support.
 * Fully translation ready with PoEdit, WPML, Polylang, Loco Translate, and more.
@@ -237,6 +238,10 @@ Although many settings look alike, OWM Weather uses completely different weather
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.3.5 =
+* Added Gutenberg block (without preview)
+* Fixed OWM Weather Shortcode widget
 
 = 5.3.4 =
 * Fixed OWM Weather asking for visitor's location although a fixed location is configured
