@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.3.5
+Version: 5.3.6
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -59,7 +59,7 @@ function plugin_row_meta($links, $file) {
     return $links;
 }
 
-define( 'OWM_WEATHER_VERSION', '5.3.5' );
+define( 'OWM_WEATHER_VERSION', '5.3.6' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -3256,7 +3256,7 @@ function owmw_get_my_weather($attr) {
 				//Wind Rose
 		      	if ( $owmw_opt["map_windrose"] == 'yes' ) {
 					$display_map_options .= 'var windrose = L.OWM.current({showLegend: '.($owmw_opt["map_windrose_legend"] == 'yes' ? "true" : "false") .', intervall: 15, lang: "en", minZoom: 4, appId: "'.esc_attr($owmw_opt["api_key"]).'", markerFunction: myWindroseMarker, popup: false, clusterSize: 50, imageLoadingBgUrl: "https://openweathermap.org/img/w0/iwind.png" });	windrose.on("owmlayeradd", windroseAdded, windrose);';
-					$display_map_layers             .= '"'.esc_attr__("Wind Rose", "owm-weather").'": wind Rose,';
+					$display_map_layers             .= '"'.esc_attr__("Wind Rose", "owm-weather").'": windrose,';
 				}
 				
 				//Cities
