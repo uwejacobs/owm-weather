@@ -7,25 +7,26 @@
  * 5 days / 3 hours forecast
  */
 ?>
-<!-- Start #owm-weather -->
-<?php echo wp_kses_post($owmw_html["container"]["start"]); ?>
-	
-	<!-- Hourly Table -->
-	<?php echo wp_kses($owmw_html["table"]["forecast"], $owmw_opt['allowed_html']); ?>
+<!-- Start #owm-weather-container -->
+<?php echo wp_kses($owmw_html["container"]["start"], $owmw_opt['allowed_html']); ?>
 
-	<!-- OWM Link -->
-	<?php echo wp_kses_post($owmw_html["owm_link_last_update_start"]); ?>
-	<?php echo wp_kses_post($owmw_html["owm_link"]); ?>
-	<!-- OWM Last Update -->
-	<?php echo wp_kses_post($owmw_html["last_update"]); ?>
-	<?php echo wp_kses_post($owmw_html["owm_link_last_update_end"]); ?>
+    <!-- 3-Hour Table -->
+    <?php echo owmw_colorAnimatedConfig(); ?>
+    <?php echo wp_kses($owmw_html["table"]["forecast"], $owmw_opt['allowed_html']); ?>
 
-	<!-- CSS/Scripts -->
-	<?php echo '<style type="text/css">' . wp_kses_post($owmw_html["custom_css"]) . '</style>'; ?>
-	<?php echo '<style type="text/css">' . wp_kses_post($owmw_html["temperature_unit"]) . '</style>'; ?>
+    <!-- OWM Link -->
+    <?php echo wp_kses($owmw_html["owm_link_last_update_start"], $owmw_opt['allowed_html']); ?>
+    <?php echo wp_kses($owmw_html["owm_link"], $owmw_opt['allowed_html']); ?>
+    <!-- OWM Last Update -->
+    <?php echo wp_kses($owmw_html["last_update"], $owmw_opt['allowed_html']); ?>
+    <?php echo wp_kses($owmw_html["owm_link_last_update_end"], $owmw_opt['allowed_html']); ?>
 
-	<!-- Google Tag Manager -->
-	<?php echo '<script type="text/javascript">' . wp_kses_post($owmw_html["gtag"]) . '</script>'; ?>
+    <!-- CSS/Scripts -->
+    <?php echo '<style type="text/css">' . wp_kses($owmw_html["custom_css"], $owmw_opt['allowed_html']) . '</style>'; ?>
+    <?php echo '<style type="text/css">' . wp_kses($owmw_html["temperature_unit"], $owmw_opt['allowed_html']) . '</style>'; ?>
 
-<!-- End #owm-weather -->
-<?php echo wp_kses_post($owmw_html["container"]["end"]); ?>
+    <!-- Google Tag Manager -->
+    <?php echo '<script type="text/javascript">' . wp_kses($owmw_html["gtag"], $owmw_opt['allowed_html']) . '</script>'; ?>
+
+<!-- End #owm-weather-container -->
+<?php echo wp_kses($owmw_html["container"]["end"], $owmw_opt['allowed_html']); ?>

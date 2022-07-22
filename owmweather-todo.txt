@@ -1,14 +1,19 @@
 Must:
-https://github.com/atiyahaider/Animated-SVG-Weather-Icons
-
-pot file: wp  --allow-root i18n make-pot . lang/owm-weather.pot
+Templates
+  card3 with tabs for Current, Hourly and Daily
+  table1 and table2 labels
 
 Should:
-Better templates
 WordPress Multi-Site environment
+Create first weather post with geo-location if none exists
 
 Nice:
 more charts
 background type video
 YouTube background.
 Gutenberg block rendering
+
+
+
+
+pot file: wp  --allow-root i18n make-pot . lang/owm-weather.pot

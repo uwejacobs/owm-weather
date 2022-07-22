@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
 Tested up to: 6.0.1
-Stable tag: 5.3.6
+Stable tag: 5.4.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -238,6 +238,13 @@ Although many settings look alike, OWM Weather uses completely different weather
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.4.0 =
+* Fixed sort order in Gutenberg block
+* Added caching of visitor's geo location via HTML5 session storage
+* Revised all existing templates for better responsiveness and readability
+* Added tooltips for every symbol and icon
+* Added new default to suppress the text labels for weather conditions for brevety
 
 = 5.3.6 =
 * Tested with WordPress 6.0.1

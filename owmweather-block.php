@@ -70,7 +70,7 @@ function owmw_block_editor_posts_find( $args = '' ) {
 		'post_status' => 'any',
 		'posts_per_page' => -1,
 		'offset' => 0,
-		'orderby' => 'ID',
+		'orderby' => 'title',
 		'order' => 'ASC',
 	);
 

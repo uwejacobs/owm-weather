@@ -474,6 +474,14 @@ class owmw_options
         );
 
         add_settings_field(
+            'owmw_text_labels', // ID
+            esc_html__("Show only Icon Labels",'owm-weather'), // Title
+            array( $this, 'owmw_display_text_labels_callback' ), // Callback
+            'owmw-settings-admin-display', // Page
+            'owmw_setting_section_display' // Section
+        );
+
+        add_settings_field(
             'owmw_hours_forecast_no', // ID
             esc_html__("Number of Forecast Hours",'owm-weather'), // Title
             array( $this, 'owmw_display_hour_forecast_no_callback' ), // Callback
@@ -1601,6 +1609,11 @@ class owmw_options
     public function owmw_display_uv_index_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_uv_index');
+    }
+
+    public function owmw_display_text_labels_callback()
+    {
+        $this->owmw_bypassRadioButtons('owmw_text_labels');
     }
 
     public function owmw_display_alerts_callback()
