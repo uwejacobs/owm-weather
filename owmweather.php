@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.4.0
+Version: 5.4.1
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -59,7 +59,7 @@ function plugin_row_meta($links, $file) {
     return $links;
 }
 
-define( 'OWM_WEATHER_VERSION', '5.4.0' );
+define( 'OWM_WEATHER_VERSION', '5.4.1' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -2569,7 +2569,7 @@ function owmw_get_my_weather($attr) {
     		} else {
            	  	$response = array();
    	          	$response['weather'] = $owmw_params["weather_id"];
-           	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
+           	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_html__('Unable to retrieve weather data','owm-weather') . "</p>";
    	        	wp_send_json_error($response, 400);
                 return;
     		}
@@ -2577,14 +2577,16 @@ function owmw_get_my_weather($attr) {
 			global $post;
             $transient_key = 'owmweather_' . $id . '_current_' . $query . $owmw_opt["owm_language"] . $owmw_opt["temperature_unit"];
            	if (false === ( $owmweather_current = get_transient( $transient_key ) ) ) {
-    			$response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 10));
+    			$response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
                 if (!is_wp_error($response)) {
         			$owmweather_current = json_decode(wp_remote_retrieve_body($response));
         			set_transient( $transient_key, $owmweather_current, $owmw_opt["cache_time"] * MINUTE_IN_SECONDS );
         		} else {
+                    $errorMsg = $response->get_error_message();
             	  	$response = array();
     	          	$response['weather'] = $owmw_params["weather_id"];
-            	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
+            	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_html__('Unable to retrieve weather data','owm-weather') . "</p>";
+            	  	$response['html'] .= "<p>" . esc_html__($errorMsg) . "</p>";
     	        	wp_send_json_error($response, 400);
                     return;
         		}
@@ -2702,13 +2704,13 @@ function owmw_get_my_weather($attr) {
         $url = "https://api.openweathermap.org/data/2.5/onecall?lon=".$owmw_data["longitude"]."&lat=".$owmw_data["latitude"]."&mode=json&exclude=minutely&lang=".$owmw_opt["owm_language"]."&units=".$owmw_opt["temperature_unit"]."&APPID=".$owmw_opt["api_key"];
         if($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0 || $owmw_opt["alerts"] == 'yes' || $owmw_opt["moonrise_moonset"] == "yes" || $owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes") {
     		if ($owmw_opt["disable_cache"] == 'yes') {
-    			$response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 10));
+    			$response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
                 if (!is_wp_error($response)) {
         			$owmweather = json_decode(wp_remote_retrieve_body($response));
         		} else {
                	  	$response = array();
        	          	$response['weather'] = $owmw_params["weather_id"];
-               	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
+               	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_html__('Unable to retrieve weather data','owm-weather') . "</p>";
        	        	wp_send_json_error($response, 400);
                     return;
         		}
@@ -2716,14 +2718,16 @@ function owmw_get_my_weather($attr) {
 				global $post;
         	    $transient_key = 'owmweather_' . $id . '_' . $owmw_data["longitude"] . $owmw_data["latitude"] . $owmw_opt["temperature_unit"] . $owmw_opt["owm_language"];
               	if (false === ( $owmweather = get_transient( $transient_key))) {
-    			    $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 10));
+    			    $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
                     if (!is_wp_error($response)) {
             			$owmweather = json_decode(wp_remote_retrieve_body($response));
             			set_transient($transient_key, $owmweather, $owmw_opt["cache_time"] * MINUTE_IN_SECONDS );
             		} else {
+                        $errorMsg = $response->get_error_message();
                 	  	$response = array();
         	          	$response['weather'] = $owmw_params["weather_id"];
-                	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
+                	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_html__('Unable to retrieve weather data','owm-weather') . "</p>";
+                	  	$response['html'] .= "<p>" . esc_html__($errorMsg) . "</p>";
         	        	wp_send_json_error($response, 400);
                         return;
             		}
@@ -2946,13 +2950,13 @@ function owmw_get_my_weather($attr) {
 /* bugbug condition ? */
         if($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0 || $owmw_opt["alerts"] == 'yes' || $owmw_opt["moonrise_moonset"] == "yes" || $owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes") {
     		if ($owmw_opt["disable_cache"] == 'yes') {
-    			$response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 10));
+    			$response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
                 if (!is_wp_error($response)) {
         			$owmforecast = json_decode(wp_remote_retrieve_body($response));
         		} else {
                	  	$response = array();
        	          	$response['weather'] = $owmw_params["weather_id"];
-               	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
+               	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_html__('Unable to retrieve weather data','owm-weather') . "</p>";
        	        	wp_send_json_error($response, 400);
                     return;
         		}
@@ -2960,14 +2964,16 @@ function owmw_get_my_weather($attr) {
 				global $post;
         	    $transient_key = 'owmweather_' . $id . '_5day_' . $owmw_data["longitude"] . $owmw_data["latitude"] . $owmw_opt["temperature_unit"] . $owmw_opt["owm_language"];
               	if (false === ( $owmforecast = get_transient( $transient_key))) {
-    			    $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 10));
+    			    $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
                     if (!is_wp_error($response)) {
             			$owmforecast = json_decode(wp_remote_retrieve_body($response));
             			set_transient($transient_key, $owmforecast, $owmw_opt["cache_time"] * MINUTE_IN_SECONDS );
             		} else {
-                	  	$response = array();
+                        $errorMsg = $response->get_error_message();
+                        $response = array();
         	          	$response['weather'] = $owmw_params["weather_id"];
-                	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_htlm__('Unable to retrieve weather data','owm-weather') . "</p>";
+                	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_html__('Unable to retrieve weather data','owm-weather') . "</p>";
+                	  	$response['html'] .= "<p>" . esc_html__($errorMsg) . "</p>";
         	        	wp_send_json_error($response, 400);
                         return;
             		}
@@ -4791,3 +4797,4 @@ function owmw_getConditionText($condition) {
 	
 	return "";
 }
+
