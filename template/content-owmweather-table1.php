@@ -13,7 +13,7 @@
     width: 100%;
     box-sizing: border-box;
 }
-.owmw-current-infos.card {
+#<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .owmw-current-infos.card {
     margin-right: auto !important;
     margin-left: auto !important;
     width: fit-content;

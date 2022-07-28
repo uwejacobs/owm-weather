@@ -1413,6 +1413,8 @@ class owmw_options
         echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. esc_html__( 'Default', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'card1', $selected, false ) . ' value="card1">'. esc_html__( 'Card 1', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'card2', $selected, false ) . ' value="card2">'. esc_html__( 'Card 2', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'tabbed1', $selected, false ) . ' value="tabbed1">'. esc_html__( 'Tabbed 1', 'owm-weather' ) .'</option>';
+        echo '<option ' . selected( 'tabbed2', $selected, false ) . ' value="tabbed2">'. esc_html__( 'Tabbed 2', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'chart1', $selected, false ) . ' value="chart1">'. esc_html__( 'Chart 1', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'chart2', $selected, false ) . ' value="chart2">'. esc_html__( 'Chart 2', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'slider1', $selected, false ) . ' value="slider1">'. esc_html__( 'Slider 1', 'owm-weather' ) .'</option>';

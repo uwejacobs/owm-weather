@@ -13,7 +13,7 @@
     width: 100%;
     box-sizing: border-box;
 }
-.owmw-current-infos.card {
+#<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .owmw-current-infos.card {
     margin-right: auto !important;
     margin-left: auto !important;
     width: fit-content;
@@ -104,8 +104,8 @@
     <?php } ?>
 
     <?php if ($owmw_opt["days_forecast_no"] > 0) { ?>
-        <?php echo '<div class="fs-3 opacity-75 mt-3">Daily</div>'; ?>
         <!-- Daily Forecast -->
+        <?php echo '<div class="fs-3 opacity-75 mt-3">Daily</div>'; ?>
         <?php echo wp_kses($owmw_html["forecast"]["start_card"], $owmw_opt['allowed_html']); ?>
             <?php
                 for ($i = 0; $i < $owmw_opt["days_forecast_no"]; $i++) {

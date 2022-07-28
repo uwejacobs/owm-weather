@@ -1,7 +1,4 @@
 Must:
-Templates
-  card3 with tabs for Current, Hourly and Daily
-  table1 and table2 labels
 
 Should:
 WordPress Multi-Site environment

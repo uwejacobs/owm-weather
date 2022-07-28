@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
 Tested up to: 6.0.1
-Stable tag: 5.4.1
+Stable tag: 5.4.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -225,6 +225,20 @@ Yes, in Settings > OWM Weather > Import/Export/Reset tab.
 
 Although many settings look alike, OWM Weather uses completely different weather pages and system settings so both can be activate at the same time.
 
+= Why does the Visitor's Location search not work in my development environment? =
+
+OWM Weather will first try the HTML5 GeoLocation feature. Should the user decline to share the geolocation or the geo-location cannot be determined, the search will then consult KeyCDN's IP location finder. It maps the visitor's browser IP address to the geographic location and provides the latitude and longitude information. The HTML5 GeoLocation tends to be much more accurate than IP-based GeoLocation.
+
+Note regarding IP Location: A development environment uses usually a private network IP address that cannot be geolocated. You will end up with this error message: OWM Weather id '#####': OWM Error 400 (Nothing to geocode).In this case, please allow the HTML5 GeoLocation or use one of the other location options ( City Id, Longitude/Latitude, Zip/Country, or City/Country).
+
+= Why is there a lag before the weather informtion gets displayed? =
+
+OWM Weather has to make several API calls to OpenWeatherMap.com to retrieve the weather information. This retrieval runs in the background while the page is loading instead of blocking the whole page until the weather information is ready. It is the standard WordPress solution for displaying information that takes considerable time to compile. You can observe the same behavior on the WordPress Dashboard or Media Library. The Google Site Kit plugin is another example of this behavior.
+
+= What is "cURL error 28: Failed to connect to api.openweathermap.org port 443: Connection timed out"?
+
+This points to a connectivity issue between the server your domain is hosted and api.openweathermap.org. Please open a ticket with your hosting provider.
+
 == Screenshots ==
 1. Basic current weather info with alerts
 1. Alert popup.
@@ -238,6 +252,10 @@ Although many settings look alike, OWM Weather uses completely different weather
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.4.2 =
+* Added new Tabbed templates
+* Fixed table text color for icon labels
 
 = 5.4.1 =
 * Fixed the error message display when a OpenWeatherMap API call failed (spinner doesn't stop)
