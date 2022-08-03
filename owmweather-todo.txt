@@ -5,9 +5,8 @@ WordPress Multi-Site environment
 Create first weather post with geo-location if none exists
 
 Nice:
-more charts
 background type video
-YouTube background.
+YouTube background
 Gutenberg block rendering
 
 

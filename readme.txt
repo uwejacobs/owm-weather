@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
 Tested up to: 6.0.1
-Stable tag: 5.4.2
+Stable tag: 5.5.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -79,13 +79,14 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 * Export, Import and Reset System settings.
 * Export and Import weather posts via the free default WordPress importer/exporter tool.
 * Fully responsive & mobile friendly.
-* Multiple output templates (Standard, horizontal or vertical Card, Sliders, Tables, Charts).
+* Multiple output templates (Standard, horizontal or vertical Card, Sliders, Tables, Tabbed, Charts).
 * Built-in Debug template.
 * Custom PHP templates for complete output control.
 * Display weather by 5 location types: City Id, Longitude/Latitude, Zip/Country, City/Country, and Visitor’s HTML5 Geo Location (fallback by IP address).
 * 48-hour weather forecast with Wind Speed and Direction, Humidity, Dew Point, Pressure, Cloudiness, Precipitation, Visibility, and UV Index. The number of
 * hours selectable.
 * 8-day weather forecast with Wind, Humidity, Dew Point, Pressure, Cloudiness, Precipitation, Visibility, and UV Index. The number of days selectable.
+* 5-day weather forecast charts in 3 hour increments with Wind, Humidity, Dew Point, Pressure, Cloudiness, Precipitation. The number of days selectable.
 * National weather alerts.
 * Unlimited weather widgets and forecasts on the same page.
 * All individual weather options can be bypassed via system options for all weathers at once.
@@ -252,6 +253,14 @@ This points to a connectivity issue between the server your domain is hosted and
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.5.0 =
+* Added daily and hourly chart templates
+* Added daily and hourly charts to tabbed template
+* Added wind speed description to weather short description output
+* Added precipitation amount to the table 3 template
+* Limited API calls and data preparation to what's actually needed for the current template
+* Fixed precision when converting precipitation from mm to in
 
 = 5.4.2 =
 * Added new Tabbed templates

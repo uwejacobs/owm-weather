@@ -691,7 +691,7 @@ function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack, $exten
 	              	#'.esc_attr($id).' .owmw-hours .owmw-temperature'.esc_attr($extension).':after,
 	              	#'.esc_attr($id).' .owmw-today .owmw-main-temperature-max'.esc_attr($extension).':after,
 	              	#'.esc_attr($id).' .owmw-today .owmw-main-temperature-min'.esc_attr($extension).':after,
-	              	#'.esc_attr($id).' .owmw-table .owmw-temperature'.esc_attr($extension).':after {';
+	              	#'.esc_attr($id).' .owmw-table .owmw-table-temperature'.esc_attr($extension).':after {';
 
 	        if ($unit == 'metric') {
 	            if ($iconpack == 'WeatherIcons') {
@@ -771,6 +771,20 @@ return
         c0,2.37,0.86,4.43,2.59,6.18c1.73,1.73,3.79,2.59,6.2,2.59c1.58,0,3.05-0.39,4.39-1.18s2.42-1.85,3.21-3.2s1.19-2.81,1.19-4.39
         s-0.4-3.05-1.19-4.4s-1.86-2.42-3.21-3.21s-2.81-1.18-4.39-1.18s-3.05,0.39-4.39,1.18S8.2,8.75,7.4,10.1S6.22,12.92,6.22,14.5z
          M11.11,20.35l3.75-13.11c0.01-0.1,0.06-0.15,0.15-0.15s0.14,0.05,0.15,0.15l3.74,13.11c0.04,0.11,0.03,0.19-0.02,0.25
+        s-0.13,0.06-0.24,0l-3.47-1.3c-0.1-0.04-0.2-0.04-0.29,0l-3.5,1.3c-0.1,0.06-0.17,0.06-0.21,0S11.09,20.45,11.11,20.35z"/>
+</svg>';
+}
+
+function owmw_chart_wind_direction_icon($degrees, $color, $direction) {
+        if (!empty($direction) && $direction == "from") {
+                $rotation = 0;
+        } else {
+                $rotation = 180;
+        }
+return
+'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'" width="30" height="30">
+<title>'.esc_attr__('Wind', 'owm-weather').'</title>
+<path transform="rotate('.esc_attr(($degrees ?? 0) - $rotation).')" transform-origin="center" d="M11.11,20.35l3.75-13.11c0.01-0.1,0.06-0.15,0.15-0.15s0.14,0.05,0.15,0.15l3.74,13.11c0.04,0.11,0.03,0.19-0.02,0.25
         s-0.13,0.06-0.24,0l-3.47-1.3c-0.1-0.04-0.2-0.04-0.29,0l-3.5,1.3c-0.1,0.06-0.17,0.06-0.21,0S11.09,20.45,11.11,20.35z"/>
 </svg>';
 }

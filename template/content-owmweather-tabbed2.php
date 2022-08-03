@@ -11,8 +11,9 @@
 <style>
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  color: <?php echo $owmw_opt["tabbed_btn_text_color"]; ?>;
+  border: 1px solid <?php echo $owmw_opt["tabbed_btn_active_color"]; ?>;
+  background-color: <?php echo $owmw_opt["tabbed_btn_background_color"]; ?>;
 }
 
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .tab button {
@@ -27,11 +28,11 @@
 }
 
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .tab button:hover {
-  background-color: #ddd;
+  background-color: <?php echo $owmw_opt["tabbed_btn_hover_color"]; ?>;
 }
 
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .tab button.active {
-  background-color: #ccc;
+  background-color: <?php echo $owmw_opt["tabbed_btn_active_color"]; ?>;
 }
 
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .tabcontent {
@@ -161,8 +162,14 @@
     <?php if ($owmw_opt["hours_forecast_no"] > 0) { ?>
     <div id="<?php echo esc_attr($owmw_html["main_weather_div"]) ?>-hourly" class="<?php echo esc_attr($owmw_html["main_weather_div"]) ?>-tabcontent">
         <!-- Hourly Forecast -->
-        <?php echo wp_kses($owmw_html["chart"]["hourly"]["container"], $owmw_opt['allowed_html']); ?>
-        <script type="text/javascript"><?php echo wp_kses($owmw_html["chart"]["hourly"]["script"], $owmw_opt['allowed_html']); ?></script>
+        <?php echo wp_kses($owmw_html["chart"]["hourly"]["temperatures"]["container"], $owmw_opt['allowed_html']); ?>
+        <script type="text/javascript"><?php echo wp_kses($owmw_html["chart"]["hourly"]["temperatures"]["script"], $owmw_opt['allowed_html']); ?></script>
+        <?php echo wp_kses($owmw_html["chart"]["hourly"]["precipitation"]["container"], $owmw_opt['allowed_html']); ?>
+        <script type="text/javascript"><?php echo wp_kses($owmw_html["chart"]["hourly"]["precipitation"]["script"], $owmw_opt['allowed_html']); ?></script>
+        <?php echo wp_kses($owmw_html["chart"]["hourly"]["precip_amt"]["container"], $owmw_opt['allowed_html']); ?>
+        <script type="text/javascript"><?php echo wp_kses($owmw_html["chart"]["hourly"]["precip_amt"]["script"], $owmw_opt['allowed_html']); ?></script>
+        <?php echo wp_kses($owmw_html["chart"]["hourly"]["wind"]["container"], $owmw_opt['allowed_html']); ?>
+        <script type="text/javascript"><?php echo wp_kses($owmw_html["chart"]["hourly"]["wind"]["script"], $owmw_opt['allowed_html']); ?></script>
         <!-- OWM Link -->
         <?php echo wp_kses($owmw_html["owm_link_last_update_start"], $owmw_opt['allowed_html']); ?>
         <?php echo wp_kses($owmw_html["owm_link"], $owmw_opt['allowed_html']); ?>
@@ -175,8 +182,14 @@
     <?php if ($owmw_opt["days_forecast_no"] > 0) { ?>
     <div id="<?php echo esc_attr($owmw_html["main_weather_div"]) ?>-daily" class="<?php echo esc_attr($owmw_html["main_weather_div"]) ?>-tabcontent">
         <!-- Daily Forecast -->
-        <?php echo wp_kses($owmw_html["chart"]["daily"]["container"], $owmw_opt['allowed_html']); ?>
-        <script type="text/javascript"><?php echo wp_kses($owmw_html["chart"]["daily"]["script"], $owmw_opt['allowed_html']); ?></script>
+        <?php echo wp_kses($owmw_html["chart"]["daily"]["temperatures"]["container"], $owmw_opt['allowed_html']); ?>
+        <script type="text/javascript"><?php echo wp_kses($owmw_html["chart"]["daily"]["temperatures"]["script"], $owmw_opt['allowed_html']); ?></script>
+        <?php echo wp_kses($owmw_html["chart"]["daily"]["precipitation"]["container"], $owmw_opt['allowed_html']); ?>
+        <script type="text/javascript"><?php echo wp_kses($owmw_html["chart"]["daily"]["precipitation"]["script"], $owmw_opt['allowed_html']); ?></script>
+        <?php echo wp_kses($owmw_html["chart"]["daily"]["precip_amt"]["container"], $owmw_opt['allowed_html']); ?>
+        <script type="text/javascript"><?php echo wp_kses($owmw_html["chart"]["daily"]["precip_amt"]["script"], $owmw_opt['allowed_html']); ?></script>
+        <?php echo wp_kses($owmw_html["chart"]["daily"]["wind"]["container"], $owmw_opt['allowed_html']); ?>
+        <script type="text/javascript"><?php echo wp_kses($owmw_html["chart"]["daily"]["wind"]["script"], $owmw_opt['allowed_html']); ?></script>
         <!-- OWM Link -->
         <?php echo wp_kses($owmw_html["owm_link_last_update_start"], $owmw_opt['allowed_html']); ?>
         <?php echo wp_kses($owmw_html["owm_link"], $owmw_opt['allowed_html']); ?>

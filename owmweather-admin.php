@@ -651,6 +651,36 @@ class owmw_options
         );
 
 		add_settings_field(
+            'owmw_tabbed_btn_text_color', // ID
+            esc_html__("Tabbed Button Text Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_tabbed_btn_text_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_tabbed_btn_background_color', // ID
+            esc_html__("Tabbed Button Background Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_tabbed_btn_background_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+		add_settings_field(
+            'owmw_tabbed_btn_active_color', // ID
+            esc_html__("Tabbed Button Active Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_tabbed_btn_active_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+		add_settings_field(
+            'owmw_tabbed_btn_hover_color', // ID
+            esc_html__("Tabbed Button Hover Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_tabbed_btn_hover_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+        
+		add_settings_field(
             'owmw_table_background_color', // ID
             esc_html__("Table Background Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_background_color_callback' ), // Callback
@@ -694,6 +724,143 @@ class owmw_options
             'owmw_table_border_radius', // ID
             esc_html__("Table Border Radius",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_border_radius_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+
+		add_settings_field(
+            'owmw_chart_height', // ID
+            esc_html__("Chart Height",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_height_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_background_color', // ID
+            esc_html__("Chart Background Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_background_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_border_color', // ID
+            esc_html__("Chart Border Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_border_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_border_width', // ID
+            esc_html__("Chart Border Width",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_border_width_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_border_style', // ID
+            esc_html__("Chart Border Style",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_border_style_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_border_radius', // ID
+            esc_html__("Chart Border Radius",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_border_radius_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_temperature_color', // ID
+            esc_html__("Chart Temperature Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_temperature_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_feels_like_color', // ID
+            esc_html__("Chart Feels-Like Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_feels_like_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_dew_point_color', // ID
+            esc_html__("Chart Dew Point Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_dew_point_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_cloudiness_color', // ID
+            esc_html__("Chart Cloudiness Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_cloudiness_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_rain_chance_color', // ID
+            esc_html__("Chart Rain Chance Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_rain_chance_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_humidity_color', // ID
+            esc_html__("Chart Humidity Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_humidity_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_pressure_color', // ID
+            esc_html__("Chart Pressure Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_pressure_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_rain_amt_color', // ID
+            esc_html__("Chart Rain Amount Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_rain_amt_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_snow_amt_color', // ID
+            esc_html__("Chart Snow Amount Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_snow_amt_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_wind_speed_color', // ID
+            esc_html__("Chart Wind Speed Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_wind_speed_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_wind_gust_color', // ID
+            esc_html__("Chart Wind Gust Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_wind_gust_color_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
         );
@@ -2080,6 +2247,34 @@ class owmw_options
         printf('<textarea name="owmw_option_name[owmw_custom_css]" style="width:100%%;height:300px;">%s</textarea>', esc_textarea($check));
     }
 
+    public function owmw_layout_tabbed_btn_text_color_callback()
+    {
+        $check = $this->options['owmw_tabbed_btn_text_color'] ?? null;
+
+        printf('<input name="owmw_option_name[owmw_tabbed_btn_text_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+    public function owmw_layout_tabbed_btn_background_color_callback()
+    {
+        $check = $this->options['owmw_tabbed_btn_background_color'] ?? null;
+
+        printf('<input name="owmw_option_name[owmw_tabbed_btn_background_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+    public function owmw_layout_tabbed_btn_active_color_callback()
+    {
+        $check = $this->options['owmw_tabbed_btn_active_color'] ?? null;
+
+        printf('<input name="owmw_option_name[owmw_tabbed_btn_active_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+    public function owmw_layout_tabbed_btn_hover_color_callback()
+    {
+        $check = $this->options['owmw_tabbed_btn_hover_color'] ?? null;
+
+        printf('<input name="owmw_option_name[owmw_tabbed_btn_hover_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+    
     public function owmw_layout_table_background_color_callback()
     {
         $check = $this->options['owmw_table_background_color'] ?? null;
@@ -2122,6 +2317,127 @@ class owmw_options
         $check = $this->options['owmw_table_border_radius'] ?? null;
 
         printf('<input name="owmw_option_name[owmw_table_border_radius]" type="number" min="0" value="%s" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_height_callback()
+    {
+        $check = $this->options['owmw_chart_height'] ?? '';
+
+        printf('<input name="owmw_option_name[owmw_chart_height]" type="number" min="300" value="%s" />', esc_attr($check));
+	}
+
+    public function owmw_layout_chart_background_color_callback()
+    {
+        $check = $this->options['owmw_chart_background_color'] ?? null;
+
+        printf('<input name="owmw_option_name[owmw_chart_background_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_border_color_callback()
+    {
+        $check = $this->options['owmw_chart_border_color'] ?? null;
+
+		printf('<input name="owmw_option_name[owmw_chart_border_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_border_width_callback()
+    {
+        $check = $this->options['owmw_chart_border_width'] ?? null;
+
+        printf('<input name="owmw_option_name[owmw_chart_border_width]" type="number" min="0" value="%s" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_border_style_callback()
+    {
+        $selected = $this->options['owmw_chart_border_style'] ?? "nobypass";
+
+		echo '<select id="owmw_border_style" name="owmw_option_name[owmw_chart_border_style]">';
+		$this->owmw_borderStyleOptions($selected);
+		echo '</select>';
+	}
+
+	public function owmw_layout_chart_border_radius_callback()
+    {
+        $check = $this->options['owmw_chart_border_radius'] ?? null;
+
+        printf('<input name="owmw_option_name[owmw_chart_border_radius]" type="number" min="0" value="%s" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_temperature_color_callback()
+    {
+        $check = $this->options['owmw_chart_temperature_color'] ?? null;
+
+		printf('<input name="owmw_option_name[owmw_chart_temperature_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_feels_like_color_callback()
+    {
+        $check = $this->options['owmw_chart_feels_like_color'] ?? null;
+
+		printf('<input name="owmw_option_name[owmw_chart_feels_like_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_dew_point_color_callback()
+    {
+        $check = $this->options['owmw_chart_dew_point_color'] ?? null;
+
+		printf('<input name="owmw_option_name[owmw_chart_dew_point_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_cloudiness_color_callback()
+    {
+        $check = $this->options['owmw_chart_cloudiness_color'] ?? null;
+
+		printf('<input name="owmw_option_name[owmw_chart_cloudiness_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_rain_chance_color_callback()
+    {
+        $check = $this->options['owmw_chart_rain_chance_color'] ?? null;
+
+		printf('<input name="owmw_option_name[owmw_chart_rain_chance_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_humidity_color_callback()
+    {
+        $check = $this->options['owmw_chart_humidity_color'] ?? null;
+
+		printf('<input name="owmw_option_name[owmw_chart_humidity_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_pressure_color_callback()
+    {
+        $check = $this->options['owmw_chart_pressure_color'] ?? null;
+
+		printf('<input name="owmw_option_name[owmw_chart_pressure_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_rain_amt_color_callback()
+    {
+        $check = $this->options['owmw_chart_rain_amt_color'] ?? null;
+
+		printf('<input name="owmw_option_name[owmw_chart_rain_amt_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_snow_amt_color_callback()
+    {
+        $check = $this->options['owmw_chart_snow_amt_color'] ?? null;
+
+		printf('<input name="owmw_option_name[owmw_chart_snow_amt_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_wind_speed_color_callback()
+    {
+        $check = $this->options['owmw_chart_wind_speed_color'] ?? null;
+
+		printf('<input name="owmw_option_name[owmw_chart_wind_speed_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+	public function owmw_layout_chart_wind_gust_color_callback()
+    {
+        $check = $this->options['owmw_chart_wind_gust_color'] ?? null;
+
+		printf('<input name="owmw_option_name[owmw_chart_wind_gust_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
 	public function owmw_advanced_disable_cache_callback()

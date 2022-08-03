@@ -11,8 +11,9 @@
 <style>
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  color: <?php echo $owmw_opt["tabbed_btn_text_color"]; ?>;
+  border: 1px solid <?php echo $owmw_opt["tabbed_btn_active_color"]; ?>;
+  background-color: <?php echo $owmw_opt["tabbed_btn_background_color"]; ?>;
 }
 
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .tab button {
@@ -27,11 +28,11 @@
 }
 
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .tab button:hover {
-  background-color: #ddd;
+  background-color: <?php echo $owmw_opt["tabbed_btn_hover_color"]; ?>;
 }
 
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .tab button.active {
-  background-color: #ccc;
+  background-color: <?php echo $owmw_opt["tabbed_btn_active_color"]; ?>;
 }
 
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .tabcontent {
