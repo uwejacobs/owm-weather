@@ -13,6 +13,8 @@
 .owmw-map div.olLayerDiv {
 	-moz-user-select: none;
 	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-user-select: none;
 }
 
 .owmw-map .olLayerGoogleCopyright {

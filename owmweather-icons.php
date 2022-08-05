@@ -782,11 +782,11 @@ function owmw_chart_wind_direction_icon($degrees, $color, $direction) {
                 $rotation = 180;
         }
 return
-'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'" width="30" height="30">
-<title>'.esc_attr__('Wind', 'owm-weather').'</title>
-<path transform="rotate('.esc_attr(($degrees ?? 0) - $rotation).')" transform-origin="center" d="M11.11,20.35l3.75-13.11c0.01-0.1,0.06-0.15,0.15-0.15s0.14,0.05,0.15,0.15l3.74,13.11c0.04,0.11,0.03,0.19-0.02,0.25
-        s-0.13,0.06-0.24,0l-3.47-1.3c-0.1-0.04-0.2-0.04-0.29,0l-3.5,1.3c-0.1,0.06-0.17,0.06-0.21,0S11.09,20.45,11.11,20.35z"/>
-</svg>';
+"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' fill='".(!empty($color) ? esc_attr($color) : "currentColor")."' width='30' height='30'>
+<title>".esc_attr__("Wind", "owm-weather")."</title>
+<path transform='rotate(".esc_attr(($degrees ?? 0) - $rotation).")' transform-origin='center' d='M11.11,20.35l3.75-13.11c0.01-0.1,0.06-0.15,0.15-0.15s0.14,0.05,0.15,0.15l3.74,13.11c0.04,0.11,0.03,0.19-0.02,0.25
+        s-0.13,0.06-0.24,0l-3.47-1.3c-0.1-0.04-0.2-0.04-0.29,0l-3.5,1.3c-0.1,0.06-0.17,0.06-0.21,0S11.09,20.45,11.11,20.35z'/>
+</svg>";
 }
 
 function owmw_humidity_icon($color) {

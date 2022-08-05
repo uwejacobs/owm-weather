@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.5.0
+Version: 5.5.1
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -59,7 +59,7 @@ function plugin_row_meta($links, $file) {
     return $links;
 }
 
-define( 'OWM_WEATHER_VERSION', '5.5.0' );
+define( 'OWM_WEATHER_VERSION', '5.5.1' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -88,7 +88,7 @@ function owmw_plugin_action_links($links, $file) {
 function owmw_textdomain() {
 	load_plugin_textdomain( 'owm-weather', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
 }
-	
+
 add_action('init', 'owmw_textdomain', 10);
 
 $pressureLabel = [];
@@ -154,9 +154,9 @@ add_action('wp_enqueue_scripts', 'owmw_styles');
 function owmw_add_themes_scripts() {
 	wp_register_style( 'owmw-flexslider-css', plugins_url( 'css/flexslider.css', __FILE__ ));
 	wp_register_script( 'owmw-flexslider-js', plugins_url( 'js/jquery.flexslider-min.js#async', __FILE__ ));
-	wp_register_style( 'bootstrap5-css', plugins_url( 'css/bootstrap5.stripped.min.css', __FILE__ ));
-	wp_register_script( 'bootstrap5-js', plugins_url( 'js/bootstrap5.bundle.min.js#async', __FILE__ ));
-	wp_register_script( 'chart-js', plugins_url( 'js/chart.min.js#async', __FILE__ ));
+	wp_register_style( 'owmw-bootstrap5-css', plugins_url( 'css/bootstrap5.stripped.min.css', __FILE__ ));
+	wp_register_script( 'owmw-bootstrap5-js', plugins_url( 'js/bootstrap5.bundle.min.js#async', __FILE__ ));
+	wp_register_script( 'owmw-custom-chart-js', plugins_url( 'js/custom-chart.min.js#async', __FILE__ ));
 }
 add_action( 'wp_enqueue_scripts', 'owmw_add_themes_scripts', 10, 1 );
 add_action( 'admin_enqueue_scripts', 'owmw_add_themes_scripts', 10, 1 );
@@ -182,8 +182,8 @@ function owmw_add_dashboard_scripts() {
 
 	$options = get_option("owmw_option_name");
 	if (!empty($options["owmw_advanced_disable_modal_js"]) && $options["owmw_advanced_disable_modal_js"] != 'yes') {
-		wp_enqueue_style('bootstrap5-css');
-		// bugbug wp_enqueue_script('bootstrap5-js');
+		wp_enqueue_style('owmw-bootstrap5-css');
+		// bugbug wp_enqueue_script('owmw-bootstrap5-js');
 	}
 }
 add_action('admin_head', 'owmw_add_dashboard_scripts');
@@ -476,6 +476,8 @@ function owmw_basic($post){
 	$owmw_opt["map_windrose_on"]		    = get_post_meta($id,'_owmweather_map_windrose_on',true);
 
 	$owmw_opt["chart_height"]	    		= owmw_getDefault($id,'_owmweather_chart_height', '400');
+	$owmw_opt["chart_text_color"]		    = owmw_getDefault($id,'_owmweather_chart_text_color', '#111');
+	$owmw_opt["chart_night_color"]		    = owmw_getDefault($id,'_owmweather_chart_night_color', '#c8c8c8');
 	$owmw_opt["chart_background_color"]		= owmw_getDefault($id,'_owmweather_chart_background_color', '#fff');
 	$owmw_opt["chart_border_color"]		    = owmw_getDefault($id,'_owmweather_chart_border_color', '');
 	$owmw_opt["chart_border_width"]		    = owmw_getDefault($id,'_owmweather_chart_border_width', $owmw_opt["chart_border_color"] == '' ? '0' : '1');
@@ -526,7 +528,7 @@ function owmw_basic($post){
     $owmw_opt["foggy_text_color"]           = get_post_meta($id, '_owmweather_foggy_text_color',true);
     $owmw_opt["foggy_background_color"]     = get_post_meta($id, '_owmweather_foggy_background_color',true);
     $owmw_opt["foggy_background_image"]     = get_post_meta($id, '_owmweather_foggy_background_image',true);
-    
+
 	function owmw_get_admin_api_key2() {
 		$options = get_option("owmw_option_name");
 		if ( ! empty ( $options["owmw_advanced_api_key"] ) ) {
@@ -1267,6 +1269,14 @@ function owmw_basic($post){
 				<input id="owmweather_charet_height_meta" type="text" name="owmweather_chart_height" value="<?php echo esc_attr($owmw_opt["chart_height"]) ?>" />
 			</p>
 			<p>
+				<label for="owmweather_chart_text_color"><?php esc_html_e( 'Text Color', 'owm-weather' ) ?></label>
+				<input name="owmweather_chart_text_color" type="text" value="<?php echo esc_attr($owmw_opt["chart_text_color"]) ?>" class="owmweather_color_picker" />
+			</p>
+			<p>
+				<label for="owmweather_chart_night_color"><?php esc_html_e( 'Night Highlight Color', 'owm-weather' ) ?></label>
+				<input name="owmweather_chart_night_color" type="text" value="<?php echo esc_attr($owmw_opt["chart_night_color"]) ?>" class="owmweather_color_picker" />
+			</p>
+			<p>
 				<label for="owmweather_chart_background_color"><?php esc_html_e( 'Background Color', 'owm-weather' ) ?></label>
 				<input name="owmweather_chart_background_color" type="text" value="<?php echo esc_attr($owmw_opt["chart_background_color"]) ?>" class="owmweather_color_picker" />
 			</p>
@@ -1878,6 +1888,8 @@ function owmw_save_metabox($post_id){
 		owmw_save_metabox_field('map_zoom', $post_id);
 		owmw_save_metabox_field('owm_language', $post_id);
 		owmw_save_metabox_field('chart_height', $post_id);
+		owmw_save_metabox_field('chart_text_color', $post_id);
+		owmw_save_metabox_field('chart_night_color', $post_id);
 		owmw_save_metabox_field('chart_background_color', $post_id);
 		owmw_save_metabox_field('chart_border_color', $post_id);
 		owmw_save_metabox_field('chart_border_width', $post_id);
@@ -2209,7 +2221,7 @@ function owmw_icons_pack($bypass, $id) {
 
 function owmw_get_my_weather_id($atts) {
     global $owmw_params;
-    
+
 	require_once dirname( __FILE__ ) . '/owmweather-options.php';
 
     $atts = array_change_key_case((array)$atts, CASE_LOWER);
@@ -2274,6 +2286,7 @@ function owmw_get_my_weather_id($atts) {
         "map_opacity"                   => false,
         "map_zoom"                      => false,
         "chart_height"                  => false,
+        "chart_txt_color"               => false,
         "chart_background_color"        => false,
         "chart_border_color"            => false,
         "chart_border_width"            => false,
@@ -2393,7 +2406,7 @@ function owmw_get_my_weather_id($atts) {
     $owmw_opt["latitude"] 	     = $owmw_params["latitude"] ?? owmw_get_bypass($bypass, "latitude", $owmw_opt["id"]);
     $owmw_opt["zip"] 	         = $owmw_params["zip"] ?? owmw_get_bypass($bypass, "zip", $owmw_opt["id"]);
     $owmw_opt["city"] 	         = $owmw_params["city"] ?? owmw_get_bypass($bypass, "city", $owmw_opt["id"]);
-        
+
 	owmw_webfont($bypass, $owmw_opt["id"]);
 	owmw_icons_pack($bypass, $owmw_opt["id"]);
 
@@ -2402,12 +2415,12 @@ function owmw_get_my_weather_id($atts) {
 		wp_enqueue_script('owmw-flexslider-js');
 		wp_enqueue_style('owmw-flexslider-css');
 	} else if (in_array($owmw_opt["template"], array('custom1', 'custom2','chart1', 'chart2', 'tabbed2', 'debug'))) {
-		wp_enqueue_script('chart-js');
+		wp_enqueue_script('owmw-custom-chart-js');
 	}
 
 	if (owmw_get_admin_bypass('owmw_advanced_disable_modal_js') != 'yes') {
-			wp_enqueue_style('bootstrap5-css');
-			wp_enqueue_script('bootstrap5-js');
+			wp_enqueue_style('owmw-bootstrap5-css');
+			wp_enqueue_script('owmw-bootstrap5-js');
     }
 
 	if ($owmw_opt["disable_anims"] != 'yes') {
@@ -2601,6 +2614,8 @@ function owmw_get_my_weather($attr) {
         $owmw_opt["disable_spinner"]                 = owmw_get_bypass_yn($bypass, "disable_spinner");
         $owmw_opt["disable_anims"]                   = owmw_get_bypass_yn($bypass, "disable_anims");
     	$owmw_opt["chart_height"]	    		    = owmw_getBypassDefault($bypass, 'chart_height', '400');
+    	$owmw_opt["chart_text_color"]		    = owmw_get_bypass($bypass, 'chart_text_color');
+    	$owmw_opt["chart_night_color"]		    = owmw_get_bypass($bypass, 'chart_night_color');
     	$owmw_opt["chart_background_color"]		    = owmw_get_bypass($bypass, 'chart_background_color');
     	$owmw_opt["chart_border_color"]	            = owmw_get_bypass($bypass, 'chart_border_color');
     	$owmw_opt["chart_border_width"]	            = owmw_getBypassDefault($bypass, 'chart_border_width', $owmw_opt["chart_border_color"] == '' ? '0' : '1');
@@ -2638,6 +2653,8 @@ function owmw_get_my_weather($attr) {
         if (empty($owmw_opt["map_opacity"])) { $owmw_opt["map_opacity"] = "0.8"; }
         if (empty($owmw_opt["map_zoom"])) { $owmw_opt["map_zoom"] = '9'; }
         if (empty($owmw_opt["chart_height"])) { $owmw_opt["chart_height"] = '400'; }
+        if (empty($owmw_opt["chart_text_color"])) { $owmw_opt["chart_text_color"] = '#111'; }
+        if (empty($owmw_opt["chart_night_color"])) { $owmw_opt["chart_night_color"] = '#c8c8c8'; }
         if (empty($owmw_opt["chart_background_color"])) { $owmw_opt["chart_background_color"] = '#fff'; }
         if (empty($owmw_opt["chart_border_color"])) { $owmw_opt["chart_border_color"] = ''; }
         if (empty($owmw_opt["chart_border_width"])) { $owmw_opt["chart_border_width"] = $owmw_opt["chart_border_color"] == '' ? '0' : '1'; }
@@ -3455,7 +3472,7 @@ function owmw_get_my_weather($attr) {
 					$display_map_options .= 'var windrose = L.OWM.current({showLegend: '.($owmw_opt["map_windrose_legend"] == 'yes' ? "true" : "false") .', intervall: 15, lang: "en", minZoom: 4, appId: "'.esc_attr($owmw_opt["api_key"]).'", markerFunction: myWindroseMarker, popup: false, clusterSize: 50, imageLoadingBgUrl: "https://openweathermap.org/img/w0/iwind.png" });	windrose.on("owmlayeradd", windroseAdded, windrose);';
 					$display_map_layers             .= '"'.esc_attr__("Wind Rose", "owm-weather").'": windrose,';
 				}
-				
+
 				//Cities
 		      	if ( $owmw_opt["map_windrose"] == 'yes' ) {
 					if ($owmw_opt["wind_unit"] == "m/s") {
@@ -3635,7 +3652,7 @@ function owmw_get_my_weather($attr) {
 
         //Google Tag Manager dataLayer
         if ($owmw_opt["gtag"] == 'yes') {
-            $owmw_html["gtag"] = 
+            $owmw_html["gtag"] =
                 'var dataLayer = window.dataLayer = window.dataLayer || [];
 	        	jQuery(document).ready(function() {
                     dataLayer.push({
@@ -3724,11 +3741,15 @@ function owmw_get_my_weather($attr) {
         $owmw_html["chart"]["hourly"]["precipitation"] = [];
         $owmw_html["chart"]["hourly"]["precip_amt"] = [];
         $owmw_html["chart"]["hourly"]["wind"] = [];
+        $owmw_html["chart"]["hourly"]["night"] = [];
+        $owmw_html["chart"]["hourly"]["night_boxes"] = '';
         $owmw_html["chart"]["daily"] = [];
         $owmw_html["chart"]["daily"]["temperatures"] = [];
         $owmw_html["chart"]["daily"]["precipitation"] = [];
         $owmw_html["chart"]["daily"]["precip_amt"] = [];
         $owmw_html["chart"]["daily"]["wind"] = [];
+        $owmw_html["chart"]["daily"]["night"] = [];
+        $owmw_html["chart"]["daily"]["night_boxes"] = '';
 
     if (in_array($owmw_opt["template"], array("debug", "custom1", "custom2", "chart1", "chart2", "tabbed2", "table3"))) {
    	    require_once dirname( __FILE__ ) . '/owmweather-color-css.php';
@@ -3760,6 +3781,9 @@ function owmw_get_my_weather($attr) {
 					$owmw_html["chart"]["hourly"]["temperatures"]["dataset_temperature"] .= '"' . esc_html($value["temperature"]) . '",';
 					$owmw_html["chart"]["hourly"]["temperatures"]["dataset_feels_like"] .= '"' . esc_html($value["feels_like"]) . '",';
 					$owmw_html["chart"]["hourly"]["temperatures"]["dataset_dew_point"] .= '"' . esc_html($value["dew_point"]) . '",';
+                    if ($value["day_night"] == 'night') {
+                        $owmw_html["chart"]["hourly"]["night"][] = $cnt;
+                    }
 					++$cnt;
 				}
 			}
@@ -3768,18 +3792,40 @@ function owmw_get_my_weather($attr) {
             $owmw_html["chart"]["hourly"]["temperatures"]["dataset_feels_like"] .= '];';
             $owmw_html["chart"]["hourly"]["temperatures"]["dataset_dew_point"] .= '];';
 
+            $rgb = owmw_hex2rgb($owmw_opt["chart_night_color"]);
+            $owmw_opt["chart_night_bg_color"] = 'rgba('.$rgb[0].','.$rgb[1].','.$rgb[2].', 0.25)';
+
+            foreach ($owmw_html["chart"]["hourly"]["night"] as $i => $value) {
+                $owmw_html["chart"]["hourly"]["night_boxes"] .= ($i ? ',' : '');
+                $owmw_html["chart"]["hourly"]["night_boxes"] .= '
+                    box'.$i.': {
+                      type: "box",
+                      xMin: '.$value.',
+                      xMax: '.($value+1).',
+                      backgroundColor: "'.$owmw_opt["chart_night_bg_color"].'",
+                      borderWidth: 0
+                    }';
+            }
+
             $owmw_html["chart"]["hourly"]["temperatures"]["config"] .= 'const hourly_temp_config_'.esc_attr($chart_id).' = { type: "line", options: hourly_temp_options_'.esc_attr($chart_id).', data: hourly_temp_data_'.esc_attr($chart_id).',};';
             $owmw_html["chart"]["hourly"]["temperatures"]["options"] .= 'const hourly_temp_options_'.esc_attr($chart_id).' = {
-                    responsive: true,
-                    elements: { point:{ borderWidth: 0, radius: 10, backgroundColor: "rgba(0,0,0,0)" } },
-                    maintainAspectRatio: false,
-                    interaction: { intersect: false, mode: "index" },
-                    plugins: {
-                        tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
-                        if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_html($owmw_data["temperature_unit_character"]).'"; }
-                        return label; } } } },
-                    scales: { y: { title: { display: true, text: "'.esc_html($owmw_data["temperature_unit_text"]).'" } } }
-                    };';
+                color: "'.$owmw_opt["chart_text_color"].'",
+                borderWidth: 1,
+                tension: 0.3,
+                responsive: true,
+                pointBackgroundColor: "rgba(0,0,0,0)",
+                pointBorderWidth: 0,
+                pointRadius: 10,
+                maintainAspectRatio: false,
+                interaction: { intersect: false, mode: "index" },
+                plugins: {
+                    annotation: { annotations: { ' . $owmw_html["chart"]["hourly"]["night_boxes"] . ' } },
+                    tooltip: { position: "bottom", callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
+                    if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_html($owmw_data["temperature_unit_character"]).'"; }
+                    return label; } } } },
+                scales: { x: { ticks: { color: "'.$owmw_opt["chart_text_color"].'" }, grid: { display: false, } },
+                          y: { ticks: { color: "'.$owmw_opt["chart_text_color"].'" }, title: { color: "'.$owmw_opt["chart_text_color"].'", display: true, text: "'.esc_html($owmw_data["temperature_unit_text"]).'" } } }
+                };';
             $owmw_html["chart"]["hourly"]["temperatures"]["data"] .= 'const hourly_temp_data_'.esc_attr($chart_id).' = {
                                                                       labels: hourly_temp_labels_'.esc_attr($chart_id).',
                                                                       datasets: [{
@@ -3787,25 +3833,16 @@ function owmw_get_my_weather($attr) {
                                                                         data: hourly_temp_temperature_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_temperature_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         },{
                                                                         label: "'.esc_attr__('Feels Like', 'owm-weather').'",
                                                                         data: hourly_temp_feels_like_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_feels_like_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         },{
                                                                         label: "'.esc_attr__('Dew Point', 'owm-weather').'",
                                                                         data: hourly_temp_dew_point_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_dew_point_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                       }]
                                                                     };';
             $owmw_html["chart"]["hourly"]["temperatures"]["chart"] .= 'jQuery(document).ready(function(){
@@ -3816,7 +3853,7 @@ function owmw_get_my_weather($attr) {
         $owmw_html["chart"]["hourly"]["temperatures"]["container"] =
             '<div class="owmw-chart-container" style="position: relative; height:'.esc_attr($owmw_opt["chart_height"]).'px; width:100%">
             <canvas id="'.$owmw_html["container_chart_hourly_temp_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="'.esc_attr__('Hourly Temperatures', 'owm-weather').'" role="img"></canvas></div>';
-        $owmw_html["chart"]["hourly"]["temperatures"]["script"] = 
+        $owmw_html["chart"]["hourly"]["temperatures"]["script"] =
             $owmw_html["chart"]["hourly"]["temperatures"]["labels"] .
             $owmw_html["chart"]["hourly"]["temperatures"]["dataset_temperature"] .
             $owmw_html["chart"]["hourly"]["temperatures"]["dataset_feels_like"] .
@@ -3842,7 +3879,7 @@ function owmw_get_my_weather($attr) {
         $owmw_html["chart"]["hourly"]["precipitation"]["cmd"] = '';
         $owmw_html["chart"]["hourly"]["precipitation"]["container"] = '';
         $owmw_html["chart"]["hourly"]["precipitation"]["script"] = '';
-        
+
         $rgb = owmw_hex2rgb($owmw_opt["chart_rain_chance_color"]);
         $owmw_opt["chart_rain_chance_bg_color"] = 'rgba('.$rgb[0].','.$rgb[1].','.$rgb[2].', 0.3)';
 
@@ -3871,18 +3908,23 @@ function owmw_get_my_weather($attr) {
 
             $owmw_html["chart"]["hourly"]["precipitation"]["config"] .= 'const hourly_precip_config_'.esc_attr($chart_id).' = { type: "line", options: hourly_precip_options_'.esc_attr($chart_id).', data: hourly_precip_data_'.esc_attr($chart_id).',};';
             $owmw_html["chart"]["hourly"]["precipitation"]["options"] .= 'const hourly_precip_options_'.esc_attr($chart_id).' = {
-                    responsive: true,
-                    elements: { point:{ borderWidth: 0, radius: 10, backgroundColor: "rgba(0,0,0,0)" } },
-                    maintainAspectRatio: false,
-                    interaction: { intersect: false, mode: "index" },
-                    plugins: {
-                        tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
-                        if (context.parsed.y !== null) { label += context.parsed.y; }
-                        return label; } } } },
-                    scales: { yl: { ticks: { callback: function(value, index, ticks) { return value + "%"; } }, position: "left" },
-                              yr: { title: { display: true, text: "Pressure ('.$owmw_data["pressure_unit"].')" }, position: "right" }
-                            }
-                    };';
+                color: "'.$owmw_opt["chart_text_color"].'",
+                borderWidth: 1,
+                tension: 0.3,
+                responsive: true,
+                pointBackgroundColor: "rgba(0,0,0,0)",
+                pointBorderWidth: 0,
+                pointRadius: 10,
+                maintainAspectRatio: false,
+                interaction: { intersect: false, mode: "index" },
+                plugins: {
+                    annotation: { annotations: { ' . $owmw_html["chart"]["hourly"]["night_boxes"] . ' } },
+                    tooltip: { position: "bottom", callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; } if (context.parsed.y !== null) { label += context.parsed.y; } if (label.startsWith("'.__('Pressure', 'owm-weather').'")) { label += " '.$owmw_data["pressure_unit"].'"; } else { label += "%"; } return label; } } } },
+                scales: { x:  { ticks: { color: "'.$owmw_opt["chart_text_color"].'" }, grid: { display: false, } },
+                          yl: { ticks: { color: "'.$owmw_opt["chart_text_color"].'", callback: function(value, index, ticks) { return value + "%"; } }, position: "left" },
+                          yr: { ticks: { color: "'.$owmw_opt["chart_text_color"].'" }, title: { color: "'.$owmw_opt["chart_text_color"].'", display: true, text: "'.__('Pressure', 'owm-weather').' ('.$owmw_data["pressure_unit"].')" }, position: "right", grid: { display: false, } }
+                        }
+                };';
             $owmw_html["chart"]["hourly"]["precipitation"]["data"] .= 'const hourly_precip_data_'.esc_attr($chart_id).' = {
                                                                       labels: hourly_precip_labels_'.esc_attr($chart_id).',
                                                                       datasets: [{
@@ -3890,38 +3932,25 @@ function owmw_get_my_weather($attr) {
                                                                         data: hourly_precip_cloudiness_dataset_'.esc_attr($chart_id).',
                                                                         fill: true,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_cloudiness_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "yl",
                                                                         },{
                                                                         label: "'.esc_attr__('Rain Chance', 'owm-weather').'",
                                                                         data: hourly_precip_rain_chance_dataset_'.esc_attr($chart_id).',
                                                                         fill: true,
-                                                                        pointBackgroundColor: "rgba(0,0,0,0)",
                                                                         backgroundColor: "'.esc_attr($owmw_opt["chart_rain_chance_bg_color"]).'",
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_rain_chance_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "yl",
                                                                         },{
                                                                         label: "'.esc_attr__('Humidity', 'owm-weather').'",
                                                                         data: hourly_precip_humidity_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_humidity_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "yl",
                                                                         },{
                                                                         label: "'.esc_attr__('Pressure', 'owm-weather').'",
                                                                         data: hourly_precip_pressure_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_pressure_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "yr",
                                                                         }]
                                                                     };';
@@ -3933,7 +3962,7 @@ function owmw_get_my_weather($attr) {
             $owmw_html["chart"]["hourly"]["precipitation"]["container"] =
                 '<div class="owmw-chart-container" style="position: relative; height:'.esc_attr($owmw_opt["chart_height"]).'px; width:100%">
                 <canvas id="'.$owmw_html["container_chart_hourly_precip_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="'.esc_attr__('Hourly precipitation', 'owm-weather').'" role="img"></canvas></div>';
-            $owmw_html["chart"]["hourly"]["precipitation"]["script"] = 
+            $owmw_html["chart"]["hourly"]["precipitation"]["script"] =
                 $owmw_html["chart"]["hourly"]["precipitation"]["labels"] .
                 $owmw_html["chart"]["hourly"]["precipitation"]["dataset_cloudiness"] .
                 $owmw_html["chart"]["hourly"]["precipitation"]["dataset_rain_chance"] .
@@ -3958,7 +3987,7 @@ function owmw_get_my_weather($attr) {
         $owmw_html["chart"]["hourly"]["precip_amt"]["cmd"] = '';
         $owmw_html["chart"]["hourly"]["precip_amt"]["container"] = '';
         $owmw_html["chart"]["hourly"]["precip_amt"]["script"] = '';
-        
+
         $rgb = owmw_hex2rgb($owmw_opt["chart_rain_amt_color"]);
         $owmw_opt["chart_rain_amt_bg_color"] = 'rgba('.$rgb[0].','.$rgb[1].','.$rgb[2].', 0.3)';
         $rgb = owmw_hex2rgb($owmw_opt["chart_snow_amt_color"]);
@@ -3983,17 +4012,23 @@ function owmw_get_my_weather($attr) {
 
             $owmw_html["chart"]["hourly"]["precip_amt"]["config"] .= 'const hourly_precip_amt_config_'.esc_attr($chart_id).' = { type: "line", options: hourly_precip_amt_options_'.esc_attr($chart_id).', data: hourly_precip_amt_data_'.esc_attr($chart_id).',};';
             $owmw_html["chart"]["hourly"]["precip_amt"]["options"] .= 'const hourly_precip_amt_options_'.esc_attr($chart_id).' = {
-                    responsive: true,
-                    scales: { y: { beginAtZero: true, } },
-                    elements: { point:{ borderWidth: 0, radius: 10, backgroundColor: "rgba(0,0,0,0)" } },
-                    maintainAspectRatio: false,
-                    interaction: { intersect: false, mode: "index" },
-                    plugins: {
-                        tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
-                        if (context.parsed.y !== null) { label += context.parsed.y +"'.$owmw_data["precipitation_unit"].'"; }
-                        return label; } } } },
-                    scales: { y: { beginAtZero: true, ticks: { callback: function(value, index, ticks) { return value + "'.$owmw_data["precipitation_unit"].'"; } }, position: "left" } }
-                    };';
+                color: "'.$owmw_opt["chart_text_color"].'",
+                borderWidth: 1,
+                tension: 0.3,
+                responsive: true,
+                pointBackgroundColor: "rgba(0,0,0,0)",
+                pointBorderWidth: 0,
+                pointRadius: 10,
+                maintainAspectRatio: false,
+                interaction: { intersect: false, mode: "index" },
+                plugins: {
+                    annotation: { annotations: { ' . $owmw_html["chart"]["hourly"]["night_boxes"] . ' } },
+                    tooltip: { position: "bottom", callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
+                    if (context.parsed.y !== null) { label += context.parsed.y + " '.$owmw_data["precipitation_unit"].'"; }
+                    return label; } } } },
+                scales: { x: { ticks: { color: "'.$owmw_opt["chart_text_color"].'" }, grid: { display: false, } },
+                          y: { beginAtZero: true, ticks: { color: "'.$owmw_opt["chart_text_color"].'", callback: function(value, index, ticks) { return value + " '.$owmw_data["precipitation_unit"].'"; } }, position: "left" } }
+                };';
             $owmw_html["chart"]["hourly"]["precip_amt"]["data"] .= 'const hourly_precip_amt_data_'.esc_attr($chart_id).' = {
                                                                       labels: hourly_precip_amt_labels_'.esc_attr($chart_id).',
                                                                       datasets: [{
@@ -4001,22 +4036,14 @@ function owmw_get_my_weather($attr) {
                                                                         data: hourly_precip_amt_rain_dataset_'.esc_attr($chart_id).',
                                                                         fill: true,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_rain_amt_color"]).'",
-                                                                        pointBackgroundColor: "rgba(0,0,0,0)",
                                                                         backgroundColor: "'.esc_attr($owmw_opt["chart_rain_amt_bg_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: .3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "y",
                                                                         },{
                                                                         label: "'.esc_attr__('Snow', 'owm-weather').'",
                                                                         data: hourly_precip_amt_snow_dataset_'.esc_attr($chart_id).',
                                                                         fill: true,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_snow_amt_color"]).'",
-                                                                        pointBackgroundColor: "rgba(0,0,0,0)",
                                                                         backgroundColor: "'.esc_attr($owmw_opt["chart_snow_amt_bg_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: .3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "y",
                                                                         }]
                                                                     };';
@@ -4028,7 +4055,7 @@ function owmw_get_my_weather($attr) {
             $owmw_html["chart"]["hourly"]["precip_amt"]["container"] =
                 '<div class="owmw-chart-container" style="position: relative; height:'.esc_attr($owmw_opt["chart_height"]).'px; width:100%">
                 <canvas id="'.$owmw_html["container_chart_hourly_precip_amt_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="'.esc_attr__('Hourly liquid precipitation amount', 'owm-weather').'" role="img"></canvas></div>';
-            $owmw_html["chart"]["hourly"]["precip_amt"]["script"] = 
+            $owmw_html["chart"]["hourly"]["precip_amt"]["script"] =
                 $owmw_html["chart"]["hourly"]["precip_amt"]["labels"] .
                 $owmw_html["chart"]["hourly"]["precip_amt"]["dataset_rain"] .
                 $owmw_html["chart"]["hourly"]["precip_amt"]["dataset_snow"] .
@@ -4044,8 +4071,8 @@ function owmw_get_my_weather($attr) {
         $owmw_html["chart"]["hourly"]["wind"]["labels"] = '';
         $owmw_html["chart"]["hourly"]["wind"]["dataset_wind"] = '';
         $owmw_html["chart"]["hourly"]["wind"]["dataset_wind_gust"] = '';
-        $owmw_html["chart"]["hourly"]["wind"]["points"] = '';
-        $owmw_html["chart"]["hourly"]["wind"]["pointImages"] = '';
+        $owmw_html["chart"]["hourly"]["wind"]["loadImages"] = '';
+        $owmw_html["chart"]["hourly"]["wind"]["loadImagePoints"] = '';
         $owmw_html["chart"]["hourly"]["wind"]["config"] = '';
         $owmw_html["chart"]["hourly"]["wind"]["data"] = '';
         $owmw_html["chart"]["hourly"]["wind"]["options"] = '';
@@ -4053,7 +4080,7 @@ function owmw_get_my_weather($attr) {
         $owmw_html["chart"]["hourly"]["wind"]["cmd"] = '';
         $owmw_html["chart"]["hourly"]["wind"]["container"] = '';
         $owmw_html["chart"]["hourly"]["wind"]["script"] = '';
-        
+
 	    if ($owmw_opt["hours_forecast_no"] > 0) {
             $owmw_html["chart"]["hourly"]["wind"]["labels"] .= 'const hourly_wind_labels_'.esc_attr($chart_id).' = [';
             $owmw_html["chart"]["hourly"]["wind"]["dataset_wind"] .= 'const hourly_wind_speed_dataset_'.esc_attr($chart_id).' = [';
@@ -4065,9 +4092,8 @@ function owmw_get_my_weather($attr) {
 					$owmw_html["chart"]["hourly"]["wind"]["dataset_wind"] .= '"' . esc_html(intval($value["wind_speed"])) . '",';
 					$owmw_html["chart"]["hourly"]["wind"]["dataset_wind_gust"] .= '"' . esc_html(intval($value["wind_gust"])) . '",';
                     $varName = "owmw_wind_direction_svg_" . esc_attr($chart_id) . "_" . $cnt;
-                    $owmw_html["chart"]["hourly"]["wind"]["pointImages"] .= "var " . $varName . "=new Image(30, 30);";
-                    $owmw_html["chart"]["hourly"]["wind"]["pointImages"] .= $varName . ".src='data:image/svg+xml," . owmw_chart_wind_direction_icon($value["wind_degrees"], $owmw_opt["text_color"], $owmw_opt["wind_icon_direction"], true) . "';";
-                    $owmw_html["chart"]["hourly"]["wind"]["points"] .= ($cnt ? "," : "") . $varName;
+                    $owmw_html["chart"]["hourly"]["wind"]["loadImages"] .= ($cnt > 0 ? ',' : '') . 'loadImage("' . owmw_chart_wind_direction_icon($value["wind_degrees"], null, $owmw_opt["wind_icon_direction"], true) . '")';
+                    $owmw_html["chart"]["hourly"]["wind"]["loadImagePoints"] .= ($cnt ? "," : "") . 'images[' . $cnt . ']';
 					++$cnt;
 				}
 			}
@@ -4077,17 +4103,23 @@ function owmw_get_my_weather($attr) {
 
             $owmw_html["chart"]["hourly"]["wind"]["config"] .= 'const hourly_wind_config_'.esc_attr($chart_id).' = { type: "line", options: hourly_wind_options_'.esc_attr($chart_id).', data: hourly_wind_data_'.esc_attr($chart_id).',};';
             $owmw_html["chart"]["hourly"]["wind"]["options"] .= 'const hourly_wind_options_'.esc_attr($chart_id).' = {
-                    responsive: true,
-                    elements: { point:{ borderWidth: 0, radius: 10, backgroundColor: "rgba(0,0,0,0)" } },
-                    scales: { y: { beginAtZero: true, } },
-                    maintainAspectRatio: false,
-                    interaction: { intersect: false, mode: "index" },
-                    plugins: {
-                        tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
-                        if (context.parsed.y !== null) { label += context.parsed.y +"'.$owmw_data["wind_speed_unit"].'"; }
-                        return label; } } } },
-                    scales: { y: { beginAtZero: true, ticks: { callback: function(value, index, ticks) { return value + "'.$owmw_data["wind_speed_unit"].'"; } }, position: "left" } }
-                    };';
+                color: "'.$owmw_opt["chart_text_color"].'",
+                borderWidth: 1,
+                tension: 0.3,
+                responsive: true,
+                pointBackgroundColor: "rgba(0,0,0,0)",
+                pointBorderWidth: 0,
+                pointRadius: 10,
+                maintainAspectRatio: false,
+                interaction: { intersect: false, mode: "index" },
+                plugins: {
+                    annotation: { annotations: { ' . $owmw_html["chart"]["hourly"]["night_boxes"] . ' } },
+                    tooltip: { position: "bottom", callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
+                    if (context.parsed.y !== null) { label += context.parsed.y + " '.$owmw_data["wind_speed_unit"].'"; }
+                    return label; } } } },
+                scales: { x: { ticks: { color: "'.$owmw_opt["chart_text_color"].'" }, grid: { display: false, } },
+                          y: { beginAtZero: true, ticks: { color: "'.$owmw_opt["chart_text_color"].'", callback: function(value, index, ticks) { return value + " '.$owmw_data["wind_speed_unit"].'"; } }, position: "left" } }
+                };';
             $owmw_html["chart"]["hourly"]["wind"]["data"] .= 'const hourly_wind_data_'.esc_attr($chart_id).' = {
                                                                       labels: hourly_wind_labels_'.esc_attr($chart_id).',
                                                                       datasets: [{
@@ -4095,43 +4127,38 @@ function owmw_get_my_weather($attr) {
                                                                         data: hourly_wind_speed_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_wind_speed_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        /*pointBorderWidth: 0,*/
-                                                                        /*pointBackgroundColor: "#fff",*/
-                                                                        pointRadius: 30,
-                                                                        pointHoverRadius: 20,
-                                                                        pointHitRadius: 20,
-                                                                        pointStyle: [' . $owmw_html["chart"]["hourly"]["wind"]["points"] . '],
+                                                                        pointStyle: [' . $owmw_html["chart"]["hourly"]["wind"]["loadImagePoints"] . '],
                                                                         yAxisID: "y",
                                                                         },{
                                                                         label: "'.esc_attr__('Wind Gust', 'owm-weather').'",
                                                                         data: hourly_wind_gust_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_wind_gust_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "y",
                                                                         }]
                                                                     };';
             $owmw_html["chart"]["hourly"]["wind"]["chart"] .= 'jQuery(document).ready(function(){
-                                                        var ctx = jQuery("#'.esc_attr($owmw_html["container_chart_hourly_wind_div"]).'");
-                                                        var hourlyWindSpeedChart = new Chart(ctx, hourly_wind_config_'.esc_attr($chart_id).');
-                                                        });';
+                                        Promise.all([
+                                        '.$owmw_html["chart"]["hourly"]["wind"]["loadImages"].
+                                        '
+                                          ])
+                                          .then(function(images){
+                                        '.$owmw_html["chart"]["hourly"]["wind"]["labels"] .
+                                          $owmw_html["chart"]["hourly"]["wind"]["dataset_wind"] .
+                                          $owmw_html["chart"]["hourly"]["wind"]["dataset_wind_gust"] .
+                                          $owmw_html["chart"]["hourly"]["wind"]["data"] .
+                                          $owmw_html["chart"]["hourly"]["wind"]["options"] .
+                                          $owmw_html["chart"]["hourly"]["wind"]["config"] .'
+                                            var ctx = jQuery("#'.esc_attr($owmw_html["container_chart_hourly_wind_div"]).'");
+                                            var hourlyWindSpeedChart = new Chart(ctx, hourly_wind_config_'.esc_attr($chart_id).');
+                                          })
+                                          .catch( function(e) { console.error(e); });
+                                        });';
 
             $owmw_html["chart"]["hourly"]["wind"]["container"] =
                 '<div class="owmw-chart-container" style="position: relative; height:'.esc_attr($owmw_opt["chart_height"]).'px; width:100%">
                 <canvas id="'.$owmw_html["container_chart_hourly_wind_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="'.esc_attr__('Hourly wind speed', 'owm-weather').'" role="img"></canvas></div>';
-            $owmw_html["chart"]["hourly"]["wind"]["script"] = 
-                $owmw_html["chart"]["hourly"]["wind"]["labels"] .
-                $owmw_html["chart"]["hourly"]["wind"]["pointImages"] .
-                $owmw_html["chart"]["hourly"]["wind"]["dataset_wind"] .
-                $owmw_html["chart"]["hourly"]["wind"]["dataset_wind_gust"] .
-                $owmw_html["chart"]["hourly"]["wind"]["data"] .
-                $owmw_html["chart"]["hourly"]["wind"]["options"] .
-                $owmw_html["chart"]["hourly"]["wind"]["config"] .
-                $owmw_html["chart"]["hourly"]["wind"]["chart"];
+            $owmw_html["chart"]["hourly"]["wind"]["script"] = $owmw_html["chart"]["hourly"]["wind"]["chart"];
 		}
 
         //daily temperatures
@@ -4158,6 +4185,9 @@ function owmw_get_my_weather($attr) {
 					$owmw_html["chart"]["daily"]["temperatures"]["labels"] .= '"' . esc_attr($value["time"] != 'Now' ? date_i18n('D', $value["timestamp"]) . ' ' : '') . $value["time"] . '",';
 					$owmw_html["chart"]["daily"]["temperatures"]["dataset_temperature"] .= '"' . esc_html($value["temperature"]) . '",';
 					$owmw_html["chart"]["daily"]["temperatures"]["dataset_feels_like"] .= '"' . esc_html($value["feels_like"]) . '",';
+                    if ($value["day_night"] == 'night') {
+                        $owmw_html["chart"]["daily"]["night"][] = $cnt;
+                    }
 					++$cnt;
                 }
 			}
@@ -4165,18 +4195,40 @@ function owmw_get_my_weather($attr) {
             $owmw_html["chart"]["daily"]["temperatures"]["dataset_temperature"] .= '];';
             $owmw_html["chart"]["daily"]["temperatures"]["dataset_feels_like"] .= '];';
 
+            $rgb = owmw_hex2rgb($owmw_opt["chart_night_color"]);
+            $owmw_opt["chart_night_bg_color"] = 'rgba('.$rgb[0].','.$rgb[1].','.$rgb[2].', 0.25)';
+
+            foreach ($owmw_html["chart"]["daily"]["night"] as $i => $value) {
+                $owmw_html["chart"]["daily"]["night_boxes"] .= ($i ? ',' : '');
+                $owmw_html["chart"]["daily"]["night_boxes"] .= '
+                    box'.$i.': {
+                      type: "box",
+                      xMin: '.$value.',
+                      xMax: '.($value+1).',
+                      backgroundColor: "'.$owmw_opt["chart_night_bg_color"].'",
+                      borderWidth: 0
+                    }';
+            }
+
             $owmw_html["chart"]["daily"]["temperatures"]["config"] .= 'const daily_temp_config_'.esc_attr($chart_id).' = { type: "line", options: daily_temp_options_'.esc_attr($chart_id).', data: daily_temp_data_'.esc_attr($chart_id).',};';
             $owmw_html["chart"]["daily"]["temperatures"]["options"] .= 'const daily_temp_options_'.esc_attr($chart_id).' = {
-                    responsive: true,
-                    elements: { point:{ borderWidth: 0, radius: 10, backgroundColor: "rgba(0,0,0,0)" } },
-                    maintainAspectRatio: false,
-                    interaction: { intersect: false, mode: "index" },
-                    plugins: {
-                        tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
-                        if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_html($owmw_data["temperature_unit_character"]).'"; }
-                        return label; } } } },
-                    scales: { y: { title: { display: true, text: "'.esc_html($owmw_data["temperature_unit_text"]).'" } } }
-                    };';
+                color: "'.$owmw_opt["chart_text_color"].'",
+                borderWidth: 1,
+                tension: 0.3,
+                responsive: true,
+                pointBackgroundColor: "rgba(0,0,0,0)",
+                pointBorderWidth: 0,
+                pointRadius: 10,
+                maintainAspectRatio: false,
+                interaction: { intersect: false, mode: "index" },
+                plugins: {
+                    annotation: { annotations: { ' . $owmw_html["chart"]["daily"]["night_boxes"] . ' } },
+                    tooltip: { position: "bottom", callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
+                    if (context.parsed.y !== null) { label += context.parsed.y + " '.esc_html($owmw_data["temperature_unit_character"]).'"; }
+                    return label; } } } },
+                scales: { x: { ticks: { color: "'.$owmw_opt["chart_text_color"].'" }, grid: { display: false, } },
+                          y: { ticks: { color: "'.$owmw_opt["chart_text_color"].'" }, title: { color: "'.$owmw_opt["chart_text_color"].'", display: true, text: "'.esc_html($owmw_data["temperature_unit_text"]).'" } } }
+                };';
             $owmw_html["chart"]["daily"]["temperatures"]["data"] .= 'const daily_temp_data_'.esc_attr($chart_id).' = {
                                                                       labels: daily_temp_labels_'.esc_attr($chart_id).',
                                                                       datasets: [{
@@ -4184,17 +4236,11 @@ function owmw_get_my_weather($attr) {
                                                                         data: daily_temp_temperature_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_temperature_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         },{
                                                                         label: "'.esc_attr__('Feels Like', 'owm-weather').'",
                                                                         data: daily_temp_feels_like_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_feels_like_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                       }]
                                                                     };';
             $owmw_html["chart"]["daily"]["temperatures"]["chart"] .= 'jQuery(document).ready(function(){
@@ -4205,7 +4251,7 @@ function owmw_get_my_weather($attr) {
             $owmw_html["chart"]["daily"]["temperatures"]["container"] =
                 '<div class="owmw-chart-container" style="position: relative; height:'.esc_attr($owmw_opt["chart_height"]).'px; width:100%">
                 <canvas id="'.$owmw_html["container_chart_daily_temp_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="'.esc_attr__('daily Temperatures', 'owm-weather').'" role="img"></canvas></div>';
-            $owmw_html["chart"]["daily"]["temperatures"]["script"] = 
+            $owmw_html["chart"]["daily"]["temperatures"]["script"] =
                 $owmw_html["chart"]["daily"]["temperatures"]["labels"] .
                 $owmw_html["chart"]["daily"]["temperatures"]["dataset_temperature"] .
                 $owmw_html["chart"]["daily"]["temperatures"]["dataset_feels_like"] .
@@ -4230,7 +4276,7 @@ function owmw_get_my_weather($attr) {
         $owmw_html["chart"]["daily"]["precipitation"]["cmd"] = '';
         $owmw_html["chart"]["daily"]["precipitation"]["container"] = '';
         $owmw_html["chart"]["daily"]["precipitation"]["script"] = '';
-        
+
         $rgb = owmw_hex2rgb($owmw_opt["chart_rain_chance_color"]);
         $owmw_opt["chart_rain_chance_bg_color"] = 'rgba('.$rgb[0].','.$rgb[1].','.$rgb[2].', 0.3)';
 
@@ -4259,18 +4305,23 @@ function owmw_get_my_weather($attr) {
 
             $owmw_html["chart"]["daily"]["precipitation"]["config"] .= 'const daily_precip_config_'.esc_attr($chart_id).' = { type: "line", options: daily_precip_options_'.esc_attr($chart_id).', data: daily_precip_data_'.esc_attr($chart_id).',};';
             $owmw_html["chart"]["daily"]["precipitation"]["options"] .= 'const daily_precip_options_'.esc_attr($chart_id).' = {
-                    responsive: true,
-                    elements: { point:{ borderWidth: 0, radius: 10, backgroundColor: "rgba(0,0,0,0)" } },
-                    maintainAspectRatio: false,
-                    interaction: { intersect: false, mode: "index" },
-                    plugins: {
-                        tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
-                        if (context.parsed.y !== null) { label += context.parsed.y; }
-                        return label; } } } },
-                    scales: { yl: { ticks: { callback: function(value, index, ticks) { return value + "%"; } }, position: "left" },
-                              yr: { title: { display: true, text: "Pressure ('.$owmw_data["pressure_unit"].')" }, position: "right" }
-                            }
-                    };';
+                color: "'.$owmw_opt["chart_text_color"].'",
+                borderWidth: 1,
+                tension: 0.3,
+                responsive: true,
+                pointBackgroundColor: "rgba(0,0,0,0)",
+                pointBorderWidth: 0,
+                pointRadius: 10,
+                maintainAspectRatio: false,
+                interaction: { intersect: false, mode: "index" },
+                plugins: {
+                    annotation: { annotations: { ' . $owmw_html["chart"]["daily"]["night_boxes"] . ' } },
+                    tooltip: { position: "bottom", callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; } if (context.parsed.y !== null) { label += context.parsed.y; } if (label.startsWith("'.__('Pressure', 'owm-weather').'")) { label += " '.$owmw_data["pressure_unit"].'"; } else { label += "%"; } return label; } } } },
+                scales: { x:  { ticks: { color: "'.$owmw_opt["chart_text_color"].'" }, grid: { display: false, } },
+                          yl: { ticks: { color: "'.$owmw_opt["chart_text_color"].'", callback: function(value, index, ticks) { return value + "%"; } }, position: "left" },
+                          yr: { ticks: { color: "'.$owmw_opt["chart_text_color"].'" }, title: { color: "'.$owmw_opt["chart_text_color"].'", display: true, text: "'.__('Pressure', 'owm-weather').' ('.$owmw_data["pressure_unit"].')" }, position: "right", grid: { display: false, } }
+                        }
+                };';
             $owmw_html["chart"]["daily"]["precipitation"]["data"] .= 'const daily_precip_data_'.esc_attr($chart_id).' = {
                                                                       labels: daily_precip_labels_'.esc_attr($chart_id).',
                                                                       datasets: [{
@@ -4278,38 +4329,25 @@ function owmw_get_my_weather($attr) {
                                                                         data: daily_precip_cloudiness_dataset_'.esc_attr($chart_id).',
                                                                         fill: true,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_cloudiness_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "yl",
                                                                         },{
                                                                         label: "'.esc_attr__('Rain Chance', 'owm-weather').'",
                                                                         data: daily_precip_rain_chance_dataset_'.esc_attr($chart_id).',
                                                                         fill: true,
-                                                                        pointBackgroundColor: "rgba(0,0,0,0)",
                                                                         backgroundColor: "'.esc_attr($owmw_opt["chart_rain_chance_bg_color"]).'",
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_rain_chance_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "yl",
                                                                         },{
                                                                         label: "'.esc_attr__('Humidity', 'owm-weather').'",
                                                                         data: daily_precip_humidity_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_humidity_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "yl",
                                                                         },{
                                                                         label: "'.esc_attr__('Pressure', 'owm-weather').'",
                                                                         data: daily_precip_pressure_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_pressure_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "yr",
                                                                         }]
                                                                     };';
@@ -4321,7 +4359,7 @@ function owmw_get_my_weather($attr) {
             $owmw_html["chart"]["daily"]["precipitation"]["container"] =
                 '<div class="owmw-chart-container" style="position: relative; height:'.esc_attr($owmw_opt["chart_height"]).'px; width:100%">
                 <canvas id="'.$owmw_html["container_chart_daily_precip_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="'.esc_attr__('daily precipitation', 'owm-weather').'" role="img"></canvas></div>';
-            $owmw_html["chart"]["daily"]["precipitation"]["script"] = 
+            $owmw_html["chart"]["daily"]["precipitation"]["script"] =
                 $owmw_html["chart"]["daily"]["precipitation"]["labels"] .
                 $owmw_html["chart"]["daily"]["precipitation"]["dataset_cloudiness"] .
                 $owmw_html["chart"]["daily"]["precipitation"]["dataset_rain_chance"] .
@@ -4346,7 +4384,7 @@ function owmw_get_my_weather($attr) {
         $owmw_html["chart"]["daily"]["precip_amt"]["cmd"] = '';
         $owmw_html["chart"]["daily"]["precip_amt"]["container"] = '';
         $owmw_html["chart"]["daily"]["precip_amt"]["script"] = '';
-        
+
         $rgb = owmw_hex2rgb($owmw_opt["chart_rain_amt_color"]);
         $owmw_opt["chart_rain_amt_bg_color"] = 'rgba('.$rgb[0].','.$rgb[1].','.$rgb[2].', 0.3)';
         $rgb = owmw_hex2rgb($owmw_opt["chart_snow_amt_color"]);
@@ -4371,17 +4409,23 @@ function owmw_get_my_weather($attr) {
 
             $owmw_html["chart"]["daily"]["precip_amt"]["config"] .= 'const daily_precip_amt_config_'.esc_attr($chart_id).' = { type: "line", options: daily_precip_amt_options_'.esc_attr($chart_id).', data: daily_precip_amt_data_'.esc_attr($chart_id).',};';
             $owmw_html["chart"]["daily"]["precip_amt"]["options"] .= 'const daily_precip_amt_options_'.esc_attr($chart_id).' = {
-                    responsive: true,
-                    scales: { y: { beginAtZero: true, } },
-                    elements: { point:{ borderWidth: 0, radius: 10, backgroundColor: "rgba(0,0,0,0)" } },
-                    maintainAspectRatio: false,
-                    interaction: { intersect: false, mode: "index" },
-                    plugins: {
-                        tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
-                        if (context.parsed.y !== null) { label += context.parsed.y +"'.$owmw_data["precipitation_unit"].'"; }
-                        return label; } } } },
-                    scales: { y: { beginAtZero: true, ticks: { callback: function(value, index, ticks) { return value + "'.$owmw_data["precipitation_unit"].'"; } }, position: "left" } }
-                    };';
+                color: "'.$owmw_opt["chart_text_color"].'",
+                borderWidth: 1,
+                tension: 0.3,
+                responsive: true,
+                pointBackgroundColor: "rgba(0,0,0,0)",
+                pointBorderWidth: 0,
+                pointRadius: 10,
+                maintainAspectRatio: false,
+                interaction: { intersect: false, mode: "index" },
+                plugins: {
+                    annotation: { annotations: { ' . $owmw_html["chart"]["daily"]["night_boxes"] . ' } },
+                    tooltip: { position: "bottom", callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
+                    if (context.parsed.y !== null) { label += context.parsed.y + " '.$owmw_data["precipitation_unit"].'"; }
+                    return label; } } } },
+                scales: { x: { ticks: { color: "'.$owmw_opt["chart_text_color"].'" }, grid: { display: false, } },
+                          y: { beginAtZero: true, ticks: { color: "'.$owmw_opt["chart_text_color"].'", callback: function(value, index, ticks) { return value + " '.$owmw_data["precipitation_unit"].'"; } }, position: "left" } }
+                };';
             $owmw_html["chart"]["daily"]["precip_amt"]["data"] .= 'const daily_precip_amt_data_'.esc_attr($chart_id).' = {
                                                                       labels: daily_precip_amt_labels_'.esc_attr($chart_id).',
                                                                       datasets: [{
@@ -4389,22 +4433,14 @@ function owmw_get_my_weather($attr) {
                                                                         data: daily_precip_amt_rain_dataset_'.esc_attr($chart_id).',
                                                                         fill: true,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_rain_amt_color"]).'",
-                                                                        pointBackgroundColor: "rgba(0,0,0,0)",
                                                                         backgroundColor: "'.esc_attr($owmw_opt["chart_rain_amt_bg_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "y",
                                                                         },{
                                                                         label: "'.esc_attr__('Snow', 'owm-weather').'",
                                                                         data: daily_precip_amt_snow_dataset_'.esc_attr($chart_id).',
                                                                         fill: true,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_snow_amt_color"]).'",
-                                                                        pointBackgroundColor: "rgba(0,0,0,0)",
                                                                         backgroundColor: "'.esc_attr($owmw_opt["chart_snow_amt_bg_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "y",
                                                                         }]
                                                                     };';
@@ -4416,7 +4452,7 @@ function owmw_get_my_weather($attr) {
             $owmw_html["chart"]["daily"]["precip_amt"]["container"] =
                 '<div class="owmw-chart-container" style="position: relative; height:'.esc_attr($owmw_opt["chart_height"]).'px; width:100%">
                 <canvas id="'.$owmw_html["container_chart_daily_precip_amt_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="'.esc_attr__('daily liquid precipitation amount', 'owm-weather').'" role="img"></canvas></div>';
-            $owmw_html["chart"]["daily"]["precip_amt"]["script"] = 
+            $owmw_html["chart"]["daily"]["precip_amt"]["script"] =
                 $owmw_html["chart"]["daily"]["precip_amt"]["labels"] .
                 $owmw_html["chart"]["daily"]["precip_amt"]["dataset_rain"] .
                 $owmw_html["chart"]["daily"]["precip_amt"]["dataset_snow"] .
@@ -4432,8 +4468,8 @@ function owmw_get_my_weather($attr) {
         $owmw_html["chart"]["daily"]["wind"]["labels"] = '';
         $owmw_html["chart"]["daily"]["wind"]["dataset_wind"] = '';
         $owmw_html["chart"]["daily"]["wind"]["dataset_wind_gust"] = '';
-        $owmw_html["chart"]["daily"]["wind"]["points"] = '';
-        $owmw_html["chart"]["daily"]["wind"]["pointImages"] = '';
+        $owmw_html["chart"]["daily"]["wind"]["loadImages"] = '';
+        $owmw_html["chart"]["daily"]["wind"]["loadImagePoints"] = '';
         $owmw_html["chart"]["daily"]["wind"]["config"] = '';
         $owmw_html["chart"]["daily"]["wind"]["data"] = '';
         $owmw_html["chart"]["daily"]["wind"]["options"] = '';
@@ -4441,8 +4477,8 @@ function owmw_get_my_weather($attr) {
         $owmw_html["chart"]["daily"]["wind"]["cmd"] = '';
         $owmw_html["chart"]["daily"]["wind"]["container"] = '';
         $owmw_html["chart"]["daily"]["wind"]["script"] = '';
-        
-	    if ($owmw_opt["days_forecast_no"] > 0) {
+
+	    if ($owmw_opt["hours_forecast_no"] > 0) {
             $owmw_html["chart"]["daily"]["wind"]["labels"] .= 'const daily_wind_labels_'.esc_attr($chart_id).' = [';
             $owmw_html["chart"]["daily"]["wind"]["dataset_wind"] .= 'const daily_wind_speed_dataset_'.esc_attr($chart_id).' = [';
             $owmw_html["chart"]["daily"]["wind"]["dataset_wind_gust"] .= 'const daily_wind_gust_dataset_'.esc_attr($chart_id).' = [';
@@ -4453,11 +4489,10 @@ function owmw_get_my_weather($attr) {
 					$owmw_html["chart"]["daily"]["wind"]["dataset_wind"] .= '"' . esc_html(intval($value["wind_speed"])) . '",';
 					$owmw_html["chart"]["daily"]["wind"]["dataset_wind_gust"] .= '"' . esc_html(intval($value["wind_gust"])) . '",';
                     $varName = "owmw_wind_direction_svg_" . esc_attr($chart_id) . "_" . $cnt;
-                    $owmw_html["chart"]["daily"]["wind"]["pointImages"] .= "var " . $varName . "=new Image(30, 30);";
-                    $owmw_html["chart"]["daily"]["wind"]["pointImages"] .= $varName . ".src='data:image/svg+xml," . owmw_chart_wind_direction_icon($value["wind_degrees"], $owmw_opt["text_color"], $owmw_opt["wind_icon_direction"], true) . "';";
-                    $owmw_html["chart"]["daily"]["wind"]["points"] .= ($cnt ? "," : "") . $varName;
+                    $owmw_html["chart"]["daily"]["wind"]["loadImages"] .= ($cnt > 0 ? ',' : '') . 'loadImage("' . owmw_chart_wind_direction_icon($value["wind_degrees"], null, $owmw_opt["wind_icon_direction"], true) . '")';
+                    $owmw_html["chart"]["daily"]["wind"]["loadImagePoints"] .= ($cnt ? "," : "") . 'images[' . $cnt . ']';
 					++$cnt;
-                }
+				}
 			}
             $owmw_html["chart"]["daily"]["wind"]["labels"] .= '];';
             $owmw_html["chart"]["daily"]["wind"]["dataset_wind"] .= '];';
@@ -4465,17 +4500,23 @@ function owmw_get_my_weather($attr) {
 
             $owmw_html["chart"]["daily"]["wind"]["config"] .= 'const daily_wind_config_'.esc_attr($chart_id).' = { type: "line", options: daily_wind_options_'.esc_attr($chart_id).', data: daily_wind_data_'.esc_attr($chart_id).',};';
             $owmw_html["chart"]["daily"]["wind"]["options"] .= 'const daily_wind_options_'.esc_attr($chart_id).' = {
-                    responsive: true,
-                    elements: { point:{ borderWidth: 0, radius: 10, backgroundColor: "rgba(0,0,0,0)" } },
-                    scales: { y: { beginAtZero: true, } },
-                    maintainAspectRatio: false,
-                    interaction: { intersect: false, mode: "index" },
-                    plugins: {
-                        tooltip: { callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
-                        if (context.parsed.y !== null) { label += context.parsed.y +"'.$owmw_data["wind_speed_unit"].'"; }
-                        return label; } } } },
-                    scales: { y: { beginAtZero: true, ticks: { callback: function(value, index, ticks) { return value + "'.$owmw_data["wind_speed_unit"].'"; } }, position: "left" } }
-                    };';
+                color: "'.$owmw_opt["chart_text_color"].'",
+                borderWidth: 1,
+                tension: 0.3,
+                responsive: true,
+                pointBackgroundColor: "rgba(0,0,0,0)",
+                pointBorderWidth: 0,
+                pointRadius: 10,
+                maintainAspectRatio: false,
+                interaction: { intersect: false, mode: "index" },
+                plugins: {
+                    annotation: { annotations: { ' . $owmw_html["chart"]["daily"]["night_boxes"] . ' } },
+                    tooltip: { position: "bottom", callbacks: { label: function(context) { var label = context.dataset.label || ""; if (label) { label += ": "; }
+                    if (context.parsed.y !== null) { label += context.parsed.y + " '.$owmw_data["wind_speed_unit"].'"; }
+                    return label; } } } },
+                scales: { x: { ticks: { color: "'.$owmw_opt["chart_text_color"].'" }, grid: { display: false, } },
+                          y: { beginAtZero: true, ticks: { color: "'.$owmw_opt["chart_text_color"].'", callback: function(value, index, ticks) { return value + " '.$owmw_data["wind_speed_unit"].'"; } }, position: "left" } }
+                };';
             $owmw_html["chart"]["daily"]["wind"]["data"] .= 'const daily_wind_data_'.esc_attr($chart_id).' = {
                                                                       labels: daily_wind_labels_'.esc_attr($chart_id).',
                                                                       datasets: [{
@@ -4483,46 +4524,40 @@ function owmw_get_my_weather($attr) {
                                                                         data: daily_wind_speed_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_wind_speed_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        /*pointBorderWidth: 0,*/
-                                                                        /*pointBackgroundColor: "#fff",*/
-                                                                        pointRadius: 30,
-                                                                        pointHoverRadius: 20,
-                                                                        pointHitRadius: 20,
-                                                                        pointStyle: [' . $owmw_html["chart"]["daily"]["wind"]["points"] . '],
+                                                                        pointStyle: [' . $owmw_html["chart"]["daily"]["wind"]["loadImagePoints"] . '],
                                                                         yAxisID: "y",
                                                                         },{
                                                                         label: "'.esc_attr__('Wind Gust', 'owm-weather').'",
                                                                         data: daily_wind_gust_dataset_'.esc_attr($chart_id).',
                                                                         fill: false,
                                                                         borderColor: "'.esc_attr($owmw_opt["chart_wind_gust_color"]).'",
-                                                                        borderWidth: 1,
-                                                                        tension: 0.3,
-                                                                        pointBorderWidth: 0,
                                                                         yAxisID: "y",
                                                                         }]
                                                                     };';
             $owmw_html["chart"]["daily"]["wind"]["chart"] .= 'jQuery(document).ready(function(){
-                                                        var ctx = jQuery("#'.esc_attr($owmw_html["container_chart_daily_wind_div"]).'");
-                                                        var dailyWindSpeedChart = new Chart(ctx, daily_wind_config_'.esc_attr($chart_id).');
-                                                        });';
+                                        Promise.all([
+                                        '.$owmw_html["chart"]["daily"]["wind"]["loadImages"].
+                                        '
+                                          ])
+                                          .then(function(images){
+                                        '.$owmw_html["chart"]["daily"]["wind"]["labels"] .
+                                          $owmw_html["chart"]["daily"]["wind"]["dataset_wind"] .
+                                          $owmw_html["chart"]["daily"]["wind"]["dataset_wind_gust"] .
+                                          $owmw_html["chart"]["daily"]["wind"]["data"] .
+                                          $owmw_html["chart"]["daily"]["wind"]["options"] .
+                                          $owmw_html["chart"]["daily"]["wind"]["config"] .'
+                                            var ctx = jQuery("#'.esc_attr($owmw_html["container_chart_daily_wind_div"]).'");
+                                            var dailyWindSpeedChart = new Chart(ctx, daily_wind_config_'.esc_attr($chart_id).');
+                                          })
+                                          .catch( function(e) { console.error(e); });
+                                        });';
 
             $owmw_html["chart"]["daily"]["wind"]["container"] =
                 '<div class="owmw-chart-container" style="position: relative; height:'.esc_attr($owmw_opt["chart_height"]).'px; width:100%">
                 <canvas id="'.$owmw_html["container_chart_daily_wind_div"].'" style="'.owmw_css_color('background-color', $owmw_opt["chart_background_color"]).owmw_css_border($owmw_opt["chart_border_color"],$owmw_opt["chart_border_width"],$owmw_opt["chart_border_style"],$owmw_opt["chart_border_radius"]).'" aria-label="'.esc_attr__('daily wind speed', 'owm-weather').'" role="img"></canvas></div>';
-            $owmw_html["chart"]["daily"]["wind"]["script"] = 
-                $owmw_html["chart"]["daily"]["wind"]["labels"] .
-                $owmw_html["chart"]["daily"]["wind"]["pointImages"] .
-                $owmw_html["chart"]["daily"]["wind"]["dataset_wind"] .
-                $owmw_html["chart"]["daily"]["wind"]["dataset_wind_gust"] .
-                $owmw_html["chart"]["daily"]["wind"]["data"] .
-                $owmw_html["chart"]["daily"]["wind"]["options"] .
-                $owmw_html["chart"]["daily"]["wind"]["config"] .
-                $owmw_html["chart"]["daily"]["wind"]["chart"];
+            $owmw_html["chart"]["daily"]["wind"]["script"] = $owmw_html["chart"]["daily"]["wind"]["chart"];
 		}
     }
-
 
         //Table
     if (in_array($owmw_opt["template"], array("debug", "custom1", "custom2", "table1", "table2", "table3", "tabbed1"))) {
@@ -4960,7 +4995,7 @@ function owmw_getWindDirection($deg) {
 		__('W', 'owm-weather'),
 		__('NW', 'owm-weather'),
 		__('N', 'owm-weather'));
-		
+
     return $dirs[round($deg/45)];
 }
 
@@ -5280,14 +5315,14 @@ function owmw_sanitize_validate_field($key, $value) {
                     $value = "12";
                 }
                 break;
-            
+
             case "unit":
                 $value = sanitize_text_field($value);
                 if (!in_array($value, array("imperial", "metric"))) {
                     $value = "imperial";
                 }
                 break;
-            
+
             case "template":
                 $value = sanitize_text_field($value);
                 if (!in_array($value, array("Default", "card1", "card2", "tabbed1", "tabbed2", "chart1", "chart2", "table1", "table2", "table3", "slider1", "slider2", "custom1", "custom2", "debug"))) {
@@ -5439,6 +5474,8 @@ function owmw_sanitize_validate_field($key, $value) {
             case "snowy_background_color":
             case "stormy_background_color":
             case "foggy_background_color":
+            case "chart_text_color":
+            case "chart_night_color":
             case "chart_background_color":
             case "chart_border_color":
             case "chart_temperature_color":
@@ -5484,7 +5521,7 @@ function owmw_sanitize_validate_field($key, $value) {
                 break;
         }
     }
-    
+
     return $value;
 }
 
@@ -5544,7 +5581,7 @@ function owmw_IPtoLocation() {
 
         $response = wp_remote_get( $apiURL,
              array( 'timeout' => 10,
-            'headers' => array( 'User-Agent' => 'keycdn-tools:' .home_url($wp->request)) 
+            'headers' => array( 'User-Agent' => 'keycdn-tools:' .home_url($wp->request))
              ));
 
         if (is_wp_error($response)) {
@@ -5564,7 +5601,7 @@ function owmw_celsius_to_fahrenheit($t) {
 	if ($t !== null) {
 		return ceil(($t * 9/5) + 32);
 	}
-		
+
 	return null;
 }
 
@@ -5572,7 +5609,7 @@ function owmw_fahrenheit_to_celsius($t) {
 	if ($t !== null) {
 		return ceil(($t - 32) * 5/9);
 	}
-		
+
 	return null;
 }
 
@@ -5638,11 +5675,11 @@ function owmw_getConditionText($condition) {
 		803 => __("Broken Clouds", 'owm-weather'),
 		804 => __("Overcast Clouds", 'owm-weather')
 	);
-	
+
 	if (!empty($conditionText[$condition])) {
 		return $conditionText[$condition];
 	}
-	
+
 	return "";
 }
 

@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager
 Requires at least: 5.6
 Tested up to: 6.0.1
-Stable tag: 5.5.0
+Stable tag: 5.5.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -253,6 +253,11 @@ This points to a connectivity issue between the server your domain is hosted and
 1. Basic current weather for multiple cities.
 
 == Changelog ==
+
+= 5.5.1 =
+* Added chart text and night highlight color options
+* Fixed wind speed icons on charts
+* Improved chart formatting
 
 = 5.5.0 =
 * Added daily and hourly chart templates

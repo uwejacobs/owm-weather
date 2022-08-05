@@ -76,19 +76,19 @@
 }
 
 .owmw-main-symbol g,.owmw-main-symbol path,.owmw-main-symbol circle,.owmw-main-symbol rect {
-	-webkit-transform-origin: 50% 50%;
 	-moz-transform-origin: 50% 50%;
+	-webkit-transform-origin: 50% 50%;
 	-o-transform-origin: 50% 50%;
 	transform-origin: 50% 50%;
 	transform-box: fill-box;
 	-webkit-animation-timing-function: linear;
 	-moz-animation-timing-function: linear;
-	animation-timing-function: linear;
 	-o-animation-timing-function: linear;
+	animation-timing-function: linear;
 	-o-animation-direction: normal;
-	animation-direction: normal;
 	-webkit-animation-direction: normal;
 	-moz-animation-direction: normal;
+	animation-direction: normal;
 	-moz-animation-iteration-count: infinite;
 	-webkit-animation-iteration-count: infinite;
 	-o-animation-iteration-count: infinite;

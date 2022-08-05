@@ -738,6 +738,22 @@ class owmw_options
         );
 
 		add_settings_field(
+            'owmw_chart_text_color', // ID
+            esc_html__("Chart Text Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_text_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
+            'owmw_chart_night_color', // ID
+            esc_html__("Chart Night Highlight Color",'owm-weather'), // Title
+            array( $this, 'owmw_layout_chart_night_color_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+		add_settings_field(
             'owmw_chart_background_color', // ID
             esc_html__("Chart Background Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_background_color_callback' ), // Callback
@@ -2325,6 +2341,20 @@ class owmw_options
 
         printf('<input name="owmw_option_name[owmw_chart_height]" type="number" min="300" value="%s" />', esc_attr($check));
 	}
+
+    public function owmw_layout_chart_text_color_callback()
+    {
+        $check = $this->options['owmw_chart_text_color'] ?? null;
+
+        printf('<input name="owmw_option_name[owmw_chart_text_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
+
+    public function owmw_layout_chart_night_color_callback()
+    {
+        $check = $this->options['owmw_chart_night_color'] ?? null;
+
+        printf('<input name="owmw_option_name[owmw_chart_night_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+    }
 
     public function owmw_layout_chart_background_color_callback()
     {

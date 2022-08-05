@@ -59,6 +59,7 @@
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> .owmw-current-infos.card {
     margin-right: auto !important;
     margin-left: auto !important;
+    width: -moz-fit-content;
     width: fit-content;
     border: 0;
     background-color: inherit;
@@ -96,6 +97,7 @@
         border-width: 0!important;
 }
 #<?php echo esc_attr($owmw_html["main_weather_div"]) ?> div.tab {        
+    width: -moz-fit-content;
     width: fit-content;
     margin-right: auto !important;
     margin-left: auto !important;
