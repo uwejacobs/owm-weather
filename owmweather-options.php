@@ -13,7 +13,11 @@ function owmw_get_admin_bypass($setting) {
 	static $options = [];
 
 	if (empty($options)) {
-    	$options = get_option("owmw_option_name");
+        if (is_multisite() && owmw_is_global_multisite()) {
+            $options = get_site_option("owmw_option_name");
+        } else {
+            $options = get_option("owmw_option_name");
+        }
     }
     if (isset($owmw_params[substr($setting, 5)]) && $owmw_params[substr($setting, 5)] !== false) {
         return($owmw_params[substr($setting, 5)]);

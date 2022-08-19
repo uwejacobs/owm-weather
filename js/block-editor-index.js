@@ -11,7 +11,7 @@
 				tag: "owm-weather",
 				attributes: {
 					id: {
-						type: "integer",
+						type: "string",
 						shortcode: t => {
 							let {
 								named: {
@@ -39,7 +39,7 @@
 		category: "widgets",
 		attributes: {
 			id: {
-				type: "integer"
+				type: "string"
 			},
 			title: {
 				type: "string"
@@ -55,7 +55,7 @@
 			const i = new Map;
 			if (Object.entries(window.owmw_be.weather).forEach((t => {
 					let [e, c] = t;
-					i.set(c.id, c)
+					i.set(c.id.toString(), c)
 				})), !i.size && !r.id) return (0, e.createElement)("div", {
 				className: "components-placeholder"
 			}, (0, e.createElement)("p", null, (0, c.__)("No weather posts were found. Create a weather first.", "owm-weather")));
@@ -70,7 +70,7 @@
 			else {
 				const t = s[0];
 				r = {
-					id: parseInt(t.value),
+					id: t.value,
 					title: t.label
 				}
 			}
@@ -85,8 +85,8 @@
 				options: s,
 				value: r.id,
 				onChange: t => n({
-					id: parseInt(t),
-					title: i.get(parseInt(t)).title
+					id: t,
+					title: i.get(t).title
 				})
 			}))
 		},

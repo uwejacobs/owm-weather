@@ -1,7 +1,6 @@
 Must:
 
 Should:
-WordPress Multi-Site environment
 Create first weather post with geo-location if none exists
 
 Nice:

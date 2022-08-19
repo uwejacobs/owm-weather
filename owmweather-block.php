@@ -42,17 +42,28 @@ function owmw_init_block_editor_assets() {
 		)
 	);
 
-    $weather = array_map(
+    $weather_local = array_map(
             function ( $w ) {
                     return array(
                             'id' => $w->ID,
                             'title' => $w->post_title,
                     );
             },
-            owmw_block_editor_posts_find( array(
-                    'posts_per_page' => 20,
-            ) )
+            owmw_block_editor_posts_find()
     );
+    
+    $weather_shared = array_map(
+            function ( $w ) {
+                    return array(
+                            'id' => "m" . $w->ID,
+                            'title' => $w->post_title . " (shared)",
+                    );
+            },
+            owmw_block_editor_posts_find_network_share()
+    );
+
+    $weather = array_merge($weather_local, $weather_shared);
+    usort($weather, "owmw_cmp_by_title");
 
 	wp_add_inline_script(
 		'owm-weather-block-editor',
@@ -65,18 +76,16 @@ function owmw_init_block_editor_assets() {
 
 }
 
-function owmw_block_editor_posts_find( $args = '' ) {
+function owmw_block_editor_posts_find() {
 	$defaults = array(
-		'post_status' => 'any',
+        'post_type' => 'owm-weather',
+		'post_status' => 'publish',
 		'posts_per_page' => -1,
 		'offset' => 0,
-		'orderby' => 'title',
-		'order' => 'ASC',
 	);
 
-	$args = wp_parse_args( $args, $defaults );
+	$args = wp_parse_args( $defaults );
 
-	$args['post_type'] = 'owm-weather';
 	$q = new WP_Query();
     $posts = $q->query( $args );
 
@@ -89,3 +98,38 @@ function owmw_block_editor_posts_find( $args = '' ) {
 	return $objs;
 }
 
+function owmw_block_editor_posts_find_network_share() {
+    $objs = array();
+    
+    if (owmw_is_global_multisite() && !is_main_site()) {
+        switch_to_blog(get_main_site_id());
+        
+        $defaults = array(
+            'post_type' => 'owm-weather',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'offset' => 0,
+            'meta_key' => '_owmweather_network_share',
+            'meta_value' => 'yes',
+            'meta_compare' => '=',
+        );
+
+        $args = wp_parse_args( $defaults );
+
+        $q = new WP_Query();
+        $posts = $q->query( $args );
+
+
+        foreach ( (array) $posts as $post ) {
+                $objs[] = $post;
+        }
+
+        restore_current_blog();
+    }
+
+    return $objs;
+}
+
+function owmw_cmp_by_title($a, $b) {
+  return $a["title"] > $b["title"];
+}

@@ -3,13 +3,14 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.5.1
+Version: 5.6.0
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
 Original Author URI: https://wpcloudy.com/
 License: GPLv2
 Text Domain: owm-weather
+Network: true
 Domain Path: /lang
 */
 
@@ -40,8 +41,12 @@ $GLOBALS['owmw_params'] = [];
 
 function owmw_activation() {
     global $wpdb;
-    $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmweather%' ");
-    $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmweather%' ");
+    $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmw%' ");
+    $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmw%' ");
+    if (is_multisite() && is_network_admin() && current_user_can("manage_network_options")) {
+        $wpdb->query("DELETE FROM $wpdb->sitemeta WHERE meta_key LIKE '_site_transient_owmw%' ");
+        $wpdb->query("DELETE FROM $wpdb->sitemeta WHERE meta_key LIKE 'site__transient_timeout_owmw%' ");
+    }
 }
 register_activation_hook(__FILE__, 'owmw_activation');
 
@@ -59,7 +64,7 @@ function plugin_row_meta($links, $file) {
     return $links;
 }
 
-define( 'OWM_WEATHER_VERSION', '5.5.1' );
+define( 'OWM_WEATHER_VERSION', '5.6.0' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -75,8 +80,25 @@ function owmw_plugin_action_links($links, $file) {
     }
 
     if ($file == $this_plugin) {
-        $settings_link = '<a href="' . admin_url('admin.php?page=owmw-settings-admin').'">'.esc_html__('Settings', 'owm-weather').'</a>';
-        array_unshift($links, $settings_link);
+        if (!is_multisite() || (is_multisite() && !owmw_is_global_multisite() && !is_network_admin())) {
+            array_unshift($links, '<a href="' . admin_url('admin.php?page=owmw-settings-admin').'">'.esc_html__('Settings', 'owm-weather').'</a>');
+        }
+    }
+
+    return $links;
+}
+
+add_filter('network_admin_plugin_action_links', 'owmw_network_plugin_action_links', 10, 2);
+
+function owmw_network_plugin_action_links($links, $file) {
+    static $this_plugin;
+
+    if (!$this_plugin) {
+        $this_plugin = plugin_basename(__FILE__);
+    }
+
+    if ($file == $this_plugin) {
+        array_unshift($links, '<a href="' . network_admin_url('admin.php?page=owmw-settings-admin').'">'.esc_html__('Settings', 'owm-weather').'</a>');
     }
 
     return $links;
@@ -138,7 +160,7 @@ function owmw_styles() {
         'owmw_nonce' => wp_create_nonce('owmw_get_weather_nonce'),
         'owmw_url' => admin_url( 'admin-ajax.php' ) . "?lang=" . substr(get_locale(),0,2),
     );
-	wp_localize_script( 'owmw-ajax-js', 'owmwAjax', $owmwAjax);
+    wp_add_inline_script( 'owmw-ajax-js', 'const owmwAjax = ' . json_encode( $owmwAjax ), 'before' );
 
 	wp_register_style('owmweather-css', plugins_url('css/owmweather.min.css', __FILE__));
 	wp_enqueue_style('owmweather-css');
@@ -173,15 +195,19 @@ function owmw_add_dashboard_scripts() {
         'owmw_nonce' => wp_create_nonce('owmw_get_weather_nonce'),
         'owmw_url' => admin_url( 'admin-ajax.php' ) . "?lang=" . substr(get_locale(),0,2),
     );
-	wp_localize_script( 'owmw-ajax-js', 'owmwAjax', $owmwAjax);
-
+    wp_add_inline_script( 'owmw-ajax-js', 'const owmwAjax = ' . json_encode( $owmwAjax ), 'before' );
+    
 	wp_register_style('owmweather-css', plugins_url('css/owmweather.min.css', __FILE__));
 	wp_enqueue_style('owmweather-css');
 
 	wp_register_style('owmweather-anim-css', plugins_url('css/owmweather-anim.min.css', __FILE__));
 
-	$options = get_option("owmw_option_name");
-	if (!empty($options["owmw_advanced_disable_modal_js"]) && $options["owmw_advanced_disable_modal_js"] != 'yes') {
+    if (is_multisite() && owmw_is_global_multisite()) {
+        $opts = get_site_option("owmw_option_name");
+    } else {
+        $opts = get_option("owmw_option_name");
+    }
+	if (isset($opts["owmw_advanced_disable_modal_js"]) && $opts["owmw_advanced_disable_modal_js"] != 'yes') {
 		wp_enqueue_style('owmw-bootstrap5-css');
 		// bugbug wp_enqueue_script('owmw-bootstrap5-js');
 	}
@@ -226,7 +252,7 @@ function owmw_add_admin_options_scripts() {
 			wp_enqueue_script( 'tabs-js', plugins_url( 'js/tabs.js', __FILE__ ), array( 'jquery-ui-tabs' ) );
 }
 
-if (isset($_GET['page']) && ($_GET['page'] == 'owmw-settings-admin')) {
+if (isset($_GET['page']) && (sanitize_key($_GET['page']) == 'owmw-settings-admin')) {
 
 	add_action('admin_enqueue_scripts', 'owmw_add_admin_options_scripts', 10, 1);
 }
@@ -289,11 +315,11 @@ function owmw_add_button_v4_register($buttons) {
 
 function owmw_duplicate_post_as_draft(){
 	global $wpdb;
-	if (! ( isset( $_GET['post']) || isset( $_POST['post'])  || ( isset($_REQUEST['action']) && 'owmw_duplicate_post_as_draft' == $_REQUEST['action'] ) ) ) {
+	if (! ( isset( $_GET['post']) || isset( $_POST['post'])  || ( isset($_REQUEST['action']) && 'owmw_duplicate_post_as_draft' == sanitize_key($_REQUEST['action']) ) ) ) {
 		wp_die('No weather to duplicate has been supplied!');
 	}
 
-	$post_id = sanitize_text_field(isset($_GET['post']) ? $_GET['post'] : $_POST['post']);
+	$post_id = sanitize_text_field(isset($_GET['post']) ? sanitize_key($_GET['post']) : sanitize_key($_POST['post']));
 
 	$post = get_post( $post_id );
 
@@ -392,18 +418,19 @@ function owmw_basic($post){
 	$owmw_opt["latitude"] 		    	    = get_post_meta($id,'_owmweather_latitude',true);
 	$owmw_opt["zip"] 		    	        = get_post_meta($id,'_owmweather_zip',true);
 	$owmw_opt["country_code"] 		        = get_post_meta($id,'_owmweather_country_code',true);
-	$owmw_opt["zip_country_code"] 		        = get_post_meta($id,'_owmweather_zip_country_code',true);
+	$owmw_opt["zip_country_code"] 		    = get_post_meta($id,'_owmweather_zip_country_code',true);
 	$owmw_opt["temperature_unit"] 			= get_post_meta($id,'_owmweather_unit',true);
-	$owmw_opt["time_format"]				    = get_post_meta($id,'_owmweather_time_format',true);
-	$owmw_opt["custom_timezone"]	    		= get_post_meta($id,'_owmweather_custom_timezone',true);
+	$owmw_opt["time_format"]				= get_post_meta($id,'_owmweather_time_format',true);
+	$owmw_opt["custom_timezone"]	    	= get_post_meta($id,'_owmweather_custom_timezone',true);
 	$owmw_opt["owm_language"] 		    	= get_post_meta($id,'_owmweather_owm_language',true);
 	$owmw_opt["gtag"]              		    = get_post_meta($id,'_owmweather_gtag',true);
-	$owmw_opt["bypass_exclude"]     		    = get_post_meta($id,'_owmweather_bypass_exclude',true);
+    $owmw_opt["network_share"]              = get_post_meta($id,'_owmweather_network_share',true);
+	$owmw_opt["bypass_exclude"]     		= get_post_meta($id,'_owmweather_bypass_exclude',true);
 	$owmw_opt["current_weather_symbol"]		= get_post_meta($id,'_owmweather_current_weather_symbol',true);
 	$owmw_opt["current_city_name"]	    	= get_post_meta($id,'_owmweather_current_city_name',true);
 	$owmw_opt["today_date_format"]	    	= owmw_getDefault($id,'_owmweather_today_date_format', 'none');
 	$owmw_opt["current_weather_description"]	= get_post_meta($id,'_owmweather_current_weather_description',true);
-	$owmw_opt["sunrise_sunset"] 			    = get_post_meta($id,'_owmweather_sunrise_sunset',true);
+	$owmw_opt["sunrise_sunset"] 			= get_post_meta($id,'_owmweather_sunrise_sunset',true);
 	$owmw_opt["moonrise_moonset"] 	    	= get_post_meta($id,'_owmweather_moonrise_moonset',true);
 	$owmw_opt["wind"] 				    	= get_post_meta($id,'_owmweather_wind',true);
 	$owmw_opt["wind_unit"] 				    = get_post_meta($id,'_owmweather_wind_unit',true);
@@ -530,9 +557,14 @@ function owmw_basic($post){
     $owmw_opt["foggy_background_image"]     = get_post_meta($id, '_owmweather_foggy_background_image',true);
 
 	function owmw_get_admin_api_key2() {
-		$options = get_option("owmw_option_name");
-		if ( ! empty ( $options["owmw_advanced_api_key"] ) ) {
-			return $options["owmw_advanced_api_key"];
+        if (is_multisite() && owmw_is_global_multisite()) {
+            $opts = get_site_option("owmw_option_name");
+        } else {
+            $opts = get_option("owmw_option_name");
+        }
+
+		if (!empty($opts["owmw_advanced_api_key"])) {
+			return $opts["owmw_advanced_api_key"];
 		} else {
 			return '46c433f6ba7dd4d29d5718dac3d7f035';//bugbug
 		}
@@ -542,12 +574,31 @@ function owmw_basic($post){
 ?>
 <div id="owmweather-tabs">
 		<ul>
+            <?php if (is_main_site() && owmw_is_global_multisite()) { ?>
+			<li><a href="#tabs-0"><?php esc_html_e( 'Network', 'owm-weather' ) ?></a></li>
+            <?php } ?>
 			<li><a href="#tabs-1"><?php esc_html_e( 'Basic', 'owm-weather' ) ?></a></li>
 			<li><a href="#tabs-2"><?php esc_html_e( 'Display', 'owm-weather' ) ?></a></li>
 			<li><a href="#tabs-3"><?php esc_html_e( 'Layout', 'owm-weather' ) ?></a></li>
 			<li><a href="#tabs-4"><?php esc_html_e( 'Weather-Based', 'owm-weather' ) ?></a></li>
 			<li><a href="#tabs-5"><?php esc_html_e( 'Map', 'owm-weather' ) ?></a></li>
 		</ul>
+		<?php if (is_main_site() && owmw_is_global_multisite()) { ?>
+        <div id="tabs-0">
+		    <p class=" subsection-title">
+				<?php esc_html_e( 'Multisite', 'owm-weather' ) ?>
+			</p>
+			<p>
+                <label class="toggle-switchy" for="owmweather_network_share_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked( $owmw_opt["network_share"], 'yes', false ) ?> value="yes" type="checkbox" id="owmweather_network_share_meta" name="owmweather_network_share"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php esc_html_e( 'Network Shared', 'owm-weather' ) ?></span>
+                </label>
+			</p>
+		</div>
+        <?php } ?>
 		<div id="tabs-1">
 		    <p class=" subsection-title">
 				<?php esc_html_e( 'Get Weather By ...', 'owm-weather' ) ?>
@@ -1824,7 +1875,7 @@ function owmw_basic($post){
 }
 
 function owmw_save_metabox($post_id){
-	if (!empty($_POST['action']) && $_POST['action'] == 'inline-save') {
+	if (!empty($_POST['action']) && sanitize_key($_POST['action']) == 'inline-save') {
 		return;
 	}
 
@@ -1967,6 +2018,7 @@ function owmw_save_metabox($post_id){
 		owmw_save_metabox_field_yn('map_windrose_legend', $post_id);
 		owmw_save_metabox_field_yn('map_windrose_on', $post_id);
 		owmw_save_metabox_field_yn('gtag', $post_id);
+		owmw_save_metabox_field_yn('network_share', $post_id);
 		owmw_save_metabox_field_yn('bypass_exclude', $post_id);
 		owmw_save_metabox_field_yn('map', $post_id);
 		owmw_save_metabox_field_yn('alerts', $post_id);
@@ -1976,30 +2028,20 @@ function owmw_save_metabox($post_id){
 add_action('save_post','owmw_save_metabox');
 
 function owmw_save_metabox_field($field, $post_id) {
-	if (!empty($_POST['owmweather_' . $field])){
-        update_post_meta($post_id, '_owmweather_' . $field, owmw_sanitize_validate_field($field, $_POST['owmweather_' . $field]));
+	if (!empty($_POST['owmweather_' . $field])) {
+        update_post_meta($post_id, '_owmweather_' . $field, owmw_sanitize_validate_field($field, sanitize_key($_POST['owmweather_' . $field])));
 	} else {
 	    delete_post_meta($post_id, '_owmweather_' . $field);
 	}
 }
 
 function owmw_save_metabox_field_yn($field, $post_id) {
-	if (isset($_POST['owmweather_' . $field]) && $_POST['owmweather_' . $field] == 'yes'){
+	if (isset($_POST['owmweather_' . $field]) && sanitize_key($_POST['owmweather_' . $field]) == 'yes') {
         update_post_meta($post_id, '_owmweather_' . $field, 'yes');
 	} else {
 	    delete_post_meta($post_id, '_owmweather_' . $field);
 	}
 }
-
-function owmw_clear_cache_current() {
-	if ( 'owm-weather' === get_post_type() ) {
-        global $wpdb;
-		global $post;
-		$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmweather_".$post->ID."_%' ");
-		$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmweather_".$post->ID."_%' ");
-    }
-}
-add_action('save_post','owmw_clear_cache_current');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Function CSS/Display/Misc
@@ -2221,6 +2263,7 @@ function owmw_icons_pack($bypass, $id) {
 
 function owmw_get_my_weather_id($atts) {
     global $owmw_params;
+    $need_restore_blog = false;
 
 	require_once dirname( __FILE__ ) . '/owmweather-options.php';
 
@@ -2362,6 +2405,7 @@ function owmw_get_my_weather_id($atts) {
         "map_windrose_legend"           => false,
         "map_windrose_on"               => false,
         "gtag"                          => false,
+        "network_share"                 => false,
         "bypass_exclude"                => false,
         "alerts"                        => false,
         "hours_time_icons"              => false,
@@ -2383,6 +2427,26 @@ function owmw_get_my_weather_id($atts) {
         echo "<p>OWM Weather Error: owm-weather shortcode without 'id' parameter</p>";
 	    return;
 	}
+    
+    if (owmw_is_global_multisite() && $owmw_params["id"][0] === "m") {
+        if (!is_main_site()) {
+            switch_to_blog(get_main_site_id());
+            $need_restore_blog = true;
+        }
+
+        $id = intval(substr($owmw_params["id"], 1));
+        if (get_post_meta($id, '_owmweather_network_share', true) != "yes" && $need_restore_blog) {
+            echo "<p>OWM Weather Error: network id '".esc_html($owmw_params["id"])."' is not shared</p>";
+            if ($need_restore_blog) {
+                restore_current_blog();
+            }
+            return;
+        }
+
+        $owmw_params["id"] = $id;
+        $owmw_params["network_share"] = true;
+    }
+
     if (get_post_type($owmw_params["id"]) != 'owm-weather') {
 	    echo "<p>OWM Weather Error: id '".esc_html($owmw_params["id"])."' is not type 'weather'</p>";
 	    return;
@@ -2395,7 +2459,7 @@ function owmw_get_my_weather_id($atts) {
 
     $owmw_opt                    = [];
 	$owmw_opt["id"]              = $owmw_params["id"];
-    $owmw_opt["bypass_exclude"]  = get_post_meta($owmw_opt["id"],'_owmweather_bypass_exclude',true);
+    $owmw_opt["bypass_exclude"]  = get_post_meta($owmw_params["id"],'_owmweather_bypass_exclude',true);
     $bypass                      = $owmw_opt["bypass_exclude"] != 'yes';
 	$owmw_opt["disable_anims"]	 = $owmw_params["disable_anims"] ?? owmw_get_bypass_yn($bypass, "disable_anims", $owmw_opt["id"]);
 	$owmw_opt["map"]           	 = $owmw_params["map"] ?? owmw_get_bypass_yn($bypass, "map", $owmw_opt["id"]);
@@ -2407,13 +2471,18 @@ function owmw_get_my_weather_id($atts) {
     $owmw_opt["zip"] 	         = $owmw_params["zip"] ?? owmw_get_bypass($bypass, "zip", $owmw_opt["id"]);
     $owmw_opt["city"] 	         = $owmw_params["city"] ?? owmw_get_bypass($bypass, "city", $owmw_opt["id"]);
 
-	owmw_webfont($bypass, $owmw_opt["id"]);
-	owmw_icons_pack($bypass, $owmw_opt["id"]);
+	owmw_webfont($bypass, $owmw_params["id"]);
+	owmw_icons_pack($bypass, $owmw_params["id"]);
+
+
+    if ($need_restore_blog) {
+        restore_current_blog();
+    }
 
 	if ($owmw_opt["template"] == 'slider1' || $owmw_opt["template"] == 'slider2' ) {
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('owmw-flexslider-js');
-		wp_enqueue_style('owmw-flexslider-css');
+		wp_enqueue_style('owmw-flexsl1ider-css');
 	} else if (in_array($owmw_opt["template"], array('custom1', 'custom2','chart1', 'chart2', 'tabbed2', 'debug'))) {
 		wp_enqueue_script('owmw-custom-chart-js');
 	}
@@ -2476,32 +2545,38 @@ function owmw_get_my_weather($attr) {
     $owmw_params = [];
     if (isset($_POST['owmw_params'])) {
         foreach ($_POST['owmw_params'] as $k => $v) {
-            $owmw_params[$k] = sanitize_text_field($v);
+            $owmw_params[sanitize_key($k)] = sanitize_text_field($v);
         }
     }
 
-	check_ajax_referer( 'owmw_get_weather_nonce', $_POST['_ajax_nonce'], true );
+	check_ajax_referer( 'owmw_get_weather_nonce', sanitize_key($_POST['_ajax_nonce']), true );
 
 	if ( isset( $owmw_params['id'] ) ) {
-		$id = intval($owmw_params['id']);
+        $id = intval($owmw_params["id"]);
+        $need_restore_blog = false;
+        if (owmw_is_global_multisite() && !empty($owmw_params["network_share"])) {
+            switch_to_blog(get_main_site_id());
+            $need_restore_blog = true;
+        }
 
 		require_once dirname( __FILE__ ) . '/owmweather-options.php';
 		require_once dirname( __FILE__ ) . '/owmweather-anim.php';
 		require_once dirname( __FILE__ ) . '/owmweather-icons.php';
 
-        $owmw_opt                                    = [];
-	  	$owmw_opt["id"] 								= $id;
-        $owmw_opt["bypass_exclude"]                  = get_post_meta($owmw_opt["id"],'_owmweather_bypass_exclude',true);
+        $owmw_opt                                   = [];
+	  	$owmw_opt["id"] 							= $id;
+	  	$owmw_opt["network_share"] 					= $owmw_params["network_share"] ?? null;
+        $owmw_opt["bypass_exclude"]                 = get_post_meta($id,'_owmweather_bypass_exclude',true);
         $bypass                                     = ($owmw_opt["bypass_exclude"] != 'yes');
 	  	$owmw_opt["id_owm"]          				= owmw_get_bypass($bypass, "id_owm");
-	  	$owmw_opt["longitude"]          				= owmw_get_bypass($bypass, "longitude");
+	  	$owmw_opt["longitude"]          			= owmw_get_bypass($bypass, "longitude");
 	  	$owmw_opt["latitude"]          				= owmw_get_bypass($bypass, "latitude");
 	  	$owmw_opt["zip"]          				    = str_replace(' ', '+', owmw_get_bypass($bypass, "zip"));
 		$owmw_opt["zip_country_code"]          		= str_replace(' ', '+', owmw_get_bypass($bypass, "zip_country_code"));
 	  	$owmw_opt["city"]                			= str_replace(' ', '+', strtolower(owmw_get_bypass($bypass, "city")));
 		$owmw_opt["country_code"]            		= str_replace(' ', '+', owmw_get_bypass($bypass, "country_code"));
-		$owmw_opt["custom_city_name"]       			= owmw_get_bypass($bypass, "custom_city_name");
-		$owmw_opt["temperature_unit"]       			= owmw_get_bypass($bypass, "unit");
+		$owmw_opt["custom_city_name"]       		= owmw_get_bypass($bypass, "custom_city_name");
+		$owmw_opt["temperature_unit"]       		= owmw_get_bypass($bypass, "unit");
     	$owmw_opt["map"]           		            = owmw_get_bypass_yn($bypass, "map");
 		$owmw_opt["map_height"]            			= owmw_get_bypass($bypass, "map_height");
 		$owmw_opt["map_opacity"]          			= owmw_get_bypass($bypass, "map_opacity");
@@ -2579,7 +2654,7 @@ function owmw_get_my_weather($attr) {
 		$owmw_opt["today_date_format"]      		= owmw_get_bypass($bypass, "today_date_format");
 		$owmw_opt["alerts"]                         = owmw_get_bypass_yn($bypass, "alerts");
 		$owmw_opt["alerts_popup"]     				= owmw_get_bypass($bypass, "alerts_popup");
-		$owmw_opt["owm_language"]                    = owmw_get_bypass($bypass, "owm_language");
+		$owmw_opt["owm_language"]                   = owmw_get_bypass($bypass, "owm_language");
 		if ($owmw_opt["owm_language"] == 'Default') {
 			$localeLang = substr(get_locale(), 0, 2);
             if (owmw_checkLanguage($localeLang)) {
@@ -2591,13 +2666,14 @@ function owmw_get_my_weather($attr) {
     	$owmw_opt["font"]    			            = owmw_get_bypass($bypass, "font");
     	$owmw_opt["iconpack"]  			            = owmw_get_bypass($bypass, "iconpack");
 	    $owmw_opt["template"]  			            = owmw_get_bypass($bypass, "template");
-        $owmw_opt["gtag"]                            = owmw_get_bypass($bypass, "gtag");
-		$owmw_opt["custom_css"]                      = owmw_get_bypass($bypass, 'custom_css');
+        $owmw_opt["gtag"]                           = owmw_get_bypass($bypass, "gtag");
+        $owmw_opt["network_share"]                  = owmw_get_bypass($bypass, "network_share");
+		$owmw_opt["custom_css"]                     = owmw_get_bypass($bypass, 'custom_css');
 		$owmw_opt["current_weather_symbol"]  		= owmw_get_bypass_yn($bypass, "current_weather_symbol");
 		$owmw_opt["current_city_name"]        		= owmw_get_bypass_yn($bypass, "current_city_name");
-		$owmw_opt["current_weather_description"]     = owmw_get_bypass_yn($bypass, "current_weather_description");
+		$owmw_opt["current_weather_description"]    = owmw_get_bypass_yn($bypass, "current_weather_description");
 		$owmw_opt["wind"]          					= owmw_get_bypass_yn($bypass, "wind");
-        $owmw_opt["wind_unit"]                       = owmw_get_bypass($bypass, "wind_unit");
+        $owmw_opt["wind_unit"]                      = owmw_get_bypass($bypass, "wind_unit");
         $owmw_opt["wind_icon_direction"]            = owmw_get_bypass($bypass, "wind_icon_direction");
         $owmw_opt["humidity"]        				= owmw_get_bypass_yn($bypass, "humidity");
         $owmw_opt["dew_point"]        				= owmw_get_bypass_yn($bypass, "dew_point");
@@ -2605,43 +2681,43 @@ function owmw_get_my_weather($attr) {
         $owmw_opt["pressure_unit"]                  = owmw_get_bypass($bypass, "pressure_unit");
 		$owmw_opt["cloudiness"]      				= owmw_get_bypass_yn($bypass, "cloudiness");
 		$owmw_opt["precipitation"]     				= owmw_get_bypass_yn($bypass, "precipitation");
-		$owmw_opt["visibility"]     				    = owmw_get_bypass_yn($bypass, "visibility");
+		$owmw_opt["visibility"]     				= owmw_get_bypass_yn($bypass, "visibility");
 		$owmw_opt["uv_index"]     				    = owmw_get_bypass_yn($bypass, "uv_index");
-		$owmw_opt["text_labels"]     				    = owmw_get_bypass_yn($bypass, "text_labels");
+		$owmw_opt["text_labels"]     				= owmw_get_bypass_yn($bypass, "text_labels");
 		$owmw_opt["current_temperature"] 			= owmw_get_bypass_yn($bypass, "current_temperature");
-		$owmw_opt["current_feels_like"] 			    = owmw_get_bypass_yn($bypass, "current_feels_like");
+		$owmw_opt["current_feels_like"] 			= owmw_get_bypass_yn($bypass, "current_feels_like");
 		$owmw_opt["size"]          					= owmw_get_bypass($bypass, "size");
-        $owmw_opt["disable_spinner"]                 = owmw_get_bypass_yn($bypass, "disable_spinner");
-        $owmw_opt["disable_anims"]                   = owmw_get_bypass_yn($bypass, "disable_anims");
+        $owmw_opt["disable_spinner"]                = owmw_get_bypass_yn($bypass, "disable_spinner");
+        $owmw_opt["disable_anims"]                  = owmw_get_bypass_yn($bypass, "disable_anims");
     	$owmw_opt["chart_height"]	    		    = owmw_getBypassDefault($bypass, 'chart_height', '400');
-    	$owmw_opt["chart_text_color"]		    = owmw_get_bypass($bypass, 'chart_text_color');
-    	$owmw_opt["chart_night_color"]		    = owmw_get_bypass($bypass, 'chart_night_color');
+    	$owmw_opt["chart_text_color"]		        = owmw_get_bypass($bypass, 'chart_text_color');
+    	$owmw_opt["chart_night_color"]		        = owmw_get_bypass($bypass, 'chart_night_color');
     	$owmw_opt["chart_background_color"]		    = owmw_get_bypass($bypass, 'chart_background_color');
     	$owmw_opt["chart_border_color"]	            = owmw_get_bypass($bypass, 'chart_border_color');
     	$owmw_opt["chart_border_width"]	            = owmw_getBypassDefault($bypass, 'chart_border_width', $owmw_opt["chart_border_color"] == '' ? '0' : '1');
     	$owmw_opt["chart_border_style"]	            = owmw_getBypassDefault($bypass, 'chart_border_style', "solid");
-    	$owmw_opt["chart_border_radius"]	            = owmw_getBypassDefault($bypass, 'chart_border_radius', "0");
-    	$owmw_opt["chart_temperature_color"]	        = owmw_get_bypass($bypass, 'chart_temperature_color');
+    	$owmw_opt["chart_border_radius"]	        = owmw_getBypassDefault($bypass, 'chart_border_radius', "0");
+    	$owmw_opt["chart_temperature_color"]	    = owmw_get_bypass($bypass, 'chart_temperature_color');
     	$owmw_opt["chart_feels_like_color"]	        = owmw_get_bypass($bypass, 'chart_feels_like_color');
     	$owmw_opt["chart_dew_point_color"]	        = owmw_get_bypass($bypass, 'chart_dew_point_color');
-        $owmw_opt["chart_cloudiness_color"]     = owmw_get_bypass($bypass, "chart_cloudiness_color");
-        $owmw_opt["chart_rain_chance_color"]    = owmw_get_bypass($bypass, "chart_rain_chance_color");
-        $owmw_opt["chart_humidity_color"]       = owmw_get_bypass($bypass, "chart_humidity_color");
-        $owmw_opt["chart_pressure_color"]       = owmw_get_bypass($bypass, "chart_pressure_color");
-        $owmw_opt["chart_rain_amt_color"]       = owmw_get_bypass($bypass, "chart_rain_amt_color");
-        $owmw_opt["chart_snow_amt_color"]       = owmw_get_bypass($bypass, "chart_snow_amt_color");
-        $owmw_opt["chart_wind_speed_color"]     = owmw_get_bypass($bypass, "chart_wind_speed_color");
-        $owmw_opt["chart_wind_gust_color"]      = owmw_get_bypass($bypass, "chart_wind_gust_color");
+        $owmw_opt["chart_cloudiness_color"]         = owmw_get_bypass($bypass, "chart_cloudiness_color");
+        $owmw_opt["chart_rain_chance_color"]        = owmw_get_bypass($bypass, "chart_rain_chance_color");
+        $owmw_opt["chart_humidity_color"]           = owmw_get_bypass($bypass, "chart_humidity_color");
+        $owmw_opt["chart_pressure_color"]           = owmw_get_bypass($bypass, "chart_pressure_color");
+        $owmw_opt["chart_rain_amt_color"]           = owmw_get_bypass($bypass, "chart_rain_amt_color");
+        $owmw_opt["chart_snow_amt_color"]           = owmw_get_bypass($bypass, "chart_snow_amt_color");
+        $owmw_opt["chart_wind_speed_color"]         = owmw_get_bypass($bypass, "chart_wind_speed_color");
+        $owmw_opt["chart_wind_gust_color"]          = owmw_get_bypass($bypass, "chart_wind_gust_color");
     	$owmw_opt["table_background_color"]	        = owmw_get_bypass($bypass, 'table_background_color');
     	$owmw_opt["table_text_color"]	            = owmw_get_bypass($bypass, 'table_text_color');
     	$owmw_opt["table_border_color"]	            = owmw_get_bypass($bypass, 'table_border_color');
     	$owmw_opt["table_border_width"]	            = owmw_getBypassDefault($bypass, 'table_border_width', $owmw_opt["table_border_color"] == '' ? '0' : '1');
     	$owmw_opt["table_border_style"]	            = owmw_getBypassDefault($bypass, 'table_border_style', "solid");
-    	$owmw_opt["table_border_radius"]	            = owmw_getBypassDefault($bypass, 'table_border_radius', "0");
-    	$owmw_opt["tabbed_btn_text_color"]	            = owmw_get_bypass($bypass, 'tabbed_btn_text_color');
-    	$owmw_opt["tabbed_btn_background_color"]	            = owmw_get_bypass($bypass, 'tabbed_btn_background_color');
-    	$owmw_opt["tabbed_btn_active_color"]	            = owmw_get_bypass($bypass, 'tabbed_btn_active_color');
-    	$owmw_opt["tabbed_btn_hover_color"]	            = owmw_get_bypass($bypass, 'tabbed_btn_hover_color');
+    	$owmw_opt["table_border_radius"]	        = owmw_getBypassDefault($bypass, 'table_border_radius', "0");
+    	$owmw_opt["tabbed_btn_text_color"]	        = owmw_get_bypass($bypass, 'tabbed_btn_text_color');
+    	$owmw_opt["tabbed_btn_background_color"]	= owmw_get_bypass($bypass, 'tabbed_btn_background_color');
+    	$owmw_opt["tabbed_btn_active_color"]	    = owmw_get_bypass($bypass, 'tabbed_btn_active_color');
+    	$owmw_opt["tabbed_btn_hover_color"]	        = owmw_get_bypass($bypass, 'tabbed_btn_hover_color');
 
         /* Defaults */
         if (empty($owmw_opt["today_date_format"])) { $owmw_opt["today_date_format"] = 'none'; }
@@ -2679,6 +2755,9 @@ function owmw_get_my_weather($attr) {
         if (empty($owmw_opt["tabbed_btn_background_color"])) { $owmw_opt["tabbed_btn_background_color"] = '#f1f1f1'; }
         if (empty($owmw_opt["tabbed_btn_active_color"])) { $owmw_opt["tabbed_btn_active_color"] = '#ccc'; }
         if (empty($owmw_opt["tabbed_btn_hover_color"])) { $owmw_opt["tabbed_btn_hover_color"] = '#ddd'; }
+        
+        $set_transient = is_multisite() ? "set_site_transient" : "set_transient";
+        $get_transient = is_multisite() ? "get_site_transient" : "get_transient";
 
 
 	if (owmw_get_admin_bypass('owmw_advanced_disable_modal_js') != 'yes') {
@@ -2689,30 +2768,44 @@ function owmw_get_my_weather($attr) {
 	$owmw_opt["bootstrap_data"]              = $owmw_opt["bootstrap_version"] == '5' ? 'bs-' : '';
 	$owmw_opt["bootstrap_modal_close"]              = $owmw_opt["bootstrap_version"] == '5' ? '<button type="button" class="btn-close" data-bs-dismiss="modal"></button>' : '<button type="button" class="close" data-dismiss="modal">&times;</button>';
 
+    if ($need_restore_blog) {
+        restore_current_blog();
+    }
+
+
         //JSON : Current weather
        	if ($owmw_opt["id_owm"] !='') {
        	    $query = "id=".$owmw_opt["id_owm"];
+            $queryT = $owmw_opt["id_owm"];
        	} else if ($owmw_opt["longitude"] != '' && $owmw_opt["latitude"] != '') {
        	    $query = "lat=".$owmw_opt["latitude"]."&lon=".$owmw_opt["longitude"];
+            $queryT = $owmw_opt["latitude"].$owmw_opt["longitude"];
        	} else if ($owmw_opt["zip"] != '') {
        	    $query = "zip=".$owmw_opt["zip"];
+            $queryT = $owmw_opt["zip"];
        	    if (!empty($owmw_opt["zip_country_code"])) {
        	        $query .= "," . $owmw_opt["zip_country_code"];
+       	        $queryT .= $owmw_opt["zip_country_code"];
        	    }
        	} else if ($owmw_opt["city"] != '') {
        	    $query = "q=".$owmw_opt["city"];
+       	    $queryT = $owmw_opt["city"];
        	    if (!empty($owmw_opt["country_code"])) {
            	    $query .= ",".$owmw_opt["country_code"];
+           	    $queryT .= $owmw_opt["country_code"];
        	    }
        	} else if ($_POST["longitude"] != '' && $_POST["latitude"] != '') {
-       	    $query = "lat=".$_POST["latitude"]."&lon=".$_POST["longitude"];
+       	    $query = "lat=".floatval($_POST["latitude"])."&lon=".floatval($_POST["longitude"]);
+       	    $queryT = floatval($_POST["latitude"]).floatval($_POST["longitude"]);
        	} else if (($ipData = owmw_IPtoLocation())) {
-            $owmw_opt["latitude"] = $ipData->data->geo->latitude;
-            $owmw_opt["longitude"] =  $ipData->data->geo->longitude;
+            $owmw_opt["latitude"] = floatval($ipData->data->geo->latitude);
+            $owmw_opt["longitude"] = floatval($ipData->data->geo->longitude);
        	    $query = "lat=".$owmw_opt["latitude"]."&lon=".$owmw_opt["longitude"];
+       	    $queryT = $owmw_opt["latitude"].$owmw_opt["longitude"];
        	} else {
        	    return;
        	}
+
 
         $url = 'https://api.openweathermap.org/data/2.5/weather?'.$query.'&mode=json&lang='.$owmw_opt["owm_language"].'&units='.$owmw_opt["temperature_unit"].'&APPID='.$owmw_opt["api_key"];
         if ($owmw_opt["disable_cache"] == 'yes') {
@@ -2731,13 +2824,12 @@ function owmw_get_my_weather($attr) {
                 return;
     		}
         } else {
-			global $post;
-            $transient_key = 'owmweather_' . $id . '_current_' . $query . $owmw_opt["owm_language"] . $owmw_opt["temperature_unit"];
-           	if (false === ( $owmweather_current = get_transient( $transient_key ) ) ) {
+            $transient_key = 'owmw_cur_' . $queryT . $owmw_opt["owm_language"] . $owmw_opt["temperature_unit"][0];
+           	if (false === ( $owmweather_current = $get_transient( $transient_key ) ) ) {
     			$response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
                 if (!is_wp_error($response)) {
         			$owmweather_current = json_decode(wp_remote_retrieve_body($response));
-        			set_transient( $transient_key, $owmweather_current, $owmw_opt["cache_time"] * MINUTE_IN_SECONDS );
+        			$set_transient( $transient_key, $owmweather_current, $owmw_opt["cache_time"] * MINUTE_IN_SECONDS );
         		} else {
                     $errorMsgs = $response->get_error_messages();
             	  	$response = array();
@@ -2862,7 +2954,7 @@ function owmw_get_my_weather($attr) {
 
         //JSON : Onecall forecast weather (relies on lat and lon from current weather call)
         $url = "https://api.openweathermap.org/data/2.5/onecall?lon=".$owmw_data["longitude"]."&lat=".$owmw_data["latitude"]."&mode=json&exclude=minutely&lang=".$owmw_opt["owm_language"]."&units=".$owmw_opt["temperature_unit"]."&APPID=".$owmw_opt["api_key"];
-        if($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0 || $owmw_opt["alerts"] == 'yes' || $owmw_opt["moonrise_moonset"] == "yes" || $owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes") {
+        if ($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0 || $owmw_opt["alerts"] == 'yes' || $owmw_opt["moonrise_moonset"] == "yes" || $owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes") {
     		if ($owmw_opt["disable_cache"] == 'yes') {
     			$response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
                 if (!is_wp_error($response)) {
@@ -2879,13 +2971,12 @@ function owmw_get_my_weather($attr) {
                     return;
         		}
         	} else {
-				global $post;
-        	    $transient_key = 'owmweather_' . $id . '_' . $owmw_data["longitude"] . $owmw_data["latitude"] . $owmw_opt["temperature_unit"] . $owmw_opt["owm_language"];
-              	if (false === ( $owmweather = get_transient( $transient_key))) {
+        	    $transient_key = 'owmw_' . $owmw_data["longitude"] . $owmw_data["latitude"] . $owmw_opt["temperature_unit"][0] . $owmw_opt["owm_language"];
+              	if (false === ( $owmweather = $get_transient( $transient_key))) {
     			    $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
                     if (!is_wp_error($response)) {
             			$owmweather = json_decode(wp_remote_retrieve_body($response));
-            			set_transient($transient_key, $owmweather, $owmw_opt["cache_time"] * MINUTE_IN_SECONDS );
+            			$set_transient($transient_key, $owmweather, $owmw_opt["cache_time"] * MINUTE_IN_SECONDS );
             		} else {
                         $errorMsgs = $response->get_error_messages();
                 	  	$response = array();
@@ -3132,13 +3223,12 @@ function owmw_get_my_weather($attr) {
                     return;
         		}
         	} else {
-				global $post;
-        	    $transient_key = 'owmweather_' . $id . '_5day_' . $owmw_data["longitude"] . $owmw_data["latitude"] . $owmw_opt["temperature_unit"] . $owmw_opt["owm_language"];
-              	if (false === ( $owmforecastXML = get_transient( $transient_key))) {
+        	    $transient_key = 'owmw_5d_' . $owmw_data["longitude"] . $owmw_data["latitude"] . $owmw_opt["temperature_unit"][0] . $owmw_opt["owm_language"];
+              	if (false === ( $owmforecastXML = $get_transient( $transient_key))) {
     			    $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
                     if (!is_wp_error($response)) {
                         $owmforecastXML = wp_remote_retrieve_body($response);
-            			set_transient($transient_key, $owmforecastXML, $owmw_opt["cache_time"] * MINUTE_IN_SECONDS );
+            			$set_transient($transient_key, $owmforecastXML, $owmw_opt["cache_time"] * MINUTE_IN_SECONDS );
             		} else {
                         $errorMsgs = $response->get_error_messages();
                         $response = array();
@@ -4785,7 +4875,11 @@ function owmw_get_my_weather($attr) {
 	    owmw_deleteWhitespaces($owmw_html);
 
         if ($owmw_opt["template"] == "debug") {
-            $owmw_sys_opt = get_option('owmw_option_name');
+            if (is_multisite() && owmw_is_global_multisite()) {
+                $owmw_sys_opt = get_site_option("owmw_option_name");
+            } else {
+                $owmw_sys_opt = get_option("owmw_option_name");
+            }
         }
 
         owmw_sanitize_api_response($owmw_data);
@@ -4841,6 +4935,7 @@ function owmw_get_my_weather($attr) {
 	  	$response = array();
 	  	$response['weather'] = $owmw_params["weather_id"];
 	  	$response['html'] = $owmw_html["html"];
+
 		wp_send_json_success($response);
 	}
 }
@@ -4860,13 +4955,19 @@ add_filter('manage_edit-owm-weather_columns', 'owmw_set_custom_edit_owm_weather_
 add_action('manage_owm-weather_posts_custom_column', 'owmw_custom_owm_weather_column', 10, 2);
 
 function owmw_set_custom_edit_owm_weather_columns($columns) {
-    $columns['owm-weather'] = esc_html__('Shortcode', 'owm-weather');
+    $columns['owmw-shortcode'] = esc_html__('Shortcode', 'owm-weather');
+    if (is_main_site() && owmw_is_global_multisite()) {
+        $columns['owmw-multisite'] = esc_html__('Multisite', 'owm-weather');
+    }
     return $columns;
 }
 
 function owmw_custom_owm_weather_column($column, $post_id) {
-    if ($column == 'owm-weather') {
-        echo '<b>[owm-weather id="' . esc_html($post_id) . '" /]</b>';
+    if ($column == 'owmw-shortcode') {
+        echo '<b>[owm-weather id="' . (is_main_site() && owmw_is_global_multisite() ? "m" : "") . esc_html($post_id) . '" /]</b>';
+    }
+    if ($column == 'owmw-multisite') {
+        echo get_post_meta($post_id, "_owmweather_network_share", true) ? esc_html__('Network Shared', 'owm-weather') : "";
     }
 }
 
@@ -4950,8 +5051,13 @@ add_filter('post_updated_messages', 'owmw_set_messages' );
 //OWM WEATHER Notices
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function owmw_notice() {
-	$owmw_advanced_api_key = get_option('owmw_option_name');
-	if ( is_plugin_active( 'owm-weather/owmweather.php' ) && !isset($owmw_advanced_api_key['owmw_advanced_api_key'])) {
+    if (is_multisite() && owmw_is_global_multisite()) {
+        $opts = get_site_option('owmw_option_name');
+    } else {
+        $opts = get_option('owmw_option_name');
+    }
+
+	if ( is_plugin_active( 'owm-weather/owmweather.php' ) && empty($opts["owmw_advanced_api_key"])) {
 	    ?>
 	    <div class="error notice">
 	        <p><a href="<?php echo admin_url('admin.php?page=owmw-settings-admin#tab_advanced'); ?>"><?php esc_html_e( 'OWM Weather: Please enter your own OpenWeatherMap API key to avoid exceeding daily API call limits.', 'owm-weather' ); ?></a></p>
@@ -4963,6 +5069,7 @@ function owmw_notice() {
 	}
 }
 add_action( 'admin_notices', 'owmw_notice' );
+add_action( 'network_admin_notices', 'owmw_notice' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Utility functions
@@ -5203,6 +5310,14 @@ function owmw_sanitize_validate_field($key, $value) {
     if (!empty($value)) {
         switch($key) {
             case "id":
+                $value = sanitize_text_field($value);
+                if ($value[0] == "m") {
+                    $value = "m" . (string)intval(substr($value,1));
+                } else {
+                    $value = (string)intval($value);
+                }
+                break;
+            
             case "id_owm":
             case "background_image":
             case "sunny_background_image":
@@ -5446,6 +5561,7 @@ function owmw_sanitize_validate_field($key, $value) {
             case "map_windrose_legend":
             case "map_windrose_on":
             case "gtag":
+            case "network_share":
             case "bypass_exclude":
             case "alerts":
             case "hours_time_icons":
@@ -5572,9 +5688,9 @@ function owmw_IPtoLocation() {
         return false;
     }
 
-    $transient_key = 'owmweather_iplocation_' . $ip;
+    $transient_key = 'owmw_iplocation_' . $ip;
 
-    if (false === ($ipData = get_transient($transient_key))) {
+    if (false === ($ipData = $get_transient($transient_key))) {
     	$apiURL = 'https://tools.keycdn.com/geo.json?host='.$ip;
         $request_headers = [];
         $request_headers[] = 'User-Agent: keycdn-tools:' . home_url($wp->request);
@@ -5589,7 +5705,7 @@ function owmw_IPtoLocation() {
    		}
 
         $ipData = json_decode(wp_remote_retrieve_body($response));
-    	set_transient($transient_key, $ipData);
+    	$set_transient($transient_key, $ipData, MONTH_IN_SECONDS);
     }
 
     owmw_sanitize_api_response($ipData);
@@ -5683,3 +5799,13 @@ function owmw_getConditionText($condition) {
 	return "";
 }
 
+function owmw_is_global_multisite() {
+    if (is_multisite()) {
+        $opts = get_site_option('owmw_option_name');
+        if (isset($opts["owmw_network_multisite"]) && $opts["owmw_network_multisite"] == "yes") {
+            return true;
+        }
+    }
+    
+    return false;
+}

@@ -16,48 +16,75 @@ class owmw_options
      * Start up
      */
     public function __construct() {
-        add_action( 'admin_menu', array( $this, 'owmw_add_plugin_page' ) );
-        add_action( 'admin_init', array( $this, 'page_init' ) );
+        $hook = is_multisite() && (is_network_admin() || owmw_is_global_multisite()) ? 'network_' : '';
+        add_action( "{$hook}admin_menu", array( $this, "owmw_add_plugin_page" ) );
+        add_action( "admin_init", array( $this, "page_init" ) );
+        if (is_multisite() && is_network_admin()) {
+            add_action( "admin_init", array( $this, "update_settings" ) );
+        }
     }
 
     /**
      * Add options page
      */
     public function owmw_add_plugin_page() {
-        // This page will be under "Settings"
+        $parent     = is_multisite() && is_network_admin() ? 'settings.php' : 'options-general.php';
+        $capability = is_multisite() && is_network_admin() ? 'manage_network_options' : 'manage_options';
 
-    $owmw_help_tab = add_options_page(
-            'Settings Admin',
-            'OWM Weather',
-            'manage_options',
-            'owmw-settings-admin',
-            array( $this, 'owmw_create_admin_page' )
-        );
-    add_action('load-'.$owmw_help_tab, 'owmw_help_tab');
+        // This page will be under "Settings"
+        $hookname = add_submenu_page(
+            $parent,
+            esc_html__( 'OWM Weather Settings', 'owm-weather' ),
+                esc_html_x( 'OWM Weather', 'Menu item', 'owm-weather' ),
+                $capability,
+                'owmw-settings-admin',
+                array( $this, 'owmw_create_admin_page' )
+            );
+        add_action('load-'.$hookname, 'owmw_help_tab');
     }
 
+    public function update_settings() {
+        if ($_SERVER["REQUEST_METHOD"] != "POST" || empty($_POST)) {
+            return;
+        }
+
+        if ((isset($_POST["action"]) && sanitize_key($_POST["action"]) == "update") &&
+            (isset($_POST["option_page"]) && sanitize_key($_POST["option_page"]) == "owmw_cloudy_option_group")) {
+            check_ajax_referer( 'owmw_cloudy_option_group-options', sanitize_key($_POST['_wpnonce']), true );
+            
+            if (is_multisite() && is_network_admin() && is_network_admin() && current_user_can("manage_network_options") && !empty($_POST["owmw_option_name"])) {
+                $this->options = $this->sanitize($_POST["owmw_option_name"]);
+                update_site_option('owmw_option_name', $this->options);
+                
+                new Log_Success( __( 'Settings saved.', 'owm-weather' ) );
+            }
+        }
+    }
 
     /**
      * Options page callback
      */
     public function owmw_create_admin_page() {
 
-    	wp_enqueue_media();
+        wp_enqueue_media();
         add_action( 'admin_footer', 'owmw_media_selector_print_scripts' );
 
-        // Set class property
-        $this->options = get_option( 'owmw_option_name' );
-        ?>
+        if (is_multisite() && is_network_admin()) {
+            $this->options = get_site_option( 'owmw_option_name' );
+        } else {
+            $this->options = get_option( 'owmw_option_name' );
+        }
+    ?>
         <?php $owmw_info_version = get_plugin_data( plugin_dir_path( __FILE__ ).'/owmweather.php'); ?>
 
         <div id="owmweather-header">
-			<div id="owmweather-clouds">
-				<h3>
-					<?php esc_html_e( 'OWM Weather', 'owm-weather' ); ?>
-				</h3>
-				<span class="owmw-info-version"><?php print_r($owmw_info_version['Version']); ?></span>
-				<div id="owmweather-notice">
-					<div class="small">
+            <div id="owmweather-clouds">
+                <h3>
+                    <?php esc_html_e( 'OWM Weather', 'owm-weather' ); ?>
+                </h3>
+                <span class="owmw-info-version"><?php print_r($owmw_info_version['Version']); ?></span>
+                <div id="owmweather-notice">
+                    <div class="small">
 
                                 <span class="dashicons dashicons-wordpress"></span>
                                 <?php esc_html_e( 'Do you like OWM Weather? Don\'t forget to rate it 5 stars!', 'owm-weather' ); ?>
@@ -90,18 +117,19 @@ class owmw_options
                         </div>
 
                         <form action="https://www.paypal.com/donate" method="post" target="_blank">
-	    					<?php esc_html_e( 'Consider a donation', 'owm-weather' ); ?>:
+                            <?php esc_html_e( 'Consider a donation', 'owm-weather' ); ?>:
                             <input type="hidden" name="hosted_button_id" value="PQDNJGKMLHAFU" />
                             <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                             <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                         </form>
 
-			</div>
-		</div>
+            </div>
+        </div>
 
         <?php
-            function owmw_settings_admin_export() {
-                ?>
+        function owmw_settings_admin_export_import_reset() {
+            $action = is_multisite() && is_network_admin() ? network_admin_url('settings.php?page=owmw_export_settings') : admin_url('options.php');?>
+        ?>
                 <div id="owmw_export_form" class="metabox-holder">
                     <div class="postbox">
                         <h3><span><?php esc_html_e( 'Export Settings', 'owm-weather' ); ?></span></h3>
@@ -149,92 +177,92 @@ class owmw_options
                     </div><!-- .postbox -->
                 </div><!-- .metabox-holder -->
                 <?php
-
             }
         ?>
 
-        <?php owmw_settings_admin_export(); ?>
+    <?php owmw_settings_admin_export_import_reset(); 
 
-        <form method="post" action="options.php" class="owmweather-settings">
+    $action = is_multisite() && is_network_admin() ? network_admin_url('settings.php?page=owmw-settings-admin') : admin_url('options.php');?>
+
+        <form method="post" action="<?php echo esc_attr( $action ); ?>" class="owmweather-settings">
             <?php settings_fields( 'owmw_cloudy_option_group' ); ?>
 
             <div id="owmweather-tabs">
                 <h2 class="nav-tab-wrapper hide-if-no-js">
-                	<ul>
-						<li><a href="#tab_advanced" class="nav-tab"><?php esc_html_e( 'System', 'owm-weather' ); ?></a></li>
-						<li><a href="#tab_basic" class="nav-tab"><?php esc_html_e( 'Basic', 'owm-weather' ); ?></a></li>
-						<li><a href="#tab_display" class="nav-tab"><?php esc_html_e( 'Display', 'owm-weather' ); ?></a></li>
-						<li><a href="#tab_layout" class="nav-tab"><?php esc_html_e( 'Layout', 'owm-weather' ); ?></a></li>
-						<li><a href="#tab_weather_based" class="nav-tab"><?php esc_html_e( 'Weather-based', 'owm-weather' ); ?></a></li>
-						<li><a href="#tab_map" class="nav-tab"><?php esc_html_e( 'Map', 'owm-weather' ); ?></a></li>
+                    <ul>
+                    <?php if (is_multisite() && is_network_admin()) { ?>
+                        <li><a href="#tab_network" class="nav-tab"><?php esc_html_e( 'Network', 'owm-weather' ); ?></a></li>
+                    <?php } ?>
+                        <li class="only-multisite"><a href="#tab_advanced" class="nav-tab"><?php esc_html_e( 'System', 'owm-weather' ); ?></a></li>
+                        <li class="only-multisite"><a href="#tab_basic" class="nav-tab"><?php esc_html_e( 'Basic', 'owm-weather' ); ?></a></li>
+                        <li class="only-multisite"><a href="#tab_display" class="nav-tab"><?php esc_html_e( 'Display', 'owm-weather' ); ?></a></li>
+                        <li class="only-multisite"><a href="#tab_layout" class="nav-tab"><?php esc_html_e( 'Layout', 'owm-weather' ); ?></a></li>
+                        <li class="only-multisite"><a href="#tab_weather_based" class="nav-tab"><?php esc_html_e( 'Weather-based', 'owm-weather' ); ?></a></li>
+                        <li class="only-multisite"><a href="#tab_map" class="nav-tab"><?php esc_html_e( 'Map', 'owm-weather' ); ?></a></li>
                         <li><a href="#tab_export" class="nav-tab"><?php esc_html_e( 'Import/Export/Reset', 'owm-weather' ); ?></a></li>
-						<li><a href="#tab_support" class="nav-tab"><?php esc_html_e( 'Support', 'owm-weather' ); ?></a></li>
-                	</ul>
-				</h2>
+                        <li><a href="#tab_support" class="nav-tab"><?php esc_html_e( 'Support', 'owm-weather' ); ?></a></li>
+                    </ul>
+                </h2>
 
-				<div id="owmweather-tabs-settings">
-					<div class="owmw-tab" id="tab_advanced"><?php do_settings_sections( 'owmw-settings-admin-advanced' ); ?></div>
-					<div class="owmw-tab" id="tab_basic"><?php do_settings_sections( 'owmw-settings-admin-basic' ); ?></div>
-					<div class="owmw-tab" id="tab_display"><?php do_settings_sections( 'owmw-settings-admin-display' ); ?></div>
-					<div class="owmw-tab" id="tab_layout"><?php do_settings_sections( 'owmw-settings-admin-layout' ); ?></div>
-					<div class="owmw-tab" id="tab_weather_based"><?php do_settings_sections( 'owmw-settings-admin-weather-based' ); ?></div>
-					<div class="owmw-tab" id="tab_map"><?php do_settings_sections( 'owmw-settings-admin-map' ); ?></div>
+                <div id="owmweather-tabs-settings">
+                    <?php if (is_multisite() && is_network_admin()) { ?>
+                        <div class="owmw-tab" id="tab_network"><?php do_settings_sections( 'owmw-settings-admin-network' ); ?></div>
+                    <?php } ?>
+                    <div class="owmw-tab" id="tab_advanced"><?php do_settings_sections( 'owmw-settings-admin-advanced' ); ?></div>
+                    <div class="owmw-tab" id="tab_basic"><?php do_settings_sections( 'owmw-settings-admin-basic' ); ?></div>
+                    <div class="owmw-tab" id="tab_display"><?php do_settings_sections( 'owmw-settings-admin-display' ); ?></div>
+                    <div class="owmw-tab" id="tab_layout"><?php do_settings_sections( 'owmw-settings-admin-layout' ); ?></div>
+                    <div class="owmw-tab" id="tab_weather_based"><?php do_settings_sections( 'owmw-settings-admin-weather-based' ); ?></div>
+                    <div class="owmw-tab" id="tab_map"><?php do_settings_sections( 'owmw-settings-admin-map' ); ?></div>
                     <div class="owmw-tab" id="tab_export"></div>
-					<div class="owmw-tab" id="tab_support"><?php do_settings_sections( 'owmw-settings-admin-support' ); ?></div>
-				</div>
+                    <div class="owmw-tab" id="tab_support"><?php do_settings_sections( 'owmw-settings-admin-support' ); ?></div>
+                </div>
             </div>
-	    <script>jQuery("#owmw_export_form").detach().appendTo('#tab_export')</script>
-	    <div style="padding-top: 15px;">
+        <script>jQuery("#owmw_export_form").detach().appendTo('#tab_export')</script>
+        <div style="padding-top: 15px;">
              <?php submit_button( esc_html__( 'Save changes', 'owm-weather' ), 'primary', 'submit', false ); ?>
-	    </div>
+        </div>
         </form>
 
         <div class="owmweather-sidebar">
-        	<div id="owmweather-cache" class="owmweather-module owmweather-inactive" style="height: 177px;">
-				<h3><?php esc_html_e('OWM Weather cache','owm-weather'); ?></h3>
-				<div class="owmweather-module-description">
-					<div class="module-image">
-						<div class="dashicons dashicons-trash"></div>
-						<p><span class="module-image-badge"><?php esc_html_e('cache system','owm-weather'); ?></span></p>
-					</div>
+            <div id="owmweather-cache" class="owmweather-module owmweather-inactive" style="height: 177px;">
+                <h3><?php esc_html_e('OWM Weather cache','owm-weather'); ?></h3>
+                <div class="owmweather-module-description">
+                    <div class="module-image">
+                        <div class="dashicons dashicons-trash"></div>
+                        <p><span class="module-image-badge"><?php esc_html_e('cache system','owm-weather'); ?></span></p>
+                    </div>
 
-					<p><?php esc_html_e('Click this button to refresh the weather cache.','owm-weather'); ?></p>
+                    <p><?php esc_html_e('Click this button to refresh the weather cache.','owm-weather'); ?></p>
 
-	            	<?php
-						function owmw_clear_all_cache() {
-					    	if (isset($_GET['owmw_clear_all_cache_nonce'])) {
-						?>
-						<div class="owmweather-module-actions">
-							<p>
-							    <a href="<?php print wp_nonce_url(admin_url('options-general.php?page=owmw-settings-admin'), 'owmw_clear_all_cache_action', 'owmw_clear_all_cache_nonce');?>"
-							        class="button button-secondary">
-							        <?php esc_html_e('Clear cache!', 'owm-weather');?>
-								</a>
-							</p>
-						</div>
+                    <?php
+                    function owmw_clear_all_cache() {
+                        $url = (is_multisite() && is_network_admin() ? network_admin_url('settings.php') : admin_url('options-general.php')) . '?page=owmw-settings-admin';
+                        ?>
+                        <div class="owmweather-module-actions">
+                            <a href="<?php print add_query_arg('owmw_clear_all_cache_nonce', wp_create_nonce('owmw_clear_all_cache'), $url);?>"
+                                class="button">
+                                <?php esc_html_e('Clear cache!', 'owm-weather');?>
+                            </a>
+                        </div>
 
-						<?php
-
-					    } else {
-
-						?>
-						<div class="owmweather-module-actions">
-						    <a href="<?php print wp_nonce_url(admin_url('options-general.php?page=owmw-settings-admin'), 'owmw_clear_all_cache_action', 'owmw_clear_all_cache');?>"
-						        class="button button-secondary">
-						        <?php esc_html_e('Clear cache!', 'owm-weather');?>
-							</a>
-						</div>
-
-						<?php
-							global $wpdb;
-							$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmweather%' ");
-							$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmweather%' ");
-						}
-					};
-					?>
-					<?php echo owmw_clear_all_cache(); ?>
-				</div>
-			</div>
+                        <?php
+                        if (isset($_GET['owmw_clear_all_cache_nonce'])) {
+                            if (wp_verify_nonce(sanitize_key($_GET['owmw_clear_all_cache_nonce']), 'owmw_clear_all_cache')) {
+                                global $wpdb;
+                                $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmweather%' ");
+                                $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmweather%' ");
+                                if (is_multisite() && is_network_admin() && is_network_admin() && current_user_can("manage_network_options")) {
+                                    $wpdb->query("DELETE FROM $wpdb->sitemeta WHERE meta_key LIKE '_site_transient_owmw%' ");
+                                    $wpdb->query("DELETE FROM $wpdb->sitemeta WHERE meta_key LIKE 'site__transient_timeout_owmw%' ");
+                                }
+                            }
+                        }
+                    }
+                    ?>
+                    <?php echo owmw_clear_all_cache(); ?>
+                </div>
+            </div>
         </div>
         <?php
     }
@@ -249,8 +277,8 @@ class owmw_options
             array( $this, 'sanitize' ) // Sanitize
         );
 
-		//BASIC SECTION============================================================================
-		add_settings_section(
+    //BASIC SECTION============================================================================
+        add_settings_section(
             'owmw_setting_section_basic', // ID
             esc_html__("Basic Settings",'owm-weather'), // Title
             array( $this, 'owmw_print_section_info_basic' ), // Callback
@@ -289,7 +317,7 @@ class owmw_options
             'owmw_setting_section_basic' // Section
         );
 
-		//DISPLAY SECTION==========================================================================
+        //DISPLAY SECTION==========================================================================
         add_settings_section(
             'owmw_setting_section_display', // ID
             esc_html__("Display Settings",'owm-weather'), // Title
@@ -313,23 +341,23 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_current_temperature', // ID
-			esc_html__("Current Temperature",'owm-weather'), // Title
+            esc_html__("Current Temperature",'owm-weather'), // Title
             array( $this, 'owmw_display_current_temperature_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_current_feels_like', // ID
-			esc_html__("Current Feels-Like Temperature",'owm-weather'), // Title
+            esc_html__("Current Feels-Like Temperature",'owm-weather'), // Title
             array( $this, 'owmw_display_current_feels_like_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_current_weather_description', // ID
             esc_html__("Current Short Condition",'owm-weather'), // Title
             array( $this, 'owmw_display_weather_description_callback' ), // Callback
@@ -345,7 +373,7 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_today_date_format', // ID
             esc_html__("Date",'owm-weather'), // Title
             array( $this, 'owmw_display_today_date_format_callback' ), // Callback
@@ -353,7 +381,7 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_sunrise_sunset', // ID
             esc_html__("Sunrise + Sunset",'owm-weather'), // Title
             array( $this, 'owmw_display_sunrise_sunset_callback' ), // Callback
@@ -361,7 +389,7 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_moonrise_moonset', // ID
             esc_html__("Moonrise + Moonset",'owm-weather'), // Title
             array( $this, 'owmw_display_moonrise_moonset_callback' ), // Callback
@@ -369,7 +397,7 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_wind', // ID
             esc_html__("Wind",'owm-weather'), // Title
             array( $this, 'owmw_display_wind_callback' ), // Callback
@@ -393,7 +421,7 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_humidity', // ID
             esc_html__("Humidity",'owm-weather'), // Title
             array( $this, 'owmw_display_humidity_callback' ), // Callback
@@ -401,7 +429,7 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_dew_point', // ID
             esc_html__("Dew Point",'owm-weather'), // Title
             array( $this, 'owmw_display_dew_point_callback' ), // Callback
@@ -409,7 +437,7 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_pressure', // ID
            esc_html__("Pressure",'owm-weather'), // Title
             array( $this, 'owmw_display_pressure_callback' ), // Callback
@@ -417,7 +445,7 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_pressure_unit', // ID
            esc_html__("Pressure Unit",'owm-weather'), // Title
             array( $this, 'owmw_display_pressure_unit_callback' ), // Callback
@@ -425,7 +453,7 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_cloudiness', // ID
             esc_html__("Cloudiness",'owm-weather'), // Title
             array( $this, 'owmw_display_cloudiness_callback' ), // Callback
@@ -465,9 +493,9 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_alerts_popup', // ID
-			esc_html__("Alerts Popup:",'owm-weather'), // Title
+            esc_html__("Alerts Popup:",'owm-weather'), // Title
             array( $this, 'owmw_display_alerts_popup_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -505,9 +533,9 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-	add_settings_field(
+    add_settings_field(
             'owmw_display_length_days_names', // ID
-			esc_html__("Length Day Names:",'owm-weather'), // Title
+            esc_html__("Length Day Names:",'owm-weather'), // Title
             array( $this, 'owmw_display_display_length_days_names_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
@@ -515,13 +543,13 @@ class owmw_options
 
         add_settings_field(
             'owmw_owm_link', // ID
-			esc_html__("Link to OpenWeatherMap",'owm-weather'), // Title
+            esc_html__("Link to OpenWeatherMap",'owm-weather'), // Title
             array( $this, 'owmw_display_owm_link_callback' ), // Callback
             'owmw-settings-admin-display', // Page
             'owmw_setting_section_display' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_last_update', // ID
             esc_html__("Data Update Time",'owm-weather'), // Title
             array( $this, 'owmw_display_last_update_callback' ), // Callback
@@ -529,7 +557,7 @@ class owmw_options
             'owmw_setting_section_display' // Section
         );
 
-		//LAYOUT SECTION=========================================================================
+        //LAYOUT SECTION=========================================================================
         add_settings_section(
             'owmw_setting_section_layout', // ID
             esc_html__("Layout Settings",'owm-weather'), // Title
@@ -537,7 +565,7 @@ class owmw_options
             'owmw-settings-admin-layout' // Page
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_template', // ID
             esc_html__("Template"), // Title
             array( $this, 'owmw_layout_template_callback' ), // Callback
@@ -545,7 +573,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_font', // ID
             esc_html__("Font"), // Title
             array( $this, 'owmw_layout_font_callback' ), // Callback
@@ -553,7 +581,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_iconpack', // ID
             esc_html__("Icon Pack"), // Title
             array( $this, 'owmw_layout_iconpack_callback' ), // Callback
@@ -561,7 +589,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_disable_spinner', // ID
             esc_html__("Spinner",'owm-weather'), // Title
             array( $this, 'owmw_layout_disable_spinner_callback' ), // Callback
@@ -569,7 +597,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_disable_anims', // ID
             esc_html__("Disable Animations for Main Icon",'owm-weather'), // Title
             array( $this, 'owmw_layout_disable_anims_callback' ), // Callback
@@ -577,7 +605,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_background_color', // ID
             esc_html__("Background Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_background_color_callback' ), // Callback
@@ -601,7 +629,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_border_color', // ID
             esc_html__("Border Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_border_color_callback' ), // Callback
@@ -609,7 +637,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_border_width', // ID
             esc_html__("Border Width (in px)",'owm-weather'), // Title
             array( $this, 'owmw_layout_border_width_callback' ), // Callback
@@ -617,7 +645,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_border_style', // ID
             esc_html__("Border Style",'owm-weather'), // Title
             array( $this, 'owmw_layout_border_style_callback' ), // Callback
@@ -625,7 +653,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_border_radius', // ID
             esc_html__("Border Radius",'owm-weather'), // Title
             array( $this, 'owmw_layout_border_radius_callback' ), // Callback
@@ -650,7 +678,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_tabbed_btn_text_color', // ID
             esc_html__("Tabbed Button Text Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_tabbed_btn_text_color_callback' ), // Callback
@@ -658,21 +686,21 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_tabbed_btn_background_color', // ID
             esc_html__("Tabbed Button Background Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_tabbed_btn_background_color_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
         );
-		add_settings_field(
+        add_settings_field(
             'owmw_tabbed_btn_active_color', // ID
             esc_html__("Tabbed Button Active Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_tabbed_btn_active_color_callback' ), // Callback
             'owmw-settings-admin-layout', // Page
             'owmw_setting_section_layout' // Section
         );
-		add_settings_field(
+        add_settings_field(
             'owmw_tabbed_btn_hover_color', // ID
             esc_html__("Tabbed Button Hover Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_tabbed_btn_hover_color_callback' ), // Callback
@@ -680,7 +708,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
         
-		add_settings_field(
+        add_settings_field(
             'owmw_table_background_color', // ID
             esc_html__("Table Background Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_background_color_callback' ), // Callback
@@ -696,7 +724,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_table_border_color', // ID
             esc_html__("Table Border Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_border_color_callback' ), // Callback
@@ -704,7 +732,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_table_border_width', // ID
             esc_html__("Table Border Width (in px)",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_border_width_callback' ), // Callback
@@ -712,7 +740,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_table_border_style', // ID
             esc_html__("Table Border Style",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_border_style_callback' ), // Callback
@@ -720,7 +748,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_table_border_radius', // ID
             esc_html__("Table Border Radius",'owm-weather'), // Title
             array( $this, 'owmw_layout_table_border_radius_callback' ), // Callback
@@ -729,7 +757,7 @@ class owmw_options
         );
 
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_height', // ID
             esc_html__("Chart Height",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_height_callback' ), // Callback
@@ -737,7 +765,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_text_color', // ID
             esc_html__("Chart Text Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_text_color_callback' ), // Callback
@@ -745,7 +773,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_night_color', // ID
             esc_html__("Chart Night Highlight Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_night_color_callback' ), // Callback
@@ -753,7 +781,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_background_color', // ID
             esc_html__("Chart Background Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_background_color_callback' ), // Callback
@@ -761,7 +789,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_border_color', // ID
             esc_html__("Chart Border Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_border_color_callback' ), // Callback
@@ -769,7 +797,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_border_width', // ID
             esc_html__("Chart Border Width",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_border_width_callback' ), // Callback
@@ -777,7 +805,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_border_style', // ID
             esc_html__("Chart Border Style",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_border_style_callback' ), // Callback
@@ -785,7 +813,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_border_radius', // ID
             esc_html__("Chart Border Radius",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_border_radius_callback' ), // Callback
@@ -793,7 +821,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_temperature_color', // ID
             esc_html__("Chart Temperature Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_temperature_color_callback' ), // Callback
@@ -801,7 +829,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_feels_like_color', // ID
             esc_html__("Chart Feels-Like Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_feels_like_color_callback' ), // Callback
@@ -809,7 +837,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_dew_point_color', // ID
             esc_html__("Chart Dew Point Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_dew_point_color_callback' ), // Callback
@@ -817,7 +845,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_cloudiness_color', // ID
             esc_html__("Chart Cloudiness Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_cloudiness_color_callback' ), // Callback
@@ -825,7 +853,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_rain_chance_color', // ID
             esc_html__("Chart Rain Chance Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_rain_chance_color_callback' ), // Callback
@@ -833,7 +861,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_humidity_color', // ID
             esc_html__("Chart Humidity Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_humidity_color_callback' ), // Callback
@@ -841,7 +869,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_pressure_color', // ID
             esc_html__("Chart Pressure Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_pressure_color_callback' ), // Callback
@@ -849,7 +877,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_rain_amt_color', // ID
             esc_html__("Chart Rain Amount Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_rain_amt_color_callback' ), // Callback
@@ -857,7 +885,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_snow_amt_color', // ID
             esc_html__("Chart Snow Amount Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_snow_amt_color_callback' ), // Callback
@@ -865,7 +893,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_wind_speed_color', // ID
             esc_html__("Chart Wind Speed Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_wind_speed_color_callback' ), // Callback
@@ -873,7 +901,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_chart_wind_gust_color', // ID
             esc_html__("Chart Wind Gust Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_chart_wind_gust_color_callback' ), // Callback
@@ -881,7 +909,7 @@ class owmw_options
             'owmw_setting_section_layout' // Section
         );
 
-		//WEATHER-BASED SECTION=========================================================================
+        //WEATHER-BASED SECTION=========================================================================
         add_settings_section(
             'owmw_setting_section_weather_based', // ID
             esc_html__("Weather-based Settings",'owm-weather'), // Title
@@ -897,7 +925,7 @@ class owmw_options
             'owmw_setting_section_weather_based' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_sunny_background_color', // ID
             esc_html__("Sunny Background Color",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_sunny_background_color_callback' ), // Callback
@@ -921,7 +949,7 @@ class owmw_options
             'owmw_setting_section_weather_based' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_cloudy_background_color', // ID
             esc_html__("Cloudy Background Color",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_cloudy_background_color_callback' ), // Callback
@@ -945,7 +973,7 @@ class owmw_options
             'owmw_setting_section_weather_based' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_drizzly_background_color', // ID
             esc_html__("Drizzly Background Color",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_drizzly_background_color_callback' ), // Callback
@@ -969,7 +997,7 @@ class owmw_options
             'owmw_setting_section_weather_based' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_rainy_background_color', // ID
             esc_html__("Rainy Background Color",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_rainy_background_color_callback' ), // Callback
@@ -993,7 +1021,7 @@ class owmw_options
             'owmw_setting_section_weather_based' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_snowy_background_color', // ID
             esc_html__("Snowy Background Color",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_snowy_background_color_callback' ), // Callback
@@ -1017,7 +1045,7 @@ class owmw_options
             'owmw_setting_section_weather_based' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_stormy_background_color', // ID
             esc_html__("Stormy Background Color",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_stormy_background_color_callback' ), // Callback
@@ -1041,7 +1069,7 @@ class owmw_options
             'owmw_setting_section_weather_based' // Section
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_foggy_background_color', // ID
             esc_html__("Foggy Background Color",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_foggy_background_color_callback' ), // Callback
@@ -1057,7 +1085,25 @@ class owmw_options
             'owmw_setting_section_weather_based' // Section
         );
 
-		//SYSTEM SECTION=========================================================================
+        //NETWORK SECTION=========================================================================
+        if (is_multisite() && is_network_admin()) {
+            add_settings_section(
+                'owmw_setting_section_network', // ID
+                esc_html__("Network Settings",'owm-weather'), // Title
+                array( $this, 'owmw_print_section_info_network' ), // Callback
+                'owmw-settings-admin-network' // Page
+            );
+
+            add_settings_field(
+                'owmw_network_multisite', // ID
+               esc_html__("Global Multisite Setup",'owm-weather'), // Title
+                array( $this, 'owmw_network_multisite_callback' ), // Callback
+                'owmw-settings-admin-network', // Page
+                'owmw_setting_section_network' // Section
+            );
+        }
+
+        //SYSTEM SECTION=========================================================================
         add_settings_section(
             'owmw_setting_section_advanced', // ID
             esc_html__("Advanced Settings",'owm-weather'), // Title
@@ -1105,9 +1151,9 @@ class owmw_options
             'owmw_setting_section_advanced' // Section
         );
 
-		//MAP SECTION =============================================================================
+        //MAP SECTION =============================================================================
 
-		add_settings_section(
+        add_settings_section(
             'owmw_setting_section_map', // ID
             esc_html__("Map Settings",'owm-weather'), // Title
             array( $this, 'owmw_print_section_info_map' ), // Callback
@@ -1339,14 +1385,14 @@ class owmw_options
         );
 
         //SUPPORT SECTION==========================================================================
-		add_settings_section(
+        add_settings_section(
             'owmw_setting_section_support', // ID
             '', // Title
             array( $this, 'print_section_info_support' ), // Callback
             'owmw-settings-admin-support' // Page
         );
 
-		add_settings_field(
+        add_settings_field(
             'owmw_support_info', // ID
             '', // Title
             array( $this, 'owmw_support_info_callback' ), // Callback
@@ -1355,18 +1401,26 @@ class owmw_options
         );
 
 
-		$this->options = get_option('owmw_option_name');
-		if ($this->options) {
-            foreach($this->options as $key => $value)
-            {
+        if (is_multisite() && is_network_admin()) {
+            $this->options = get_site_option('owmw_option_name');
+        } else {
+            $this->options = get_option('owmw_option_name');
+        }
+
+        if ($this->options) {
+            foreach($this->options as $key => $value) {
                 if ($value === '')
                 {
                     unset($this->options[$key]);
                 }
             }
         }
-        update_option('owmw_option_name', $this->options);
-
+        
+        if (is_multisite() && is_network_admin()) {
+            update_site_option('owmw_option_name', $this->options);
+        } else {
+            update_option('owmw_option_name', $this->options);
+        }
     }
     
     /**
@@ -1375,13 +1429,13 @@ class owmw_options
      * @param array $input Contains all settings fields as array keys
      */
     public function sanitize($input) {
-    	if (!empty($input)) {
+        if (!empty($input)) {
             foreach($input as $k => &$v) {
-        		if (!in_array($v, array('yes', 'nobypass'))) {
-    	        	$v = owmw_sanitize_validate_field(substr($k, 5), $v);
-            	}
-	        }
-    	}
+                if (!in_array($v, array('yes', 'nobypass'))) {
+                    $v = owmw_sanitize_validate_field(substr($k, 5), $v);
+                }
+            }
+        }
 
         return $input;
     }
@@ -1390,13 +1444,13 @@ class owmw_options
      * Print the Section text
      */
 
-	public function owmw_print_section_info_basic()
+    public function owmw_print_section_info_basic()
     {
         esc_html_e('Basic settings to bypass on all weather:', 'owm-weather');
         echo '<input type="hidden" name="owmw_option_name[owmw_version]" value="' . OWM_WEATHER_VERSION . '" />';
     }
 
-	public function owmw_print_section_info_display()
+    public function owmw_print_section_info_display()
     {
         esc_html_e('Display settings to bypass on all weather:', 'owm-weather');
     }
@@ -1411,12 +1465,17 @@ class owmw_options
         esc_html_e('Weather-based settings to bypass on all weather:', 'owm-weather');
     }
 
+    public function owmw_print_section_info_network()
+    {
+        esc_html_e('OWM Weather Multisite settings:', 'owm-weather');
+    }
+
     public function owmw_print_section_info_advanced()
     {
         esc_html_e('OWM Weather System settings:', 'owm-weather');
     }
 
-	public function owmw_print_section_info_map()
+    public function owmw_print_section_info_map()
     {
         esc_html_e('Map settings to bypass on all weather:', 'owm-weather');
     }
@@ -1430,46 +1489,46 @@ class owmw_options
      * Get the settings option array and print one of its values
      */
 
-	public function owmw_basic_unit_callback()
+    public function owmw_basic_unit_callback()
     {
         $selected = $this->options['owmw_unit'] ?? "nobypass";
 
-		echo ' <select id="owmw_unit" name="owmw_option_name[owmw_unit]"> ';
+        echo ' <select id="owmw_unit" name="owmw_option_name[owmw_unit]"> ';
         echo ' <option ';
         if ('nobypass' == $selected) echo 'selected="selected"';
         echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
-		echo ' <option ';
-		if ('imperial' == $selected) echo 'selected="selected"';
-		echo ' value="imperial">'. esc_html__( 'Imperial', 'owm-weather' ) .'</option>';
-		echo '<option ';
-		if ('metric' == $selected) echo 'selected="selected"';
-		echo ' value="metric">'. esc_html__( 'Metric', 'owm-weather' ) .'</option>';
-		echo '</select>';
-	}
+        echo ' <option ';
+        if ('imperial' == $selected) echo 'selected="selected"';
+        echo ' value="imperial">'. esc_html__( 'Imperial', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('metric' == $selected) echo 'selected="selected"';
+        echo ' value="metric">'. esc_html__( 'Metric', 'owm-weather' ) .'</option>';
+        echo '</select>';
+    }
 
-	public function owmw_basic_time_format_callback()
+    public function owmw_basic_time_format_callback()
     {
         $selected = $this->options['owmw_time_format'] ?? "nobypass";
 
-		echo '<select id="owmw_time_format" name="owmw_option_name[owmw_time_format]"> ';
+        echo '<select id="owmw_time_format" name="owmw_option_name[owmw_time_format]"> ';
         echo ' <option ';
         if ('nobypass' == $selected) echo 'selected="selected"';
         echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
-		echo ' <option ';
-		echo '<option ';
-		if ('12' == $selected) echo 'selected="selected"';
-		echo ' value="12">'. esc_html__( '12 h', 'owm-weather' ) .'</option>';
-		echo '<option ';
-		if ('24' == $selected) echo 'selected="selected"';
-		echo ' value="24">'. esc_html__( '24 h', 'owm-weather' ) .'</option>';
-		echo '</select>';
-	}
+        echo ' <option ';
+        echo '<option ';
+        if ('12' == $selected) echo 'selected="selected"';
+        echo ' value="12">'. esc_html__( '12 h', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('24' == $selected) echo 'selected="selected"';
+        echo ' value="24">'. esc_html__( '24 h', 'owm-weather' ) .'</option>';
+        echo '</select>';
+    }
 
-	public function owmw_basic_custom_timezone_callback()
+    public function owmw_basic_custom_timezone_callback()
     {
         $selected = $this->options['owmw_custom_timezone'] ?? "nobypass";
 
-		echo '<select id="owmw_custom_timezone" name="owmw_option_name[owmw_custom_timezone]"> ';
+        echo '<select id="owmw_custom_timezone" name="owmw_option_name[owmw_custom_timezone]"> ';
         echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. esc_html__( 'WordPress timezone', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'local', $selected, false ) . ' value="local">'. esc_html__( 'Local timezone', 'owm-weather' ) .'</option>';
@@ -1498,15 +1557,15 @@ class owmw_options
         echo '<option ' . selected( '10', $selected, false ) . ' value="10">'. esc_html__( 'UTC +10', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( '11', $selected, false ) . ' value="11">'. esc_html__( 'UTC +11', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( '12', $selected, false ) . ' value="12">'. esc_html__( 'UTC +12', 'owm-weather' ) .'</option>';
-		echo '</select>';
-	}
+        echo '</select>';
+    }
 
-	public function owmw_basic_owm_language_callback()
+    public function owmw_basic_owm_language_callback()
     {
         $selected = $this->options['owmw_owm_language'] ?? "nobypass";
 
-		echo '<p><i>' . esc_html_e('This is the language for the data from OpenWeatherMap, not for this plugin. If set to Default, it will try to use the WordPress site language first with fallback to English.', 'owm-weather') . '</i></p>';
-		echo '<select id="owmw_owm_language" name="owmw_option_name[owmw_owm_language]"> ';
+        echo '<p><i>' . esc_html_e('This is the language for the data from OpenWeatherMap, not for this plugin. If set to Default, it will try to use the WordPress site language first with fallback to English.', 'owm-weather') . '</i></p>';
+        echo '<select id="owmw_owm_language" name="owmw_option_name[owmw_owm_language]"> ';
         echo '<option ' . ('nobypass' == $selected ? 'selected="selected"' : '') . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. esc_html__( 'Default', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'af', $selected, false ) . ' value="af">'. esc_html__( 'Afrikaans', 'owm-weather' ) .'</option>';
@@ -1555,14 +1614,14 @@ class owmw_options
         echo '<option ' . selected( 'ua', $selected, false ) . ' value="uk">'. esc_html__( 'Ukrainian', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'vi', $selected, false ) . ' value="vi">'. esc_html__( 'Vietnamese', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'zu', $selected, false ) . ' value="zu">'. esc_html__( 'Zulu', 'owm-weather' ) .'</option>';
-		echo '</select>';
-	}
+        echo '</select>';
+    }
 
-	public function owmw_layout_font_callback()
+    public function owmw_layout_font_callback()
     {
         $selected = $this->options['owmw_font'] ?? "nobypass";
 
-		echo '<select id="owmw_font" name="owmw_option_name[owmw_font]"> ';
+        echo '<select id="owmw_font" name="owmw_option_name[owmw_font]"> ';
         echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. esc_html__( 'Default', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'Arvo', $selected, false ) . ' value="Arvo">'. esc_html__( 'Arvo', 'owm-weather' ) .'</option>';
@@ -1584,14 +1643,14 @@ class owmw_options
         echo '<option ' . selected( 'Source Sans Pro', $selected, false ) . ' value="Source Sans Pro">'. esc_html__( 'Source Sans Pro', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'Tangerine', $selected, false ) . ' value="Tangerine">'. esc_html__( 'Tangerine', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'Ubuntu', $selected, false ) . ' value="Ubuntu">'. esc_html__( 'Ubuntu', 'owm-weather' ) .'</option>';
-		echo '</select>';
-	}
+        echo '</select>';
+    }
 
-	public function owmw_layout_template_callback()
+    public function owmw_layout_template_callback()
     {
         $selected = $this->options['owmw_template'] ?? "nobypass";
 
-		echo '<select id="owmw_template" name="owmw_option_name[owmw_template]"> ';
+        echo '<select id="owmw_template" name="owmw_option_name[owmw_template]"> ';
         echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'Default', $selected, false ) . ' value="Default">'. esc_html__( 'Default', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'card1', $selected, false ) . ' value="card1">'. esc_html__( 'Card 1', 'owm-weather' ) .'</option>';
@@ -1608,14 +1667,14 @@ class owmw_options
         echo '<option ' . selected( 'custom1', $selected, false ) . ' value="custom1">'. esc_html__( 'Custom 1', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'custom2', $selected, false ) . ' value="custom2">'. esc_html__( 'Custom 2', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'debug', $selected, false ) . ' value="debug">'. esc_html__( 'Debug', 'owm-weather' ) .'</option>';
-		echo '</select>';
-	}
+        echo '</select>';
+    }
 
-	public function owmw_layout_iconpack_callback()
+    public function owmw_layout_iconpack_callback()
     {
         $selected = $this->options['owmw_iconpack'] ?? "nobypass";
 
-		echo '<select id="owmw_iconpack" name="owmw_option_name[owmw_iconpack]"> ';
+        echo '<select id="owmw_iconpack" name="owmw_option_name[owmw_iconpack]"> ';
         echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'Climacons', $selected, false ) . ' value="Climacons">'. esc_html__( 'Climacons', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'OpenWeatherMap', $selected, false ) . ' value="OpenWeatherMap">'. esc_html__( 'Open Weather Map', 'owm-weather' ) .'</option>';
@@ -1623,20 +1682,20 @@ class owmw_options
         echo '<option ' . selected( 'Forecast', $selected, false ) . ' value="Forecast">'. esc_html__( 'Forecast', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'Dripicons', $selected, false ) . ' value="Dripicons">'. esc_html__( 'Dripicons', 'owm-weather' ) .'</option>';
         echo '<option ' . selected( 'Pixeden', $selected, false ) . ' value="Pixeden">'. esc_html__( 'Pixeden', 'owm-weather' ) .'</option>';
-		echo '</select>';
-	}
+        echo '</select>';
+    }
 
-	public function owmw_display_current_city_name_callback()
+    public function owmw_display_current_city_name_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_current_city_name');
     }
 
-	public function owmw_display_current_weather_symbol_callback()
+    public function owmw_display_current_weather_symbol_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_current_weather_symbol');
     }
 
-	public function owmw_display_weather_description_callback()
+    public function owmw_display_weather_description_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_current_weather_description');
     }
@@ -1683,17 +1742,17 @@ class owmw_options
         $this->owmw_bypassRadioButtons('owmw_display_temperature_unit');
     }
 
-	public function owmw_display_sunrise_sunset_callback()
+    public function owmw_display_sunrise_sunset_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_sunrise_sunset');
     }
 
-	public function owmw_display_moonrise_moonset_callback()
+    public function owmw_display_moonrise_moonset_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_moonrise_moonset');
     }
 
-	public function owmw_display_wind_callback()
+    public function owmw_display_wind_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_wind');
     }
@@ -1738,17 +1797,17 @@ class owmw_options
         echo '</select>';
     }
 
-	public function owmw_display_humidity_callback()
+    public function owmw_display_humidity_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_humidity');
     }
 
-	public function owmw_display_dew_point_callback()
+    public function owmw_display_dew_point_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_dew_point');
     }
 
-	public function owmw_display_pressure_callback()
+    public function owmw_display_pressure_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_pressure');
     }
@@ -1776,7 +1835,7 @@ class owmw_options
         echo '</select>';
     }
 
-	public function owmw_display_cloudiness_callback()
+    public function owmw_display_cloudiness_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_cloudiness');
     }
@@ -1810,10 +1869,10 @@ class owmw_options
     {
         $selected = $this->options['owmw_hours_forecast_no'] ?? null;
 
-		echo ' <select id="owmw_hours_forecast_no" name="owmw_option_name[owmw_hours_forecast_no]"> ';
-		echo $this->owmw_generate_hour_options($selected);
-		echo '</select>';
-	}
+        echo ' <select id="owmw_hours_forecast_no" name="owmw_option_name[owmw_hours_forecast_no]"> ';
+        echo $this->owmw_generate_hour_options($selected);
+        echo '</select>';
+    }
 
     public function owmw_display_hour_time_icons_callback()
     {
@@ -1821,12 +1880,12 @@ class owmw_options
     }
 
     private function owmw_generate_hour_options($selected) {
-   		$str = ' <option ';
-   		$str .= selected( "nobypass", $selected, false );
-   		$str .= ' value="nobypass">'. esc_html__( "No bypass", 'owm-weather' ) .'</option>';
-   		$str .= ' <option ';
-   		$str .= selected( "0", $selected, false );
-   		$str .= ' value="0">'. esc_html__( "None", 'owm-weather' ) .'</option>';
+           $str = ' <option ';
+           $str .= selected( "nobypass", $selected, false );
+           $str .= ' value="nobypass">'. esc_html__( "No bypass", 'owm-weather' ) .'</option>';
+           $str .= ' <option ';
+           $str .= selected( "0", $selected, false );
+           $str .= ' value="0">'. esc_html__( "None", 'owm-weather' ) .'</option>';
 
         for ($i=1; $i<=48; $i++) {
             if ($i == 1) {
@@ -1837,108 +1896,108 @@ class owmw_options
                 $h = 'Now + ' . ($i-1) . ' hours';
             }
 
-    		$str .= ' <option ';
-    		$str .= selected( $i, intval($selected), false );
-    		$str .= ' value="' . $i . '">'. esc_html__( $h, 'owm-weather' ) .'</option>';
+            $str .= ' <option ';
+            $str .= selected( $i, intval($selected), false );
+            $str .= ' value="' . $i . '">'. esc_html__( $h, 'owm-weather' ) .'</option>';
         }
 
         return $str;
     }
 
-	public function owmw_display_current_temperature_callback()
+    public function owmw_display_current_temperature_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_current_temperature');
     }
 
-	public function owmw_display_current_feels_like_callback()
+    public function owmw_display_current_feels_like_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_current_feels_like');
     }
 
-	public function owmw_display_forecast_no_callback()
+    public function owmw_display_forecast_no_callback()
     {
         $selected = $this->options['owmw_forecast_no'] ?? "nobypass";
 
-		echo ' <select id="owmw_forecast_no" name="owmw_option_name[owmw_forecast_no]"> ';
-		echo ' <option ';
-		if ('nobypass' == $selected) echo 'selected="selected"';
-		echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
-		echo ' <option ';
-		if ('0' == $selected) echo 'selected="selected"';
-		echo ' value="0">'. esc_html__( 'None', 'owm-weather' ) .'</option>';
-		echo ' <option ';
-		if ('1' == $selected) echo 'selected="selected"';
-		echo ' value="1">'. esc_html__( 'Today', 'owm-weather' ) .'</option>';
-		echo '<option ';
-		if ('2' == $selected) echo 'selected="selected"';
-		echo ' value="2">'. esc_html__( 'Today + 1 day', 'owm-weather' ) .'</option>';
-		echo '<option ';
-		if ('3' == $selected) echo 'selected="selected"';
-		echo ' value="3">'. esc_html__( 'Today + 2 days', 'owm-weather' ) .'</option>';
-		echo '<option ';
-		if ('4' == $selected) echo 'selected="selected"';
-		echo ' value="4">'. esc_html__( 'Today + 3 days', 'owm-weather' ) .'</option>';
-		echo '<option ';
-		if ('5' == $selected) echo 'selected="selected"';
-		echo ' value="5">'. esc_html__( 'Today + 4 days', 'owm-weather' ) .'</option>';
-		echo '<option ';
-		if ('6' == $selected) echo 'selected="selected"';
-		echo ' value="6">'. esc_html__( 'Today + 5 days', 'owm-weather' ) .'</option>';
-		echo '<option ';
-		if ('7' == $selected) echo 'selected="selected"';
-		echo ' value="7">'. esc_html__( 'Today + 6 days', 'owm-weather' ) .'</option>';
-		echo '<option ';
-		if ('8' == $selected) echo 'selected="selected"';
-		echo ' value="8">'. esc_html__( 'Today + 7 days', 'owm-weather' ) .'</option>';
-		echo '</select>';
-	}
-
-	public function owmw_display_alerts_popup_callback()
-    {
-   		$check = $this->options['owmw_alerts_popup'] ?? "nobypass";
-
-        echo '<input id="owmw_alerts_popup_nobypass" name="owmw_option_name[owmw_alerts_popup]" type="radio"';
-		if ('nobypass' == $check) echo 'checked="yes"';
-		echo ' value="nobypass"/>';
-		echo '<label for="owmw_alerts_popup_nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</label>';
-
-		echo '<br><br>';
-
-        echo '<input id="owmw_alerts_popup_modal" name="owmw_option_name[owmw_alerts_popup]" type="radio"';
-		if ('modal' == $check) echo 'checked="yes"';
-		echo ' value="modal"/>';
-		echo '<label for="owmw_alerts_popup_modal">'. esc_html__( 'Modal', 'owm-weather' ) .'</label>';
-
-		echo '<br><br>';
-
-		echo '<input id="owmw_alerts_popup_inline" name="owmw_option_name[owmw_alerts_popup]" type="radio"';
-		if ('inline' == $check) echo 'checked="yes"';
-		echo ' value="inline"/>';
-		echo '<label for="owmw_alerts_popup_inline">'. esc_html__( 'Inline', 'owm-weather' ) .'</label>';
+        echo ' <select id="owmw_forecast_no" name="owmw_option_name[owmw_forecast_no]"> ';
+        echo ' <option ';
+        if ('nobypass' == $selected) echo 'selected="selected"';
+        echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
+        echo ' <option ';
+        if ('0' == $selected) echo 'selected="selected"';
+        echo ' value="0">'. esc_html__( 'None', 'owm-weather' ) .'</option>';
+        echo ' <option ';
+        if ('1' == $selected) echo 'selected="selected"';
+        echo ' value="1">'. esc_html__( 'Today', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('2' == $selected) echo 'selected="selected"';
+        echo ' value="2">'. esc_html__( 'Today + 1 day', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('3' == $selected) echo 'selected="selected"';
+        echo ' value="3">'. esc_html__( 'Today + 2 days', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('4' == $selected) echo 'selected="selected"';
+        echo ' value="4">'. esc_html__( 'Today + 3 days', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('5' == $selected) echo 'selected="selected"';
+        echo ' value="5">'. esc_html__( 'Today + 4 days', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('6' == $selected) echo 'selected="selected"';
+        echo ' value="6">'. esc_html__( 'Today + 5 days', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('7' == $selected) echo 'selected="selected"';
+        echo ' value="7">'. esc_html__( 'Today + 6 days', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('8' == $selected) echo 'selected="selected"';
+        echo ' value="8">'. esc_html__( 'Today + 7 days', 'owm-weather' ) .'</option>';
+        echo '</select>';
     }
 
-	public function owmw_display_display_length_days_names_callback()
+    public function owmw_display_alerts_popup_callback()
     {
-   		$check = $this->options['owmw_display_length_days_names'] ?? "nobypass";
+           $check = $this->options['owmw_alerts_popup'] ?? "nobypass";
+
+        echo '<input id="owmw_alerts_popup_nobypass" name="owmw_option_name[owmw_alerts_popup]" type="radio"';
+        if ('nobypass' == $check) echo 'checked="yes"';
+        echo ' value="nobypass"/>';
+        echo '<label for="owmw_alerts_popup_nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</label>';
+
+        echo '<br><br>';
+
+        echo '<input id="owmw_alerts_popup_modal" name="owmw_option_name[owmw_alerts_popup]" type="radio"';
+        if ('modal' == $check) echo 'checked="yes"';
+        echo ' value="modal"/>';
+        echo '<label for="owmw_alerts_popup_modal">'. esc_html__( 'Modal', 'owm-weather' ) .'</label>';
+
+        echo '<br><br>';
+
+        echo '<input id="owmw_alerts_popup_inline" name="owmw_option_name[owmw_alerts_popup]" type="radio"';
+        if ('inline' == $check) echo 'checked="yes"';
+        echo ' value="inline"/>';
+        echo '<label for="owmw_alerts_popup_inline">'. esc_html__( 'Inline', 'owm-weather' ) .'</label>';
+    }
+
+    public function owmw_display_display_length_days_names_callback()
+    {
+           $check = $this->options['owmw_display_length_days_names'] ?? "nobypass";
 
         echo '<input id="owmw_display_length_days_names_nobypass" name="owmw_option_name[owmw_display_length_days_names]" type="radio"';
-		if ('nobypass' == $check) echo 'checked="yes"';
-		echo ' value="nobypass"/>';
-		echo '<label for="owmw_display_length_days_names_nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</label>';
+        if ('nobypass' == $check) echo 'checked="yes"';
+        echo ' value="nobypass"/>';
+        echo '<label for="owmw_display_length_days_names_nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</label>';
 
-		echo '<br><br>';
+        echo '<br><br>';
 
         echo '<input id="owmw_display_length_days_names_short" name="owmw_option_name[owmw_display_length_days_names]" type="radio"';
-		if ('short' == $check) echo 'checked="yes"';
-		echo ' value="short"/>';
-		echo '<label for="owmw_display_length_days_names_short">'. esc_html__( 'Short days names', 'owm-weather' ) .'</label>';
+        if ('short' == $check) echo 'checked="yes"';
+        echo ' value="short"/>';
+        echo '<label for="owmw_display_length_days_names_short">'. esc_html__( 'Short days names', 'owm-weather' ) .'</label>';
 
-		echo '<br><br>';
+        echo '<br><br>';
 
-		echo '<input id="owmw_display_length_days_names_normal" name="owmw_option_name[owmw_display_length_days_names]" type="radio"';
-		if ('normal' == $check) echo 'checked="yes"';
-		echo ' value="normal"/>';
-		echo '<label for="owmw_display_length_days_names_normal">'. esc_html__( 'Normal days names', 'owm-weather' ) .'</label>';
+        echo '<input id="owmw_display_length_days_names_normal" name="owmw_option_name[owmw_display_length_days_names]" type="radio"';
+        if ('normal' == $check) echo 'checked="yes"';
+        echo ' value="normal"/>';
+        echo '<label for="owmw_display_length_days_names_normal">'. esc_html__( 'Normal days names', 'owm-weather' ) .'</label>';
     }
 
     public function owmw_display_owm_link_callback()
@@ -1951,12 +2010,12 @@ class owmw_options
         $this->owmw_bypassRadioButtons('owmw_last_update');
     }
 
-	public function owmw_layout_disable_spinner_callback()
+    public function owmw_layout_disable_spinner_callback()
     {
         $this->owmw_bypassRadioButtonsDisable('owmw_disable_spinner');
     }
 
-	public function owmw_layout_disable_anims_callback()
+    public function owmw_layout_disable_anims_callback()
     {
         $this->owmw_bypassRadioButtonsDisable('owmw_disable_anims');
     }
@@ -1969,21 +2028,15 @@ class owmw_options
     }
 
     function owmw_layout_background_image_callback() {
-
-    	// Save attachment ID
-    	if ( isset( $_POST['submit_image_selector'] ) && isset( $_POST['background_image_attachment_id'] ) ) {
-    		update_option( 'owmw_background_image', absint( $_POST['background_image_attachment_id'] ) );
-    	}
-
-    	echo '	<div class="background_image_preview_wrapper">';
-    	echo '		<img id="background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_background_image']) ? '' : ' style="display: none;"') . '>';
-    	echo '	</div>';
-    	echo '	<input id="select_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="background" />';
-    	echo '	<input type="hidden" name="owmw_option_name[owmw_background_image]" id="background_image_attachment_id" value="' . esc_attr( $this->options['owmw_background_image'] ?? '' ) . '">';
-    	echo '	<input id="clear_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="background" />';
+        echo '    <div class="background_image_preview_wrapper">';
+        echo '        <img id="background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_background_image']) ? '' : ' style="display: none;"') . '>';
+        echo '    </div>';
+        echo '    <input id="select_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="background" />';
+        echo '    <input type="hidden" name="owmw_option_name[owmw_background_image]" id="background_image_attachment_id" value="' . esc_attr( $this->options['owmw_background_image'] ?? '' ) . '">';
+        echo '    <input id="clear_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="background" />';
     }
 
-	public function owmw_weather_based_sunny_text_color_callback()
+    public function owmw_weather_based_sunny_text_color_callback()
     {
         $check = $this->options['owmw_sunny_text_color'] ?? null;
 
@@ -1998,21 +2051,15 @@ class owmw_options
     }
 
     function owmw_weather_based_sunny_background_image_callback() {
-
-    	// Save attachment ID
-    	if ( isset( $_POST['submit_image_selector'] ) && isset( $_POST['sunny_background_image_attachment_id'] ) ) {
-    		update_option( 'owmw_sunny_background_image', absint( $_POST['sunny_background_image_attachment_id'] ) );
-    	}
-
-    	echo '	<div class="background_image_preview_wrapper">';
-    	echo '		<img id="sunny_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_sunny_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_sunny_background_image']) ? '' : ' style="display: none;"') . '>';
-    	echo '	</div>';
-    	echo '	<input id="select_sunny_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="sunny_background" />';
-    	echo '	<input type="hidden" name="owmw_option_name[owmw_sunny_background_image]" id="sunny_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_sunny_background_image'] ?? '' ) . '">';
-    	echo '	<input id="clear_sunny_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="sunny_background" />';
+        echo '    <div class="background_image_preview_wrapper">';
+        echo '        <img id="sunny_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_sunny_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_sunny_background_image']) ? '' : ' style="display: none;"') . '>';
+        echo '    </div>';
+        echo '    <input id="select_sunny_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="sunny_background" />';
+        echo '    <input type="hidden" name="owmw_option_name[owmw_sunny_background_image]" id="sunny_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_sunny_background_image'] ?? '' ) . '">';
+        echo '    <input id="clear_sunny_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="sunny_background" />';
     }
     
-	public function owmw_weather_based_cloudy_text_color_callback()
+    public function owmw_weather_based_cloudy_text_color_callback()
     {
         $check = $this->options['owmw_cloudy_text_color'] ?? null;
 
@@ -2027,21 +2074,15 @@ class owmw_options
     }
 
     function owmw_weather_based_cloudy_background_image_callback() {
-
-    	// Save attachment ID
-    	if ( isset( $_POST['submit_image_selector'] ) && isset( $_POST['cloudy_background_image_attachment_id'] ) ) {
-    		update_option( 'owmw_cloudy_background_image', absint( $_POST['cloudy_background_image_attachment_id'] ) );
-    	}
-
-    	echo '	<div class="background_image_preview_wrapper">';
-    	echo '		<img id="cloudy_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_cloudy_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_cloudy_background_image']) ? '' : ' style="display: none;"') . '>';
-    	echo '	</div>';
-    	echo '	<input id="select_cloudy_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="cloudy_background" />';
-    	echo '	<input type="hidden" name="owmw_option_name[owmw_cloudy_background_image]" id="cloudy_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_cloudy_background_image'] ?? '' ) . '">';
-    	echo '	<input id="clear_cloudy_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="cloudy_background" />';
+        echo '    <div class="background_image_preview_wrapper">';
+        echo '        <img id="cloudy_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_cloudy_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_cloudy_background_image']) ? '' : ' style="display: none;"') . '>';
+        echo '    </div>';
+        echo '    <input id="select_cloudy_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="cloudy_background" />';
+        echo '    <input type="hidden" name="owmw_option_name[owmw_cloudy_background_image]" id="cloudy_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_cloudy_background_image'] ?? '' ) . '">';
+        echo '    <input id="clear_cloudy_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="cloudy_background" />';
     }
 
-	public function owmw_weather_based_drizzly_text_color_callback()
+    public function owmw_weather_based_drizzly_text_color_callback()
     {
         $check = $this->options['owmw_drizzly_text_color'] ?? null;
 
@@ -2056,21 +2097,15 @@ class owmw_options
     }
 
     function owmw_weather_based_drizzly_background_image_callback() {
-
-    	// Save attachment ID
-    	if ( isset( $_POST['submit_image_selector'] ) && isset( $_POST['drizzly_background_image_attachment_id'] ) ) {
-    		update_option( 'owmw_drizzly_background_image', absint( $_POST['drizzly_background_image_attachment_id'] ) );
-    	}
-
-    	echo '	<div class="background_image_preview_wrapper">';
-    	echo '		<img id="drizzly_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_drizzly_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_drizzly_background_image']) ? '' : ' style="display: none;"') . '>';
-    	echo '	</div>';
-    	echo '	<input id="select_drizzly_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="drizzly_background" />';
-    	echo '	<input type="hidden" name="owmw_option_name[owmw_drizzly_background_image]" id="drizzly_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_drizzly_background_image'] ?? '' ) . '">';
-    	echo '	<input id="clear_drizzly_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="drizzly_background" />';
+        echo '    <div class="background_image_preview_wrapper">';
+        echo '        <img id="drizzly_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_drizzly_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_drizzly_background_image']) ? '' : ' style="display: none;"') . '>';
+        echo '    </div>';
+        echo '    <input id="select_drizzly_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="drizzly_background" />';
+        echo '    <input type="hidden" name="owmw_option_name[owmw_drizzly_background_image]" id="drizzly_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_drizzly_background_image'] ?? '' ) . '">';
+        echo '    <input id="clear_drizzly_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="drizzly_background" />';
     }
 
-	public function owmw_weather_based_rainy_text_color_callback()
+    public function owmw_weather_based_rainy_text_color_callback()
     {
         $check = $this->options['owmw_rainy_text_color'] ?? null;
 
@@ -2085,21 +2120,15 @@ class owmw_options
     }
 
     function owmw_weather_based_rainy_background_image_callback() {
-
-    	// Save attachment ID
-    	if ( isset( $_POST['submit_image_selector'] ) && isset( $_POST['rainy_background_image_attachment_id'] ) ) {
-    		update_option( 'owmw_rainy_background_image', absint( $_POST['rainy_background_image_attachment_id'] ) );
-    	}
-
-    	echo '	<div class="background_image_preview_wrapper">';
-    	echo '		<img id="rainy_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_rainy_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_rainy_background_image']) ? '' : ' style="display: none;"') . '>';
-    	echo '	</div>';
-    	echo '	<input id="select_rainy_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="rainy_background" />';
-    	echo '	<input type="hidden" name="owmw_option_name[owmw_rainy_background_image]" id="rainy_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_rainy_background_image'] ?? '' ) . '">';
-    	echo '	<input id="clear_rainy_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="rainy_background" />';
+        echo '    <div class="background_image_preview_wrapper">';
+        echo '        <img id="rainy_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_rainy_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_rainy_background_image']) ? '' : ' style="display: none;"') . '>';
+        echo '    </div>';
+        echo '    <input id="select_rainy_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="rainy_background" />';
+        echo '    <input type="hidden" name="owmw_option_name[owmw_rainy_background_image]" id="rainy_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_rainy_background_image'] ?? '' ) . '">';
+        echo '    <input id="clear_rainy_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="rainy_background" />';
     }
 
-	public function owmw_weather_based_snowy_text_color_callback()
+    public function owmw_weather_based_snowy_text_color_callback()
     {
         $check = $this->options['owmw_snowy_text_color'] ?? null;
 
@@ -2114,21 +2143,15 @@ class owmw_options
     }
 
     function owmw_weather_based_snowy_background_image_callback() {
-
-    	// Save attachment ID
-    	if ( isset( $_POST['submit_image_selector'] ) && isset( $_POST['snowy_background_image_attachment_id'] ) ) {
-    		update_option( 'owmw_snowy_background_image', absint( $_POST['snowy_background_image_attachment_id'] ) );
-    	}
-
-    	echo '	<div class="background_image_preview_wrapper">';
-    	echo '		<img id="snowy_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_snowy_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_snowy_background_image']) ? '' : ' style="display: none;"') . '>';
-    	echo '	</div>';
-    	echo '	<input id="select_snowy_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="snowy_background" />';
-    	echo '	<input type="hidden" name="owmw_option_name[owmw_snowy_background_image]" id="snowy_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_snowy_background_image'] ?? '' ) . '">';
-    	echo '	<input id="clear_snowy_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="snowy_background" />';
+        echo '    <div class="background_image_preview_wrapper">';
+        echo '        <img id="snowy_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_snowy_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_snowy_background_image']) ? '' : ' style="display: none;"') . '>';
+        echo '    </div>';
+        echo '    <input id="select_snowy_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="snowy_background" />';
+        echo '    <input type="hidden" name="owmw_option_name[owmw_snowy_background_image]" id="snowy_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_snowy_background_image'] ?? '' ) . '">';
+        echo '    <input id="clear_snowy_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="snowy_background" />';
     }
 
-	public function owmw_weather_based_stormy_text_color_callback()
+    public function owmw_weather_based_stormy_text_color_callback()
     {
         $check = $this->options['owmw_stormy_text_color'] ?? null;
 
@@ -2143,21 +2166,15 @@ class owmw_options
     }
 
     function owmw_weather_based_stormy_background_image_callback() {
-
-    	// Save attachment ID
-    	if ( isset( $_POST['submit_image_selector'] ) && isset( $_POST['stormy_background_image_attachment_id'] ) ) {
-    		update_option( 'owmw_stormy_background_image', absint( $_POST['stormy_background_image_attachment_id'] ) );
-    	}
-
-    	echo '	<div class="background_image_preview_wrapper">';
-    	echo '		<img id="stormy_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_stormy_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_stormy_background_image']) ? '' : ' style="display: none;"') . '>';
-    	echo '	</div>';
-    	echo '	<input id="select_stormy_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="stormy_background" />';
-    	echo '	<input type="hidden" name="owmw_option_name[owmw_stormy_background_image]" id="stormy_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_stormy_background_image'] ?? '' ) . '">';
-    	echo '	<input id="clear_stormy_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="stormy_background" />';
+        echo '    <div class="background_image_preview_wrapper">';
+        echo '        <img id="stormy_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_stormy_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_stormy_background_image']) ? '' : ' style="display: none;"') . '>';
+        echo '    </div>';
+        echo '    <input id="select_stormy_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="stormy_background" />';
+        echo '    <input type="hidden" name="owmw_option_name[owmw_stormy_background_image]" id="stormy_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_stormy_background_image'] ?? '' ) . '">';
+        echo '    <input id="clear_stormy_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="stormy_background" />';
     }
 
-	public function owmw_weather_based_foggy_text_color_callback()
+    public function owmw_weather_based_foggy_text_color_callback()
     {
         $check = $this->options['owmw_foggy_text_color'] ?? null;
 
@@ -2172,49 +2189,43 @@ class owmw_options
     }
 
     function owmw_weather_based_foggy_background_image_callback() {
-
-    	// Save attachment ID
-    	if ( isset( $_POST['submit_image_selector'] ) && isset( $_POST['foggy_background_image_attachment_id'] ) ) {
-    		update_option( 'owmw_foggy_background_image', absint( $_POST['foggy_background_image_attachment_id'] ) );
-    	}
-
-    	echo '	<div class="background_image_preview_wrapper">';
-    	echo '		<img id="foggy_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_foggy_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_foggy_background_image']) ? '' : ' style="display: none;"') . '>';
-    	echo '	</div>';
-    	echo '	<input id="select_foggy_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="foggy_background" />';
-    	echo '	<input type="hidden" name="owmw_option_name[owmw_foggy_background_image]" id="foggy_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_foggy_background_image'] ?? '' ) . '">';
-    	echo '	<input id="clear_foggy_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="foggy_background" />';
+        echo '    <div class="background_image_preview_wrapper">';
+        echo '        <img id="foggy_background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_foggy_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_foggy_background_image']) ? '' : ' style="display: none;"') . '>';
+        echo '    </div>';
+        echo '    <input id="select_foggy_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="foggy_background" />';
+        echo '    <input type="hidden" name="owmw_option_name[owmw_foggy_background_image]" id="foggy_background_image_attachment_id" value="' . esc_attr( $this->options['owmw_foggy_background_image'] ?? '' ) . '">';
+        echo '    <input id="clear_foggy_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="foggy_background" />';
     }
 
-	public function owmw_layout_text_color_callback()
+    public function owmw_layout_text_color_callback()
     {
         $check = $this->options['owmw_text_color'] ?? null;
 
         printf('<input name="owmw_option_name[owmw_text_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_border_color_callback()
+    public function owmw_layout_border_color_callback()
     {
         $check = $this->options['owmw_border_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_border_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_border_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_border_width_callback()
+    public function owmw_layout_border_width_callback()
     {
         $check = $this->options['owmw_border_width'] ?? null;
 
         printf('<input name="owmw_option_name[owmw_border_width]" type="number" min="0" value="%s" />', esc_attr($check));
     }
 
-	public function owmw_layout_border_style_callback()
+    public function owmw_layout_border_style_callback()
     {
         $selected = $this->options['owmw_border_style'] ?? "nobypass";
 
-		echo '<select id="owmw_border_style" name="owmw_option_name[owmw_border_style]">';
-		$this->owmw_borderStyleOptions($selected);
-		echo '</select>';
-	}
+        echo '<select id="owmw_border_style" name="owmw_option_name[owmw_border_style]">';
+        $this->owmw_borderStyleOptions($selected);
+        echo '</select>';
+    }
 
     private function owmw_borderStyleOptions($selected) {
         echo '<option ' . selected( 'nobypass', $selected, false ) . ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
@@ -2228,35 +2239,35 @@ class owmw_options
         echo '<option ' . selected( 'ridge', $selected, false ) . ' value="ridge">'. esc_html__( 'Ridge', 'owm-weather' ) .'</option>';
     }
 
-	public function owmw_layout_border_radius_callback()
+    public function owmw_layout_border_radius_callback()
     {
         $check = $this->options['owmw_border_radius'] ?? null;
 
         printf('<input name="owmw_option_name[owmw_border_radius]" type="number" min="0" value="%s" />', esc_attr($check));
     }
 
-	public function owmw_layout_size_callback()
+    public function owmw_layout_size_callback()
     {
         $selected = $this->options['owmw_size'] ?? "nobypass";
 
-		echo ' <select id="owmw_size" name="owmw_option_name[owmw_size]"> ';
-		echo ' <option ';
-		if ('nobypass' == $selected) echo 'selected="selected"';
-		echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
-		echo ' <option ';
-		if ('small' == $selected) echo 'selected="selected"';
-		echo ' value="small">'. esc_html__( 'Small', 'owm-weather' ) .'</option>';
-		echo '<option ';
-		if ('medium' == $selected) echo 'selected="selected"';
-		echo ' value="medium">'. esc_html__( 'Medium', 'owm-weather' ) .'</option>';
-		echo '<option ';
-		if ('large' == $selected) echo 'selected="selected"';
-		echo ' value="large">'. esc_html__( 'Large', 'owm-weather' ) .'</option>';
-		echo '</select>';
-	}
+        echo ' <select id="owmw_size" name="owmw_option_name[owmw_size]"> ';
+        echo ' <option ';
+        if ('nobypass' == $selected) echo 'selected="selected"';
+        echo ' value="nobypass">'. esc_html__( 'No bypass', 'owm-weather' ) .'</option>';
+        echo ' <option ';
+        if ('small' == $selected) echo 'selected="selected"';
+        echo ' value="small">'. esc_html__( 'Small', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('medium' == $selected) echo 'selected="selected"';
+        echo ' value="medium">'. esc_html__( 'Medium', 'owm-weather' ) .'</option>';
+        echo '<option ';
+        if ('large' == $selected) echo 'selected="selected"';
+        echo ' value="large">'. esc_html__( 'Large', 'owm-weather' ) .'</option>';
+        echo '</select>';
+    }
 
 
-	public function owmw_layout_custom_css_callback()
+    public function owmw_layout_custom_css_callback()
     {
         $check = $this->options['owmw_custom_css'] ?? '';
 
@@ -2298,49 +2309,49 @@ class owmw_options
         printf('<input name="owmw_option_name[owmw_table_background_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_table_text_color_callback()
+    public function owmw_layout_table_text_color_callback()
     {
         $check = $this->options['owmw_table_text_color'] ?? null;
 
         printf('<input name="owmw_option_name[owmw_table_text_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_table_border_color_callback()
+    public function owmw_layout_table_border_color_callback()
     {
         $check = $this->options['owmw_table_border_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_table_border_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_table_border_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_table_border_width_callback()
+    public function owmw_layout_table_border_width_callback()
     {
         $check = $this->options['owmw_table_border_width'] ?? null;
 
         printf('<input name="owmw_option_name[owmw_table_border_width]" type="number" min="0" value="%s" />', esc_attr($check));
     }
 
-	public function owmw_layout_table_border_style_callback()
+    public function owmw_layout_table_border_style_callback()
     {
         $selected = $this->options['owmw_table_border_style'] ?? "nobypass";
 
-		echo '<select id="owmw_border_style" name="owmw_option_name[owmw_table_border_style]">';
-		$this->owmw_borderStyleOptions($selected);
-		echo '</select>';
-	}
+        echo '<select id="owmw_border_style" name="owmw_option_name[owmw_table_border_style]">';
+        $this->owmw_borderStyleOptions($selected);
+        echo '</select>';
+    }
 
-	public function owmw_layout_table_border_radius_callback()
+    public function owmw_layout_table_border_radius_callback()
     {
         $check = $this->options['owmw_table_border_radius'] ?? null;
 
         printf('<input name="owmw_option_name[owmw_table_border_radius]" type="number" min="0" value="%s" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_height_callback()
+    public function owmw_layout_chart_height_callback()
     {
         $check = $this->options['owmw_chart_height'] ?? '';
 
         printf('<input name="owmw_option_name[owmw_chart_height]" type="number" min="300" value="%s" />', esc_attr($check));
-	}
+    }
 
     public function owmw_layout_chart_text_color_callback()
     {
@@ -2363,117 +2374,129 @@ class owmw_options
         printf('<input name="owmw_option_name[owmw_chart_background_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_border_color_callback()
+    public function owmw_layout_chart_border_color_callback()
     {
         $check = $this->options['owmw_chart_border_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_chart_border_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_chart_border_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_border_width_callback()
+    public function owmw_layout_chart_border_width_callback()
     {
         $check = $this->options['owmw_chart_border_width'] ?? null;
 
         printf('<input name="owmw_option_name[owmw_chart_border_width]" type="number" min="0" value="%s" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_border_style_callback()
+    public function owmw_layout_chart_border_style_callback()
     {
         $selected = $this->options['owmw_chart_border_style'] ?? "nobypass";
 
-		echo '<select id="owmw_border_style" name="owmw_option_name[owmw_chart_border_style]">';
-		$this->owmw_borderStyleOptions($selected);
-		echo '</select>';
-	}
+        echo '<select id="owmw_border_style" name="owmw_option_name[owmw_chart_border_style]">';
+        $this->owmw_borderStyleOptions($selected);
+        echo '</select>';
+    }
 
-	public function owmw_layout_chart_border_radius_callback()
+    public function owmw_layout_chart_border_radius_callback()
     {
         $check = $this->options['owmw_chart_border_radius'] ?? null;
 
         printf('<input name="owmw_option_name[owmw_chart_border_radius]" type="number" min="0" value="%s" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_temperature_color_callback()
+    public function owmw_layout_chart_temperature_color_callback()
     {
         $check = $this->options['owmw_chart_temperature_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_chart_temperature_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_chart_temperature_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_feels_like_color_callback()
+    public function owmw_layout_chart_feels_like_color_callback()
     {
         $check = $this->options['owmw_chart_feels_like_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_chart_feels_like_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_chart_feels_like_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_dew_point_color_callback()
+    public function owmw_layout_chart_dew_point_color_callback()
     {
         $check = $this->options['owmw_chart_dew_point_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_chart_dew_point_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_chart_dew_point_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_cloudiness_color_callback()
+    public function owmw_layout_chart_cloudiness_color_callback()
     {
         $check = $this->options['owmw_chart_cloudiness_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_chart_cloudiness_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_chart_cloudiness_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_rain_chance_color_callback()
+    public function owmw_layout_chart_rain_chance_color_callback()
     {
         $check = $this->options['owmw_chart_rain_chance_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_chart_rain_chance_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_chart_rain_chance_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_humidity_color_callback()
+    public function owmw_layout_chart_humidity_color_callback()
     {
         $check = $this->options['owmw_chart_humidity_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_chart_humidity_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_chart_humidity_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_pressure_color_callback()
+    public function owmw_layout_chart_pressure_color_callback()
     {
         $check = $this->options['owmw_chart_pressure_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_chart_pressure_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_chart_pressure_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_rain_amt_color_callback()
+    public function owmw_layout_chart_rain_amt_color_callback()
     {
         $check = $this->options['owmw_chart_rain_amt_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_chart_rain_amt_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_chart_rain_amt_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_snow_amt_color_callback()
+    public function owmw_layout_chart_snow_amt_color_callback()
     {
         $check = $this->options['owmw_chart_snow_amt_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_chart_snow_amt_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_chart_snow_amt_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_wind_speed_color_callback()
+    public function owmw_layout_chart_wind_speed_color_callback()
     {
         $check = $this->options['owmw_chart_wind_speed_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_chart_wind_speed_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_chart_wind_speed_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_layout_chart_wind_gust_color_callback()
+    public function owmw_layout_chart_wind_gust_color_callback()
     {
         $check = $this->options['owmw_chart_wind_gust_color'] ?? null;
 
-		printf('<input name="owmw_option_name[owmw_chart_wind_gust_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
+        printf('<input name="owmw_option_name[owmw_chart_wind_gust_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-	public function owmw_advanced_disable_cache_callback()
+    public function owmw_network_multisite_callback()
     {
-	$check = $this->options['owmw_advanced_disable_cache'] ?? null;
-	echo '<label class="toggle-switchy" for="owmw_advanced_disable_cache" data-size="sm" data-text="false" data-color="red">
+        $check = $this->options['owmw_network_multisite'] ?? null;
+        echo '<label class="toggle-switchy" for="owmw_network_multisite" data-size="sm" data-text="false" data-color="green">
+              <input '.(!empty($check) ? ' checked="checked"' : '').' type="checkbox" id="owmw_network_multisite" name="owmw_option_name[owmw_network_multisite]" value="yes" />
+              <span class="toggle">
+                <span class="switch"></span>
+              </span>
+              <span class="label"><strong>'. esc_html__( '(You need to configure your “OWM Weather” settings individually on every website in the network if this is turned off.)', 'owm-weather' ) .'</strong></span>
+              </label>';
+    }
+
+    public function owmw_advanced_disable_cache_callback()
+    {
+        $check = $this->options['owmw_advanced_disable_cache'] ?? null;
+        echo '<label class="toggle-switchy" for="owmw_advanced_disable_cache" data-size="sm" data-text="false" data-color="red">
               <input '.(!empty($check) ? ' checked="checked"' : '').' type="checkbox" id="owmw_advanced_disable_cache" name="owmw_option_name[owmw_advanced_disable_cache]" value="yes" />
               <span class="toggle">
                 <span class="switch"></span>
@@ -2482,13 +2505,13 @@ class owmw_options
               </label>';
     }
 
-	public function owmw_advanced_cache_time_callback()
+    public function owmw_advanced_cache_time_callback()
     {
         $check = $this->options['owmw_advanced_cache_time'] ?? '';
 
         printf('<input type="number" min="10" name="owmw_option_name[owmw_advanced_cache_time]" value="%s" style="width:100%%" />', esc_attr( $check ));
         echo '<br /><br /><span class="dashicons dashicons-editor-help"></span>'.esc_html__('Default value: 30 minutes','owm-weather');
-	}
+    }
 
     public function owmw_advanced_api_key_callback()
     {
@@ -2501,257 +2524,257 @@ class owmw_options
     public function owmw_advanced_disable_bootstrap_callback()
     {
         $check = $this->options['owmw_advanced_disable_modal_js'] ?? null;
-	echo '<label class="toggle-switchy" for="owmw_advanced_disable_modal_js" data-size="sm" data-text="false" data-color="red">
+        echo '<label class="toggle-switchy" for="owmw_advanced_disable_modal_js" data-size="sm" data-text="false" data-color="red">
               <input '.(!empty($check) ? ' checked="checked"' : '').' type="checkbox" id="owmw_advanced_disable_modal_js" name="owmw_option_name[owmw_advanced_disable_modal_js]" value="yes" />
               <span class="toggle">
                 <span class="switch"></span>
               </span>
               <span class="label"><strong>'. esc_html__( '(Check this if you already include Bootstrap in your theme)', 'owm-weather' ) .'</strong></span>
               </label>';
-	}
+    }
 
     public function owmw_advanced_bootstrap_version_callback()
     {
         $check = $this->options['owmw_advanced_bootstrap_version'] ?? '4';
 
         echo '<input id="owmw_advanced_bootstrap_version4" name="owmw_option_name[owmw_advanced_bootstrap_version]" type="radio"';
-		if ('4' == $check) echo 'checked="yes"';
-		echo ' value="4"/>';
-		echo '<label for="owmw_advanced_bootstrap_version4" style="margin-right: 30px;">'. esc_html__( '4', 'owm-weather' ) .'</label>';
+        if ('4' == $check) echo 'checked="yes"';
+        echo ' value="4"/>';
+        echo '<label for="owmw_advanced_bootstrap_version4" style="margin-right: 30px;">'. esc_html__( '4', 'owm-weather' ) .'</label>';
 
         echo '<input id="owmw_advanced_bootstrap_version5" name="owmw_option_name[owmw_advanced_bootstrap_version]" type="radio"';
-		if ('5' == $check) echo 'checked="yes"';
-		echo ' value="5"/>';
-		echo '<label for="owmw_advanced_bootstrap_version5">'. esc_html__( '5', 'owm-weather') . " " . esc_html__( '(Ignored when Disable Bootstrap is unchecked)') .'</label>';
-	}
+        if ('5' == $check) echo 'checked="yes"';
+        echo ' value="5"/>';
+        echo '<label for="owmw_advanced_bootstrap_version5">'. esc_html__( '5', 'owm-weather') . " " . esc_html__( '(Ignored when Disable Bootstrap is unchecked)') .'</label>';
+    }
 
-	public function owmw_map_display_callback()
+    public function owmw_map_display_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map');
     }
 
-	public function owmw_map_height_callback()
+    public function owmw_map_height_callback()
     {
         $check = $this->options['owmw_map_height'] ?? '';
 
         printf('<input name="owmw_option_name[owmw_map_height]" type="number" min="300" value="%s" />', esc_attr($check));
-	}
+    }
 
-	public function owmw_map_opacity_callback()
-	{
+    public function owmw_map_opacity_callback()
+    {
         $selected = $this->options['owmw_map_opacity'] ?? "nobypass";
 
-		echo ' <select id="owmw_map_opacity" name="owmw_option_name[owmw_map_opacity]"> ';
-		echo ' <option ';
-		if ('nobypass' == $selected) echo 'selected="selected"';
-		echo ' value="nobypass">No bypass</option>';
-		echo ' <option ';
-		if ('0' == $selected) echo 'selected="selected"';
-		echo ' value="0">0%</option>';
-		echo '<option ';
-		if ('0.1' == $selected) echo 'selected="selected"';
-		echo ' value="0.1">10%</option>';
-		echo '<option ';
-		if ('0.2' == $selected) echo 'selected="selected"';
-		echo ' value="0.2">20%</option>';
-		echo '<option ';
-		if ('0.3' == $selected) echo 'selected="selected"';
-		echo ' value="0.3">30%</option>';
-		echo '<option ';
-		if ('0.4' == $selected) echo 'selected="selected"';
-		echo ' value="0.4">40%</option>';
-		echo '<option ';
-		if ('0.5' == $selected) echo 'selected="selected"';
-		echo ' value="0.5">50%</option>';
-		echo '<option ';
-		if ('0.6' == $selected) echo 'selected="selected"';
-		echo ' value="0.6">60%</option>';
-		echo '<option ';
-		if ('0.7' == $selected) echo 'selected="selected"';
-		echo ' value="0.7">70%</option>';
-		echo '<option ';
-		if ('0.8' == $selected) echo 'selected="selected"';
-		echo ' value="0.8">80%</option>';
-		echo '<option ';
-		if ('0.9' == $selected) echo 'selected="selected"';
-		echo ' value="0.9">90%</option>';
-		echo '<option ';
-		if ('1' == $selected) echo 'selected="selected"';
-		echo ' value="1">100%</option>';
-		echo '</select>';
-	}
+        echo ' <select id="owmw_map_opacity" name="owmw_option_name[owmw_map_opacity]"> ';
+        echo ' <option ';
+        if ('nobypass' == $selected) echo 'selected="selected"';
+        echo ' value="nobypass">No bypass</option>';
+        echo ' <option ';
+        if ('0' == $selected) echo 'selected="selected"';
+        echo ' value="0">0%</option>';
+        echo '<option ';
+        if ('0.1' == $selected) echo 'selected="selected"';
+        echo ' value="0.1">10%</option>';
+        echo '<option ';
+        if ('0.2' == $selected) echo 'selected="selected"';
+        echo ' value="0.2">20%</option>';
+        echo '<option ';
+        if ('0.3' == $selected) echo 'selected="selected"';
+        echo ' value="0.3">30%</option>';
+        echo '<option ';
+        if ('0.4' == $selected) echo 'selected="selected"';
+        echo ' value="0.4">40%</option>';
+        echo '<option ';
+        if ('0.5' == $selected) echo 'selected="selected"';
+        echo ' value="0.5">50%</option>';
+        echo '<option ';
+        if ('0.6' == $selected) echo 'selected="selected"';
+        echo ' value="0.6">60%</option>';
+        echo '<option ';
+        if ('0.7' == $selected) echo 'selected="selected"';
+        echo ' value="0.7">70%</option>';
+        echo '<option ';
+        if ('0.8' == $selected) echo 'selected="selected"';
+        echo ' value="0.8">80%</option>';
+        echo '<option ';
+        if ('0.9' == $selected) echo 'selected="selected"';
+        echo ' value="0.9">90%</option>';
+        echo '<option ';
+        if ('1' == $selected) echo 'selected="selected"';
+        echo ' value="1">100%</option>';
+        echo '</select>';
+    }
 
-	public function owmw_map_zoom_callback()
-	{
+    public function owmw_map_zoom_callback()
+    {
         $selected = $this->options['owmw_map_zoom'] ?? "nobypass";
 
-		echo ' <select id="owmw_map_zoom" name="owmw_option_name[owmw_map_zoom]"> ';
-		echo ' <option ';
-		if ('nobypass' == $selected) echo 'selected="selected"';
-		echo ' value="nobypass">No bypass</option>';
-		echo ' <option ';
-		if ('1' == $selected) echo 'selected="selected"';
-		echo ' value="1">1</option>';
-		echo ' <option ';
-		if ('2' == $selected) echo 'selected="selected"';
-		echo ' value="2">2</option>';
-		echo ' <option ';
-		if ('3' == $selected) echo 'selected="selected"';
-		echo ' value="3">3</option>';
-		echo ' <option ';
-		if ('4' == $selected) echo 'selected="selected"';
-		echo ' value="4">4</option>';
-		echo ' <option ';
-		if ('5' == $selected) echo 'selected="selected"';
-		echo ' value="5">5</option>';
-		echo ' <option ';
-		if ('6' == $selected) echo 'selected="selected"';
-		echo ' value="6">6</option>';
-		echo ' <option ';
-		if ('7' == $selected) echo 'selected="selected"';
-		echo ' value="7">7</option>';
-		echo ' <option ';
-		if ('8' == $selected) echo 'selected="selected"';
-		echo ' value="8">8</option>';
-		echo ' <option ';
-		if ('9' == $selected) echo 'selected="selected"';
-		echo ' value="9">9</option>';
-		echo ' <option ';
-		if ('10' == $selected) echo 'selected="selected"';
-		echo ' value="10">10</option>';
-		echo ' <option ';
-		if ('11' == $selected) echo 'selected="selected"';
-		echo ' value="11">11</option>';
-		echo ' <option ';
-		if ('12' == $selected) echo 'selected="selected"';
-		echo ' value="12">12</option>';
-		echo ' <option ';
-		if ('13' == $selected) echo 'selected="selected"';
-		echo ' value="13">13</option>';
-		echo ' <option ';
-		if ('14' == $selected) echo 'selected="selected"';
-		echo ' value="14">14</option>';
-		echo ' <option ';
-		if ('15' == $selected) echo 'selected="selected"';
-		echo ' value="15">15</option>';
-		echo ' <option ';
-		if ('16' == $selected) echo 'selected="selected"';
-		echo ' value="16">16</option>';
-		echo ' <option ';
-		if ('17' == $selected) echo 'selected="selected"';
-		echo ' value="17">17</option>';
-		echo ' <option ';
-		if ('18' == $selected) echo 'selected="selected"';
-		echo ' value="18">18</option>';
-		echo '</select>';
-	}
+        echo ' <select id="owmw_map_zoom" name="owmw_option_name[owmw_map_zoom]"> ';
+        echo ' <option ';
+        if ('nobypass' == $selected) echo 'selected="selected"';
+        echo ' value="nobypass">No bypass</option>';
+        echo ' <option ';
+        if ('1' == $selected) echo 'selected="selected"';
+        echo ' value="1">1</option>';
+        echo ' <option ';
+        if ('2' == $selected) echo 'selected="selected"';
+        echo ' value="2">2</option>';
+        echo ' <option ';
+        if ('3' == $selected) echo 'selected="selected"';
+        echo ' value="3">3</option>';
+        echo ' <option ';
+        if ('4' == $selected) echo 'selected="selected"';
+        echo ' value="4">4</option>';
+        echo ' <option ';
+        if ('5' == $selected) echo 'selected="selected"';
+        echo ' value="5">5</option>';
+        echo ' <option ';
+        if ('6' == $selected) echo 'selected="selected"';
+        echo ' value="6">6</option>';
+        echo ' <option ';
+        if ('7' == $selected) echo 'selected="selected"';
+        echo ' value="7">7</option>';
+        echo ' <option ';
+        if ('8' == $selected) echo 'selected="selected"';
+        echo ' value="8">8</option>';
+        echo ' <option ';
+        if ('9' == $selected) echo 'selected="selected"';
+        echo ' value="9">9</option>';
+        echo ' <option ';
+        if ('10' == $selected) echo 'selected="selected"';
+        echo ' value="10">10</option>';
+        echo ' <option ';
+        if ('11' == $selected) echo 'selected="selected"';
+        echo ' value="11">11</option>';
+        echo ' <option ';
+        if ('12' == $selected) echo 'selected="selected"';
+        echo ' value="12">12</option>';
+        echo ' <option ';
+        if ('13' == $selected) echo 'selected="selected"';
+        echo ' value="13">13</option>';
+        echo ' <option ';
+        if ('14' == $selected) echo 'selected="selected"';
+        echo ' value="14">14</option>';
+        echo ' <option ';
+        if ('15' == $selected) echo 'selected="selected"';
+        echo ' value="15">15</option>';
+        echo ' <option ';
+        if ('16' == $selected) echo 'selected="selected"';
+        echo ' value="16">16</option>';
+        echo ' <option ';
+        if ('17' == $selected) echo 'selected="selected"';
+        echo ' value="17">17</option>';
+        echo ' <option ';
+        if ('18' == $selected) echo 'selected="selected"';
+        echo ' value="18">18</option>';
+        echo '</select>';
+    }
 
-	public function owmw_map_disable_zoom_wheel_callback()
+    public function owmw_map_disable_zoom_wheel_callback()
     {
         $this->owmw_bypassRadioButtonsDisable('owmw_map_disable_zoom_wheel');
     }
 
-	public function owmw_map_layers_cities_callback()
+    public function owmw_map_layers_cities_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_cities');
     }
 
-	public function owmw_map_layers_cities_legend_callback()
+    public function owmw_map_layers_cities_legend_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_cities_legend');
     }
 
-	public function owmw_map_layers_cities_on_callback()
+    public function owmw_map_layers_cities_on_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_cities_on');
     }
 
-	public function owmw_map_layers_clouds_callback()
+    public function owmw_map_layers_clouds_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_clouds');
     }
 
-	public function owmw_map_layers_clouds_legend_callback()
+    public function owmw_map_layers_clouds_legend_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_clouds_legend');
     }
 
-	public function owmw_map_layers_clouds_on_callback()
+    public function owmw_map_layers_clouds_on_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_clouds_on');
     }
 
-	public function owmw_map_layers_precipitation_callback()
+    public function owmw_map_layers_precipitation_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_precipitation');
     }
 
-	public function owmw_map_layers_precipitation_legend_callback()
+    public function owmw_map_layers_precipitation_legend_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_precipitation_legend');
     }
 
-	public function owmw_map_layers_precipitation_on_callback()
+    public function owmw_map_layers_precipitation_on_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_precipitation_on');
     }
 
-	public function owmw_map_layers_rain_callback()
+    public function owmw_map_layers_rain_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_rain');
     }
 
-	public function owmw_map_layers_rain_legend_callback()
+    public function owmw_map_layers_rain_legend_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_rain_legend');
     }
 
-	public function owmw_map_layers_rain_on_callback()
+    public function owmw_map_layers_rain_on_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_rain_on');
     }
 
-	public function owmw_map_layers_snow_callback()
+    public function owmw_map_layers_snow_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_snow');
     }
 
-	public function owmw_map_layers_snow_legend_callback()
+    public function owmw_map_layers_snow_legend_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_snow_legend');
     }
 
-	public function owmw_map_layers_snow_on_callback()
+    public function owmw_map_layers_snow_on_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_snow_on');
     }
 
-	public function owmw_map_layers_wind_callback()
+    public function owmw_map_layers_wind_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_wind');
     }
 
-	public function owmw_map_layers_wind_legend_callback()
+    public function owmw_map_layers_wind_legend_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_wind_legend');
     }
 
-	public function owmw_map_layers_wind_on_callback()
+    public function owmw_map_layers_wind_on_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_wind_legend');
     }
 
-	public function owmw_map_layers_temperature_callback()
+    public function owmw_map_layers_temperature_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_temperature');
     }
 
-	public function owmw_map_layers_temperature_legend_callback()
+    public function owmw_map_layers_temperature_legend_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_temperature_legend');
     }
 
-	public function owmw_map_layers_temperature_on_callback()
+    public function owmw_map_layers_temperature_on_callback()
     {
         $this->owmw_bypassRadioButtons('owmw_map_temperature_on');
     }
@@ -2788,16 +2811,16 @@ class owmw_options
 
     public function owmw_support_info_callback()
     {
-		echo
-			'<h3>'. esc_html__("Get started with OWM Weather", 'owm-weather').'</h3>
-			<p><a href="https://ujsoftware.com/owm-weather-blog/owm-weather-create-your-first-weather/" target="_blank" title="'. esc_attr__("Create your first weather", 'owm-weather').'">'. esc_html__("Create your first weather", 'owm-weather').'</a></p><br>
-			<h3>'. esc_html__("Having a problem with OWM Weather?", 'owm-weather').'</h3>
-			<p><a href="https://ujsoftware.com/owm-weather-blog/" target="_blank" title="'. esc_attr__("OWM Weather Blog", 'owm-weather').'">'. esc_html__("OWM Weather Blog", 'owm-weather').'</a></p><br>
-			<p><a href="https://wordpress.org/plugins/owm-weather/" target="_blank" title="'. esc_attr__("OWM Weather Forum on WordPress.org", 'owm-weather').'">'. esc_html__("OWM Weather Forum on WordPress.org", 'owm-weather').'</a></p>';
+        echo
+            '<h3>'. esc_html__("Get started with OWM Weather", 'owm-weather').'</h3>
+            <p><a href="https://ujsoftware.com/owm-weather-blog/owm-weather-create-your-first-weather/" target="_blank" title="'. esc_attr__("Create your first weather", 'owm-weather').'">'. esc_html__("Create your first weather", 'owm-weather').'</a></p><br>
+            <h3>'. esc_html__("Having a problem with OWM Weather?", 'owm-weather').'</h3>
+            <p><a href="https://ujsoftware.com/owm-weather-blog/" target="_blank" title="'. esc_attr__("OWM Weather Blog", 'owm-weather').'">'. esc_html__("OWM Weather Blog", 'owm-weather').'</a></p><br>
+            <p><a href="https://wordpress.org/plugins/owm-weather/" target="_blank" title="'. esc_attr__("OWM Weather Forum on WordPress.org", 'owm-weather').'">'. esc_html__("OWM Weather Forum on WordPress.org", 'owm-weather').'</a></p>';
     }
 
     private function owmw_bypassRadioButtons($option) {
-		$value = $this->options[$option] ?? 'nobypass';
+        $value = $this->options[$option] ?? 'nobypass';
 
         echo '<input id="' . esc_attr($option) . '_nobypass" name="owmw_option_name[' . esc_attr($option) . ']" type="radio"';
         if ('nobypass' == $value) echo 'checked="checked"';
@@ -2820,7 +2843,7 @@ class owmw_options
     }
 
     private function owmw_bypassRadioButtonsDisable($option) {
-		$value = $this->options[$option] ?? 'nobypass';
+        $value = $this->options[$option] ?? 'nobypass';
 
         echo '<input id="' . esc_attr($option) . '_nobypass" name="owmw_option_name[' . esc_attr($option) . ']" type="radio"';
         if ('nobypass' == $value) echo 'checked="checked"';
@@ -2844,8 +2867,9 @@ class owmw_options
 
 }
 
-if( is_admin() )
+if (is_network_admin() || is_admin()) {
     $my_settings_page = new owmw_options();
+}
 
 function owmw_help_tab() {
     global $owmw_help_tab;
@@ -2856,7 +2880,7 @@ function owmw_help_tab() {
         'title' => esc_html__('Setup OWM Weather', 'owm-weather'),
         'content'   => '<ol>
 <li>' . esc_html__('Goto Settings / OWM Weather.').'</li>
-<li>' . esc_html__('Enter your API key, if you have one.').'</li>
+<li>' . esc_html__('Enter your API key, if you have one. You may use the built-in key for testing until yours is activated.').'</li>
 <li>' . esc_html__('Check "Disable Bootstrap" if you already include Bootstrap in your theme.').'</li>
 <li>' . esc_html__('Leave all other settings as is for now and hit "Save changes".', 'owm-weather' ) . '</li>
 </ol>',
@@ -2865,8 +2889,8 @@ function owmw_help_tab() {
         'id'    => 'owmw_help_tab2',
         'title' => esc_html__('Create your first weather', 'owm-weather'),
         'content'   => '<ol>
-<li>' . esc_html__('Click on the new custom post type called "Weather" and create a "New Weather"') . '</li>
-<li>' . esc_html__('Fill one of the tabs under "Get weather by..." or leave empty for user\'s location by ip address') . '</li>
+<li>' . esc_html__('Click on the new custom post type called "Weather" and create a "New Weather".') . '</li>
+<li>' . esc_html__('Fill one of the tabs under "Get weather by..." or leave empty for user\'s location.') . '</li>
 <li>' . esc_html__('Choose "Measurement System" Imperial for Fahrenheit and miles, or "Metric" for Celsius and kilometers.') . '</li>
 <li>' . esc_html__('Choose "12" or "24" hour time format.') . '</li>
 <li>' . esc_html__('Under the "Display" tab, select the fields you would like to display.') . '</li>
@@ -2889,7 +2913,11 @@ function owmw_media_selector_print_scripts($id = null) {
         $image_id["stormy_background"]  = get_post_meta($id,'_owmweather_stormy_background_image',true);
         $image_id["foggy_background"]   = get_post_meta($id,'_owmweather_foggy_background_image',true);
     } else {
-        $options = get_option('owmw_option_name');
+        if (is_multisite() && is_network_admin()) {
+            $options = get_site_option('owmw_option_name');
+        } else {
+            $options = get_option('owmw_option_name');
+        }
         $image_id = [];
         $image_id["background"]         = $options['owmw_background_image'] ?? null;
         $image_id["sunny_background"]   = $options['owmw_sunny_background_image'] ?? null;
@@ -2905,58 +2933,58 @@ function owmw_media_selector_print_scripts($id = null) {
         $id = !empty($id) ? $id : 0;
     }
 
-	?><script type='text/javascript'>
+    ?><script type='text/javascript'>
 
-		jQuery( document ).ready( function( $ ) {
+        jQuery( document ).ready( function( $ ) {
 
-			// Uploading files
-			var image_frame;
-			var wp_media_post_id = wp.media.model.settings.post.id; // Store the old id
-			const set_to_post_id = { background:"<?php echo intval($image_id["background"]); ?>",
-			                         sunny_background:"<?php echo intval($image_id["sunny_background"]); ?>",
-			                         cloudy_background:"<?php echo intval($image_id["cloudy_background"]); ?>",
-			                         drizzly_background:"<?php echo intval($image_id["drizzly_background"]); ?>",
-			                         rainy_background:"<?php echo intval($image_id["rainy_background"]); ?>",
-			                         snowy_background:"<?php echo intval($image_id["snowy_background"]); ?>",
-			                         stormy_background:"<?php echo intval($image_id["stormy_background"]); ?>",
-			                         foggy_sunny_background:"<?php echo intval($image_id["foggy_background"]); ?>"
+            // Uploading files
+            var image_frame;
+            var wp_media_post_id = wp.media.model.settings.post.id; // Store the old id
+            const set_to_post_id = { background:"<?php echo intval($image_id["background"]); ?>",
+                                     sunny_background:"<?php echo intval($image_id["sunny_background"]); ?>",
+                                     cloudy_background:"<?php echo intval($image_id["cloudy_background"]); ?>",
+                                     drizzly_background:"<?php echo intval($image_id["drizzly_background"]); ?>",
+                                     rainy_background:"<?php echo intval($image_id["rainy_background"]); ?>",
+                                     snowy_background:"<?php echo intval($image_id["snowy_background"]); ?>",
+                                     stormy_background:"<?php echo intval($image_id["stormy_background"]); ?>",
+                                     foggy_sunny_background:"<?php echo intval($image_id["foggy_background"]); ?>"
                                     };
 
-			$('.clear_background_image').on('click', function( event ){
+            $('.clear_background_image').on('click', function( event ){
 
-				event.preventDefault();
+                event.preventDefault();
                 name = $( this ).data('name');
 
                 $( '#'+name+'_image_attachment_id' ).val('');
                 $( '#'+name+'_image_preview' ).attr('src', '');
                 $( '#'+name+'_image_preview' ).hide();
-			});
+            });
 
-			$('.select_background_image_button').on('click', function( event ){
+            $('.select_background_image_button').on('click', function( event ){
 
-				event.preventDefault();
+                event.preventDefault();
                 name = $( this ).data('name');
 
-				// If the media frame already exists, reopen it.
-				if ( image_frame ) {
-					// Set the post ID to what we want
-					image_frame.uploader.uploader.param( 'post_id', set_to_post_id );
-					// Open frame
-					image_frame.open();
-					return;
-				} else {
-					// Set the wp.media post id so the uploader grabs the ID we want when initialised
-					wp.media.model.settings.post.id = set_to_post_id[name];
-				}
+                // If the media frame already exists, reopen it.
+                if ( image_frame ) {
+                    // Set the post ID to what we want
+                    image_frame.uploader.uploader.param( 'post_id', set_to_post_id );
+                    // Open frame
+                    image_frame.open();
+                    return;
+                } else {
+                    // Set the wp.media post id so the uploader grabs the ID we want when initialised
+                    wp.media.model.settings.post.id = set_to_post_id[name];
+                }
 
-				// Create the media frame.
-				image_frame = wp.media.frames.image_frame = wp.media({
-					title: 'Select a background image',
-					button: { text: 'Use this image' },
-					library : { type : 'image' },
-					multiple: false,
-					currentValue: set_to_post_id
-				});
+                // Create the media frame.
+                image_frame = wp.media.frames.image_frame = wp.media({
+                    title: 'Select a background image',
+                    button: { text: 'Use this image' },
+                    library : { type : 'image' },
+                    multiple: false,
+                    currentValue: set_to_post_id
+                });
 
                 image_frame.on('open',function() {
                     const selection =  image_frame.state().get('selection');
@@ -2965,30 +2993,126 @@ function owmw_media_selector_print_scripts($id = null) {
                     selection.add( attachment ? [ attachment ] : [] );
                 });
             
-				// When an image is selected, run a callback.
-				image_frame.on( 'select', function() {
-					// We set multiple to false so only get one image from the uploader
-					attachment = image_frame.state().get('selection').first().toJSON();
+                // When an image is selected, run a callback.
+                image_frame.on( 'select', function() {
+                    // We set multiple to false so only get one image from the uploader
+                    attachment = image_frame.state().get('selection').first().toJSON();
 
-					// Do something with attachment.id and/or attachment.url here
-					$( '#'+name+'_image_preview' ).attr( 'src', attachment.url ).css( 'width', 'auto' );
-					$( '#'+name+'_image_attachment_id' ).val( attachment.id );
+                    // Do something with attachment.id and/or attachment.url here
+                    $( '#'+name+'_image_preview' ).attr( 'src', attachment.url ).css( 'width', 'auto' );
+                    $( '#'+name+'_image_attachment_id' ).val( attachment.id );
                     $( '#'+name+'_image_preview' ).show();
 
-					// Restore the main post ID
-					wp.media.model.settings.post.id = wp_media_post_id;
-				});
+                    // Restore the main post ID
+                    wp.media.model.settings.post.id = wp_media_post_id;
+                });
 
-					// Finally, open the modal
-					image_frame.open();
-			});
+                    // Finally, open the modal
+                    image_frame.open();
+            });
 
-			// Restore the main ID when the add media button is pressed
-			$( 'a.add_media' ).on( 'click', function() {
-				wp.media.model.settings.post.id = wp_media_post_id;
-			});
-		});
+            // Restore the main ID when the add media button is pressed
+            $( 'a.add_media' ).on( 'click', function() {
+                wp.media.model.settings.post.id = wp_media_post_id;
+            });
+        });
 
-	</script><?php
+    </script><?php
+}
+
+/**
+ * Class to log success.
+ */
+class Log_Success {
+    /**
+     * Message to be displayed in a warning.
+     *
+     * @var string
+     */
+    private string $message;
+ 
+    /**
+     * Initialize class.
+     *
+     * @param string $message Message to be displayed in a warning.
+     */
+    public function __construct( string $message ) {
+        $this->message = $message;
+ 
+        add_action( 'network_admin_notices', array( $this, 'render' ) );
+    }
+ 
+    /**
+     * Displays warning on the admin screen.
+     *
+     * @return void
+     */
+    public function render() {
+        printf( '<div class="notice notice-success is-dismissible"><p>Success: %s</p></div>', esc_html( $this->message ) );
+    }
+}
+
+/**
+ * Class to log warnings.
+ */
+class Log_Warning {
+    /**
+     * Message to be displayed in a warning.
+     *
+     * @var string
+     */
+    private string $message;
+ 
+    /**
+     * Initialize class.
+     *
+     * @param string $message Message to be displayed in a warning.
+     */
+    public function __construct( string $message ) {
+        $this->message = $message;
+ 
+        add_action( 'network_admin_notices', array( $this, 'render' ) );
+    }
+ 
+    /**
+     * Displays warning on the admin screen.
+     *
+     * @return void
+     */
+    public function render() {
+        printf( '<div class="notice notice-warning is-dismissible"><p>Warning: %s</p></div>', esc_html( $this->message ) );
+    }
+}
+
+/**
+ * Class to log errors.
+ */
+class Log_Error {
+    /**
+     * Message to be displayed in a warning.
+     *
+     * @var string
+     */
+    private string $message;
+ 
+    /**
+     * Initialize class.
+     *
+     * @param string $message Message to be displayed in a warning.
+     */
+    public function __construct( string $message ) {
+        $this->message = $message;
+ 
+        add_action( 'network_admin_notices', array( $this, 'render' ) );
+    }
+ 
+    /**
+     * Displays warning on the admin screen.
+     *
+     * @return void
+     */
+    public function render() {
+        printf( '<div class="notice notice-error is-dismissible"><p>Error: %s</p></div>', esc_html( $this->message ) );
+    }
 }
 ?>
