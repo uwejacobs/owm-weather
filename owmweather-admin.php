@@ -74,8 +74,8 @@ class owmw_options
         } else {
             $this->options = get_option( 'owmw_option_name' );
         }
+        $owmw_info_version = get_plugin_data( plugin_dir_path( __FILE__ ).'/owmweather.php');
     ?>
-        <?php $owmw_info_version = get_plugin_data( plugin_dir_path( __FILE__ ).'/owmweather.php'); ?>
 
         <div id="owmweather-header">
             <div id="owmweather-clouds">
@@ -128,7 +128,7 @@ class owmw_options
 
         <?php
         function owmw_settings_admin_export_import_reset() {
-            $action = is_multisite() && is_network_admin() ? network_admin_url('settings.php?page=owmw_export_settings') : admin_url('options.php');?>
+            $action = is_multisite() && is_network_admin() ? network_admin_url('settings.php?page=owmw_export_settings') : admin_url('options.php');
         ?>
                 <div id="owmw_export_form" class="metabox-holder">
                     <div class="postbox">

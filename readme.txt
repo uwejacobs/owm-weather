@@ -45,6 +45,9 @@ The worldwide location can be specified by the OWM city id (available for over 2
 = Unlimited weathers =
 OWM Weather uses WordPress Custom Post Types which allows for an unlimited number of weathers.
 
+= Multisite =
+Turn on the global setup mode and share your network setup and main site weather definitions throughout the network.
+
 = Weather-based Backgrounds =
 Define up to 7 different background colors or images depending on the weather condition.
 
