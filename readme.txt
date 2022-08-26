@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager, multisite
 Requires at least: 5.6
 Tested up to: 6.0.1
-Stable tag: 5.6.0
+Stable tag: 5.6.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -244,18 +244,25 @@ OWM Weather has to make several API calls to OpenWeatherMap.com to retrieve the 
 This points to a connectivity issue between the server your domain is hosted and api.openweathermap.org. Please open a ticket with your hosting provider.
 
 == Screenshots ==
-1. Basic current weather info with alerts
-1. Alert popup.
-1. Detailed current weather info with alerts.
-1. Adding a background image.
-1. Detailed current weather info with alerts and map.
-1. Detailed current and forecast weather with alerts and map.
-1. Detailed current weather. Detailed hourly forecast in table.
-1. System options panel.
-1. Weather page setup.
-1. Basic current weather for multiple cities.
+
+1. OWM Weather Current Conditions
+2. OWM Weather Alert Modal
+3. OWM Weather Detailed Current Conditions
+4. OWM Weather with Image Background
+5. OWM Weather Detailed Current Conditions with Map
+6. OWM Weather with Detailed Current Conditions, Hourly and Daily Forecast, and Map
+7. OWM Weather with Detailed Current Conditions and Deailed Hourly Forecast in Table Format
+8. OWM Weather System Settings
+9. OWM Weather Custom Weather Post Settings
+10. OWM Weather Multiple Current Weather Conditions
+11. OWM Weather Hourly Forecast Charts
 
 == Changelog ==
+
+= 5.6.1 =
+* Added Geo-Location Cache for Multisites with different TLDs
+* Changed Multisite Main Site "All Weather" Listing Columns
+* Reinstated the readme.txt Screenshot section
 
 = 5.6.0 =
 * Added Multisite
@@ -465,3 +472,4 @@ This points to a connectivity issue between the server your domain is hosted and
 
 == Upgrade Notice ==
 * WP Cloudy users who want to upgrade to OWM Weather need to reenter their weather pages and system settings.
+

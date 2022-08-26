@@ -51,6 +51,18 @@ jQuery(document).ready(function($){
 function owmw_get_my_weather(latitude, longitude) {
     var owm_weather_id = document.getElementsByClassName('owm-weather-id');
     for(var i = 0; i < owm_weather_id.length; i++) {
+        if (latitude == 0 && longitude == 0) {
+            lat = jQuery(owm_weather_id[i]).data("lat");
+            lon = jQuery(owm_weather_id[i]).data("lon");
+            if (lat) {
+                latitude = lat;
+                jQuery(owm_weather_id[i]).removeData("lat");
+            }
+            if (lon) {
+                longitude = lon;
+                jQuery(owm_weather_id[i]).removeData("lon");
+            }
+        }
         jQuery.ajax({
             url : owmwAjax.owmw_url,
             method : 'POST',
@@ -86,7 +98,7 @@ function owmw_refresh_weather(id) {
         method : 'POST',
         data : {
             action: 'owmw_get_my_weather',
-            counter: 1, /*bugbug*/
+            counter: 1001, /*bugbug*/
             owmw_params : jQuery(owm_weather_id).data(),
             _ajax_nonce: owmwAjax.owmw_nonce,
             latitude: window.latitude,

@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.6.0
+Version: 5.6.1
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -64,7 +64,7 @@ function plugin_row_meta($links, $file) {
     return $links;
 }
 
-define( 'OWM_WEATHER_VERSION', '5.6.0' );
+define( 'OWM_WEATHER_VERSION', '5.6.1' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -2521,7 +2521,14 @@ function owmw_get_my_weather_id($atts) {
     }
 
     if (empty($owmw_opt["id_owm"]) && empty($owmw_opt["longitude"]) && empty($owmw_opt["latitude"]) && empty($owmw_opt["zip"]) && empty($owmw_opt["city"])) {
-        $data_attributes_esc[] = 'data-geo_location="true"';
+        $get_transient = is_multisite() ? "get_site_transient" : "get_transient";
+        $transient_key = 'owmw_geolocation_' . owmw_get_ip_from_server() . '_' . hash("md5", $_SERVER["HTTP_USER_AGENT"] ?? '');
+        if (false === ($latlon = $get_transient($transient_key))) {
+            $data_attributes_esc[] = 'data-geo_location="true"';
+        } else {
+            $data_attributes_esc[] = 'data-lat="' . esc_attr($latlon["lat"]) . '"';
+            $data_attributes_esc[] = 'data-lon="' . esc_attr($latlon["lon"]) . '"';
+        }
     }
 
     $div_id_esc = owmw_unique_id_esc("owm-weather-id-".$owmw_opt["id"]);
@@ -2796,7 +2803,14 @@ function owmw_get_my_weather($attr) {
        	    }
        	} else if ($_POST["longitude"] != '' && $_POST["latitude"] != '') {
        	    $query = "lat=".floatval($_POST["latitude"])."&lon=".floatval($_POST["longitude"]);
-       	    $queryT = floatval($_POST["latitude"]).floatval($_POST["longitude"]);
+            $queryT = floatval($_POST["latitude"]).floatval($_POST["longitude"]);
+            
+            if (floatval($_POST["latitude"]) != 0.00 && floatval($_POST["longitude"]) != 0.00) {
+                $latlon = array("lat" => floatval($_POST["latitude"]), "lon" => floatval($_POST["longitude"]));
+                $set_transient = is_multisite() ? "set_site_transient" : "set_transient";
+                $transient_key = 'owmw_geolocation_' . owmw_get_ip_from_server() . '_' . hash("md5", $_SERVER["HTTP_USER_AGENT"] ?? '');
+                $set_transient($transient_key, $latlon, MONTH_IN_SECONDS);
+            }
        	} else if (($ipData = owmw_IPtoLocation())) {
             $owmw_opt["latitude"] = floatval($ipData->data->geo->latitude);
             $owmw_opt["longitude"] = floatval($ipData->data->geo->longitude);
@@ -4964,10 +4978,10 @@ function owmw_set_custom_edit_owm_weather_columns($columns) {
 
 function owmw_custom_owm_weather_column($column, $post_id) {
     if ($column == 'owmw-shortcode') {
-        echo '<b>[owm-weather id="' . (is_main_site() && owmw_is_global_multisite() ? "m" : "") . esc_html($post_id) . '" /]</b>';
+        echo '<b>[owm-weather id="' . esc_attr($post_id) . '" /]</b>';
     }
     if ($column == 'owmw-multisite') {
-        echo get_post_meta($post_id, "_owmweather_network_share", true) ? esc_html__('Network Shared', 'owm-weather') : "";
+        echo get_post_meta($post_id, "_owmweather_network_share", true) ? '<b>[owm-weather id="' . (is_main_site() && owmw_is_global_multisite() ? "m" : "") . esc_attr($post_id) . '" /]</b>' : "";
     }
 }
 
@@ -5662,33 +5676,10 @@ function owmw_sanitize_api_response_item(&$item, $key, $ta = []) {
 function owmw_IPtoLocation() {
     global $wp;
 
-    $client  = @$_SERVER["HTTP_CF_CONNECTING_IP"];
-    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-    $xforward = @$_SERVER['HTTP_X_FORWARDED'];
-    $forwardfor = @$_SERVER['HTTP_FORWARDED_FOR'];
-    $forwarded = @$_SERVER['HTTP_FORWARDED'];
-    $clientip = @$_SERVER['HTTP_CLIENT_IP'];
-    $remote  = @$_SERVER['REMOTE_ADDR'];
+    $set_transient = is_multisite() ? "set_site_transient" : "set_transient";
+    $get_transient = is_multisite() ? "get_site_transient" : "get_transient";
 
-    if (filter_var($client, FILTER_VALIDATE_IP)){
-       $ip = $client;
-    } else if(filter_var($forward, FILTER_VALIDATE_IP)){
-       $ip = $forward;
-    } else if(filter_var($xforward, FILTER_VALIDATE_IP)){
-       $ip = $xforward;
-    } else if(filter_var($forwardfor, FILTER_VALIDATE_IP)){
-       $ip = $forwardfor;
-    } else if(filter_var($forwarded, FILTER_VALIDATE_IP)){
-       $ip = $forwarded;
-    } else if(filter_var($clientip, FILTER_VALIDATE_IP)){
-       $ip = $clientip;
-    } else if(filter_var($remote, FILTER_VALIDATE_IP)){
-       $ip = $remote;
-    } else {
-        return false;
-    }
-
-    $transient_key = 'owmw_iplocation_' . $ip;
+    $transient_key = 'owmw_iplocation_' . owmw_get_ip_from_server();
 
     if (false === ($ipData = $get_transient($transient_key))) {
     	$apiURL = 'https://tools.keycdn.com/geo.json?host='.$ip;
@@ -5711,6 +5702,34 @@ function owmw_IPtoLocation() {
     owmw_sanitize_api_response($ipData);
 
 	return !empty($ipData) ? $ipData : false;
+}
+
+function owmw_get_ip_from_server() {
+    $client  = @$_SERVER["HTTP_CF_CONNECTING_IP"];
+    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+    $xforward = @$_SERVER['HTTP_X_FORWARDED'];
+    $forwardfor = @$_SERVER['HTTP_FORWARDED_FOR'];
+    $forwarded = @$_SERVER['HTTP_FORWARDED'];
+    $clientip = @$_SERVER['HTTP_CLIENT_IP'];
+    $remote  = @$_SERVER['REMOTE_ADDR'];
+
+    if (filter_var($client, FILTER_VALIDATE_IP)){
+       return $client;
+    } else if(filter_var($forward, FILTER_VALIDATE_IP)){
+       return $forward;
+    } else if(filter_var($xforward, FILTER_VALIDATE_IP)){
+       return $xforward;
+    } else if(filter_var($forwardfor, FILTER_VALIDATE_IP)){
+       return $forwardfor;
+    } else if(filter_var($forwarded, FILTER_VALIDATE_IP)){
+       return $forwarded;
+    } else if(filter_var($clientip, FILTER_VALIDATE_IP)){
+       return $clientip;
+    } else if(filter_var($remote, FILTER_VALIDATE_IP)){
+       return $remote;
+    }
+
+    return false;
 }
 
 function owmw_celsius_to_fahrenheit($t) {

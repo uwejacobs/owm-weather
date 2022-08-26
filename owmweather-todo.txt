@@ -1,12 +1,11 @@
 Must:
 
 Should:
-Create first weather post with geo-location if none exists
+Gutenberg block rendering
 
 Nice:
 background type video
 YouTube background
-Gutenberg block rendering
 
 
 
