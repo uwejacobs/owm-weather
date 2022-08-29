@@ -3029,7 +3029,7 @@ class Log_Success {
      *
      * @var string
      */
-    private string $message;
+    private $message;
  
     /**
      * Initialize class.
@@ -3061,7 +3061,7 @@ class Log_Warning {
      *
      * @var string
      */
-    private string $message;
+    private $message;
  
     /**
      * Initialize class.
@@ -3093,7 +3093,7 @@ class Log_Error {
      *
      * @var string
      */
-    private string $message;
+    private $message;
  
     /**
      * Initialize class.

@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager, multisite
 Requires at least: 5.6
 Tested up to: 6.0.1
-Stable tag: 5.6.1
+Stable tag: 5.6.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -258,6 +258,9 @@ This points to a connectivity issue between the server your domain is hosted and
 11. OWM Weather Hourly Forecast Charts
 
 == Changelog ==
+
+= 5.6.2 =
+* Fixed admin incompatability with PHP versions < 7.4
 
 = 5.6.1 =
 * Added Geo-Location Cache for Multisites with different TLDs
