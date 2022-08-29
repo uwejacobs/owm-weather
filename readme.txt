@@ -259,6 +259,9 @@ This points to a connectivity issue between the server your domain is hosted and
 
 == Changelog ==
 
+= 5.6.3 =
+* Fixed stray footer css for the Color Animated template
+
 = 5.6.2 =
 * Fixed admin incompatability with PHP versions < 7.4
 

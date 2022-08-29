@@ -500,10 +500,3 @@ to {
     transform: skewX(-20deg);
   }
 }
-
-footer {
-  text-align: right;
-  margin-top: 20px;
-  margin-right: 20px;
-  font-size: 0.95em;
- }
