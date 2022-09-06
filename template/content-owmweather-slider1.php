@@ -141,7 +141,9 @@
             animationLoop: true,
             itemWidth: 250,
             itemMargin: 5,
-            maxItems: 4
+	    maxItems: 4,
+	    controlNav: false,
+	    directionNav: false
         });
         jQuery('#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .owmw-flexslider-hours').flexslider({
             controlsContainer: jQuery("#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .custom-controls-container"),
@@ -150,11 +152,15 @@
             animationLoop: true,
             itemWidth: 50,
             itemMargin: 5,
-            maxItems: 8
+            maxItems: 8,
+	    controlNav: false,
+	    directionNav: false
         });
         jQuery('#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .owmw-flexslider-forecast').flexslider({
             controlsContainer: jQuery("#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .custom-controls-container"),
             customDirectionNav: jQuery("#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .custom-navigation a"),
+	    controlNav: false,
+	    directionNav: false
         });
     });
 </script>

@@ -159,7 +159,9 @@ div[class^="owmw-flexslider"] {
             animationLoop: true,
             itemWidth: 250,
             itemMargin: 5,
-            maxItems: 4
+            maxItems: 4,
+            controlNav: false,
+            directionNav: false
         });
         jQuery(id+' .owmw-flexslider-hours').flexslider({
             controlsContainer: jQuery(id+" .custom-controls-container"),
@@ -168,11 +170,15 @@ div[class^="owmw-flexslider"] {
             animationLoop: true,
             itemWidth: 50,
             itemMargin: 5,
-            maxItems: 8
+            maxItems: 8,
+	    controlNav: false,
+	    directionNav: false
         });
         jQuery(id+' .owmw-flexslider-forecast').flexslider({
             controlsContainer: jQuery(id+" .custom-controls-container"),
             customDirectionNav: jQuery(id+" .custom-navigation a"),
+	    controlNav: false,
+	    directionNav: false
         });
     }
 
