@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager, multisite
 Requires at least: 5.6
 Tested up to: 6.0.2
-Stable tag: 5.6.4
+Stable tag: 5.6.5
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -259,7 +259,10 @@ This points to a connectivity issue between the server your domain is hosted and
 
 == Changelog ==
 
-= 5.3.4 =
+= 5.6.5 =
+* Fixed saving of float values, like longitude and latitude, in Weather post setup
+
+= 5.6.4 =
 * Tested with WordPress 6.0.2
 * Fixed controls and navigation for Slider 1 and Slider 2 templates
 

@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.6.4
+Version: 5.6.5
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -15,7 +15,7 @@ Domain Path: /lang
 */
 
 /*  Copyright 2013 - 2018  Benjamin DENIS  (email : contact@wpcloudy.com)
-    Copyright 2021 Uwe Jacobs
+    Copyright 2021 - 2022  Uwe Jacobs
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -64,7 +64,7 @@ function plugin_row_meta($links, $file) {
     return $links;
 }
 
-define( 'OWM_WEATHER_VERSION', '5.6.4' );
+define( 'OWM_WEATHER_VERSION', '5.6.5' );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Shortcut settings page
@@ -252,7 +252,7 @@ function owmw_add_admin_options_scripts() {
 			wp_enqueue_script( 'tabs-js', plugins_url( 'js/tabs.js', __FILE__ ), array( 'jquery-ui-tabs' ) );
 }
 
-if (isset($_GET['page']) && (sanitize_key($_GET['page']) == 'owmw-settings-admin')) {
+if (isset($_GET['page']) && (sanitize_text_field($_GET['page']) == 'owmw-settings-admin')) {
 
 	add_action('admin_enqueue_scripts', 'owmw_add_admin_options_scripts', 10, 1);
 }
@@ -315,11 +315,11 @@ function owmw_add_button_v4_register($buttons) {
 
 function owmw_duplicate_post_as_draft(){
 	global $wpdb;
-	if (! ( isset( $_GET['post']) || isset( $_POST['post'])  || ( isset($_REQUEST['action']) && 'owmw_duplicate_post_as_draft' == sanitize_key($_REQUEST['action']) ) ) ) {
+	if (! ( isset( $_GET['post']) || isset( $_POST['post'])  || ( isset($_REQUEST['action']) && 'owmw_duplicate_post_as_draft' == sanitize_text_field($_REQUEST['action']) ) ) ) {
 		wp_die('No weather to duplicate has been supplied!');
 	}
 
-	$post_id = sanitize_text_field(isset($_GET['post']) ? sanitize_key($_GET['post']) : sanitize_key($_POST['post']));
+	$post_id = sanitize_text_field(isset($_GET['post']) ? $_GET['post'] : $_POST['post']);
 
 	$post = get_post( $post_id );
 
@@ -457,6 +457,7 @@ function owmw_basic($post){
  	$owmw_opt["disable_anims"]   			= get_post_meta($id,'_owmweather_disable_anims',true);
 	$owmw_opt["background_color"]	   		= get_post_meta($id,'_owmweather_background_color',true);
 	$owmw_opt["background_image"]	   		= get_post_meta($id,'_owmweather_background_image',true);
+	$owmw_opt["background_yt_video"]   		= get_post_meta($id,'_owmweather_background_yt_video',true);
 	$owmw_opt["text_color"]		        	= get_post_meta($id,'_owmweather_text_color',true);
 	$owmw_opt["border_color"]		        = get_post_meta($id,'_owmweather_border_color',true);
 	$owmw_opt["border_width"]		        = owmw_getDefault($id, '_owmweather_border_width', $owmw_opt["border_color"] == '' ? '0' : '1');
@@ -1025,7 +1026,7 @@ function owmw_basic($post){
 						<?php esc_html_e( 'Modal', 'owm-weather' ) ?>
 				</label>
 			    </span>
-                            <span>&nbsp;</span>
+                <span>&nbsp;</span>
 			    <span>
 				<label for="owmweather_display_alert_inline_meta">
 					<input type="radio" name="owmweather_alerts_popup" id="owmweather_display_alert_inline_meta" value="inline" <?php echo checked( $owmw_opt["alerts_popup"], 'inline', false ) ?>/>
@@ -1197,13 +1198,18 @@ function owmw_basic($post){
 			</p>
 			<p>
 				<label><?php esc_html_e( 'Background Image', 'owm-weather' ) ?></label>
-                  <div class="background_image_preview_wrapper">
+                <div class="background_image_preview_wrapper">
                   	<img id="background_image_preview" src="<?php echo wp_get_attachment_url( ($owmw_opt["background_image"] ?? '' ) ) ?>" height="100px"<?php echo (!empty($owmw_opt["background_image"]) ? '' : ' style="display: none;"') ?>>
-                  </div>
-                  <input id="select_background_image_button" type="button" class="button select_background_image_button" value="<?php esc_html_e( 'Select image', 'owm-weather' ) ?>" data-name="background" />
-                  <input type="hidden" name="owmweather_background_image" id="background_image_attachment_id" value="<?php echo esc_attr($owmw_opt["background_image"] ?? '') ?>">
-                  <input id="clear_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="background" />
-              </p>
+                </div>
+                <input id="select_background_image_button" type="button" class="button select_background_image_button" value="<?php esc_html_e( 'Select image', 'owm-weather' ) ?>" data-name="background" />
+                <input type="hidden" name="owmweather_background_image" id="background_image_attachment_id" value="<?php echo esc_attr($owmw_opt["background_image"] ?? '') ?>">
+                <input id="clear_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="background" />
+            </p>
+			<!--p>
+				<label for="owmweather_background_yt_video_meta"><?php esc_html_e( 'YouTube Background Video', 'owm-weather' ) ?></label>
+				<input id="owmweather_background_yt_video_meta" type="text" name="owmweather_background_yt_video" value="<?php echo esc_attr($owmw_opt["background_yt_video"]) ?>" />
+                <img src="https://img.youtube.com/vi/<?php echo esc_attr($owmw_opt["background_yt_video"]) ?>/default.jpg"<?php echo (empty($owmw_opt["background_yt_video"]) ? ' style="display: none;"' : '') ?>>
+			</p-->
 			<p class="misc subsection-title">
 				<?php esc_html_e( 'Borders', 'owm-weather' ) ?>
 			</p>
@@ -1875,7 +1881,7 @@ function owmw_basic($post){
 }
 
 function owmw_save_metabox($post_id){
-	if (!empty($_POST['action']) && sanitize_key($_POST['action']) == 'inline-save') {
+	if (!empty($_POST['action']) && sanitize_text_field($_POST['action']) == 'inline-save') {
 		return;
 	}
 
@@ -1910,6 +1916,7 @@ function owmw_save_metabox($post_id){
 		owmw_save_metabox_field('stormy_background_color', $post_id);
 		owmw_save_metabox_field('foggy_background_color', $post_id);
 		owmw_save_metabox_field('background_image', $post_id);
+		owmw_save_metabox_field('background_yt_video', $post_id);
 		owmw_save_metabox_field('sunny_background_image', $post_id);
 		owmw_save_metabox_field('cloudy_background_image', $post_id);
 		owmw_save_metabox_field('drizzly_background_image', $post_id);
@@ -2029,14 +2036,14 @@ add_action('save_post','owmw_save_metabox');
 
 function owmw_save_metabox_field($field, $post_id) {
 	if (!empty($_POST['owmweather_' . $field])) {
-        update_post_meta($post_id, '_owmweather_' . $field, owmw_sanitize_validate_field($field, sanitize_key($_POST['owmweather_' . $field])));
+        update_post_meta($post_id, '_owmweather_' . $field, owmw_sanitize_validate_field($field, sanitize_text_field($_POST['owmweather_' . $field])));
 	} else {
 	    delete_post_meta($post_id, '_owmweather_' . $field);
 	}
 }
 
 function owmw_save_metabox_field_yn($field, $post_id) {
-	if (isset($_POST['owmweather_' . $field]) && sanitize_key($_POST['owmweather_' . $field]) == 'yes') {
+	if (isset($_POST['owmweather_' . $field]) && sanitize_text_field($_POST['owmweather_' . $field]) == 'yes') {
         update_post_meta($post_id, '_owmweather_' . $field, 'yes');
 	} else {
 	    delete_post_meta($post_id, '_owmweather_' . $field);
@@ -2287,6 +2294,7 @@ function owmw_get_my_weather_id($atts) {
         "disable_spinner"               => false,
         "disable_anims"                 => false,
         "background_image"              => false,
+        "background_yt_video"           => false,
         "sunny_background_image"        => false,
         "cloudy_background_image"       => false,
         "drizzly_background_image"      => false,
@@ -2556,7 +2564,7 @@ function owmw_get_my_weather($attr) {
         }
     }
 
-	check_ajax_referer( 'owmw_get_weather_nonce', sanitize_key($_POST['_ajax_nonce']), true );
+	check_ajax_referer( 'owmw_get_weather_nonce', sanitize_text_field($_POST['_ajax_nonce']), true );
 
 	if ( isset( $owmw_params['id'] ) ) {
         $id = intval($owmw_params["id"]);
@@ -2629,6 +2637,7 @@ function owmw_get_my_weather($attr) {
 		$owmw_opt["stormy_background_color"]   	    = owmw_get_bypass($bypass, "stormy_background_color");
 		$owmw_opt["foggy_background_color"]   	    = owmw_get_bypass($bypass, "foggy_background_color");
 		$owmw_opt["background_image"]   	        = owmw_get_bypass($bypass, "background_image");
+		$owmw_opt["background_yt_video"]   	        = owmw_get_bypass($bypass, "background_yt_video");
 		$owmw_opt["sunny_background_image"]   	    = owmw_get_bypass($bypass, "sunny_background_image");
 		$owmw_opt["cloudy_background_image"]   	    = owmw_get_bypass($bypass, "cloudy_background_image");
 		$owmw_opt["drizzly_background_image"]   	= owmw_get_bypass($bypass, "drizzly_background_image");
@@ -5516,10 +5525,16 @@ function owmw_sanitize_validate_field($key, $value) {
                 }
                 break;
 
-            case "longitude":
             case "latitude":
                 $value = floatval(sanitize_text_field($value));
-                if ($value === "0") {
+                if ($value < -90.0 || $value > 90.0 || $value === 0.0) {
+                    $value = "";
+                }
+                break;
+
+            case "longitude":
+                $value = floatval(sanitize_text_field($value));
+                if ($value < -180.0 || $value > 180.0 || $value === 0.0) {
                     $value = "";
                 }
                 break;

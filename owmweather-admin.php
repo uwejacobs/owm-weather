@@ -48,9 +48,9 @@ class owmw_options
             return;
         }
 
-        if ((isset($_POST["action"]) && sanitize_key($_POST["action"]) == "update") &&
-            (isset($_POST["option_page"]) && sanitize_key($_POST["option_page"]) == "owmw_cloudy_option_group")) {
-            check_ajax_referer( 'owmw_cloudy_option_group-options', sanitize_key($_POST['_wpnonce']), true );
+        if ((isset($_POST["action"]) && sanitize_text_field($_POST["action"]) == "update") &&
+            (isset($_POST["option_page"]) && sanitize_text_field($_POST["option_page"]) == "owmw_cloudy_option_group")) {
+            check_ajax_referer( 'owmw_cloudy_option_group-options', sanitize_text_field($_POST['_wpnonce']), true );
             
             if (is_multisite() && is_network_admin() && is_network_admin() && current_user_can("manage_network_options") && !empty($_POST["owmw_option_name"])) {
                 $this->options = $this->sanitize($_POST["owmw_option_name"]);
@@ -248,7 +248,7 @@ class owmw_options
 
                         <?php
                         if (isset($_GET['owmw_clear_all_cache_nonce'])) {
-                            if (wp_verify_nonce(sanitize_key($_GET['owmw_clear_all_cache_nonce']), 'owmw_clear_all_cache')) {
+                            if (wp_verify_nonce(sanitize_text_field($_GET['owmw_clear_all_cache_nonce']), 'owmw_clear_all_cache')) {
                                 global $wpdb;
                                 $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmweather%' ");
                                 $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmweather%' ");

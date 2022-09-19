@@ -5,9 +5,9 @@
 
 //Export OWM Weather Settings
 function owmw_export_settings() {
-    if( empty( $_POST['owmw_action'] ) || 'owmw_export_settings' != sanitize_key($_POST['owmw_action']) )
+    if( empty( $_POST['owmw_action'] ) || 'owmw_export_settings' != sanitize_text_field($_POST['owmw_action']) )
         return;
-    if( ! wp_verify_nonce( sanitize_key($_POST['owmw_export_nonce']), 'owmw_export_nonce' ) )
+    if( ! wp_verify_nonce( sanitize_text_field($_POST['owmw_export_nonce']), 'owmw_export_nonce' ) )
         return;
     if (!((is_multisite() && is_network_admin() && current_user_can("manage_network_options")) ||
         (is_multisite() && !is_network_admin() && current_user_can("manage_options")) ||
@@ -33,9 +33,9 @@ add_action( 'admin_init', 'owmw_export_settings' );
 
 //Import OWM Weather Settings
 function owmw_import_settings() {
-    if( empty( $_POST['owmw_action'] ) || 'owmw_import_settings' != sanitize_key($_POST['owmw_action']) )
+    if( empty( $_POST['owmw_action'] ) || 'owmw_import_settings' != sanitize_text_field($_POST['owmw_action']) )
         return;
-    if( ! wp_verify_nonce( sanitize_key($_POST['owmw_import_nonce']), 'owmw_import_nonce' ) )
+    if( ! wp_verify_nonce( sanitize_text_field($_POST['owmw_import_nonce']), 'owmw_import_nonce' ) )
         return;
     if (!((is_multisite() && is_network_admin() && current_user_can("manage_network_options")) ||
         (is_multisite() && !is_network_admin() && current_user_can("manage_options")) ||
@@ -98,9 +98,9 @@ add_action( 'admin_init', 'owmw_import_settings' );
 
 //Reset OWM Weather Settings
 function owmw_reset_settings() {
-    if( empty( $_POST['owmw_action'] ) || 'owmw_reset_settings' != sanitize_key($_POST['owmw_action']) )
+    if( empty( $_POST['owmw_action'] ) || 'owmw_reset_settings' != sanitize_text_field($_POST['owmw_action']) )
         return;
-    if( ! wp_verify_nonce( sanitize_key($_POST['owmw_reset_nonce']), 'owmw_reset_nonce' ) )
+    if( ! wp_verify_nonce( sanitize_text_field($_POST['owmw_reset_nonce']), 'owmw_reset_nonce' ) )
         return;
     if (!((is_multisite() && is_network_admin() && current_user_can("manage_network_options")) ||
         (is_multisite() && !is_network_admin() && current_user_can("manage_options")) ||

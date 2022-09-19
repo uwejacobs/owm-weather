@@ -37,7 +37,7 @@ function owmw_dashboard_widget_function() {
 function owmw_dashboard_widget_option($widget_id) {
 	// Update widget options
 	if ( 'POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['owmw_widget_post']) ) {
-        if( ! wp_verify_nonce( sanitize_key($_POST['dashboard-widget-nonce']), 'edit-dashboard-widget_owmweather_dashboard_widget' ) ) {
+        if( ! wp_verify_nonce( sanitize_text_field($_POST['dashboard-widget-nonce']), 'edit-dashboard-widget_owmweather_dashboard_widget' ) ) {
             return;
         }
     
