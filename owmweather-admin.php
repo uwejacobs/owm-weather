@@ -622,6 +622,14 @@ class owmw_options
         );
 
         add_settings_field(
+            'owmw_background_yt_video', // ID
+            esc_html__("Background YouTube Video",'owm-weather'), // Title
+            array( $this, 'owmw_layout_background_yt_video_callback' ), // Callback
+            'owmw-settings-admin-layout', // Page
+            'owmw_setting_section_layout' // Section
+        );
+
+        add_settings_field(
             'owmw_text_color', // ID
             esc_html__("Text Color",'owm-weather'), // Title
             array( $this, 'owmw_layout_text_color_callback' ), // Callback
@@ -942,6 +950,14 @@ class owmw_options
         );
 
         add_settings_field(
+            'owmw_sunny_background_yt_video', // ID
+            esc_html__("Sunny Background YouTube Video",'owm-weather'), // Title
+            array( $this, 'owmw_layout_sunny_background_yt_video_callback' ), // Callback
+            'owmw-settings-admin-weather-based', // Page
+            'owmw_setting_section_weather_based' // Section
+        );
+
+        add_settings_field(
             'owmw_cloudy_text_color', // ID
             esc_html__("Cloudy Text Color",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_cloudy_text_color_callback' ), // Callback
@@ -961,6 +977,14 @@ class owmw_options
             'owmw_cloudy_background_image', // ID
             esc_html__("Cloudy Background Image",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_cloudy_background_image_callback' ), // Callback
+            'owmw-settings-admin-weather-based', // Page
+            'owmw_setting_section_weather_based' // Section
+        );
+
+        add_settings_field(
+            'owmw_cloudy_background_yt_video', // ID
+            esc_html__("Cloudy Background YouTube Video",'owm-weather'), // Title
+            array( $this, 'owmw_layout_cloudy_background_yt_video_callback' ), // Callback
             'owmw-settings-admin-weather-based', // Page
             'owmw_setting_section_weather_based' // Section
         );
@@ -990,6 +1014,14 @@ class owmw_options
         );
 
         add_settings_field(
+            'owmw_drizzly_background_yt_video', // ID
+            esc_html__("Drizzly Background YouTube Video",'owm-weather'), // Title
+            array( $this, 'owmw_layout_drizzly_background_yt_video_callback' ), // Callback
+            'owmw-settings-admin-weather-based', // Page
+            'owmw_setting_section_weather_based' // Section
+        );
+
+        add_settings_field(
             'owmw_rainy_text_color', // ID
             esc_html__("Rainy Text Color",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_rainy_text_color_callback' ), // Callback
@@ -1009,6 +1041,14 @@ class owmw_options
             'owmw_rainy_background_image', // ID
             esc_html__("Rainy Background Image",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_rainy_background_image_callback' ), // Callback
+            'owmw-settings-admin-weather-based', // Page
+            'owmw_setting_section_weather_based' // Section
+        );
+
+        add_settings_field(
+            'owmw_rainy_background_yt_video', // ID
+            esc_html__("Rainy Background YouTube Video",'owm-weather'), // Title
+            array( $this, 'owmw_layout_rainy_background_yt_video_callback' ), // Callback
             'owmw-settings-admin-weather-based', // Page
             'owmw_setting_section_weather_based' // Section
         );
@@ -1038,6 +1078,14 @@ class owmw_options
         );
 
         add_settings_field(
+            'owmw_snowy_background_yt_video', // ID
+            esc_html__("Snowy Background YouTube Video",'owm-weather'), // Title
+            array( $this, 'owmw_layout_snowy_background_yt_video_callback' ), // Callback
+            'owmw-settings-admin-weather-based', // Page
+            'owmw_setting_section_weather_based' // Section
+        );
+
+        add_settings_field(
             'owmw_stormy_text_color', // ID
             esc_html__("Stormy Text Color",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_stormy_text_color_callback' ), // Callback
@@ -1062,6 +1110,14 @@ class owmw_options
         );
 
         add_settings_field(
+            'owmw_stormy_background_yt_video', // ID
+            esc_html__("Stormy Background YouTube Video",'owm-weather'), // Title
+            array( $this, 'owmw_layout_stormy_background_yt_video_callback' ), // Callback
+            'owmw-settings-admin-weather-based', // Page
+            'owmw_setting_section_weather_based' // Section
+        );
+
+        add_settings_field(
             'owmw_foggy_text_color', // ID
             esc_html__("Foggy Text Color",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_foggy_text_color_callback' ), // Callback
@@ -1081,6 +1137,14 @@ class owmw_options
             'owmw_foggy_background_image', // ID
             esc_html__("Foggy Background Image",'owm-weather'), // Title
             array( $this, 'owmw_weather_based_foggy_background_image_callback' ), // Callback
+            'owmw-settings-admin-weather-based', // Page
+            'owmw_setting_section_weather_based' // Section
+        );
+
+        add_settings_field(
+            'owmw_foggy_background_yt_video', // ID
+            esc_html__("Foggy Background YouTube Video",'owm-weather'), // Title
+            array( $this, 'owmw_layout_foggy_background_yt_video_callback' ), // Callback
             'owmw-settings-admin-weather-based', // Page
             'owmw_setting_section_weather_based' // Section
         );
@@ -2027,13 +2091,15 @@ class owmw_options
         printf('<input name="owmw_option_name[owmw_background_color]" type="text" value="%s" class="owmweather_admin_color_picker" />', esc_attr($check));
     }
 
-    function owmw_layout_background_image_callback() {
-        echo '    <div class="background_image_preview_wrapper">';
-        echo '        <img id="background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_background_image']) ? '' : ' style="display: none;"') . '>';
-        echo '    </div>';
-        echo '    <input id="select_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="background" />';
-        echo '    <input type="hidden" name="owmw_option_name[owmw_background_image]" id="background_image_attachment_id" value="' . esc_attr( $this->options['owmw_background_image'] ?? '' ) . '">';
-        echo '    <input id="clear_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="background" />';
+    public function owmw_layout_background_image_callback() {
+        echo '<div class="background_image_preview_wrapper">';
+        echo '    <img id="background_image_preview" src="' . wp_get_attachment_url( ($this->options['owmw_background_image'] ?? '' ) ) . '" height="100px"' . (isset($this->options['owmw_background_image']) ? '' : ' style="display: none;"') . '>';
+        echo '<div class="background_image_preview_wrapper">';
+        echo '<input id="select_background_image_button" type="button" class="button select_background_image_button" value="' . esc_attr__( 'Select image', 'owm-weather' ) . '" data-name="background" />';
+        echo '<input type="hidden" name="owmw_option_name[owmw_background_image]" id="background_image_attachment_id" value="' . esc_attr( $this->options['owmw_background_image'] ?? '' ) . '">';
+        echo '<input id="clear_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="background" />';
+        echo '</div>';
+        echo '</div>';
     }
 
     public function owmw_weather_based_sunny_text_color_callback()
@@ -2197,6 +2263,101 @@ class owmw_options
         echo '    <input id="clear_foggy_background_image_button" type="button" class="button clear_background_image" value="Clear" data-name="foggy_background" />';
     }
 
+    public function owmw_layout_background_yt_video_callback() {
+        echo '<div class="background_yt_video_preview_wrapper">';
+		echo '	<input id="owmweather_background_yt_video_meta" type="text" name="owmw_option_name[owmw_background_yt_video]" value="' . esc_attr($this->options["owmw_background_yt_video"] ?? "") . '" />';
+        echo '<div class="background_yt_video_preview_wrapper">';
+        echo '<p>';
+        echo '    <img id="owmweather_background_yt_video_tn" src="https://img.youtube.com/vi/' . esc_attr($this->options["owmw_background_yt_video"] ?? "") . '/default.jpg"' . (empty($this->options["owmw_background_yt_video"]) ? ' style="display: none;"' : "") . '>';
+		echo '</p>';
+        echo printYTvideoTN("background");
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function owmw_layout_sunny_background_yt_video_callback() {
+        echo '<div class="sunny_background_yt_video_preview_wrapper">';
+		echo '	<input id="owmweather_sunny_background_yt_video_meta" type="text" name="owmw_option_name[owmw_sunny_background_yt_video]" value="' . esc_attr($this->options["owmw_sunny_background_yt_video"] ?? "") . '" />';
+        echo '<div class="sunny_background_yt_video_preview_wrapper">';
+        echo '<p>';
+        echo '    <img id="owmweather_sunny_background_yt_video_tn" src="https://img.youtube.com/vi/' . esc_attr($this->options["owmw_sunny_background_yt_video"] ?? "") . '/default.jpg"' . (empty($this->options["owmw_sunny_background_yt_video"]) ? ' style="display: none;"' : "") . '>';
+		echo '</p>';
+        echo printYTvideoTN("sunny_background");
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function owmw_layout_cloudy_background_yt_video_callback() {
+        echo '<div class="cloudy_background_yt_video_preview_wrapper">';
+		echo '	<input id="owmweather_cloudy_background_yt_video_meta" type="text" name="owmw_option_name[owmw_cloudy_background_yt_video]" value="' . esc_attr($this->options["owmw_cloudy_background_yt_video"] ?? "") . '" />';
+        echo '<div class="cloudy_background_yt_video_preview_wrapper">';
+        echo '<p>';
+        echo '    <img id="owmweather_cloudy_background_yt_video_tn" src="https://img.youtube.com/vi/' . esc_attr($this->options["owmw_cloudy_background_yt_video"] ?? "") . '/default.jpg"' . (empty($this->options["owmw_cloudy_background_yt_video"]) ? ' style="display: none;"' : "") . '>';
+		echo '</p>';
+        echo printYTvideoTN("cloudy_background");
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function owmw_layout_drizzly_background_yt_video_callback() {
+        echo '<div class="drizzly_background_yt_video_preview_wrapper">';
+		echo '	<input id="owmweather_drizzly_background_yt_video_meta" type="text" name="owmw_option_name[owmw_drizzly_background_yt_video]" value="' . esc_attr($this->options["owmw_drizzly_background_yt_video"] ?? "") . '" />';
+        echo '<div class="drizzly_background_yt_video_preview_wrapper">';
+        echo '<p>';
+        echo '    <img id="owmweather_drizzly_background_yt_video_tn" src="https://img.youtube.com/vi/' . esc_attr($this->options["owmw_drizzly_background_yt_video"] ?? "") . '/default.jpg"' . (empty($this->options["owmw_drizzly_background_yt_video"]) ? ' style="display: none;"' : "") . '>';
+		echo '</p>';
+        echo printYTvideoTN("drizzly_background");
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function owmw_layout_rainy_background_yt_video_callback() {
+        echo '<div class="rainy_background_yt_video_preview_wrapper">';
+		echo '	<input id="owmweather_rainy_background_yt_video_meta" type="text" name="owmw_option_name[owmw_rainy_background_yt_video]" value="' . esc_attr($this->options["owmw_rainy_background_yt_video"] ?? "") . '" />';
+        echo '<div class="rainy_background_yt_video_preview_wrapper">';
+        echo '<p>';
+        echo '    <img id="owmweather_rainy_background_yt_video_tn" src="https://img.youtube.com/vi/' . esc_attr($this->options["owmw_rainy_background_yt_video"] ?? "") . '/default.jpg"' . (empty($this->options["owmw_rainy_background_yt_video"]) ? ' style="display: none;"' : "") . '>';
+		echo '</p>';
+        echo printYTvideoTN("rainy_background");
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function owmw_layout_snowy_background_yt_video_callback() {
+        echo '<div class="snowy_background_yt_video_preview_wrapper">';
+		echo '	<input id="owmweather_snowy_background_yt_video_meta" type="text" name="owmw_option_name[owmw_snowy_background_yt_video]" value="' . esc_attr($this->options["owmw_snowy_background_yt_video"] ?? "") . '" />';
+        echo '<div class="snowy_background_yt_video_preview_wrapper">';
+        echo '<p>';
+        echo '    <img id="owmweather_snowy_background_yt_video_tn" src="https://img.youtube.com/vi/' . esc_attr($this->options["owmw_snowy_background_yt_video"] ?? "") . '/default.jpg"' . (empty($this->options["owmw_snowy_background_yt_video"]) ? ' style="display: none;"' : "") . '>';
+		echo '</p>';
+        echo printYTvideoTN("snowy_background");
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function owmw_layout_stormy_background_yt_video_callback() {
+        echo '<div class="stormy_background_yt_video_preview_wrapper">';
+		echo '	<input id="owmweather_stormy_background_yt_video_meta" type="text" name="owmw_option_name[owmw_stormy_background_yt_video]" value="' . esc_attr($this->options["owmw_stormy_background_yt_video"] ?? "") . '" />';
+        echo '<div class="stormy_background_yt_video_preview_wrapper">';
+        echo '<p>';
+        echo '    <img id="owmweather_stormy_background_yt_video_tn" src="https://img.youtube.com/vi/' . esc_attr($this->options["owmw_stormy_background_yt_video"] ?? "") . '/default.jpg"' . (empty($this->options["owmw_stormy_background_yt_video"]) ? ' style="display: none;"' : "") . '>';
+		echo '</p>';
+        echo printYTvideoTN("stormy_background");
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function owmw_layout_foggy_background_yt_video_callback() {
+        echo '<div class="foggy_background_yt_video_preview_wrapper">';
+		echo '	<input id="owmweather_foggy_background_yt_video_meta" type="text" name="owmw_option_name[owmw_foggy_background_yt_video]" value="' . esc_attr($this->options["owmw_foggy_background_yt_video"] ?? "") . '" />';
+        echo '<div class="foggy_background_yt_video_preview_wrapper">';
+        echo '<p>';
+        echo '    <img id="owmweather_foggy_background_yt_video_tn" src="https://img.youtube.com/vi/' . esc_attr($this->options["owmw_foggy_background_yt_video"] ?? "") . '/default.jpg"' . (empty($this->options["owmw_foggy_background_yt_video"]) ? ' style="display: none;"' : "") . '>';
+		echo '</p>';
+        echo printYTvideoTN("foggy_background");
+        echo '</div>';
+        echo '</div>';
+    }
     public function owmw_layout_text_color_callback()
     {
         $check = $this->options['owmw_text_color'] ?? null;

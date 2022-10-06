@@ -4,8 +4,6 @@ Should:
 Gutenberg block rendering
 
 Nice:
-background type video
-YouTube background
 Safari browser SVGs
 
 

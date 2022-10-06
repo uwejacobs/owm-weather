@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager, multisite
 Requires at least: 5.6
 Tested up to: 6.0.2
-Stable tag: 5.6.5
+Stable tag: 5.6.6
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -49,7 +49,7 @@ OWM Weather uses WordPress Custom Post Types which allows for an unlimited numbe
 Turn on the global setup mode and share your network setup and main site weather definitions throughout the network.
 
 = Weather-based Backgrounds =
-Define up to 7 different background colors or images depending on the weather condition.
+Define up to 7 different background colors, images or videos depending on the weather condition.
 
 = Cache system =
 Weather data is cached at a frequency defined by you. The data is then loaded from your server and you no longer depend on external sources. This avoids slowdowns and blocked page rendering.
@@ -258,6 +258,11 @@ This points to a connectivity issue between the server your domain is hosted and
 11. OWM Weather Hourly Forecast Charts
 
 == Changelog ==
+
+= 5.6.6 =
+* Added YouTube Video background options
+* Added background opacity for images and videos
+* Added creation of sample weather post 'GeoLocation' on activation
 
 = 5.6.5 =
 * Fixed saving of float values, like longitude and latitude, in Weather post setup
