@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.6.6
+Version: 5.6.7
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -37,7 +37,7 @@ if ( !function_exists( 'add_action' ) ) {
 	exit;
 }
 
-define( 'OWM_WEATHER_VERSION', '5.6.6' );
+define( 'OWM_WEATHER_VERSION', '5.6.7' );
 
 $GLOBALS['owmw_params'] = [];
 
@@ -2970,7 +2970,7 @@ function owmw_get_my_weather($attr) {
 
 
         //JSON : Current weather
-       	if ($owmw_opt["id_owm"] !='') {
+       	if ($owmw_opt["id_owm"] != '') {
        	    $query = "id=".$owmw_opt["id_owm"];
             $queryT = $owmw_opt["id_owm"];
        	} else if ($owmw_opt["longitude"] != '' && $owmw_opt["latitude"] != '') {
@@ -3051,6 +3051,7 @@ function owmw_get_my_weather($attr) {
     	  	$response = array();
     	  	$response['weather'] = $owmw_params["weather_id"];
     	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_html($owmweather_current->cod . (!empty($owmweather_current->message) ? " (" . $owmweather_current->message . ")" : "")) . "</p>";
+            $response['html'] .= "<pre>" . $url . "</pre>";
     		wp_send_json_error($response, $owmweather_current->cod);
     		return;
         }
@@ -3199,6 +3200,7 @@ function owmw_get_my_weather($attr) {
     	  	$response = array();
     	  	$response['weather'] = $owmw_params["weather_id"];
     	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . $owmw_opt["id"] . "': " . esc_html__("OWM Error", 'owm-weather') . " " . $owmweather->cod . (!empty($owmweather->message) ? " (" . $owmweather->message . ")" : "") . "</p>";
+            $response['html'] .= "<pre>" . $url . "</pre>";
     		wp_send_json_success($response);
     		return;
         }
@@ -3437,6 +3439,7 @@ function owmw_get_my_weather($attr) {
                         $response = array();
         	          	$response['weather'] = $owmw_params["weather_id"];
                 	  	$response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_html__('Unable to retrieve weather data','owm-weather') . "</p>";
+                        $response['html'] .= "<pre>" . $url . "</pre>";
                         foreach($errorMsgs as $errorMsg) {
                             $response['html'] .= "<p>" . esc_html__($errorMsg) . "</p>";
                         }

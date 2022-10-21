@@ -4,6 +4,8 @@ Should:
 Gutenberg block rendering
 
 Nice:
+moon phase
+sun rise/set graph
 Safari browser SVGs
 
 

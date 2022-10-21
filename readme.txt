@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager, multisite
 Requires at least: 5.6
 Tested up to: 6.0.2
-Stable tag: 5.6.6
+Stable tag: 5.6.7
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -258,6 +258,10 @@ This points to a connectivity issue between the server your domain is hosted and
 11. OWM Weather Hourly Forecast Charts
 
 == Changelog ==
+
+= 5.6.7 =
+* Tested with WordPress 6.0.3
+* Added URL to error message when OWM API call fails
 
 = 5.6.6 =
 * Added YouTube Video background options
