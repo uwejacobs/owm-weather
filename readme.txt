@@ -179,6 +179,10 @@ Add yours with PoEdit. The latest .pot file can be found under /wp-content/plugi
 1. If all went well, a new "Weather" menu should appear.
 1. Get your free OpenWeather API key at https://www.openweathermap.com and enter it under Settings/OWM Weather
 
+= API Key Permissions =
+
+OpenWeather changed their API key permissions for new users. The OneCall API is no longer included with new free API keys. Existing users can still call the previous OpenWeather API version 2.5 - which OWM Weather currently uses. For new users, OpenWeather offers a free OneCall API with 1,000 calls per day but requires an additional subscription with a valid credit card. The subscription can be limited to 1,000 calls to avoid credit card charges. OWM Weather does not call the API more than 48 times per day with the standard caching time of 30 minutes. *Without the subscription, the following OWM Weather data is not available anymore for new users: Hourly Forecast, Daily Forecast, Alerts, Moonrise/set, Dew Point, UV Index, and GTAG.* Instead OWM Weather fails with a "401 Invalid API Key" error message.
+
 == Frequently Asked Questions ==
 
 = How many cities are supported by OWM Weather? =
