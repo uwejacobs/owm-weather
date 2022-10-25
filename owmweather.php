@@ -830,7 +830,7 @@ function owmw_basic($post){
                   <span class="toggle">
                     <span class="switch"></span>
                   </span>
-                  <span class="label"><?php esc_html_e( 'Google Tag Manager DataLayer', 'owm-weather' ) ?></span>
+                  <span class="label"><?php echo esc_html( 'Google Tag Manager DataLayer', 'owm-weather' ) . " (OneCall Subscription)" ?></span>
                 </label>
 			</p>
 			<p>
@@ -935,7 +935,7 @@ function owmw_basic($post){
 				</label>
 			</p>
 			<p class="owmw-dates subsection-title">
-				<?php esc_html_e( 'Sunrise/Sunset and Moonrise/Moonset', 'owm-weather' ) ?>
+				<?php echo esc_html( 'Sunrise/Sunset and Moonrise/Moonset', 'owm-weather' ) . " (OneCall Subscription)" ?>
 			</p>
 			<p>
                 <label class="toggle-switchy" for="owmweather_sunrise_sunset_meta" data-size="sm" data-text="false" data-color="green">
@@ -952,7 +952,7 @@ function owmw_basic($post){
                   <span class="toggle">
                     <span class="switch"></span>
                   </span>
-                  <span class="label"><?php esc_html_e( 'Moonrise + Moonset', 'owm-weather' ) ?></span>
+                  <span class="label"><?php echo esc_html( 'Moonrise + Moonset', 'owm-weather' ) . " (OneCall Subscription)" ?></span>
                 </label>
 			</p>
 			<p class="owmw-misc subsection-title">
@@ -1001,7 +1001,7 @@ function owmw_basic($post){
                   <span class="toggle">
                     <span class="switch"></span>
                   </span>
-                  <span class="label"><?php esc_html_e( 'Dew Point', 'owm-weather' ) ?></span>
+                  <span class="label"><?php echo esc_html( 'Dew Point', 'owm-weather' ) . " (OneCall Subscription)" ?></span>
                 </label>
 			</p>
 			<p>
@@ -1055,7 +1055,7 @@ function owmw_basic($post){
                   <span class="toggle">
                     <span class="switch"></span>
                   </span>
-                  <span class="label"><?php esc_html_e( 'UV Index', 'owm-weather' ) ?></span>
+                  <span class="label"><?php echo esc_html( 'UV Index', 'owm-weather' ) . " (OneCall Subscription)" ?></span>
                 </label>
 			</p>
 			<p>
@@ -1065,7 +1065,7 @@ function owmw_basic($post){
                       <span class="toggle">
                         <span class="switch"></span>
                       </span>
-                      <span class="label"><?php esc_html_e( 'Alerts', 'owm-weather' ) ?></span>
+                      <span class="label"><?php echo esc_html( 'Alerts', 'owm-weather' ) . " (OneCall Subscription)" ?></span>
                     </label>
                 </span>
                 <span>&nbsp;</span>
@@ -1093,7 +1093,7 @@ function owmw_basic($post){
                 </label>
 			</p>
 			<p class="hour subsection-title">
-				<?php esc_html_e( 'Hourly Forecast', 'owm-weather' ) ?>
+				<?php echo esc_html( 'Hourly Forecast', 'owm-weather' ) . " (OneCall Subscription)" ?>
 			</p>
 			<p>
 				<label for="owmweather_hours_forecast_no_meta"><?php esc_html_e( 'Number of Hours', 'owm-weather' ) ?></label>
@@ -1109,7 +1109,7 @@ function owmw_basic($post){
                 </label>
 			</p>
 			<p class="forecast subsection-title">
-				<?php esc_html_e( 'Daily Forecast', 'owm-weather' ) ?>
+				<?php echo esc_html( 'Daily Forecast', 'owm-weather' ) . " (OneCall Subscription)" ?>
 			</p>
 			<p>
 				<label for="owmweather_forecast_no_meta"><?php esc_html_e( 'Number of Days', 'owm-weather' ) ?></label>
@@ -3204,7 +3204,6 @@ function owmw_get_my_weather($attr) {
     		wp_send_json_success($response);
     		return;
         }
-
 
         owmw_sanitize_api_response($owmweather, array("description"));
 

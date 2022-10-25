@@ -75,9 +75,9 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 == All features ==
 
 * Completely Free! No Ads! Donations are welcome. Thanks for your consideration.
-* Data provided by OpenWeatherMap with 200,000 cities worldwide and for any coordinates around the globe.
-* Built-in OpenWeatherMap API key for immediate testing.
-* Caching of OpenWeatherMap data for faster access and to avoid exceeding the dayly API key call limit.
+* Data provided by OpenWeatherp with 200,000 cities worldwide and for any coordinates around the globe.
+* Built-in OpenWeather API key for immediate testing.
+* Caching of OpenWeather data for faster access and to avoid exceeding the dayly API key call limit.
 * Configurable cache time.
 * Export, Import and Reset System settings.
 * Export and Import weather posts via the free default WordPress importer/exporter tool.
@@ -101,7 +101,7 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 * Wind speed unit (mi/h, m/s, km/h, kt).
 * Wind speed indicators can show the direction of the wind or the source of wind flow.
 * Selectable Timezone to display local times for other locations.
-* Selectable OpenWeatherMap API language.
+* Selectable OpenWeather API language.
 * Push weather data to Google Tag Manager dataLayer (Temperature, Feels Like, Cloudiness, Short Description, Category, Wind Speed, Wind Direction, Humidity,
 * Pressure, Precipitation, UV Index, and DewPoint).
 * Show/hide weather city name.
@@ -112,8 +112,8 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 * Show/hide temperature unit at temperatures.
 * Show/hide date and time format, day of the week, or today’s date.
 * Show/hide weather condition icon.
-* Show/hide link to OpenWeatherMap.
-* Show/hide the last OpenWeatherMap update time.
+* Show/hide link to OpenWeather.
+* Show/hide the last OpenWeather update time.
 * Show short or long day names.
 * Selectable icon packs, some with animated weather condition icons.
 * Selectable fonts.
@@ -177,7 +177,7 @@ Add yours with PoEdit. The latest .pot file can be found under /wp-content/plugi
 1. Upload the unzipped “owm_weather” folder in the root plugins directory “/wp-content/plugins/”.
 1. Activate the plugin from the Plugins menu of your admin.
 1. If all went well, a new "Weather" menu should appear.
-1. Get your free OpenWeatherMap API key at https://www.openweathermap.com and enter it under Settings/OWM Weather
+1. Get your free OpenWeather API key at https://www.openweathermap.com and enter it under Settings/OWM Weather
 
 == Frequently Asked Questions ==
 
@@ -237,11 +237,15 @@ Note regarding IP Location: A development environment uses usually a private net
 
 = Why is there a lag before the weather informtion gets displayed? =
 
-OWM Weather has to make several API calls to OpenWeatherMap.com to retrieve the weather information. This retrieval runs in the background while the page is loading instead of blocking the whole page until the weather information is ready. It is the standard WordPress solution for displaying information that takes considerable time to compile. You can observe the same behavior on the WordPress Dashboard or Media Library. The Google Site Kit plugin is another example of this behavior.
+OWM Weather has to make several API calls to OpenWeather to retrieve the weather information. This retrieval runs in the background while the page is loading instead of blocking the whole page until the weather information is ready. It is the standard WordPress solution for displaying information that takes considerable time to compile. You can observe the same behavior on the WordPress Dashboard or Media Library. The Google Site Kit plugin is another example of this behavior.
 
 = What is "cURL error 28: Failed to connect to api.openweathermap.org port 443: Connection timed out"?
 
 This points to a connectivity issue between the server your domain is hosted and api.openweathermap.org. Please open a ticket with your hosting provider.
+
+= Why do I get a "401 Invalid API Key" error? =
+
+OpenWeather changed their API key permissions for new users. OpenWeather offers a free OneCall API with 1,000 calls per day but requires an additional subscription with a valid credit card. The subscription can be limited to 1,000 calls to avoid credit card charges. OWM Weather does not call the API more than 48 times per day with the standard caching time of 30 minutes. Without the subscription, the following OWM Weather data is not available anymore for new users: Hourly Forecast, Daily Forecast, Alerts, Moonrise/set, Dew Point, UV Index, and GTAG. Instead OWM Weather fails with a "401 Invalid API Key" error message.
 
 == Screenshots ==
 
@@ -258,6 +262,11 @@ This points to a connectivity issue between the server your domain is hosted and
 11. OWM Weather Hourly Forecast Charts
 
 == Changelog ==
+
+= 5.6.8 =
+* *IMPORTANT NOTICE:* OpenWeather changed their API key permissions for new users. The OneCall API is no longer included with new free API keys. Existing users can still call the previous OpenWeather API version 2.5 - which OWM Weather currently uses. For new users, OpenWeather offers a free OneCall API with 1,000 calls per day but requires an additional subscription with a valid credit card. The subscription can be limited to 1,000 calls to avoid credit card charges. OWM Weather does not call the API more than 48 times per day with the standard caching time of 30 minutes. Without the subscription, the following OWM Weather data is not available anymore for new users: Hourly Forecast, Daily Forecast, Alerts, Moonrise/set, Dew Point, UV Index, and GTAG. Instead OWM Weather fails with a "401 Invalid API Key" error message.
+* Marked all Weather settings that require a OneCall subscription for new users
+* Fixed the Clear Cache button under the System Settings
 
 = 5.6.7 =
 * Tested with WordPress 6.0.3
@@ -307,7 +316,7 @@ This points to a connectivity issue between the server your domain is hosted and
 * Fixed table text color for icon labels
 
 = 5.4.1 =
-* Fixed the error message display when a OpenWeatherMap API call failed (spinner doesn't stop)
+* Fixed the error message display when a OpenWeather API call failed (spinner doesn't stop)
 
 = 5.4.0 =
 * Fixed sort order in Gutenberg block
@@ -341,7 +350,7 @@ This points to a connectivity issue between the server your domain is hosted and
 * Added plugin system messages and links to direct new users to the blog and first step information
 * When pulling up a weather post for editing, the tab with the active weather location will be shown
 * Reworded the features list
-* Fixed the Ajax error message when the OpenWeatherMap API call fails
+* Fixed the Ajax error message when the OpenWeather API call fails
 
 = 5.3.1 =
 * Fixed javascript issues in admin when loading the Bootstrap 5 JS
@@ -410,8 +419,8 @@ This points to a connectivity issue between the server your domain is hosted and
 * created complete Spanish and French translations with PoEdit Pro
 
 = 5.1.3 =
-* added translation hooks for OpenWeatherMap condition descriptions to allow localization for more countries
-* OpenWeatherMap language will now default to the WordPress locale language and fall back to English if not available
+* added translation hooks for OpenWeather condition descriptions to allow localization for more countries
+* OpenWeather language will now default to the WordPress locale language and fall back to English if not available
 * fixed missing translation hooks for several labels
 * fixed date and time not being localized
 

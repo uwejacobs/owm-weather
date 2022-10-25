@@ -250,8 +250,8 @@ class owmw_options
                         if (isset($_GET['owmw_clear_all_cache_nonce'])) {
                             if (wp_verify_nonce(sanitize_text_field($_GET['owmw_clear_all_cache_nonce']), 'owmw_clear_all_cache')) {
                                 global $wpdb;
-                                $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmweather%' ");
-                                $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmweather%' ");
+                                $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_owmw%' ");
+                                $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_timeout_owmw%' ");
                                 if (is_multisite() && is_network_admin() && is_network_admin() && current_user_can("manage_network_options")) {
                                     $wpdb->query("DELETE FROM $wpdb->sitemeta WHERE meta_key LIKE '_site_transient_owmw%' ");
                                     $wpdb->query("DELETE FROM $wpdb->sitemeta WHERE meta_key LIKE 'site__transient_timeout_owmw%' ");
