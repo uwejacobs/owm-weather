@@ -249,7 +249,7 @@ This points to a connectivity issue between the server your domain is hosted and
 
 = Why do I get a "401 Invalid API Key" error? =
 
-OpenWeather changed their API key permissions for new users. OpenWeather offers a free OneCall API with 1,000 calls per day but requires an additional subscription with a valid credit card. The subscription can be limited to 1,000 calls to avoid credit card charges. OWM Weather does not call the API more than 48 times per day with the standard caching time of 30 minutes. Without the subscription, the following OWM Weather data is not available anymore for new users: Hourly Forecast, Daily Forecast, Alerts, Moonrise/set, Dew Point, UV Index, and GTAG. Instead OWM Weather fails with a "401 Invalid API Key" error message.
+OpenWeather changed its API key permissions for new users. Up until September 2022, the free API key included the OneCall API 2.5 (Hourly forecast for 48 hours and daily forecast for 7 days). Since then, new users need to subscribe to OpenWeather's OneCall API 3.0. This API is free for the first 1,000 calls per day but requires an additional subscription with a valid credit card. The subscription can be limited to 1,000 calls to avoid credit card charges. OWM Weather does not call the API more than 48 times per shortcode per day with the standard caching time of 30 minutes. Without the subscription, the following OWM Weather data is not available anymore for new users: Hourly Forecast, Daily Forecast, Alerts, Moonrise/set, Dew Point, UV Index, and GTAG. Instead, OWM Weather fails with a "401 Invalid API Key" error message.
 
 == Screenshots ==
 
@@ -267,8 +267,11 @@ OpenWeather changed their API key permissions for new users. OpenWeather offers 
 
 == Changelog ==
 
+= 5.6.9 =
+* Fixed vulnerability (reported by WPScan Security)
+
 = 5.6.8 =
-* *IMPORTANT NOTICE:* OpenWeather changed their API key permissions for new users. The OneCall API is no longer included with new free API keys. Existing users can still call the previous OpenWeather API version 2.5 - which OWM Weather currently uses. For new users, OpenWeather offers a free OneCall API with 1,000 calls per day but requires an additional subscription with a valid credit card. The subscription can be limited to 1,000 calls to avoid credit card charges. OWM Weather does not call the API more than 48 times per day with the standard caching time of 30 minutes. Without the subscription, the following OWM Weather data is not available anymore for new users: Hourly Forecast, Daily Forecast, Alerts, Moonrise/set, Dew Point, UV Index, and GTAG. Instead OWM Weather fails with a "401 Invalid API Key" error message.
+* IMPORTANT NOTICE: OpenWeather changed its API key permissions for new users. Up until September 2022, the free API key included the OneCall API 2.5 (Hourly forecast for 48 hours and daily forecast for 7 days). Since then, new users need to subscribe to OpenWeather's OneCall API 3.0. This API is free for the first 1,000 calls per day but requires an additional subscription with a valid credit card. The subscription can be limited to 1,000 calls to avoid credit card charges. OWM Weather does not call the API more than 48 times per shortcode per day with the standard caching time of 30 minutes. Without the subscription, the following OWM Weather data is not available anymore for new users: Hourly Forecast, Daily Forecast, Alerts, Moonrise/set, Dew Point, UV Index, and GTAG. Instead, OWM Weather fails with a "401 Invalid API Key" error message.
 * Marked all Weather settings that require a OneCall subscription for new users
 * Fixed the Clear Cache button under the System Settings
 
