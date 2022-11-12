@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.6.9
+Version: 5.6.10
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -37,7 +37,7 @@ if ( !function_exists( 'add_action' ) ) {
 	exit;
 }
 
-define( 'OWM_WEATHER_VERSION', '5.6.9' );
+define( 'OWM_WEATHER_VERSION', '5.6.10' );
 
 $GLOBALS['owmw_params'] = [];
 
@@ -3452,7 +3452,7 @@ function owmw_get_my_weather($attr) {
 		//Forecast loop
 		if (!empty($owmforecastXML)) {
             $cnt = 0;
-            $owmforecast = simplexml_load_string($owmforecastXML);
+	    $owmforecast = simplexml_load_string($owmforecastXML);
             foreach ($owmforecast->forecast->time as $i => $value) {
                 $timestamp = strtotime($value->attributes()->from);
                 if ($timestamp > (time()-(3*3600))) {
@@ -3466,16 +3466,16 @@ function owmw_get_my_weather($attr) {
                     $owmw_data["forecast"][$cnt]["wind_degrees"] = (int)$value->windDirection->attributes()->deg ?? 0;
                     $owmw_data["forecast"][$cnt]["wind_direction"] = owmw_getWindDirection($owmw_data["forecast"][$cnt]["wind_degrees"]);
                     $owmw_data["forecast"][$cnt]["wind_gust"] = owmw_getConvertedWindSpeed((int)$value->windGust->attributes()->gust ?? 0, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]];
-                    $owmw_data["forecast"][$cnt]["temperature"] = ceil($value->temperature->attributes()->value ?? 0);
-					$temp_min = ceil($value->temperature->attributes()->min ?? 0);
+                    $owmw_data["forecast"][$cnt]["temperature"] = ceil((float)($value->temperature->attributes()->value ?? 0));
+					$temp_min = ceil((float)($value->temperature->attributes()->min ?? 0));
 					if (empty($owmw_data["forecast"]["temperature_minimum"][$owmw_data["forecast"][$cnt]["day"]]) || $owmw_data["forecast"]["temperature_minimum"][$owmw_data["forecast"][$cnt]["day"]] > $temp_min) {
 						$owmw_data["forecast"]["temperature_minimum"][$owmw_data["forecast"][$cnt]["day"]] = $temp_min;
 					}
-					$temp_max = ceil($value->temperature->attributes()->max ?? 0);
+					$temp_max = ceil((float)($value->temperature->attributes()->max ?? 0));
 					if (empty($owmw_data["forecast"]["temperature_maximum"][$owmw_data["forecast"][$cnt]["day"]]) || $owmw_data["forecast"]["temperature_maximum"][$owmw_data["forecast"][$cnt]["day"]] < $temp_max) {
 						$owmw_data["forecast"]["temperature_maximum"][$owmw_data["forecast"][$cnt]["day"]] = $temp_max;
 					}
-                    $owmw_data["forecast"][$cnt]["feels_like"] = ceil($value->feels_like->attributes()->value ?? 0);
+                    $owmw_data["forecast"][$cnt]["feels_like"] = ceil((float)($value->feels_like->attributes()->value ?? 0));
 					if ($owmw_opt["temperature_unit"] == 'metric') {
 						$owmw_data["forecast"][$cnt]["temperature_celsius"] = $owmw_data["forecast"][$cnt]["temperature"];
 						$owmw_data["forecast"][$cnt]["temperature_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["forecast"][$cnt]["temperature"]);
