@@ -131,5 +131,8 @@ function owmw_block_editor_posts_find_network_share() {
 }
 
 function owmw_cmp_by_title($a, $b) {
-  return $a["title"] > $b["title"];
+    if ($a["title"] == $b["title"]) {
+        return 0;
+    }
+    return ($a["title"] < $b["title"]) ? -1 : 1;
 }

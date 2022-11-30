@@ -2,8 +2,8 @@
 /*
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
-Description: OWM Weather is a powerful weather plugin for WordPress, based on Open Weather Map API, using Custom Post Types and shortcodes, bundled with a ton of features.
-Version: 5.6.10
+Description: Powerful weather plugin for WordPress, based on the OpenWeather API, using custom post types and shortcodes, bundled with a ton of features.
+Version: 5.6.11
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -37,7 +37,7 @@ if ( !function_exists( 'add_action' ) ) {
 	exit;
 }
 
-define( 'OWM_WEATHER_VERSION', '5.6.10' );
+define( 'OWM_WEATHER_VERSION', '5.6.11' );
 
 $GLOBALS['owmw_params'] = [];
 
@@ -2303,7 +2303,6 @@ function owmw_css_background_image($owmw_opt, $condition_id) {
 }
 
 function owmw_background_yt_video($owmw_opt, $condition_id) {
-error_log($owmw_opt["cloudy_background_yt_video"]);
     if ($condition_id == 800 && !empty($owmw_opt["sunny_background_yt_video"])) {
         return $owmw_opt["sunny_background_yt_video"];
     } else if (($condition_id > 800 && $condition_id < 900) && !empty($owmw_opt["cloudy_background_yt_video"])) {
@@ -2433,6 +2432,7 @@ function owmw_icons_pack($bypass, $id) {
 
 function owmw_get_my_weather_id($atts) {
     global $owmw_params;
+    global $post;
     $need_restore_blog = false;
 
 	require_once dirname( __FILE__ ) . '/owmweather-options.php';
@@ -2649,6 +2649,10 @@ function owmw_get_my_weather_id($atts) {
     $owmw_opt["latitude"] 	     = $owmw_params["latitude"] ?? owmw_get_bypass($bypass, "latitude", $owmw_opt["id"]);
     $owmw_opt["zip"] 	         = $owmw_params["zip"] ?? owmw_get_bypass($bypass, "zip", $owmw_opt["id"]);
     $owmw_opt["city"] 	         = $owmw_params["city"] ?? owmw_get_bypass($bypass, "city", $owmw_opt["id"]);
+    if (str_starts_with($owmw_opt["city"], "@")) {
+        $owmw_opt["city"] = sanitize_text_field(get_post_meta($post->ID, substr($owmw_opt["city"], 1), true));
+        $owmw_params["post_id"] = $post->ID;
+    }
 
 	owmw_webfont($bypass, $owmw_params["id"]);
 	owmw_icons_pack($bypass, $owmw_params["id"]);
@@ -2727,6 +2731,7 @@ function owmw_get_my_weather($attr) {
 	global $owmw_params;
 	global $pressureLabel;
 	global $windspeedLabel;
+    global $post;
 
     $owmw_params = [];
     if (isset($_POST['owmw_params'])) {
@@ -2759,7 +2764,11 @@ function owmw_get_my_weather($attr) {
 	  	$owmw_opt["latitude"]          				= owmw_get_bypass($bypass, "latitude");
 	  	$owmw_opt["zip"]          				    = str_replace(' ', '+', owmw_get_bypass($bypass, "zip"));
 		$owmw_opt["zip_country_code"]          		= str_replace(' ', '+', owmw_get_bypass($bypass, "zip_country_code"));
-	  	$owmw_opt["city"]                			= str_replace(' ', '+', strtolower(owmw_get_bypass($bypass, "city")));
+	  	$owmw_opt["city"]                			= strtolower(owmw_get_bypass($bypass, "city"));
+        if (str_starts_with($owmw_opt["city"], "@")) {
+            $owmw_opt["city"] = sanitize_text_field(get_post_meta($owmw_params["post_id"], substr($owmw_opt["city"], 1), true));
+        }
+	  	$owmw_opt["city"]                			= str_replace(' ', '+', $owmw_opt["city"]);
 		$owmw_opt["country_code"]            		= str_replace(' ', '+', owmw_get_bypass($bypass, "country_code"));
 		$owmw_opt["custom_city_name"]       		= owmw_get_bypass($bypass, "custom_city_name");
 		$owmw_opt["temperature_unit"]       		= owmw_get_bypass($bypass, "unit");

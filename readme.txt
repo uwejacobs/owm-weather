@@ -3,8 +3,8 @@ Contributors: rainbowgeek, uwejacobs, ccdzine
 Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager, multisite
 Requires at least: 5.6
-Tested up to: 6.1
-Stable tag: 5.6.10
+Tested up to: 6.1.1
+Stable tag: 5.6.11
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -86,6 +86,7 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 * Built-in Debug template.
 * Custom PHP templates for complete output control.
 * Display weather by 5 location types: City Id, Longitude/Latitude, Zip/Country, City/Country, and Visitor’s HTML5 Geo Location (fallback by IP address).
+* Use a custom field to provide City/Country.
 * 48-hour weather forecast with Wind Speed and Direction, Humidity, Dew Point, Pressure, Cloudiness, Precipitation, Visibility, and UV Index. The number of
 * hours selectable.
 * 8-day weather forecast with Wind, Humidity, Dew Point, Pressure, Cloudiness, Precipitation, Visibility, and UV Index. The number of days selectable.
@@ -266,6 +267,11 @@ OpenWeather changed its API key permissions for new users. Up until September 20
 11. OWM Weather Hourly Forecast Charts
 
 == Changelog ==
+
+= 5.6.11 =
+* Added option to use custom field for search by city name
+* Fixed PHP 8 deprecated warning
+* Tested with WordPress 6.1.1
 
 = 5.6.10 =
 * Fixed PHP execption when converting temperatures
