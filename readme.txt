@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager, multisite
 Requires at least: 5.6
 Tested up to: 6.1.1
-Stable tag: 5.6.11
+Stable tag: 5.6.12
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -267,6 +267,9 @@ OpenWeather changed its API key permissions for new users. Up until September 20
 11. OWM Weather Hourly Forecast Charts
 
 == Changelog ==
+
+= 5.6.12 =
+* Fixed vulnerability (reported by Patchstack)
 
 = 5.6.11 =
 * Added option to use custom field for search by city name

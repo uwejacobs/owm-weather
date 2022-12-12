@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: Powerful weather plugin for WordPress, based on the OpenWeather API, using custom post types and shortcodes, bundled with a ton of features.
-Version: 5.6.11
+Version: 5.6.12
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -37,7 +37,7 @@ if ( !function_exists( 'add_action' ) ) {
 	exit;
 }
 
-define( 'OWM_WEATHER_VERSION', '5.6.11' );
+define( 'OWM_WEATHER_VERSION', '5.6.12' );
 
 $GLOBALS['owmw_params'] = [];
 
@@ -356,9 +356,13 @@ function owmw_add_button_v4_register($buttons) {
 
 function owmw_duplicate_post_as_draft(){
 	global $wpdb;
+
 	if (! ( isset( $_GET['post']) || isset( $_POST['post'])  || ( isset($_REQUEST['action']) && 'owmw_duplicate_post_as_draft' == sanitize_text_field($_REQUEST['action']) ) ) ) {
 		wp_die('No weather to duplicate has been supplied!');
 	}
+
+    if ( !isset( $_GET['duplicate_nonce'] ) || !wp_verify_nonce( $_GET['duplicate_nonce'], basename( __FILE__ ) ) )
+        return;
 
 	$post_id = intval(isset($_GET['post']) ? $_GET['post'] : $_POST['post']);
 
@@ -368,7 +372,6 @@ function owmw_duplicate_post_as_draft(){
 	$new_post_author = $current_user->ID;
 
 	if (isset( $post ) && $post != null) {
-
 		$args = array(
 			'comment_status' => $post->comment_status,
 			'ping_status'    => $post->ping_status,
@@ -394,14 +397,14 @@ function owmw_duplicate_post_as_draft(){
 		}
 
  		$post_meta_infos = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id");
-		if (count($post_meta_infos)!=0) {
+		if (count($post_meta_infos) != 0) {
 			$sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
 			foreach ($post_meta_infos as $meta_info) {
 				$meta_key = $meta_info->meta_key;
 				$meta_value = addslashes($meta_info->meta_value);
 				$sql_query_sel[]= "SELECT $new_post_id, '$meta_key', '$meta_value'";
 			}
-			$sql_query.= implode(" UNION ALL ", $sql_query_sel);
+			$sql_query .= implode(" UNION ALL ", $sql_query_sel);
 			$wpdb->query($sql_query);
 		}
 
@@ -415,7 +418,7 @@ add_action( 'admin_action_owmw_duplicate_post_as_draft', 'owmw_duplicate_post_as
 
 function owmw_duplicate_post_link( $actions, $post ) {
 	if ($post->post_type === 'owm-weather' && current_user_can('edit_posts')) {
-		$actions['duplicate'] = '<a href="'.admin_url("admin.php?action=owmw_duplicate_post_as_draft&amp;post=" . $post->ID) . '" title="'.esc_html__('Duplicate this item','owm-weather').'" rel="permalink">'.esc_html__('Duplicate','owm-weather').'</a>';
+		$actions['duplicate'] = '<a title="'.esc_html__('Duplicate this item','owm-weather').'" href="' . wp_nonce_url('admin.php?action=owmw_duplicate_post_as_draft&amp;post=' . $post->ID, basename(__FILE__), 'duplicate_nonce' ) . '" rel="permalink">'.esc_html__('Duplicate','owm-weather').'</a>';
 	}
 	return $actions;
 }
