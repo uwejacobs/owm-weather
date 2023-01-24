@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: Powerful weather plugin for WordPress, based on the OpenWeather API, using custom post types and shortcodes, bundled with a ton of features.
-Version: 5.6.12
+Version: 5.6.13
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -3137,35 +3137,35 @@ function owmw_get_my_weather($attr) {
         $owmw_data["moonset"] = '';
 
 		if ($owmw_opt["today_date_format"] == 'date') {
-			$today_day =  date_i18n( get_option( 'date_format' ) );
+			$owmw_data["today_day"] =  date_i18n( get_option( 'date_format' ) );
 		} else if ($owmw_opt["today_date_format"] == 'datetime') {
-			$today_day =  date_i18n( get_option('date_format') . ' ' . get_option('time_format') );
+			$owmw_data["today_day"] =  date_i18n( get_option('date_format') . ' ' . get_option('time_format') );
 		} else if ($owmw_opt["today_date_format"] == 'day') {
 			switch (strftime("%w", $owmw_data["timestamp"])) {
 		        case "0":
-		          	$today_day      = esc_html__('Sunday','owm-weather');
+		          	$owmw_data["today_day"]      = esc_html__('Sunday','owm-weather');
 		          	break;
 		        case "1":
-		          	$today_day      = esc_html__('Monday','owm-weather');
+		          	$owmw_data["today_day"]      = esc_html__('Monday','owm-weather');
 		          	break;
 		        case "2":
-		        	$today_day      = esc_html__('Tuesday','owm-weather');
+		        	$owmw_data["today_day"]      = esc_html__('Tuesday','owm-weather');
 		          	break;
 		        case "3":
-		        	$today_day      = esc_html__('Wednesday','owm-weather');
+		        	$owmw_data["today_day"]      = esc_html__('Wednesday','owm-weather');
 		          	break;
 		        case "4":
-		        	$today_day      = esc_html__('Thursday','owm-weather');
+		        	$owmw_data["today_day"]      = esc_html__('Thursday','owm-weather');
 		          	break;
 		        case "5":
-		        	$today_day      = esc_html__('Friday','owm-weather');
+		        	$owmw_data["today_day"]      = esc_html__('Friday','owm-weather');
 		          	break;
 		        case "6":
-		        	$today_day      = esc_html__('Saturday','owm-weather');
+		        	$owmw_data["today_day"]      = esc_html__('Saturday','owm-weather');
 		          	break;
 		  		}
 		} else {
-			$today_day ='';
+			$owmw_data["today_day"] ='';
 		}
 
         //JSON : Onecall forecast weather (relies on lat and lon from current weather call)
@@ -3879,7 +3879,7 @@ function owmw_get_my_weather($attr) {
 
 	   	$owmw_html["today"]["start"]     = '<div class="owmw-today row">';
         if( $owmw_opt["today_date_format"] != "none") {
-	        $owmw_html["today"]["day"]       = '<div class="owmw-day col"><span class="owmw-highlight">'. esc_html($today_day) .'</span></div>';
+	        $owmw_html["today"]["day"]       = '<div class="owmw-day col"><span class="owmw-highlight">'. esc_html($owmw_data["today_day"]) .'</span></div>';
 	    }
         $owmw_html["today"]["sun"]       = owmw_display_today_sunrise_sunset($owmw_opt["sunrise_sunset"], $owmw_data["sunrise"], $owmw_data["sunset"], $owmw_opt["text_color"], 'span');
         $owmw_html["today"]["sun_hor"]   = owmw_display_today_sunrise_sunset($owmw_opt["sunrise_sunset"], $owmw_data["sunrise"], $owmw_data["sunset"], $owmw_opt["text_color"], 'div');
