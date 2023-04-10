@@ -1,5 +1,6 @@
 <?php
-function owmw_generateColorCSS($hexColor, $name) {
+function owmw_generateColorCSS($hexColor, $name)
+{
     $hexColor = sanitize_hex_color($hexColor);
     $name = sanitize_html_class($name);
 
@@ -8,13 +9,13 @@ function owmw_generateColorCSS($hexColor, $name) {
 
     $t1 = owmw_hsl2hex(array($hsl[0], $hsl[1], $hsl[2]));
     $t2 = owmw_hsl2hex(array($hsl[0], $hsl[1], owmw_hslAddition($hsl[2], -0.10)));
-    $t3 = owmw_hsl2hex(array($hsl[0], $hsl[1], owmw_hslAddition($hsl[2],  0.31)));
-    $t4 = owmw_hsl2hex(array($hsl[0], $hsl[1], owmw_hslAddition($hsl[2],  0.36)));
+    $t3 = owmw_hsl2hex(array($hsl[0], $hsl[1], owmw_hslAddition($hsl[2], 0.31)));
+    $t4 = owmw_hsl2hex(array($hsl[0], $hsl[1], owmw_hslAddition($hsl[2], 0.36)));
     $t5 = owmw_hsl2hex(array($hsl[0], $hsl[1], owmw_hslAddition($hsl[2], -0.24)));
     $t6 = owmw_hsl2hex(array($hsl[0], $hsl[1], owmw_hslAddition($hsl[2], -0.13)));
     $t7 = owmw_hsl2hex(array($hsl[0], $hsl[1], owmw_hslAddition($hsl[2], -0.07)));
     $t8 = owmw_hsl2hex(array($hsl[0], $hsl[1], owmw_hslAddition($hsl[2], -0.34)));
-    $t9 = owmw_hsl2hex(array($hsl[0], $hsl[1], owmw_hslAddition($hsl[2],  0.40)));
+    $t9 = owmw_hsl2hex(array($hsl[0], $hsl[1], owmw_hslAddition($hsl[2], 0.40)));
     $shadow = '0 0 0 0.2rem rgba(' . $rgb[0] . ', ' . $rgb[1] . ', ' . $rgb[2] . ', 0.5)';
     $owmw_isDark = owmw_isDark($rgb);
     $s = [];
@@ -124,11 +125,13 @@ function owmw_generateColorCSS($hexColor, $name) {
     return $str;
 }
 
-function owmw_addStylesheetRule(&$s, $selector, $property, $value) {
+function owmw_addStylesheetRule(&$s, $selector, $property, $value)
+{
     $s[$selector][] = esc_attr($property) . ":" . esc_attr($value) . ' !important;';
 }
 
-function owmw_printStylesheetRules($s) {
+function owmw_printStylesheetRules($s)
+{
     $css = '';
         
     foreach ($s as $key => $arr) {
@@ -151,20 +154,21 @@ function owmw_printStylesheetRules($s) {
 // Validates hex color code and returns proper value
 // Input: String - Format #ffffff, #fff, ffffff or fff
 // Output: hex value - 3 byte (000000 if input is invalid)
-function owmw_validate_hex($hex) {
+function owmw_validate_hex($hex)
+{
     // Complete patterns like #ffffff or #fff
-    if(preg_match("/^#([0-9a-fA-F]{6})$/", $hex) || preg_match("/^#([0-9a-fA-F]{3})$/", $hex)) {
+    if (preg_match("/^#([0-9a-fA-F]{6})$/", $hex) || preg_match("/^#([0-9a-fA-F]{3})$/", $hex)) {
         // Remove #
         $hex = substr($hex, 1);
     }
 
     // Complete patterns without # like ffffff or 000000
-    if(preg_match("/^([0-9a-fA-F]{6})$/", $hex)) {
+    if (preg_match("/^([0-9a-fA-F]{6})$/", $hex)) {
         return $hex;
     }
 
     // Short patterns without # like fff or 000
-    if(preg_match("/^([0-9a-f]{3})$/", $hex)) {
+    if (preg_match("/^([0-9a-f]{3})$/", $hex)) {
         // Spread to 6 digits
         return substr($hex, 0, 1) . substr($hex, 0, 1) . substr($hex, 1, 1) . substr($hex, 1, 1) . substr($hex, 2, 1) . substr($hex, 2, 1);
     }
@@ -176,7 +180,8 @@ function owmw_validate_hex($hex) {
 // Converts hex color code to HSL color
 // Input: String - Format #ffffff, #fff, ffffff or fff
 // Output: Array(Hue, Saturation, Lightness) - Values from 0 to 1
-function owmw_hex2hsl($hex) {
+function owmw_hex2hsl($hex)
+{
     //Validate Hex Input
     $hex = owmw_validate_hex($hex);
 
@@ -196,7 +201,8 @@ function owmw_hex2hsl($hex) {
 // details
 // Input: Array(Red, Green, Blue) - Values from 0 to 1
 // Output: Array(Hue, Saturation, Lightness) - Values from 0 to 1
-function owmw_rgb2hsl($rgb) {
+function owmw_rgb2hsl($rgb)
+{
     // Fill variables $r, $g, $b by array given.
     list($r, $g, $b) = $rgb;
 
@@ -210,20 +216,20 @@ function owmw_rgb2hsl($rgb) {
 
     // If chroma is 0, the given color is grey
     // therefore hue and saturation are set to 0
-    if ($chroma == 0)
-    {
+    if ($chroma == 0) {
         $h = 0;
         $s = 0;
     }
 
     // Else calculate hue and saturation.
     // Check http://en.wikipedia.org/wiki/HSL_and_HSV for details
-    else
-    {
-        switch($max) {
+    else {
+        switch ($max) {
             case $r:
                 $h_ = fmod((($g - $b) / $chroma), 6);
-                if($h_ < 0) $h_ = (6 - fmod(abs($h_), 6)); // Bugfix: fmod() returns wrong values for negative numbers
+                if ($h_ < 0) {
+                    $h_ = (6 - fmod(abs($h_), 6)); // Bugfix: fmod() returns wrong values for negative numbers
+                }
                 break;
 
             case $g:
@@ -248,31 +254,38 @@ function owmw_rgb2hsl($rgb) {
 // Converts HSL color to RGB color
 // Input: Array(Hue, Saturation, Lightness) - Values from 0 to 1
 // Output: Array(Red, Green, Blue) - Values from 0 to 1
-function owmw_hsl2rgb($hsl) {
+function owmw_hsl2rgb($hsl)
+{
     // Fill variables $h, $s, $l by array given.
     list($h, $s, $l) = $hsl;
 
     // If saturation is 0, the given color is grey and only
     // lightness is relevant.
-    if ($s == 0 ) {
+    if ($s == 0) {
         $rgb = array($l, $l, $l);
     }
 
     // Else calculate r, g, b according to hue.
     // Check http://en.wikipedia.org/wiki/HSL_and_HSV#From_HSL for details
-    else
-    {
+    else {
         $chroma = (1 - abs(2*$l - 1)) * $s;
         $h_     = $h * 6;
-        $x         = $chroma * (1 - abs((fmod($h_,2)) - 1)); // Note: fmod because % (modulo) returns int value!!
+        $x         = $chroma * (1 - abs((fmod($h_, 2)) - 1)); // Note: fmod because % (modulo) returns int value!!
         $m = $l - round($chroma/2, 10); // Bugfix for strange float behaviour (e.g. $l=0.17 and $s=1)
 
-             if($h_ >= 0 && $h_ < 1) $rgb = array(($chroma + $m), ($x + $m), $m);
-        else if($h_ >= 1 && $h_ < 2) $rgb = array(($x + $m), ($chroma + $m), $m);
-        else if($h_ >= 2 && $h_ < 3) $rgb = array($m, ($chroma + $m), ($x + $m));
-        else if($h_ >= 3 && $h_ < 4) $rgb = array($m, ($x + $m), ($chroma + $m));
-        else if($h_ >= 4 && $h_ < 5) $rgb = array(($x + $m), $m, ($chroma + $m));
-        else if($h_ >= 5 && $h_ < 6) $rgb = array(($chroma + $m), $m, ($x + $m));
+        if ($h_ >= 0 && $h_ < 1) {
+            $rgb = array(($chroma + $m), ($x + $m), $m);
+        } elseif ($h_ >= 1 && $h_ < 2) {
+            $rgb = array(($x + $m), ($chroma + $m), $m);
+        } elseif ($h_ >= 2 && $h_ < 3) {
+            $rgb = array($m, ($chroma + $m), ($x + $m));
+        } elseif ($h_ >= 3 && $h_ < 4) {
+            $rgb = array($m, ($x + $m), ($chroma + $m));
+        } elseif ($h_ >= 4 && $h_ < 5) {
+            $rgb = array(($x + $m), $m, ($chroma + $m));
+        } elseif ($h_ >= 5 && $h_ < 6) {
+            $rgb = array(($chroma + $m), $m, ($x + $m));
+        }
     }
 
     return $rgb;
@@ -281,18 +294,20 @@ function owmw_hsl2rgb($hsl) {
 // Converts RGB color to hex code
 // Input: Array(Red, Green, Blue)
 // Output: String hex value (#000000 - #ffffff)
-function owmw_rgb2hex($rgb) {
+function owmw_rgb2hex($rgb)
+{
     list($r,$g,$b) = $rgb;
     $r = round(255 * $r);
     $g = round(255 * $g);
     $b = round(255 * $b);
-    return "#".sprintf("%02X",$r).sprintf("%02X",$g).sprintf("%02X",$b);
+    return "#".sprintf("%02X", $r).sprintf("%02X", $g).sprintf("%02X", $b);
 }
 
 // Converts HSL color to RGB hex code
 // Input: Array(Hue, Saturation, Lightness) - Values from 0 to 1
 // Output: String hex value (#000000 - #ffffff)
-function owmw_hsl2hex($hsl) {
+function owmw_hsl2hex($hsl)
+{
     $rgb = owmw_hsl2rgb($hsl);
     return owmw_rgb2hex($rgb);
 }
@@ -300,7 +315,8 @@ function owmw_hsl2hex($hsl) {
 // Converts hex color code to RGB color
 // Input: String - Format #ffffff, #fff, ffffff or fff
 // Output: Array(Hue, Saturation, Lightness) - Values from 0 to 1
-function owmw_hex2rgb($hex) {
+function owmw_hex2rgb($hex)
+{
     //Validate Hex Input
     $hex = owmw_validate_hex($hex);
 
@@ -314,21 +330,23 @@ function owmw_hex2rgb($hex) {
 
     return array($r,$g,$b);
 }
-function owmw_hslAddition($hslValue, $number) {
+function owmw_hslAddition($hslValue, $number)
+{
     $newVal = $hslValue + $number;
     if ($newVal < 0) {
         $newVal = 0;
-    } else if ($newVal > 1) {
+    } elseif ($newVal > 1) {
         $newVal = 1;
     }
     return $newVal;
 }
-function owmw_isDark($rgb) {
+function owmw_isDark($rgb)
+{
     $hsp = sqrt(
-       0.299 * ($rgb[0] * $rgb[0]) +
-       0.587 * ($rgb[1] * $rgb[1]) +
-       0.114 * ($rgb[2] * $rgb[2])
-       );
+        0.299 * ($rgb[0] * $rgb[0]) +
+        0.587 * ($rgb[1] * $rgb[1]) +
+        0.114 * ($rgb[2] * $rgb[2])
+    );
 
     return ($hsp > 127.5);
 }

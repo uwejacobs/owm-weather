@@ -1,6 +1,6 @@
-<?php 
+<?php
 // To prevent calling the plugin directly
-if ( !function_exists( 'add_action' ) ) {
+if (!function_exists('add_action')) {
     echo 'Please don&rsquo;t call the plugin directly. Thanks :)';
     exit;
 }
@@ -8,9 +8,10 @@ if ( !function_exists( 'add_action' ) ) {
 //SVG Icon animation
 // original viewbox: "15 15 70 70"
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-function owmw_sun() {
+function owmw_sun()
+{
     $id = owmw_unique_id_esc("sunFillClip");
-	return '
+    return '
 		<svg
         id="sun"
         class="climacon climacon-sun"
@@ -70,9 +71,10 @@ function owmw_sun() {
 	<!-- sun -->';
 }
 
-function owmw_moon() {
+function owmw_moon()
+{
     $id = owmw_unique_id_esc("moonFillClip");
-	return '
+    return '
 		<svg
         id="moon"
         class="climacon climacon-moon"
@@ -88,11 +90,11 @@ function owmw_moon() {
             </g>
         </g>
     </svg><!-- moon --> ';
-
 }
 
-function owmw_wind() {
-	return '
+function owmw_wind()
+{
+    return '
 		<svg
         id="wind"
         class="climacon climacon-wind"
@@ -110,8 +112,9 @@ function owmw_wind() {
     </svg><!-- wind --> ';
 }
 
-function owmw_tornado() {
-	return '
+function owmw_tornado()
+{
+    return '
 		<svg
         id="tornado"
         class="climacon climacon-tornado"
@@ -138,7 +141,8 @@ function owmw_tornado() {
     </svg><!-- tornado --> ';
 }
 
-function owmw_cloud() {
+function owmw_cloud()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     return '
 		<svg
@@ -158,8 +162,9 @@ function owmw_cloud() {
     </svg><!-- cloud --> ';
 }
 
-function owmw_cloudFill() {
-	return '
+function owmw_cloudFill()
+{
+    return '
 		<svg
         id="cloudFill"
         class="climacon climacon-cloudFill"
@@ -178,10 +183,11 @@ function owmw_cloudFill() {
     </svg><!-- cloudFill  --> ';
 }
 
-function owmw_cloudSun() {
+function owmw_cloudSun()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("sunCloudFillClip");
-	return '
+    return '
 		<svg
         id="cloudSun"
         class="climacon climacon-cloudSun"
@@ -241,10 +247,11 @@ function owmw_cloudSun() {
     </svg><!-- cloudSun --> ';
 }
 
-function owmw_cloudMoon() {
+function owmw_cloudMoon()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("moonCloudFillClip");
-	return '
+    return '
 		<svg
         id="cloudMoon"
         class="climacon climacon-cloudMoon"
@@ -274,8 +281,9 @@ function owmw_cloudMoon() {
     </svg><!-- cloudMoon --> ';
 }
 
-function owmw_cloudDrizzle() {
-	return '
+function owmw_cloudDrizzle()
+{
+    return '
 		<svg
         id="cloudDrizzle"
         class="climacon climacon-cloudDrizzle"
@@ -301,11 +309,12 @@ function owmw_cloudDrizzle() {
     </svg><!-- cloudDrizzle --> ';
 }
 
-function owmw_cloudDrizzleSun() {
+function owmw_cloudDrizzleSun()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("sunCloudFillClip");
     $id2 = owmw_unique_id_esc("cloudSunFillClip");
-	return '
+    return '
 		<svg
         id="cloudDrizzleSun"
         class="climacon climacon-cloudDrizzleSun"
@@ -380,10 +389,11 @@ function owmw_cloudDrizzleSun() {
     </svg><!-- cloudDrizzleSun --> ';
 }
 
-function owmw_cloudDrizzleMoon() {
+function owmw_cloudDrizzleMoon()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("moonCloudFillClip");
-	return '
+    return '
 		<svg
         id="cloudDrizzleMoon"
         class="climacon climacon-cloudDrizzleMoon"
@@ -423,8 +433,9 @@ function owmw_cloudDrizzleMoon() {
     </svg><!-- cloudDrizzleMoon --> ';
 }
 
-function owmw_cloudDrizzleMoonFill() {
-	return '
+function owmw_cloudDrizzleMoonFill()
+{
+    return '
 		<svg
         id="cloudDrizzleMoonFill"
         class="climacon climacon-cloudDrizzleMoonFill"
@@ -463,8 +474,9 @@ function owmw_cloudDrizzleMoonFill() {
     </svg><!-- cloudDrizzleMoonFill --> ';
 }
 
-function owmw_cloudDrizzleAlt() {
-	return '
+function owmw_cloudDrizzleAlt()
+{
+    return '
 		<svg
         id="cloudDrizzleAlt"
         class="climacon climacon-cloudDrizzleAlt"
@@ -490,11 +502,12 @@ function owmw_cloudDrizzleAlt() {
     </svg><!-- cloudDrizzleAlt --> ';
 }
 
-function owmw_cloudDrizzleSunAlt() {
+function owmw_cloudDrizzleSunAlt()
+{
     $id = owmw_unique_id_esc("cloudSunFillClip");
     $id1 = owmw_unique_id_esc("cloudFillClip");
     $id2 = owmw_unique_id_esc("sunCloudFillClip");
-	return '
+    return '
 		<svg
         id="cloudDrizzleSunAlt"
         class="climacon climacon-cloudDrizzleSunAlt"
@@ -565,10 +578,11 @@ function owmw_cloudDrizzleSunAlt() {
     </svg><!-- cloudDrizzleSunAlt --> ';
 }
 
-function owmw_cloudDrizzleMoonAlt() {
+function owmw_cloudDrizzleMoonAlt()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("moonCloudFillClip");
-	return '
+    return '
 		<svg
         id="cloudDrizzleMoonAlt"
         class="climacon climacon-cloudDrizzleMoonAlt"
@@ -608,8 +622,9 @@ function owmw_cloudDrizzleMoonAlt() {
     </svg><!-- cloudDrizzleMoonAlt --> ';
 }
 
-function owmw_cloudDrizzleMoonFillAlt() {
-	return '
+function owmw_cloudDrizzleMoonFillAlt()
+{
+    return '
 		<svg
         id="cloudDrizzleMoonFillAlt"
         class="climacon climacon-cloudDrizzleMoonFillAlt"
@@ -648,9 +663,10 @@ function owmw_cloudDrizzleMoonFillAlt() {
     </svg><!-- cloudDrizzleMoonFillAlt --> ';
 }
 
-function owmw_cloudRain() {
+function owmw_cloudRain()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
-	return '
+    return '
 		<svg
         id="cloudRain"
         class="climacon climacon-cloudRain"
@@ -688,11 +704,12 @@ function owmw_cloudRain() {
     </svg><!-- cloudRain --> ';
 }
 
-function owmw_cloudRainSun() {
+function owmw_cloudRainSun()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("sunCloudFillClip");
     $id2 = owmw_unique_id_esc("cloudSunFillClip");
-	return '
+    return '
 		<svg
         id="cloudRainSun"
         class="climacon climacon-cloudRainSun"
@@ -776,10 +793,11 @@ function owmw_cloudRainSun() {
     </svg><!-- cloudRainSun --> ';
 }
 
-function owmw_cloudRainMoon() {
+function owmw_cloudRainMoon()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("moonCloudFillClip");
-	return '
+    return '
 		<svg
         id="cloudRainMoon"
         class="climacon climacon-cloudRainMoon"
@@ -828,9 +846,10 @@ function owmw_cloudRainMoon() {
     </svg><!-- cloudRainMoon --> ';
 }
 
-function owmw_cloudRainAlt() {
+function owmw_cloudRainAlt()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
-	return '
+    return '
 		<svg
         id="cloudRainAlt"
         class="climacon climacon-cloudRainAlt"
@@ -856,11 +875,12 @@ function owmw_cloudRainAlt() {
     </svg><!-- cloudRainAlt --> ';
 }
 
-function owmw_cloudSunRainAlt() {
+function owmw_cloudSunRainAlt()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("sunCloudFillClip");
     $id2 = owmw_unique_id_esc("cloudSunFillClip");
-	return '
+    return '
 		<svg
         id="cloudRainSunAlt"
         class="climacon climacon-cloudSunRainAlt"
@@ -932,10 +952,11 @@ function owmw_cloudSunRainAlt() {
     </svg><!-- cloudSunRainAlt --> ';
 }
 
-function owmw_cloudMoonRainAlt() {
+function owmw_cloudMoonRainAlt()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("moonCloudFillClip");
-	return '
+    return '
 		<svg
         id="cloudRainMoonAlt"
         class="climacon climacon-cloudMoonRainAlt"
@@ -972,8 +993,9 @@ function owmw_cloudMoonRainAlt() {
     </svg><!-- cloudMoonRainAlt --> ';
 }
 
-function owmw_cloudHailAlt() {
-	return '
+function owmw_cloudHailAlt()
+{
+    return '
 		<svg
         id="cloudHailAlt"
         class="climacon climacon-cloudHailAlt"
@@ -1008,8 +1030,9 @@ function owmw_cloudHailAlt() {
     </svg><!-- cloudHailAlt --> ';
 }
 
-function owmw_cloudSnow() {
-	return '
+function owmw_cloudSnow()
+{
+    return '
 		<svg
         id="cloudSnow"
         class="climacon climacon-cloudSnow"
@@ -1042,11 +1065,12 @@ function owmw_cloudSnow() {
     </svg><!-- cloudSnow --> ';
 }
 
-function owmw_cloudSnowSun() {
+function owmw_cloudSnowSun()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("sunCloudFillClip");
     $id2 = owmw_unique_id_esc("cloudSunFillClip");
-	return '
+    return '
 		<svg
         id="cloudSnowSun"
         class="climacon climacon-cloudSnowSun"
@@ -1126,10 +1150,11 @@ function owmw_cloudSnowSun() {
     </svg><!-- cloudSnowSun --> ';
 }
 
-function owmw_cloudSnowMoon() {
+function owmw_cloudSnowMoon()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("moonCloudFillClip");
-	return '
+    return '
 		<svg
         id="cloudSnowMoon"
         class="climacon climacon-cloudSnowMoon"
@@ -1175,9 +1200,10 @@ function owmw_cloudSnowMoon() {
     </svg><!-- cloudSnowMoon --> ';
 }
 
-function owmw_cloudSnowAlt() {
+function owmw_cloudSnowAlt()
+{
     $id = owmw_unique_id_esc("snowFillClip");
-	return '
+    return '
 		<svg
         id="cloudSnowAlt"
         class="climacon climacon-cloudSnowAlt"
@@ -1202,12 +1228,13 @@ function owmw_cloudSnowAlt() {
     </svg><!-- cloudSnowAlt --> ';
 }
 
-function owmw_cloudSnowSunAlt() {
+function owmw_cloudSnowSunAlt()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("sunCloudFillClip");
     $id2 = owmw_unique_id_esc("cloudSunFillClip");
     $id3 = owmw_unique_id_esc("snowFillClip");
-	return '
+    return '
 		<svg
         id="cloudSnowSunAlt"
         class="climacon climacon-cloudSnowSunAlt"
@@ -1280,11 +1307,12 @@ function owmw_cloudSnowSunAlt() {
     </svg><!-- cloudSnowSunAlt --> ';
 }
 
-function owmw_cloudSnowMoonAlt() {
+function owmw_cloudSnowMoonAlt()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("moonCloudFillClip");
     $id2 = owmw_unique_id_esc("snowFillClip");
-	return '
+    return '
 		<svg
         id="cloudSnowAlt"
         class="climacon climacon-cloudSnowAlt"
@@ -1323,8 +1351,9 @@ function owmw_cloudSnowMoonAlt() {
     </svg><!-- cloudSnowMoonAlt --> ';
 }
 
-function owmw_cloudFog() {
-	return '
+function owmw_cloudFog()
+{
+    return '
 		<svg
         id="cloudFog"
         class="climacon climacon-cloudFog"
@@ -1350,11 +1379,12 @@ function owmw_cloudFog() {
     </svg><!--cloudFog --> ';
 }
 
-function owmw_cloudFogSun() {
+function owmw_cloudFogSun()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("sunCloudFillClip");
     $id2 = owmw_unique_id_esc("cloudSunFillClip");
-	return '
+    return '
 		<svg
         id="cloudFogSun"
         class="climacon climacon-cloudFogSun"
@@ -1429,10 +1459,11 @@ function owmw_cloudFogSun() {
     </svg><!--cloudFogSun --> ';
 }
 
-function owmw_cloudFogMoon() {
+function owmw_cloudFogMoon()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("moonCloudFillClip");
-	return '
+    return '
 		<svg
         id="cloudFogMoon"
         class="climacon climacon-cloudFogMoon"
@@ -1472,8 +1503,9 @@ function owmw_cloudFogMoon() {
     </svg><!-- cloudFogMoon --> ';
 }
 
-function owmw_cloudFogAlt() {
-	return '
+function owmw_cloudFogAlt()
+{
+    return '
 		<svg
         id="cloudFogAlt"
         class="climacon climacon-cloudFogAlt"
@@ -1509,11 +1541,12 @@ function owmw_cloudFogAlt() {
     </svg><!--cloudFogAlt --> ';
 }
 
-function owmw_cloudFogSunAlt() {
+function owmw_cloudFogSunAlt()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("sunCloudFillClip");
     $id2 = owmw_unique_id_esc("cloudSunFillClip");
-	return '
+    return '
 		<svg
         id="cloudFogSunAlt"
         class="climacon climacon-cloudFogSunAlt"
@@ -1597,10 +1630,11 @@ function owmw_cloudFogSunAlt() {
     </svg><!--cloudFogSunAlt --> ';
 }
 
-function owmw_cloudFogMoonAlt() {
+function owmw_cloudFogMoonAlt()
+{
     $id = owmw_unique_id_esc("cloudFillClip");
     $id1 = owmw_unique_id_esc("moonCloudFillClip");
-	return '
+    return '
 		<svg
         id="cloudFogMoonAlt"
         class="climacon climacon-cloudFogMoonAlt"
@@ -1650,8 +1684,9 @@ function owmw_cloudFogMoonAlt() {
     </svg><!--cloudFogMoonAlt --> ';
 }
 
-function owmw_cloudLightning() {
-	return '
+function owmw_cloudLightning()
+{
+    return '
 		<svg
         id="cloudLightning"
         class="climacon climacon-cloudLightning"
@@ -1671,9 +1706,10 @@ function owmw_cloudLightning() {
     </svg><!--cloudLightning --> ';
 }
 
-function owmw_colorAnimatedConfig() {
+function owmw_colorAnimatedConfig()
+{
     return
-  ('<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" class="ac-svg-template">
+    ('<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" class="ac-svg-template">
    <defs>
     <radialgradient id="owmw-gradYellow" cx="50%" cy="50%" r="80%" fx="90%" fy="80%">
       <stop offset="0%" class="ac-stop-yellow" />
@@ -1780,9 +1816,10 @@ function owmw_colorAnimatedConfig() {
 </svg>');
 }
 
-function owmw_colorAnimated_Dark_Clouds() {
+function owmw_colorAnimated_Dark_Clouds()
+{
     return
-  ('<!-- Dark clouds -->
+    ('<!-- Dark clouds -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
       <use xlink:href="#owmw-grayCloud" x="25" y="10" class="reverse-small-cloud" fill="url(#owmw-gradDarkGray)"/>
@@ -1790,26 +1827,29 @@ function owmw_colorAnimated_Dark_Clouds() {
     </svg>');
 }
 
-function owmw_colorAnimated_Few_Clouds() {
+function owmw_colorAnimated_Few_Clouds()
+{
     return
-  ('<!-- Few clouds -->
+    ('<!-- Few clouds -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
       <use xlink:href="#owmw-whiteCloud" x="7" />
     </svg>');
 }
 
-function owmw_colorAnimated_Sun() {
+function owmw_colorAnimated_Sun()
+{
     return
-  ('<!-- Sunny -->
+    ('<!-- Sunny -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-sun"/>
     </svg>');
 }
 
-function owmw_colorAnimated_Partly_Cloudy_Day() {
+function owmw_colorAnimated_Partly_Cloudy_Day()
+{
     return
-  ('<!-- Partly Cloudy Day -->
+    ('<!-- Partly Cloudy Day -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-sun" x="-12" y="-18"/>
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
@@ -1817,9 +1857,10 @@ function owmw_colorAnimated_Partly_Cloudy_Day() {
     </svg>');
 }
 
-function owmw_colorAnimated_Patchy_Rain_Day() {
+function owmw_colorAnimated_Patchy_Rain_Day()
+{
     return
-  ('<!-- Patchy Rain Day -->
+    ('<!-- Patchy Rain Day -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-sun" x="-12" y="-18"/>
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
@@ -1829,9 +1870,10 @@ function owmw_colorAnimated_Patchy_Rain_Day() {
     </svg>');
 }
 
-function owmw_colorAnimated_Patchy_Drizzle_Day() {
+function owmw_colorAnimated_Patchy_Drizzle_Day()
+{
     return
-  ('<!-- Patchy Drizzle Day -->
+    ('<!-- Patchy Drizzle Day -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-sun" x="-12" y="-18"/>
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
@@ -1841,9 +1883,10 @@ function owmw_colorAnimated_Patchy_Drizzle_Day() {
     </svg>');
 }
 
-function owmw_colorAnimated_Patchy_Snow_Day() {
+function owmw_colorAnimated_Patchy_Snow_Day()
+{
     return
-  ('<!-- Patchy Snow Day -->
+    ('<!-- Patchy Snow Day -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-sun" x="-12" y="-18"/>
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
@@ -1854,9 +1897,10 @@ function owmw_colorAnimated_Patchy_Snow_Day() {
     </svg>');
 }
 
-function owmw_colorAnimated_Patchy_Sleet_Day() {
+function owmw_colorAnimated_Patchy_Sleet_Day()
+{
     return
-  ('<!-- Patchy Sleet Day -->
+    ('<!-- Patchy Sleet Day -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-sun" x="-12" y="-18"/>
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
@@ -1868,9 +1912,10 @@ function owmw_colorAnimated_Patchy_Sleet_Day() {
     </svg>');
 }
 
-function owmw_colorAnimated_Moon() {
+function owmw_colorAnimated_Moon()
+{
     return
-  ('<!-- Moon -->
+    ('<!-- Moon -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-moon" x="-15"/>
       <use xlink:href="#owmw-star" x="42" y="30" class="stars animated infinite flash"/>
@@ -1879,9 +1924,10 @@ function owmw_colorAnimated_Moon() {
     </svg>');
 }
 
-function owmw_colorAnimated_Partly_Cloudy_Night() {
+function owmw_colorAnimated_Partly_Cloudy_Night()
+{
     return
-  ('<!-- Partly Cloudy Night -->
+    ('<!-- Partly Cloudy Night -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-moon" x="-20" y="-15"/>
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
@@ -1889,9 +1935,10 @@ function owmw_colorAnimated_Partly_Cloudy_Night() {
     </svg>');
 }
 
-function owmw_colorAnimated_Patchy_Rain_Night() {
+function owmw_colorAnimated_Patchy_Rain_Night()
+{
     return
-  ('<!-- Patchy Rain Night -->
+    ('<!-- Patchy Rain Night -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-moon" x="-20" y="-15"/>
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
@@ -1901,9 +1948,10 @@ function owmw_colorAnimated_Patchy_Rain_Night() {
     </svg>');
 }
 
-function owmw_colorAnimated_Patchy_Drizzle_Night() {
+function owmw_colorAnimated_Patchy_Drizzle_Night()
+{
     return
-  ('<!-- Patchy Drizzle Night -->
+    ('<!-- Patchy Drizzle Night -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-moon" x="-20" y="-15"/>
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
@@ -1913,9 +1961,10 @@ function owmw_colorAnimated_Patchy_Drizzle_Night() {
     </svg>');
 }
 
-function owmw_colorAnimated_Patchy_Snow_Night() {
+function owmw_colorAnimated_Patchy_Snow_Night()
+{
     return
-  ('<!-- Patchy Snow Night -->
+    ('<!-- Patchy Snow Night -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-moon" x="-20" y="-15"/>
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
@@ -1926,9 +1975,10 @@ function owmw_colorAnimated_Patchy_Snow_Night() {
     </svg>');
 }
 
-function owmw_colorAnimated_Patchy_Sleet_Night() {
+function owmw_colorAnimated_Patchy_Sleet_Night()
+{
     return
-  ('<!-- Patchy Sleet Night -->
+    ('<!-- Patchy Sleet Night -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-moon" x="-20" y="-15"/>
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
@@ -1940,9 +1990,10 @@ function owmw_colorAnimated_Patchy_Sleet_Night() {
     </svg>');
 }
 
-function owmw_colorAnimated_Rain() {
+function owmw_colorAnimated_Rain()
+{
     return
-  ('<!-- Rain -->
+    ('<!-- Rain -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-grayCloud" x="25" y="10" class="reverse-small-cloud" fill="url(#owmw-gradDarkGray)"/>
       <use class="drop4" xlink:href="#rainDrop" x="15" y="65"/>
@@ -1953,9 +2004,10 @@ function owmw_colorAnimated_Rain() {
     </svg>');
 }
 
-function owmw_colorAnimated_Drizzle() {
+function owmw_colorAnimated_Drizzle()
+{
     return
-  ('<!-- Drizzle -->
+    ('<!-- Drizzle -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-rainDrizzle" x="15" y="65"/>
       <use xlink:href="#owmw-rainDrizzle" x="25" y="65"/>
@@ -1965,9 +2017,10 @@ function owmw_colorAnimated_Drizzle() {
     </svg>');
 }
 
-function owmw_colorAnimated_Thunderstorm() {
+function owmw_colorAnimated_Thunderstorm()
+{
     return
-  ('<!-- Thunderstorm -->
+    ('<!-- Thunderstorm -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradGray)"/>
       <use xlink:href="#owmw-grayCloud" x="25" y="10" class="reverse-small-cloud" fill="url(#owmw-gradDarkGray)"/>
@@ -1977,9 +2030,10 @@ function owmw_colorAnimated_Thunderstorm() {
     </svg>');
 }
 
-function owmw_colorAnimated_Snow() {
+function owmw_colorAnimated_Snow()
+{
     return
-  ('<!-- Snow -->
+    ('<!-- Snow -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use class="snowFlake1" xlink:href="#snowFlake" x="20" y="55"/>
       <use class="snowFlake2" xlink:href="#snowFlake" x="35" y="65"/>
@@ -1990,9 +2044,10 @@ function owmw_colorAnimated_Snow() {
     </svg>');
 }
 
-function owmw_colorAnimated_Sleet() {
+function owmw_colorAnimated_Sleet()
+{
     return
-  ('<!-- Sleet -->
+    ('<!-- Sleet -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-grayCloud" x="25" y="10" class="reverse-small-cloud" fill="url(#owmw-gradDarkGray)"/>
       <use class="snowFlake1" xlink:href="#snowFlake" x="20" y="55"/>
@@ -2008,9 +2063,10 @@ function owmw_colorAnimated_Sleet() {
     </svg>');
 }
 
-function owmw_colorAnimated_Hail() {
+function owmw_colorAnimated_Hail()
+{
     return
-  ('<!-- Hail/Ice Pellets -->
+    ('<!-- Hail/Ice Pellets -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-grayCloud" x="25" y="10" class="reverse-small-cloud" fill="url(#owmw-gradDarkGray)"/>
       <use class="ice4" xlink:href="#icePellet" x="25" y="65"/>
@@ -2021,9 +2077,10 @@ function owmw_colorAnimated_Hail() {
     </svg>');
 }
 
-function owmw_colorAnimated_Mist_Cloud() {
+function owmw_colorAnimated_Mist_Cloud()
+{
     return
-  ('<!-- Mist Cloud -->
+    ('<!-- Mist Cloud -->
     <svg class="ac-icon" viewbox="0 0 100 100">
       <use xlink:href="#owmw-grayCloud" class="small-cloud" fill="url(#owmw-gradDarkGray)" x="0" y="20"/>
       <use xlink:href="#owmw-grayCloud" x="30" y="30" class="reverse-small-cloud" fill="url(#owmw-gradGray)"/>
@@ -2031,9 +2088,10 @@ function owmw_colorAnimated_Mist_Cloud() {
     </svg>');
 }
 
-function owmw_colorAnimated_Wind() {
+function owmw_colorAnimated_Wind()
+{
     return
-  ('<!-- Wind -->
+    ('<!-- Wind -->
     <svg class="icon wind" viewBox="0 0 100 100">
       <path class="wind1" d="M 8,37 L 35,37"/>
       <path class="wind2" d="M 2,45 L 45,45 C65,45 64,25 52,25 C47,24 42,30 44,35"/>
@@ -2043,9 +2101,10 @@ function owmw_colorAnimated_Wind() {
     </svg>');
 }
   
-function owmw_colorAnimated_Tornado() {
+function owmw_colorAnimated_Tornado()
+{
     return
-  ('<!-- Tornado -->
+    ('<!-- Tornado -->
     <svg class="ac-icon" viewBox="0 0 100 100">
       <path d="M26,17.5 A25,6.8 -3 1,1 68,15.5 A22,5.25 -3 1,0 26,17.5z" fill="black"/>
       <path d="M29,18.5 A19.5,4.5 -3 1,1 65,17 A17,3.5 -3 1,0 29,18.5z" fill="black"/>
@@ -2060,4 +2119,3 @@ function owmw_colorAnimated_Tornado() {
       <path d="M28,74.5 Q25,86 50,98 C45,85 61,84 57,77 A8,3.85 2 1,1 28,74.5" fill="black"/>
     </svg>');
 }
-  

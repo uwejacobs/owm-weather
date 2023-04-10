@@ -629,7 +629,6 @@ progress {
   font-size: 0.875em;
   color: #6c757d;
 }
-*/
 .container,
 .container-fluid,
 .container-xxl,
@@ -643,6 +642,7 @@ progress {
   margin-right: auto;
   margin-left: auto;
 }
+*/
 
 @media (min-width: 576px) {
   .container-sm, .container {

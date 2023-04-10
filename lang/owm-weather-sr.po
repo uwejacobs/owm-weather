@@ -1,0 +1,2749 @@
+# Copyright (C) 2022 Uwe Jacobs
+# This file is distributed under the GPLv2.
+msgid ""
+msgstr ""
+"Project-Id-Version: OWM Weather 5.6.12\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/owm-weather\n"
+"POT-Creation-Date: 2022-12-12T16:26:24-05:00\n"
+"PO-Revision-Date: 2023-04-10 12:50-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Domain: owm-weather\n"
+
+#. Plugin Name of the plugin
+#: owmweather-admin.php:83 js/block-editor-index.js:37
+msgid "OWM Weather"
+msgstr "Временска прогноза за ОWМ"
+
+#. Plugin URI of the plugin
+msgid "https://github.com/uwejacobs/owm-weather"
+msgstr "https://github.com/uwejacobs/owm-weather"
+
+#. Description of the plugin
+msgid ""
+"Powerful weather plugin for WordPress, based on the OpenWeather API, using "
+"custom post types and shortcodes, bundled with a ton of features."
+msgstr ""
+"Снажан метеоролошки плугин за WордПресс, заснован на ОпенWеатхер АПИ-у, "
+"користећи прилагођене типове објава и кратке кодове, умотан са тоном "
+"функција."
+
+#. Author of the plugin
+msgid "Uwe Jacobs"
+msgstr "Уwе Јацобс"
+
+#. Author URI of the plugin
+msgid "https://ujsoftware.com/owm-weather-blog/"
+msgstr "https://ujsoftware.com/owm-weather-blog/"
+
+#: classes/class-weather-shortcode-widget.php:26
+msgid "Add OWM Weather from shortcode."
+msgstr "Додајте ОWМ Временску прогнозу из кратког кода."
+
+#: classes/class-weather-shortcode-widget.php:33
+msgid "OWM Weather Shortcode"
+msgstr "ОWМ Wеатхер Схортцоде"
+
+#: classes/class-weather-shortcode-widget.php:54
+msgid "Title:"
+msgstr "Наслов:"
+
+#: classes/class-weather-shortcode-widget.php:56
+msgid "Title text will display above the weather content."
+msgstr "Текст наслова ће бити приказан изнад временског садржаја."
+
+#: classes/class-weather-shortcode-widget.php:59
+msgid "Shortcode:"
+msgstr "Кратки код"
+
+#: classes/class-weather-shortcode-widget.php:61
+msgid "Paste in the shortcode of the weather you would like to display."
+msgstr "Налепите у кратки код временске прилике који желите да прикажете."
+
+#: owmweather-admin.php:37 owmweather.php:432
+msgid "OWM Weather Settings"
+msgstr "ОWМ поставке временске прогнозе"
+
+#: owmweather-admin.php:38
+msgctxt "Menu item"
+msgid "OWM Weather"
+msgstr "Временска прогноза за ОWМ"
+
+#: owmweather-admin.php:59
+msgid "Settings saved."
+msgstr "Подешавања су сачувана."
+
+#: owmweather-admin.php:90
+msgid "Do you like OWM Weather? Don't forget to rate it 5 stars!"
+msgstr "Да ли ти се свира ОWМ Wеатхер? Не заборави да оцениш са 5 звездица!"
+
+#: owmweather-admin.php:120
+msgid "Consider a donation"
+msgstr "Размислите о донацији"
+
+#: owmweather-admin.php:135
+msgid "Export Settings"
+msgstr "Извези поставке"
+
+#: owmweather-admin.php:137
+msgid ""
+"Export the plugin settings for this site as a .json file. This allows you to "
+"easily import the configuration into another site."
+msgstr ""
+"Извезите поставке додатне компоненте за ову локацију као .јсон датотеку. Ово "
+"вам омогућава да лако увезете конфигурацију на другу локацију."
+
+#: owmweather-admin.php:142
+msgid "Export"
+msgstr "Извоз"
+
+#: owmweather-admin.php:149
+msgid "Import Settings"
+msgstr "Увези поставке"
+
+#: owmweather-admin.php:151
+msgid ""
+"Import the plugin settings from a .json file. This file can be obtained by "
+"exporting the settings on another site using the form above."
+msgstr ""
+"Увезите поставке додатне компоненте из .јсон датотеке. Ова датотека се може "
+"добити извозом поставки на другој локацији помоћу горенаведеног обрасца."
+
+#: owmweather-admin.php:159
+msgid "Import"
+msgstr "Увези"
+
+#: owmweather-admin.php:166
+msgid "Reset Settings"
+msgstr "Успостави почетне вредности поставки"
+
+#: owmweather-admin.php:168
+msgid ""
+"Reset all OWM Weather global settings. It will not delete your weather pages "
+"and their individual settings."
+msgstr ""
+"Успоставите почетне вредности свих ОWМ Wеатхер глобалних поставки. Неће "
+"избрисати ваше странице временске прогнозе и њихове појединачне поставке."
+
+#: owmweather-admin.php:173
+msgid "Reset settings"
+msgstr "Успостави почетне вредности поставки"
+
+#: owmweather-admin.php:194 owmweather.php:631
+msgid "Network"
+msgstr "Мрежа"
+
+#: owmweather-admin.php:196
+msgid "System"
+msgstr "Систем"
+
+#: owmweather-admin.php:197 owmweather.php:633 owmweather.php:722
+msgid "Basic"
+msgstr "Основни"
+
+#: owmweather-admin.php:198 owmweather.php:634
+msgid "Display"
+msgstr "Текст за приказ"
+
+#: owmweather-admin.php:199 owmweather.php:635
+msgid "Layout"
+msgstr "Raspored"
+
+#: owmweather-admin.php:200
+msgid "Weather-based"
+msgstr "Временска прогноза"
+
+#: owmweather-admin.php:201 owmweather-admin.php:1229 owmweather.php:637
+msgid "Map"
+msgstr "Mapa"
+
+#: owmweather-admin.php:202
+msgid "Import/Export/Reset"
+msgstr "Увоз/извоз /успостављање почетних вредности"
+
+#: owmweather-admin.php:203
+msgid "Support"
+msgstr "Подршка"
+
+#: owmweather-admin.php:223
+msgid "Save changes"
+msgstr "Сачувај промене"
+
+#: owmweather-admin.php:229
+msgid "OWM Weather cache"
+msgstr "ОWМ временска прогноза кеш"
+
+#: owmweather-admin.php:233
+msgid "cache system"
+msgstr "кеш систем"
+
+#: owmweather-admin.php:236
+msgid "Click this button to refresh the weather cache."
+msgstr "Кликните на ово дугме да бисте освежили временску меморију."
+
+#: owmweather-admin.php:245
+msgid "Clear cache!"
+msgstr "Обриши кеш меморију!"
+
+#: owmweather-admin.php:283
+msgid "Basic Settings"
+msgstr "Основне поставке"
+
+#: owmweather-admin.php:290
+msgid "Bypass Measurement System"
+msgstr "Заобиђи систем мерења"
+
+#: owmweather-admin.php:298
+msgid "Bypass Time Format"
+msgstr "Заобиђи формат времена"
+
+#: owmweather-admin.php:306
+msgid "Bypass Timezone"
+msgstr "Заобиђи временску зону"
+
+#: owmweather-admin.php:314
+msgid "Bypass OpenWeatherMap Language"
+msgstr "Заобиђи ОпенWеатхерМап Лангуаге"
+
+#: owmweather-admin.php:323
+msgid "Display Settings"
+msgstr "Podešavanja ekrana"
+
+#: owmweather-admin.php:330
+msgid "Current City Name"
+msgstr "Тренутно име града"
+
+#: owmweather-admin.php:338 owmweather.php:871
+msgid "Current Weather Symbol"
+msgstr "Тренутни симбол временске прогнозе"
+
+#: owmweather-admin.php:346 owmweather.php:880
+msgid "Current Temperature"
+msgstr "Тренутна температура"
+
+#: owmweather-admin.php:354 owmweather.php:889
+msgid "Current Feels-Like Temperature"
+msgstr "Тренутна температура налик на осећај"
+
+#: owmweather-admin.php:362
+msgid "Current Short Condition"
+msgstr "Тренутни кратки услов"
+
+#: owmweather-admin.php:370 owmweather.php:910
+msgid "Temperature Unit (C / F)"
+msgstr "Температурна јединица (Ц / Ф)"
+
+#: owmweather-admin.php:378 owmweather.php:914
+msgid "Date"
+msgstr "Datum"
+
+#: owmweather-admin.php:386 owmweather.php:949
+msgid "Sunrise + Sunset"
+msgstr "Излазак сунца + залазак сунца"
+
+#: owmweather-admin.php:394
+msgid "Moonrise + Moonset"
+msgstr "Моонрисе + Моонсет"
+
+#: owmweather-admin.php:402 owmweather-icons.php:767 owmweather-icons.php:786
+#: owmweather.php:970 owmweather.php:1896 owmweather.php:3685
+#: owmweather.php:3760 owmweather.php:3895 owmweather.php:3896
+#: owmweather.php:4905 owmweather.php:4983 owmweather.php:5051
+msgid "Wind"
+msgstr "Vetar"
+
+#: owmweather-admin.php:410
+msgid "Wind Unit"
+msgstr "Јединица ветра"
+
+#: owmweather-admin.php:418
+msgid "Wind Icon Pointer Direction"
+msgstr "Смер показивача иконе ветра"
+
+#: owmweather-admin.php:426 owmweather-icons.php:796 owmweather.php:998
+#: owmweather.php:3688 owmweather.php:3900 owmweather.php:3901
+#: owmweather.php:4260 owmweather.php:4657 owmweather.php:4902
+#: owmweather.php:4980 owmweather.php:5048
+msgid "Humidity"
+msgstr "Vlažnost"
+
+#: owmweather-admin.php:434 owmweather-icons.php:897 owmweather.php:3691
+#: owmweather.php:3905 owmweather.php:3906 owmweather.php:3907
+#: owmweather.php:3908 owmweather.php:4158 owmweather.php:4899
+#: owmweather.php:4977
+msgid "Dew Point"
+msgstr "Тачка росе"
+
+#: owmweather-admin.php:442 owmweather-icons.php:822 owmweather.php:1016
+#: owmweather.php:1950 owmweather.php:3694 owmweather.php:3772
+#: owmweather.php:3912 owmweather.php:3913 owmweather.php:4238
+#: owmweather.php:4241 owmweather.php:4266 owmweather.php:4635
+#: owmweather.php:4638 owmweather.php:4663 owmweather.php:4908
+#: owmweather.php:4986 owmweather.php:5054
+msgid "Pressure"
+msgstr "Pritisak"
+
+#: owmweather-admin.php:450
+msgid "Pressure Unit"
+msgstr "Јединица притиска"
+
+#: owmweather-admin.php:458 owmweather-icons.php:840 owmweather.php:1034
+#: owmweather.php:3917 owmweather.php:3918 owmweather.php:4247
+#: owmweather.php:4644
+msgid "Cloudiness"
+msgstr "Облачност"
+
+#: owmweather-admin.php:466 owmweather-icons.php:861 owmweather.php:1043
+#: owmweather.php:1815 owmweather.php:3703 owmweather.php:3738
+#: owmweather.php:3922 owmweather.php:3923 owmweather.php:4893
+#: owmweather.php:4971 owmweather.php:5044
+msgid "Precipitation"
+msgstr "Падавине"
+
+#: owmweather-admin.php:474 owmweather-icons.php:877 owmweather.php:1052
+#: owmweather.php:3927 owmweather.php:3928 owmweather.php:4911
+#: owmweather.php:5057
+msgid "Visibility"
+msgstr "Видљивост"
+
+#: owmweather-admin.php:482 owmweather-icons.php:909 owmweather.php:3706
+#: owmweather.php:3932 owmweather.php:3933 owmweather.php:4914
+#: owmweather.php:4989
+msgid "UV Index"
+msgstr "УВ индекс"
+
+#: owmweather-admin.php:490
+msgid "Alerts"
+msgstr "Obaveštenja"
+
+#: owmweather-admin.php:498
+msgid "Alerts Popup:"
+msgstr "Искачући мени обавештења:"
+
+#: owmweather-admin.php:506 owmweather.php:1095
+msgid "Show only Icon Labels"
+msgstr "Прикажи само ознаке икона"
+
+#: owmweather-admin.php:514
+msgid "Number of Forecast Hours"
+msgstr "Број часова предвиђања"
+
+#: owmweather-admin.php:522 owmweather.php:1111
+msgid "Display Time Icons"
+msgstr "Прикажи иконе времена"
+
+#: owmweather-admin.php:530
+msgid "Number of Forecast Days"
+msgstr "Број дана предвиђања"
+
+#: owmweather-admin.php:538
+msgid "Length Day Names:"
+msgstr "Имена дана дужине:"
+
+#: owmweather-admin.php:546 owmweather.php:1152
+msgid "Link to OpenWeatherMap"
+msgstr "Повежи са ОпенWеатхерМап"
+
+#: owmweather-admin.php:554 owmweather.php:1162
+msgid "Data Update Time"
+msgstr "Време ажурирања података"
+
+#: owmweather-admin.php:563
+msgid "Layout Settings"
+msgstr "Podešavanja "
+
+#: owmweather-admin.php:594
+msgid "Spinner"
+msgstr "Спинер"
+
+#: owmweather-admin.php:602 owmweather.php:1234
+msgid "Disable Animations for Main Icon"
+msgstr "Онемогући анимације за главну икону"
+
+#: owmweather-admin.php:610 owmweather.php:1248 owmweather.php:1345
+#: owmweather.php:1360 owmweather.php:1408
+msgid "Background Color"
+msgstr "Боја позадине"
+
+#: owmweather-admin.php:618 owmweather.php:1252
+msgid "Background Image"
+msgstr "Pozadinska slika"
+
+#: owmweather-admin.php:626
+msgid "Background YouTube Video"
+msgstr "Позадина YоуТубе видеа"
+
+#: owmweather-admin.php:634 owmweather.php:1241 owmweather.php:1341
+#: owmweather.php:1364 owmweather.php:1400
+msgid "Text Color"
+msgstr "Boja teksta"
+
+#: owmweather-admin.php:642 owmweather.php:1288 owmweather.php:1368
+#: owmweather.php:1412
+msgid "Border Color"
+msgstr "Boja ivica"
+
+#: owmweather-admin.php:650
+msgid "Border Width (in px)"
+msgstr "Ширина ивице (у пx)"
+
+#: owmweather-admin.php:658 owmweather.php:1296 owmweather.php:1376
+#: owmweather.php:1420
+msgid "Border Style"
+msgstr "Стил ивице"
+
+#: owmweather-admin.php:666
+msgid "Border Radius"
+msgstr "Радијус ивице"
+
+#: owmweather-admin.php:674 owmweather.php:1325
+msgid "Weather Size"
+msgstr "Величина временске прогнозе"
+
+#: owmweather-admin.php:683 owmweather.php:1333
+msgid "Custom CSS"
+msgstr "Prilagođeni CSS"
+
+#: owmweather-admin.php:691
+msgid "Tabbed Button Text Color"
+msgstr "Боја текста дугмета на картицама"
+
+#: owmweather-admin.php:699
+msgid "Tabbed Button Background Color"
+msgstr "Боја позадине дугмета на картицама"
+
+#: owmweather-admin.php:706
+msgid "Tabbed Button Active Color"
+msgstr "Активна боја дугмета на картицама"
+
+#: owmweather-admin.php:713
+msgid "Tabbed Button Hover Color"
+msgstr "Боја дугмета са картицама"
+
+#: owmweather-admin.php:721
+msgid "Table Background Color"
+msgstr "Боја позадине табеле"
+
+#: owmweather-admin.php:729
+msgid "Table Text Color"
+msgstr "Боја текста табеле"
+
+#: owmweather-admin.php:737
+msgid "Table Border Color"
+msgstr "Боја ивице табеле"
+
+#: owmweather-admin.php:745
+msgid "Table Border Width (in px)"
+msgstr "Ширина ивице табеле (у пx)"
+
+#: owmweather-admin.php:753
+msgid "Table Border Style"
+msgstr "Стил ивице табеле"
+
+#: owmweather-admin.php:761
+msgid "Table Border Radius"
+msgstr "Радијус ивице табеле"
+
+#: owmweather-admin.php:770
+msgid "Chart Height"
+msgstr "Висина графикона"
+
+#: owmweather-admin.php:778
+msgid "Chart Text Color"
+msgstr "Боја текста графикона"
+
+#: owmweather-admin.php:786
+msgid "Chart Night Highlight Color"
+msgstr "Боја за истицање ноћи графикона"
+
+#: owmweather-admin.php:794
+msgid "Chart Background Color"
+msgstr "Боја позадине графикона"
+
+#: owmweather-admin.php:802
+msgid "Chart Border Color"
+msgstr "Боја ивице графикона"
+
+#: owmweather-admin.php:810
+msgid "Chart Border Width"
+msgstr "Ширина ивице графикона"
+
+#: owmweather-admin.php:818
+msgid "Chart Border Style"
+msgstr "Стил ивице графикона"
+
+#: owmweather-admin.php:826
+msgid "Chart Border Radius"
+msgstr "Радијус ивице графикона"
+
+#: owmweather-admin.php:834
+msgid "Chart Temperature Color"
+msgstr "Боја температуре графикона"
+
+#: owmweather-admin.php:842
+msgid "Chart Feels-Like Color"
+msgstr "Боја налик на графикон"
+
+#: owmweather-admin.php:850
+msgid "Chart Dew Point Color"
+msgstr "Боја тачке росе графикона"
+
+#: owmweather-admin.php:858
+msgid "Chart Cloudiness Color"
+msgstr "Боја облачности графикона"
+
+#: owmweather-admin.php:866
+msgid "Chart Rain Chance Color"
+msgstr "Боја шансе за кишу графикона"
+
+#: owmweather-admin.php:874
+msgid "Chart Humidity Color"
+msgstr "Боја влажности графикона"
+
+#: owmweather-admin.php:882
+msgid "Chart Pressure Color"
+msgstr "Боја притиска графикона"
+
+#: owmweather-admin.php:890
+msgid "Chart Rain Amount Color"
+msgstr "Боја количине кише графикона"
+
+#: owmweather-admin.php:898
+msgid "Chart Snow Amount Color"
+msgstr "Боја количине снега на графикону"
+
+#: owmweather-admin.php:906
+msgid "Chart Wind Speed Color"
+msgstr "Боја брзине ветра графикона"
+
+#: owmweather-admin.php:914
+msgid "Chart Wind Gust Color"
+msgstr "Боја налета ветра графикона"
+
+#: owmweather-admin.php:923
+msgid "Weather-based Settings"
+msgstr "Поставке засноване на временској прогнози"
+
+#: owmweather-admin.php:930 owmweather.php:1489
+msgid "Sunny Text Color"
+msgstr "Боја сунчаног текста"
+
+#: owmweather-admin.php:938 owmweather.php:1493
+msgid "Sunny Background Color"
+msgstr "Боја сунчане позадине"
+
+#: owmweather-admin.php:946 owmweather.php:1497
+msgid "Sunny Background Image"
+msgstr "Слика у сунчаној позадини"
+
+#: owmweather-admin.php:954
+msgid "Sunny Background YouTube Video"
+msgstr "Суннy Бацкгроунд YоуТубе Видео"
+
+#: owmweather-admin.php:962 owmweather.php:1517
+msgid "Cloudy Text Color"
+msgstr "Боја облачног текста"
+
+#: owmweather-admin.php:970 owmweather.php:1521
+msgid "Cloudy Background Color"
+msgstr "Боја облачне позадине"
+
+#: owmweather-admin.php:978 owmweather.php:1525
+msgid "Cloudy Background Image"
+msgstr "Слика облачне позадине"
+
+#: owmweather-admin.php:986
+msgid "Cloudy Background YouTube Video"
+msgstr "Цлоудy Бацкгроунд YоуТубе Видео"
+
+#: owmweather-admin.php:994 owmweather.php:1545
+msgid "Drizzly Text Color"
+msgstr "Сушна боја текста"
+
+#: owmweather-admin.php:1002 owmweather.php:1549
+msgid "Drizzly Background Color"
+msgstr "Дриззлy боја позадине"
+
+#: owmweather-admin.php:1010 owmweather.php:1553
+msgid "Drizzly Background Image"
+msgstr "Дриззлy Бацкгроунд Имаге"
+
+#: owmweather-admin.php:1018
+msgid "Drizzly Background YouTube Video"
+msgstr "Дриззлy Бацкгроунд YоуТубе Видео"
+
+#: owmweather-admin.php:1026 owmweather.php:1573
+msgid "Rainy Text Color"
+msgstr "Боја кишног текста"
+
+#: owmweather-admin.php:1034 owmweather.php:1577
+msgid "Rainy Background Color"
+msgstr "Боја кишне позадине"
+
+#: owmweather-admin.php:1042 owmweather.php:1581
+msgid "Rainy Background Image"
+msgstr "Слика кишне позадине"
+
+#: owmweather-admin.php:1050
+msgid "Rainy Background YouTube Video"
+msgstr "Раинy Бацкгроунд YоуТубе Видео"
+
+#: owmweather-admin.php:1058 owmweather.php:1601
+msgid "Snowy Text Color"
+msgstr "Боја снежног текста"
+
+#: owmweather-admin.php:1066 owmweather.php:1605
+msgid "Snowy Background Color"
+msgstr "Боја снежне позадине"
+
+#: owmweather-admin.php:1074 owmweather.php:1609
+msgid "Snowy Background Image"
+msgstr "Снежна позадинска слика"
+
+#: owmweather-admin.php:1082
+msgid "Snowy Background YouTube Video"
+msgstr "Снежна позадина YоуТубе Видео"
+
+#: owmweather-admin.php:1090 owmweather.php:1629
+msgid "Stormy Text Color"
+msgstr "Олујна боја текста"
+
+#: owmweather-admin.php:1098 owmweather.php:1633
+msgid "Stormy Background Color"
+msgstr "Олујна боја позадине"
+
+#: owmweather-admin.php:1106 owmweather.php:1637
+msgid "Stormy Background Image"
+msgstr "Слика олујне позадине"
+
+#: owmweather-admin.php:1114
+msgid "Stormy Background YouTube Video"
+msgstr "Стормy Бацкгроунд YоуТубе Видео"
+
+#: owmweather-admin.php:1122 owmweather.php:1658
+msgid "Foggy Text Color"
+msgstr "Магловита боја текста"
+
+#: owmweather-admin.php:1130 owmweather.php:1662
+msgid "Foggy Background Color"
+msgstr "Магловита боја позадине"
+
+#: owmweather-admin.php:1138 owmweather.php:1666
+msgid "Foggy Background Image"
+msgstr "Магловита слика позадине"
+
+#: owmweather-admin.php:1146
+msgid "Foggy Background YouTube Video"
+msgstr "Фоггy Бацкгроунд YоуТубе Видео"
+
+#: owmweather-admin.php:1156
+msgid "Network Settings"
+msgstr "Мрежне поставке"
+
+#: owmweather-admin.php:1163
+msgid "Global Multisite Setup"
+msgstr "Подешавање глобалног вишеструког уједначивања"
+
+#: owmweather-admin.php:1173
+msgid "Advanced Settings"
+msgstr "Напредна подешавања"
+
+#: owmweather-admin.php:1180
+msgid "Disable Cache"
+msgstr "Онемогући кеш меморију"
+
+#: owmweather-admin.php:1188
+msgid "Time Until Cache Refresh (in Minutes)"
+msgstr "Време до освежавања кеша (у минутима)"
+
+#: owmweather-admin.php:1196
+msgid "Open Weather Map API Key"
+msgstr "Отвори АПИ кључ мапе временске прогнозе"
+
+#: owmweather-admin.php:1204
+msgid "Disable Bootstrap"
+msgstr "Онемогући боотстрап"
+
+#: owmweather-admin.php:1212
+msgid "Bootstrap Version"
+msgstr "Верзија боотстрап-а"
+
+#: owmweather-admin.php:1222
+msgid "Map Settings"
+msgstr "Podešavanje mape"
+
+#: owmweather-admin.php:1237
+msgid "Map Height"
+msgstr "Visina"
+
+#: owmweather-admin.php:1245 owmweather.php:1701
+msgid "Layers Opacity"
+msgstr "Непрозирност слојева"
+
+#: owmweather-admin.php:1253 owmweather.php:1717
+msgid "Zoom"
+msgstr "Uvećaj"
+
+#: owmweather-admin.php:1261
+msgid "Disable Zoom Wheel"
+msgstr "Онемогући точкић за зумирање"
+
+#: owmweather-admin.php:1269
+msgid "Cities Layer"
+msgstr "Слој градова"
+
+#: owmweather-admin.php:1277
+msgid "Cities Layer Legend"
+msgstr "Легенда слоја градова"
+
+#: owmweather-admin.php:1285
+msgid "Cities Layer On"
+msgstr "Слој градова на"
+
+#: owmweather-admin.php:1293
+msgid "Cloud Layer"
+msgstr "Слој облака"
+
+#: owmweather-admin.php:1301
+msgid "Cloud Layer Legend"
+msgstr "Легенда слоја облака"
+
+#: owmweather-admin.php:1309
+msgid "Cloud Layer On"
+msgstr "Слој облака на"
+
+#: owmweather-admin.php:1317
+msgid "Precipitation Layer"
+msgstr "Слој падавина"
+
+#: owmweather-admin.php:1325
+msgid "Precipitation Layer Legend"
+msgstr "Легенда слоја падавина"
+
+#: owmweather-admin.php:1333
+msgid "Precipitation Layer On"
+msgstr "Слој падавина на"
+
+#: owmweather-admin.php:1341
+msgid "Rain Layer"
+msgstr "Кишни слој"
+
+#: owmweather-admin.php:1349
+msgid "Rain Layer Legend"
+msgstr "Легенда слоја кише"
+
+#: owmweather-admin.php:1357
+msgid "Rain Layer On"
+msgstr "Слој кише на"
+
+#: owmweather-admin.php:1365
+msgid "Snow Layer"
+msgstr "Снежни слој"
+
+#: owmweather-admin.php:1373
+msgid "Snow Layer Legend"
+msgstr "Легенда о снежном слоју"
+
+#: owmweather-admin.php:1381
+msgid "Snow Layer On"
+msgstr "Слој снега на"
+
+#: owmweather-admin.php:1389
+msgid "Wind Layer"
+msgstr "Слој ветра"
+
+#: owmweather-admin.php:1397
+msgid "Wind Layer Legend"
+msgstr "Легенда слоја ветра"
+
+#: owmweather-admin.php:1405
+msgid "Wind Layer On"
+msgstr "Слој ветра на"
+
+#: owmweather-admin.php:1413
+msgid "Temperature Layer"
+msgstr "Температурни слој"
+
+#: owmweather-admin.php:1421
+msgid "Temperature Layer Legend"
+msgstr "Легенда слоја температуре"
+
+#: owmweather-admin.php:1429
+msgid "Temperature Layer On"
+msgstr "Слој температуре на"
+
+#: owmweather-admin.php:1437
+msgid "Pressure Layer"
+msgstr "Слој притиска"
+
+#: owmweather-admin.php:1445
+msgid "Wind Rose Layer"
+msgstr "Слој руже ветра"
+
+#: owmweather-admin.php:1513
+msgid "Basic settings to bypass on all weather:"
+msgstr "Основна подешавања за заобилажење свих временских прилика:"
+
+#: owmweather-admin.php:1519
+msgid "Display settings to bypass on all weather:"
+msgstr "Прикажи поставке за заобилажење свих временских прилика:"
+
+#: owmweather-admin.php:1524
+msgid "Layout settings to bypass on all weather:"
+msgstr "Поставке распореда које треба заобићи у свим временским условима:"
+
+#: owmweather-admin.php:1529
+msgid "Weather-based settings to bypass on all weather:"
+msgstr ""
+"Поставке засноване на временској прогнози за заобилажење свих временских "
+"прилика:"
+
+#: owmweather-admin.php:1534
+msgid "OWM Weather Multisite settings:"
+msgstr "ОWМ Wеатхер Мултисите поставке:"
+
+#: owmweather-admin.php:1539
+msgid "OWM Weather System settings:"
+msgstr "Поставке ОWМ метеоролошког система:"
+
+#: owmweather-admin.php:1544
+msgid "Map settings to bypass on all weather:"
+msgstr "Мапирајте поставке да бисте заобишли све временске прилике:"
+
+#: owmweather-admin.php:1549
+msgid "&nbsp;"
+msgstr " "
+
+#: owmweather-admin.php:1563 owmweather-admin.php:1580
+#: owmweather-admin.php:1596 owmweather-admin.php:1633
+#: owmweather-admin.php:1689 owmweather-admin.php:1718
+#: owmweather-admin.php:1742 owmweather-admin.php:1774
+#: owmweather-admin.php:1831 owmweather-admin.php:1854
+#: owmweather-admin.php:1886 owmweather-admin.php:1949
+#: owmweather-admin.php:1988 owmweather-admin.php:2026
+#: owmweather-admin.php:2050 owmweather-admin.php:2392
+#: owmweather-admin.php:2417 owmweather-admin.php:2989
+#: owmweather-admin.php:3012
+msgid "No bypass"
+msgstr "Нема бајпаса"
+
+#: owmweather-admin.php:1566 owmweather.php:731
+msgid "Imperial"
+msgstr "Царска"
+
+#: owmweather-admin.php:1569 owmweather.php:732
+msgid "Metric"
+msgstr "Метрике"
+
+#: owmweather-admin.php:1584 owmweather.php:738
+msgid "12 h"
+msgstr "12 х"
+
+#: owmweather-admin.php:1587 owmweather.php:739
+msgid "24 h"
+msgstr "24 х"
+
+#: owmweather-admin.php:1597
+msgid "WordPress timezone"
+msgstr "WордПресс временска зона"
+
+#: owmweather-admin.php:1598
+msgid "Local timezone"
+msgstr "Локална временска зона"
+
+#: owmweather-admin.php:1599 owmweather.php:747
+msgid "UTC -12"
+msgstr "УТЦ -12"
+
+#: owmweather-admin.php:1600 owmweather.php:748
+msgid "UTC -11"
+msgstr "УТЦ -11"
+
+#: owmweather-admin.php:1601 owmweather.php:749
+msgid "UTC -10"
+msgstr "УТЦ -10"
+
+#: owmweather-admin.php:1602 owmweather.php:750
+msgid "UTC -9"
+msgstr "УТЦ -9"
+
+#: owmweather-admin.php:1603 owmweather.php:751
+msgid "UTC -8"
+msgstr "УТЦ -8"
+
+#: owmweather-admin.php:1604 owmweather.php:752
+msgid "UTC -7"
+msgstr "УТЦ -7"
+
+#: owmweather-admin.php:1605 owmweather.php:753
+msgid "UTC -6"
+msgstr "УТЦ -6"
+
+#: owmweather-admin.php:1606 owmweather.php:754
+msgid "UTC -5"
+msgstr "УТЦ -5"
+
+#: owmweather-admin.php:1607 owmweather.php:755
+msgid "UTC -4"
+msgstr "УТЦ -4"
+
+#: owmweather-admin.php:1608 owmweather.php:756
+msgid "UTC -3"
+msgstr "УТЦ -3"
+
+#: owmweather-admin.php:1609 owmweather.php:757
+msgid "UTC -2"
+msgstr "УТЦ -2"
+
+#: owmweather-admin.php:1610 owmweather.php:758
+msgid "UTC -1"
+msgstr "УТЦ -1"
+
+#: owmweather-admin.php:1611 owmweather.php:759
+msgid "UTC 0"
+msgstr "УТЦ 0"
+
+#: owmweather-admin.php:1612 owmweather.php:760
+msgid "UTC +1"
+msgstr "УТЦ + 1"
+
+#: owmweather-admin.php:1613 owmweather.php:761
+msgid "UTC +2"
+msgstr "УТЦ + 2"
+
+#: owmweather-admin.php:1614 owmweather.php:762
+msgid "UTC +3"
+msgstr "УТЦ + 3"
+
+#: owmweather-admin.php:1615 owmweather.php:763
+msgid "UTC +4"
+msgstr "УТЦ + 4"
+
+#: owmweather-admin.php:1616 owmweather.php:764
+msgid "UTC +5"
+msgstr "УТЦ + 5"
+
+#: owmweather-admin.php:1617 owmweather.php:765
+msgid "UTC +6"
+msgstr "УТЦ + 6"
+
+#: owmweather-admin.php:1618 owmweather.php:766
+msgid "UTC +7"
+msgstr "УТЦ + 7"
+
+#: owmweather-admin.php:1619 owmweather.php:767
+msgid "UTC +8"
+msgstr "УТЦ + 8"
+
+#: owmweather-admin.php:1620 owmweather.php:768
+msgid "UTC +9"
+msgstr "УТЦ + 9"
+
+#: owmweather-admin.php:1621 owmweather.php:769
+msgid "UTC +10"
+msgstr "УТЦ + 10"
+
+#: owmweather-admin.php:1622 owmweather.php:770
+msgid "UTC +11"
+msgstr "УТЦ + 11"
+
+#: owmweather-admin.php:1623 owmweather.php:771
+msgid "UTC +12"
+msgstr "УТЦ + 12"
+
+#: owmweather-admin.php:1631 owmweather.php:776
+msgid ""
+"This is the language for the data from OpenWeatherMap, not for this plugin. "
+"If set to Default, it will try to use the WordPress site language first with "
+"fallback to English."
+msgstr ""
+"Ово је језик за податке из ОпенWеатхерМап-а, а не за ову додатну компоненту. "
+"Ако је постављен на Подразумевано, он ће прво покушати да користи WордПресс "
+"језик сајта са повратком на енглески."
+
+#: owmweather-admin.php:1634 owmweather-admin.php:1690
+#: owmweather-admin.php:1719 owmweather.php:778 owmweather.php:1173
+#: owmweather.php:1193
+msgid "Default"
+msgstr "Podrazumevano"
+
+#: owmweather-admin.php:1635 owmweather.php:779
+msgid "Afrikaans"
+msgstr "Afrikans"
+
+#: owmweather-admin.php:1636 owmweather.php:780
+msgid "Albanian"
+msgstr "Albanski"
+
+#: owmweather-admin.php:1637 owmweather.php:781
+msgid "Arabic"
+msgstr "Арапски"
+
+#: owmweather-admin.php:1638 owmweather.php:782
+msgid "Azerbaijani"
+msgstr "Азербејџански"
+
+#: owmweather-admin.php:1639 owmweather.php:783
+msgid "Basque"
+msgstr "Баскијски"
+
+#: owmweather-admin.php:1640 owmweather.php:784
+msgid "Bulgarian"
+msgstr "Bugarski"
+
+#: owmweather-admin.php:1641 owmweather.php:785
+msgid "Catalan"
+msgstr "Katalonski"
+
+#: owmweather-admin.php:1642 owmweather.php:786
+msgid "Chinese Simplified"
+msgstr "Кинески поједностављени"
+
+#: owmweather-admin.php:1643 owmweather.php:787
+msgid "Chinese Traditional"
+msgstr "Кинески традиционални"
+
+#: owmweather-admin.php:1644 owmweather.php:788
+msgid "Croatian"
+msgstr "Hrvatski"
+
+#: owmweather-admin.php:1645 owmweather.php:789
+msgid "Czech"
+msgstr "Češki"
+
+#: owmweather-admin.php:1646 owmweather.php:790
+msgid "Danish"
+msgstr "Danski"
+
+#: owmweather-admin.php:1647 owmweather.php:791
+msgid "Dutch"
+msgstr "Holandski"
+
+#: owmweather-admin.php:1648 owmweather.php:792
+msgid "English"
+msgstr "Engleski"
+
+#: owmweather-admin.php:1649 owmweather.php:793
+msgid "Finnish"
+msgstr "Фински"
+
+#: owmweather-admin.php:1650 owmweather.php:794
+msgid "French"
+msgstr "Француски"
+
+#: owmweather-admin.php:1651 owmweather.php:795
+msgid "Galician"
+msgstr "Galicijski"
+
+#: owmweather-admin.php:1652 owmweather.php:796
+msgid "German"
+msgstr "Nemački"
+
+#: owmweather-admin.php:1653 owmweather.php:797
+msgid "Greek"
+msgstr "Grčki"
+
+#: owmweather-admin.php:1654 owmweather.php:798
+msgid "Hebrew"
+msgstr "Хебрејски"
+
+#: owmweather-admin.php:1655 owmweather.php:799
+msgid "Hindi"
+msgstr "Hindi"
+
+#: owmweather-admin.php:1656 owmweather.php:800
+msgid "Hungarian"
+msgstr "Mađarski"
+
+#: owmweather-admin.php:1657 owmweather.php:801
+msgid "Indonesian"
+msgstr "Indonežanski"
+
+#: owmweather-admin.php:1658 owmweather.php:802
+msgid "Italian"
+msgstr "Italijanski"
+
+#: owmweather-admin.php:1659 owmweather.php:803
+msgid "Japanese"
+msgstr "Japanski"
+
+#: owmweather-admin.php:1660 owmweather.php:804
+msgid "Korean"
+msgstr "Korejski"
+
+#: owmweather-admin.php:1661 owmweather.php:805
+msgid "Latvian"
+msgstr "Letonski"
+
+#: owmweather-admin.php:1662 owmweather.php:806
+msgid "Lithuanian"
+msgstr "Litvanski"
+
+#: owmweather-admin.php:1663 owmweather.php:807
+msgid "Macedonian"
+msgstr "Makedonski"
+
+#: owmweather-admin.php:1664 owmweather.php:808
+msgid "Norwegian"
+msgstr "Norveški"
+
+#: owmweather-admin.php:1665 owmweather.php:809
+msgid "Persian (Farsi)"
+msgstr "персијски (Фарси)"
+
+#: owmweather-admin.php:1666 owmweather.php:810
+msgid "Polish"
+msgstr "Poljski"
+
+#: owmweather-admin.php:1667 owmweather.php:811
+msgid "Portuguese"
+msgstr "Portugalski"
+
+#: owmweather-admin.php:1668 owmweather.php:812
+msgid "Português Brasil"
+msgstr "Португуêс Брасил"
+
+#: owmweather-admin.php:1669 owmweather.php:813
+msgid "Romanian"
+msgstr "Rumunski"
+
+#: owmweather-admin.php:1670 owmweather.php:814
+msgid "Russian"
+msgstr "Ruski"
+
+#: owmweather-admin.php:1671 owmweather.php:815
+msgid "Serbian"
+msgstr "Srpski"
+
+#: owmweather-admin.php:1672 owmweather.php:816
+msgid "Swedish"
+msgstr "Švedski"
+
+#: owmweather-admin.php:1673 owmweather.php:817
+msgid "Slovak"
+msgstr "Slovački"
+
+#: owmweather-admin.php:1674 owmweather.php:818
+msgid "Slovenian"
+msgstr "Slovenački"
+
+#: owmweather-admin.php:1675 owmweather.php:819
+msgid "Spanish"
+msgstr "Španski"
+
+#: owmweather-admin.php:1676 owmweather.php:820
+msgid "Thai"
+msgstr "Тајландски"
+
+#: owmweather-admin.php:1677 owmweather.php:821
+msgid "Turkish"
+msgstr "Turski"
+
+#: owmweather-admin.php:1678 owmweather.php:822
+msgid "Ukrainian"
+msgstr "Украјински"
+
+#: owmweather-admin.php:1679 owmweather.php:823
+msgid "Vietnamese"
+msgstr "Vijetnamski"
+
+#: owmweather-admin.php:1680 owmweather.php:824
+msgid "Zulu"
+msgstr "Зулу"
+
+#: owmweather-admin.php:1691 owmweather.php:1194
+msgid "Arvo"
+msgstr "Арво"
+
+#: owmweather-admin.php:1692 owmweather.php:1195
+msgid "Asap"
+msgstr "Што пре"
+
+#: owmweather-admin.php:1693 owmweather.php:1196
+msgid "Bitter"
+msgstr "Горак"
+
+#: owmweather-admin.php:1694 owmweather.php:1197
+msgid "Droid Serif"
+msgstr "Дроид Сериф"
+
+#: owmweather-admin.php:1695 owmweather.php:1198
+msgid "Exo 2"
+msgstr "Еxо 2"
+
+#: owmweather-admin.php:1696 owmweather.php:1199
+msgid "Francois One"
+msgstr "Франсоа 1"
+
+#: owmweather-admin.php:1697 owmweather.php:1200
+msgid "Inconsolata"
+msgstr "Неусаглашености"
+
+#: owmweather-admin.php:1698 owmweather.php:1201
+msgid "Josefin Sans"
+msgstr "Јосефин Санс"
+
+#: owmweather-admin.php:1699 owmweather.php:1202
+msgid "Lato"
+msgstr "Лато"
+
+#: owmweather-admin.php:1700 owmweather.php:1203
+msgid "Merriweather Sans"
+msgstr "Мерриwеатхер Санс"
+
+#: owmweather-admin.php:1701 owmweather.php:1204
+msgid "Nunito"
+msgstr "Нунито"
+
+#: owmweather-admin.php:1702 owmweather.php:1205
+msgid "Open Sans"
+msgstr "Отвори Санс"
+
+#: owmweather-admin.php:1703 owmweather.php:1206
+msgid "Oswald"
+msgstr "Освалд"
+
+#: owmweather-admin.php:1704 owmweather.php:1207
+msgid "Pacifico"
+msgstr "Пацифицо"
+
+#: owmweather-admin.php:1705 owmweather.php:1208
+msgid "Roboto"
+msgstr "Робото"
+
+#: owmweather-admin.php:1706 owmweather.php:1209
+msgid "Signika"
+msgstr "Сигника"
+
+#: owmweather-admin.php:1707 owmweather.php:1210
+msgid "Source Sans Pro"
+msgstr "Извор Санс Про"
+
+#: owmweather-admin.php:1708 owmweather.php:1211
+msgid "Tangerine"
+msgstr "Мандарина"
+
+#: owmweather-admin.php:1709 owmweather.php:1212
+msgid "Ubuntu"
+msgstr "Убунту"
+
+#: owmweather-admin.php:1720 owmweather.php:1174
+msgid "Card 1"
+msgstr "Картица 1"
+
+#: owmweather-admin.php:1721 owmweather.php:1175
+msgid "Card 2"
+msgstr "Картица 2"
+
+#: owmweather-admin.php:1722 owmweather.php:1176
+msgid "Tabbed 1"
+msgstr "Картица са картицама 1"
+
+#: owmweather-admin.php:1723 owmweather.php:1177
+msgid "Tabbed 2"
+msgstr "Картица са картицама 2"
+
+#: owmweather-admin.php:1724 owmweather.php:1178
+msgid "Chart 1"
+msgstr "Графикон 1"
+
+#: owmweather-admin.php:1725 owmweather.php:1179
+msgid "Chart 2"
+msgstr "Графикон 2"
+
+#: owmweather-admin.php:1726 owmweather.php:1183
+msgid "Slider 1"
+msgstr "Клизач 1"
+
+#: owmweather-admin.php:1727 owmweather.php:1184
+msgid "Slider 2"
+msgstr "Клизач 2"
+
+#: owmweather-admin.php:1728 owmweather.php:1180
+msgid "Table 1"
+msgstr "Табела 1"
+
+#: owmweather-admin.php:1729 owmweather.php:1181
+msgid "Table 2"
+msgstr "Табела 2"
+
+#: owmweather-admin.php:1730 owmweather.php:1182
+msgid "Table 3"
+msgstr "Табела 3"
+
+#: owmweather-admin.php:1731 owmweather.php:1185
+msgid "Custom 1"
+msgstr "Прилагођено 1"
+
+#: owmweather-admin.php:1732 owmweather.php:1186
+msgid "Custom 2"
+msgstr "Прилагођено 2"
+
+#: owmweather-admin.php:1733 owmweather.php:1187
+msgid "Debug"
+msgstr "Отклањање грешака"
+
+#: owmweather-admin.php:1743 owmweather.php:1219
+msgid "Climacons"
+msgstr "Климакони"
+
+#: owmweather-admin.php:1744 owmweather.php:1220
+msgid "Open Weather Map"
+msgstr "Отвори мапу временске прогнозе"
+
+#: owmweather-admin.php:1745 owmweather.php:1221
+msgid "Weather Icons"
+msgstr "Иконе временске прогнозе"
+
+#: owmweather-admin.php:1746 owmweather.php:1222
+msgid "Forecast"
+msgstr "Предвиђања"
+
+#: owmweather-admin.php:1747 owmweather.php:1223
+msgid "Dripicons"
+msgstr "Дрипицонс"
+
+#: owmweather-admin.php:1748 owmweather.php:1224
+msgid "Pixeden"
+msgstr "Пикседен"
+
+#: owmweather-admin.php:1780 owmweather-admin.php:1952
+#: owmweather-admin.php:1991 owmweather.php:1120 owmweather.php:5426
+msgid "None"
+msgstr "Ништа"
+
+#: owmweather-admin.php:1787 owmweather.php:925
+msgid "Day of the week (eg: Sunday)"
+msgstr "Дан у недељи (на језику: енглески)"
+
+#: owmweather-admin.php:1794
+msgid "Today's date"
+msgstr "Данашњи датум"
+
+#: owmweather-admin.php:1801
+msgid "Today's date and time"
+msgstr "Данашњи датум и време"
+
+#: owmweather-admin.php:1834 owmweather.php:164 owmweather.php:975
+msgid "mi/h"
+msgstr "ми/х"
+
+#: owmweather-admin.php:1837 owmweather.php:165 owmweather.php:976
+msgid "m/s"
+msgstr "м/с"
+
+#: owmweather-admin.php:1840 owmweather.php:166 owmweather.php:977
+msgid "km/h"
+msgstr "км/х"
+
+#: owmweather-admin.php:1843 owmweather.php:167 owmweather.php:978
+msgid "kt"
+msgstr "кт"
+
+#: owmweather-admin.php:1857
+msgid "direction of the wind"
+msgstr "правац ветра"
+
+#: owmweather-admin.php:1860
+msgid "source of the wind flow"
+msgstr "извор тока ветра"
+
+#: owmweather-admin.php:1889 owmweather.php:1022
+msgid "Inches of Mercury"
+msgstr "Центиметри Меркура"
+
+#: owmweather-admin.php:1892 owmweather.php:1023
+msgid "Millimeter of Mercury"
+msgstr "Милиметар Меркура"
+
+#: owmweather-admin.php:1895 owmweather.php:1024
+msgid "Hectopascal"
+msgstr "Хецтопасцал"
+
+#: owmweather-admin.php:1898 owmweather.php:1025
+msgid "Millibar"
+msgstr "Милибар"
+
+#: owmweather-admin.php:1994 owmweather.php:1121 owmweather.php:3668
+#: owmweather.php:3677
+msgid "Today"
+msgstr "Danas"
+
+#: owmweather-admin.php:1997 owmweather.php:1122
+msgid "Today + 1 day"
+msgstr "Данас + 1 дан"
+
+#: owmweather-admin.php:2000 owmweather.php:1123
+msgid "Today + 2 days"
+msgstr "Данас + 2 дана"
+
+#: owmweather-admin.php:2003 owmweather.php:1124
+msgid "Today + 3 days"
+msgstr "Данас + 3 дана"
+
+#: owmweather-admin.php:2006 owmweather.php:1125
+msgid "Today + 4 days"
+msgstr "Данас + 4 дана"
+
+#: owmweather-admin.php:2009 owmweather.php:1126
+msgid "Today + 5 days"
+msgstr "Данас + 5 дана"
+
+#: owmweather-admin.php:2012 owmweather.php:1127
+msgid "Today + 6 days"
+msgstr "Данас + 6 дана"
+
+#: owmweather-admin.php:2015 owmweather.php:1128
+msgid "Today + 7 days"
+msgstr "Данас + 7 дана"
+
+#: owmweather-admin.php:2033 owmweather.php:1078
+msgid "Modal"
+msgstr "Модални"
+
+#: owmweather-admin.php:2040 owmweather.php:1085
+msgid "Inline"
+msgstr "У равни"
+
+#: owmweather-admin.php:2057
+msgid "Short days names"
+msgstr "Имена кратких дана"
+
+#: owmweather-admin.php:2064
+msgid "Normal days names"
+msgstr "Нормална имена дана"
+
+#: owmweather-admin.php:2098 owmweather-admin.php:2123
+#: owmweather-admin.php:2146 owmweather-admin.php:2169
+#: owmweather-admin.php:2192 owmweather-admin.php:2215
+#: owmweather-admin.php:2238 owmweather-admin.php:2261 owmweather.php:1256
+#: owmweather.php:1501 owmweather.php:1529 owmweather.php:1557
+#: owmweather.php:1585 owmweather.php:1613 owmweather.php:1641
+#: owmweather.php:1670
+msgid "Select image"
+msgstr "Odaberite sliku"
+
+#: owmweather-admin.php:2393 owmweather.php:1298 owmweather.php:1378
+#: owmweather.php:1422
+msgid "Solid"
+msgstr "Čvrsto"
+
+#: owmweather-admin.php:2394 owmweather.php:1299 owmweather.php:1379
+#: owmweather.php:1423
+msgid "Dotted"
+msgstr "Тачкасто"
+
+#: owmweather-admin.php:2395 owmweather.php:1300 owmweather.php:1380
+#: owmweather.php:1424
+msgid "Dashed"
+msgstr "Isprekidano"
+
+#: owmweather-admin.php:2396 owmweather.php:1301 owmweather.php:1381
+#: owmweather.php:1425
+msgid "Double"
+msgstr "Дупло"
+
+#: owmweather-admin.php:2397 owmweather.php:1302 owmweather.php:1382
+#: owmweather.php:1426
+msgid "Groove"
+msgstr "Жлеб"
+
+#: owmweather-admin.php:2398 owmweather.php:1303 owmweather.php:1383
+#: owmweather.php:1427
+msgid "Inset"
+msgstr "Уметак"
+
+#: owmweather-admin.php:2399 owmweather.php:1304 owmweather.php:1384
+#: owmweather.php:1428
+msgid "Outset"
+msgstr "Почетак"
+
+#: owmweather-admin.php:2400 owmweather.php:1305 owmweather.php:1385
+#: owmweather.php:1429
+msgid "Ridge"
+msgstr "Гребен"
+
+#: owmweather-admin.php:2420 owmweather.php:1327
+msgid "Small"
+msgstr "Malo"
+
+#: owmweather-admin.php:2423 owmweather.php:1328
+msgid "Medium"
+msgstr "Srednje"
+
+#: owmweather-admin.php:2426 owmweather.php:1329
+msgid "Large"
+msgstr "Велика"
+
+#: owmweather-admin.php:2653
+msgid ""
+"(You need to configure your “OWM Weather” settings individually on every "
+"website in the network if this is turned off.)"
+msgstr ""
+"(Потребно је да подесите поставке \"ОWМ Wеатхер\" појединачно на свакој Веб "
+"локацији на мрежи ако је ово искључено.)"
+
+#: owmweather-admin.php:2665
+msgid "(Not recommended!)"
+msgstr "(Не препоручује се!)"
+
+#: owmweather-admin.php:2674
+msgid "Default value: 30 minutes"
+msgstr "Подразумевана вредност: 30 минута"
+
+#: owmweather-admin.php:2682
+msgid "Strongly recommended: "
+msgstr "Препоручује се: "
+
+#: owmweather-admin.php:2682
+msgid "Get your free OWM API key here"
+msgstr "Набавите свој бесплатан ОWМ АПИ кључ овде"
+
+#: owmweather-admin.php:2693
+msgid "(Check this if you already include Bootstrap in your theme)"
+msgstr "(Проверите ово ако сте већ укључили Боотстрап у тему)"
+
+#: owmweather-admin.php:2704
+msgid "4"
+msgstr "4"
+
+#: owmweather-admin.php:2709
+msgid "5"
+msgstr "5"
+
+#: owmweather-admin.php:2976
+msgid "Get started with OWM Weather"
+msgstr "Први кораци са ОWМ Wеатхер"
+
+#: owmweather-admin.php:2977 owmweather-admin.php:3051
+msgid "Create your first weather"
+msgstr "Креирајте своје прво време"
+
+#: owmweather-admin.php:2978
+msgid "Having a problem with OWM Weather?"
+msgstr "Имате проблем са ОWМ Wеатхер?"
+
+#: owmweather-admin.php:2979
+msgid "OWM Weather Blog"
+msgstr "ОWМ Wеатхер Блог"
+
+#: owmweather-admin.php:2980
+msgid "OWM Weather Forum on WordPress.org"
+msgstr "ОWМ Wеатхер Форум он WordPress.org"
+
+#: owmweather-admin.php:2996 owmweather-admin.php:3019
+msgid "Show on all weather"
+msgstr "Прикажи све временске прилике"
+
+#: owmweather-admin.php:3003 owmweather-admin.php:3026
+msgid "Suppress on all weather"
+msgstr "Потисните све временске прилике"
+
+#: owmweather-admin.php:3041
+msgid "Setup OWM Weather"
+msgstr "Подешавање временске прогнозе ОWМ"
+
+#: owmweather-admin.php:3046
+msgid "Leave all other settings as is for now and hit \"Save changes\"."
+msgstr ""
+"Оставите све остале поставке као што је за сада и притисните\"Сачувај "
+"промене\"."
+
+#: owmweather-export.php:54 owmweather-export.php:68 owmweather-export.php:129
+msgid "Please upload a valid .json file"
+msgstr "Отпремите важећу .јсон датотеку"
+
+#: owmweather-export.php:59 owmweather-export.php:124
+msgid "Please upload a file to import"
+msgstr "Отпремите датотеку за увоз"
+
+#: owmweather-icons.php:939 owmweather.php:3700 owmweather.php:4253
+#: owmweather.php:4650
+msgid "Rain Chance"
+msgstr "Шанса за кишу"
+
+#: owmweather-icons.php:965 owmweather.php:1923 owmweather.php:3766
+#: owmweather.php:4148 owmweather.php:4551 owmweather.php:5042
+msgid "Temperature"
+msgstr "Температура"
+
+#: owmweather-icons.php:982 owmweather.php:2384
+msgid "Moonrise"
+msgstr "Месечина"
+
+#: owmweather-icons.php:991 owmweather.php:2384
+msgid "Moonset"
+msgstr "Месечеве месечине"
+
+#: owmweather-icons.php:1000 owmweather.php:2374 owmweather.php:3937
+msgid "Sunrise"
+msgstr "Izlazak Sunca"
+
+#: owmweather-icons.php:1026 owmweather.php:2374 owmweather.php:3938
+msgid "Sunset"
+msgstr "Залазак сунца"
+
+#: owmweather-pointers.php:32
+msgid "Before starting:"
+msgstr "Пре почетка:"
+
+#: owmweather-pointers.php:32
+msgid "Enter your own OpenWeatherMap API key in"
+msgstr "Унесите сопствени ОпенWеатхерМап АПИ кључ у"
+
+#: owmweather-pointers.php:32
+msgid "Advanced Settings!"
+msgstr "Више опција за поставке!"
+
+#: owmweather-widget.php:31
+msgid "Please select a weather via the configure link"
+msgstr "Изаберите временску прогнозу путем везе за конфигурисање"
+
+#: owmweather-widget.php:59
+msgid "Select the weather to display:"
+msgstr "Изаберите временску прогнозу за приказ:"
+
+#: owmweather.php:104
+msgid "Blog"
+msgstr "Блог"
+
+#: owmweather.php:125 owmweather.php:142
+msgid "Settings"
+msgstr "Подешавања"
+
+#: owmweather.php:158
+msgid "inHg"
+msgstr "инХг"
+
+#: owmweather.php:159
+msgid "mmHg"
+msgstr "ммХг"
+
+#: owmweather.php:160
+msgid "mb"
+msgstr "Мб"
+
+#: owmweather.php:161
+msgid "hPa"
+msgstr "хПа"
+
+#: owmweather.php:421
+msgid "Duplicate this item"
+msgstr "Дуплирај ову ставку"
+
+#: owmweather.php:421
+msgid "Duplicate"
+msgstr "Дуплирај"
+
+#: owmweather.php:432
+msgid "OWM Weather global settings"
+msgstr "ОWМ Wеатхер глобал сеттингс"
+
+#: owmweather.php:438
+msgid "Copy and paste this shortcode anywhere in posts, pages, text widgets: "
+msgstr ""
+"Копирајте и налепите овај кратки кôд било где у објавама, страницама, "
+"текстуалним виџетима: "
+
+#: owmweather.php:446
+msgid ""
+"If you need to display this weather anywhere in your theme, simply copy and "
+"paste this code snippet in your PHP file like sidebar.php: "
+msgstr ""
+"Ако је потребно да прикажете ово време било где у вашој теми, једноставно "
+"копирајте и налепите овај исечак кода у ваш ПХП фајл као бочну траку.пхп: "
+
+#: owmweather.php:636
+msgid "Weather-Based"
+msgstr "Засновано на временској прогнози"
+
+#: owmweather.php:642 owmweather.php:5198
+msgid "Multisite"
+msgstr "Много сајтова"
+
+#: owmweather.php:650
+msgid "Network Shared"
+msgstr "Дељена мрежа"
+
+#: owmweather.php:657
+msgid "Get Weather By ..."
+msgstr "Пребродите временску прогнозу..."
+
+#: owmweather.php:674
+msgid "City Id"
+msgstr "Градска ИД"
+
+#: owmweather.php:675
+msgid "Longitude/Latitude"
+msgstr "Географска дужина/географска ширина"
+
+#: owmweather.php:676
+msgid "Zip/Country"
+msgstr "Зип/земља"
+
+#: owmweather.php:677
+msgid "City/Country"
+msgstr "Град/земља"
+
+#: owmweather.php:678
+msgid "Visitor's Location"
+msgstr "Локација посетиоца"
+
+#: owmweather.php:682
+msgid "OpenWeatherMap City Id"
+msgstr "ОпенWеатхерМап Цитy Ид"
+
+#: owmweather.php:682
+msgid "Find my City Id"
+msgstr "Пронађи моју градску ИД"
+
+#: owmweather.php:689
+msgid "Latitude"
+msgstr "Географска дужина"
+
+#: owmweather.php:693
+msgid "Longitude"
+msgstr "Geo. širina"
+
+#: owmweather.php:699
+msgid "Zip code"
+msgstr "Поштански број"
+
+#: owmweather.php:703
+msgid "2-letter country code"
+msgstr "Позивни број земље од 2 слова"
+
+#: owmweather.php:703
+msgid "Default: US"
+msgstr "Подразумевано : САД"
+
+#: owmweather.php:709
+msgid "City"
+msgstr "Grad"
+
+#: owmweather.php:710
+msgid "Enter your city"
+msgstr "Уђите у свој град"
+
+#: owmweather.php:713
+msgid "Country"
+msgstr "Држава"
+
+#: owmweather.php:718
+msgid ""
+"Leave City Id, Longitude/Latitude, Zip/Country and City/Country empty to use "
+"the visitor's location."
+msgstr ""
+"Оставите цитy Ид, Лонгитуде/Латитуде, Зип/Цоунтрy и Цитy/Цоунтрy празне да "
+"бисте користили локацију посетиоца."
+
+#: owmweather.php:725
+msgid "Custom City Title"
+msgstr "Наслов прилагођеног града"
+
+#: owmweather.php:729
+msgid "Measurement System"
+msgstr "Мерни систем"
+
+#: owmweather.php:736
+msgid "Time Format"
+msgstr "Format vremena"
+
+#: owmweather.php:743
+msgid "Timezone (Default: WordPress General Settings)"
+msgstr "Временска зона (подразумевано: Опште поставке програма WордПресс)"
+
+#: owmweather.php:745
+msgid "WordPress Timezone"
+msgstr "WордПресс Тимезоне"
+
+#: owmweather.php:746
+msgid "Local Timezone"
+msgstr "Локална временска зона"
+
+#: owmweather.php:775
+msgid "OpenWeatherMap Language"
+msgstr "ОпенWеатхерМап Лангуаге"
+
+#: owmweather.php:828 owmweather.php:1313
+msgid "Miscellaneous"
+msgstr "Разно"
+
+#: owmweather.php:845
+msgid "Exclude from System Settings and Parameter Bypass"
+msgstr "Искључи из поставки система и премошћавања параметара"
+
+#: owmweather.php:851
+msgid ""
+"Select the information you would like to show on your weather shortcode."
+msgstr ""
+"Изаберите информације које желите да прикажете на кратком коду временске "
+"прогнозе."
+
+#: owmweather.php:854
+msgid "Current Weather"
+msgstr "Тренутна временска прогноза"
+
+#: owmweather.php:862
+msgid "Current Weather City Name"
+msgstr "Актуелно име града временске прогнозе"
+
+#: owmweather.php:898
+msgid "Current Weather Short Condition"
+msgstr "Тренутни кратки временски услови"
+
+#: owmweather.php:902
+msgid "Temperatures"
+msgstr "Температуре"
+
+#: owmweather.php:919
+msgid "No date (default)"
+msgstr "Без датума (подразумевано)"
+
+#: owmweather.php:931
+msgid "Today's date (based on your WordPress General Settings)"
+msgstr "Данашњи датум (на основу ваших WордПресс Општих подешавања)"
+
+#: owmweather.php:937
+msgid "Today's date and time (based on your WordPress General Settings)"
+msgstr "Данашњи датум и време (на основу ваших WордПресс Општих подешавања)"
+
+#: owmweather.php:962
+msgid "Additional Weather Data"
+msgstr "Додатни подаци о временској прогнози"
+
+#: owmweather.php:973
+msgid "Wind Unit: "
+msgstr "Јединица ветра: "
+
+#: owmweather.php:982
+msgid "Wind icons show "
+msgstr "Показују иконе ветра "
+
+#: owmweather.php:985
+msgid " direction of the wind"
+msgstr " правац ветра"
+
+#: owmweather.php:989
+msgid "source of wind flow"
+msgstr "извор протока ветра"
+
+#: owmweather.php:1020
+msgid "Pressure Unit: "
+msgstr "Јединица притиска: "
+
+#: owmweather.php:1102
+msgid "Number of Hours"
+msgstr "Број часова"
+
+#: owmweather.php:1118
+msgid "Number of Days"
+msgstr "Број дана"
+
+#: owmweather.php:1134
+msgid "Short day names"
+msgstr "Имена кратких дана"
+
+#: owmweather.php:1140
+msgid "Normal day names"
+msgstr "Нормална имена дана"
+
+#: owmweather.php:1144
+msgid "Footer"
+msgstr "Podnožje"
+
+#: owmweather.php:1168
+msgid "Select the layout styling for your weather shortcode."
+msgstr "Изаберите стајлинг распореда за кратки код временске прогнозе."
+
+#: owmweather.php:1171
+msgid "Template"
+msgstr "Predložak"
+
+#: owmweather.php:1191
+msgid "Font"
+msgstr "Фонт"
+
+#: owmweather.php:1216
+msgid "Icon Pack"
+msgstr "Пакет иконица"
+
+#: owmweather.php:1217
+msgid ""
+"The main icon is always an animated Climacons SVG. If you want to display "
+"the icon from the selected icon pack instead, you need to select \"Disable "
+"Animations for Main Icon\" below."
+msgstr ""
+"Главна икона је увек анимирани Цлимацонс СВГ. Ако уместо тога желите да "
+"прикажете икону изабраног пакета икона, потребно је да у наставку изаберете "
+"опцију\"Онемогући анимације за главну икону\"."
+
+#: owmweather.php:1225
+msgid "Color Animated"
+msgstr "Анимирана боја"
+
+#: owmweather.php:1238
+msgid "Text"
+msgstr "Tekst"
+
+#: owmweather.php:1245
+msgid "Background"
+msgstr "Позадина"
+
+#: owmweather.php:1261
+msgid "YouTube Background Video"
+msgstr "YоуТубе позадински видео"
+
+#: owmweather.php:1269
+msgid "Background Opacity"
+msgstr "Neprozirna pozadina"
+
+#: owmweather.php:1285
+msgid "Borders"
+msgstr "Ивице"
+
+#: owmweather.php:1292 owmweather.php:1372 owmweather.php:1416
+msgid "Border Width (px)"
+msgstr "Ширина ивице (пx)"
+
+#: owmweather.php:1309 owmweather.php:1389 owmweather.php:1433
+msgid "Border Radius (px)"
+msgstr "Радијус ивице (пx)"
+
+#: owmweather.php:1321
+msgid "Disable Loading Spinner"
+msgstr "Онемогући учитавање потенциометра"
+
+#: owmweather.php:1338
+msgid "Tabbed Templates"
+msgstr "Предлошци са картицама"
+
+#: owmweather.php:1349
+msgid "Active Button Color"
+msgstr "Активна боја дугмета"
+
+#: owmweather.php:1353
+msgid "Hover Button Color"
+msgstr "Боја дугмета за задржавање"
+
+#: owmweather.php:1357
+msgid "Tables"
+msgstr "Tabele"
+
+#: owmweather.php:1393
+msgid "Charts"
+msgstr "Графикони"
+
+#: owmweather.php:1396
+msgid "Height (in px)"
+msgstr "Висина (у пx)"
+
+#: owmweather.php:1404
+msgid "Night Highlight Color"
+msgstr "Боја за истицање ноћи"
+
+#: owmweather.php:1437
+msgid "Temperature Color"
+msgstr "Боја температуре"
+
+#: owmweather.php:1441
+msgid "Feels-Like Color"
+msgstr "Боја налик на осећај"
+
+#: owmweather.php:1445
+msgid "Dew Point Color"
+msgstr "Боја тачке росе"
+
+#: owmweather.php:1449
+msgid "Cloudiness Color"
+msgstr "Боја облачности"
+
+#: owmweather.php:1453
+msgid "Rain Chance Color"
+msgstr "Боја шансе за кишу"
+
+#: owmweather.php:1457
+msgid "Humidity Color"
+msgstr "Боја влажности"
+
+#: owmweather.php:1461
+msgid "Pressure Color"
+msgstr "Боја притиска"
+
+#: owmweather.php:1465
+msgid "Rain Amount Color"
+msgstr "Боја количине кише"
+
+#: owmweather.php:1469
+msgid "Snow Amount Color"
+msgstr "Боја количине снега"
+
+#: owmweather.php:1473
+msgid "Wind Speed Color"
+msgstr "Боја брзине ветра"
+
+#: owmweather.php:1477
+msgid "Wind Gust Color"
+msgstr "Боја налета ветра"
+
+#: owmweather.php:1483
+msgid "Select the text colors and backgrounds for each weather type."
+msgstr "Изаберите боје и позадине текста за сваки тип временске прогнозе."
+
+#: owmweather.php:1486
+msgid "Sunny"
+msgstr "Суниано"
+
+#: owmweather.php:1506
+msgid "YouTube Sunny Background Video"
+msgstr "YоуТубе Суннy Бацкгроунд Видео"
+
+#: owmweather.php:1514
+msgid "Cloudy"
+msgstr "Облаино"
+
+#: owmweather.php:1534
+msgid "YouTube Cloudy Background Video"
+msgstr "YоуТубе Цлоудy Бацкгроунд Видео"
+
+#: owmweather.php:1542
+msgid "Drizzly"
+msgstr "Дриззлy"
+
+#: owmweather.php:1562
+msgid "YouTube Drizzly Background Video"
+msgstr "YоуТубе Дриззлy Бацкгроунд Видео"
+
+#: owmweather.php:1570
+msgid "Rainy"
+msgstr "Киљна"
+
+#: owmweather.php:1590
+msgid "YouTube Rainy Background Video"
+msgstr "YоуТубе Раинy Бацкгроунд Видео"
+
+#: owmweather.php:1598
+msgid "Snowy"
+msgstr "Снељко"
+
+#: owmweather.php:1618
+msgid "YouTube Snowy Background Video"
+msgstr "YоуТубе Сноwy Бацкгроунд Видео"
+
+#: owmweather.php:1626
+msgid "Stormy"
+msgstr "Сторми"
+
+#: owmweather.php:1646
+msgid "YouTube Stormy Background Video"
+msgstr "YоуТубе Стормy Бацкгроунд Видео"
+
+#: owmweather.php:1655
+msgid "Foggy"
+msgstr "Магловито"
+
+#: owmweather.php:1675
+msgid "YouTube Foggy Background Video"
+msgstr "YоуТубе Фоггy Бацкгроунд Видео"
+
+#: owmweather.php:1685
+msgid ""
+"Select the information and layout styling for the optional map on your "
+"weather shortcode."
+msgstr ""
+"Изаберите информације и стајлинг распореда за опционалну мапу кратког кода "
+"временске прогнозе."
+
+#: owmweather.php:1693
+msgid "Display Map"
+msgstr "Прикажи мапу"
+
+#: owmweather.php:1697
+msgid "Map Height (in px)"
+msgstr "Висина мапе (у пx)"
+
+#: owmweather.php:1745
+msgid "Disable Zoom Wheel on Map"
+msgstr "Онемогући точкић за зумирање на мапи"
+
+#: owmweather.php:1749
+msgid "Layers"
+msgstr "Слојева"
+
+#: owmweather.php:1754
+msgid "Layer"
+msgstr "Слој"
+
+#: owmweather.php:1755
+msgid "Display?"
+msgstr "Приказивање?"
+
+#: owmweather.php:1756
+msgid "Legend On?"
+msgstr "Легенда он?"
+
+#: owmweather.php:1757
+msgid "Turned On?"
+msgstr "Укљуиио си се?"
+
+#: owmweather.php:1761 owmweather.php:3793
+msgid "Cities"
+msgstr "Градови"
+
+#: owmweather.php:1788 owmweather.php:3697 owmweather.php:3730
+msgid "Clouds"
+msgstr "Облаци"
+
+#: owmweather.php:1842 owmweather.php:3746 owmweather.php:4351
+#: owmweather.php:4748
+msgid "Rain"
+msgstr "Киша"
+
+#: owmweather.php:1869 owmweather.php:3754 owmweather.php:4358
+#: owmweather.php:4755 owmweather.php:6128
+msgid "Snow"
+msgstr "Снег"
+
+#: owmweather.php:1977 owmweather.php:3780
+msgid "Wind Rose"
+msgstr "Ружа ветра"
+
+#: owmweather.php:3034 owmweather.php:3052 owmweather.php:3065
+#: owmweather.php:3182 owmweather.php:3200 owmweather.php:3214
+#: owmweather.php:3434 owmweather.php:3452
+msgid "OWM Weather id"
+msgstr "ОWМ ИД временске прогнозе"
+
+#: owmweather.php:3034 owmweather.php:3052 owmweather.php:3065
+#: owmweather.php:3182 owmweather.php:3200 owmweather.php:3214
+#: owmweather.php:3434 owmweather.php:3452
+msgid "OWM Error"
+msgstr "ОWМ грешка"
+
+#: owmweather.php:3034 owmweather.php:3052 owmweather.php:3182
+#: owmweather.php:3200 owmweather.php:3434 owmweather.php:3452
+msgid "Unable to retrieve weather data"
+msgstr "Није могуће преузети податке о временској прогнози"
+
+#: owmweather.php:3089
+msgid "Last updated: "
+msgstr "Последњи пут ажурирано: "
+
+#: owmweather.php:3105
+msgid "C"
+msgstr "Ц"
+
+#: owmweather.php:3106
+msgid "Celsius"
+msgstr "Целзијуса"
+
+#: owmweather.php:3112
+msgid "F"
+msgstr "P"
+
+#: owmweather.php:3113
+msgid "Fahrenheit"
+msgstr "Фаренхајта"
+
+#: owmweather.php:3123
+msgid "in"
+msgstr "У"
+
+#: owmweather.php:3123
+msgid "mm"
+msgstr "мм"
+
+#: owmweather.php:3146 owmweather.php:3239
+msgid "Sunday"
+msgstr "Nedelja"
+
+#: owmweather.php:3149 owmweather.php:3242
+msgid "Monday"
+msgstr "Ponedeljak"
+
+#: owmweather.php:3152 owmweather.php:3245
+msgid "Tuesday"
+msgstr "Utorak"
+
+#: owmweather.php:3155 owmweather.php:3248
+msgid "Wednesday"
+msgstr "Sreda"
+
+#: owmweather.php:3158 owmweather.php:3251
+msgid "Thursday"
+msgstr "Četvrtak"
+
+#: owmweather.php:3161 owmweather.php:3254
+msgid "Friday"
+msgstr "Петак"
+
+#: owmweather.php:3164 owmweather.php:3257
+msgid "Saturday"
+msgstr "Subota"
+
+#: owmweather.php:3239
+msgid "Sun"
+msgstr "Нед"
+
+#: owmweather.php:3242
+msgid "Mon"
+msgstr "Пон"
+
+#: owmweather.php:3245
+msgid "Tue"
+msgstr "Уто"
+
+#: owmweather.php:3248
+msgid "Wed"
+msgstr "Сре"
+
+#: owmweather.php:3251
+msgid "Thu"
+msgstr "Чет"
+
+#: owmweather.php:3254
+msgid "Fri"
+msgstr "Пет"
+
+#: owmweather.php:3257
+msgid "Sat"
+msgstr "Суб"
+
+#: owmweather.php:3634 owmweather.php:3635 owmweather.php:3636
+#: owmweather.php:4153 owmweather.php:4556 owmweather.php:4891
+#: owmweather.php:5042
+msgid "Feels Like"
+msgstr "Осјећам се као"
+
+#: owmweather.php:3732
+msgid "Clouds Classic"
+msgstr "Класични облаци"
+
+#: owmweather.php:3740
+msgid "Precipitation Classic"
+msgstr "Класичне падавине"
+
+#: owmweather.php:3748
+msgid "Rain Classic"
+msgstr "Кишни класик"
+
+#: owmweather.php:3774
+msgid "Pressure Contour"
+msgstr "Контура притиска"
+
+#: owmweather.php:3942
+msgid "moonrise"
+msgstr "месечина"
+
+#: owmweather.php:3943
+msgid "moonset"
+msgstr "месече"
+
+#: owmweather.php:4048
+msgid "Full weather on OpenWeatherMap"
+msgstr "Пуно време на ОпенWеатхерМап-у"
+
+#: owmweather.php:4048
+msgid "Full weather"
+msgstr "Пуно време"
+
+#: owmweather.php:4171
+msgid "Hourly Temperatures"
+msgstr "Сатне температуре"
+
+#: owmweather.php:4280
+msgid "Hourly precipitation"
+msgstr "Сатнице падавина"
+
+#: owmweather.php:4373
+msgid "Hourly liquid precipitation amount"
+msgstr "Количина сатнице течних падавина"
+
+#: owmweather.php:4442 owmweather.php:4839
+msgid "Wind Speed"
+msgstr "Брзина ветра"
+
+#: owmweather.php:4449 owmweather.php:4846
+msgid "Wind Gust"
+msgstr "Налет ветра"
+
+#: owmweather.php:4476
+msgid "Hourly wind speed"
+msgstr "Сатна брзина ветра"
+
+#: owmweather.php:4569
+msgid "daily Temperatures"
+msgstr "дневне Температуре"
+
+#: owmweather.php:4677
+msgid "daily precipitation"
+msgstr "дневне падавине"
+
+#: owmweather.php:4770
+msgid "daily liquid precipitation amount"
+msgstr "дневни износ течних падавина"
+
+#: owmweather.php:4873
+msgid "daily wind speed"
+msgstr "дневна брзина ветра"
+
+#: owmweather.php:4889 owmweather.php:5040
+msgid "Time"
+msgstr "Vreme"
+
+#: owmweather.php:4890 owmweather.php:4968 owmweather.php:5041
+msgid "Conditions"
+msgstr "Uslovi"
+
+#: owmweather.php:4891
+msgid "Temp."
+msgstr "Темп."
+
+#: owmweather.php:4896 owmweather.php:4974 owmweather.php:5045
+msgid "Cloud Cover"
+msgstr "Облак"
+
+#: owmweather.php:4905 owmweather.php:4983 owmweather.php:5051
+msgid "Gust"
+msgstr "Густ"
+
+#: owmweather.php:4967
+msgid "Day"
+msgstr "Дан"
+
+#: owmweather.php:4969
+msgid "Low / High Temperature"
+msgstr "Ниска / Висока температура"
+
+#: owmweather.php:5196
+msgid "Shortcode"
+msgstr "Кратки код"
+
+#: owmweather.php:5329
+msgctxt "Post Type General Name"
+msgid "Weather"
+msgstr "Vremenska prognoza"
+
+#: owmweather.php:5330
+msgctxt "Post Type Singular Name"
+msgid "Weather"
+msgstr "Vremenska prognoza"
+
+#: owmweather.php:5331
+msgctxt "Post Type Menu Name"
+msgid "Weather"
+msgstr "Vremenska prognoza"
+
+#: owmweather.php:5332
+msgid "Parent Weather:"
+msgstr "Надређено време:"
+
+#: owmweather.php:5333
+msgid "All Weather"
+msgstr "Сва временска прогноза"
+
+#: owmweather.php:5334
+msgid "View Weather"
+msgstr "Прикажи временску прогнозу"
+
+#: owmweather.php:5335
+msgid "Add New Weather"
+msgstr "Додај нову временску прогнозу"
+
+#: owmweather.php:5336
+msgid "New Weather"
+msgstr "Ново време"
+
+#: owmweather.php:5337
+msgid "Edit Weather"
+msgstr "Уреди временску прогнозу"
+
+#: owmweather.php:5338
+msgid "Update Weather"
+msgstr "Ажурирај временску прогнозу"
+
+#: owmweather.php:5339
+msgid "Search Weather"
+msgstr "Временска прогноза претраге"
+
+#: owmweather.php:5340
+msgid "No weather found"
+msgstr "Није пронађено време"
+
+#: owmweather.php:5341
+msgid "No weather found in Trash"
+msgstr "Нема временских прилика у Трасху"
+
+#: owmweather.php:5345
+msgid "weather"
+msgstr "Време"
+
+#: owmweather.php:5346
+msgid "Listing weather"
+msgstr "Набрајање временске прогнозе"
+
+#: owmweather.php:5411
+msgid ""
+"OWM Weather: Please enter your own OpenWeatherMap API key to avoid exceeding "
+"daily API call limits."
+msgstr ""
+"ОWМ Wеатхер: Унесите сопствени ОпенWеатхерМап АПИ кључ да бисте избегли "
+"прекорачење дневних ограничења АПИ позива."
+
+#: owmweather.php:5414
+msgid "OWM Weather: Create my first weather."
+msgstr "ОWМ Wеатхер: Креирај моје прво време."
+
+#: owmweather.php:5430
+msgid "Now"
+msgstr "Sada"
+
+#: owmweather.php:5432
+msgid "Now + 1 hour"
+msgstr "Сада + 1 сат"
+
+#: owmweather.php:5434
+msgid "Now + "
+msgstr "Сада + "
+
+#: owmweather.php:5434
+msgid " hours"
+msgstr " Сати"
+
+#: owmweather.php:5444 owmweather.php:5452
+msgid "N"
+msgstr "Н"
+
+#: owmweather.php:5445
+msgid "NE"
+msgstr "НЕ"
+
+#: owmweather.php:5446
+msgid "E"
+msgstr "Е"
+
+#: owmweather.php:5447
+msgid "SE"
+msgstr "СЕ"
+
+#: owmweather.php:5448
+msgid "S"
+msgstr "S"
+
+#: owmweather.php:5449
+msgid "SW"
+msgstr "СW"
+
+#: owmweather.php:5450
+msgid "W"
+msgstr "S"
+
+#: owmweather.php:5451
+msgid "NW"
+msgstr "НW"
+
+#: owmweather.php:5543
+msgid "mi"
+msgstr "ми"
+
+#: owmweather.php:5546
+msgid "km"
+msgstr "км"
+
+#: owmweather.php:5580
+msgid "Hurricane Force"
+msgstr "Ураганске снаге"
+
+#: owmweather.php:5582
+msgid "Storm Force"
+msgstr "Олујна сила"
+
+#: owmweather.php:5584
+msgid "Whole Gale"
+msgstr "Цела олуја"
+
+#: owmweather.php:5586
+msgid "Strong Gale"
+msgstr "Јака олуја"
+
+#: owmweather.php:5588
+msgid "Fresh Gale"
+msgstr "Свежа гале"
+
+#: owmweather.php:5590
+msgid "Near Gale"
+msgstr "Близу Гејла"
+
+#: owmweather.php:5592
+msgid "Strong Breeze"
+msgstr "Јак поветарац"
+
+#: owmweather.php:5594
+msgid "Fresh Breeze"
+msgstr "Свеж поветарац"
+
+#: owmweather.php:5596
+msgid "Moderate Breeze"
+msgstr "Умерени поветарац"
+
+#: owmweather.php:5598
+msgid "Gentle Breeze"
+msgstr "Нежни поветарац"
+
+#: owmweather.php:5600
+msgid "Light Breeze"
+msgstr "Лагани поветарац"
+
+#: owmweather.php:5602
+msgid "Light Air"
+msgstr "Светлосни ваздух"
+
+#: owmweather.php:5604
+msgid "Calm"
+msgstr "Мирни"
+
+#: owmweather.php:6098
+msgid "Thunderstorm with Light Rain"
+msgstr "Грмљавина са лаганом кишом"
+
+#: owmweather.php:6099
+msgid "Thunderstorm with Rain"
+msgstr "Грмљавина са кишом"
+
+#: owmweather.php:6100
+msgid "Thunderstorm with Heavy Rain"
+msgstr "Грмљавина са јаком кишом"
+
+#: owmweather.php:6101
+msgid "Light Thunderstorm"
+msgstr "Лагана грмљавина"
+
+#: owmweather.php:6102
+msgid "Thunderstorm"
+msgstr "Олује"
+
+#: owmweather.php:6103
+msgid "Heavy Thunderstorm"
+msgstr "Јака грмљавина"
+
+#: owmweather.php:6104
+msgid "Ragged Thunderstorm"
+msgstr "Разуларена грмљавина"
+
+#: owmweather.php:6105
+msgid "Thunderstorm with Light Drizzle"
+msgstr "Грмљавина са светлом дриззле"
+
+#: owmweather.php:6106
+msgid "Thunderstorm with Drizzle"
+msgstr "Грмљавина са Дриззле-ом"
+
+#: owmweather.php:6107
+msgid "Thunderstorm with Heavy Drizzle"
+msgstr "Грмљавина са јаком сушом"
+
+#: owmweather.php:6108
+msgid "Light Intensity Drizzle"
+msgstr "Дриззле светлосног интензитета"
+
+#: owmweather.php:6109
+msgid "Drizzle"
+msgstr "Дриззле"
+
+#: owmweather.php:6110
+msgid "Heavy Intensity Drizzle"
+msgstr "Дриззле тешког интензитета"
+
+#: owmweather.php:6111
+msgid "Light Intensity Drizzle Rain"
+msgstr "Лагани интензитет Дриззле Раин"
+
+#: owmweather.php:6112
+msgid "Drizzle Rain"
+msgstr "Дриззле Раин"
+
+#: owmweather.php:6113
+msgid "Heavy Intensity Drizzle Rain"
+msgstr "Јак интензитет Дриззле Раин"
+
+#: owmweather.php:6114
+msgid "Shower Rain and Drizzle"
+msgstr "Киша и суша за туширање"
+
+#: owmweather.php:6115
+msgid "Heavy Shower Rain and Drizzle"
+msgstr "Јака киша и дриззле"
+
+#: owmweather.php:6116
+msgid "Shower Drizzle"
+msgstr "Туш Дриззле"
+
+#: owmweather.php:6117
+msgid "Light Rain"
+msgstr "Лагана киша"
+
+#: owmweather.php:6118
+msgid "Moderate Rain"
+msgstr "Умерена киша"
+
+#: owmweather.php:6119
+msgid "Heavy Intensity Rain"
+msgstr "Киша јаког интензитета"
+
+#: owmweather.php:6120
+msgid "Very Heavy Rain"
+msgstr "Веома јака киша"
+
+#: owmweather.php:6121
+msgid "Extreme Rain"
+msgstr "Екстремна киша"
+
+#: owmweather.php:6122
+msgid "Freezing Rain"
+msgstr "Ледена киша"
+
+#: owmweather.php:6123
+msgid "Light Intensity Shower Rain"
+msgstr "Киша под тушем лаганог интензитета"
+
+#: owmweather.php:6124
+msgid "Shower Rain"
+msgstr "Киша под тушем"
+
+#: owmweather.php:6125
+msgid "Heavy Intensity Shower Rain"
+msgstr "Киша под јаким интензитетом"
+
+#: owmweather.php:6126
+msgid "Ragged Shower Rain"
+msgstr "Разрогачена киша туша"
+
+#: owmweather.php:6127
+msgid "Light Snow"
+msgstr "Лагани снег"
+
+#: owmweather.php:6129
+msgid "Heavy Snow"
+msgstr "Јак снег"
+
+#: owmweather.php:6130
+msgid "Sleet"
+msgstr "Суснежица"
+
+#: owmweather.php:6131
+msgid "Light Shower Sleet"
+msgstr "Суснежица за лагани туш"
+
+#: owmweather.php:6132
+msgid "Shower Sleet"
+msgstr "Суснежица за туширање"
+
+#: owmweather.php:6133
+msgid "Light Rain and Snow"
+msgstr "Лагана киша и снег"
+
+#: owmweather.php:6134
+msgid "Rain and Snow"
+msgstr "Киша и снег"
+
+#: owmweather.php:6135
+msgid "Light Shower Snow"
+msgstr "Снег са лаганим тушем"
+
+#: owmweather.php:6136
+msgid "Shower Snow"
+msgstr "Снег за туширање"
+
+#: owmweather.php:6137
+msgid "Heavy Shower Snow"
+msgstr "Јак туш снег"
+
+#: owmweather.php:6138
+msgid "Mist"
+msgstr "Магли"
+
+#: owmweather.php:6139
+msgid "Smoke"
+msgstr "Пуљиљ"
+
+#: owmweather.php:6140
+msgid "Haze"
+msgstr "Хејз"
+
+#: owmweather.php:6141
+msgid "Sand / Dust Whirls"
+msgstr "Песак / Вртлог прашине"
+
+#: owmweather.php:6142
+msgid "Fog"
+msgstr "Магла"
+
+#: owmweather.php:6143
+msgid "Sand"
+msgstr "Песак"
+
+#: owmweather.php:6144
+msgid "Dust"
+msgstr "Праљина"
+
+#: owmweather.php:6145
+msgid "Volcanic Ash"
+msgstr "Вулкански пепео"
+
+#: owmweather.php:6146
+msgid "Squalls"
+msgstr "Скволи"
+
+#: owmweather.php:6147
+msgid "Tornado"
+msgstr "Торнадо"
+
+#: owmweather.php:6148
+msgid "Clear Sky"
+msgstr "Чисто небо"
+
+#: owmweather.php:6149
+msgid "Few Clouds"
+msgstr "Неколико облака"
+
+#: owmweather.php:6150
+msgid "Scattered Clouds"
+msgstr "Разбацани облаци"
+
+#: owmweather.php:6151
+msgid "Broken Clouds"
+msgstr "Разбијени облаци"
+
+#: owmweather.php:6152
+msgid "Overcast Clouds"
+msgstr "Облачно облаци"
+
+#: template/content-owmweather-slider2.php:23
+#: template/content-owmweather-table2.php:18
+msgid "Prev"
+msgstr "Prethodno"
+
+#: template/content-owmweather-slider2.php:25
+#: template/content-owmweather-table2.php:20
+msgid "Next"
+msgstr "Следеће"
+
+#: js/block-editor-index.js:38
+msgid "Insert a OWM Weather shortcode in your page."
+msgstr "Уметните ОWМ Временску прогнозу у своју страницу."
+
+#: js/block-editor-index.js:61
+msgid "No weather posts were found. Create a weather first."
+msgstr ""
+"Нису пронађени метеоролошки пунктови. Прво креирајте временску прогнозу."
+
+#: js/block-editor-index.js:83
+msgid "Select a weather post:"
+msgstr "Изаберите објаву временске прогнозе:"

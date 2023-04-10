@@ -101,11 +101,11 @@
                     <!-- Hourly Forecast -->
                     <?php echo wp_kses($owmw_html["hour"]["start"], $owmw_opt['allowed_html']); ?>
                     <?php
-                        for ($i = 0; $i < $owmw_opt["hours_forecast_no"]; $i++) {
-                            if (isset($owmw_html["hour"]["info"][$i])) {
+                    for ($i = 0; $i < $owmw_opt["hours_forecast_no"]; $i++) {
+                        if (isset($owmw_html["hour"]["info"][$i])) {
                             echo wp_kses($owmw_html["hour"]["info"][$i], $owmw_opt['allowed_html']);
-                            }
                         }
+                    }
                     ?>
                     <?php echo wp_kses($owmw_html["hour"]["end"], $owmw_opt['allowed_html']); ?>
                 </div>
@@ -119,9 +119,9 @@
                 <!-- Daily Forecast -->
                 <?php echo wp_kses($owmw_html["forecast"]["start_card"], $owmw_opt['allowed_html']); ?>
                     <?php
-                        for ($i = 0; $i < $owmw_opt["days_forecast_no"]; $i++) {
-                            echo wp_kses($owmw_html["forecast"]["info_card"][$i], $owmw_opt['allowed_html']);
-                        }
+                    for ($i = 0; $i < $owmw_opt["days_forecast_no"]; $i++) {
+                        echo wp_kses($owmw_html["forecast"]["info_card"][$i], $owmw_opt['allowed_html']);
+                    }
                     ?>
                 <?php echo wp_kses($owmw_html["forecast"]["end_card"], $owmw_opt['allowed_html']); ?>
                 </div>

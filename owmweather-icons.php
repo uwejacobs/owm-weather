@@ -1,23 +1,25 @@
 <?php
-function owmw_weatherIcon($iconpack, $id, $day_night, $description) {
+function owmw_weatherIcon($iconpack, $id, $day_night, $description)
+{
     if ($iconpack == 'WeatherIcons') {
         return '<div class="owmw-symbol"><i class="wi wi-owm-' . esc_attr($day_night) . '-' . esc_attr($id) . '" title="' . esc_attr($description) . '"></i></div>';
-	} else if ($iconpack == 'Forecast') {
+    } elseif ($iconpack == 'Forecast') {
         return owmw_weatherIconvault($id, $day_night, $description);
-	} else if ($iconpack == 'Dripicons') {
+    } elseif ($iconpack == 'Dripicons') {
         return owmw_weatherDripicons($id, $day_night, $description);
-	} else if ($iconpack == 'Pixeden') {
+    } elseif ($iconpack == 'Pixeden') {
         return owmw_weatherPixeden($id, $day_night, $description);
-	} else if ($iconpack == 'OpenWeatherMap') {
+    } elseif ($iconpack == 'OpenWeatherMap') {
         return owmw_weatherOpenWeatherMap($id, $day_night, $description);
-	} else if ($iconpack == 'ColorAnimated') {
+    } elseif ($iconpack == 'ColorAnimated') {
         return owmw_ColorAnimated($id, $day_night, $description);
-	} else {
-   		return '<div class="owmw-symbol climacon w' . esc_attr($id) . ' ' . esc_attr($day_night)  .'" title="' . esc_attr($description) . '"></div>';
-	}
+    } else {
+        return '<div class="owmw-symbol climacon w' . esc_attr($id) . ' ' . esc_attr($day_night)  .'" title="' . esc_attr($description) . '"></div>';
+    }
 }
 
-function owmw_weatherSVG($iconpack, $id, $dayNight, $description) {
+function owmw_weatherSVG($iconpack, $id, $dayNight, $description)
+{
     if ($iconpack == 'ColorAnimated') {
         $str = owmw_colorAnimatedConfig();
         $str .= owmw_ColorAnimated($id, $dayNight, $description);
@@ -27,221 +29,221 @@ function owmw_weatherSVG($iconpack, $id, $dayNight, $description) {
     }
 }
 
-function owmw_weatherSVGclimacons($id, $dayNight) {
-	switch ($id) {
+function owmw_weatherSVGclimacons($id, $dayNight)
+{
+    switch ($id) {
+        //sun
+        case "800":
+            return $dayNight == "day" ? owmw_sun() : owmw_moon();
+          break;
+        case "801":
+            return $dayNight == "day" ? owmw_cloudSun() : owmw_cloudMoon();
+          break;
+        case "802":
+            return owmw_cloud();
+          break;
+        case "803":
+            return owmw_cloudFill();
+          break;
+        case "804":
+            return owmw_cloudFill();
+          break;
 
-		//sun
-		case "800":
-		  return $dayNight == "day" ? owmw_sun() : owmw_moon();
-		  break;
-		case "801":
-		  return $dayNight == "day" ? owmw_cloudSun() : owmw_cloudMoon();
-		  break;
-		case "802":
-		  return owmw_cloud();
-		  break;
-		case "803":
-		  return owmw_cloudFill();
-		  break;
-		case "804":
-		  return owmw_cloudFill();
-		  break;
+        //rain
+        case "500":
+            return $dayNight == "day" ? owmw_cloudDrizzleSun() : owmw_cloudDrizzleMoon();
+          break;
+        case "501":
+            return $dayNight == "day" ? owmw_cloudDrizzleSun() : owmw_cloudDrizzleMoon();
+          break;
+        case "502":
+            return owmw_cloudDrizzle();
+          break;
+        case "503":
+            return $dayNight == "day" ? owmw_cloudDrizzleSunAlt() : owmw_cloudDrizzleMoonAlt();
+          break;
+        case "504":
+            return owmw_cloudDrizzleAlt();
+          break;
+        case "511":
+            return $dayNight == "day" ? owmw_cloudRainSun() : owmw_cloudRainMoon();
+          break;
+        case "520":
+            return owmw_cloudRain();
+          break;
+        case "521":
+            return $dayNight == "day" ? owmw_cloudSunRainAlt() : owmw_cloudMoonRainAlt();
+          break;
+        case "522":
+            return owmw_cloudRainAlt();
+          break;
+        case "531":
+            return owmw_cloudRainAlt();
+          break;
 
-		//rain
-		case "500":
-		  return $dayNight == "day" ? owmw_cloudDrizzleSun() : owmw_cloudDrizzleMoon();
-		  break;
-		case "501":
-		  return $dayNight == "day" ? owmw_cloudDrizzleSun() : owmw_cloudDrizzleMoon();
-		  break;
-		case "502":
-		  return owmw_cloudDrizzle();
-		  break;
-		case "503":
-		  return $dayNight == "day" ? owmw_cloudDrizzleSunAlt() : owmw_cloudDrizzleMoonAlt();
-		  break;
-		case "504":
-		  return owmw_cloudDrizzleAlt();
-		  break;
-		case "511":
-		  return $dayNight == "day" ? owmw_cloudRainSun() : owmw_cloudRainMoon();
-		  break;
-		case "520":
-		  return owmw_cloudRain();
-		  break;
-		case "521":
-		  return $dayNight == "day" ? owmw_cloudSunRainAlt() : owmw_cloudMoonRainAlt();
-		  break;
-		case "522":
-		  return owmw_cloudRainAlt();
-		  break;
-		case "531":
-		  return owmw_cloudRainAlt();
-		  break;
+        //drizzle
+        case "300":
+            return owmw_cloudRainAlt();
+          break;
+        case "301":
+            return owmw_cloudRainAlt();
+          break;
+        case "302":
+            return owmw_cloudRainAlt();
+          break;
+        case "310":
+            return owmw_cloudRainAlt();
+          break;
+        case "311":
+            return owmw_cloudRainAlt();
+          break;
+        case "312":
+            return owmw_cloudRainAlt();
+          break;
+        case "313":
+            return owmw_cloudRainAlt();
+          break;
+        case "314":
+            return owmw_cloudRainAlt();
+          break;
+        case "321":
+            return owmw_cloudRainAlt();
+          break;
 
-		//drizzle
-		case "300":
-		  return owmw_cloudRainAlt();
-		  break;
-		case "301":
-		  return owmw_cloudRainAlt();
-		  break;
-		case "302":
-		  return owmw_cloudRainAlt();
-		  break;
-		case "310":
-		  return owmw_cloudRainAlt();
-		  break;
-		case "311":
-		  return owmw_cloudRainAlt();
-		  break;
-		case "312":
-		  return owmw_cloudRainAlt();
-		  break;
-		case "313":
-		  return owmw_cloudRainAlt();
-		  break;
-		case "314":
-		  return owmw_cloudRainAlt();
-		  break;
-		case "321":
-		  return owmw_cloudRainAlt();
-		  break;
+        //snow
+        case "600":
+            return $dayNight == "day" ? owmw_cloudSnowSun() : owmw_cloudSnowMoon();
+          break;
+        case "601":
+            return owmw_cloudSnow();
+          break;
+        case "602":
+            return $dayNight == "day" ? owmw_cloudSnowSunAlt() : owmw_cloudSnowMoonAlt();
+          break;
+        case "611":
+            return owmw_cloudSnow();
+          break;
+        case "612":
+            return owmw_cloudSnow();
+          break;
+        case "613":
+            return owmw_cloudSnow();
+          break;
+        case "615":
+            return owmw_cloudSnow();
+          break;
+        case "616":
+            return owmw_cloudSnow();
+          break;
+        case "620":
+            return owmw_cloudSnow();
+          break;
+        case "621":
+            return owmw_cloudSnowAlt();
+          break;
+        case "622":
+            return owmw_cloudSnowAlt();
+          break;
 
-		//snow
-		case "600":
-		  return $dayNight == "day" ? owmw_cloudSnowSun() : owmw_cloudSnowMoon();
-		  break;
-		case "601":
-		  return owmw_cloudSnow();
-		  break;
-		case "602":
-		  return $dayNight == "day" ? owmw_cloudSnowSunAlt() : owmw_cloudSnowMoonAlt();
-		  break;
-		case "611":
-		  return owmw_cloudSnow();
-		  break;
-		case "612":
-		  return owmw_cloudSnow();
-		  break;
-		case "613":
-		  return owmw_cloudSnow();
-		  break;
-		case "615":
-		  return owmw_cloudSnow();
-		  break;
-		case "616":
-		  return owmw_cloudSnow();
-		  break;
-		case "620":
-		  return owmw_cloudSnow();
-		  break;
-		case "621":
-		  return owmw_cloudSnowAlt();
-		  break;
-		case "622":
-		  return owmw_cloudSnowAlt();
-		  break;
+        //atmosphere
+        case "701":
+            return $dayNight == "day" ? owmw_cloudFogSunAlt() : owmw_cloudFogMoonAlt();
+          break;
+        case "711":
+            return owmw_cloudFogAlt();
+          break;
+        case "721":
+            return owmw_cloudFogAlt();
+          break;
+        case "731":
+            return $dayNight == "day" ? owmw_cloudFogSun() : owmw_cloudFogMoon();
+          break;
+        case "741":
+            return owmw_cloudFog();
+          break;
+        case "751":
+            return $dayNight == "day" ? owmw_cloudFogSun() : owmw_cloudFogMoon();
+          break;
+        case "761":
+            return $dayNight == "day" ? owmw_cloudFogSun() : owmw_cloudFogMoon();
+          break;
+        case "762":
+            return $dayNight == "day" ? owmw_cloudFogSun() : owmw_cloudFogMoon();
+          break;
+        case "771":
+            return owmw_tornado();
+          break;
+        case "781":
+            return owmw_tornado();
+          break;
 
-		//atmosphere
-		case "701":
-		  return $dayNight == "day" ? owmw_cloudFogSunAlt() : owmw_cloudFogMoonAlt();
-		  break;
-		case "711":
-		  return owmw_cloudFogAlt();
-		  break;
-		case "721":
-		  return owmw_cloudFogAlt();
-		  break;
-		case "731":
-		  return $dayNight == "day" ? owmw_cloudFogSun() : owmw_cloudFogMoon();
-		  break;
-		case "741":
-		  return owmw_cloudFog();
-		  break;
-		case "751":
-		  return $dayNight == "day" ? owmw_cloudFogSun() : owmw_cloudFogMoon();
-		  break;
-		case "761":
-		  return $dayNight == "day" ? owmw_cloudFogSun() : owmw_cloudFogMoon();
-		  break;
-		case "762":
-		  return $dayNight == "day" ? owmw_cloudFogSun() : owmw_cloudFogMoon();
-		  break;
-		case "771":
-		  return owmw_tornado();
-		  break;
-		case "781":
-		  return owmw_tornado();
-		  break;
+        //extreme
+        case "900":
+            return owmw_tornado();
+          break;
+        case "901":
+            return owmw_wind();
+          break;
+        case "902":
+            return owmw_wind();
+          break;
+        case "905":
+            return owmw_wind();
+          break;
+        case "906":
+            return owmw_cloudHailAlt();
+          break;
 
-		//extreme
-		case "900":
-		  return owmw_tornado();
-		  break;
-		case "901":
-		  return owmw_wind();
-		  break;
-		case "902":
-		  return owmw_wind();
-		  break;
-		case "905":
-		  return owmw_wind();
-		  break;
-		case "906":
-		  return owmw_cloudHailAlt();
-		  break;
+        //thunderstorm
+        case "200":
+            return owmw_cloudLightning();
+          break;
 
-		//thunderstorm
-		case "200":
-		  return owmw_cloudLightning();
-		  break;
+        case "201":
+            return owmw_cloudLightning();
+          break;
 
-		case "201":
-		  return owmw_cloudLightning();
-		  break;
+        case "202":
+            return owmw_cloudLightning();
+          break;
 
-		case "202":
-		  return owmw_cloudLightning();
-		  break;
+        case "210":
+            return owmw_cloudLightning();
+          break;
 
-		case "210":
-		  return owmw_cloudLightning();
-		  break;
+        case "211":
+            return owmw_cloudLightning();
+          break;
 
-		case "211":
-		  return owmw_cloudLightning();
-		  break;
+        case "212":
+            return owmw_cloudLightning();
+          break;
 
-		case "212":
-		  return owmw_cloudLightning();
-		  break;
+        case "221":
+            return owmw_cloudLightning();
+          break;
 
-		case "221":
-		  return owmw_cloudLightning();
-		  break;
+        case "230":
+            return owmw_cloudLightning();
+          break;
 
-		case "230":
-		  return owmw_cloudLightning();
-		  break;
+        case "231":
+            return owmw_cloudLightning();
+          break;
 
-		case "231":
-		  return owmw_cloudLightning();
-		  break;
-
-		case "232":
-		  return owmw_cloudLightning();
-
-	}
+        case "232":
+            return owmw_cloudLightning();
+    }
 
     return '';
 }
 
-function owmw_weatherOpenWeatherMap($id, $day_night, $description) {
+function owmw_weatherOpenWeatherMap($id, $day_night, $description)
+{
     $icon = null;
 
-	switch ($id) {
-		case 200:
+    switch ($id) {
+        case 200:
         case 201:
         case 202:
         case 210:
@@ -254,84 +256,84 @@ function owmw_weatherOpenWeatherMap($id, $day_night, $description) {
             $icon = '11';
             break;
 
-		case 300:
-		case 301:
-		case 302:
-		case 310:
-		case 311:
-		case 312:
-		case 313:
-		case 314:
-		case 321:
+        case 300:
+        case 301:
+        case 302:
+        case 310:
+        case 311:
+        case 312:
+        case 313:
+        case 314:
+        case 321:
             $icon = '09';
             break;
 
-		case 500:
-		case 501:
-		case 502:
-		case 503:
-		case 504:
+        case 500:
+        case 501:
+        case 502:
+        case 503:
+        case 504:
             $icon = '10';
             break;
 
-		case 511:
+        case 511:
             $icon = '13';
             break;
 
-		case 520:
-		case 521:
-		case 522:
-		case 531:
+        case 520:
+        case 521:
+        case 522:
+        case 531:
             $icon = '09';
             break;
 
-		case 600:
-		case 601:
-		case 602:
-		case 611:
-		case 612:
-		case 613:
-		case 615:
-		case 616:
-		case 620:
-		case 621:
-		case 622:
+        case 600:
+        case 601:
+        case 602:
+        case 611:
+        case 612:
+        case 613:
+        case 615:
+        case 616:
+        case 620:
+        case 621:
+        case 622:
             $icon = '13';
             break;
 
-		case 701:
-		case 711:
-		case 721:
-		case 731:
-		case 741:
-		case 751:
-		case 761:
-		case 762:
-		case 771:
-		case 781:
-		case 900:
-		case 901:
-		case 902:
-		case 903:
-		case 904:
-		case 905:
-		case 906:
+        case 701:
+        case 711:
+        case 721:
+        case 731:
+        case 741:
+        case 751:
+        case 761:
+        case 762:
+        case 771:
+        case 781:
+        case 900:
+        case 901:
+        case 902:
+        case 903:
+        case 904:
+        case 905:
+        case 906:
             $icon = '50';
             break;
 
-		case 800:
+        case 800:
             $icon = '01';
             break;
 
-		case 801:
+        case 801:
             $icon = '02';
             break;
 
-		case 802:
+        case 802:
             $icon = '03';
             break;
-		case 803:
-		case 804:
+        case 803:
+        case 804:
             $icon = '04';
             break;
     }
@@ -343,10 +345,11 @@ function owmw_weatherOpenWeatherMap($id, $day_night, $description) {
     return '';
 }
 
-function owmw_weatherIconvault($id, $day_night, $description) {
+function owmw_weatherIconvault($id, $day_night, $description)
+{
     $str = ($day_night == "day" ? "sunny" : "night");
     
-	$iconvault = array (
+    $iconvault = array (
         //sun
         800 => '<li class="icon-' . ($day_night == "day" ? "sun" : "moon") . '"></li>',
         801 => '<li class="fullcloud"></li><li class="icon-' . $str . '"></li>',
@@ -420,15 +423,16 @@ function owmw_weatherIconvault($id, $day_night, $description) {
         230 => '<li class="basecloud"><li class="icon-thunder"></li>',
         231 => '<li class="basecloud"><li class="icon-thunder"></li>',
         232 => '<li class="basecloud"><li class="icon-thunder"></li>'
-	);
+    );
 
     return '<div class="owmw-symbol iconvault" title="' . esc_attr($description) . '"><ul class="list-unstyled">'. ($iconvault[$id] ?? '') .'</ul></div>';
 }
 
-function owmw_weatherDripicons($id, $day_night, $description) {
+function owmw_weatherDripicons($id, $day_night, $description)
+{
     $str = ($day_night == "day" ? "sun" : "moon");
 
-	$dripicon = array (
+    $dripicon = array (
         //sun
         800 => ($day_night == "day" ? "diw-sun" : "diw-moon-stars"),
         801 => 'diw-cloud-' . $str,
@@ -510,80 +514,206 @@ function owmw_weatherDripicons($id, $day_night, $description) {
     return '<div class="owmw-symbol diw '. esc_attr($dripicon[$id] ?? '') .'" title="' . esc_attr($description) . '"></div>';
 }
 
-function owmw_weatherPixeden($id, $day_night, $description) {
+function owmw_weatherPixeden($id, $day_night, $description)
+{
     $icon = null;
 
-	switch ($id) {
-        case 800: $icon = $day_night == "day" ? "sun-1" : "moon-1"; break;
-        case 801: $icon = $day_night == "day" ? "partly-cloudy-1" : "partly-cloudy-3"; break;
-        case 802: $icon = $day_night == "day" ? "partly-cloudy-1" : "partly-cloudy-3"; break;
-        case 803: $icon = $day_night == "day" ? "mostly-cloudy-2" : "mostly-cloudy-2"; break;
-        case 804: $icon = $day_night == "day" ? "mostly-cloudy-1" : "mostly-cloudy-1"; break;
-        case 500: $icon = $day_night == "day" ? "rain-day" : "rain-night"; break;
-        case 501: $icon = $day_night == "day" ? "rain-day" : "rain-night"; break;
-        case 502: $icon = $day_night == "day" ? "heavy-rain-2" : "heavy-rain-2"; break;
-        case 503: $icon = $day_night == "day" ? "heavy-rain-1-f" : "heavy-rain-1-f"; break;
-        case 504: $icon = $day_night == "day" ? "heavy-rain-1-f" : "heavy-rain-1-f"; break;
-        case 511: $icon = $day_night == "day" ? "rain-and-snow" : "rain-and-snow"; break;
-        case 520: $icon = $day_night == "day" ? "rain-day" : "rain-night"; break;
-        case 521: $icon = $day_night == "day" ? "rain-day" : "rain-night"; break;
-        case 522: $icon = $day_night == "day" ? "heavy-rain-2" : "heavy-rain-1"; break;
-        case 531: $icon = $day_night == "day" ? "heavy-rain-1-f" : "heavy-rain-1-f"; break;
-        case 300: $icon = $day_night == "day" ? "drizzle" : "drizzle"; break;
-        case 301: $icon = $day_night == "day" ? "drizzle" : "drizzle"; break;
-        case 302: $icon = $day_night == "day" ? "drizzle-f" : "drizzle-f"; break;
-        case 310: $icon = $day_night == "day" ? "rain-day" : "rain-night"; break;
-        case 311: $icon = $day_night == "day" ? "rain-day" : "rain-night"; break;
-        case 312: $icon = $day_night == "day" ? "heavy-rain-2-f" : "heavy-rain-2-f"; break;
-        case 313: $icon = $day_night == "day" ? "drizzle" : "drizzle"; break;
-        case 314: $icon = $day_night == "day" ? "drizzle-f" : "drizzle-f"; break;
-        case 321: $icon = $day_night == "day" ? "drizzle" : "drizzle"; break;
-        case 600: $icon = $day_night == "day" ? "snow-day-1" : "snow-night-1"; break;
-        case 601: $icon = $day_night == "day" ? "snow-day-2" : "snow-night-2"; break;
-        case 602: $icon = $day_night == "day" ? "snow-day-3" : "snow-night-3"; break;
-        case 611: $icon = $day_night == "day" ? "snow-day-1" : "snow-night-1"; break;
-        case 612: $icon = $day_night == "day" ? "snow-day-2" : "snow-night-2"; break;
-        case 613: $icon = $day_night == "day" ? "snow-day-3" : "snow-night-3"; break;
-        case 615: $icon = $day_night == "day" ? "rain-and-snow" : "rain-and-snow"; break;
-        case 616: $icon = $day_night == "day" ? "rain-and-snow-f" : "rain-and-snow-f"; break;
-        case 620: $icon = $day_night == "day" ? "snow-day-1" : "snow-night-1"; break;
-        case 621: $icon = $day_night == "day" ? "snow-day-2" : "snow-night-2"; break;
-        case 622: $icon = $day_night == "day" ? "snow-day-3" : "snow-night-3"; break;
-        case 701: $icon = $day_night == "day" ? "mist" : "mist"; break;
-        case 711: $icon = $day_night == "day" ? "fog-2" : "fog-2"; break;
-        case 721: $icon = $day_night == "day" ? "fog-2" : "fog-2"; break;
-        case 731: $icon = $day_night == "day" ? "fog-2" : "fog-2"; break;
-        case 741: $icon = $day_night == "day" ? "fog-3" : "fog-4"; break;
-        case 751: $icon = $day_night == "day" ? "fog-2" : "fog-2"; break;
-        case 761: $icon = $day_night == "day" ? "fog-2" : "fog-2"; break;
-        case 762: $icon = $day_night == "day" ? "fog-2" : "fog-2"; break;
-        case 771: $icon = $day_night == "day" ? "fog-1" : "fog-1"; break;
-        case 781: $icon = $day_night == "day" ? "tornado-1" : "tornado-1"; break;
-        case 900: $icon = $day_night == "day" ? "tornado-2" : "tornado-2"; break;
-        case 901: $icon = $day_night == "day" ? "wind" : "wind"; break;
-        case 902: $icon = $day_night == "day" ? "wind" : "wind"; break;
-        case 903: $icon = $day_night == "day" ? "thermometer-5" : "thermometer-5"; break;
-        case 904: $icon = $day_night == "day" ? "thermometer-1" : "thermometer-1"; break;
-        case 905: $icon = $day_night == "day" ? "wind" : "wind"; break;
-        case 906: $icon = $day_night == "day" ? "heavy-hail-day" : "heavy-hail-night"; break;
-        case 200: $icon = $day_night == "day" ? "mix-rainfall-1" : "mix-rainfall-1"; break;
-        case 201: $icon = $day_night == "day" ? "mix-rainfall-2" : "mix-rainfall-2"; break;
-        case 202: $icon = $day_night == "day" ? "mix-rainfall-2-f" : "mix-rainfall-1-f"; break;
-        case 210: $icon = $day_night == "day" ? "thunderstorm-day-1" : "thunderstorm-night-1"; break;
-        case 211: $icon = $day_night == "day" ? "thunderstorm" : "thunderstorm"; break;
-        case 212: $icon = $day_night == "day" ? "severe-thunderstorm" : "severe-thunderstorm"; break;
-        case 221: $icon = $day_night == "day" ? "severe-thunderstorm-f" : "severe-thunderstorm-f"; break;
-        case 230: $icon = $day_night == "day" ? "mix-rainfall-1" : "mix-rainfall-1"; break;
-        case 231: $icon = $day_night == "day" ? "mix-rainfall-2" : "mix-rainfall-2"; break;
-        case 232: $icon = $day_night == "day" ? "mix-rainfall-2-f" : "mix-rainfall-1-f"; break;
+    switch ($id) {
+        case 800:
+            $icon = $day_night == "day" ? "sun-1" : "moon-1";
+            break;
+        case 801:
+            $icon = $day_night == "day" ? "partly-cloudy-1" : "partly-cloudy-3";
+            break;
+        case 802:
+            $icon = $day_night == "day" ? "partly-cloudy-1" : "partly-cloudy-3";
+            break;
+        case 803:
+            $icon = $day_night == "day" ? "mostly-cloudy-2" : "mostly-cloudy-2";
+            break;
+        case 804:
+            $icon = $day_night == "day" ? "mostly-cloudy-1" : "mostly-cloudy-1";
+            break;
+        case 500:
+            $icon = $day_night == "day" ? "rain-day" : "rain-night";
+            break;
+        case 501:
+            $icon = $day_night == "day" ? "rain-day" : "rain-night";
+            break;
+        case 502:
+            $icon = $day_night == "day" ? "heavy-rain-2" : "heavy-rain-2";
+            break;
+        case 503:
+            $icon = $day_night == "day" ? "heavy-rain-1-f" : "heavy-rain-1-f";
+            break;
+        case 504:
+            $icon = $day_night == "day" ? "heavy-rain-1-f" : "heavy-rain-1-f";
+            break;
+        case 511:
+            $icon = $day_night == "day" ? "rain-and-snow" : "rain-and-snow";
+            break;
+        case 520:
+            $icon = $day_night == "day" ? "rain-day" : "rain-night";
+            break;
+        case 521:
+            $icon = $day_night == "day" ? "rain-day" : "rain-night";
+            break;
+        case 522:
+            $icon = $day_night == "day" ? "heavy-rain-2" : "heavy-rain-1";
+            break;
+        case 531:
+            $icon = $day_night == "day" ? "heavy-rain-1-f" : "heavy-rain-1-f";
+            break;
+        case 300:
+            $icon = $day_night == "day" ? "drizzle" : "drizzle";
+            break;
+        case 301:
+            $icon = $day_night == "day" ? "drizzle" : "drizzle";
+            break;
+        case 302:
+            $icon = $day_night == "day" ? "drizzle-f" : "drizzle-f";
+            break;
+        case 310:
+            $icon = $day_night == "day" ? "rain-day" : "rain-night";
+            break;
+        case 311:
+            $icon = $day_night == "day" ? "rain-day" : "rain-night";
+            break;
+        case 312:
+            $icon = $day_night == "day" ? "heavy-rain-2-f" : "heavy-rain-2-f";
+            break;
+        case 313:
+            $icon = $day_night == "day" ? "drizzle" : "drizzle";
+            break;
+        case 314:
+            $icon = $day_night == "day" ? "drizzle-f" : "drizzle-f";
+            break;
+        case 321:
+            $icon = $day_night == "day" ? "drizzle" : "drizzle";
+            break;
+        case 600:
+            $icon = $day_night == "day" ? "snow-day-1" : "snow-night-1";
+            break;
+        case 601:
+            $icon = $day_night == "day" ? "snow-day-2" : "snow-night-2";
+            break;
+        case 602:
+            $icon = $day_night == "day" ? "snow-day-3" : "snow-night-3";
+            break;
+        case 611:
+            $icon = $day_night == "day" ? "snow-day-1" : "snow-night-1";
+            break;
+        case 612:
+            $icon = $day_night == "day" ? "snow-day-2" : "snow-night-2";
+            break;
+        case 613:
+            $icon = $day_night == "day" ? "snow-day-3" : "snow-night-3";
+            break;
+        case 615:
+            $icon = $day_night == "day" ? "rain-and-snow" : "rain-and-snow";
+            break;
+        case 616:
+            $icon = $day_night == "day" ? "rain-and-snow-f" : "rain-and-snow-f";
+            break;
+        case 620:
+            $icon = $day_night == "day" ? "snow-day-1" : "snow-night-1";
+            break;
+        case 621:
+            $icon = $day_night == "day" ? "snow-day-2" : "snow-night-2";
+            break;
+        case 622:
+            $icon = $day_night == "day" ? "snow-day-3" : "snow-night-3";
+            break;
+        case 701:
+            $icon = $day_night == "day" ? "mist" : "mist";
+            break;
+        case 711:
+            $icon = $day_night == "day" ? "fog-2" : "fog-2";
+            break;
+        case 721:
+            $icon = $day_night == "day" ? "fog-2" : "fog-2";
+            break;
+        case 731:
+            $icon = $day_night == "day" ? "fog-2" : "fog-2";
+            break;
+        case 741:
+            $icon = $day_night == "day" ? "fog-3" : "fog-4";
+            break;
+        case 751:
+            $icon = $day_night == "day" ? "fog-2" : "fog-2";
+            break;
+        case 761:
+            $icon = $day_night == "day" ? "fog-2" : "fog-2";
+            break;
+        case 762:
+            $icon = $day_night == "day" ? "fog-2" : "fog-2";
+            break;
+        case 771:
+            $icon = $day_night == "day" ? "fog-1" : "fog-1";
+            break;
+        case 781:
+            $icon = $day_night == "day" ? "tornado-1" : "tornado-1";
+            break;
+        case 900:
+            $icon = $day_night == "day" ? "tornado-2" : "tornado-2";
+            break;
+        case 901:
+            $icon = $day_night == "day" ? "wind" : "wind";
+            break;
+        case 902:
+            $icon = $day_night == "day" ? "wind" : "wind";
+            break;
+        case 903:
+            $icon = $day_night == "day" ? "thermometer-5" : "thermometer-5";
+            break;
+        case 904:
+            $icon = $day_night == "day" ? "thermometer-1" : "thermometer-1";
+            break;
+        case 905:
+            $icon = $day_night == "day" ? "wind" : "wind";
+            break;
+        case 906:
+            $icon = $day_night == "day" ? "heavy-hail-day" : "heavy-hail-night";
+            break;
+        case 200:
+            $icon = $day_night == "day" ? "mix-rainfall-1" : "mix-rainfall-1";
+            break;
+        case 201:
+            $icon = $day_night == "day" ? "mix-rainfall-2" : "mix-rainfall-2";
+            break;
+        case 202:
+            $icon = $day_night == "day" ? "mix-rainfall-2-f" : "mix-rainfall-1-f";
+            break;
+        case 210:
+            $icon = $day_night == "day" ? "thunderstorm-day-1" : "thunderstorm-night-1";
+            break;
+        case 211:
+            $icon = $day_night == "day" ? "thunderstorm" : "thunderstorm";
+            break;
+        case 212:
+            $icon = $day_night == "day" ? "severe-thunderstorm" : "severe-thunderstorm";
+            break;
+        case 221:
+            $icon = $day_night == "day" ? "severe-thunderstorm-f" : "severe-thunderstorm-f";
+            break;
+        case 230:
+            $icon = $day_night == "day" ? "mix-rainfall-1" : "mix-rainfall-1";
+            break;
+        case 231:
+            $icon = $day_night == "day" ? "mix-rainfall-2" : "mix-rainfall-2";
+            break;
+        case 232:
+            $icon = $day_night == "day" ? "mix-rainfall-2-f" : "mix-rainfall-1-f";
+            break;
     }
 
     return '<span class="owmw-symbol pe pe-is-w-'. esc_attr($icon ?? '') .'" title="' . esc_attr($description) . '"></span>';
 }
 
-function owmw_ColorAnimated($id, $dayNight, $description) {
+function owmw_ColorAnimated($id, $dayNight, $description)
+{
     $icon = null;
-	switch ($id) {
+    switch ($id) {
         case "200": /* Thunderstorm thunderstorm with light rain */
         case "201": /* Thunderstorm thunderstorm with rain */
         case "202": /* Thunderstorm thunderstorm with heavy rain */
@@ -594,25 +724,25 @@ function owmw_ColorAnimated($id, $dayNight, $description) {
         case "230": /* Thunderstorm thunderstorm with light drizzle */
         case "231": /* Thunderstorm thunderstorm with drizzle */
         case "232": /* Thunderstorm thunderstorm with heavy drizzle */
-       		$icon = owmw_colorAnimated_Thunderstorm();
+            $icon = owmw_colorAnimated_Thunderstorm();
             break;
         case "300": /* Drizzle light intensity drizzle */
         case "301": /* Drizzle drizzle */
         case "310": /* Drizzle light intensity drizzle rain */
-       		$icon = $dayNight == "day" ? owmw_colorAnimated_Patchy_Drizzle_Day() : owmw_colorAnimated_Patchy_Drizzle_Night();
-          break;
+            $icon = $dayNight == "day" ? owmw_colorAnimated_Patchy_Drizzle_Day() : owmw_colorAnimated_Patchy_Drizzle_Night();
+            break;
         case "302": /* Drizzle heavy intensity drizzle */
         case "311": /* Drizzle drizzle rain */
         case "312": /* Drizzle heavy intensity drizzle rain */
         case "313": /* Drizzle shower rain and drizzle */
         case "314": /* Drizzle heavy shower rain and drizzle */
         case "321": /* Drizzle shower drizzle */
-       		$icon = owmw_colorAnimated_Drizzle();
-          break;
+            $icon = owmw_colorAnimated_Drizzle();
+            break;
         case "500": /* Rain light rain */
         case "520": /* Rain light intensity shower rain */
-       		$icon = $dayNight == "day" ? owmw_colorAnimated_Patchy_Rain_Day() : owmw_colorAnimated_Patchy_Rain_Night();
-          break;
+            $icon = $dayNight == "day" ? owmw_colorAnimated_Patchy_Rain_Day() : owmw_colorAnimated_Patchy_Rain_Night();
+            break;
         case "501": /* Rain moderate rain */
         case "502": /* Rain heavy intensity rain */
         case "503": /* Rain very heavy rain */
@@ -620,30 +750,30 @@ function owmw_ColorAnimated($id, $dayNight, $description) {
         case "521": /* Rain shower rain */
         case "522": /* Rain heavy intensity shower rain */
         case "531": /* Rain ragged shower rain */
-       		$icon = owmw_colorAnimated_Rain();
-          break;
+            $icon = owmw_colorAnimated_Rain();
+            break;
         case "511": /* Rain freezing rain */
-       		$icon = owmw_colorAnimated_Hail();
-          break;
+            $icon = owmw_colorAnimated_Hail();
+            break;
         case "600": /* Snow light snow */
         case "615": /* Snow Light rain and snow */
         case "620": /* Snow Light shower snow */
-       		$icon = $dayNight == "day" ? owmw_colorAnimated_Patchy_Snow_Day() : owmw_colorAnimated_Patchy_Snow_Night();
-          break;
+            $icon = $dayNight == "day" ? owmw_colorAnimated_Patchy_Snow_Day() : owmw_colorAnimated_Patchy_Snow_Night();
+            break;
         case "601": /* Snow Snow */
         case "602": /* Snow Heavy snow */
         case "616": /* Snow Rain and snow */
         case "621": /* Snow Shower snow */
         case "622": /* Snow Heavy shower snow */
-       		$icon = owmw_colorAnimated_Snow();
-          break;
+            $icon = owmw_colorAnimated_Snow();
+            break;
         case "612": /* Snow Light shower sleet */
-       		$icon = $dayNight == "day" ? owmw_colorAnimated_Patchy_Sleet_Day() : owmw_colorAnimated_Patchy_Sleet_Night();
-          break;
+            $icon = $dayNight == "day" ? owmw_colorAnimated_Patchy_Sleet_Day() : owmw_colorAnimated_Patchy_Sleet_Night();
+            break;
         case "611": /* Snow Sleet */
         case "613": /* Snow Shower sleet */
-       		$icon = owmw_colorAnimated_Sleet();
-          break;
+            $icon = owmw_colorAnimated_Sleet();
+            break;
         case "701": /* Mist mist */
         case "711": /* Smoke Smoke */
         case "721": /* Haze Haze */
@@ -653,36 +783,37 @@ function owmw_ColorAnimated($id, $dayNight, $description) {
         case "761": /* Dust dust */
         case "762": /* Ash volcanic ash */
         case "771": /* Squall squalls */
-       		$icon = owmw_colorAnimated_Mist_Cloud();
+            $icon = owmw_colorAnimated_Mist_Cloud();
             break;
         case "781": /* Tornado tornado */
-       		$icon = owmw_colorAnimated_Tornado();
+            $icon = owmw_colorAnimated_Tornado();
             break;
         case "800": /* Clear clear sky */
-       		$icon = $dayNight == "day" ? owmw_colorAnimated_Sun() : owmw_colorAnimated_Moon();
-	    break;
+            $icon = $dayNight == "day" ? owmw_colorAnimated_Sun() : owmw_colorAnimated_Moon();
+            break;
         case "801": /* Clouds few clouds: 11-25% */
         case "802": /* Clouds scattered clouds: 25-50% */
-       		$icon = $dayNight == "day" ? owmw_colorAnimated_Partly_Cloudy_Day() : owmw_colorAnimated_Partly_Cloudy_Night();
-	  break;
+            $icon = $dayNight == "day" ? owmw_colorAnimated_Partly_Cloudy_Day() : owmw_colorAnimated_Partly_Cloudy_Night();
+            break;
         case "803": /* Clouds broken clouds: 51-84% */
-       		$icon = owmw_colorAnimated_Few_Clouds();
-          break;
+            $icon = owmw_colorAnimated_Few_Clouds();
+            break;
         case "804": /* Clouds overcast clouds: 85-100% */
-       		$icon = owmw_colorAnimated_Dark_Clouds();
-          break;
+            $icon = owmw_colorAnimated_Dark_Clouds();
+            break;
     }
     
     return '<span class="owmw-symbol color-animated-icon" title="' . esc_attr($description) . '">'.$icon.'</span>';
 }
 
-function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack, $extension = '') {
+function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack, $extension = '')
+{
     $id = sanitize_html_class($id);
     
     $str = '';
-	    if ($display_unit == 'yes') {
-	    	$str .=
-	    		   '#'.esc_attr($id).' .owmw-now .owmw-main-temperature'.esc_attr($extension).':after,
+    if ($display_unit == 'yes') {
+        $str .=
+               '#'.esc_attr($id).' .owmw-now .owmw-main-temperature'.esc_attr($extension).':after,
 	            	#'.esc_attr($id).' .owmw-now .owmw-main-feels-like'.esc_attr($extension).':after,
 	            	#'.esc_attr($id).' .owmw-infos .owmw-temperature'.esc_attr($extension).':after,
 	            	#'.esc_attr($id).' .owmw-infos-text .owmw-temperature'.esc_attr($extension).':after,
@@ -693,77 +824,78 @@ function owmw_temperatureUnitSymbol($id, $display_unit, $unit, $iconpack, $exten
 	              	#'.esc_attr($id).' .owmw-today .owmw-main-temperature-min'.esc_attr($extension).':after,
 	              	#'.esc_attr($id).' .owmw-table .owmw-table-temperature'.esc_attr($extension).':after {';
 
-	        if ($unit == 'metric') {
-	            if ($iconpack == 'WeatherIcons') {
-        	    	$str .=
-		                'content:"\f03c";
+        if ($unit == 'metric') {
+            if ($iconpack == 'WeatherIcons') {
+                $str .=
+                    'content:"\f03c";
 		                font-family: "WeatherIcons";
                         margin-left: 2px;';
-	            } else if ($iconpack == 'Forecast') {
-        	    	$str .=
-		                'content:"C";
+            } elseif ($iconpack == 'Forecast') {
+                $str .=
+                    'content:"C";
 		                font-family: "iconvault";';
-	            } else if ($iconpack == 'Dripicons') {
-        	    	$str .=
-		                'content:"\0039";
+            } elseif ($iconpack == 'Dripicons') {
+                $str .=
+                    'content:"\0039";
 		                font-family: "dripicons-weather";';
-	            } else if ($iconpack == 'Pixeden') {
-        	    	$str .=
-		                'content:"\0039";
+            } elseif ($iconpack == 'Pixeden') {
+                $str .=
+                    'content:"\0039";
 		                font-family: "pe-icon-set-weather";';
-	            } else if ($iconpack == 'OpenWeatherMap') {
-        	    	$str .=
-		                'content:"°C";';
-	            } else {
-        	    	$str .=
-		                'content:"\e03e";
-		                font-family: "Climacons-Font";
-                        margin-left: 2px;';
-		        }
+            } elseif ($iconpack == 'OpenWeatherMap') {
+                $str .=
+                    'content:"°C";';
             } else {
-	            if ($iconpack == 'WeatherIcons') {
-        	    	$str .=
-		                'content:"\f045";
-		                font-family: "WeatherIcons";
-                        margin-left: 2px;';
-	            } else if ($iconpack == 'Forecast') {
-        	    	$str .=
-		                'content:"F";
-		                font-family: "iconvault";';
-	            } else if ($iconpack == 'Dripicons') {
-        	    	$str .=
-		                'content:"\0021";
-		                font-family: "dripicons-weather";';
-	            } else if ($iconpack == 'Pixeden') {
-        	    	$str .=
-		                'content:"\E913";
-		                font-family: "pe-icon-set-weather";';
-	            } else if ($iconpack == 'OpenWeatherMap') {
-        	    	$str .=
-		                'content:"°F";';
-	            } else {
-        	    	$str .=
-		                'content: "\e03f";
+                $str .=
+                    'content:"\e03e";
 		                font-family: "Climacons-Font";
                         margin-left: 2px;';
-		        }
-		    }
-
-   	    	$str .=
-            '}';
+            }
+        } else {
+            if ($iconpack == 'WeatherIcons') {
+                $str .=
+                    'content:"\f045";
+		                font-family: "WeatherIcons";
+                        margin-left: 2px;';
+            } elseif ($iconpack == 'Forecast') {
+                $str .=
+                    'content:"F";
+		                font-family: "iconvault";';
+            } elseif ($iconpack == 'Dripicons') {
+                $str .=
+                    'content:"\0021";
+		                font-family: "dripicons-weather";';
+            } elseif ($iconpack == 'Pixeden') {
+                $str .=
+                    'content:"\E913";
+		                font-family: "pe-icon-set-weather";';
+            } elseif ($iconpack == 'OpenWeatherMap') {
+                $str .=
+                    'content:"°F";';
+            } else {
+                $str .=
+                    'content: "\e03f";
+		                font-family: "Climacons-Font";
+                        margin-left: 2px;';
+            }
         }
+
+        $str .=
+        '}';
+    }
         
         return $str;
 }
 
-function owmw_wind_direction_icon($degrees, $color, $direction) {
-	if (!empty($direction) && $direction == "from") {
-		$rotation = 0;
-	} else {
-		$rotation = 180;
-	}
-return
-'<svg viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
+function owmw_wind_direction_icon($degrees, $color, $direction)
+{
+    if (!empty($direction) && $direction == "from") {
+        $rotation = 0;
+    } else {
+        $rotation = 180;
+    }
+    return
+    '<svg viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <title>'.esc_attr__('Wind', 'owm-weather').'</title>
 <path transform="rotate('.esc_attr(($degrees ?? 0) - $rotation).')" transform-origin="center" d="M3.74,14.5c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
         s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
@@ -775,23 +907,25 @@ return
 </svg>';
 }
 
-function owmw_chart_wind_direction_icon($degrees, $color, $direction) {
-        if (!empty($direction) && $direction == "from") {
-                $rotation = 0;
-        } else {
-                $rotation = 180;
-        }
-return
-"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' fill='".(!empty($color) ? esc_attr($color) : "currentColor")."' width='30' height='30'>
+function owmw_chart_wind_direction_icon($degrees, $color, $direction)
+{
+    if (!empty($direction) && $direction == "from") {
+            $rotation = 0;
+    } else {
+            $rotation = 180;
+    }
+    return
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' fill='".(!empty($color) ? esc_attr($color) : "currentColor")."' width='30' height='30'>
 <title>".esc_attr__("Wind", "owm-weather")."</title>
 <path transform='rotate(".esc_attr(($degrees ?? 0) - $rotation).")' transform-origin='center' d='M11.11,20.35l3.75-13.11c0.01-0.1,0.06-0.15,0.15-0.15s0.14,0.05,0.15,0.15l3.74,13.11c0.04,0.11,0.03,0.19-0.02,0.25
         s-0.13,0.06-0.24,0l-3.47-1.3c-0.1-0.04-0.2-0.04-0.29,0l-3.5,1.3c-0.1,0.06-0.17,0.06-0.21,0S11.09,20.45,11.11,20.35z'/>
 </svg>";
 }
 
-function owmw_humidity_icon($color) {
-return
-'<svg
+function owmw_humidity_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <title>'.esc_attr__('Humidity', 'owm-weather').'</title>
 <path d="M7.56,17.19c0-0.88,0.24-1.89,0.72-3.03s1.1-2.25,1.86-3.31c1.56-2.06,2.92-3.62,4.06-4.67l0.75-0.72
@@ -812,12 +946,13 @@ return
 	c0.04,0.09,0.07,0.17,0.1,0.24s0.04,0.18,0.05,0.32l0.01,0.32l0,0.34c0,0.16,0,0.28,0,0.35l-0.01,0.32l-0.05,0.32l-0.1,0.24
 	l-0.16,0.19l-0.24,0.06c-0.14,0-0.25-0.04-0.33-0.12s-0.14-0.21-0.17-0.38c-0.03-0.18-0.05-0.33-0.06-0.45S17.85,19.25,17.85,19.02z
 	"/>
-</svg>';    
+</svg>';
 }
 
-function owmw_pressure_icon($color) {
-return
-'<svg
+function owmw_pressure_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <title>'.esc_attr__('Pressure', 'owm-weather').'</title>
 <path d="M7.69,13.2c0-0.99,0.19-1.94,0.58-2.85c0.39-0.91,0.91-1.68,1.57-2.33s1.44-1.17,2.34-1.56c0.9-0.39,1.85-0.58,2.84-0.58
@@ -830,12 +965,13 @@ return
 	 M13.5,14.95c0-0.42,0.15-0.78,0.44-1.09c0.29-0.31,0.65-0.47,1.06-0.48l2.73-4.49l0.66,0.35l-2.02,4.83
 	c0.18,0.25,0.26,0.54,0.26,0.88c0,0.44-0.15,0.81-0.46,1.11c-0.31,0.3-0.68,0.45-1.12,0.45c-0.43,0-0.8-0.15-1.1-0.45
 	C13.65,15.76,13.5,15.39,13.5,14.95z M14.81,10.28V8.12h0.69v2.17H14.81z M17.75,13.55v-0.74h2.17v0.74H17.75z"/>
-</svg>';    
+</svg>';
 }
 
-function owmw_cloudiness_icon($color) {
-return
-'<svg
+function owmw_cloudiness_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <title>'.esc_attr__('Cloudiness', 'owm-weather').'</title>
 <path d="M3.89,17.6c0-0.99,0.31-1.88,0.93-2.65s1.41-1.27,2.38-1.49c0.26-1.17,0.85-2.14,1.78-2.88c0.93-0.75,2-1.12,3.22-1.12
@@ -851,12 +987,13 @@ return
 	v1.13c0,0.11,0.05,0.16,0.15,0.16c1.01-0.06,1.86-0.46,2.55-1.19s1.04-1.6,1.04-2.6c0-1.06-0.37-1.96-1.12-2.7
 	c-0.75-0.75-1.65-1.12-2.7-1.12h-0.15c-0.26-1-0.81-1.82-1.65-2.47c-0.83-0.65-1.77-0.97-2.8-0.97C16.28,7.29,15.11,7.82,14.19,8.88
 	z"/>
-</svg>';    
+</svg>';
 }
 
-function owmw_precipitation_icon($color) {
-return
-'<svg
+function owmw_precipitation_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <title>'.esc_attr__('Precipitation', 'owm-weather').'</title>
 <path d="M11.01,12.23c0-0.26,0.13-0.59,0.38-1.01c0.25-0.42,0.5-0.77,0.73-1.04c0.06-0.07,0.14-0.17,0.23-0.28s0.15-0.17,0.16-0.18
@@ -867,12 +1004,13 @@ return
 	c-0.47,0.47-1.05,0.7-1.73,0.7c-0.68,0-1.25-0.24-1.72-0.71S14.13,17.05,14.13,16.38z M15.65,9.48c0-0.43,0.33-1,1-1.7l0.25,0.28
 	c0.19,0.22,0.36,0.46,0.51,0.74c0.15,0.27,0.23,0.5,0.23,0.68c0,0.28-0.1,0.5-0.29,0.69c-0.19,0.18-0.42,0.28-0.7,0.28
 	c-0.29,0-0.53-0.09-0.72-0.28C15.75,9.98,15.65,9.75,15.65,9.48z"/>
-</svg>';    
+</svg>';
 }
 
-function owmw_visibility_icon($color) {
-return
-'<svg
+function owmw_visibility_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <title>'.esc_attr__('Visibility', 'owm-weather').'</title>
 <path d="M4.93,20.97c0-0.26,0.09-0.47,0.28-0.62c0.14-0.16,0.35-0.23,0.63-0.23h18.34c0.25,0,0.46,0.08,0.64,0.24
@@ -887,12 +1025,13 @@ return
 	c-0.17,0.17-0.38,0.25-0.63,0.25c-0.24,0-0.45-0.09-0.61-0.26S14.14,12.06,14.14,11.81z M19.86,14.18c0-0.24,0.08-0.45,0.25-0.63
 	l1.54-1.5c0.16-0.18,0.36-0.26,0.62-0.26c0.24,0,0.44,0.08,0.6,0.25s0.23,0.38,0.23,0.64c0,0.26-0.08,0.47-0.23,0.62l-1.48,1.5
 	c-0.17,0.17-0.36,0.26-0.56,0.28c-0.23,0.02-0.44-0.06-0.65-0.24S19.86,14.43,19.86,14.18z"/>
-</svg>';    
+</svg>';
 }
 
-function owmw_dew_point_icon($color) {
-return
-'<svg
+function owmw_dew_point_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <title>'.esc_attr__('Dew Point', 'owm-weather').'</title>
 <path d="M9.81,15.25c0,0.92,0.23,1.78,0.7,2.57s1.1,1.43,1.9,1.9c0.8,0.47,1.66,0.71,2.59,0.71c0.93,0,1.8-0.24,2.61-0.71
@@ -902,9 +1041,10 @@ return
 </svg>';
 }
 
-function owmw_uv_index_icon($color) {
-return
-'<svg
+function owmw_uv_index_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <title>'.esc_attr__('UV Index', 'owm-weather').'</title>
 <path d="M4.37,14.62c0-0.24,0.08-0.45,0.25-0.62c0.17-0.16,0.38-0.24,0.6-0.24h2.04c0.23,0,0.42,0.08,0.58,0.25
@@ -932,9 +1072,10 @@ return
 </svg>';
 }
 
-function owmw_rain_chance_icon($color) {
-return
-'<svg
+function owmw_rain_chance_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <title>'.esc_attr__('Rain Chance', 'owm-weather').'</title>
 <path d="M4.64,16.91c0-1.15,0.36-2.17,1.08-3.07c0.72-0.9,1.63-1.47,2.73-1.73c0.31-1.36,1.02-2.48,2.11-3.36s2.34-1.31,3.75-1.31
@@ -958,9 +1099,10 @@ return
 </svg>';
 }
 
-function owmw_temperature_icon($color) {
-return
-'<svg 
+function owmw_temperature_icon($color)
+{
+    return
+    '<svg 
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <title>'.esc_attr__('Temperature', 'owm-weather').'</title>
 <path d="M9.91,19.56c0-0.85,0.2-1.64,0.59-2.38s0.94-1.35,1.65-1.84V5.42c0-0.8,0.27-1.48,0.82-2.03S14.2,2.55,15,2.55
@@ -976,27 +1118,30 @@ return
 </svg>';
 }
 
-function owmw_moonrise($color) {
-	return
-'<svg class="climacon climacon-moonrise" viewBox="0 0 1000 1000" fill="' . (!empty($color) ? esc_attr($color) : 'currentColor') . '">
+function owmw_moonrise($color)
+{
+    return
+    '<svg class="climacon climacon-moonrise" viewBox="0 0 1000 1000" fill="' . (!empty($color) ? esc_attr($color) : 'currentColor') . '">
 <title>'.esc_attr__('Moonrise', 'owm-weather').'</title>
 <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
 <g><path d="M316.3,683.7l40.8-35.8c-71.5-40.8-117.4-112.3-117.4-199c0-101.9,66.4-183.8,153.1-214.2c0,5.1,0,10.1,0,10.1c0,153.1,127.5,280.7,280.7,280.7c5.1,0,10.1,0,10.1,0c-15.2,40.8-40.8,76.6-71.5,101.9l40.8,35.8c45.9-35.8,76.6-86.7,91.8-148.1c5.1-20.5,5.1-35.8,10.1-56c-30.7,10.1-56,15.2-81.6,15.2c-127.5,0-229.7-101.9-229.7-229.7c0-25.6,5.1-51,15.2-76.6c-20.3,0-35.8,5.1-56,10.1c-122.5,30.7-214.3,142.7-214.3,270.5C188.8,546,239.7,632.7,316.3,683.7z"/><path d="M954.2,780.8H673.6L495.1,627.7L316.6,780.8h-281C20.4,780.8,10,791,10,806.4c0,15.5,10.1,25.6,25.6,25.6H347l61.1-51l91.8-76.6l91.8,76.6l61.4,51h311.4c15.2,0,25.6-10.1,25.6-25.6C979.6,791,969.5,780.8,954.2,780.8z"/></g>
 </svg>';
 }
 
-function owmw_moonset($color) {
-	return
-'<svg class="climacon climacon-moonset" viewBox="0 0 1000 1000" fill="' . (!empty($color) ? esc_attr($color) : 'currentColor') . '">
+function owmw_moonset($color)
+{
+    return
+    '<svg class="climacon climacon-moonset" viewBox="0 0 1000 1000" fill="' . (!empty($color) ? esc_attr($color) : 'currentColor') . '">
 <title>'.esc_attr__('Moonset', 'owm-weather').'</title>
 <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
 <g><path d="M964.4,731.8H649.7l-62,51.5l-92.8,77.4l-82.5-77.1l-61.8-51.5H35.9c-15.4,0-25.9,10.2-25.9,25.9c0,15.6,10.2,25.9,25.9,25.9h283.7L500,938.6l180.4-154.8h283.7c15.4,0,25.9-10.3,25.9-25.9C990,742.3,979.8,731.8,964.4,731.8z"/><path d="M474.4,628.8c134,0,242.4-92.8,273.4-216.6c5.1-20.5,5.1-36.1,10.3-56.6c-25.9,10.2-51.5,15.4-77.4,15.4c-128.9,0-232.2-103-232.2-232.2c0-25.9,5.1-51.5,15.4-77.4c-20.5,0-36.1,5.1-56.6,10.2c-123.8,31-216.5,144.3-216.5,273.4C190.7,499.9,319.6,628.8,474.4,628.8z M397,123.4c0,5.1,0,10.2,0,10.2c0,154.8,128.9,283.7,283.7,283.7c5.1,0,10.2,0,10.2,0c-31,92.8-118.7,154.8-216.5,154.8c-128.9,0-232.2-103-232.2-232.2C242.2,241.8,309.3,159.3,397,123.4z"/></g>
 </svg>';
 }
 
-function owmw_sunrise($color) {
-	return
-'<svg class="climacon climacon-sunrise" viewBox="0 0 512 512" fill="' . (!empty($color) ? esc_attr($color) : 'currentColor') . '">
+function owmw_sunrise($color)
+{
+    return
+    '<svg class="climacon climacon-sunrise" viewBox="0 0 512 512" fill="' . (!empty($color) ? esc_attr($color) : 'currentColor') . '">
 <title>'.esc_attr__('Sunrise', 'owm-weather').'</title>
 <g>
 	<path d="M0,316c0-5.2,2.1-10,6.3-14.4c4.6-4,9.6-6.1,14.6-6.1h48.7c5.6,0,10.2,2.1,14,6.1s5.6,9,5.6,14.4c0,6.1-1.9,11.1-5.6,15
@@ -1020,9 +1165,10 @@ function owmw_sunrise($color) {
 </svg>';
 }
 
-function owmw_sunset($color) {
-	return
-'<svg class="climacon climacon-sunset" viewBox="0 0 512 512" color="#fff" fill="' . (!empty($color) ? esc_attr($color) : 'currentColor') . '">
+function owmw_sunset($color)
+{
+    return
+    '<svg class="climacon climacon-sunset" viewBox="0 0 512 512" color="#fff" fill="' . (!empty($color) ? esc_attr($color) : 'currentColor') . '">
 <title>'.esc_attr__('Sunset', 'owm-weather').'</title>
 <g>
 	<path d="M0,285.8c0-5.9,2.1-10.6,6.3-14.4c3.6-3.8,8.5-5.5,14.4-5.5h48.8c5.7,0,10.3,1.9,14.1,5.7c3.6,3.8,5.5,8.4,5.5,14.1
@@ -1047,9 +1193,12 @@ function owmw_sunset($color) {
 </svg>';
 }
 
-function owmw_hour_icon($value, $color) {
+function owmw_hour_icon($value, $color)
+{
     $hour = intval($value);
-    if ($hour > 12) { $hour %= 12; }
+    if ($hour > 12) {
+        $hour %= 12;
+    }
     $span_start = '<span title="' . esc_attr($value) . '">';
     $span_end = '</span>';
     
@@ -1059,16 +1208,17 @@ function owmw_hour_icon($value, $color) {
 
     $func = 'owmw_hour_' . $hour . '_icon';
     return $span_start . $func($color) . $span_end;
-
 }
 
-function owmw_hour_0_icon($color) {
+function owmw_hour_0_icon($color)
+{
     return hour_12_icon($color);
 }
 
-function owmw_hour_1_icon($color) {
-return
-'<svg
+function owmw_hour_1_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
@@ -1081,9 +1231,10 @@ return
 </svg>';
 }
 
-function owmw_hour_2_icon($color) {
-return
-'<svg
+function owmw_hour_2_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
@@ -1096,9 +1247,10 @@ return
 </svg>';
 }
 
-function owmw_hour_3_icon($color) {
-return
-'<svg
+function owmw_hour_3_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
@@ -1111,9 +1263,10 @@ return
 </svg>';
 }
 
-function owmw_hour_4_icon($color) {
-return
-'<svg
+function owmw_hour_4_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
@@ -1126,9 +1279,10 @@ return
 </svg>';
 }
 
-function owmw_hour_5_icon($color) {
-return
-'<svg
+function owmw_hour_5_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
@@ -1141,9 +1295,10 @@ return
 </svg>';
 }
 
-function owmw_hour_6_icon($color) {
-return
-'<svg
+function owmw_hour_6_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
@@ -1155,9 +1310,10 @@ return
 </svg>';
 }
 
-function owmw_hour_7_icon($color) {
-return
-'<svg
+function owmw_hour_7_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
@@ -1170,9 +1326,10 @@ return
 </svg>';
 }
 
-function owmw_hour_8_icon($color) {
-return
-'<svg
+function owmw_hour_8_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
@@ -1185,9 +1342,10 @@ return
 </svg>';
 }
 
-function owmw_hour_9_icon($color) {
-return
-'<svg
+function owmw_hour_9_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
@@ -1200,9 +1358,10 @@ return
 </svg>';
 }
 
-function owmw_hour_10_icon($color) {
-return
-'<svg
+function owmw_hour_10_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
@@ -1215,9 +1374,10 @@ return
 </svg>';
 }
 
-function owmw_hour_11_icon($color) {
-return
-'<svg
+function owmw_hour_11_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39
@@ -1230,9 +1390,10 @@ return
 </svg>';
 }
 
-function owmw_hour_12_icon($color) {
-return
-'<svg
+function owmw_hour_12_icon($color)
+{
+    return
+    '<svg
 	 viewBox="0 0 30 30" fill="'.(!empty($color) ? esc_attr($color) : 'currentColor').'">
 <path d="M3.74,14.47c0-2.04,0.51-3.93,1.52-5.66s2.38-3.1,4.11-4.11s3.61-1.51,5.64-1.51c1.52,0,2.98,0.3,4.37,0.89
 	s2.58,1.4,3.59,2.4s1.81,2.2,2.4,3.6s0.89,2.85,0.89,4.39c0,1.52-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.59s-2.2,1.8-3.59,2.39

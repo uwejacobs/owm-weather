@@ -1,3 +1,6 @@
+<?php
+
+?>
 <h4>OWM Weather Custom Template for Developers</h4>
 <p>You can create a completely personalized weather without changing the core of the plugin. In addition, your changes will not be overwritten at each plugin update.</p>
 <ul>

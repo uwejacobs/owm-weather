@@ -1,4 +1,10 @@
 Must:
+Option to only load on Mainsite in a multisite installation
+Horizontal Layout
+today, tomorrow, day of the week labels
+
+add fallback location if user does not share geo-location
+
 
 Should:
 Gutenberg block rendering
@@ -7,6 +13,7 @@ Nice:
 moon phase
 sun rise/set graph
 Safari browser SVGs
+let user type in location
 
 
 

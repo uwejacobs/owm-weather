@@ -64,18 +64,18 @@
             <div class="owmw-flexslider-hours flexslider carousel">
                 <ul class="slides">
                 <?php
-                    for ($i = 0; $i < $owmw_opt["hours_forecast_no"]; $i++) {
-                        if (isset($owmw_html["hour"]["info"][$i])) {
-                            echo "<li>";
+                for ($i = 0; $i < $owmw_opt["hours_forecast_no"]; $i++) {
+                    if (isset($owmw_html["hour"]["info"][$i])) {
+                        echo "<li>";
                         echo wp_kses($owmw_html["hour"]["info"][$i], $owmw_opt['allowed_html']);
-                            echo "</li>";
-                        }
+                        echo "</li>";
                     }
+                }
                 ?>
                 <?php echo wp_kses($owmw_html["hour"]["end"], $owmw_opt['allowed_html']); ?>
                 <?php
-                }
-                ?>
+        }
+        ?>
                 </ul>
             </div>
 
@@ -141,9 +141,9 @@
             animationLoop: true,
             itemWidth: 250,
             itemMargin: 5,
-	    maxItems: 4,
-	    controlNav: false,
-	    directionNav: false
+        maxItems: 4,
+        controlNav: false,
+        directionNav: false
         });
         jQuery('#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .owmw-flexslider-hours').flexslider({
             controlsContainer: jQuery("#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .custom-controls-container"),
@@ -153,14 +153,14 @@
             itemWidth: 50,
             itemMargin: 5,
             maxItems: 8,
-	    controlNav: false,
-	    directionNav: false
+        controlNav: false,
+        directionNav: false
         });
         jQuery('#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .owmw-flexslider-forecast').flexslider({
             controlsContainer: jQuery("#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .custom-controls-container"),
             customDirectionNav: jQuery("#<?php echo esc_attr($owmw_html["container_weather_div"]) ?> .custom-navigation a"),
-	    controlNav: false,
-	    directionNav: false
+        controlNav: false,
+        directionNav: false
         });
     });
 </script>

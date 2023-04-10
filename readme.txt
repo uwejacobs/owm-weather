@@ -3,8 +3,8 @@ Contributors: rainbowgeek, uwejacobs, ccdzine
 Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager, multisite
 Requires at least: 5.6
-Tested up to: 6.1.1
-Stable tag: 5.6.13
+Tested up to: 6.2
+Stable tag: 5.6.14
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -268,8 +268,10 @@ OpenWeather changed its API key permissions for new users. Up until September 20
 
 == Changelog ==
 
-= 5.6.13 =
-* Added formatted current date to the raw data so it can be used in custom templates
+= 5.6.14 =
+* Fixed translation error in German translation
+* Added Serbian translation
+* Deleted .container styles from scrubbed bootstrap file that added left and right padding
 
 = 5.6.12 =
 * Fixed vulnerability (reported by Patchstack)
