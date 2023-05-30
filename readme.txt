@@ -148,8 +148,10 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 * Chilean (thanks to Wladimir Espinoza Durán)
 * French (thanks to Benjamin DENIS)
 * German
+* Hebrew
 * Russian (thanks to @laguna34)
 * Spanish (thanks to Wladimir Espinoza Durán)
+* Serbian (PoEdit)
 = Partial translations: =
 * Danish (thanks to Carsten Klingenberg)
 * Dutch (thanks to Age de Jong)
@@ -196,7 +198,7 @@ Unlimited due to WordPress Custom Post Types.
 
 = In which languages is the weather data displayed? =
 
-OWM Weather has been fully translated into Chilean, French, German, Russian, and Spanish. There are partial translations in Estonian, Italian, Hungarian, Hebrew, Polish, Danish, and Portuguese. Open Weather Map itself provides some of the data in most languages.
+OWM Weather has been fully translated into Chilean, French, German, Russian, Spanish, and Serbian. There are partial translations in Estonian, Italian, Hungarian, Hebrew, Polish, Danish, and Portuguese. Open Weather Map itself provides some of the data in most languages.
 
 = How to define the unit Celsius or Fahrenheit? =
 
@@ -267,6 +269,11 @@ OpenWeather changed its API key permissions for new users. Up until September 20
 11. OWM Weather Hourly Forecast Charts
 
 == Changelog ==
+
+= 5.6.15 =
+* Added Hebrew translation
+* Fixed a few Serbian translations
+* Switched to the Beaufort Wind Scale for the wind speed description
 
 = 5.6.14 =
 * Fixed translation error in German translation

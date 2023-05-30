@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OWM Weather\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/owm-weather\n"
 "POT-Creation-Date: 2022-03-03T16:46:04-05:00\n"
-"PO-Revision-Date: 2022-03-04 09:48-0500\n"
+"PO-Revision-Date: 2023-05-30 15:34-0400\n"
 "Last-Translator: \n"
 "Language-Team: Benjamin DENIS <contact@wpcloudy.com>\n"
 "Language: pl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.3.1\n"
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -940,7 +940,7 @@ msgstr ""
 
 #: owmweather-admin.php:1064 owmweather.php:924
 msgid "Lato"
-msgstr ""
+msgstr "Lato"
 
 #: owmweather-admin.php:1065 owmweather.php:925
 #, fuzzy
@@ -950,7 +950,7 @@ msgstr "Skórki OWM Weather"
 
 #: owmweather-admin.php:1066 owmweather.php:926
 msgid "Nunito"
-msgstr ""
+msgstr "Nunito"
 
 #: owmweather-admin.php:1067 owmweather.php:927
 msgid "Open Sans"
@@ -982,7 +982,7 @@ msgstr ""
 
 #: owmweather-admin.php:1074 owmweather.php:934
 msgid "Ubuntu"
-msgstr ""
+msgstr "Ubuntu"
 
 #: owmweather-admin.php:1085 owmweather.php:898
 msgid "Card 1"

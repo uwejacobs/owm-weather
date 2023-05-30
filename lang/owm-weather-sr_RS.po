@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OWM Weather 5.6.12\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/owm-weather\n"
 "POT-Creation-Date: 2022-12-12T16:26:24-05:00\n"
-"PO-Revision-Date: 2023-04-10 12:50-0400\n"
+"PO-Revision-Date: 2023-05-30 15:45-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
 "X-Domain: owm-weather\n"
 
 #. Plugin Name of the plugin
@@ -1955,7 +1955,7 @@ msgstr "Боја температуре"
 
 #: owmweather.php:1441
 msgid "Feels-Like Color"
-msgstr "Боја налик на осећај"
+msgstr "Боја cубјективни осећај"
 
 #: owmweather.php:1445
 msgid "Dew Point Color"
@@ -2220,7 +2220,7 @@ msgstr "Суб"
 #: owmweather.php:4153 owmweather.php:4556 owmweather.php:4891
 #: owmweather.php:5042
 msgid "Feels Like"
-msgstr "Осјећам се као"
+msgstr "Субјективни осећај"
 
 #: owmweather.php:3732
 msgid "Clouds Classic"
@@ -2503,7 +2503,7 @@ msgstr "Лагани поветарац"
 
 #: owmweather.php:5602
 msgid "Light Air"
-msgstr "Светлосни ваздух"
+msgstr "Слаб ветар"
 
 #: owmweather.php:5604
 msgid "Calm"
@@ -2707,7 +2707,7 @@ msgstr "Торнадо"
 
 #: owmweather.php:6148
 msgid "Clear Sky"
-msgstr "Чисто небо"
+msgstr "Ведро небо"
 
 #: owmweather.php:6149
 msgid "Few Clouds"
@@ -2723,7 +2723,7 @@ msgstr "Разбијени облаци"
 
 #: owmweather.php:6152
 msgid "Overcast Clouds"
-msgstr "Облачно облаци"
+msgstr "Тамни облаци"
 
 #: template/content-owmweather-slider2.php:23
 #: template/content-owmweather-table2.php:18

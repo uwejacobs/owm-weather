@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: Powerful weather plugin for WordPress, based on the OpenWeather API, using custom post types and shortcodes, bundled with a ton of features.
-Version: 5.6.14
+Version: 5.6.15
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -31,7 +31,7 @@ Domain Path: /lang
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('OWM_WEATHER_VERSION', '5.6.14');
+define('OWM_WEATHER_VERSION', '5.6.15');
 
 // To prevent calling the plugin directly
 if (!function_exists('add_action')) {
@@ -5714,32 +5714,27 @@ function owmw_converthPa($unit, $p, $punit)
 
 function owmw_getWindspeedText($speed)
 {
-    if ($speed >= 75) {
-        return __('Hurricane Force', 'owm-weather');
-    } elseif ($speed >= 64) {
-        return __('Storm Force', 'owm-weather');
-    } elseif ($speed >= 55) {
-        return __('Whole Gale', 'owm-weather');
-    } elseif ($speed >= 47) {
-        return __('Strong Gale', 'owm-weather');
-    } elseif ($speed >= 39) {
-        return __('Fresh Gale', 'owm-weather');
-    } elseif ($speed >= 31) {
-        return __('Near Gale', 'owm-weather');
-    } elseif ($speed >= 25) {
-        return __('Strong Breeze', 'owm-weather');
-    } elseif ($speed >= 18) {
-        return __('Fresh Breeze', 'owm-weather');
-    } elseif ($speed >= 13) {
-        return __('Moderate Breeze', 'owm-weather');
-    } elseif ($speed >= 8) {
-        return __('Gentle Breeze', 'owm-weather');
-    } elseif ($speed >= 4) {
-        return __('Light Breeze', 'owm-weather');
-    } elseif ($speed >= 1) {
-        return __('Light Air', 'owm-weather');
-    } else {
-        return __('Calm', 'owm-weather');
+    // Beaufort Wind Scale
+    $windDescriptions = [
+        73 => __('Hurricane', 'owm-weather'),
+        64 => __('Violent Storm', 'owm-weather'),
+        55 => __('Whole Gale/Storm', 'owm-weather'),
+        47 => __('Strong Gale', 'owm-weather'),
+        39 => __('Gale', 'owm-weather'),
+        32 => __('Near Gale', 'owm-weather'),
+        25 => __('Strong Breeze', 'owm-weather'),
+        19 => __('Fresh Breeze', 'owm-weather'),
+        13 => __('Moderate Breeze', 'owm-weather'),
+        8 => __('Gentle Breeze', 'owm-weather'),
+        4 => __('Light Breeze', 'owm-weather'),
+        1 => __('Light Air', 'owm-weather'),
+        0 => __('Calm', 'owm-weather')
+    ];
+
+    foreach ($windDescriptions as $windSpeed => $description) {
+        if ($speed >= $windSpeed) {
+            return $description;
+        }
     }
 }
 
