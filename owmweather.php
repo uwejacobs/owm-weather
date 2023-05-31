@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: Powerful weather plugin for WordPress, based on the OpenWeather API, using custom post types and shortcodes, bundled with a ton of features.
-Version: 5.6.15
+Version: 5.6.16
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -31,7 +31,7 @@ Domain Path: /lang
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('OWM_WEATHER_VERSION', '5.6.15');
+define('OWM_WEATHER_VERSION', '5.6.16');
 
 // To prevent calling the plugin directly
 if (!function_exists('add_action')) {
@@ -3214,7 +3214,7 @@ function owmw_get_my_weather($attr)
         $owmw_data["description"] = owmw_getConditionText($owmw_data["condition_id"]);
         $owmw_data["wind_speed_unit"] = owmw_getWindSpeedUnit($owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]);
         $owmw_data["wind_speed"] = owmw_getConvertedWindSpeed($owmweather_current->wind->speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]];
-        $owmw_data["wind_speed_description"] = owmw_getWindspeedText($owmweather_current->wind->speed);
+        $owmw_data["wind_speed_description"] = owmw_getWindspeedText(owmw_getConvertedWindSpeed($owmweather_current->wind->speed, $owmw_opt["temperature_unit"], "mi/h"));
         $owmw_data["wind_degrees"] = $owmweather_current->wind->deg ?? null;
         $owmw_data["wind_direction"] = owmw_getWindDirection($owmweather_current->wind->deg);
         $owmw_data["wind_gust"] = isset($owmweather_current->wind->gust) ? owmw_getConvertedWindSpeed($owmweather_current->wind->gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"])  . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]] : null;
@@ -3392,7 +3392,7 @@ function owmw_get_my_weather($attr)
                 $owmw_data["daily"][$i]["category"] = $value->weather[0]->main ?? null;
                 $owmw_data["daily"][$i]["description"] = owmw_getConditionText($owmw_data["daily"][$i]["condition_id"]);
                 $owmw_data["daily"][$i]["wind_speed"] = owmw_getConvertedWindSpeed($value->wind_speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]];
-                $owmw_data["daily"][$i]["wind_speed_description"] = owmw_getWindspeedText($value->wind_speed);
+                $owmw_data["daily"][$i]["wind_speed_description"] = owmw_getWindspeedText(owmw_getConvertedWindSpeed($value->wind_speed, $owmw_opt["temperature_unit"], "mi/h"));
                 $owmw_data["daily"][$i]["wind_degrees"] = $value->wind_deg ?? null;
                 $owmw_data["daily"][$i]["wind_direction"] = owmw_getWindDirection($value->wind_deg);
                 $owmw_data["daily"][$i]["wind_gust"] = isset($value->wind_gust) ? owmw_getConvertedWindSpeed($value->wind_gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"])  . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]] : null;
@@ -3482,7 +3482,7 @@ function owmw_get_my_weather($attr)
                     $owmw_data["hourly"][$cnt]["category"] = $value->weather[0]->main ?? null;
                     $owmw_data["hourly"][$cnt]["description"] = owmw_getConditionText($owmw_data["hourly"][$cnt]["condition_id"]);
                     $owmw_data["hourly"][$cnt]["wind_speed"] = owmw_getConvertedWindSpeed($value->wind_speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]];
-                    $owmw_data["hourly"][$cnt]["wind_speed_description"] = owmw_getWindspeedText($value->wind_speed);
+                    $owmw_data["hourly"][$cnt]["wind_speed_description"] = owmw_getWindspeedText(owmw_getConvertedWindSpeed($value->wind_speed, $owmw_opt["temperature_unit"], "mi/h"));
                     $owmw_data["hourly"][$cnt]["wind_degrees"] = $value->wind_deg ?? null;
                     $owmw_data["hourly"][$cnt]["wind_direction"] = owmw_getWindDirection($value->wind_deg);
                     $owmw_data["hourly"][$cnt]["wind_gust"] = isset($value->wind_gust) ? owmw_getConvertedWindSpeed($value->wind_gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]] : null;
@@ -3594,7 +3594,7 @@ function owmw_get_my_weather($attr)
                     $owmw_data["forecast"][$cnt]["condition_id"] = (int)$value->symbol->attributes()->number ?? 0;
                     $owmw_data["forecast"][$cnt]["description"] = owmw_getConditionText($owmw_data["forecast"][$cnt]["condition_id"]);
                     $owmw_data["forecast"][$cnt]["wind_speed"] = owmw_getConvertedWindSpeed((int)$value->windSpeed->attributes()->mps ?? 0, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]];
-                    $owmw_data["forecast"][$cnt]["wind_speed_description"] = owmw_getWindspeedText((int)$value->windSpeed->attributes()->mps);
+                    $owmw_data["forecast"][$cnt]["wind_speed_description"] = owmw_getWindspeedText(owmw_getConvertedWindSpeed((int)$value->windSpeed->attributes()->mps ?? 0, $owmw_opt["temperature_unit"], "mi/h"));
                     $owmw_data["forecast"][$cnt]["wind_degrees"] = (int)$value->windDirection->attributes()->deg ?? 0;
                     $owmw_data["forecast"][$cnt]["wind_direction"] = owmw_getWindDirection($owmw_data["forecast"][$cnt]["wind_degrees"]);
                     $owmw_data["forecast"][$cnt]["wind_gust"] = owmw_getConvertedWindSpeed((int)$value->windGust->attributes()->gust ?? 0, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]];
@@ -5588,28 +5588,28 @@ function owmw_getWindDirection($deg)
 function owmw_getConvertedWindSpeed($speed, $unit, $bypass_unit)
 {
     switch ($bypass_unit) {
-        case "1": //MI/H
+        case "mi/h": //MI/H
             if ($unit == 'metric') {
                 return number_format($speed * 2.24, 0);
             } else {
                 return number_format($speed, 0);
             }
             break;
-        case "2": //M/S
+        case "m/s": //M/S
             if ($unit == 'metric') {
-                return number_format($speed, 0);
+                return number_format($speed, 1);
             } else {
-                return number_format($speed / 2.24, 0);
+                return number_format($speed / 2.24, 1);
             }
             break;
-        case "3": //KM/H
+        case "km/h": //KM/H
             if ($unit == 'metric') {
                 return number_format($speed * 3.6, 0);
             } else {
                 return number_format($speed * 1.61, 0);
             }
             break;
-        case "4": //KNOTS
+        case "kt": //KNOTS
             if ($unit == 'metric') {
                 return number_format($speed * 1.94, 0);
             } else {
@@ -5714,7 +5714,7 @@ function owmw_converthPa($unit, $p, $punit)
 
 function owmw_getWindspeedText($speed)
 {
-    // Beaufort Wind Scale
+    // Beaufort Wind Scale mph
     $windDescriptions = [
         73 => __('Hurricane', 'owm-weather'),
         64 => __('Violent Storm', 'owm-weather'),

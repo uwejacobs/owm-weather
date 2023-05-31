@@ -4,7 +4,7 @@ Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager, multisite
 Requires at least: 5.6
 Tested up to: 6.2
-Stable tag: 5.6.15
+Stable tag: 5.6.16
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -149,6 +149,7 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 * French (thanks to Benjamin DENIS)
 * German
 * Hebrew
+* Hebrew (Israel)
 * Russian (thanks to @laguna34)
 * Spanish (thanks to Wladimir Espinoza Durán)
 * Serbian (PoEdit)
@@ -269,6 +270,10 @@ OpenWeather changed its API key permissions for new users. Up until September 20
 11. OWM Weather Hourly Forecast Charts
 
 == Changelog ==
+
+= 5.6.16 =
+* Finalized Hebrew (Israel) translation
+* Fixed wind speed conversion for Beaufort Wind Scale descriptions
 
 = 5.6.15 =
 * Added Hebrew translation
