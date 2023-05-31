@@ -1,5 +1,5 @@
 Must:
-Option to only load on Mainsite in a multisite installation
+Language selection (WordPress or one of the supported languages)
 Horizontal Layout
 today, tomorrow, day of the week labels
 
