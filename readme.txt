@@ -269,7 +269,7 @@ OpenWeather changed its API key permissions for new users. Up until September 20
 
 == Changelog ==
 
-= 5.6.16 =
+= 5.6.17 =
 * Updated all supported languages
 
 = 5.6.16 =
