@@ -3,8 +3,8 @@ Contributors: rainbowgeek, uwejacobs, ccdzine
 Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager, multisite
 Requires at least: 5.6
-Tested up to: 6.2
-Stable tag: 5.6.17
+Tested up to: 6.3
+Stable tag: 5.7.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -87,10 +87,10 @@ Our plugin will never display any advertising on your site. Did we mention it's 
 * Custom PHP templates for complete output control.
 * Display weather by 5 location types: City Id, Longitude/Latitude, Zip/Country, City/Country, and Visitor’s HTML5 Geo Location (fallback by IP address).
 * Use a custom field to provide City/Country.
-* 48-hour weather forecast with Wind Speed and Direction, Humidity, Dew Point, Pressure, Cloudiness, Precipitation, Visibility, and UV Index. The number of
-* hours selectable.
+* 48-hour weather forecast with Wind Speed and Direction, Humidity, Dew Point, Pressure, Cloudiness, Precipitation, Visibility, and UV Index. The number of hours selectable.
 * 8-day weather forecast with Wind, Humidity, Dew Point, Pressure, Cloudiness, Precipitation, Visibility, and UV Index. The number of days selectable.
 * 5-day weather forecast charts in 3 hour increments with Wind, Humidity, Dew Point, Pressure, Cloudiness, Precipitation. The number of days selectable.
+* Historical weather data with Wind Speed and Direction, Humidity, Dew Point, Pressure, Cloudiness, and Visibility. The date and time is selectable.
 * National weather alerts.
 * Unlimited weather widgets and forecasts on the same page.
 * All individual weather options can be bypassed via system options for all weathers at once.
@@ -268,6 +268,10 @@ OpenWeather changed its API key permissions for new users. Up until September 20
 11. OWM Weather Hourly Forecast Charts
 
 == Changelog ==
+
+= 5.7.0 =
+* Historical weather data
+* Tested with WordPress 6.3.1
 
 = 5.6.17 =
 * Updated all supported languages

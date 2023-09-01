@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: Powerful weather plugin for WordPress, based on the OpenWeather API, using custom post types and shortcodes, bundled with a ton of features.
-Version: 5.6.17
+Version: 5.7.0
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -31,7 +31,7 @@ Domain Path: /lang
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('OWM_WEATHER_VERSION', '5.6.17');
+define('OWM_WEATHER_VERSION', '5.7.0');
 
 // To prevent calling the plugin directly
 if (!function_exists('add_action')) {
@@ -493,12 +493,15 @@ function owmw_basic($post)
     $owmw_opt["custom_timezone"]            = get_post_meta($id, '_owmweather_custom_timezone', true);
     $owmw_opt["owm_language"]               = get_post_meta($id, '_owmweather_owm_language', true);
     $owmw_opt["gtag"]                       = get_post_meta($id, '_owmweather_gtag', true);
+    $owmw_opt["timemachine"]                = get_post_meta($id, '_owmweather_timemachine', true);
+    $owmw_opt["timemachine_date"]             = get_post_meta($id, '_owmweather_timemachine_date', true);
+    $owmw_opt["timemachine_time"]             = get_post_meta($id, '_owmweather_timemachine_time', true);
     $owmw_opt["network_share"]              = get_post_meta($id, '_owmweather_network_share', true);
     $owmw_opt["bypass_exclude"]             = get_post_meta($id, '_owmweather_bypass_exclude', true);
     $owmw_opt["current_weather_symbol"]     = get_post_meta($id, '_owmweather_current_weather_symbol', true);
     $owmw_opt["current_city_name"]          = get_post_meta($id, '_owmweather_current_city_name', true);
     $owmw_opt["today_date_format"]          = owmw_getDefault($id, '_owmweather_today_date_format', 'none');
-    $owmw_opt["current_weather_description"]    = get_post_meta($id, '_owmweather_current_weather_description', true);
+    $owmw_opt["current_weather_description"] = get_post_meta($id, '_owmweather_current_weather_description', true);
     $owmw_opt["sunrise_sunset"]             = get_post_meta($id, '_owmweather_sunrise_sunset', true);
     $owmw_opt["moonrise_moonset"]           = get_post_meta($id, '_owmweather_moonrise_moonset', true);
     $owmw_opt["wind"]                       = get_post_meta($id, '_owmweather_wind', true);
@@ -745,6 +748,27 @@ function owmw_basic($post)
                   </div>
               </div>
             <p class=" subsection-title">
+                <?php esc_html_e('Historical Data', 'owm-weather') ?>
+            </p>
+            <p>
+                <label class="toggle-switchy" for="owmweather_timemachine_meta" data-size="sm" data-text="false" data-color="green">
+                  <input <?php echo checked($owmw_opt["timemachine"], 'yes', false) ?> value="yes" type="checkbox" id="owmweather_timemachine_meta" name="owmweather_timemachine"/>
+                  <span class="toggle">
+                    <span class="switch"></span>
+                  </span>
+                  <span class="label"><?php echo esc_html_e('Time Machine', 'owm-weather') . " (OneCall Subscription)" ?></span>
+                </label>
+            </p>
+            </p>
+            <p>
+                <label for="owmweather_timemachine_date_meta"><?php esc_html_e('Date', 'owm-weather') ?></label>
+                <input id="owmweather_timemachine_date_meta" type="date" name="owmweather_timemachine_date" value="<?php echo esc_attr($owmw_opt["timemachine_date"]) ?>" />
+            </p>
+            <p>
+                <label for="owmweather_timemachine_time_meta"><?php esc_html_e('Time', 'owm-weather') ?></label>
+                <input id="owmweather_timemachine_time_meta" type="time" name="owmweather_timemachine_time" value="<?php echo esc_attr($owmw_opt["timemachine_time"]) ?>" />
+            </p>
+            <p class=" subsection-title">
                 <?php esc_html_e('Basic', 'owm-weather') ?>
             </p>
             <p>
@@ -859,7 +883,7 @@ function owmw_basic($post)
                   <span class="toggle">
                     <span class="switch"></span>
                   </span>
-                  <span class="label"><?php echo esc_html('Google Tag Manager DataLayer', 'owm-weather') . " (OneCall Subscription)" ?></span>
+                  <span class="label"><?php echo esc_html_e('Google Tag Manager DataLayer', 'owm-weather') . " (OneCall Subscription)" ?></span>
                 </label>
             </p>
             <p>
@@ -964,7 +988,7 @@ function owmw_basic($post)
                 </label>
             </p>
             <p class="owmw-dates subsection-title">
-                <?php echo esc_html('Sunrise/Sunset and Moonrise/Moonset', 'owm-weather') . " (OneCall Subscription)" ?>
+                <?php echo esc_html_e('Sunrise/Sunset and Moonrise/Moonset', 'owm-weather') . " (OneCall Subscription)" ?>
             </p>
             <p>
                 <label class="toggle-switchy" for="owmweather_sunrise_sunset_meta" data-size="sm" data-text="false" data-color="green">
@@ -981,7 +1005,7 @@ function owmw_basic($post)
                   <span class="toggle">
                     <span class="switch"></span>
                   </span>
-                  <span class="label"><?php echo esc_html('Moonrise + Moonset', 'owm-weather') . " (OneCall Subscription)" ?></span>
+                  <span class="label"><?php echo esc_html_e('Moonrise + Moonset', 'owm-weather') . " (OneCall Subscription)" ?></span>
                 </label>
             </p>
             <p class="owmw-misc subsection-title">
@@ -1030,7 +1054,7 @@ function owmw_basic($post)
                   <span class="toggle">
                     <span class="switch"></span>
                   </span>
-                  <span class="label"><?php echo esc_html('Dew Point', 'owm-weather') . " (OneCall Subscription)" ?></span>
+                  <span class="label"><?php echo esc_html_e('Dew Point', 'owm-weather') . " (OneCall Subscription)" ?></span>
                 </label>
             </p>
             <p>
@@ -1084,7 +1108,7 @@ function owmw_basic($post)
                   <span class="toggle">
                     <span class="switch"></span>
                   </span>
-                  <span class="label"><?php echo esc_html('UV Index', 'owm-weather') . " (OneCall Subscription)" ?></span>
+                  <span class="label"><?php echo esc_html_e('UV Index', 'owm-weather') . " (OneCall Subscription)" ?></span>
                 </label>
             </p>
             <p>
@@ -1094,7 +1118,7 @@ function owmw_basic($post)
                       <span class="toggle">
                         <span class="switch"></span>
                       </span>
-                      <span class="label"><?php echo esc_html('Alerts', 'owm-weather') . " (OneCall Subscription)" ?></span>
+                      <span class="label"><?php echo esc_html_e('Alerts', 'owm-weather') . " (OneCall Subscription)" ?></span>
                     </label>
                 </span>
                 <span>&nbsp;</span>
@@ -1122,7 +1146,7 @@ function owmw_basic($post)
                 </label>
             </p>
             <p class="hour subsection-title">
-                <?php echo esc_html('Hourly Forecast', 'owm-weather') . " (OneCall Subscription)" ?>
+                <?php echo esc_html_e('Hourly Forecast', 'owm-weather') . " (OneCall Subscription)" ?>
             </p>
             <p>
                 <label for="owmweather_hours_forecast_no_meta"><?php esc_html_e('Number of Hours', 'owm-weather') ?></label>
@@ -1138,7 +1162,7 @@ function owmw_basic($post)
                 </label>
             </p>
             <p class="forecast subsection-title">
-                <?php echo esc_html('Daily Forecast', 'owm-weather') . " (OneCall Subscription)" ?>
+                <?php echo esc_html_e('Daily Forecast', 'owm-weather') . " (OneCall Subscription)" ?>
             </p>
             <p>
                 <label for="owmweather_forecast_no_meta"><?php esc_html_e('Number of Days', 'owm-weather') ?></label>
@@ -2156,6 +2180,8 @@ function owmw_save_metabox($post_id)
         owmw_save_metabox_field('tabbed_btn_background_color', $post_id);
         owmw_save_metabox_field('tabbed_btn_active_color', $post_id);
         owmw_save_metabox_field('tabbed_btn_hover_color', $post_id);
+        owmw_save_metabox_field('timemachine_date', $post_id);
+        owmw_save_metabox_field('timemachine_time', $post_id);
 
         owmw_save_metabox_field_yn('current_city_name', $post_id);
         owmw_save_metabox_field_yn('current_weather_symbol', $post_id);
@@ -2207,6 +2233,7 @@ function owmw_save_metabox($post_id)
         owmw_save_metabox_field_yn('map_windrose_legend', $post_id);
         owmw_save_metabox_field_yn('map_windrose_on', $post_id);
         owmw_save_metabox_field_yn('gtag', $post_id);
+        owmw_save_metabox_field_yn('timemachine', $post_id);
         owmw_save_metabox_field_yn('network_share', $post_id);
         owmw_save_metabox_field_yn('bypass_exclude', $post_id);
         owmw_save_metabox_field_yn('map', $post_id);
@@ -2633,6 +2660,9 @@ function owmw_get_my_weather_id($atts)
         "map_windrose_legend"           => false,
         "map_windrose_on"               => false,
         "gtag"                          => false,
+        "timemachine"                   => false,
+        "timemachine_date"                => false,
+        "timemachine_time"                => false,
         "network_share"                 => false,
         "bypass_exclude"                => false,
         "alerts"                        => false,
@@ -2921,6 +2951,9 @@ function owmw_get_my_weather($attr)
         $owmw_opt["iconpack"]                       = owmw_get_bypass($bypass, "iconpack");
         $owmw_opt["template"]                       = owmw_get_bypass($bypass, "template");
         $owmw_opt["gtag"]                           = owmw_get_bypass($bypass, "gtag");
+        $owmw_opt["timemachine"]                    = owmw_get_bypass($bypass, "timemachine");
+        $owmw_opt["timemachine_date"]                 = owmw_get_bypass($bypass, "timemachine_date");
+        $owmw_opt["timemachine_time"]                 = owmw_get_bypass($bypass, "timemachine_time");
         $owmw_opt["network_share"]                  = owmw_get_bypass($bypass, "network_share");
         $owmw_opt["custom_css"]                     = owmw_get_bypass($bypass, 'custom_css');
         $owmw_opt["current_weather_symbol"]         = owmw_get_bypass_yn($bypass, "current_weather_symbol");
@@ -2971,7 +3004,19 @@ function owmw_get_my_weather($attr)
         $owmw_opt["tabbed_btn_text_color"]          = owmw_get_bypass($bypass, 'tabbed_btn_text_color');
         $owmw_opt["tabbed_btn_background_color"]    = owmw_get_bypass($bypass, 'tabbed_btn_background_color');
         $owmw_opt["tabbed_btn_active_color"]        = owmw_get_bypass($bypass, 'tabbed_btn_active_color');
-        $owmw_opt["tabbed_btn_hover_color"]         = owmw_get_bypass($bypass, 'tabbed_btn_hover_color');
+	$owmw_opt["tabbed_btn_hover_color"]         = owmw_get_bypass($bypass, 'tabbed_btn_hover_color');
+
+	if ($owmw_opt["timemachine"]) {
+		$owmw_opt["hours_forecast_no"] = 0;
+		$owmw_opt["days_forecast_no"] = 0;
+		$owmw_opt["alerts"] = "No";
+		$owmw_opt["map"] = "No";
+		$owmw_opt["moonrise_moonset"] = "No";
+		$owmw_opt["sunrise_sunset"] = "No";
+		$owmw_opt["uv_index"] = "No";
+		$owmw_opt["gtag"] = "No";
+        $owmw_opt["timestamp"] = strtotime($owmw_opt["timemachine_date"] . " " . $owmw_opt["timemachine_time"]);
+	}
 
         /* Defaults */
         if (empty($owmw_opt["today_date_format"])) {
@@ -3251,8 +3296,10 @@ function owmw_get_my_weather($attr)
         $owmw_data["owm_link"] = 'https://openweathermap.org/city/' . ($owmweather_current->id ?? "");
         $owmw_data["timestamp_sunrise"] = $owmweather_current->sys->sunrise ? $owmweather_current->sys->sunrise + (60 * $utc_time_wp) : null;
         $owmw_data["timestamp_sunset"] = $owmweather_current->sys->sunset ? $owmweather_current->sys->sunset + (60 * $utc_time_wp) : null;
-        $owmw_data["sunrise"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_sunrise"]);
-        $owmw_data["sunset"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_sunset"]);
+        //$owmw_data["sunrise"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_sunrise"]);
+        //$owmw_data["sunset"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_sunset"]);
+        $owmw_data["sunrise"] = '';
+        $owmw_data["sunset"] = '';
         $owmw_data["moonrise"] = '';
         $owmw_data["moonset"] = '';
 
@@ -3286,11 +3333,148 @@ function owmw_get_my_weather($attr)
             }
         } else {
             $owmw_data["today_day"] = '';
+	}
+
+    //JSON : Onecall historical weather (relies on lat and lon from current weather call)
+	if ($owmw_opt["timemachine"] == "yes") {
+        $url = 'https://api.openweathermap.org/data/3.0/onecall/timemachine?lon=' . $owmw_data["longitude"] . "&lat=" . $owmw_data["latitude"] . '&dt=' . $owmw_opt["timestamp"] . '&lang=' . $owmw_opt["owm_language"] . '&units=' . $owmw_opt["temperature_unit"] . '&APPID=' . $owmw_opt["api_key"];
+        if ($owmw_opt["disable_cache"] == 'yes') {
+            $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
+            if (!is_wp_error($response)) {
+                $owmweather_timemachine = json_decode(wp_remote_retrieve_body($response));
+            } else {
+                $errorMsgs = $response->get_error_messages();
+                $response = array();
+                $response['weather'] = $owmw_params["weather_id"];
+                $response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_html__('Unable to retrieve weather data', 'owm-weather') . "</p>";
+                foreach ($errorMsgs as $errorMsg) {
+                    $response['html'] .= "<p>" . esc_html__($errorMsg) . "</p>";
+                }
+                wp_send_json_error($response, 400);
+                return;
+            }
+        } else {
+            $transient_key = 'owmw_tm_' . $queryT . $owmw_opt["owm_language"] . $owmw_opt["temperature_unit"][0] . $owmw_opt["timestamp"];
+            if (false === ( $owmweather_timemachine = $get_transient($transient_key) )) {
+                $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
+                if (!is_wp_error($response)) {
+                    $owmweather_timemachine = json_decode(wp_remote_retrieve_body($response));
+                    $set_transient($transient_key, $owmweather_timemachine, 1 * MONTH_IN_SECONDS);
+                } else {
+                    $errorMsgs = $response->get_error_messages();
+                    $response = array();
+                    $response['weather'] = $owmw_params["weather_id"];
+                    $response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_html__('Unable to retrieve weather data', 'owm-weather') . "</p>";
+                    foreach ($errorMsgs as $errorMsg) {
+                        $response['html'] .= "<p>" . esc_html__($errorMsg) . "</p>";
+                    }
+                    wp_send_json_error($response, 400);
+                    return;
+                }
+            }
         }
 
-        //JSON : Onecall forecast weather (relies on lat and lon from current weather call)
-        $url = "https://api.openweathermap.org/data/2.5/onecall?lon=" . $owmw_data["longitude"] . "&lat=" . $owmw_data["latitude"] . "&mode=json&exclude=minutely&lang=" . $owmw_opt["owm_language"] . "&units=" . $owmw_opt["temperature_unit"] . "&APPID=" . $owmw_opt["api_key"];
-        if ($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0 || $owmw_opt["alerts"] == 'yes' || $owmw_opt["moonrise_moonset"] == "yes" || $owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes") {
+        if (!empty($owmweather_timemachine->cod) && $owmweather_timemachine->cod != "200") {
+            $response = array();
+            $response['weather'] = $owmw_params["weather_id"];
+            $response['html'] = "<p>" . esc_html__("OWM Weather id", 'owm-weather') . " '" . esc_attr($owmw_opt["id"]) . "': " . esc_html__("OWM Error", 'owm-weather') . " " . esc_html($owmweather_timemachine->cod . (!empty($owmweather_timemachine->message) ? " (" . $owmweather_timemachine->message . ")" : "")) . "</p>";
+            $response['html'] .= "<pre>" . $url . "</pre>";
+            wp_send_json_error($response, $owmweather_timemachine->cod);
+            return;
+        }
+
+	    owmw_sanitize_api_response($owmweather_timemachine);
+
+        $owmw_data["timezone_offset"] = $owmweather_timemachine->timezone_offset ? $owmweather_timemachine->timezone_offset : 0;
+        $owmw_data["timezone"] = $owmweather_timemachine->timezone ? $owmweather_timemachine->timezone : 0;
+        $owmw_data["timestamp"] = $owmweather_timemachine->data[0]->dt ? $owmweather_timemachine->data[0]->dt + $owmw_data["timezone_offset"] : null;
+        if ($owmw_opt["custom_timezone"] == 'Default') {
+            $utc_time_wp = get_option('gmt_offset') * 60;
+        } elseif ($owmw_opt["custom_timezone"] == 'local') {
+            $utc_time_wp = intval($owmw_data["timezone"]) * 60;
+        } else {
+            $utc_time_wp = intval($owmw_opt["custom_timezone"]) * 60;
+        }
+
+        $owmw_data["condition_id"] = $owmweather_timemachine->data[0]->weather[0]->id ?? null;
+        $owmw_opt["text_color"] = owmw_weather_based_text_color($owmw_opt, $owmw_data["condition_id"]);
+        $owmw_data["category"] = $owmweather_timemachine->data[0]->weather[0]->main ?? null;
+        $owmw_data["description"] = owmw_getConditionText($owmw_data["condition_id"]);
+        $owmw_data["wind_speed_unit"] = owmw_getWindSpeedUnit($owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]);
+        $owmw_data["wind_speed"] = owmw_getConvertedWindSpeed($owmweather_timemachine->data[0]->wind_speed, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"]) . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]];
+        $owmw_data["wind_speed_description"] = owmw_getWindspeedText(owmw_getConvertedWindSpeed($owmweather_timemachine->data[0]->wind_speed, $owmw_opt["temperature_unit"], "mi/h"));
+        $owmw_data["wind_degrees"] = $owmweather_timemachine->data[0]->wind_deg ?? null;
+        $owmw_data["wind_direction"] = owmw_getWindDirection($owmweather_timemachine->data[0]->wind_deg);
+        $owmw_data["wind_gust"] = isset($owmweather_timemachine->data[0]->wind_gust) ? owmw_getConvertedWindSpeed($owmweather_timemachine->data[0]->wind_gust, $owmw_opt["temperature_unit"], $owmw_opt["wind_unit"])  . ' ' . $windspeedLabel[$owmw_data["wind_speed_unit"]] : null;
+        $owmw_data["temperature"] = $owmweather_timemachine->data[0]->temp ? ceil($owmweather_timemachine->data[0]->temp) : null;
+	    $owmw_data["feels_like"] = $owmweather_timemachine->data[0]->feels_like ? ceil($owmweather_timemachine->data[0]->feels_like) : null;
+	    $owmw_data["dew_point"] = $owmweather_timemachine->data[0]->dew_point ? ceil($owmweather_timemachine->data[0]->dew_point) : null;
+        if ($owmw_opt["temperature_unit"] == 'metric') {
+            $owmw_data["temperature_unit_character"] = __("C", 'owm-weather');
+            $owmw_data["temperature_unit_text"] = __('Celsius', 'owm-weather');
+            $owmw_data["temperature_celsius"] = $owmw_data["temperature"];
+            $owmw_data["temperature_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["temperature"]);
+            $owmw_data["feels_like_celsius"] = $owmw_data["feels_like"];
+            $owmw_data["feels_like_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["feels_like"]);
+            $owmw_data["dew_point_celsius"] = $owmw_data["dew_point"];
+            $owmw_data["dew_point_fahrenheit"] = owmw_celsius_to_fahrenheit($owmw_data["dew_point"]);
+        } else {
+            $owmw_data["temperature_unit_character"] = __("F", 'owm-weather');
+            $owmw_data["temperature_unit_text"] = __('Fahrenheit', 'owm-weather');
+            $owmw_data["temperature_fahrenheit"] = $owmw_data["temperature"];
+            $owmw_data["temperature_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["temperature"]);
+            $owmw_data["feels_like_fahrenheit"] = $owmw_data["feels_like"];
+            $owmw_data["feels_like_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["feels_like"]);
+            $owmw_data["dew_point_fahrenheit"] = $owmw_data["dew_point"];
+            $owmw_data["dew_point_celsius"] = owmw_fahrenheit_to_celsius($owmw_data["dew_point"]);
+        }
+        $owmw_data["humidity"] = $owmweather_timemachine->data[0]->humidity ? $owmweather_timemachine->data[0]->humidity . '%' : null;
+        $owmw_data["pressure_unit"] = owmw_getPressureUnit($owmw_opt["temperature_unit"], $owmw_opt["pressure_unit"]);
+        $owmw_data["pressure"] = owmw_converthPa($owmw_opt["temperature_unit"], $owmweather_timemachine->data[0]->pressure, $pressureLabel[$owmw_data["pressure_unit"]]);
+        $owmw_data["cloudiness"] = $owmweather_timemachine->data[0]->clouds ? $owmweather_timemachine->data[0]->clouds . '%' : "0%";
+        ;
+        $owmw_data["visibility"] = !empty($owmweather_timemachine->data[0]->visibility) ? owmw_getConvertedDistance($owmw_opt["temperature_unit"], $owmweather_timemachine->data[0]->visibility) : 0;
+        $owmw_data["timestamp_sunrise"] = $owmweather_timemachine->data[0]->sunrise ? $owmweather_timemachine->data[0]->sunrise + (60 * $utc_time_wp) : null;
+        $owmw_data["timestamp_sunset"] = $owmweather_timemachine->data[0]->sunset ? $owmweather_timemachine->data[0]->sunset + (60 * $utc_time_wp) : null;
+        $owmw_data["sunrise"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_sunrise"]);
+        $owmw_data["sunset"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_sunset"]);
+
+        if ($owmw_opt["today_date_format"] == 'date') {
+            $owmw_data["today_day"] =  date_i18n(get_option('date_format'), $owmw_data["timestamp"]);
+        } elseif ($owmw_opt["today_date_format"] == 'datetime') {
+            $owmw_data["today_day"] =  date_i18n(get_option('date_format') . ' ' . get_option('time_format'), $owmw_data["timestamp"]);
+        } elseif ($owmw_opt["today_date_format"] == 'day') {
+            switch (strftime("%w", $owmw_data["timestamp"])) {
+                case "0":
+                    $owmw_data["today_day"]      = esc_html__('Sunday', 'owm-weather');
+                    break;
+                case "1":
+                    $owmw_data["today_day"]      = esc_html__('Monday', 'owm-weather');
+                    break;
+                case "2":
+                    $owmw_data["today_day"]      = esc_html__('Tuesday', 'owm-weather');
+                    break;
+                case "3":
+                    $owmw_data["today_day"]      = esc_html__('Wednesday', 'owm-weather');
+                    break;
+                case "4":
+                    $owmw_data["today_day"]      = esc_html__('Thursday', 'owm-weather');
+                    break;
+                case "5":
+                    $owmw_data["today_day"]      = esc_html__('Friday', 'owm-weather');
+                    break;
+                case "6":
+                    $owmw_data["today_day"]      = esc_html__('Saturday', 'owm-weather');
+                    break;
+            }
+        } else {
+            $owmw_data["today_day"] = '';
+	    }
+	}
+
+    //JSON : Onecall forecast weather (relies on lat and lon from current weather call)
+    $url = "https://api.openweathermap.org/data/2.5/onecall?lon=" . $owmw_data["longitude"] . "&lat=" . $owmw_data["latitude"] . "&mode=json&exclude=minutely&lang=" . $owmw_opt["owm_language"] . "&units=" . $owmw_opt["temperature_unit"] . "&APPID=" . $owmw_opt["api_key"];
+    if ($owmw_opt["timemachine"] != "yes" && ($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0 || $owmw_opt["alerts"] == 'yes' || owmw_opt["moonrise_moonset"] == "yes" || $owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes")) {
             if ($owmw_opt["disable_cache"] == 'yes') {
                 $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
                 if (!is_wp_error($response)) {
@@ -3339,7 +3523,7 @@ function owmw_get_my_weather($attr)
 
         owmw_sanitize_api_response($owmweather, array("description"));
 
-        if ($owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes") {
+        if ($owmw_opt["timemachine"] != "yes" && ($owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes")) {
             $owmw_data["uv_index"] = $owmweather->current->uvi ?? null;
             $owmw_data["dew_point"] = $owmweather->current->dew_point ? ceil($owmweather->current->dew_point) : null;
             if ($owmw_opt["temperature_unit"] == 'metric') {
@@ -3542,7 +3726,7 @@ function owmw_get_my_weather($attr)
 
         //JSON : 5 day forecast weather (relies on lat and lon from current weather call)
         $url = "https://api.openweathermap.org/data/2.5/forecast?lon=" . $owmw_data["longitude"] . "&lat=" . $owmw_data["latitude"] . "&mode=xml&exclude=minutely&lang=" . $owmw_opt["owm_language"] . "&units=" . $owmw_opt["temperature_unit"] . "&APPID=" . $owmw_opt["api_key"];
-        if (in_array($owmw_opt["template"], array("debug", "custom1", "custom2", "chart1", "chart2", "tabbed2", "table3"))) {
+        if ($owmw_opt["timemachine"] != "yes" && in_array($owmw_opt["template"], array("debug", "custom1", "custom2", "chart1", "chart2", "tabbed2", "table3"))) {
             if ($owmw_opt["disable_cache"] == 'yes') {
                 $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
                 if (!is_wp_error($response)) {
@@ -6056,6 +6240,7 @@ function owmw_sanitize_validate_field($key, $value)
             case "map_windrose_legend":
             case "map_windrose_on":
             case "gtag":
+            case "timemachine":
             case "network_share":
             case "bypass_exclude":
             case "alerts":
@@ -6125,8 +6310,11 @@ function owmw_sanitize_validate_field($key, $value)
                 } elseif ($value < 10) {
                     $value = 10;
                 }
-                break;
-
+		        break;
+	        case "timemachine_date":
+	        case "timemachine_time":
+    		    $value = sanitize_text_field($value);
+		        break;
             default:
                 $value = sanitize_text_field($value);
                 break;
