@@ -269,6 +269,9 @@ OpenWeather changed its API key permissions for new users. Up until September 20
 
 == Changelog ==
 
+= 5.7.1 =
+* Fixed syntax error in Time Machine code
+
 = 5.7.0 =
 * Historical weather data
 * Tested with WordPress 6.3.1

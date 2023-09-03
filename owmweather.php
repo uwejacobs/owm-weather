@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: Powerful weather plugin for WordPress, based on the OpenWeather API, using custom post types and shortcodes, bundled with a ton of features.
-Version: 5.7.0
+Version: 5.7.1
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -31,7 +31,7 @@ Domain Path: /lang
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('OWM_WEATHER_VERSION', '5.7.0');
+define('OWM_WEATHER_VERSION', '5.7.1');
 
 // To prevent calling the plugin directly
 if (!function_exists('add_action')) {
@@ -3474,7 +3474,7 @@ function owmw_get_my_weather($attr)
 
     //JSON : Onecall forecast weather (relies on lat and lon from current weather call)
     $url = "https://api.openweathermap.org/data/2.5/onecall?lon=" . $owmw_data["longitude"] . "&lat=" . $owmw_data["latitude"] . "&mode=json&exclude=minutely&lang=" . $owmw_opt["owm_language"] . "&units=" . $owmw_opt["temperature_unit"] . "&APPID=" . $owmw_opt["api_key"];
-    if ($owmw_opt["timemachine"] != "yes" && ($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0 || $owmw_opt["alerts"] == 'yes' || owmw_opt["moonrise_moonset"] == "yes" || $owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes")) {
+    if ($owmw_opt["timemachine"] != "yes" && ($owmw_opt["hours_forecast_no"] > 0 || $owmw_opt["days_forecast_no"] > 0 || $owmw_opt["alerts"] == 'yes' || $owmw_opt["moonrise_moonset"] == "yes" || $owmw_opt["dew_point"] == "yes" || $owmw_opt["uv_index"] == "yes" || $owmw_opt["gtag"] == "yes")) {
             if ($owmw_opt["disable_cache"] == 'yes') {
                 $response = wp_remote_get(esc_url_raw($url), array( 'timeout' => 30));
                 if (!is_wp_error($response)) {
