@@ -3,7 +3,7 @@
 Plugin Name: OWM Weather
 Plugin URI: https://github.com/uwejacobs/owm-weather
 Description: Powerful weather plugin for WordPress, based on the OpenWeather API, using custom post types and shortcodes, bundled with a ton of features.
-Version: 5.7.1
+Version: 5.7.2
 Author: Uwe Jacobs
 Author URI: https://ujsoftware.com/owm-weather-blog/
 Original Author: Benjamin DENIS
@@ -31,7 +31,7 @@ Domain Path: /lang
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('OWM_WEATHER_VERSION', '5.7.1');
+define('OWM_WEATHER_VERSION', '5.7.2');
 
 // To prevent calling the plugin directly
 if (!function_exists('add_action')) {
@@ -3296,12 +3296,8 @@ function owmw_get_my_weather($attr)
         $owmw_data["owm_link"] = 'https://openweathermap.org/city/' . ($owmweather_current->id ?? "");
         $owmw_data["timestamp_sunrise"] = $owmweather_current->sys->sunrise ? $owmweather_current->sys->sunrise + (60 * $utc_time_wp) : null;
         $owmw_data["timestamp_sunset"] = $owmweather_current->sys->sunset ? $owmweather_current->sys->sunset + (60 * $utc_time_wp) : null;
-        //$owmw_data["sunrise"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_sunrise"]);
-        //$owmw_data["sunset"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_sunset"]);
-        $owmw_data["sunrise"] = '';
-        $owmw_data["sunset"] = '';
-        $owmw_data["moonrise"] = '';
-        $owmw_data["moonset"] = '';
+        $owmw_data["sunrise"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_sunrise"]);
+        $owmw_data["sunset"] = (string)date_i18n(get_option("time_format"), $owmw_data["timestamp_sunset"]);
 
         if ($owmw_opt["today_date_format"] == 'date') {
             $owmw_data["today_day"] =  date_i18n(get_option('date_format'));
@@ -6507,4 +6503,10 @@ function owmw_is_global_multisite()
     }
 
     return false;
+}
+
+if (!function_exists('str_starts_with')) {
+    function str_starts_with($haystack, $needle) {
+        return substr($haystack, 0, strlen($needle)) === $needle;
+    }
 }
