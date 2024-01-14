@@ -3,7 +3,7 @@ Contributors: rainbowgeek, uwejacobs, ccdzine
 Donate link: paypal.me/ujsoftware
 Tags: weather, forecast, openweathermap, owm, weather widget, hourly forecast, daily forecast, local weather, sunset, sunrise, moonset, moonrise, weather chart, wind, weather map, google tag manager, multisite
 Requires at least: 5.6
-Tested up to: 6.3
+Tested up to: 6.4
 Stable tag: 5.7.2
 Requires PHP: 7.0
 License: GPLv2 or later
